@@ -4,6 +4,7 @@ import MarqueeHeader from '../components/brutalist/MarqueeHeader';
 import ArtGrid from '../components/brutalist/ArtGrid';
 import Manifesto from '../components/brutalist/Manifesto';
 import BrutalistCard from '../components/brutalist/BrutalistCard';
+import BrutalistButton from '../components/brutalist/BrutalistButton';
 
 const BrutalistDashboard = () => {
     return (
@@ -23,12 +24,12 @@ const BrutalistDashboard = () => {
                             ARCHIVE<span className="text-stroke text-transparent stroke-black text-stroke-2">_01</span>
                         </h1>
                         <div className="flex gap-4">
-                            <BrutalistCard className="bg-red-500 text-white font-mono text-sm font-bold uppercase hover:bg-red-600">
+                            <BrutalistButton variant="neo" color="bg-red-500 text-white hover:bg-red-600">
                                 Explore Works
-                            </BrutalistCard>
-                            <BrutalistCard className="font-mono text-sm font-bold uppercase">
+                            </BrutalistButton>
+                            <BrutalistButton variant="neo">
                                 Read Info
-                            </BrutalistCard>
+                            </BrutalistButton>
                         </div>
                     </div>
 
@@ -58,9 +59,7 @@ const BrutalistDashboard = () => {
 
                 {/* Floating Elements */}
                 <div className="fixed bottom-8 right-8 z-50">
-                    <BrutalistCard className="bg-black text-yellow-400 rounded-full w-16 h-16 flex items-center justify-center cursor-pointer hover:scale-110 active:scale-90 transition-transform">
-                        <Move className="h-8 w-8" />
-                    </BrutalistCard>
+                    <BrutalistButton variant="neo" size="icon" icon={<Move className="h-8 w-8" />} color="bg-black text-yellow-400 rounded-full" className="w-16 h-16 rounded-full" />
                 </div>
 
                 {/* Footer */}
