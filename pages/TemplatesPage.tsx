@@ -39,7 +39,7 @@ export default function TemplatesPage() {
             >
                 <h1 className="text-4xl font-bold text-white mb-4">Template Gallery</h1>
                 <p className="text-lg text-zinc-400 max-w-2xl">
-                    Explore all 28 design themes. Each template is a complete dashboard showcasing
+                    Explore all 28 templates. Each template is a complete dashboard showcasing
                     how components work together in context.
                 </p>
             </motion.div>
@@ -51,8 +51,8 @@ export default function TemplatesPage() {
                         key={category.id}
                         onClick={() => setActiveCategory(category.id)}
                         className={`px-4 py-2 text-sm font-medium rounded-full transition-colors flex items-center gap-2 ${activeCategory === category.id
-                                ? 'bg-white text-zinc-950'
-                                : 'bg-zinc-900 text-zinc-400 hover:bg-zinc-800 hover:text-white'
+                            ? 'bg-white text-zinc-950'
+                            : 'bg-zinc-900 text-zinc-400 hover:bg-zinc-800 hover:text-white'
                             }`}
                     >
                         {category.label}
@@ -101,10 +101,10 @@ export default function TemplatesPage() {
                                     <h3 className="font-semibold text-white text-lg">{theme.name}</h3>
                                     <span
                                         className={`ml-auto px-2 py-0.5 text-xs rounded-full ${theme.category === 'dark'
-                                                ? 'bg-zinc-800 text-zinc-300'
-                                                : theme.category === 'light'
-                                                    ? 'bg-zinc-700 text-zinc-200'
-                                                    : 'bg-fuchsia-900/50 text-fuchsia-300'
+                                            ? 'bg-zinc-800 text-zinc-300'
+                                            : theme.category === 'light'
+                                                ? 'bg-zinc-700 text-zinc-200'
+                                                : 'bg-fuchsia-900/50 text-fuchsia-300'
                                             }`}
                                     >
                                         {theme.category}
@@ -130,7 +130,7 @@ export default function TemplatesPage() {
             {/* Empty State */}
             {filteredThemes.length === 0 && (
                 <div className="text-center py-16">
-                    <p className="text-zinc-500">No themes found in this category.</p>
+                    <p className="text-zinc-500">No templates found in this category.</p>
                 </div>
             )}
         </div>

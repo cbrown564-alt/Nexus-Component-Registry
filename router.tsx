@@ -7,6 +7,7 @@ import TemplatePage from '@/pages/TemplatePage'
 import ComponentsPage from '@/pages/ComponentsPage'
 import ComponentPage from '@/pages/ComponentPage'
 import HooksPage from '@/pages/HooksPage'
+import TokensPage from '@/pages/TokensPage'
 
 export const router = createBrowserRouter([
     {
@@ -20,6 +21,7 @@ export const router = createBrowserRouter([
             { path: 'components', element: <ComponentsPage /> },
             { path: 'components/:theme/:name', element: <ComponentPage /> },
             { path: 'hooks', element: <HooksPage /> },
+            { path: 'tokens', element: <TokensPage /> },
         ],
     },
 ])

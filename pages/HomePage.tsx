@@ -5,7 +5,7 @@ import { featuredThemes, getThemeById } from '@/data/themes'
 import ThemePreview from '@/components/ui/ThemePreview'
 
 const stats = [
-    { label: 'Design Themes', value: '28' },
+    { label: 'Templates', value: '28' },
     { label: 'Components', value: '120+' },
     { label: 'Hooks', value: '8' },
 ]
@@ -13,7 +13,7 @@ const stats = [
 const features = [
     {
         icon: Palette,
-        title: '28 Design Themes',
+        title: '28 Templates',
         description: 'From brutalist to futuristic, find the perfect aesthetic for your project.',
     },
     {
@@ -54,13 +54,13 @@ export default function HomePage() {
                 </div>
 
                 <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6 bg-gradient-to-b from-white to-zinc-400 bg-clip-text text-transparent">
-                    28 Design Systems.
+                    28 Templates.
                     <br />
                     One Registry.
                 </h1>
 
                 <p className="text-xl text-zinc-400 max-w-2xl mx-auto mb-10">
-                    Explore a curated collection of React components across 28 unique design themes.
+                    Explore a curated collection of React components across 28 unique templates.
                     Find inspiration, copy code, ship faster.
                 </p>
 
@@ -76,7 +76,7 @@ export default function HomePage() {
                         to="/templates"
                         className="inline-flex items-center gap-2 rounded-full border border-zinc-700 bg-zinc-900/50 px-6 py-3 font-semibold text-zinc-200 hover:bg-zinc-800 transition-colors"
                     >
-                        Explore Themes
+                        Explore Templates
                     </Link>
                 </div>
             </motion.section>

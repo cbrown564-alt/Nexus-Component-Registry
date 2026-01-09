@@ -1,228 +1,46 @@
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import { useTheme } from '@/context/ThemeContext'
-import { Check, Search, Palette, Bell, Settings, User, ChevronRight, Mail, Star, Zap } from 'lucide-react'
+import { Check, Search, Palette, Bell, Settings, User, Star, Zap, ChevronDown, Sparkles } from 'lucide-react'
 import type { PlaygroundTheme } from '@/data/playgroundThemes'
+import { getRadius, getShadow, Size, ButtonVariant, BadgeVariant, CardSize } from '@/data/variants'
 
-// Helper to get CSS variable style from theme
-function getThemeStyles(theme: PlaygroundTheme): React.CSSProperties {
-    return {
-        '--pg-background': theme.colors.background,
-        '--pg-foreground': theme.colors.foreground,
-        '--pg-card': theme.colors.card,
-        '--pg-card-foreground': theme.colors.cardForeground,
-        '--pg-primary': theme.colors.primary,
-        '--pg-primary-foreground': theme.colors.primaryForeground,
-        '--pg-secondary': theme.colors.secondary,
-        '--pg-secondary-foreground': theme.colors.secondaryForeground,
-        '--pg-muted': theme.colors.muted,
-        '--pg-muted-foreground': theme.colors.mutedForeground,
-        '--pg-accent': theme.colors.accent,
-        '--pg-accent-foreground': theme.colors.accentForeground,
-        '--pg-border': theme.colors.border,
-        '--pg-ring': theme.colors.ring,
-    } as React.CSSProperties
-}
+// Import extracted playground components
+import {
+    PlaygroundButton,
+    PlaygroundCard,
+    PlaygroundInput,
+    PlaygroundBadge,
+    PlaygroundToggle,
+    PlaygroundListItem,
+} from '@/components/playground'
 
-function getRadius(radius: PlaygroundTheme['radius']): string {
-    switch (radius) {
-        case 'none': return '0px'
-        case 'sm': return '4px'
-        case 'md': return '8px'
-        case 'lg': return '12px'
-        case 'xl': return '20px'
-    }
-}
-
-function getShadow(shadow: PlaygroundTheme['shadow'], theme: PlaygroundTheme): string {
-    switch (shadow) {
-        case 'none': return 'none'
-        case 'sm': return '0 1px 2px 0 rgb(0 0 0 / 0.05)'
-        case 'md': return '0 4px 6px -1px rgb(0 0 0 / 0.1)'
-        case 'lg': return '0 10px 15px -3px rgb(0 0 0 / 0.1)'
-        case 'glow': return `0 0 20px ${theme.colors.primary}40, 0 0 40px ${theme.colors.primary}20`
-    }
-}
-
-// === GENERIC PLAYGROUND COMPONENTS ===
-
-function PlaygroundButton({ children, variant = 'primary', theme }: {
-    children: React.ReactNode
-    variant?: 'primary' | 'secondary' | 'outline'
-    theme: PlaygroundTheme
-}) {
-    const baseStyles: React.CSSProperties = {
-        borderRadius: getRadius(theme.radius),
-        padding: '10px 20px',
-        fontSize: '14px',
-        fontWeight: theme.typography.bodyWeight,
-        fontFamily: theme.typography.fontFamily,
-        letterSpacing: theme.typography.letterSpacing,
-        cursor: 'pointer',
-        transition: 'all 0.2s',
-        border: 'none',
-    }
-
-    const variants = {
-        primary: {
-            backgroundColor: theme.colors.primary,
-            color: theme.colors.primaryForeground,
-        },
-        secondary: {
-            backgroundColor: theme.colors.secondary,
-            color: theme.colors.secondaryForeground,
-        },
-        outline: {
-            backgroundColor: 'transparent',
-            color: theme.colors.foreground,
-            border: `1px solid ${theme.colors.border}`,
-        },
-    }
-
-    return (
-        <button style={{ ...baseStyles, ...variants[variant] }}>
-            {children}
-        </button>
-    )
-}
-
-function PlaygroundCard({ title, description, theme, children }: {
-    title: string
-    description?: string
-    theme: PlaygroundTheme
-    children?: React.ReactNode
-}) {
-    return (
-        <div
-            style={{
-                backgroundColor: theme.colors.card,
-                color: theme.colors.cardForeground,
-                borderRadius: getRadius(theme.radius),
-                border: `1px solid ${theme.colors.border}`,
-                boxShadow: getShadow(theme.shadow, theme),
-                padding: '24px',
-            }}
-        >
-            <h3 style={{ fontSize: '18px', fontWeight: theme.typography.headingWeight, marginBottom: '8px', fontFamily: theme.typography.fontFamily }}>{title}</h3>
-            {description && (
-                <p style={{ color: theme.colors.mutedForeground, fontSize: '14px', marginBottom: '16px' }}>
-                    {description}
-                </p>
-            )}
-            {children}
-        </div>
-    )
-}
-
-function PlaygroundInput({ placeholder, theme }: { placeholder: string; theme: PlaygroundTheme }) {
-    return (
-        <input
-            type="text"
-            placeholder={placeholder}
-            style={{
-                backgroundColor: theme.colors.secondary,
-                color: theme.colors.foreground,
-                borderRadius: getRadius(theme.radius),
-                border: `1px solid ${theme.colors.border}`,
-                padding: '10px 14px',
-                fontSize: '14px',
-                width: '100%',
-                outline: 'none',
-            }}
-        />
-    )
-}
-
-function PlaygroundBadge({ children, theme }: { children: React.ReactNode; theme: PlaygroundTheme }) {
-    return (
-        <span
-            style={{
-                backgroundColor: theme.colors.primary,
-                color: theme.colors.primaryForeground,
-                borderRadius: getRadius(theme.radius === 'none' ? 'sm' : theme.radius),
-                padding: '4px 10px',
-                fontSize: '12px',
-                fontWeight: 500,
-            }}
-        >
-            {children}
-        </span>
-    )
-}
-
-function PlaygroundToggle({ checked, theme }: { checked: boolean; theme: PlaygroundTheme }) {
-    return (
-        <div
-            style={{
-                width: '44px',
-                height: '24px',
-                backgroundColor: checked ? theme.colors.primary : theme.colors.muted,
-                borderRadius: '9999px',
-                padding: '2px',
-                cursor: 'pointer',
-                transition: 'all 0.2s',
-            }}
-        >
-            <div
-                style={{
-                    width: '20px',
-                    height: '20px',
-                    backgroundColor: checked ? theme.colors.primaryForeground : theme.colors.mutedForeground,
-                    borderRadius: '9999px',
-                    transform: checked ? 'translateX(20px)' : 'translateX(0)',
-                    transition: 'all 0.2s',
-                }}
-            />
-        </div>
-    )
-}
-
-function PlaygroundListItem({ icon: Icon, title, description, theme }: {
-    icon: typeof Bell
-    title: string
-    description: string
-    theme: PlaygroundTheme
-}) {
-    return (
-        <div
-            style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '12px',
-                padding: '12px',
-                backgroundColor: theme.colors.secondary,
-                borderRadius: getRadius(theme.radius),
-                cursor: 'pointer',
-            }}
-        >
-            <div
-                style={{
-                    width: '40px',
-                    height: '40px',
-                    borderRadius: getRadius(theme.radius),
-                    backgroundColor: theme.colors.muted,
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                }}
-            >
-                <Icon size={18} style={{ color: theme.colors.mutedForeground }} />
-            </div>
-            <div style={{ flex: 1 }}>
-                <div style={{ fontSize: '14px', fontWeight: 500 }}>{title}</div>
-                <div style={{ fontSize: '12px', color: theme.colors.mutedForeground }}>{description}</div>
-            </div>
-            <ChevronRight size={16} style={{ color: theme.colors.mutedForeground }} />
-        </div>
-    )
-}
-
-// === MAIN PAGE ===
+// Variant options for interactive controls
+const sizeOptions: Size[] = ['sm', 'md', 'lg']
+const buttonVariants: ButtonVariant[] = ['primary', 'secondary', 'accent', 'destructive', 'outline', 'ghost']
+const badgeVariants: BadgeVariant[] = ['primary', 'secondary', 'accent', 'destructive', 'outline']
+const cardSizes: CardSize[] = ['compact', 'default', 'spacious']
 
 export default function ThemesPage() {
     const { currentPlaygroundTheme, setPlaygroundTheme, playgroundThemes } = useTheme()
     const [searchQuery, setSearchQuery] = useState('')
+    const [selectedSize, setSelectedSize] = useState<Size>('md')
+    const [selectedButtonVariant, setSelectedButtonVariant] = useState<ButtonVariant>('primary')
     const theme = currentPlaygroundTheme
+
+    // Helper to get the active color based on selected variant
+    const getActiveColor = () => {
+        switch (selectedButtonVariant) {
+            case 'primary':
+                return theme.colors.primary
+            case 'accent':
+                return theme.colors.accent
+            case 'destructive':
+                return '#ef4444'
+            default:
+                return theme.colors.primary
+        }
+    }
 
     const filteredThemes = playgroundThemes.filter(t =>
         t.name.toLowerCase().includes(searchQuery.toLowerCase())
@@ -346,8 +164,99 @@ export default function ThemesPage() {
                     padding: '48px',
                     transition: 'all 0.3s',
                     fontFamily: theme.typography.fontFamily,
+                    position: 'relative',
                 }}
             >
+                {/* Floating Controls Toolbar */}
+                <div
+                    style={{
+                        position: 'sticky',
+                        top: 0,
+                        zIndex: 10,
+                        backgroundColor: theme.colors.card,
+                        border: `1px solid ${theme.colors.border}`,
+                        borderRadius: getRadius(theme.radius),
+                        padding: '12px 20px',
+                        marginBottom: '32px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '24px',
+                        boxShadow: getShadow('md', theme),
+                    }}
+                >
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                        <Sparkles size={14} style={{ color: getActiveColor() }} />
+                        <span style={{ fontSize: selectedSize === 'sm' ? '11px' : selectedSize === 'lg' ? '13px' : '12px', fontWeight: 600, color: getActiveColor(), transition: 'font-size 0.2s, color 0.2s' }}>
+                            Controls
+                        </span>
+                    </div>
+
+                    <div style={{ width: '1px', height: '20px', backgroundColor: theme.colors.border }} />
+
+                    {/* Size Control */}
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                        <span style={{ fontSize: '11px', color: theme.colors.mutedForeground, fontWeight: 500 }}>
+                            SIZE
+                        </span>
+                        <div style={{ display: 'flex', gap: '4px' }}>
+                            {sizeOptions.map((size) => (
+                                <button
+                                    key={size}
+                                    onClick={() => setSelectedSize(size)}
+                                    style={{
+                                        padding: '4px 12px',
+                                        borderRadius: getRadius(theme.radius),
+                                        border: `1px solid ${selectedSize === size ? getActiveColor() : theme.colors.border}`,
+                                        backgroundColor: selectedSize === size ? getActiveColor() : 'transparent',
+                                        color: selectedSize === size ? theme.colors.primaryForeground : theme.colors.mutedForeground,
+                                        fontSize: '11px',
+                                        fontWeight: 500,
+                                        cursor: 'pointer',
+                                        transition: 'all 0.15s',
+                                    }}
+                                >
+                                    {size.toUpperCase()}
+                                </button>
+                            ))}
+                        </div>
+                    </div>
+
+                    <div style={{ width: '1px', height: '20px', backgroundColor: theme.colors.border }} />
+
+                    {/* Button Variant Control */}
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                        <span style={{ fontSize: '11px', color: theme.colors.mutedForeground, fontWeight: 500 }}>
+                            COLOR
+                        </span>
+                        <div style={{ display: 'flex', gap: '8px' }}>
+                            {[
+                                { variant: 'primary', color: theme.colors.primary, label: 'Brand' },
+                                { variant: 'accent', color: theme.colors.accent, label: 'Accent' },
+                                { variant: 'destructive', color: '#ef4444', label: 'Destructive' },
+                            ].map(({ variant, color, label }) => (
+                                <button
+                                    key={variant}
+                                    onClick={() => setSelectedButtonVariant(variant as ButtonVariant)}
+                                    title={label}
+                                    style={{
+                                        width: '24px',
+                                        height: '24px',
+                                        borderRadius: '50%',
+                                        backgroundColor: color,
+                                        border: `2px solid ${theme.colors.background}`,
+                                        boxShadow: selectedButtonVariant === variant
+                                            ? `0 0 0 2px ${theme.colors.foreground}`
+                                            : `0 0 0 1px ${theme.colors.border}`,
+                                        cursor: 'pointer',
+                                        transition: 'all 0.2s',
+                                        transform: selectedButtonVariant === variant ? 'scale(1.1)' : 'scale(1)',
+                                    }}
+                                />
+                            ))}
+                        </div>
+                    </div>
+                </div>
+
                 <motion.div
                     key={theme.id}
                     initial={{ opacity: 0, y: 10 }}
@@ -357,22 +266,24 @@ export default function ThemesPage() {
                 >
                     {/* Header */}
                     <div style={{ marginBottom: '48px' }}>
-                        <PlaygroundBadge theme={theme}>{theme.mode.toUpperCase()}</PlaygroundBadge>
+                        <PlaygroundBadge size={selectedSize === 'lg' ? 'md' : 'sm'} variant={selectedButtonVariant as any} theme={theme}>{theme.mode.toUpperCase()}</PlaygroundBadge>
                         <h1 style={{
-                            fontSize: '48px',
+                            fontSize: selectedSize === 'sm' ? '36px' : selectedSize === 'lg' ? '60px' : '48px',
                             fontWeight: theme.typography.headingWeight,
                             marginTop: '16px',
                             letterSpacing: theme.typography.letterSpacing,
-                            fontFamily: theme.typography.fontFamily
+                            fontFamily: theme.typography.fontFamily,
+                            transition: 'font-size 0.2s',
                         }}>
                             {theme.name}
                         </h1>
                         <p style={{
-                            fontSize: '18px',
+                            fontSize: selectedSize === 'sm' ? '14px' : selectedSize === 'lg' ? '20px' : '18px',
                             color: theme.colors.mutedForeground,
                             maxWidth: '500px',
                             fontWeight: theme.typography.bodyWeight,
-                            fontFamily: theme.typography.fontFamily
+                            fontFamily: theme.typography.fontFamily,
+                            transition: 'font-size 0.2s',
                         }}>
                             {theme.description}. See how components transform with different visual DNA.
                         </p>
@@ -384,19 +295,19 @@ export default function ThemesPage() {
                         {/* Buttons Card */}
                         <PlaygroundCard title="Buttons" description="Primary actions and controls" theme={theme}>
                             <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
-                                <PlaygroundButton variant="primary" theme={theme}>Primary</PlaygroundButton>
-                                <PlaygroundButton variant="secondary" theme={theme}>Secondary</PlaygroundButton>
-                                <PlaygroundButton variant="outline" theme={theme}>Outline</PlaygroundButton>
+                                <PlaygroundButton variant={selectedButtonVariant} size={selectedSize} theme={theme}>Primary</PlaygroundButton>
+                                <PlaygroundButton variant="secondary" size={selectedSize} theme={theme}>Secondary</PlaygroundButton>
+                                <PlaygroundButton variant="outline" size={selectedSize} theme={theme}>Outline</PlaygroundButton>
                             </div>
                         </PlaygroundCard>
 
                         {/* Input Card */}
                         <PlaygroundCard title="Form Elements" description="Inputs and controls" theme={theme}>
                             <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                                <PlaygroundInput placeholder="Enter your email..." theme={theme} />
+                                <PlaygroundInput placeholder="Enter your email..." size={selectedSize} theme={theme} />
                                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                                    <span style={{ fontSize: '14px' }}>Enable notifications</span>
-                                    <PlaygroundToggle checked={true} theme={theme} />
+                                    <span style={{ fontSize: selectedSize === 'sm' ? '12px' : selectedSize === 'lg' ? '16px' : '14px' }}>Enable notifications</span>
+                                    <PlaygroundToggle checked={true} size={selectedSize === 'lg' ? 'md' : selectedSize} theme={{ ...theme, colors: { ...theme.colors, primary: getActiveColor() } }} />
                                 </div>
                             </div>
                         </PlaygroundCard>
@@ -421,15 +332,16 @@ export default function ThemesPage() {
                                     <div
                                         key={stat.label}
                                         style={{
-                                            padding: '16px',
+                                            padding: selectedSize === 'sm' ? '12px' : selectedSize === 'lg' ? '20px' : '16px',
                                             backgroundColor: theme.colors.secondary,
                                             borderRadius: getRadius(theme.radius),
                                             textAlign: 'center',
+                                            transition: 'padding 0.2s',
                                         }}
                                     >
-                                        <stat.icon size={20} style={{ color: theme.colors.primary, marginBottom: '8px' }} />
-                                        <div style={{ fontSize: '24px', fontWeight: 700 }}>{stat.value}</div>
-                                        <div style={{ fontSize: '12px', color: theme.colors.mutedForeground }}>{stat.label}</div>
+                                        <stat.icon size={selectedSize === 'sm' ? 16 : selectedSize === 'lg' ? 24 : 20} style={{ color: getActiveColor(), marginBottom: '8px', transition: 'color 0.2s' }} />
+                                        <div style={{ fontSize: selectedSize === 'sm' ? '18px' : selectedSize === 'lg' ? '28px' : '24px', fontWeight: 700, transition: 'font-size 0.2s' }}>{stat.value}</div>
+                                        <div style={{ fontSize: selectedSize === 'sm' ? '10px' : selectedSize === 'lg' ? '14px' : '12px', color: theme.colors.mutedForeground, transition: 'font-size 0.2s' }}>{stat.label}</div>
                                     </div>
                                 ))}
                             </div>
@@ -437,7 +349,7 @@ export default function ThemesPage() {
 
                     </div>
                 </motion.div>
-            </main>
-        </div>
+            </main >
+        </div >
     )
 }

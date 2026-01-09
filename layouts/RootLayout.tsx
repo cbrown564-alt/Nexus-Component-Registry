@@ -12,6 +12,7 @@ import {
     Menu,
     X,
     Palette,
+    Coins,
 } from 'lucide-react'
 import { ThemeProvider, useTheme } from '@/context/ThemeContext'
 import GlobalSearch from '@/components/search/GlobalSearch'
@@ -76,16 +77,20 @@ function Sidebar() {
         { to: '/templates', icon: LayoutTemplate, label: 'Templates' },
         { to: '/components', icon: Box, label: 'Components' },
         { to: '/hooks', icon: Zap, label: 'Hooks' },
+        { to: '/tokens', icon: Coins, label: 'Tokens' },
         // { to: '/settings', icon: Settings, label: 'Settings' },
     ]
 
     return (
-        <aside className={`group fixed left-0 top-0 z-50 h-full w-16 flex-col border-r transition-all duration-300 hover:w-64 ${currentTheme.sidebarStyles} overflow-y-auto no-scrollbar`}>
+        <aside
+            className={`group fixed left-0 top-0 z-50 h-full w-16 flex-col border-r transition-all duration-300 hover:w-64 ${currentTheme.sidebarStyles} overflow-y-auto no-scrollbar`}
+            aria-label="Main navigation"
+        >
             {/* Logo */}
             <div className="flex h-16 items-center justify-center border-b border-inherit px-4 shrink-0 sticky top-0 z-10 backdrop-blur-sm group-hover:justify-start">
                 <div className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg transition-colors ${isDark ? 'bg-zinc-100 text-zinc-950' : 'bg-stone-900 text-stone-50'
                     }`}>
-                    <Command className="h-5 w-5" />
+                    <Command className="h-5 w-5" aria-hidden="true" />
                 </div>
                 <span className={`ml-3 overflow-hidden whitespace-nowrap text-sm font-bold tracking-tight opacity-0 transition-all duration-300 group-hover:opacity-100 ${isDark ? 'text-white' : 'text-slate-900'
                     }`}>
@@ -93,7 +98,7 @@ function Sidebar() {
                 </span>
             </div>
 
-            <nav className="flex flex-1 flex-col gap-2 p-3">
+            <nav className="flex flex-1 flex-col gap-2 p-3" role="navigation">
                 {/* Navigation Links */}
                 {navItems.map((item) => (
                     <NavLink
@@ -109,8 +114,9 @@ function Sidebar() {
                                     : 'text-slate-500 hover:bg-slate-100 hover:text-slate-900'
                             }`
                         }
+                        aria-current={({ isActive }) => isActive ? 'page' : undefined}
                     >
-                        <item.icon className="h-5 w-5 shrink-0" strokeWidth={1.5} />
+                        <item.icon className="h-5 w-5 shrink-0" strokeWidth={1.5} aria-hidden="true" />
                         <span className="ml-3 overflow-hidden whitespace-nowrap text-sm font-medium opacity-0 transition-opacity duration-200 group-hover:opacity-100">
                             {item.label}
                         </span>
@@ -138,14 +144,20 @@ function Header() {
             </div>
 
             <div className="flex items-center gap-4">
-                <button className={`rounded-full p-2 transition-colors ${isDark ? 'text-zinc-400 hover:bg-white/10 hover:text-white' : 'text-slate-400 hover:bg-slate-100 hover:text-slate-900'
-                    }`}>
-                    <Github className="h-5 w-5" />
+                <button
+                    className={`rounded-full p-2 transition-colors ${isDark ? 'text-zinc-400 hover:bg-white/10 hover:text-white' : 'text-slate-400 hover:bg-slate-100 hover:text-slate-900'
+                        }`}
+                    aria-label="View source on GitHub"
+                >
+                    <Github className="h-5 w-5" aria-hidden="true" />
                 </button>
-                <button className={`relative rounded-full p-2 transition-colors ${isDark ? 'text-zinc-400 hover:bg-white/10 hover:text-white' : 'text-slate-400 hover:bg-slate-100 hover:text-slate-900'
-                    }`}>
-                    <Bell className="h-5 w-5" />
-                    <span className="absolute right-2 top-2 h-2 w-2 rounded-full bg-red-500 ring-2 ring-white" />
+                <button
+                    className={`relative rounded-full p-2 transition-colors ${isDark ? 'text-zinc-400 hover:bg-white/10 hover:text-white' : 'text-slate-400 hover:bg-slate-100 hover:text-slate-900'
+                        }`}
+                    aria-label="Notifications (1 unread)"
+                >
+                    <Bell className="h-5 w-5" aria-hidden="true" />
+                    <span className="absolute right-2 top-2 h-2 w-2 rounded-full bg-red-500 ring-2 ring-white" aria-hidden="true" />
                 </button>
             </div>
         </header>

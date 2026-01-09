@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "NODE_OPTIONS='--experimental-vm-modules' jest",
+    "test:a11y": "NODE_OPTIONS='--experimental-vm-modules' jest --testPathPattern=a11y"
   },
   "dependencies": {
     "framer-motion": "^12.24.12",
@@ -16,10 +18,25 @@
     "react-router-dom": "^7.12.0"
   },
   "devDependencies": {
+    "@storybook/addon-a11y": "^8.6.15",
+    "@storybook/addon-essentials": "^8.6.14",
+    "@storybook/addon-interactions": "^8.6.14",
+    "@storybook/react": "^8.6.15",
+    "@storybook/react-vite": "^8.6.15",
+    "@storybook/test": "^8.6.15",
     "@tailwindcss/vite": "^4.1.18",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.1",
+    "@types/jest": "^30.0.0",
+    "@types/jest-axe": "^3.5.9",
     "@types/node": "^22.14.0",
     "@vitejs/plugin-react": "^5.0.0",
+    "jest": "^29.7.0",
+    "jest-axe": "^10.0.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "storybook": "^8.6.15",
     "tailwindcss": "^4.1.18",
+    "ts-jest": "^29.4.6",
     "typescript": "~5.8.2",
     "vite": "^6.2.0"
   }

@@ -50,7 +50,7 @@ export const playgroundThemes: PlaygroundTheme[] = [
             secondaryForeground: '#a1a1aa',
             muted: '#27272a',
             mutedForeground: '#71717a',
-            accent: '#3b82f6',
+            accent: '#6366f1', // Indigo-500, distinct from primary Blue-500
             accentForeground: '#ffffff',
             border: '#27272a',
             ring: '#3b82f6',

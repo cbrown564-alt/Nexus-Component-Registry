@@ -1,0 +1,36 @@
+# Nexus Component Registry
+
+> **For AI Agents:** This file describes the architecture and file structure of the Nexus Component Registry to help you navigate and generate code efficiently.
+
+## Project Overview
+Nexus is a multi-themed React component library built with TypeScript, Tailwind CSS, and Framer Motion. It features a unique "Theming Engine" that supports 28 distinct visual themes (Cyberpunk, Fintech, Brutalist, etc.) using a single set of design tokens.
+
+## Core Architecture
+- **Framework:** React 19 (Vite)
+- **Styling:** Tailwind CSS v4 (using CSS variables for dynamic theming)
+- **Animation:** Framer Motion
+- **Routing:** React Router v7
+
+## Directory Structure
+
+### `/src`
+- **`components/`**: The core library.
+  - `ui/`: Shared "Atom" components (Button, Card, Input).
+  - `[theme]/`: Theme-specific "Molecules" (e.g., `fintech/MarketTicker`, `scifi/DNAList`).
+- **`data/`**: The Data Layer.
+  - `themes.ts`: Configuration for all 28 themes.
+  - `tokens.json`: Raw design token values.
+  - `tokenUtils.ts`: Logic to resolve and inject tokens as CSS variables.
+- **`hooks/`**: Reusable logic (`useTheme`, `useSpotlight`).
+- **`pages/`**: Route handlers (`HomePage`, `ThemesPage`, `ComponentPage`).
+- **`templates/`**: Full-page dashboards composed of components.
+
+## Key Patterns
+1.  **Dynamic Theming**: We do NOT use multiple CSS files. We use `ThemeContext` to inject a `style` tag or class variables at runtime.
+2.  **Component Consumption**: Components are designed to be explicitly copy-pasted, not installed via npm. Dependencies are usually local (e.g., a component importing from `@/components/ui/SpotlightCard`).
+3.  **Data-Driven UI**: `ThemesPage` and `LivePlayground` are data-driven. They read prop definitions and theme configs to render controls.
+
+## Usage for Agents
+- To understand a component, check its dependencies in the file imports.
+- Global styles are in `index.css`.
+- Theme definitions are in `data/themes.ts`.

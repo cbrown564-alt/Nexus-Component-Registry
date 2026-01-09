@@ -95,6 +95,42 @@ import LegacyButtonSource from '@/components/legacy/LegacyButton?raw'
 import DesktopIcon from '@/components/legacy/DesktopIcon'
 import DesktopIconSource from '@/components/legacy/DesktopIcon?raw'
 
+// Engineering Components
+import EngineeringCard from '@/components/engineering/EngineeringCard'
+import EngineeringCardSource from '@/components/engineering/EngineeringCard?raw'
+import EngineeringButton from '@/components/engineering/EngineeringButton'
+import EngineeringButtonSource from '@/components/engineering/EngineeringButton?raw'
+import PipelineSteps from '@/components/engineering/PipelineSteps'
+import PipelineStepsSource from '@/components/engineering/PipelineSteps?raw'
+import CodeBlock from '@/components/engineering/CodeBlock'
+import CodeBlockSource from '@/components/engineering/CodeBlock?raw'
+
+// Food Components
+import FoodButton from '@/components/food/FoodButton'
+import FoodButtonSource from '@/components/food/FoodButton?raw'
+
+// Magazine Components
+import EditorialButton from '@/components/magazine/EditorialButton'
+import EditorialButtonSource from '@/components/magazine/EditorialButton?raw'
+
+// Ecommerce Button Component
+import ShopButton from '@/components/ecommerce/ShopButton'
+import ShopButtonSource from '@/components/ecommerce/ShopButton?raw'
+
+// Productivity Components
+import FlowButton from '@/components/productivity/FlowButton'
+import FlowButtonSource from '@/components/productivity/FlowButton?raw'
+
+// Swiss Components
+import SwissButton from '@/components/swiss/SwissButton'
+import SwissButtonSource from '@/components/swiss/SwissButton?raw'
+import SwissGrid from '@/components/swiss/SwissGrid'
+import SwissGridSource from '@/components/swiss/SwissGrid?raw'
+import SwissTypography from '@/components/swiss/SwissTypography'
+import SwissTypographySource from '@/components/swiss/SwissTypography?raw'
+import SwissDivider from '@/components/swiss/SwissDivider'
+import SwissDividerSource from '@/components/swiss/SwissDivider?raw'
+
 export type ComponentCategory =
     | 'layout'
     | 'data-display'
@@ -513,6 +549,138 @@ export const components: ComponentMeta[] = [
         source: DesktopIconSource,
         tags: ['icon', 'desktop', 'shortcut', 'retro'],
     },
+
+    // Engineering Components
+    {
+        id: 'engineering-card',
+        name: 'EngineeringCard',
+        description: 'Card container with subtle gradient overlays for engineering dashboards',
+        theme: 'engineering',
+        category: 'layout',
+        component: EngineeringCard,
+        source: EngineeringCardSource,
+        tags: ['card', 'container', 'engineering', 'dark'],
+    },
+    {
+        id: 'engineering-button',
+        name: 'EngineeringButton',
+        description: 'Button with shine effect animation and multiple variants',
+        theme: 'engineering',
+        category: 'interactive',
+        component: EngineeringButton,
+        source: EngineeringButtonSource,
+        tags: ['button', 'animation', 'shine', 'engineering'],
+    },
+    {
+        id: 'pipeline-steps',
+        name: 'PipelineSteps',
+        description: 'CI/CD pipeline visualization with animated status indicators',
+        theme: 'engineering',
+        category: 'visualization',
+        component: PipelineSteps,
+        source: PipelineStepsSource,
+        tags: ['pipeline', 'ci-cd', 'status', 'steps'],
+    },
+    {
+        id: 'code-block',
+        name: 'CodeBlock',
+        description: 'Styled code display with copy button and traffic light header',
+        theme: 'engineering',
+        category: 'data-display',
+        component: CodeBlock,
+        source: CodeBlockSource,
+        tags: ['code', 'syntax', 'copy', 'developer'],
+    },
+
+    // Food Button
+    {
+        id: 'food-button',
+        name: 'FoodButton',
+        description: 'Warm orange button with lift animation and glow effect',
+        theme: 'food',
+        category: 'interactive',
+        component: FoodButton,
+        source: FoodButtonSource,
+        tags: ['button', 'animation', 'food', 'orange'],
+    },
+
+    // Magazine Button
+    {
+        id: 'editorial-button',
+        name: 'EditorialButton',
+        description: 'Serif typography button with fill animation for editorial layouts',
+        theme: 'magazine',
+        category: 'interactive',
+        component: EditorialButton,
+        source: EditorialButtonSource,
+        tags: ['button', 'editorial', 'serif', 'magazine'],
+    },
+
+    // Ecommerce Button
+    {
+        id: 'shop-button',
+        name: 'ShopButton',
+        description: 'E-commerce button with add-to-cart sliding icon animation',
+        theme: 'ecommerce',
+        category: 'interactive',
+        component: ShopButton,
+        source: ShopButtonSource,
+        tags: ['button', 'shop', 'cart', 'ecommerce'],
+    },
+
+    // Productivity Button
+    {
+        id: 'flow-button',
+        name: 'FlowButton',
+        description: 'Productivity button with amber accent and pulse animation',
+        theme: 'productivity',
+        category: 'interactive',
+        component: FlowButton,
+        source: FlowButtonSource,
+        tags: ['button', 'productivity', 'amber', 'pulse'],
+    },
+
+    // Swiss Components
+    {
+        id: 'swiss-button',
+        name: 'SwissButton',
+        description: 'Bold Swiss design button with diagonal stripe hover effect',
+        theme: 'swiss',
+        category: 'interactive',
+        component: SwissButton,
+        source: SwissButtonSource,
+        tags: ['button', 'swiss', 'bold', 'typography'],
+    },
+    {
+        id: 'swiss-grid',
+        name: 'SwissGrid',
+        description: 'Mathematical 12-column grid system for Swiss design layouts',
+        theme: 'swiss',
+        category: 'layout',
+        component: SwissGrid,
+        source: SwissGridSource,
+        tags: ['grid', 'layout', 'swiss', 'columns'],
+    },
+    {
+        id: 'swiss-typography',
+        name: 'SwissTypography',
+        description: 'International Typographic Style text component with bold variants',
+        theme: 'swiss',
+        category: 'data-display',
+        component: SwissTypography,
+        source: SwissTypographySource,
+        tags: ['typography', 'text', 'swiss', 'bold'],
+    },
+    {
+        id: 'swiss-divider',
+        name: 'SwissDivider',
+        description: 'Graphic divider line with animation for Swiss design aesthetics',
+        theme: 'swiss',
+        category: 'layout',
+        component: SwissDivider,
+        source: SwissDividerSource,
+        tags: ['divider', 'line', 'swiss', 'graphic'],
+    },
 ]
 
 export const getComponentById = (id: string): ComponentMeta | undefined => {
@@ -527,7 +695,7 @@ export const getComponentsByCategory = (category: ComponentCategory): ComponentM
     return components.filter((c) => c.category === category)
 }
 
-export const allThemes = ['shared', 'fintech', 'cockpit', 'game', 'legacy', 'scifi', 'education', 'social', 'ecommerce'] as const
+export const allThemes = ['shared', 'fintech', 'cockpit', 'game', 'legacy', 'scifi', 'education', 'social', 'ecommerce', 'engineering', 'food', 'magazine', 'productivity', 'swiss'] as const
 export const allCategories: ComponentCategory[] = [
     'layout',
     'data-display',

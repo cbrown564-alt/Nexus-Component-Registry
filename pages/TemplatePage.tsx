@@ -94,7 +94,7 @@ export default function TemplatePage() {
                         className="flex items-center gap-2 text-sm text-zinc-400 hover:text-white transition-colors"
                     >
                         <ArrowLeft className="h-4 w-4" />
-                        Back to Gallery
+                        Back to Templates
                     </Link>
                     <div className="h-4 w-px bg-zinc-800" />
                     <div className="flex items-center gap-2">

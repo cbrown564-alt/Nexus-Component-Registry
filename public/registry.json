@@ -1,0 +1,1321 @@
+{
+  "name": "nexus-component-registry",
+  "version": "0.1.0",
+  "generatedAt": "2026-01-09T20:16:48.780Z",
+  "items": [
+    {
+      "name": "Header",
+      "type": "registry:component",
+      "path": "components/Header.tsx",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "Sidebar",
+      "type": "registry:component",
+      "path": "components/Sidebar.tsx",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "SkipLink",
+      "type": "registry:component",
+      "path": "components/a11y/SkipLink.tsx",
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "VisuallyHidden",
+      "type": "registry:component",
+      "path": "components/a11y/VisuallyHidden.tsx",
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "AcidButton",
+      "type": "registry:component",
+      "path": "components/acid/AcidButton.tsx",
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "AcidCard",
+      "type": "registry:component",
+      "path": "components/acid/AcidCard.tsx",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "GlitchText",
+      "type": "registry:component",
+      "path": "components/acid/GlitchText.tsx",
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "Marquee",
+      "type": "registry:component",
+      "path": "components/acid/Marquee.tsx",
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "Sticker",
+      "type": "registry:component",
+      "path": "components/acid/Sticker.tsx",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "BlueprintCard",
+      "type": "registry:component",
+      "path": "components/blueprint/BlueprintCard.tsx",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "CadViewer",
+      "type": "registry:component",
+      "path": "components/blueprint/CadViewer.tsx",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "LayerControl",
+      "type": "registry:component",
+      "path": "components/blueprint/LayerControl.tsx",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "MeasurementLabel",
+      "type": "registry:component",
+      "path": "components/blueprint/MeasurementLabel.tsx",
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "ArtGrid",
+      "type": "registry:component",
+      "path": "components/brutalist/ArtGrid.tsx",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "BrutalistCard",
+      "type": "registry:component",
+      "path": "components/brutalist/BrutalistCard.tsx",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "Manifesto",
+      "type": "registry:component",
+      "path": "components/brutalist/Manifesto.tsx",
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "MarqueeHeader",
+      "type": "registry:component",
+      "path": "components/brutalist/MarqueeHeader.tsx",
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "ClayButton",
+      "type": "registry:component",
+      "path": "components/clay/ClayButton.tsx",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "ClayCard",
+      "type": "registry:component",
+      "path": "components/clay/ClayCard.tsx",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "ClayToggle",
+      "type": "registry:component",
+      "path": "components/clay/ClayToggle.tsx",
+      "dependencies": [
+        "framer-motion",
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "ClimateControl",
+      "type": "registry:component",
+      "path": "components/cockpit/ClimateControl.tsx",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "CockpitCard",
+      "type": "registry:component",
+      "path": "components/cockpit/CockpitCard.tsx",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "LaneAssist",
+      "type": "registry:component",
+      "path": "components/cockpit/LaneAssist.tsx",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "MediaWidget",
+      "type": "registry:component",
+      "path": "components/cockpit/MediaWidget.tsx",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "NavWidget",
+      "type": "registry:component",
+      "path": "components/cockpit/NavWidget.tsx",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "Speedometer",
+      "type": "registry:component",
+      "path": "components/cockpit/Speedometer.tsx",
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "LivePlayground",
+      "type": "registry:component",
+      "path": "components/docs/LivePlayground.tsx",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@/data/componentDocs",
+        "@/data/components"
+      ]
+    },
+    {
+      "name": "PropsTable",
+      "type": "registry:component",
+      "path": "components/docs/PropsTable.tsx",
+      "dependencies": [],
+      "registryDependencies": [
+        "@/data/componentDocs"
+      ]
+    },
+    {
+      "name": "CartSummary",
+      "type": "registry:component",
+      "path": "components/ecommerce/CartSummary.tsx",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "CommerceCard",
+      "type": "registry:component",
+      "path": "components/ecommerce/CommerceCard.tsx",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "ProductCard",
+      "type": "registry:component",
+      "path": "components/ecommerce/ProductCard.tsx",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "PromoBanner",
+      "type": "registry:component",
+      "path": "components/ecommerce/PromoBanner.tsx",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "CourseCard",
+      "type": "registry:component",
+      "path": "components/education/CourseCard.tsx",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "EducationCard",
+      "type": "registry:component",
+      "path": "components/education/EducationCard.tsx",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "StudyStats",
+      "type": "registry:component",
+      "path": "components/education/StudyStats.tsx",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "UpcomingSchedule",
+      "type": "registry:component",
+      "path": "components/education/UpcomingSchedule.tsx",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "EInkCard",
+      "type": "registry:component",
+      "path": "components/eink/EInkCard.tsx",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "EInkSidebar",
+      "type": "registry:component",
+      "path": "components/eink/EInkSidebar.tsx",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "LibraryGrid",
+      "type": "registry:component",
+      "path": "components/eink/LibraryGrid.tsx",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "ReaderContent",
+      "type": "registry:component",
+      "path": "components/eink/ReaderContent.tsx",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "CodeExport",
+      "type": "registry:component",
+      "path": "components/export/CodeExport.tsx",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "CrowdHeatmap",
+      "type": "registry:component",
+      "path": "components/festival/CrowdHeatmap.tsx",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "FestivalCard",
+      "type": "registry:component",
+      "path": "components/festival/FestivalCard.tsx",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "SoundwaveTimeline",
+      "type": "registry:component",
+      "path": "components/festival/SoundwaveTimeline.tsx",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "TicketWallet",
+      "type": "registry:component",
+      "path": "components/festival/TicketWallet.tsx",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "DigitalCard",
+      "type": "registry:component",
+      "path": "components/fintech/DigitalCard.tsx",
+      "dependencies": [
+        "lucide-react",
+        "framer-motion"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "FintechCard",
+      "type": "registry:component",
+      "path": "components/fintech/FintechCard.tsx",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "MarketTicker",
+      "type": "registry:component",
+      "path": "components/fintech/MarketTicker.tsx",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "PortfolioChart",
+      "type": "registry:component",
+      "path": "components/fintech/PortfolioChart.tsx",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "TransactionList",
+      "type": "registry:component",
+      "path": "components/fintech/TransactionList.tsx",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "CartWidget",
+      "type": "registry:component",
+      "path": "components/food/CartWidget.tsx",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "FoodCard",
+      "type": "registry:component",
+      "path": "components/food/FoodCard.tsx",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "HeroDish",
+      "type": "registry:component",
+      "path": "components/food/HeroDish.tsx",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "MenuGrid",
+      "type": "registry:component",
+      "path": "components/food/MenuGrid.tsx",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "ThemeCard",
+      "type": "registry:component",
+      "path": "components/gallery/ThemeCard.tsx",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "@/data/themes"
+      ]
+    },
+    {
+      "name": "CharacterProfile",
+      "type": "registry:component",
+      "path": "components/game/CharacterProfile.tsx",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "GameCard",
+      "type": "registry:component",
+      "path": "components/game/GameCard.tsx",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "InventoryGrid",
+      "type": "registry:component",
+      "path": "components/game/InventoryGrid.tsx",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "LeaderboardWidget",
+      "type": "registry:component",
+      "path": "components/game/LeaderboardWidget.tsx",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "QuestLog",
+      "type": "registry:component",
+      "path": "components/game/QuestLog.tsx",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "CityMap",
+      "type": "registry:component",
+      "path": "components/grid/CityMap.tsx",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "GridCard",
+      "type": "registry:component",
+      "path": "components/grid/GridCard.tsx",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "ResourceGauge",
+      "type": "registry:component",
+      "path": "components/grid/ResourceGauge.tsx",
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "SystemControls",
+      "type": "registry:component",
+      "path": "components/grid/SystemControls.tsx",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "BigIconNav",
+      "type": "registry:component",
+      "path": "components/kids/BigIconNav.tsx",
+      "dependencies": [
+        "lucide-react",
+        "framer-motion"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "KidsCard",
+      "type": "registry:component",
+      "path": "components/kids/KidsCard.tsx",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "Mascot",
+      "type": "registry:component",
+      "path": "components/kids/Mascot.tsx",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "StarProgress",
+      "type": "registry:component",
+      "path": "components/kids/StarProgress.tsx",
+      "dependencies": [
+        "lucide-react",
+        "framer-motion"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "ActiveStep",
+      "type": "registry:component",
+      "path": "components/kitchen/ActiveStep.tsx",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "IngredientScale",
+      "type": "registry:component",
+      "path": "components/kitchen/IngredientScale.tsx",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "KitchenCard",
+      "type": "registry:component",
+      "path": "components/kitchen/KitchenCard.tsx",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "SmartTimer",
+      "type": "registry:component",
+      "path": "components/kitchen/SmartTimer.tsx",
+      "dependencies": [
+        "lucide-react",
+        "framer-motion"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "DesktopIcon",
+      "type": "registry:component",
+      "path": "components/legacy/DesktopIcon.tsx",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "LegacyAlert",
+      "type": "registry:component",
+      "path": "components/legacy/LegacyAlert.tsx",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "LegacyButton",
+      "type": "registry:component",
+      "path": "components/legacy/LegacyButton.tsx",
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "LegacyWindow",
+      "type": "registry:component",
+      "path": "components/legacy/LegacyWindow.tsx",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "Clause",
+      "type": "registry:component",
+      "path": "components/legal/Clause.tsx",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "DiffViewer",
+      "type": "registry:component",
+      "path": "components/legal/DiffViewer.tsx",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "LegalPaper",
+      "type": "registry:component",
+      "path": "components/legal/LegalPaper.tsx",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "RedlineSidebar",
+      "type": "registry:component",
+      "path": "components/legal/RedlineSidebar.tsx",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "FeatureStory",
+      "type": "registry:component",
+      "path": "components/magazine/FeatureStory.tsx",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "MagazineCard",
+      "type": "registry:component",
+      "path": "components/magazine/MagazineCard.tsx",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "Newsletter",
+      "type": "registry:component",
+      "path": "components/magazine/Newsletter.tsx",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "TrendingList",
+      "type": "registry:component",
+      "path": "components/magazine/TrendingList.tsx",
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "AlbumGrid",
+      "type": "registry:component",
+      "path": "components/music/AlbumGrid.tsx",
+      "dependencies": [
+        "lucide-react",
+        "framer-motion"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "MusicCard",
+      "type": "registry:component",
+      "path": "components/music/MusicCard.tsx",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "NowPlaying",
+      "type": "registry:component",
+      "path": "components/music/NowPlaying.tsx",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "TrackList",
+      "type": "registry:component",
+      "path": "components/music/TrackList.tsx",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "PlaygroundBadge",
+      "type": "registry:component",
+      "path": "components/playground/PlaygroundBadge.tsx",
+      "dependencies": [],
+      "registryDependencies": [
+        "@/data/playgroundThemes",
+        "@/data/variants"
+      ]
+    },
+    {
+      "name": "PlaygroundButton",
+      "type": "registry:component",
+      "path": "components/playground/PlaygroundButton.tsx",
+      "dependencies": [],
+      "registryDependencies": [
+        "@/data/playgroundThemes",
+        "@/data/variants"
+      ]
+    },
+    {
+      "name": "PlaygroundCard",
+      "type": "registry:component",
+      "path": "components/playground/PlaygroundCard.tsx",
+      "dependencies": [],
+      "registryDependencies": [
+        "@/data/playgroundThemes",
+        "@/data/variants"
+      ]
+    },
+    {
+      "name": "PlaygroundInput",
+      "type": "registry:component",
+      "path": "components/playground/PlaygroundInput.tsx",
+      "dependencies": [],
+      "registryDependencies": [
+        "@/data/playgroundThemes",
+        "@/data/variants"
+      ]
+    },
+    {
+      "name": "PlaygroundListItem",
+      "type": "registry:component",
+      "path": "components/playground/PlaygroundListItem.tsx",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@/data/playgroundThemes",
+        "@/data/variants"
+      ]
+    },
+    {
+      "name": "PlaygroundToggle",
+      "type": "registry:component",
+      "path": "components/playground/PlaygroundToggle.tsx",
+      "dependencies": [],
+      "registryDependencies": [
+        "@/data/playgroundThemes",
+        "@/data/variants"
+      ]
+    },
+    {
+      "name": "index",
+      "type": "registry:component",
+      "path": "components/playground/index.ts",
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "FocusTimer",
+      "type": "registry:component",
+      "path": "components/productivity/FocusTimer.tsx",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "KanbanBoard",
+      "type": "registry:component",
+      "path": "components/productivity/KanbanBoard.tsx",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "ProductivityCard",
+      "type": "registry:component",
+      "path": "components/productivity/ProductivityCard.tsx",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "TaskInbox",
+      "type": "registry:component",
+      "path": "components/productivity/TaskInbox.tsx",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "CustomerTable",
+      "type": "registry:component",
+      "path": "components/saas/CustomerTable.tsx",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "MetricCard",
+      "type": "registry:component",
+      "path": "components/saas/MetricCard.tsx",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "RevenueChart",
+      "type": "registry:component",
+      "path": "components/saas/RevenueChart.tsx",
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "SaasCard",
+      "type": "registry:component",
+      "path": "components/saas/SaasCard.tsx",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "BodyScanner",
+      "type": "registry:component",
+      "path": "components/scifi/BodyScanner.tsx",
+      "dependencies": [
+        "framer-motion",
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "DNAList",
+      "type": "registry:component",
+      "path": "components/scifi/DNAList.tsx",
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "SciFiCard",
+      "type": "registry:component",
+      "path": "components/scifi/SciFiCard.tsx",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "VitalsMonitor",
+      "type": "registry:component",
+      "path": "components/scifi/VitalsMonitor.tsx",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "GlobalSearch",
+      "type": "registry:component",
+      "path": "components/search/GlobalSearch.tsx",
+      "dependencies": [
+        "framer-motion",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@/data/themes",
+        "@/hooks"
+      ]
+    },
+    {
+      "name": "FeedPost",
+      "type": "registry:component",
+      "path": "components/social/FeedPost.tsx",
+      "dependencies": [
+        "lucide-react",
+        "framer-motion"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "ProfileSidebar",
+      "type": "registry:component",
+      "path": "components/social/ProfileSidebar.tsx",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "SocialCard",
+      "type": "registry:component",
+      "path": "components/social/SocialCard.tsx",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "StoryRail",
+      "type": "registry:component",
+      "path": "components/social/StoryRail.tsx",
+      "dependencies": [
+        "lucide-react",
+        "framer-motion"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "DeviceToggle",
+      "type": "registry:component",
+      "path": "components/softplastic/DeviceToggle.tsx",
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "NeumorphicButton",
+      "type": "registry:component",
+      "path": "components/softplastic/NeumorphicButton.tsx",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "NeumorphicCard",
+      "type": "registry:component",
+      "path": "components/softplastic/NeumorphicCard.tsx",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "ThermostatDial",
+      "type": "registry:component",
+      "path": "components/softplastic/ThermostatDial.tsx",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "AirQualityLeaf",
+      "type": "registry:component",
+      "path": "components/solarpunk/AirQualityLeaf.tsx",
+      "dependencies": [
+        "lucide-react",
+        "framer-motion"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "EcoStats",
+      "type": "registry:component",
+      "path": "components/solarpunk/EcoStats.tsx",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "EnergySun",
+      "type": "registry:component",
+      "path": "components/solarpunk/EnergySun.tsx",
+      "dependencies": [
+        "framer-motion",
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "SolarCard",
+      "type": "registry:component",
+      "path": "components/solarpunk/SolarCard.tsx",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "SwissCard",
+      "type": "registry:component",
+      "path": "components/swiss/SwissCard.tsx",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "SwissMetric",
+      "type": "registry:component",
+      "path": "components/swiss/SwissMetric.tsx",
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "ActivityFeed",
+      "type": "registry:ui",
+      "path": "components/ui/ActivityFeed.tsx",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "BentoCard",
+      "type": "registry:ui",
+      "path": "components/ui/BentoCard.tsx",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "DeploymentPipeline",
+      "type": "registry:ui",
+      "path": "components/ui/DeploymentPipeline.tsx",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "FileTree",
+      "type": "registry:ui",
+      "path": "components/ui/FileTree.tsx",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "GlowButton",
+      "type": "registry:ui",
+      "path": "components/ui/GlowButton.tsx",
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "IntegrationToggle",
+      "type": "registry:ui",
+      "path": "components/ui/IntegrationToggle.tsx",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "MobileMenuButton",
+      "type": "registry:ui",
+      "path": "components/ui/MobileMenuButton.tsx",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "PlanPicker",
+      "type": "registry:ui",
+      "path": "components/ui/PlanPicker.tsx",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "ShortcutGuide",
+      "type": "registry:ui",
+      "path": "components/ui/ShortcutGuide.tsx",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "SpotlightCard",
+      "type": "registry:ui",
+      "path": "components/ui/SpotlightCard.tsx",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "StatsCard",
+      "type": "registry:ui",
+      "path": "components/ui/StatsCard.tsx",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "TeamMembers",
+      "type": "registry:ui",
+      "path": "components/ui/TeamMembers.tsx",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "Terminal",
+      "type": "registry:ui",
+      "path": "components/ui/Terminal.tsx",
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "ThemePreview",
+      "type": "registry:ui",
+      "path": "components/ui/ThemePreview.tsx",
+      "dependencies": [],
+      "registryDependencies": [
+        "@/data/themes"
+      ]
+    },
+    {
+      "name": "BreathPlayer",
+      "type": "registry:component",
+      "path": "components/wellness/BreathPlayer.tsx",
+      "dependencies": [
+        "lucide-react",
+        "framer-motion"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "MoodSelector",
+      "type": "registry:component",
+      "path": "components/wellness/MoodSelector.tsx",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "SleepGraph",
+      "type": "registry:component",
+      "path": "components/wellness/SleepGraph.tsx",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "WellnessCard",
+      "type": "registry:component",
+      "path": "components/wellness/WellnessCard.tsx",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "index",
+      "type": "registry:hook",
+      "path": "hooks/index.ts",
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "useAnimatedMount",
+      "type": "registry:hook",
+      "path": "hooks/useAnimatedMount.ts",
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "useClickOutside",
+      "type": "registry:hook",
+      "path": "hooks/useClickOutside.ts",
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "useCopyToClipboard",
+      "type": "registry:hook",
+      "path": "hooks/useCopyToClipboard.ts",
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "useDebounce",
+      "type": "registry:hook",
+      "path": "hooks/useDebounce.ts",
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "useFocusTrap",
+      "type": "registry:hook",
+      "path": "hooks/useFocusTrap.ts",
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "useMediaQuery",
+      "type": "registry:hook",
+      "path": "hooks/useMediaQuery.ts",
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "useMousePosition",
+      "type": "registry:hook",
+      "path": "hooks/useMousePosition.ts",
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "useSpotlight",
+      "type": "registry:hook",
+      "path": "hooks/useSpotlight.ts",
+      "dependencies": [],
+      "registryDependencies": []
+    }
+  ]
+}
