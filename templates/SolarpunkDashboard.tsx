@@ -1,111 +1,145 @@
 import React from 'react';
-import { Sun, Leaf, CloudRain } from 'lucide-react';
+import { Sun, Leaf, CloudRain, Wind, Droplets, Sprout, Users } from 'lucide-react';
 import EnergySun from '../components/solarpunk/EnergySun';
 import AirQualityLeaf from '../components/solarpunk/AirQualityLeaf';
-import EcoStats from '../components/solarpunk/EcoStats';
 import SolarCard from '../components/solarpunk/SolarCard';
 
 const SolarpunkDashboard = () => {
-  return (
-    <div className="min-h-screen bg-[#F0F7F4] font-sans text-emerald-900 p-6 md:p-8 relative overflow-hidden">
-      
-      {/* Background Ambience */}
-      <div className="fixed inset-0 pointer-events-none">
-          <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-gradient-to-br from-yellow-100 to-transparent rounded-full blur-3xl opacity-60" />
-          <div className="absolute bottom-[-10%] right-[-10%] w-[60%] h-[60%] bg-gradient-to-tl from-emerald-100 to-transparent rounded-full blur-3xl opacity-60" />
-          {/* Subtle vines/dots pattern could go here */}
-          <div className="absolute inset-0 opacity-[0.03]" 
-               style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23064e3b' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")` }} 
-          />
-      </div>
+    return (
+        <div className="min-h-screen bg-[#F0F7F4] font-serif text-emerald-900 relative overflow-hidden selection:bg-emerald-200 selection:text-emerald-900">
 
-      <div className="relative z-10 max-w-6xl mx-auto">
-          {/* Header */}
-          <header className="flex flex-col md:flex-row items-center justify-between mb-10">
-              <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 bg-gradient-to-tr from-emerald-400 to-teal-500 rounded-tr-2xl rounded-bl-2xl rounded-tl-lg rounded-br-lg shadow-lg flex items-center justify-center text-white">
-                      <Leaf className="w-6 h-6" />
-                  </div>
-                  <div>
-                      <h1 className="font-serif text-3xl font-bold text-emerald-900">Eden<span className="text-emerald-500">OS</span></h1>
-                      <p className="text-sm text-emerald-600 font-medium">Community Garden & Energy Grid</p>
-                  </div>
-              </div>
+            {/* Background Ambience */}
+            <div className="fixed inset-0 pointer-events-none">
+                <div className="absolute top-[-20%] left-[-10%] w-[70%] h-[70%] bg-gradient-to-br from-yellow-100 to-transparent rounded-full blur-[100px] opacity-60 mix-blend-multiply" />
+                <div className="absolute bottom-[-10%] right-[-10%] w-[60%] h-[60%] bg-gradient-to-tl from-emerald-200 to-transparent rounded-full blur-[100px] opacity-60 mix-blend-multiply" />
+                {/* Organic Vine Pattern Overlay */}
+                <div className="absolute inset-0 opacity-[0.05]"
+                    style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23059669' fill-opacity='1' fill-rule='evenodd'/%3E%3C/svg%3E")` }}
+                />
+            </div>
 
-              <div className="flex items-center gap-6 mt-4 md:mt-0">
-                  <div className="flex items-center gap-2 px-4 py-2 bg-white/50 rounded-full border border-emerald-100 shadow-sm">
-                      <Sun className="w-5 h-5 text-yellow-500 fill-yellow-500" />
-                      <span className="font-serif font-bold text-emerald-800">24°C</span>
-                  </div>
-                  <div className="flex items-center gap-2 px-4 py-2 bg-white/50 rounded-full border border-emerald-100 shadow-sm">
-                      <CloudRain className="w-5 h-5 text-blue-400" />
-                      <span className="font-serif font-bold text-emerald-800">30%</span>
-                  </div>
-                  <div className="h-10 w-10 rounded-full bg-emerald-200 border-2 border-white overflow-hidden shadow-md">
-                      <img src="https://api.dicebear.com/7.x/notionists/svg?seed=Gaia" alt="User" className="h-full w-full bg-emerald-100" />
-                  </div>
-              </div>
-          </header>
+            <div className="relative z-10 max-w-7xl mx-auto p-6 md:p-12">
 
-          {/* Grid Layout */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              
-              {/* Main Energy Viz */}
-              <div className="lg:col-span-1 lg:row-span-2">
-                  <EnergySun />
-              </div>
+                {/* Organic Navigation */}
+                <header className="flex flex-col md:flex-row items-end justify-between mb-16 gap-6">
+                    <div className="flex items-center gap-4">
+                        <div className="w-16 h-16 bg-[#F0F7F4] rounded-full border-2 border-emerald-500/20 shadow-[0_0_30px_rgba(16,185,129,0.2)] flex items-center justify-center text-emerald-600 relative overflow-hidden group">
+                            <div className="absolute inset-0 bg-emerald-100 scale-0 group-hover:scale-100 transition-transform duration-500 rounded-full" />
+                            <Leaf className="w-8 h-8 relative z-10" />
+                        </div>
+                        <div>
+                            <h1 className="text-4xl font-bold tracking-tight text-emerald-950">Eden<span className="text-emerald-500">OS</span></h1>
+                            <div className="flex items-center gap-2 text-sm text-emerald-700/60 font-medium font-sans uppercase tracking-widest mt-1">
+                                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                                Community Grid Live
+                            </div>
+                        </div>
+                    </div>
 
-              {/* Stats Row */}
-              <div className="lg:col-span-2">
-                  <EcoStats />
-              </div>
+                    {/* Weather/Status Pill */}
+                    <div className="flex items-center bg-white/40 backdrop-blur-md rounded-full p-2 pr-6 border border-white/60 shadow-sm gap-6">
+                        <div className="flex items-center gap-2 px-3 py-1.5 bg-yellow-100/50 rounded-full text-yellow-700">
+                            <Sun className="w-4 h-4" />
+                            <span className="font-sans font-bold text-sm">24°C</span>
+                        </div>
+                        <div className="flex items-center gap-2 text-emerald-800">
+                            <Droplets className="w-4 h-4 text-blue-400" />
+                            <span className="font-sans font-bold text-sm">62%</span>
+                        </div>
+                        <div className="flex items-center gap-2 text-emerald-800">
+                            <Wind className="w-4 h-4 text-emerald-400" />
+                            <span className="font-sans font-bold text-sm">Light Breeze</span>
+                        </div>
+                    </div>
+                </header>
 
-              {/* Air Quality */}
-              <div className="lg:col-span-1">
-                  <AirQualityLeaf />
-              </div>
+                {/* Main Layout - Asymmetrical Organic Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
 
-              {/* Garden Status */}
-              <div className="lg:col-span-1">
-                  <SolarCard className="p-6 h-full">
-                      <div className="flex justify-between items-center mb-6">
-                          <h3 className="font-serif text-xl text-emerald-900">Hydroponics</h3>
-                          <span className="bg-green-100 text-green-700 text-xs font-bold px-2 py-1 rounded-full uppercase tracking-wider">
-                              Active
-                          </span>
-                      </div>
-                      <div className="space-y-4">
-                          {[
-                              { name: "Basil", status: "Ready to Harvest", progress: 100, color: "bg-emerald-500" },
-                              { name: "Tomatoes", status: "Flowering", progress: 65, color: "bg-yellow-400" },
-                              { name: "Lettuce", status: "Growing", progress: 30, color: "bg-green-400" },
-                          ].map((plant, i) => (
-                              <div key={i} className="group">
-                                  <div className="flex justify-between text-sm mb-1 font-medium text-emerald-800">
-                                      <span>{plant.name}</span>
-                                      <span className="text-emerald-600/70 text-xs">{plant.status}</span>
-                                  </div>
-                                  <div className="h-3 w-full bg-emerald-100 rounded-full overflow-hidden">
-                                      <div 
-                                        className={`h-full rounded-full ${plant.color} relative`} 
-                                        style={{ width: `${plant.progress}%` }}
-                                      >
-                                          <div className="absolute inset-0 bg-white/20 animate-[pulse_2s_infinite]" />
-                                      </div>
-                                  </div>
-                              </div>
-                          ))}
-                      </div>
-                      <button className="mt-6 w-full py-2 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl font-bold shadow-lg shadow-emerald-500/30 transition-all active:scale-95">
-                          Manage System
-                      </button>
-                  </SolarCard>
-              </div>
+                    {/* Left: Solar Energy (Large Visual) */}
+                    <div className="lg:col-span-5 lg:row-span-2 space-y-6">
+                        <div className="bg-gradient-to-br from-[#FFF9E5] to-[#F0F7F4] rounded-[2rem] p-1 border border-emerald-50 shadow-xl shadow-yellow-500/5">
+                            <EnergySun />
+                        </div>
 
-          </div>
-      </div>
-    </div>
-  );
+                        {/* Community Stats */}
+                        <SolarCard className="p-8 bg-white/60 backdrop-blur-sm">
+                            <h3 className="text-lg font-bold mb-6 flex items-center gap-2">
+                                <Users className="w-5 h-5 text-emerald-500" />
+                                Active Gardeners
+                            </h3>
+                            <div className="flex -space-x-3 mb-6">
+                                {[1, 2, 3, 4, 5].map(i => (
+                                    <div key={i} className="w-10 h-10 rounded-full border-2 border-white bg-emerald-100 overflow-hidden">
+                                        <img src={`https://api.dicebear.com/7.x/notionists/svg?seed=${i}`} alt="user" className="w-full h-full" />
+                                    </div>
+                                ))}
+                                <div className="w-10 h-10 rounded-full border-2 border-white bg-emerald-500 text-white flex items-center justify-center font-sans font-bold text-xs">
+                                    +12
+                                </div>
+                            </div>
+                            <p className="text-emerald-700/60 font-sans text-sm">
+                                <strong>Sarah</strong> planted <strong>Tomatoes</strong> 2h ago.
+                            </p>
+                        </SolarCard>
+                    </div>
+
+                    {/* Middle: Air Quality (Vertical) */}
+                    <div className="lg:col-span-3 lg:row-span-2 h-full">
+                        <AirQualityLeaf />
+                    </div>
+
+                    {/* Right: Hydroponics System (Detailed Cards) */}
+                    <div className="lg:col-span-4 lg:row-span-2 flex flex-col gap-6">
+                        <SolarCard className="p-8 flex-1 bg-gradient-to-b from-white/80 to-emerald-50/50">
+                            <div className="flex justify-between items-center mb-8">
+                                <h2 className="text-2xl font-bold text-emerald-950">Hydroponics</h2>
+                                <div className="px-3 py-1 rounded-full bg-emerald-100 text-emerald-700 text-xs font-bold uppercase tracking-wider font-sans">
+                                    System Healthy
+                                </div>
+                            </div>
+
+                            <div className="space-y-6">
+                                {[
+                                    { name: "Basil", stage: "Ready to Harvest", days: 0, progress: 100, icon: Leaf },
+                                    { name: "Cherry Tomatoes", stage: "Flowering", days: 12, progress: 65, icon: Sun },
+                                    { name: "Romaine Lettuce", stage: "Vegetative", days: 24, progress: 30, icon: Sprout },
+                                ].map((plant, i) => (
+                                    <div key={i} className="group cursor-pointer">
+                                        <div className="flex items-start gap-4 mb-3">
+                                            <div className={`p-3 rounded-2xl ${plant.progress === 100 ? 'bg-emerald-500 text-white' : 'bg-emerald-100 text-emerald-600'} transition-colors`}>
+                                                <plant.icon className="w-5 h-5" />
+                                            </div>
+                                            <div className="flex-1">
+                                                <div className="flex justify-between items-center mb-1">
+                                                    <span className="font-bold text-emerald-900">{plant.name}</span>
+                                                    <span className="text-emerald-500 font-sans text-xs font-bold">{plant.progress}%</span>
+                                                </div>
+                                                <div className="text-sm text-emerald-600/70 font-sans">
+                                                    {plant.stage} · <span className="text-emerald-400">{plant.days > 0 ? `${plant.days} days left` : 'Harvest now'}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="h-2 w-full bg-emerald-100/50 rounded-full overflow-hidden">
+                                            <div
+                                                className="h-full bg-emerald-400 rounded-full relative group-hover:bg-emerald-500 transition-colors"
+                                                style={{ width: `${plant.progress}%` }}
+                                            />
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+
+                            <button className="mt-8 w-full py-4 text-emerald-600 font-bold border-2 border-emerald-100 rounded-2xl hover:bg-emerald-50 hover:border-emerald-200 transition-all font-sans uppercase tracking-widest text-xs">
+                                View All Zones
+                            </button>
+                        </SolarCard>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    );
 };
 
 export default SolarpunkDashboard;
