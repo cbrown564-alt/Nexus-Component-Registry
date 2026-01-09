@@ -1,16 +1,24 @@
-import { createContext, useContext, useState, type ReactNode } from 'react'
-import { themes, getThemeById, type Theme } from '@/data/themes'
+import { createContext, useContext, useState, ReactNode } from 'react'
+import { themes, Theme, getThemeById } from '@/data/themes'
+import { playgroundThemes, PlaygroundTheme, getPlaygroundThemeById, defaultPlaygroundTheme } from '@/data/playgroundThemes'
 
-interface ThemeContextValue {
+interface ThemeContextType {
+    // Template themes (for full-page templates)
     currentTheme: Theme
     setTheme: (id: string) => void
     themes: Theme[]
+
+    // Playground themes (for theme playground)
+    currentPlaygroundTheme: PlaygroundTheme
+    setPlaygroundTheme: (id: string) => void
+    playgroundThemes: PlaygroundTheme[]
 }
 
-const ThemeContext = createContext<ThemeContextValue | null>(null)
+const ThemeContext = createContext<ThemeContextType | undefined>(undefined)
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
     const [currentTheme, setCurrentTheme] = useState<Theme>(themes[0])
+    const [currentPlaygroundTheme, setCurrentPlaygroundTheme] = useState<PlaygroundTheme>(defaultPlaygroundTheme)
 
     const setTheme = (id: string) => {
         const theme = getThemeById(id)
@@ -19,8 +27,24 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
         }
     }
 
+    const setPlaygroundTheme = (id: string) => {
+        const theme = getPlaygroundThemeById(id)
+        if (theme) {
+            setCurrentPlaygroundTheme(theme)
+        }
+    }
+
     return (
-        <ThemeContext.Provider value={{ currentTheme, setTheme, themes }}>
+        <ThemeContext.Provider
+            value={{
+                currentTheme,
+                setTheme,
+                themes,
+                currentPlaygroundTheme,
+                setPlaygroundTheme,
+                playgroundThemes,
+            }}
+        >
             {children}
         </ThemeContext.Provider>
     )
@@ -28,7 +52,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
 
 export function useTheme() {
     const context = useContext(ThemeContext)
-    if (!context) {
+    if (context === undefined) {
         throw new Error('useTheme must be used within a ThemeProvider')
     }
     return context

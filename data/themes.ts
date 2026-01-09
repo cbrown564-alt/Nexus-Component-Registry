@@ -1,3 +1,6 @@
+// Template themes: Used for the 28 full-page template designs
+// These are distinct from Playground themes which are optimized for component switching
+
 export interface Theme {
     id: string
     name: string

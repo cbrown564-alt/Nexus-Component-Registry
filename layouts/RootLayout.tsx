@@ -8,11 +8,10 @@ import {
     Command,
     Github,
     Bell,
-    ChevronDown,
-    ChevronRight,
     Home,
     Menu,
     X,
+    Palette,
 } from 'lucide-react'
 import { ThemeProvider, useTheme } from '@/context/ThemeContext'
 import GlobalSearch from '@/components/search/GlobalSearch'
@@ -63,19 +62,21 @@ function Background() {
     )
 }
 
+// function Sidebar imports
 function Sidebar() {
-    const { currentTheme, setTheme, themes } = useTheme()
-    const [isGalleriesOpen, setIsGalleriesOpen] = useState(true)
+    const { currentTheme } = useTheme()
+    // const [isGalleriesOpen, setIsGalleriesOpen] = useState(true) // Removed state
     const location = useLocation()
 
     const isDark = ['engineering', 'saas', 'social', 'fintech', 'productivity', 'game', 'music', 'food', 'grid', 'scifi', 'festival', 'cockpit', 'blueprint'].includes(currentTheme.id)
 
     const navItems = [
         { to: '/', icon: Home, label: 'Home' },
-        { to: '/components', icon: Box, label: 'Components' },
+        { to: '/themes', icon: Palette, label: 'Themes' },
         { to: '/templates', icon: LayoutTemplate, label: 'Templates' },
+        { to: '/components', icon: Box, label: 'Components' },
         { to: '/hooks', icon: Zap, label: 'Hooks' },
-        { to: '/settings', icon: Settings, label: 'Settings' },
+        // { to: '/settings', icon: Settings, label: 'Settings' },
     ]
 
     return (
@@ -93,46 +94,6 @@ function Sidebar() {
             </div>
 
             <nav className="flex flex-1 flex-col gap-2 p-3">
-                {/* Theme Switcher Section */}
-                <div className="mb-4 flex flex-col gap-1 border-b border-inherit pb-4">
-                    <button
-                        onClick={() => setIsGalleriesOpen(!isGalleriesOpen)}
-                        className={`flex w-full items-center justify-between px-2 py-2 text-[10px] font-semibold uppercase tracking-wider transition-opacity opacity-0 group-hover:opacity-100 ${isDark ? 'text-zinc-500 hover:text-zinc-300' : 'text-slate-500 hover:text-slate-700'
-                            }`}
-                    >
-                        <span>Galleries</span>
-                        {isGalleriesOpen ? <ChevronDown className="h-3 w-3" /> : <ChevronRight className="h-3 w-3" />}
-                    </button>
-
-                    <div className="space-y-1">
-                        {(isGalleriesOpen ? themes : themes.filter((t) => t.id === currentTheme.id)).map((theme) => (
-                            <button
-                                key={theme.id}
-                                onClick={() => {
-                                    if (isGalleriesOpen) {
-                                        setTheme(theme.id)
-                                    } else {
-                                        setIsGalleriesOpen(true)
-                                    }
-                                }}
-                                className={`flex h-10 items-center rounded-md px-2.5 transition-all duration-200 w-full ${currentTheme.id === theme.id
-                                    ? isDark
-                                        ? 'bg-zinc-800 text-white'
-                                        : 'bg-slate-200 text-slate-900'
-                                    : isDark
-                                        ? 'text-zinc-500 hover:bg-white/5 hover:text-zinc-200'
-                                        : 'text-zinc-500 hover:bg-slate-100 hover:text-slate-900'
-                                    }`}
-                            >
-                                <div className={`h-2 w-2 rounded-full ${currentTheme.id === theme.id ? theme.colorClass : 'bg-zinc-400'}`} />
-                                <span className="ml-3 overflow-hidden whitespace-nowrap text-sm font-medium opacity-0 transition-opacity duration-200 group-hover:opacity-100">
-                                    {theme.name}
-                                </span>
-                            </button>
-                        ))}
-                    </div>
-                </div>
-
                 {/* Navigation Links */}
                 {navItems.map((item) => (
                     <NavLink

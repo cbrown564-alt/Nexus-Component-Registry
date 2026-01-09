@@ -89,9 +89,9 @@ export default function HomePage() {
                 className="mb-24"
             >
                 <div className="flex items-center justify-between mb-8">
-                    <h2 className="text-2xl font-bold text-white">Featured Themes</h2>
+                    <h2 className="text-2xl font-bold text-white">Featured Templates</h2>
                     <Link to="/templates" className="text-sm text-zinc-400 hover:text-white transition-colors flex items-center gap-1">
-                        View all 28 themes <ArrowRight className="h-4 w-4" />
+                        View all 28 templates <ArrowRight className="h-4 w-4" />
                     </Link>
                 </div>
 

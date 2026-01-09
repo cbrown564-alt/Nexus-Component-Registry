@@ -1,6 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom'
 import RootLayout from '@/layouts/RootLayout'
 import HomePage from '@/pages/HomePage'
+import ThemesPage from '@/pages/ThemesPage'
 import TemplatesPage from '@/pages/TemplatesPage'
 import TemplatePage from '@/pages/TemplatePage'
 import ComponentsPage from '@/pages/ComponentsPage'
@@ -13,6 +14,7 @@ export const router = createBrowserRouter([
         element: <RootLayout />,
         children: [
             { index: true, element: <HomePage /> },
+            { path: 'themes', element: <ThemesPage /> },
             { path: 'templates', element: <TemplatesPage /> },
             { path: 'templates/:id', element: <TemplatePage /> },
             { path: 'components', element: <ComponentsPage /> },
