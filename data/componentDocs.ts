@@ -593,6 +593,195 @@ export const componentDocs: Record<string, ComponentDoc> = {
             },
         ],
     },
+
+    // Game components (continued)
+    'leaderboard-widget': {
+        id: 'leaderboard-widget',
+        props: [],
+        notes: ['Mock data implementation of a multiplayer leaderboard', 'Uses GameCard as a container'],
+    },
+
+    // Scifi Components
+    'scifi-card': {
+        id: 'scifi-card',
+        props: [
+            {
+                name: 'children',
+                type: 'React.ReactNode',
+                required: true,
+                description: 'Card content',
+            },
+            {
+                name: 'title',
+                type: 'string',
+                required: false,
+                description: 'Optional header title',
+            },
+            {
+                name: 'delay',
+                type: 'number',
+                required: false,
+                default: '0',
+                description: 'Animation delay in seconds',
+            },
+        ],
+        notes: ['Features corner accents and scanline background effect'],
+    },
+
+    'body-scanner': {
+        id: 'body-scanner',
+        props: [],
+        notes: ['Animated visualization of biometric scanning', 'Purely presentational (mock data)'],
+    },
+
+    'dna-list': {
+        id: 'dna-list',
+        props: [],
+        notes: ['Display list for genomic data sequences', 'Includes hover states and status indicators'],
+    },
+
+    'vitals-monitor': {
+        id: 'vitals-monitor',
+        props: [],
+        notes: ['Dashboard of 3 distinct vital sign cards', 'Uses SVG animations for waveforms'],
+    },
+
+    // Education Components
+    'course-card': {
+        id: 'course-card',
+        props: [
+            {
+                name: 'title',
+                type: 'string',
+                required: true,
+                description: 'Title of the course',
+            },
+            {
+                name: 'category',
+                type: 'string',
+                required: true,
+                description: 'Subject category (e.g. Design, Code)',
+            },
+            {
+                name: 'progress',
+                type: 'number',
+                required: true,
+                description: 'Completion percentage (0-100)',
+            },
+            {
+                name: 'totalModules',
+                type: 'number',
+                required: true,
+                description: 'Total number of modules',
+            },
+            {
+                name: 'completedModules',
+                type: 'number',
+                required: true,
+                description: 'Number of completed modules',
+            },
+            {
+                name: 'image',
+                type: 'string',
+                required: true,
+                description: 'Background image URL or pattern',
+            },
+            {
+                name: 'color',
+                type: 'string',
+                required: true,
+                description: 'Tailwind color class for the bar (e.g., bg-violet-500)',
+            },
+        ],
+    },
+
+    'upcoming-schedule': {
+        id: 'upcoming-schedule',
+        props: [],
+        notes: ['Timeline view of daily events', 'Includes "live" pulsing indicator state'],
+    },
+
+    // Social Components
+    'feed-post': {
+        id: 'feed-post',
+        props: [
+            {
+                name: 'author',
+                type: '{ name: string; handle: string; avatar: string; time: string }',
+                required: true,
+                description: 'Author details object',
+            },
+            {
+                name: 'content',
+                type: 'string',
+                required: true,
+                description: 'Text content of the post',
+            },
+            {
+                name: 'image',
+                type: 'string',
+                required: false,
+                description: 'Optional post image URL',
+            },
+            {
+                name: 'stats',
+                type: '{ likes: number; comments: number; shares: number }',
+                required: true,
+                description: 'Interaction counts',
+            },
+        ],
+        notes: ['Interactive like button with counter animation'],
+    },
+
+    'profile-summary': {
+        id: 'profile-summary',
+        props: [],
+        notes: ['Profile sidebar card with cover photo and stats', 'Exported as ProfileSummary from ProfileSidebar.tsx'],
+    },
+
+    // Ecommerce Components
+    'product-card': {
+        id: 'product-card',
+        props: [
+            {
+                name: 'title',
+                type: 'string',
+                required: true,
+                description: 'Product name',
+            },
+            {
+                name: 'category',
+                type: 'string',
+                required: true,
+                description: 'Product category',
+            },
+            {
+                name: 'price',
+                type: 'string',
+                required: true,
+                description: 'Formatted price string',
+            },
+            {
+                name: 'image',
+                type: 'string',
+                required: true,
+                description: 'Product image URL',
+            },
+            {
+                name: 'badge',
+                type: 'string',
+                required: false,
+                description: 'Optional badge text (e.g. NEW)',
+            },
+        ],
+        notes: ['Hover effects for "Quick Add" and image zoom'],
+    },
+
+    'cart-summary': {
+        id: 'cart-summary',
+        props: [],
+        notes: ['Shopping bag summary with item list and totals', 'Glassmorphism background effect'],
+    },
 }
 
 export const getComponentDoc = (id: string): ComponentDoc | undefined => {

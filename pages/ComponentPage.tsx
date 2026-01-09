@@ -228,6 +228,7 @@ export function Example() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.45 }}
+                className="mb-8"
             >
                 <h2 className="text-sm font-semibold text-zinc-400 uppercase tracking-wider mb-4">
                     Tags
@@ -243,6 +244,38 @@ export function Example() {
                     ))}
                 </div>
             </motion.div>
+
+            {/* Source Code */}
+            {component.source && (
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.5 }}
+                >
+                    <h2 className="text-sm font-semibold text-zinc-400 uppercase tracking-wider mb-4">
+                        Source Code
+                    </h2>
+                    <div className="rounded-xl border border-zinc-800 bg-zinc-900/50 overflow-hidden">
+                        <div className="flex items-center justify-between px-4 py-2 border-b border-zinc-800 bg-zinc-900">
+                            <span className="text-xs text-zinc-500 font-mono">
+                                {component.name}.tsx
+                            </span>
+                            <button
+                                onClick={() => handleCopy(component.source!)}
+                                className="flex items-center gap-1.5 px-2 py-1 text-xs text-zinc-400 hover:text-white transition-colors"
+                            >
+                                {copied ? <Check className="h-3 w-3" /> : <Copy className="h-3 w-3" />}
+                                {copied ? 'Copied!' : 'Copy Source'}
+                            </button>
+                        </div>
+                        <div className="max-h-[500px] overflow-y-auto">
+                            <pre className="p-4 text-sm font-mono text-zinc-300 overflow-x-auto">
+                                {component.source}
+                            </pre>
+                        </div>
+                    </div>
+                </motion.div>
+            )}
         </div>
     )
 }
