@@ -11,9 +11,12 @@ import {
     ChevronDown,
     ChevronRight,
     Home,
+    Menu,
+    X,
 } from 'lucide-react'
 import { ThemeProvider, useTheme } from '@/context/ThemeContext'
 import GlobalSearch from '@/components/search/GlobalSearch'
+import SkipLink from '@/components/a11y/SkipLink'
 
 function Background() {
     const { currentTheme } = useTheme()
@@ -190,12 +193,42 @@ function Header() {
 
 function LayoutContent() {
     const { currentTheme } = useTheme()
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+
+    const isDark = ['engineering', 'saas', 'social', 'fintech', 'productivity', 'game', 'music', 'food', 'grid', 'scifi', 'festival', 'cockpit', 'blueprint'].includes(currentTheme.id)
 
     return (
         <div className={`flex min-h-screen w-full font-sans transition-colors duration-500 ${currentTheme.textColorClass}`}>
+            <SkipLink />
             <Background />
-            <Sidebar />
-            <main className="relative flex flex-1 flex-col pl-16 transition-[padding] duration-300">
+
+            {/* Mobile menu button */}
+            <button
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                className="lg:hidden fixed top-4 left-4 z-[60] p-2 bg-zinc-900 border border-zinc-800 rounded-lg text-zinc-400 hover:text-white hover:border-zinc-700 transition-colors"
+                aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
+                aria-expanded={mobileMenuOpen}
+            >
+                {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </button>
+
+            {/* Mobile backdrop */}
+            {mobileMenuOpen && (
+                <div
+                    className="lg:hidden fixed inset-0 z-40 bg-black/60"
+                    onClick={() => setMobileMenuOpen(false)}
+                />
+            )}
+
+            {/* Sidebar - hidden on mobile unless open */}
+            <div className={`lg:block ${mobileMenuOpen ? 'block' : 'hidden'}`}>
+                <Sidebar />
+            </div>
+
+            <main
+                id="main-content"
+                className="relative flex flex-1 flex-col pl-0 lg:pl-16 transition-[padding] duration-300"
+            >
                 <Header />
                 <Outlet />
             </main>

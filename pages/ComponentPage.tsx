@@ -5,6 +5,7 @@ import { useState } from 'react'
 import { getComponentById, type ComponentCategory } from '@/data/components'
 import { getComponentDoc } from '@/data/componentDocs'
 import PropsTable from '@/components/docs/PropsTable'
+import CodeExport from '@/components/export/CodeExport'
 
 export default function ComponentPage() {
     const { theme, name } = useParams<{ theme: string; name: string }>()
@@ -81,22 +82,29 @@ export function Example() {
                 transition={{ delay: 0.1 }}
                 className="mb-8"
             >
-                <div className="flex items-center gap-4 mb-4">
-                    <div className={`flex items-center justify-center h-12 w-12 rounded-xl ${getCategoryColor(component.category)}`}>
-                        <Box className="h-6 w-6" />
-                    </div>
-                    <div>
-                        <h1 className="text-3xl font-bold text-white">{component.name}</h1>
-                        <div className="flex items-center gap-3 mt-1">
-                            <span className={`px-2 py-0.5 text-xs rounded ${getCategoryColor(component.category)}`}>
-                                {component.category}
-                            </span>
-                            <span className="flex items-center gap-1.5 text-sm text-zinc-500">
-                                <span className={`h-2 w-2 rounded-full ${getThemeColor(component.theme)}`} />
-                                {component.theme}
-                            </span>
+                <div className="flex items-start justify-between gap-4 mb-4">
+                    <div className="flex items-center gap-4">
+                        <div className={`flex items-center justify-center h-12 w-12 rounded-xl ${getCategoryColor(component.category)}`}>
+                            <Box className="h-6 w-6" />
+                        </div>
+                        <div>
+                            <h1 className="text-3xl font-bold text-white">{component.name}</h1>
+                            <div className="flex items-center gap-3 mt-1">
+                                <span className={`px-2 py-0.5 text-xs rounded ${getCategoryColor(component.category)}`}>
+                                    {component.category}
+                                </span>
+                                <span className="flex items-center gap-1.5 text-sm text-zinc-500">
+                                    <span className={`h-2 w-2 rounded-full ${getThemeColor(component.theme)}`} />
+                                    {component.theme}
+                                </span>
+                            </div>
                         </div>
                     </div>
+                    <CodeExport
+                        componentName={component.name}
+                        code={importCode}
+                        theme={component.theme}
+                    />
                 </div>
                 <p className="text-lg text-zinc-400">{component.description}</p>
             </motion.div>
