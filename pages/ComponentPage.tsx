@@ -6,6 +6,7 @@ import { getComponentById, type ComponentCategory } from '@/data/components'
 import { getComponentDoc } from '@/data/componentDocs'
 import PropsTable from '@/components/docs/PropsTable'
 import CodeExport from '@/components/export/CodeExport'
+import LivePlayground from '@/components/docs/LivePlayground'
 
 export default function ComponentPage() {
     const { theme, name } = useParams<{ theme: string; name: string }>()
@@ -109,62 +110,49 @@ export function Example() {
                 <p className="text-lg text-zinc-400">{component.description}</p>
             </motion.div>
 
-            {/* Live Preview */}
-            <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2 }}
-                className="mb-8"
-            >
-                <h2 className="text-sm font-semibold text-zinc-400 uppercase tracking-wider mb-4">
-                    Live Preview
-                </h2>
-                <div className="rounded-xl border border-zinc-800 bg-zinc-950 p-8 min-h-[200px] flex items-center justify-center">
-                    <div className="w-full max-w-md">
-                        <Component />
+            {/* Interactive Playground */}
+            {doc ? (
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.2 }}
+                    className="mb-8"
+                >
+                    <LivePlayground component={component} doc={doc} />
+                </motion.div>
+            ) : (
+                /* Fallback if no docs found */
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.2 }}
+                    className="mb-8"
+                >
+                    <h2 className="text-sm font-semibold text-zinc-400 uppercase tracking-wider mb-4">
+                        Live Preview
+                    </h2>
+                    <div className="rounded-xl border border-zinc-800 bg-zinc-950 p-8 min-h-[200px] flex items-center justify-center">
+                        <div className="w-full max-w-md">
+                            <Component />
+                        </div>
                     </div>
-                </div>
-            </motion.div>
+                </motion.div>
+            )}
 
-            {/* Props Table */}
-            <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.25 }}
-                className="mb-8"
-            >
-                <h2 className="text-sm font-semibold text-zinc-400 uppercase tracking-wider mb-4">
-                    Props
-                </h2>
-                <PropsTable props={doc?.props || []} />
-            </motion.div>
-
-            {/* Usage */}
-            <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 }}
-                className="mb-8"
-            >
-                <h2 className="text-sm font-semibold text-zinc-400 uppercase tracking-wider mb-4">
-                    Usage
-                </h2>
-                <div className="rounded-xl border border-zinc-800 bg-zinc-900/50 overflow-hidden">
-                    <div className="flex items-center justify-between px-4 py-2 border-b border-zinc-800 bg-zinc-900">
-                        <span className="text-xs text-zinc-500 font-mono">tsx</span>
-                        <button
-                            onClick={() => handleCopy(importCode)}
-                            className="flex items-center gap-1.5 px-2 py-1 text-xs text-zinc-400 hover:text-white transition-colors"
-                        >
-                            {copied ? <Check className="h-3 w-3" /> : <Copy className="h-3 w-3" />}
-                            {copied ? 'Copied!' : 'Copy'}
-                        </button>
-                    </div>
-                    <pre className="p-4 text-sm font-mono text-zinc-300 overflow-x-auto">
-                        {importCode}
-                    </pre>
-                </div>
-            </motion.div>
+            {/* Detailed Props Table */}
+            {doc && (
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.25 }}
+                    className="mb-8"
+                >
+                    <h2 className="text-sm font-semibold text-zinc-400 uppercase tracking-wider mb-4">
+                        API Reference
+                    </h2>
+                    <PropsTable props={doc.props} />
+                </motion.div>
+            )}
 
             {/* Examples */}
             {doc?.examples && doc.examples.length > 0 && (
