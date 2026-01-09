@@ -7,12 +7,14 @@ import {
     Heart,
     Globe,
     Radio,
-    Mic2
+    Mic2,
+    Play
 } from 'lucide-react';
 import NowPlaying from '../components/music/NowPlaying';
 import TrackList from '../components/music/TrackList';
 import AlbumGrid from '../components/music/AlbumGrid';
 import MusicCard from '../components/music/MusicCard';
+import MusicButton from '../components/music/MusicButton';
 
 const MusicDashboard = () => {
     return (
@@ -79,9 +81,9 @@ const MusicDashboard = () => {
                         </button>
                     </div>
                     <div className="flex items-center gap-4">
-                        <button className="rounded-full bg-white px-4 py-1.5 text-sm font-bold text-black hover:scale-105 transition-transform">
+                        <MusicButton variant="pill" size="sm">
                             Upgrade to Pro
-                        </button>
+                        </MusicButton>
                         <div className="h-8 w-8 rounded-full bg-zinc-800 border-2 border-zinc-700 overflow-hidden">
                             <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix" alt="User" />
                         </div>
@@ -107,15 +109,11 @@ const MusicDashboard = () => {
 
                     {/* Action Bar */}
                     <div className="flex items-center gap-8 mb-8">
-                        <button className="h-14 w-14 rounded-full bg-rose-500 text-white flex items-center justify-center hover:scale-105 transition-transform shadow-lg shadow-rose-500/30">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
-                        </button>
-                        <button className="text-zinc-400 hover:text-white transition-colors">
-                            <Heart className="h-8 w-8" />
-                        </button>
-                        <button className="text-zinc-400 hover:text-white transition-colors">
-                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="1" /><circle cx="19" cy="12" r="1" /><circle cx="5" cy="12" r="1" /></svg>
-                        </button>
+                        <MusicButton variant="primary" size="icon" icon={<Play className="h-6 w-6 ml-1" fill="currentColor" />} />
+                        <MusicButton variant="ghost" size="icon" className="h-10 w-10" icon={<Heart className="h-7 w-7" />} />
+                        <MusicButton variant="ghost" size="icon" className="h-10 w-10">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="1" /><circle cx="19" cy="12" r="1" /><circle cx="5" cy="12" r="1" /></svg>
+                        </MusicButton>
                     </div>
 
                     <TrackList />
