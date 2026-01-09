@@ -97,35 +97,26 @@ const MagazineDashboard = () => {
                 {/* Main Grid Layout */}
                 <div className="grid grid-cols-1 gap-12 lg:grid-cols-12">
 
-                    {/* Left Column: Feature Story */}
-                    <div className="lg:col-span-8">
+                    {/* Left Column: Feature Story & Editor's Picks */}
+                    <div className="lg:col-span-8 space-y-12">
                         <FeatureStory />
 
-                        {/* Reading Progress Indicator (for immersion) */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.2 }}
-                            className="mt-12 mb-8 flex items-center gap-4"
-                        >
+                        {/* Reading Progress Indicator */}
+                        <div className="flex items-center gap-4">
                             <div className="flex-1 h-px bg-neutral-200" />
-                            <span className="text-xs font-bold uppercase tracking-widest text-neutral-400">Continue Reading</span>
+                            <span className="text-xs font-bold uppercase tracking-widest text-neutral-400">Editor's Picks</span>
                             <div className="flex-1 h-px bg-neutral-200" />
-                        </motion.div>
+                        </div>
 
-                        {/* Editor's Picks */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.3 }}
-                            className="grid grid-cols-1 gap-8 md:grid-cols-3"
-                        >
+                        {/* Editor's Picks Grid */}
+                        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
                             {editorsPicks.map((item, i) => (
-                                <MagazineCard
+                                <motion.div
                                     key={i}
-                                    className="border-0 bg-transparent group cursor-pointer"
-                                    hoverEffect={false}
-                                    noPadding={true}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: 0.1 * i }}
+                                    className="group cursor-pointer"
                                 >
                                     <div className="relative overflow-hidden mb-4 aspect-[4/5] w-full">
                                         <img
@@ -133,7 +124,6 @@ const MagazineDashboard = () => {
                                             alt=""
                                             className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                                         />
-                                        {/* Save button */}
                                         <motion.button
                                             whileHover={{ scale: 1.1 }}
                                             whileTap={{ scale: 0.9 }}
@@ -160,51 +150,9 @@ const MagazineDashboard = () => {
                                     <EditorialButton variant="link" className="mt-3 text-sm">
                                         Read Article
                                     </EditorialButton>
-                                </MagazineCard>
+                                </motion.div>
                             ))}
-                        </motion.div>
-
-                        {/* Long-form Feature */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.4 }}
-                            className="mt-16"
-                        >
-                            <div className="flex items-center gap-4 mb-6">
-                                <span className="px-3 py-1 bg-black text-white text-[10px] font-bold uppercase tracking-widest">Long Read</span>
-                                <div className="flex-1 h-px bg-neutral-200" />
-                            </div>
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                                <div className="aspect-[4/3] overflow-hidden">
-                                    <img
-                                        src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=800"
-                                        alt="Architecture"
-                                        className="h-full w-full object-cover hover:scale-105 transition-transform duration-700"
-                                    />
-                                </div>
-                                <div>
-                                    <span className="text-[10px] font-bold uppercase tracking-widest text-neutral-400">Architecture</span>
-                                    <h2 className="mt-2 font-serif text-3xl leading-tight">
-                                        The Quiet Revolution: How Biophilic Design is Reshaping Our Cities
-                                    </h2>
-                                    <p className="mt-4 text-neutral-600 leading-relaxed font-serif">
-                                        From Singapore's supertrees to Milan's vertical forests, architects are weaving
-                                        nature back into the urban fabric. We explore the movement that's redefining
-                                        what it means to live in harmony with our environment.
-                                    </p>
-                                    <div className="mt-6 flex items-center gap-4">
-                                        <EditorialButton variant="primary">
-                                            Read the Full Story
-                                        </EditorialButton>
-                                        <span className="text-xs text-neutral-400 flex items-center gap-1">
-                                            <Clock className="h-3 w-3" />
-                                            18 min read
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </motion.div>
+                        </div>
                     </div>
 
                     {/* Right Column: Sidebar */}
@@ -214,29 +162,19 @@ const MagazineDashboard = () => {
                         <Newsletter />
 
                         {/* Quote of the day */}
-                        <motion.div
-                            initial={{ opacity: 0, x: 20 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ delay: 0.5 }}
-                        >
-                            <MagazineCard className="bg-neutral-100 border-none text-center py-12 px-8">
-                                <span className="text-6xl font-serif text-neutral-200 leading-none">"</span>
-                                <p className="font-serif text-xl italic leading-relaxed text-neutral-800 -mt-6">
-                                    Design is not just what it looks like and feels like. Design is how it works.
-                                </p>
-                                <div className="mt-6 flex justify-center">
-                                    <div className="h-px w-12 bg-neutral-300" />
-                                </div>
-                                <p className="mt-4 text-xs font-bold uppercase tracking-widest text-neutral-500">Steve Jobs</p>
-                            </MagazineCard>
-                        </motion.div>
+                        <MagazineCard className="bg-neutral-100 border-none text-center py-12 px-8">
+                            <span className="text-6xl font-serif text-neutral-200 leading-none">"</span>
+                            <p className="font-serif text-xl italic leading-relaxed text-neutral-800 -mt-6">
+                                Design is not just what it looks like and feels like. Design is how it works.
+                            </p>
+                            <div className="mt-6 flex justify-center">
+                                <div className="h-px w-12 bg-neutral-300" />
+                            </div>
+                            <p className="mt-4 text-xs font-bold uppercase tracking-widest text-neutral-500">Steve Jobs</p>
+                        </MagazineCard>
 
                         {/* Related Topics */}
-                        <motion.div
-                            initial={{ opacity: 0, x: 20 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ delay: 0.6 }}
-                        >
+                        <div>
                             <h3 className="text-xs font-bold uppercase tracking-widest text-neutral-400 mb-4">Explore Topics</h3>
                             <div className="flex flex-wrap gap-2">
                                 {['Minimalism', 'Sustainability', 'Typography', 'Urban Planning', 'Craftsmanship', 'Innovation'].map((topic) => (
@@ -250,14 +188,56 @@ const MagazineDashboard = () => {
                                     </motion.button>
                                 ))}
                             </div>
-                        </motion.div>
+                        </div>
                     </div>
 
                 </div>
+
+                {/* Long-form Feature (Full Width) */}
+                <motion.section
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.4 }}
+                    className="mt-20 pt-12 border-t-2 border-black"
+                >
+                    <div className="flex items-center gap-4 mb-8">
+                        <span className="px-3 py-1 bg-black text-white text-[10px] font-bold uppercase tracking-widest">Long Read</span>
+                        <div className="flex-1 h-px bg-neutral-200" />
+                    </div>
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                        <div className="aspect-[4/3] overflow-hidden">
+                            <img
+                                src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=800"
+                                alt="Architecture"
+                                className="h-full w-full object-cover hover:scale-105 transition-transform duration-700"
+                            />
+                        </div>
+                        <div className="lg:pr-12">
+                            <span className="text-[10px] font-bold uppercase tracking-widest text-neutral-400">Architecture</span>
+                            <h2 className="mt-3 font-serif text-4xl leading-tight">
+                                The Quiet Revolution: How Biophilic Design is Reshaping Our Cities
+                            </h2>
+                            <p className="mt-6 text-lg text-neutral-600 leading-relaxed font-serif">
+                                From Singapore's supertrees to Milan's vertical forests, architects are weaving
+                                nature back into the urban fabric. We explore the movement that's redefining
+                                what it means to live in harmony with our environment.
+                            </p>
+                            <div className="mt-8 flex items-center gap-4">
+                                <EditorialButton variant="primary">
+                                    Read the Full Story
+                                </EditorialButton>
+                                <span className="text-sm text-neutral-400 flex items-center gap-1.5">
+                                    <Clock className="h-4 w-4" />
+                                    18 min read
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </motion.section>
             </main>
 
             {/* Footer */}
-            <footer className="border-t-2 border-black mt-24">
+            <footer className="border-t-2 border-black mt-20">
                 <div className="container mx-auto max-w-[1400px] px-6 lg:px-12 py-12">
                     <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
                         <div>

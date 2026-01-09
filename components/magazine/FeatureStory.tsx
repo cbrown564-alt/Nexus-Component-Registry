@@ -5,7 +5,7 @@ import EditorialButton from './EditorialButton';
 
 const FeatureStory = () => {
   return (
-    <MagazineCard className="group h-full overflow-hidden border-0 bg-transparent" hoverEffect={false} noPadding={true}>
+    <MagazineCard className="group overflow-hidden border-0 bg-transparent" hoverEffect={false} noPadding={true}>
       <div className="relative h-[400px] w-full overflow-hidden">
         <div className="absolute inset-0 bg-neutral-900/20 transition-opacity group-hover:bg-neutral-900/10" />
         <img
