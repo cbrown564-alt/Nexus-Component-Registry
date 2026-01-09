@@ -1,9 +1,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { 
-  Sparkles, 
-  Terminal as TerminalIcon, 
-  Globe, 
+import {
+  Sparkles,
+  Terminal as TerminalIcon,
+  Globe,
   ArrowRight
 } from 'lucide-react';
 
@@ -19,12 +19,18 @@ import ShortcutGuide from '../components/ui/ShortcutGuide';
 import DeploymentPipeline from '../components/ui/DeploymentPipeline';
 import IntegrationToggle from '../components/ui/IntegrationToggle';
 
+// New dedicated Engineering components
+import EngineeringButton from '../components/engineering/EngineeringButton';
+import EngineeringCard from '../components/engineering/EngineeringCard';
+import PipelineSteps from '../components/engineering/PipelineSteps';
+import CodeBlock from '../components/engineering/CodeBlock';
+
 const EngineeringDashboard = () => {
   return (
     <div className="container mx-auto max-w-7xl p-8">
       {/* Hero Section */}
       <section className="mb-16 mt-8">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
@@ -46,18 +52,18 @@ const EngineeringDashboard = () => {
               Initialize Project
             </span>
           </GlowButton>
-          <button className="group flex items-center gap-2 rounded-lg border border-zinc-800 px-6 py-2 text-sm font-medium text-zinc-300 transition-colors hover:border-zinc-700 hover:bg-zinc-900 hover:text-white">
+          <EngineeringButton variant="ghost">
             Read Documentation
-            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-          </button>
+            <ArrowRight className="h-4 w-4" />
+          </EngineeringButton>
         </div>
       </section>
 
       {/* Featured Grid */}
       <section className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-        
+
         {/* 1. The Spotlight Card Showcase */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
@@ -69,7 +75,7 @@ const EngineeringDashboard = () => {
             </div>
             <h2 className="mb-2 text-2xl font-bold tracking-tight text-white">Global Edge Network</h2>
             <p className="mb-8 max-w-md text-zinc-400">
-              Deploy your functions to 35+ regions automatically. 
+              Deploy your functions to 35+ regions automatically.
               Experience zero-config scalability with sub-50ms latency worldwide.
             </p>
             <div className="grid w-full max-w-lg grid-cols-3 gap-4">
@@ -90,27 +96,27 @@ const EngineeringDashboard = () => {
         </motion.div>
 
         {/* 2. Interactive Button Showcase */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
           className="relative overflow-hidden rounded-xl border border-zinc-800 bg-zinc-950 p-8"
         >
-           <div className="absolute inset-0 bg-gradient-to-b from-zinc-900/50 to-transparent" />
-           <div className="relative z-10 flex h-full flex-col items-center justify-center gap-6">
-             <h3 className="text-lg font-semibold tracking-tight text-white">Interactive Elements</h3>
-             <div className="space-y-4">
-               <GlowButton>
-                 <span className="flex items-center gap-2">
-                   <Sparkles className="h-4 w-4" />
-                   Generate API Key
-                 </span>
-               </GlowButton>
-               <div className="flex justify-center">
+          <div className="absolute inset-0 bg-gradient-to-b from-zinc-900/50 to-transparent" />
+          <div className="relative z-10 flex h-full flex-col items-center justify-center gap-6">
+            <h3 className="text-lg font-semibold tracking-tight text-white">Interactive Elements</h3>
+            <div className="space-y-4">
+              <GlowButton>
+                <span className="flex items-center gap-2">
+                  <Sparkles className="h-4 w-4" />
+                  Generate API Key
+                </span>
+              </GlowButton>
+              <div className="flex justify-center">
                 <button className="text-xs text-zinc-500 hover:text-zinc-300 transition-colors">View Source</button>
-               </div>
-             </div>
-           </div>
+              </div>
+            </div>
+          </div>
         </motion.div>
 
         {/* Components Grid */}
@@ -126,28 +132,51 @@ const EngineeringDashboard = () => {
           <StatsCard />
         </motion.div>
 
-         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6 }}>
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6 }}>
           <ActivityFeed />
         </motion.div>
 
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.7 }}>
-           <TeamMembers />
+          <TeamMembers />
         </motion.div>
 
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.8 }}>
-           <PlanPicker />
+          <PlanPicker />
         </motion.div>
 
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.9 }} className="lg:col-span-2">
-           <DeploymentPipeline />
+          <DeploymentPipeline />
         </motion.div>
 
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.0 }}>
-           <ShortcutGuide />
+          <ShortcutGuide />
         </motion.div>
 
-         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.1 }}>
-           <IntegrationToggle />
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.1 }}>
+          <IntegrationToggle />
+        </motion.div>
+
+        {/* New Engineering Components Showcase */}
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.2 }} className="lg:col-span-2">
+          <EngineeringCard variant="highlight">
+            <h3 className="text-lg font-semibold text-white mb-4">CI/CD Pipeline Status</h3>
+            <PipelineSteps />
+          </EngineeringCard>
+        </motion.div>
+
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.3 }}>
+          <CodeBlock
+            filename="app.config.ts"
+            language="typescript"
+            code={`export default {
+  name: 'my-app',
+  version: '2.0.0',
+  deploy: {
+    edge: true,
+    regions: ['us-west-2', 'eu-west-1']
+  }
+}`}
+          />
         </motion.div>
 
       </section>

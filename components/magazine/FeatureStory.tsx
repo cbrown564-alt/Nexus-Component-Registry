@@ -1,6 +1,7 @@
 import React from 'react';
 import { ArrowUpRight } from 'lucide-react';
 import MagazineCard from './MagazineCard';
+import EditorialButton from './EditorialButton';
 
 const FeatureStory = () => {
   return (
@@ -32,10 +33,9 @@ const FeatureStory = () => {
           As remote work settles into permanence, architects are reimagining the home office not just as a place of productivity, but as a sanctuary of thought.
         </p>
 
-        <button className="mt-6 flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-neutral-900 group/btn">
+        <EditorialButton variant="link" className="mt-6">
           Read Full Story
-          <ArrowUpRight className="h-4 w-4 transition-transform group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1" />
-        </button>
+        </EditorialButton>
       </div>
     </MagazineCard>
   );
