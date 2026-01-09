@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { Box, Palette, Github, CheckCircle2, ArrowRight } from 'lucide-react'
 import { featuredThemes, getThemeById } from '@/data/themes'
+import ThemePreview from '@/components/ui/ThemePreview'
 
 const stats = [
     { label: 'Design Themes', value: '28' },
@@ -110,10 +111,8 @@ export default function HomePage() {
                                     to={`/templates/${theme.id}`}
                                     className="group block rounded-xl border border-zinc-800 bg-zinc-900/50 overflow-hidden hover:border-zinc-700 transition-all hover:scale-[1.02]"
                                 >
-                                    <div className={`aspect-video ${theme.backgroundColor} relative`}>
-                                        <div className="absolute inset-0 flex items-center justify-center">
-                                            <div className={`h-8 w-8 rounded-lg ${theme.colorClass}`} />
-                                        </div>
+                                    <div className="aspect-video relative overflow-hidden">
+                                        <ThemePreview theme={theme} className="absolute inset-0" />
                                     </div>
                                     <div className="p-4">
                                         <div className="flex items-center gap-2 mb-1">

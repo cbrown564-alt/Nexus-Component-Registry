@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Check, Copy, RefreshCw } from 'lucide-react'
+import { Check, Copy, RefreshCw, Sun, Moon } from 'lucide-react'
 import { ComponentDoc } from '@/data/componentDocs'
 import { ComponentMeta } from '@/data/components'
 
@@ -12,6 +12,7 @@ export default function LivePlayground({ component, doc }: LivePlaygroundProps) 
     const [props, setProps] = useState<Record<string, any>>({})
     const [copied, setCopied] = useState(false)
     const [key, setKey] = useState(0) // Force re-render on reset
+    const [darkPreview, setDarkPreview] = useState(true)
 
     // Initialize default props
     useEffect(() => {
@@ -101,20 +102,30 @@ export default function LivePlayground({ component, doc }: LivePlaygroundProps) 
                 <h2 className="text-sm font-semibold text-zinc-400 uppercase tracking-wider">
                     Interactive Playground
                 </h2>
-                <button
-                    onClick={resetProps}
-                    className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-zinc-400 bg-zinc-900 rounded-lg hover:text-white hover:bg-zinc-800 transition-colors"
-                >
-                    <RefreshCw className="h-3.5 w-3.5" />
-                    Reset Defaults
-                </button>
+                <div className="flex items-center gap-2">
+                    <button
+                        onClick={() => setDarkPreview(!darkPreview)}
+                        className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-zinc-400 bg-zinc-900 rounded-lg hover:text-white hover:bg-zinc-800 transition-colors"
+                        title={darkPreview ? 'Switch to light background' : 'Switch to dark background'}
+                    >
+                        {darkPreview ? <Sun className="h-3.5 w-3.5" /> : <Moon className="h-3.5 w-3.5" />}
+                        {darkPreview ? 'Light' : 'Dark'}
+                    </button>
+                    <button
+                        onClick={resetProps}
+                        className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-zinc-400 bg-zinc-900 rounded-lg hover:text-white hover:bg-zinc-800 transition-colors"
+                    >
+                        <RefreshCw className="h-3.5 w-3.5" />
+                        Reset
+                    </button>
+                </div>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 {/* Preview Area */}
                 <div className="lg:col-span-2 space-y-4">
-                    <div className="rounded-xl border border-zinc-800 bg-zinc-950 p-8 min-h-[300px] flex items-center justify-center relative overflow-hidden group">
-                        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:20px_20px] [mask-image:radial-gradient(ellipse_at_center,black,transparent)] pointer-events-none" />
+                    <div className={`rounded-xl border border-zinc-800 p-8 min-h-[300px] flex items-center justify-center relative overflow-hidden group transition-colors ${darkPreview ? 'bg-zinc-950' : 'bg-white'}`}>
+                        <div className={`absolute inset-0 bg-[linear-gradient(rgba(${darkPreview ? '255,255,255' : '0,0,0'},0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(${darkPreview ? '255,255,255' : '0,0,0'},0.03)_1px,transparent_1px)] bg-[size:20px_20px] [mask-image:radial-gradient(ellipse_at_center,black,transparent)] pointer-events-none`} />
                         <div className="w-full max-w-md relative z-10" key={key + JSON.stringify(props)}>
                             {/* @ts-ignore - Dynamic component props */}
                             <Component {...props} />
