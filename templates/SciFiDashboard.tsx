@@ -23,7 +23,7 @@ const SciFiDashboard = () => {
             <div className="fixed inset-0 pointer-events-none z-50 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] bg-[size:100%_2px,3px_100%] opacity-20" />
 
             {/* Main HUD Container */}
-            <main className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-6 h-[calc(100vh-48px)]">
+            <main className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-6 h-[calc(100vh-48px)] overflow-y-auto pb-12 scrollbar-hide">
 
                 {/* Left Column: Tactical Menu */}
                 <div className="lg:col-span-2 flex flex-col gap-4">
@@ -44,8 +44,8 @@ const SciFiDashboard = () => {
                                 key={item.id}
                                 onClick={() => setActiveTab(item.id)}
                                 className={`flex items-center gap-3 p-3 text-xs tracking-wider transition-all border-l-2 ${activeTab === item.id
-                                        ? 'bg-cyan-950/40 text-cyan-300 border-cyan-400'
-                                        : 'text-cyan-700 hover:text-cyan-400 hover:bg-cyan-950/20 border-transparent'
+                                    ? 'bg-cyan-950/40 text-cyan-300 border-cyan-400'
+                                    : 'text-cyan-700 hover:text-cyan-400 hover:bg-cyan-950/20 border-transparent'
                                     }`}
                             >
                                 <item.icon className="w-4 h-4" />

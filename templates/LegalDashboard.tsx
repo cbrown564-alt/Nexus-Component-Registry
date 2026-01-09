@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { 
-  FileText, 
-  Search, 
-  History, 
-  Share, 
-  Download, 
-  ChevronLeft, 
+import {
+  FileText,
+  Search,
+  History,
+  Share,
+  Download,
+  ChevronLeft,
   Highlighter,
   PenTool,
   Printer
@@ -14,13 +14,14 @@ import LegalPaper from '../components/legal/LegalPaper';
 import Clause from '../components/legal/Clause';
 import RedlineSidebar from '../components/legal/RedlineSidebar';
 import DiffViewer from '../components/legal/DiffViewer';
+import LegalButton from '../components/legal/LegalButton';
 
 const LegalDashboard = () => {
   const [activeClause, setActiveClause] = useState<string | null>('1.2');
 
   return (
     <div className="flex h-screen w-full bg-[#e5e5e4] font-sans text-stone-900 overflow-hidden">
-      
+
       {/* Left Navigation (Sidebar) */}
       <aside className="w-16 md:w-64 flex-shrink-0 bg-[#1c1c1c] text-stone-400 flex flex-col border-r border-stone-800">
         <div className="h-16 flex items-center justify-center md:justify-start md:px-6 border-b border-white/10">
@@ -39,11 +40,10 @@ const LegalDashboard = () => {
           ].map((item, i) => (
             <button
               key={i}
-              className={`w-full flex items-center gap-3 p-2 rounded-md transition-all ${
-                item.active 
-                  ? 'bg-white/10 text-white shadow-sm' 
+              className={`w-full flex items-center gap-3 p-2 rounded-md transition-all ${item.active
+                  ? 'bg-white/10 text-white shadow-sm'
                   : 'hover:bg-white/5 hover:text-stone-200'
-              }`}
+                }`}
             >
               <item.icon className="h-5 w-5" />
               <span className="hidden md:block text-sm font-medium">{item.label}</span>
@@ -55,8 +55,8 @@ const LegalDashboard = () => {
           <div className="rounded-md bg-stone-800 p-3">
             <div className="text-xs font-bold text-stone-300 mb-1">Audit Trail</div>
             <div className="text-[10px] text-stone-500 font-mono">
-              User: J. Doe<br/>
-              Session: #8821<br/>
+              User: J. Doe<br />
+              Session: #8821<br />
               Last Edit: 2m ago
             </div>
           </div>
@@ -65,7 +65,7 @@ const LegalDashboard = () => {
 
       {/* Main Workspace */}
       <main className="flex-1 flex flex-col min-w-0">
-        
+
         {/* Top Toolbar */}
         <header className="h-16 bg-white border-b border-stone-200 flex items-center justify-between px-6 shadow-sm z-10">
           <div className="flex items-center gap-4">
@@ -85,36 +85,32 @@ const LegalDashboard = () => {
 
           <div className="flex items-center gap-2">
             <div className="hidden lg:flex items-center bg-stone-100 rounded-lg p-1 mr-4">
-              <button className="px-3 py-1.5 text-xs font-bold rounded-md bg-white shadow-sm text-stone-900">Edit</button>
-              <button className="px-3 py-1.5 text-xs font-bold rounded-md text-stone-500 hover:text-stone-900">Review</button>
-              <button className="px-3 py-1.5 text-xs font-bold rounded-md text-stone-500 hover:text-stone-900">Sign</button>
+              <LegalButton variant="secondary" size="sm" className="shadow-sm bg-white">Edit</LegalButton>
+              <LegalButton variant="toolbar" size="sm">Review</LegalButton>
+              <LegalButton variant="toolbar" size="sm">Sign</LegalButton>
             </div>
-            
-            <button className="p-2 text-stone-500 hover:bg-stone-100 rounded-md">
-              <Highlighter className="h-5 w-5" />
-            </button>
-            <button className="p-2 text-stone-500 hover:bg-stone-100 rounded-md">
-              <Printer className="h-5 w-5" />
-            </button>
-            <button className="ml-2 flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-bold shadow-sm transition-colors">
-              <Share className="h-4 w-4" /> Share
-            </button>
+
+            <LegalButton variant="toolbar" size="sm" icon={<Highlighter className="h-4 w-4" />} className="p-2" />
+            <LegalButton variant="toolbar" size="sm" icon={<Printer className="h-4 w-4" />} className="p-2" />
+            <LegalButton variant="primary" icon={<Share className="h-4 w-4" />} className="ml-2">
+              Share
+            </LegalButton>
           </div>
         </header>
 
         {/* Scrollable Content Area */}
         <div className="flex-1 overflow-hidden flex bg-[#e5e5e4]">
-          
+
           {/* Document Canvas */}
           <div className="flex-1 overflow-y-auto p-8 lg:p-12 relative scroll-smooth">
-            
+
             {/* Split View Widget (Floating or Inline) */}
             <div className="mb-8 max-w-[850px] mx-auto">
-               <DiffViewer />
+              <DiffViewer />
             </div>
 
             <LegalPaper title="Master Services Agreement">
-              
+
               <div className="mb-8 text-sm text-stone-600 text-center font-serif italic">
                 Effective Date: October 24, 2024
               </div>
@@ -123,9 +119,9 @@ const LegalDashboard = () => {
                 <span className="font-bold">"Confidential Information"</span> means all non-public information disclosed by a party (Discloser) to the other party (Recipient), whether orally or in writing, that is designated as confidential or that reasonably should be understood to be confidential given the nature of the information and the circumstances of disclosure.
               </Clause>
 
-              <Clause 
-                number="1.2" 
-                title="Services" 
+              <Clause
+                number="1.2"
+                title="Services"
                 isActive={activeClause === '1.2'}
                 hasComment={true}
                 onClick={() => setActiveClause('1.2')}
@@ -157,7 +153,7 @@ const LegalDashboard = () => {
               </div>
 
             </LegalPaper>
-            
+
             <div className="h-12" /> {/* Bottom Spacer */}
           </div>
 
