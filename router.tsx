@@ -3,6 +3,9 @@ import RootLayout from '@/layouts/RootLayout'
 import HomePage from '@/pages/HomePage'
 import TemplatesPage from '@/pages/TemplatesPage'
 import TemplatePage from '@/pages/TemplatePage'
+import ComponentsPage from '@/pages/ComponentsPage'
+import ComponentPage from '@/pages/ComponentPage'
+import HooksPage from '@/pages/HooksPage'
 
 export const router = createBrowserRouter([
     {
@@ -12,10 +15,9 @@ export const router = createBrowserRouter([
             { index: true, element: <HomePage /> },
             { path: 'templates', element: <TemplatesPage /> },
             { path: 'templates/:id', element: <TemplatePage /> },
-            // Future routes:
-            // { path: 'components', element: <ComponentsPage /> },
-            // { path: 'components/:theme/:name', element: <ComponentPage /> },
-            // { path: 'hooks', element: <HooksPage /> },
+            { path: 'components', element: <ComponentsPage /> },
+            { path: 'components/:theme/:name', element: <ComponentPage /> },
+            { path: 'hooks', element: <HooksPage /> },
         ],
     },
 ])
