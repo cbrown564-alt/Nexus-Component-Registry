@@ -372,18 +372,485 @@ function MagazineWireframe({ theme }: WireframeProps) {
     )
 }
 
+// Kids / Play wireframe - bright colorful activity tiles
+function KidsWireframe({ theme }: WireframeProps) {
+    const colors = ['bg-red-400', 'bg-yellow-300', 'bg-blue-400', 'bg-green-400', 'bg-purple-400', 'bg-orange-400']
+    return (
+        <div className="absolute inset-0 p-2">
+            {/* Cloud decorations */}
+            <div className="absolute top-2 left-4 w-8 h-3 bg-white/40 rounded-full blur-sm" />
+            <div className="absolute top-4 right-6 w-6 h-2 bg-white/30 rounded-full blur-sm" />
+            {/* Activity grid */}
+            <div className="grid grid-cols-3 gap-1.5 h-full p-1">
+                {colors.map((color, i) => (
+                    <div key={i} className={`${color} rounded-xl border-2 border-white/50 flex items-center justify-center shadow-md`}>
+                        <div className="w-4 h-4 bg-white/40 rounded-full" />
+                    </div>
+                ))}
+            </div>
+            {/* Star progress indicator */}
+            <div className="absolute top-1 right-1 flex gap-0.5">
+                {[...Array(3)].map((_, i) => (
+                    <div key={i} className="text-[8px] text-yellow-400">★</div>
+                ))}
+            </div>
+        </div>
+    )
+}
+
+// Kitchen / Mise wireframe - recipe step display
+function KitchenWireframe({ theme }: WireframeProps) {
+    return (
+        <div className="absolute inset-0 p-2 flex gap-2">
+            {/* Left: Ingredients */}
+            <div className="w-1/4 bg-white rounded-lg border border-stone-200 p-1.5 flex flex-col gap-1">
+                <div className="h-1.5 w-full bg-orange-400 rounded" />
+                <div className="h-1 w-3/4 bg-stone-200 rounded" />
+                <div className="h-1 w-1/2 bg-stone-200 rounded" />
+                <div className="h-1 w-2/3 bg-stone-200 rounded" />
+            </div>
+            {/* Center: Recipe step */}
+            <div className="flex-1 bg-white rounded-lg border border-stone-200 p-2 flex flex-col items-center justify-center">
+                <div className="w-8 h-8 rounded-full bg-orange-100 border-2 border-orange-400 flex items-center justify-center text-[10px] font-bold text-orange-600 mb-1">2</div>
+                <div className="h-1.5 w-3/4 bg-stone-800 rounded mb-1" />
+                <div className="h-1 w-1/2 bg-stone-300 rounded" />
+            </div>
+            {/* Right: Timer */}
+            <div className="w-1/4 flex flex-col gap-1.5">
+                <div className="flex-1 bg-stone-900 rounded-lg flex items-center justify-center">
+                    <div className="text-[10px] font-mono text-orange-400 font-bold">12:45</div>
+                </div>
+                <div className="h-8 bg-green-100 rounded-lg border border-green-200 flex items-center justify-center">
+                    <div className="w-3 h-3 rounded-full bg-green-400" />
+                </div>
+            </div>
+        </div>
+    )
+}
+
+// Solarpunk / Eden wireframe - plants and energy
+function SolarpunkWireframe({ theme }: WireframeProps) {
+    return (
+        <div className="absolute inset-0 p-2 flex gap-2">
+            {/* Left: Sun/Energy visualization */}
+            <div className="w-2/5 bg-gradient-to-b from-yellow-100 to-emerald-50 rounded-xl p-2 flex flex-col items-center justify-center">
+                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-yellow-300 to-amber-400 shadow-lg shadow-yellow-300/50 flex items-center justify-center">
+                    <div className="w-6 h-6 rounded-full bg-yellow-200" />
+                </div>
+                <div className="mt-2 text-[7px] text-emerald-700 font-bold">2.4 kWh</div>
+            </div>
+            {/* Right: Plant progress */}
+            <div className="flex-1 bg-white/60 rounded-xl p-2 flex flex-col gap-1.5">
+                <div className="text-[6px] font-bold text-emerald-800 uppercase">Hydroponics</div>
+                {[
+                    { name: 'Basil', progress: 100, color: 'bg-emerald-500' },
+                    { name: 'Tomato', progress: 65, color: 'bg-emerald-400' },
+                    { name: 'Lettuce', progress: 30, color: 'bg-emerald-300' },
+                ].map((plant, i) => (
+                    <div key={i} className="flex items-center gap-1">
+                        <div className={`w-2 h-2 rounded-full ${plant.color}`} />
+                        <div className="flex-1 h-1.5 bg-emerald-100 rounded-full overflow-hidden">
+                            <div className={`h-full ${plant.color}`} style={{ width: `${plant.progress}%` }} />
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </div>
+    )
+}
+
+// Engineering / IDE wireframe - code editor layout
+function EngineeringWireframe({ theme }: WireframeProps) {
+    return (
+        <div className="absolute inset-0 flex">
+            {/* Activity bar */}
+            <div className="w-[10%] bg-zinc-950 border-r border-zinc-800 flex flex-col items-center gap-1 py-1">
+                <div className="w-3 h-3 rounded bg-blue-500" />
+                <div className="w-2 h-2 rounded bg-zinc-700" />
+                <div className="w-2 h-2 rounded bg-zinc-700" />
+                <div className="w-2 h-2 rounded bg-zinc-700" />
+            </div>
+            {/* File explorer */}
+            <div className="w-[20%] bg-zinc-900 border-r border-zinc-800 p-1 flex flex-col gap-0.5">
+                <div className="h-1.5 w-full bg-zinc-700 rounded" />
+                <div className="h-1 w-4/5 bg-zinc-800 rounded ml-1" />
+                <div className="h-1 w-3/5 bg-blue-500/50 rounded ml-2" />
+                <div className="h-1 w-4/5 bg-zinc-800 rounded ml-1" />
+            </div>
+            {/* Editor area */}
+            <div className="flex-1 flex flex-col">
+                {/* Tabs */}
+                <div className="h-3 bg-zinc-900 border-b border-zinc-800 flex">
+                    <div className="w-12 bg-zinc-950 border-t-2 border-t-blue-500 flex items-center justify-center">
+                        <div className="w-1 h-1 rounded-full bg-blue-400" />
+                    </div>
+                    <div className="w-10 bg-zinc-900 flex items-center justify-center">
+                        <div className="w-1 h-1 rounded-full bg-zinc-600" />
+                    </div>
+                </div>
+                {/* Code */}
+                <div className="flex-1 bg-zinc-950 p-1 flex flex-col gap-0.5">
+                    <div className="flex gap-1">
+                        <div className="w-2 text-[4px] text-zinc-600">1</div>
+                        <div className="h-1 w-8 bg-purple-400/50 rounded" />
+                    </div>
+                    <div className="flex gap-1">
+                        <div className="w-2 text-[4px] text-zinc-600">2</div>
+                        <div className="h-1 w-12 bg-blue-400/50 rounded" />
+                    </div>
+                    <div className="flex gap-1">
+                        <div className="w-2 text-[4px] text-zinc-600">3</div>
+                        <div className="h-1 w-6 bg-zinc-700 rounded" />
+                    </div>
+                </div>
+                {/* Terminal */}
+                <div className="h-1/3 bg-zinc-900 border-t border-zinc-800 p-1">
+                    <div className="flex gap-1 items-center">
+                        <div className="text-[5px] text-emerald-400">➜</div>
+                        <div className="h-0.5 w-8 bg-zinc-600 rounded" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
+}
+
+// Music / Sonic wireframe - album + tracks layout
+function MusicWireframe({ theme }: WireframeProps) {
+    return (
+        <div className="absolute inset-0 flex">
+            {/* Sidebar with playlists */}
+            <div className="w-[22%] bg-black/40 border-r border-white/5 p-1.5 flex flex-col gap-1">
+                <div className="h-2 w-3/4 bg-rose-500/80 rounded" />
+                <div className="h-1 w-full bg-white/10 rounded" />
+                <div className="h-1 w-4/5 bg-white/10 rounded" />
+                <div className="h-1 w-3/5 bg-white/10 rounded" />
+            </div>
+            {/* Main content */}
+            <div className="flex-1 p-2 flex flex-col">
+                {/* Album header */}
+                <div className="flex gap-2 mb-2">
+                    <div className="w-10 h-10 rounded bg-gradient-to-br from-indigo-500 to-rose-500 shadow-lg" />
+                    <div className="flex-1 flex flex-col justify-center gap-1">
+                        <div className="h-2 w-3/4 bg-white rounded" />
+                        <div className="h-1 w-1/2 bg-white/30 rounded" />
+                    </div>
+                </div>
+                {/* Track list */}
+                <div className="flex-1 flex flex-col gap-0.5">
+                    {[...Array(4)].map((_, i) => (
+                        <div key={i} className="flex items-center gap-1 px-1 py-0.5 rounded hover:bg-white/5">
+                            <div className="w-2 text-[5px] text-zinc-500">{i + 1}</div>
+                            <div className="h-1 flex-1 bg-white/20 rounded" />
+                            <div className="text-[5px] text-zinc-500">3:42</div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </div>
+    )
+}
+
+// Social / Stream wireframe - feed layout
+function SocialWireframe({ theme }: WireframeProps) {
+    return (
+        <div className="absolute inset-0 flex p-1.5 gap-1.5">
+            {/* Left sidebar */}
+            <div className="w-[20%] flex flex-col gap-1">
+                <div className="w-6 h-6 rounded-full bg-zinc-700 mx-auto" />
+                <div className="h-1 w-full bg-white/20 rounded" />
+                <div className="h-1 w-3/4 bg-white/10 rounded" />
+            </div>
+            {/* Feed */}
+            <div className="flex-1 flex flex-col gap-1.5">
+                {/* Stories */}
+                <div className="flex gap-1 px-1">
+                    {[...Array(4)].map((_, i) => (
+                        <div key={i} className={`w-4 h-4 rounded-full border-2 ${i === 0 ? 'border-sky-400' : 'border-zinc-700'} bg-zinc-800`} />
+                    ))}
+                </div>
+                {/* Posts */}
+                {[...Array(2)].map((_, i) => (
+                    <div key={i} className="bg-zinc-900/50 rounded p-1 border border-zinc-800">
+                        <div className="flex items-center gap-1 mb-1">
+                            <div className="w-2 h-2 rounded-full bg-zinc-600" />
+                            <div className="h-1 w-8 bg-white/30 rounded" />
+                        </div>
+                        <div className="h-1 w-full bg-white/10 rounded mb-0.5" />
+                        <div className="h-1 w-2/3 bg-white/10 rounded" />
+                    </div>
+                ))}
+            </div>
+            {/* Right sidebar */}
+            <div className="w-[20%] hidden md:flex flex-col gap-1">
+                <div className="h-1 w-full bg-white/10 rounded" />
+                <div className="h-1 w-4/5 bg-sky-500/30 rounded" />
+                <div className="h-1 w-3/5 bg-white/10 rounded" />
+            </div>
+        </div>
+    )
+}
+
+// Fintech / Terminal wireframe - chart + card + ticker
+function FintechWireframe({ theme }: WireframeProps) {
+    return (
+        <div className="absolute inset-0 p-2 flex gap-2">
+            {/* Main chart area */}
+            <div className="flex-1 flex flex-col gap-1.5">
+                {/* Metric cards row */}
+                <div className="flex gap-1">
+                    {[...Array(3)].map((_, i) => (
+                        <div key={i} className="flex-1 bg-zinc-900 border border-zinc-800 rounded p-1">
+                            <div className="h-0.5 w-2/3 bg-zinc-600 rounded mb-0.5" />
+                            <div className="h-1.5 w-1/2 bg-white rounded" />
+                        </div>
+                    ))}
+                </div>
+                {/* Chart */}
+                <div className="flex-1 bg-zinc-900/50 border border-zinc-800 rounded p-1">
+                    <svg className="w-full h-full" viewBox="0 0 100 40" preserveAspectRatio="none">
+                        <path d="M0,35 Q15,30 30,28 T50,20 T75,15 L100,18" fill="none" className="stroke-emerald-500" strokeWidth="2" />
+                        <path d="M0,35 Q15,30 30,28 T50,20 T75,15 L100,18 L100,40 L0,40 Z" className="fill-emerald-500/20" />
+                    </svg>
+                </div>
+            </div>
+            {/* Right sidebar */}
+            <div className="w-1/3 flex flex-col gap-1.5">
+                {/* Credit card */}
+                <div className="h-12 bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-lg p-1.5 border border-zinc-700">
+                    <div className="h-2 w-4 bg-amber-400/60 rounded mb-1" />
+                    <div className="h-1 w-3/4 bg-white/20 rounded" />
+                </div>
+                {/* Ticker */}
+                <div className="flex-1 bg-zinc-900/50 border border-zinc-800 rounded p-1 flex flex-col gap-0.5">
+                    {['+2.4%', '-0.8%', '+1.2%'].map((val, i) => (
+                        <div key={i} className="flex justify-between items-center">
+                            <div className="h-1 w-6 bg-zinc-700 rounded" />
+                            <div className={`text-[5px] ${val.startsWith('+') ? 'text-emerald-400' : 'text-red-400'}`}>{val}</div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </div>
+    )
+}
+
+// Productivity / Flow wireframe - kanban + timer
+function ProductivityWireframe({ theme }: WireframeProps) {
+    return (
+        <div className="absolute inset-0 flex">
+            {/* Sidebar */}
+            <div className="w-[20%] bg-zinc-950 border-r border-zinc-800 p-1.5 flex flex-col gap-1">
+                <div className="h-2 w-3/4 flex items-center gap-1">
+                    <div className="w-2 h-2 rounded bg-amber-500" />
+                    <div className="h-1.5 flex-1 bg-white rounded" />
+                </div>
+                <div className="h-1 w-full bg-zinc-800 rounded" />
+                <div className="h-1 w-4/5 bg-zinc-800 rounded" />
+                <div className="h-1 w-3/4 bg-amber-500/30 rounded" />
+            </div>
+            {/* Main */}
+            <div className="flex-1 p-2 flex gap-2">
+                {/* Timer widget */}
+                <div className="w-1/3 bg-zinc-900/50 border border-zinc-800 rounded-lg flex flex-col items-center justify-center p-2">
+                    <div className="w-10 h-10 rounded-full border-2 border-amber-500 flex items-center justify-center mb-1">
+                        <div className="text-[8px] font-mono text-amber-400">25:00</div>
+                    </div>
+                    <div className="h-1 w-8 bg-amber-500/30 rounded" />
+                </div>
+                {/* Kanban columns */}
+                <div className="flex-1 flex gap-1">
+                    {['To Do', 'In Progress', 'Done'].map((col, i) => (
+                        <div key={col} className="flex-1 bg-zinc-900/30 rounded p-1 flex flex-col gap-0.5">
+                            <div className="h-1 w-full bg-zinc-700 rounded mb-1" />
+                            {[...Array(3 - i)].map((_, j) => (
+                                <div key={j} className="h-3 bg-zinc-800 rounded border border-zinc-700" />
+                            ))}
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </div>
+    )
+}
+
+// Food / Crave wireframe - categories + menu grid
+function FoodWireframe({ theme }: WireframeProps) {
+    return (
+        <div className="absolute inset-0 p-2 flex flex-col gap-1.5">
+            {/* Category chips */}
+            <div className="flex gap-1 px-1">
+                {['🍕', '🍣', '🍔', '🥗'].map((emoji, i) => (
+                    <div key={i} className={`h-4 px-2 rounded-full flex items-center justify-center text-[8px] ${i === 0 ? 'bg-orange-500' : 'bg-stone-800 border border-stone-700'}`}>
+                        {emoji}
+                    </div>
+                ))}
+            </div>
+            {/* Menu grid */}
+            <div className="flex-1 grid grid-cols-3 gap-1">
+                {[...Array(6)].map((_, i) => (
+                    <div key={i} className="bg-stone-900/50 border border-stone-800 rounded-lg overflow-hidden">
+                        <div className="h-3/5 bg-gradient-to-br from-stone-700 to-stone-800" />
+                        <div className="p-1">
+                            <div className="h-1 w-3/4 bg-stone-600 rounded mb-0.5" />
+                            <div className="h-1 w-1/2 bg-orange-500/50 rounded" />
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </div>
+    )
+}
+
+// Grid / Matrix wireframe - map + gauges
+function GridWireframe({ theme }: WireframeProps) {
+    return (
+        <div className="absolute inset-0 p-2 flex gap-2">
+            {/* Map area */}
+            <div className="flex-1 bg-slate-900 border border-blue-900/50 rounded overflow-hidden relative">
+                {/* Grid lines */}
+                <div className="absolute inset-0 opacity-30">
+                    {[...Array(4)].map((_, i) => (
+                        <div key={i} className="absolute h-px bg-blue-500/50" style={{ top: `${25 * (i + 1)}%`, left: 0, right: 0 }} />
+                    ))}
+                    {[...Array(4)].map((_, i) => (
+                        <div key={i} className="absolute w-px bg-blue-500/50" style={{ left: `${25 * (i + 1)}%`, top: 0, bottom: 0 }} />
+                    ))}
+                </div>
+                {/* Nodes */}
+                <div className="absolute top-1/4 left-1/3 w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.8)]" />
+                <div className="absolute top-1/2 left-2/3 w-2 h-2 rounded-full bg-amber-500 shadow-[0_0_8px_rgba(245,158,11,0.8)] animate-pulse" />
+                <div className="absolute top-3/4 left-1/4 w-2 h-2 rounded-full bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.8)]" />
+            </div>
+            {/* Controls sidebar */}
+            <div className="w-1/3 flex flex-col gap-1">
+                {/* Gauges */}
+                <div className="flex-1 bg-slate-900 border border-blue-900/50 rounded p-1.5 flex flex-col justify-around">
+                    {['Power', 'Load', 'Temp'].map((label, i) => (
+                        <div key={label} className="flex items-center gap-1">
+                            <div className="text-[5px] text-blue-400 w-6">{label}</div>
+                            <div className="flex-1 h-1.5 bg-slate-800 rounded-full overflow-hidden">
+                                <div className={`h-full rounded-full ${i === 0 ? 'bg-emerald-500 w-4/5' : i === 1 ? 'bg-blue-500 w-3/5' : 'bg-amber-500 w-2/5'}`} />
+                            </div>
+                        </div>
+                    ))}
+                </div>
+                {/* Status indicator */}
+                <div className="h-6 bg-emerald-500/10 border border-emerald-500/30 rounded flex items-center justify-center gap-1">
+                    <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                    <div className="text-[6px] text-emerald-400">ONLINE</div>
+                </div>
+            </div>
+        </div>
+    )
+}
+
+// Clay / Claymorphism wireframe - soft shadows + calendar
+function ClayWireframe({ theme }: WireframeProps) {
+    return (
+        <div className="absolute inset-0 p-2 flex gap-2">
+            {/* Task list */}
+            <div className="flex-1 flex flex-col gap-1">
+                {/* Calendar strip */}
+                <div className="flex gap-1 mb-1">
+                    {['M', 'T', 'W', 'T', 'F'].map((day, i) => (
+                        <div 
+                            key={i} 
+                            className={`flex-1 h-6 rounded-lg flex flex-col items-center justify-center ${
+                                i === 2 ? 'bg-sky-400 text-white' : 'bg-white'
+                            }`}
+                            style={{ boxShadow: '4px 4px 8px #d1d9e6, -4px -4px 8px #ffffff' }}
+                        >
+                            <div className="text-[5px] font-bold">{day}</div>
+                            <div className="text-[7px] font-black">{22 + i}</div>
+                        </div>
+                    ))}
+                </div>
+                {/* Task cards */}
+                {[
+                    { color: 'bg-rose-200' },
+                    { color: 'bg-violet-200' },
+                ].map((task, i) => (
+                    <div 
+                        key={i} 
+                        className="bg-white rounded-xl p-1.5 flex items-center gap-1.5"
+                        style={{ boxShadow: '6px 6px 12px #d1d9e6, -6px -6px 12px #ffffff' }}
+                    >
+                        <div className={`w-4 h-4 rounded-lg ${task.color}`} 
+                             style={{ boxShadow: 'inset 2px 2px 4px rgba(255,255,255,0.6), inset -2px -2px 4px rgba(0,0,0,0.05)' }} />
+                        <div className="flex-1">
+                            <div className="h-1 w-3/4 bg-slate-300 rounded" />
+                            <div className="h-0.5 w-1/2 bg-slate-200 rounded mt-0.5" />
+                        </div>
+                    </div>
+                ))}
+            </div>
+            {/* Progress circle */}
+            <div className="w-1/3 flex items-center justify-center">
+                <div className="relative w-12 h-12">
+                    <svg className="w-full h-full rotate-[-90deg]" viewBox="0 0 40 40">
+                        <circle cx="20" cy="20" r="16" stroke="#e2e8f0" strokeWidth="4" fill="none" />
+                        <circle cx="20" cy="20" r="16" stroke="#7dd3fc" strokeWidth="4" fill="none" 
+                                strokeDasharray="100" strokeDashoffset="25" strokeLinecap="round" />
+                    </svg>
+                    <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="text-[8px] font-black text-slate-700">75%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
+}
+
+// Ecommerce / Storefront wireframe - product grid
+function EcommerceWireframe({ theme }: WireframeProps) {
+    return (
+        <div className="absolute inset-0 p-2 flex gap-2">
+            {/* Product grid */}
+            <div className="flex-1 grid grid-cols-3 gap-1.5">
+                {[...Array(6)].map((_, i) => (
+                    <div key={i} className="bg-neutral-50 border border-neutral-100 flex flex-col">
+                        <div className="flex-1 bg-neutral-100" />
+                        <div className="p-1">
+                            <div className="h-1 w-3/4 bg-neutral-300 rounded mb-0.5" />
+                            <div className="h-1 w-1/2 bg-black rounded" />
+                        </div>
+                    </div>
+                ))}
+            </div>
+            {/* Cart sidebar */}
+            <div className="w-1/4 bg-neutral-50 border border-neutral-100 p-1.5 flex flex-col">
+                <div className="h-1.5 w-full bg-black rounded mb-2" />
+                <div className="flex-1 flex flex-col gap-1">
+                    {[...Array(2)].map((_, i) => (
+                        <div key={i} className="flex gap-1 items-center">
+                            <div className="w-4 h-4 bg-neutral-200 rounded" />
+                            <div className="flex-1">
+                                <div className="h-0.5 w-full bg-neutral-300 rounded" />
+                            </div>
+                        </div>
+                    ))}
+                </div>
+                <div className="h-4 bg-black rounded flex items-center justify-center">
+                    <div className="h-1 w-8 bg-white/30 rounded" />
+                </div>
+            </div>
+        </div>
+    )
+}
+
 // Map template IDs to their wireframe components
 function getTemplateWireframe(templateId: string): React.FC<WireframeProps> {
     const wireframes: Record<string, React.FC<WireframeProps>> = {
-        // Dark themes - dashboard variants
-        engineering: DashboardWireframe,
-        saas: DashboardWireframe,
-        fintech: DashboardWireframe,
-        productivity: DashboardWireframe,
-        grid: DashboardWireframe,
-        social: DashboardWireframe,
-        music: DashboardWireframe,
-        food: DashboardWireframe,
+        // Templates with unique wireframes
+        engineering: EngineeringWireframe,
+        saas: DashboardWireframe, // Classic dashboard layout fits SaaS
+        fintech: FintechWireframe,
+        productivity: ProductivityWireframe,
+        grid: GridWireframe,
+        social: SocialWireframe,
+        music: MusicWireframe,
+        food: FoodWireframe,
         
         // Unique templates
         legacy: LegacyWireframe,
@@ -398,16 +865,18 @@ function getTemplateWireframe(templateId: string): React.FC<WireframeProps> {
         magazine: MagazineWireframe,
         eink: EInkWireframe,
         
-        // Light themes - map to closest archetype
-        ecommerce: DashboardWireframe,
-        kitchen: WellnessWireframe,
-        kids: ArcadeWireframe,
-        solarpunk: WellnessWireframe,
-        legal: MagazineWireframe,
-        softplastic: DashboardWireframe,
-        acid: BrutalistWireframe,
-        clay: DashboardWireframe,
-        blueprint: SciFiWireframe,
+        // Fixed mappings (previously mismatched)
+        kids: KidsWireframe,
+        kitchen: KitchenWireframe,
+        solarpunk: SolarpunkWireframe,
+        
+        // Light themes with appropriate wireframes
+        ecommerce: EcommerceWireframe,
+        legal: MagazineWireframe, // Editorial structure fits legal
+        softplastic: ClayWireframe, // Neumorphic style similar to clay
+        acid: BrutalistWireframe, // Shares stark aesthetic
+        clay: ClayWireframe,
+        blueprint: SciFiWireframe, // Technical feel matches
     }
     
     return wireframes[templateId] || DashboardWireframe
