@@ -44,12 +44,16 @@ function useTemplateModeReset() {
 
 function Background() {
     const { currentTheme, isTemplateMode } = useTheme()
+    const location = useLocation()
+    
+    // Determine if we're on a registry page (not a template-specific page)
+    const isRegistryPage = !location.pathname.match(/^\/templates\/[^/]+/)
 
     const getBackgroundImage = () => {
         const id = currentTheme.id
         
-        // Registry mode uses a subtle dot pattern
-        if (!isTemplateMode || id === 'registry') {
+        // Registry pages always use the dark dot pattern
+        if (isRegistryPage || !isTemplateMode || id === 'registry') {
             return `radial-gradient(#3f3f46 1px, transparent 1px)`
         }
         
@@ -79,9 +83,12 @@ function Background() {
         }
         return `radial-gradient(#d6d3d1 1px, transparent 1px)`
     }
+    
+    // Registry pages always use dark background, regardless of any lingering theme state
+    const backgroundColor = isRegistryPage ? 'bg-zinc-950' : currentTheme.backgroundColor
 
     return (
-        <div className={`fixed inset-0 z-0 h-full w-full transition-colors duration-700 ${currentTheme.backgroundColor}`}>
+        <div className={`fixed inset-0 z-0 h-full w-full transition-colors duration-700 ${backgroundColor}`}>
             <div
                 className="absolute h-full w-full opacity-30"
                 style={{
@@ -98,9 +105,12 @@ function Sidebar() {
     const { currentTheme, isTemplateMode } = useTheme()
     // const [isGalleriesOpen, setIsGalleriesOpen] = useState(true) // Removed state
     const location = useLocation()
+    
+    // Use route-based detection for reliable styling (avoids timing issues with state)
+    const isTemplatePage = location.pathname.match(/^\/templates\/[^/]+/) !== null
 
     // Registry pages always use dark styling, template pages check theme category
-    const isDark = isTemplateMode 
+    const isDark = isTemplatePage && isTemplateMode
         ? ['engineering', 'saas', 'social', 'fintech', 'productivity', 'game', 'music', 'food', 'grid', 'scifi', 'festival', 'cockpit', 'blueprint'].includes(currentTheme.id)
         : true
 
@@ -113,10 +123,15 @@ function Sidebar() {
         { to: '/tokens', icon: Coins, label: 'Tokens' },
         // { to: '/settings', icon: Settings, label: 'Settings' },
     ]
+    
+    // Registry pages use dark sidebar, template pages use their theme's sidebar
+    const sidebarStyles = isTemplatePage && isTemplateMode 
+        ? currentTheme.sidebarStyles 
+        : 'border-zinc-800 bg-zinc-950'
 
     return (
         <aside
-            className={`group fixed left-0 top-0 z-50 h-full w-16 flex-col border-r transition-all duration-300 hover:w-64 ${currentTheme.sidebarStyles} overflow-y-auto no-scrollbar`}
+            className={`group fixed left-0 top-0 z-50 h-full w-16 flex-col border-r transition-all duration-300 hover:w-64 ${sidebarStyles} overflow-y-auto no-scrollbar`}
             aria-label="Main navigation"
         >
             {/* Logo */}
@@ -162,14 +177,18 @@ function Sidebar() {
 
 function Header() {
     const { currentTheme, isTemplateMode } = useTheme()
+    const location = useLocation()
+    
+    // Use route-based detection for reliable styling
+    const isTemplatePage = location.pathname.match(/^\/templates\/[^/]+/) !== null
     
     // Registry pages always use dark styling
-    const isDark = isTemplateMode 
+    const isDark = isTemplatePage && isTemplateMode
         ? ['engineering', 'saas', 'social', 'fintech', 'productivity', 'game', 'music', 'food', 'grid', 'scifi', 'festival', 'cockpit', 'blueprint'].includes(currentTheme.id)
         : true
 
-    // Hide header on immersive template themes (only when in template mode)
-    const hideHeader = isTemplateMode && ['brutalist', 'kitchen', 'kids', 'scifi', 'eink', 'solarpunk', 'legal', 'softplastic', 'festival', 'acid', 'legacy', 'cockpit', 'clay', 'blueprint', 'swiss'].includes(currentTheme.id)
+    // Hide header on immersive template themes (only when actually on a template page)
+    const hideHeader = isTemplatePage && isTemplateMode && ['brutalist', 'kitchen', 'kids', 'scifi', 'eink', 'solarpunk', 'legal', 'softplastic', 'festival', 'acid', 'legacy', 'cockpit', 'clay', 'blueprint', 'swiss'].includes(currentTheme.id)
 
     if (hideHeader) return null
 
@@ -203,18 +222,27 @@ function Header() {
 
 function LayoutContent() {
     const { currentTheme, isTemplateMode } = useTheme()
+    const location = useLocation()
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
     
     // Reset to registry theme when navigating away from template pages
     useTemplateModeReset()
+    
+    // Use route-based detection for reliable styling
+    const isTemplatePage = location.pathname.match(/^\/templates\/[^/]+/) !== null
 
     // Registry pages always use dark theme, template pages use their theme
-    const isDark = isTemplateMode 
+    const isDark = isTemplatePage && isTemplateMode 
         ? ['engineering', 'saas', 'social', 'fintech', 'productivity', 'game', 'music', 'food', 'grid', 'scifi', 'festival', 'cockpit', 'blueprint'].includes(currentTheme.id)
         : true // Registry always dark
+    
+    // Text color: registry pages use light text, template pages use their theme's text
+    const textColorClass = isTemplatePage && isTemplateMode 
+        ? currentTheme.textColorClass 
+        : 'text-zinc-100'
 
     return (
-        <div className={`flex min-h-screen w-full font-sans transition-colors duration-500 ${currentTheme.textColorClass}`}>
+        <div className={`flex min-h-screen w-full font-sans transition-colors duration-500 ${textColorClass}`}>
             <SkipLink />
             <Background />
 
