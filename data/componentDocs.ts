@@ -782,6 +782,948 @@ export const componentDocs: Record<string, ComponentDoc> = {
         props: [],
         notes: ['Shopping bag summary with item list and totals', 'Glassmorphism background effect'],
     },
+
+    // ============================================
+    // TIER 1: SciFi Visibility-Related Components
+    // ============================================
+
+    'neon-toggle': {
+        id: 'neon-toggle',
+        props: [
+            { name: 'label', type: 'string', required: false, description: 'Text label displayed next to the toggle' },
+            { name: 'initialState', type: 'boolean', required: false, default: 'false', description: 'Initial toggle state' },
+            { name: 'onChange', type: '(state: boolean) => void', required: false, description: 'Callback when toggle state changes' },
+            { name: 'color', type: '"cyan" | "magenta" | "green" | "amber"', required: false, default: '"cyan"', description: 'Neon glow color theme' },
+            { name: 'className', type: 'string', required: false, description: 'Additional CSS classes' },
+        ],
+        examples: [
+            { title: 'Basic Toggle', code: '<NeonToggle label="Power" initialState={true} color="cyan" />' },
+        ],
+        notes: ['Uses Framer Motion for smooth knob animation', 'Glow effect changes based on on/off state'],
+    },
+
+    'glitch-heading': {
+        id: 'glitch-heading',
+        props: [
+            { name: 'text', type: 'string', required: true, description: 'The heading text to display' },
+            { name: 'size', type: '"sm" | "md" | "lg" | "xl"', required: false, default: '"lg"', description: 'Text size variant' },
+            { name: 'className', type: 'string', required: false, description: 'Additional CSS classes' },
+            { name: 'color', type: 'string', required: false, default: '"text-cyan-400"', description: 'Tailwind text color class' },
+        ],
+        examples: [
+            { title: 'Cyberpunk Title', code: '<GlitchHeading text="CYBERPUNK" size="xl" />' },
+        ],
+        notes: ['Random glitch effect triggers every 3 seconds', 'Hover triggers immediate glitch', 'Uses CSS clip-path animations'],
+    },
+
+    'holographic-table': {
+        id: 'holographic-table',
+        props: [
+            { name: 'columns', type: 'Column[]', required: false, description: 'Array of column definitions with key, header, and optional width' },
+            { name: 'data', type: 'any[]', required: false, description: 'Array of row data objects' },
+            { name: 'title', type: 'string', required: false, default: '"System Data"', description: 'Table header title' },
+            { name: 'className', type: 'string', required: false, description: 'Additional CSS classes' },
+        ],
+        examples: [
+            { title: 'System Data Table', code: `<HolographicTable 
+  columns={[{ key: 'id', header: 'ID' }, { key: 'status', header: 'Status' }]}
+  data={[{ id: '01', status: 'Online' }]}
+/>` },
+        ],
+        notes: ['Scanline hover effect on rows', 'Wrapped in SciFiCard container', 'Cyan color theme'],
+    },
+
+    // ============================================
+    // TIER 2: High-Value Interactive Components
+    // ============================================
+
+    'code-block': {
+        id: 'code-block',
+        props: [
+            { name: 'code', type: 'string', required: true, description: 'The code content to display' },
+            { name: 'language', type: 'string', required: false, default: '"typescript"', description: 'Programming language for the badge' },
+            { name: 'filename', type: 'string', required: false, description: 'Optional filename to show in header' },
+            { name: 'className', type: 'string', required: false, description: 'Additional CSS classes for inner container' },
+            { name: 'wrapperClassName', type: 'string', required: false, description: 'Additional CSS classes for outer container' },
+            { name: 'showLineNumbers', type: 'boolean', required: false, default: 'false', description: 'Display line numbers' },
+        ],
+        examples: [
+            { title: 'TypeScript Example', code: '<CodeBlock code="const x = 1;" language="typescript" filename="example.ts" />' },
+        ],
+        notes: ['Includes copy-to-clipboard functionality', 'Traffic light decorations in header'],
+    },
+
+    'pipeline-steps': {
+        id: 'pipeline-steps',
+        props: [
+            { name: 'steps', type: 'Step[]', required: false, description: 'Array of step objects with name and status (pending/running/success/failed)' },
+            { name: 'className', type: 'string', required: false, description: 'Additional CSS classes' },
+        ],
+        examples: [
+            { title: 'CI/CD Pipeline', code: `<PipelineSteps steps={[
+  { name: 'Build', status: 'success' },
+  { name: 'Deploy', status: 'running' }
+]} />` },
+        ],
+        notes: ['Animated spinner for running status', 'Connectors change color based on completion'],
+    },
+
+    'metric-card': {
+        id: 'metric-card',
+        props: [
+            { name: 'label', type: 'string', required: true, description: 'Metric label text' },
+            { name: 'value', type: 'string', required: true, description: 'Main metric value' },
+            { name: 'trend', type: 'string', required: true, description: 'Trend percentage string' },
+            { name: 'trendUp', type: 'boolean', required: true, description: 'Whether trend is positive' },
+            { name: 'icon', type: 'LucideIcon', required: true, description: 'Icon component to display' },
+            { name: 'delay', type: 'number', required: false, default: '0', description: 'Animation delay in seconds' },
+        ],
+        notes: ['Uses SaasCard as container', 'Trend arrow color based on direction'],
+    },
+
+    'clay-toggle': {
+        id: 'clay-toggle',
+        props: [
+            { name: 'checked', type: 'boolean', required: true, description: 'Toggle checked state' },
+            { name: 'onChange', type: '() => void', required: true, description: 'Callback when toggled' },
+            { name: 'color', type: 'string', required: false, default: '"bg-emerald-400"', description: 'Tailwind background color when checked' },
+            { name: 'aria-label', type: 'string', required: false, default: '"Toggle"', description: 'Accessible label' },
+        ],
+        notes: ['Neumorphic clay styling with soft shadows', 'Checkmark appears when checked'],
+    },
+
+    'device-toggle': {
+        id: 'device-toggle',
+        props: [
+            { name: 'label', type: 'string', required: true, description: 'Device name label' },
+            { name: 'icon', type: 'React.ElementType', required: true, description: 'Icon component for the device' },
+            { name: 'initialState', type: 'boolean', required: false, default: 'false', description: 'Initial toggle state' },
+        ],
+        notes: ['Smart home style toggle', 'Uses NeumorphicCard container', 'Full accessible button semantics'],
+    },
+
+    // ============================================
+    // Engineering Theme
+    // ============================================
+
+    'engineering-card': {
+        id: 'engineering-card',
+        props: [
+            { name: 'children', type: 'React.ReactNode', required: true, description: 'Card content' },
+            { name: 'className', type: 'string', required: false, description: 'Additional CSS classes' },
+            { name: 'variant', type: '"default" | "highlight" | "dark"', required: false, default: '"default"', description: 'Visual style variant' },
+        ],
+        notes: ['Subtle gradient overlay', 'Dark theme optimized'],
+    },
+
+    'engineering-button': {
+        id: 'engineering-button',
+        props: [
+            { name: 'children', type: 'React.ReactNode', required: true, description: 'Button content' },
+            { name: 'variant', type: '"primary" | "secondary" | "ghost"', required: false, default: '"primary"', description: 'Button style variant' },
+            { name: 'size', type: '"sm" | "md" | "lg"', required: false, default: '"md"', description: 'Button size' },
+            { name: 'className', type: 'string', required: false, description: 'Additional CSS classes' },
+        ],
+        notes: ['Shine effect on hover', 'Focus ring styled for dark backgrounds'],
+    },
+
+    'console-output': {
+        id: 'console-output',
+        props: [
+            { name: 'logs', type: 'LogEntry[]', required: false, description: 'Array of log entries with id, type, message, and optional timestamp' },
+            { name: 'title', type: 'string', required: false, default: '"Console"', description: 'Header title' },
+            { name: 'maxHeight', type: 'string', required: false, default: '"300px"', description: 'Maximum height of log area' },
+            { name: 'showTimestamps', type: 'boolean', required: false, default: 'true', description: 'Show timestamps on each log' },
+            { name: 'className', type: 'string', required: false, description: 'Additional CSS classes' },
+            { name: 'autoScroll', type: 'boolean', required: false, default: 'true', description: 'Auto-scroll to new logs' },
+        ],
+        notes: ['Log types: info, warn, error, success, debug', 'Live indicator animation', 'Scroll-to-bottom button'],
+    },
+
+    'git-diff-view': {
+        id: 'git-diff-view',
+        props: [
+            { name: 'files', type: 'DiffFile[]', required: false, description: 'Array of file diffs with lines and stats' },
+            { name: 'compact', type: 'boolean', required: false, default: 'false', description: 'Show only file headers without line details' },
+            { name: 'className', type: 'string', required: false, description: 'Additional CSS classes' },
+        ],
+        notes: ['Line numbers for old and new versions', 'Color-coded additions/deletions', 'Unified diff format'],
+    },
+
+    'server-stat-badge': {
+        id: 'server-stat-badge',
+        props: [
+            { name: 'label', type: 'string', required: false, default: '"Server Status"', description: 'Metric label' },
+            { name: 'value', type: 'string | number', required: false, default: '"99.9%"', description: 'Metric value' },
+            { name: 'status', type: '"healthy" | "warning" | "critical" | "offline"', required: false, default: '"healthy"', description: 'Server status' },
+            { name: 'metric', type: '"cpu" | "memory" | "disk" | "network" | "custom"', required: false, default: '"custom"', description: 'Metric type for auto-icon' },
+            { name: 'icon', type: 'LucideIcon', required: false, description: 'Custom icon override' },
+            { name: 'trend', type: '"up" | "down" | "stable"', required: false, description: 'Trend direction' },
+            { name: 'trendValue', type: 'string', required: false, description: 'Trend percentage text' },
+            { name: 'showPulse', type: 'boolean', required: false, default: 'true', description: 'Show pulsing status indicator' },
+            { name: 'size', type: '"sm" | "md" | "lg"', required: false, default: '"md"', description: 'Badge size' },
+            { name: 'className', type: 'string', required: false, description: 'Additional CSS classes' },
+        ],
+        notes: ['Animated pulse for live status', 'Auto-selects icon based on metric type'],
+    },
+
+    // ============================================
+    // Wellness Theme
+    // ============================================
+
+    'wellness-card': {
+        id: 'wellness-card',
+        props: [
+            { name: 'children', type: 'React.ReactNode', required: true, description: 'Card content' },
+            { name: 'className', type: 'string', required: false, description: 'Additional CSS classes' },
+            { name: 'delay', type: 'number', required: false, default: '0', description: 'Animation delay in seconds' },
+        ],
+        notes: ['Glassmorphism effect with backdrop blur', 'Organic rounded corners', 'Hover lift animation'],
+    },
+
+    'wellness-button': {
+        id: 'wellness-button',
+        props: [
+            { name: 'children', type: 'React.ReactNode', required: true, description: 'Button content' },
+            { name: 'variant', type: '"primary" | "secondary" | "ghost" | "soft"', required: false, default: '"primary"', description: 'Button style' },
+            { name: 'size', type: '"sm" | "md" | "lg"', required: false, default: '"md"', description: 'Button size' },
+            { name: 'icon', type: 'React.ReactNode', required: false, description: 'Optional icon element' },
+            { name: 'className', type: 'string', required: false, description: 'Additional CSS classes' },
+            { name: 'disabled', type: 'boolean', required: false, default: 'false', description: 'Disabled state' },
+            { name: 'onClick', type: '() => void', required: false, description: 'Click handler' },
+        ],
+        notes: ['Sage green color palette', 'Soft, calming animations'],
+    },
+
+    'breath-player': {
+        id: 'breath-player',
+        props: [],
+        notes: ['Interactive breathing exercise with play/pause', 'Animated glowing rings', 'Fixed 4s inhale, 4s hold, 6s exhale timing'],
+    },
+
+    'sleep-graph': {
+        id: 'sleep-graph',
+        props: [],
+        notes: ['7-day sleep duration bar chart', 'Dark theme variant of WellnessCard', 'Hover tooltips showing hours'],
+    },
+
+    'mood-selector': {
+        id: 'mood-selector',
+        props: [],
+        notes: ['4 mood options with icons', 'Weekly balance indicator', 'Selection state with subtle highlight'],
+    },
+
+    // ============================================
+    // SaaS Theme
+    // ============================================
+
+    'saas-card': {
+        id: 'saas-card',
+        props: [
+            { name: 'children', type: 'React.ReactNode', required: true, description: 'Card content' },
+            { name: 'className', type: 'string', required: false, description: 'Additional CSS classes' },
+            { name: 'delay', type: 'number', required: false, default: '0', description: 'Animation delay' },
+            { name: 'noPadding', type: 'boolean', required: false, default: 'false', description: 'Remove default padding' },
+        ],
+        notes: ['Dark slate theme', 'Subtle backdrop blur'],
+    },
+
+    'saas-button': {
+        id: 'saas-button',
+        props: [
+            { name: 'children', type: 'React.ReactNode', required: true, description: 'Button content' },
+            { name: 'variant', type: '"primary" | "secondary" | "ghost" | "control"', required: false, default: '"primary"', description: 'Button style' },
+            { name: 'size', type: '"xs" | "sm" | "md" | "lg"', required: false, default: '"md"', description: 'Button size' },
+            { name: 'icon', type: 'React.ReactNode', required: false, description: 'Optional icon' },
+            { name: 'active', type: 'boolean', required: false, default: 'false', description: 'Active state for control variant' },
+            { name: 'disabled', type: 'boolean', required: false, default: 'false', description: 'Disabled state' },
+            { name: 'onClick', type: '() => void', required: false, description: 'Click handler' },
+        ],
+        notes: ['Indigo accent color', 'Control variant for tab-like buttons'],
+    },
+
+    'revenue-chart': {
+        id: 'revenue-chart',
+        props: [],
+        notes: ['SVG-based area chart', 'Time range selector', 'Tooltip with hover data'],
+    },
+
+    'customer-table': {
+        id: 'customer-table',
+        props: [],
+        notes: ['Transaction list with search and filter', 'Status badges', 'Hover reveal for actions'],
+    },
+
+    // ============================================
+    // Music Theme
+    // ============================================
+
+    'music-card': {
+        id: 'music-card',
+        props: [
+            { name: 'children', type: 'React.ReactNode', required: true, description: 'Card content' },
+            { name: 'className', type: 'string', required: false, description: 'Additional CSS classes' },
+            { name: 'delay', type: 'number', required: false, default: '0', description: 'Animation delay' },
+        ],
+        notes: ['Dark glass effect with backdrop blur', 'Rose accent color'],
+    },
+
+    'music-button': {
+        id: 'music-button',
+        props: [
+            { name: 'children', type: 'React.ReactNode', required: false, description: 'Button content' },
+            { name: 'variant', type: '"primary" | "secondary" | "ghost" | "pill"', required: false, default: '"secondary"', description: 'Button style' },
+            { name: 'size', type: '"sm" | "md" | "lg" | "icon"', required: false, default: '"md"', description: 'Button size' },
+            { name: 'icon', type: 'React.ReactNode', required: false, description: 'Icon element' },
+            { name: 'disabled', type: 'boolean', required: false, default: 'false', description: 'Disabled state' },
+            { name: 'onClick', type: '() => void', required: false, description: 'Click handler' },
+        ],
+        notes: ['Spotify-inspired aesthetics', 'Glow effect on primary icon size'],
+    },
+
+    'now-playing': {
+        id: 'now-playing',
+        props: [],
+        notes: ['Album art with hover zoom', 'Play/pause controls', 'Like button', 'Animated visualizer bars'],
+    },
+
+    'track-list': {
+        id: 'track-list',
+        props: [],
+        notes: ['Playlist view with album art thumbnails', 'Active track indicator', 'Play count display'],
+    },
+
+    'album-grid': {
+        id: 'album-grid',
+        props: [],
+        notes: ['Responsive album card grid', 'Hover play button reveal', 'Staggered entrance animation'],
+    },
+
+    // ============================================
+    // Grid Theme (City Builder)
+    // ============================================
+
+    'grid-card': {
+        id: 'grid-card',
+        props: [
+            { name: 'children', type: 'React.ReactNode', required: true, description: 'Card content' },
+            { name: 'className', type: 'string', required: false, description: 'Additional CSS classes' },
+            { name: 'delay', type: 'number', required: false, default: '0', description: 'Animation delay' },
+            { name: 'title', type: 'string', required: false, description: 'Optional header title' },
+            { name: 'noPadding', type: 'boolean', required: false, default: 'false', description: 'Remove default padding' },
+        ],
+        notes: ['Blueprint grid background', 'Corner markers', 'Industrial blue theme'],
+    },
+
+    'grid-button': {
+        id: 'grid-button',
+        props: [
+            { name: 'children', type: 'React.ReactNode', required: true, description: 'Button content' },
+            { name: 'variant', type: '"primary" | "secondary" | "danger"', required: false, default: '"secondary"', description: 'Button style' },
+            { name: 'size', type: '"sm" | "md" | "lg"', required: false, default: '"md"', description: 'Button size' },
+            { name: 'icon', type: 'React.ReactNode', required: false, description: 'Icon element' },
+            { name: 'status', type: '"online" | "warning" | "offline" | "idle"', required: false, description: 'LED status indicator' },
+            { name: 'disabled', type: 'boolean', required: false, default: 'false', description: 'Disabled state' },
+            { name: 'onClick', type: '() => void', required: false, description: 'Click handler' },
+        ],
+        notes: ['Industrial beveled styling', 'Status LED indicator', 'Corner decorations'],
+    },
+
+    'city-map': {
+        id: 'city-map',
+        props: [],
+        notes: ['Interactive zone hover tooltips', 'Animated ping indicators', 'Status-based zone coloring', 'Legend overlay'],
+    },
+
+    'resource-gauge': {
+        id: 'resource-gauge',
+        props: [],
+        notes: ['Circular SVG progress gauges', 'Power, Water, Bandwidth metrics', 'Animated fill on mount'],
+    },
+
+    'system-controls': {
+        id: 'system-controls',
+        props: [],
+        notes: ['Toggle switches for system settings', 'Uptime and security stats', 'System diagnostics button'],
+    },
+
+    // ============================================
+    // Brutalist Theme
+    // ============================================
+
+    'brutalist-card': {
+        id: 'brutalist-card',
+        props: [
+            { name: 'children', type: 'React.ReactNode', required: true, description: 'Card content' },
+            { name: 'className', type: 'string', required: false, description: 'Additional CSS classes' },
+            { name: 'color', type: 'string', required: false, default: '"bg-white"', description: 'Tailwind background color class' },
+        ],
+        notes: ['Hard shadow offset effect', 'Hover reduces shadow for press effect', 'Thick black borders'],
+    },
+
+    'brutalist-button': {
+        id: 'brutalist-button',
+        props: [
+            { name: 'children', type: 'React.ReactNode', required: false, description: 'Button content' },
+            { name: 'variant', type: '"neo" | "reverse" | "outline"', required: false, default: '"neo"', description: 'Button style' },
+            { name: 'size', type: '"sm" | "md" | "lg" | "icon"', required: false, default: '"md"', description: 'Button size' },
+            { name: 'icon', type: 'React.ReactNode', required: false, description: 'Icon element' },
+            { name: 'color', type: 'string', required: false, description: 'Custom background color override' },
+            { name: 'disabled', type: 'boolean', required: false, default: 'false', description: 'Disabled state' },
+            { name: 'onClick', type: '() => void', required: false, description: 'Click handler' },
+        ],
+        notes: ['Hard shadow with active press animation', 'Monospace uppercase text'],
+    },
+
+    'marquee-header': {
+        id: 'marquee-header',
+        props: [
+            { name: 'text', type: 'string', required: false, default: '"BRUTALISM // ARCHIVE // RAW // UNPOLISHED // "', description: 'Scrolling text content' },
+        ],
+        notes: ['CSS animation infinite scroll', 'Yellow background with black text', 'Border top and bottom'],
+    },
+
+    'art-grid': {
+        id: 'art-grid',
+        props: [],
+        notes: ['Masonry-style image grid', 'Grayscale to color on hover', 'Yellow overlay with project title'],
+    },
+
+    'manifesto': {
+        id: 'manifesto',
+        props: [],
+        notes: ['Decorative design manifesto text', 'Mixed typography styles', 'Floating sticker decoration'],
+    },
+
+    // ============================================
+    // Kitchen Theme
+    // ============================================
+
+    'kitchen-card': {
+        id: 'kitchen-card',
+        props: [
+            { name: 'children', type: 'React.ReactNode', required: true, description: 'Card content' },
+            { name: 'className', type: 'string', required: false, description: 'Additional CSS classes' },
+            { name: 'delay', type: 'number', required: false, default: '0', description: 'Animation delay' },
+            { name: 'onClick', type: '() => void', required: false, description: 'Click handler' },
+        ],
+        notes: ['Warm cream background', 'Soft shadow offset', 'Rounded corners'],
+    },
+
+    'kitchen-button': {
+        id: 'kitchen-button',
+        props: [
+            { name: 'children', type: 'React.ReactNode', required: false, description: 'Button content' },
+            { name: 'variant', type: '"primary" | "secondary" | "ghost" | "icon"', required: false, default: '"primary"', description: 'Button style' },
+            { name: 'size', type: '"sm" | "md" | "lg" | "icon"', required: false, default: '"md"', description: 'Button size' },
+            { name: 'icon', type: 'React.ReactNode', required: false, description: 'Icon element' },
+            { name: 'isActive', type: 'boolean', required: false, default: 'false', description: 'Active state for secondary' },
+            { name: 'disabled', type: 'boolean', required: false, default: 'false', description: 'Disabled state' },
+            { name: 'onClick', type: '() => void', required: false, description: 'Click handler' },
+        ],
+        notes: ['Orange accent color', 'Tactile offset shadow'],
+    },
+
+    'active-step': {
+        id: 'active-step',
+        props: [],
+        notes: ['Recipe step display', 'Progress bar', 'Timer action button', 'Navigation controls'],
+    },
+
+    'ingredient-scale': {
+        id: 'ingredient-scale',
+        props: [],
+        notes: ['Dynamic serving size scaling', 'Checkbox ingredient list', 'Amount auto-calculates'],
+    },
+
+    'smart-timer': {
+        id: 'smart-timer',
+        props: [],
+        notes: ['Fixed position timer widget', 'Multiple timer support', 'Collapsible interface', 'Progress bars'],
+    },
+
+    // ============================================
+    // Kids Theme
+    // ============================================
+
+    'kids-card': {
+        id: 'kids-card',
+        props: [
+            { name: 'children', type: 'React.ReactNode', required: true, description: 'Card content' },
+            { name: 'className', type: 'string', required: false, description: 'Additional CSS classes' },
+            { name: 'color', type: 'string', required: false, default: '"bg-white"', description: 'Background color class' },
+            { name: 'borderColor', type: 'string', required: false, default: '"border-zinc-200"', description: 'Border color class' },
+            { name: 'delay', type: 'number', required: false, default: '0', description: 'Animation delay' },
+            { name: 'onClick', type: '() => void', required: false, description: 'Click handler' },
+        ],
+        notes: ['Bouncy spring animation', 'Thick playful borders', 'Random rotation on hover'],
+    },
+
+    'kids-button': {
+        id: 'kids-button',
+        props: [
+            { name: 'children', type: 'React.ReactNode', required: false, description: 'Button content' },
+            { name: 'variant', type: '"primary" | "secondary" | "accent" | "success"', required: false, default: '"primary"', description: 'Color variant' },
+            { name: 'size', type: '"sm" | "md" | "lg"', required: false, default: '"lg"', description: 'Button size' },
+            { name: 'icon', type: 'React.ReactNode', required: false, description: 'Icon element' },
+            { name: 'color', type: 'string', required: false, description: 'Custom color override' },
+            { name: 'disabled', type: 'boolean', required: false, default: 'false', description: 'Disabled state' },
+            { name: 'onClick', type: '() => void', required: false, description: 'Click handler' },
+        ],
+        notes: ['Thick bottom border for 3D effect', 'Glossy top reflection', 'Wiggle animation on hover'],
+    },
+
+    'big-icon-nav': {
+        id: 'big-icon-nav',
+        props: [],
+        notes: ['Large colorful icon buttons', 'Bounce animation on hover', 'Frosted glass container'],
+    },
+
+    'star-progress': {
+        id: 'star-progress',
+        props: [],
+        notes: ['5-star progress indicator', 'Click to cycle through stars', 'Bounce and wiggle animations'],
+    },
+
+    'mascot': {
+        id: 'mascot',
+        props: [],
+        notes: ['Animated character with floating animation', 'Moving eyes', 'Speech bubble with delay'],
+    },
+
+    // ============================================
+    // E-Ink Theme
+    // ============================================
+
+    'eink-card': {
+        id: 'eink-card',
+        props: [
+            { name: 'children', type: 'React.ReactNode', required: true, description: 'Card content' },
+            { name: 'className', type: 'string', required: false, description: 'Additional CSS classes' },
+            { name: 'noBorder', type: 'boolean', required: false, default: 'false', description: 'Remove border' },
+            { name: 'onClick', type: '() => void', required: false, description: 'Click handler' },
+        ],
+        notes: ['Paper texture overlay', 'Black and white aesthetic', 'Sharp borders'],
+    },
+
+    'eink-button': {
+        id: 'eink-button',
+        props: [
+            { name: 'children', type: 'React.ReactNode', required: false, description: 'Button content' },
+            { name: 'variant', type: '"primary" | "ghost" | "icon"', required: false, default: '"primary"', description: 'Button style' },
+            { name: 'size', type: '"sm" | "md" | "lg"', required: false, default: '"md"', description: 'Button size' },
+            { name: 'icon', type: 'React.ReactNode', required: false, description: 'Icon element' },
+            { name: 'disabled', type: 'boolean', required: false, default: 'false', description: 'Disabled state' },
+            { name: 'onClick', type: '() => void', required: false, description: 'Click handler' },
+        ],
+        notes: ['E-ink screen refresh flash effect on click', 'High contrast black/white'],
+    },
+
+    'eink-sidebar': {
+        id: 'eink-sidebar',
+        props: [
+            { name: 'activeTab', type: 'string', required: true, description: 'Currently active tab ID' },
+            { name: 'setActiveTab', type: '(tab: string) => void', required: true, description: 'Tab change handler' },
+        ],
+        notes: ['Navigation menu', 'Battery and WiFi status indicators', 'Underline for active item'],
+    },
+
+    'reader-content': {
+        id: 'reader-content',
+        props: [],
+        notes: ['Book reading view', 'Drop cap for first letter', 'Progress bar with handwritten style', 'Page navigation'],
+    },
+
+    'library-grid': {
+        id: 'library-grid',
+        props: [],
+        notes: ['Book cover grid', 'Grayscale images', 'Progress indicator bar', 'Browse store placeholder'],
+    },
+
+    // ============================================
+    // Solarpunk Theme
+    // ============================================
+
+    'solar-card': {
+        id: 'solar-card',
+        props: [
+            { name: 'children', type: 'React.ReactNode', required: true, description: 'Card content' },
+            { name: 'className', type: 'string', required: false, description: 'Additional CSS classes' },
+            { name: 'delay', type: 'number', required: false, default: '0', description: 'Animation delay' },
+        ],
+        notes: ['Organic asymmetric rounded corners', 'Decorative gradient blurs', 'Glassmorphism effect'],
+    },
+
+    'solarpunk-button': {
+        id: 'solarpunk-button',
+        props: [
+            { name: 'children', type: 'React.ReactNode', required: false, description: 'Button content' },
+            { name: 'variant', type: '"primary" | "secondary" | "ghost"', required: false, default: '"primary"', description: 'Button style' },
+            { name: 'size', type: '"sm" | "md" | "lg"', required: false, default: '"md"', description: 'Button size' },
+            { name: 'icon', type: 'React.ReactNode', required: false, description: 'Icon element' },
+            { name: 'disabled', type: 'boolean', required: false, default: 'false', description: 'Disabled state' },
+            { name: 'onClick', type: '() => void', required: false, description: 'Click handler' },
+        ],
+        notes: ['Emerald/teal gradient', 'Leaf pattern overlay', 'Organic glow animation'],
+    },
+
+    'energy-sun': {
+        id: 'energy-sun',
+        props: [],
+        notes: ['Rotating sun ray animation', 'Solar harvest metric display', 'Storage and grid feed stats'],
+    },
+
+    'air-quality-leaf': {
+        id: 'air-quality-leaf',
+        props: [],
+        notes: ['Leaf-shaped SVG progress', 'AQI visualization', 'PM2.5, humidity, CO2 metrics'],
+    },
+
+    // ============================================
+    // Legal Theme
+    // ============================================
+
+    'legal-paper': {
+        id: 'legal-paper',
+        props: [
+            { name: 'children', type: 'React.ReactNode', required: true, description: 'Paper content' },
+            { name: 'className', type: 'string', required: false, description: 'Additional CSS classes' },
+            { name: 'title', type: 'string', required: false, description: 'Document title' },
+        ],
+        notes: ['Hole punch decorations', 'Red margin line', 'Legal document styling'],
+    },
+
+    'clause': {
+        id: 'clause',
+        props: [
+            { name: 'number', type: 'string', required: true, description: 'Clause number' },
+            { name: 'title', type: 'string', required: false, description: 'Clause title' },
+            { name: 'children', type: 'React.ReactNode', required: true, description: 'Clause content' },
+            { name: 'isActive', type: 'boolean', required: false, default: 'false', description: 'Highlight state' },
+            { name: 'hasComment', type: 'boolean', required: false, default: 'false', description: 'Show comment indicator' },
+            { name: 'onClick', type: '() => void', required: false, description: 'Click handler' },
+        ],
+        notes: ['Paragraph numbering', 'Hover comment action', 'Blue highlight for active'],
+    },
+
+    'legal-button': {
+        id: 'legal-button',
+        props: [
+            { name: 'children', type: 'React.ReactNode', required: false, description: 'Button content' },
+            { name: 'variant', type: '"primary" | "secondary" | "toolbar" | "ghost"', required: false, default: '"secondary"', description: 'Button style' },
+            { name: 'size', type: '"sm" | "md" | "lg"', required: false, default: '"md"', description: 'Button size' },
+            { name: 'icon', type: 'React.ReactNode', required: false, description: 'Icon element' },
+            { name: 'type', type: '"button" | "submit" | "reset"', required: false, default: '"button"', description: 'HTML button type' },
+            { name: 'disabled', type: 'boolean', required: false, default: 'false', description: 'Disabled state' },
+            { name: 'onClick', type: '() => void', required: false, description: 'Click handler' },
+        ],
+        notes: ['Professional, authoritative styling', 'Ghost variant has underline animation'],
+    },
+
+    'redline-sidebar': {
+        id: 'redline-sidebar',
+        props: [],
+        notes: ['Comment and change thread display', 'Accept/reject change actions', 'Active comment highlighting'],
+    },
+
+    'diff-viewer': {
+        id: 'diff-viewer',
+        props: [],
+        notes: ['Side-by-side version comparison', 'Highlighted additions/deletions', 'Version labels'],
+    },
+
+    // ============================================
+    // Soft Plastic / Neumorphic Theme
+    // ============================================
+
+    'neumorphic-card': {
+        id: 'neumorphic-card',
+        props: [
+            { name: 'children', type: 'React.ReactNode', required: true, description: 'Card content' },
+            { name: 'className', type: 'string', required: false, description: 'Additional CSS classes' },
+            { name: 'inset', type: 'boolean', required: false, default: 'false', description: 'Use inset shadow style' },
+            { name: 'delay', type: 'number', required: false, default: '0', description: 'Animation delay' },
+            { name: 'onClick', type: '() => void', required: false, description: 'Click handler' },
+        ],
+        notes: ['Classic neumorphic shadows', 'Light gray base color', 'Toggle between raised/inset'],
+    },
+
+    'neumorphic-button': {
+        id: 'neumorphic-button',
+        props: [
+            { name: 'icon', type: 'React.ElementType', required: false, description: 'Icon component' },
+            { name: 'label', type: 'string', required: false, description: 'Button label' },
+            { name: 'active', type: 'boolean', required: false, default: 'false', description: 'Active/pressed state' },
+            { name: 'onClick', type: '() => void', required: false, description: 'Click handler' },
+            { name: 'variant', type: '"circle" | "pill" | "square"', required: false, default: '"square"', description: 'Shape variant' },
+            { name: 'aria-label', type: 'string', required: false, description: 'Accessible label' },
+        ],
+        notes: ['Shadow inverts when active', 'Active indicator dot', 'Multiple shape variants'],
+    },
+
+    'thermostat-dial': {
+        id: 'thermostat-dial',
+        props: [],
+        notes: ['Circular temperature dial', 'Nested neumorphic rings', 'Temperature +/- controls', 'Humidity display'],
+    },
+
+    // ============================================
+    // Festival Theme
+    // ============================================
+
+    'festival-card': {
+        id: 'festival-card',
+        props: [
+            { name: 'children', type: 'React.ReactNode', required: true, description: 'Card content' },
+            { name: 'className', type: 'string', required: false, description: 'Additional CSS classes' },
+            { name: 'delay', type: 'number', required: false, default: '0', description: 'Animation delay' },
+            { name: 'gradient', type: 'string', required: false, default: '"from-fuchsia-500 via-purple-500 to-cyan-500"', description: 'Top border gradient' },
+        ],
+        notes: ['Vibrant gradient top border', 'Dark glass background', 'Ambient corner glow'],
+    },
+
+    'festival-button': {
+        id: 'festival-button',
+        props: [
+            { name: 'children', type: 'React.ReactNode', required: false, description: 'Button content' },
+            { name: 'variant', type: '"primary" | "secondary" | "icon"', required: false, default: '"primary"', description: 'Button style' },
+            { name: 'size', type: '"sm" | "md" | "lg"', required: false, default: '"md"', description: 'Button size' },
+            { name: 'icon', type: 'React.ReactNode', required: false, description: 'Icon element' },
+            { name: 'disabled', type: 'boolean', required: false, default: 'false', description: 'Disabled state' },
+            { name: 'onClick', type: '() => void', required: false, description: 'Click handler' },
+        ],
+        notes: ['Animated gradient background', 'Shimmer overlay', 'Pulsing ring effect'],
+    },
+
+    'soundwave-timeline': {
+        id: 'soundwave-timeline',
+        props: [],
+        notes: ['Animated audio waveform bars', 'Interactive time markers', 'Live indicator', 'Playhead line'],
+    },
+
+    'crowd-heatmap': {
+        id: 'crowd-heatmap',
+        props: [],
+        notes: ['Interactive venue map', 'Density zones with tooltips', 'User location marker', 'Ping animations'],
+    },
+
+    'ticket-wallet': {
+        id: 'ticket-wallet',
+        props: [],
+        notes: ['QR code ticket display', 'Holographic hover effect', 'Scan line animation', 'Entry info'],
+    },
+
+    // ============================================
+    // Acid Theme
+    // ============================================
+
+    'acid-card': {
+        id: 'acid-card',
+        props: [
+            { name: 'children', type: 'React.ReactNode', required: true, description: 'Card content' },
+            { name: 'className', type: 'string', required: false, description: 'Additional CSS classes' },
+            { name: 'rotate', type: 'number', required: false, default: '0', description: 'Rotation angle in degrees' },
+            { name: 'color', type: 'string', required: false, default: '"bg-white"', description: 'Background color class' },
+            { name: 'hoverRotate', type: 'boolean', required: false, default: 'true', description: 'Counter-rotate on hover' },
+        ],
+        notes: ['Hard black shadow', 'Thick borders', 'Rotation support'],
+    },
+
+    'acid-button': {
+        id: 'acid-button',
+        props: [
+            { name: 'children', type: 'React.ReactNode', required: false, description: 'Button content' },
+            { name: 'variant', type: '"primary" | "secondary" | "black"', required: false, default: '"primary"', description: 'Color variant' },
+            { name: 'className', type: 'string', required: false, description: 'Additional CSS classes' },
+        ],
+        notes: ['Neon yellow/magenta colors', 'Hard shadow press effect', 'Bold uppercase text'],
+    },
+
+    'glitch-text': {
+        id: 'glitch-text',
+        props: [
+            { name: 'text', type: 'string', required: true, description: 'Text to display' },
+            { name: 'className', type: 'string', required: false, description: 'Additional CSS classes' },
+            { name: 'as', type: '"h1" | "h2" | "h3" | "p" | "span"', required: false, default: '"span"', description: 'HTML element to render' },
+        ],
+        notes: ['RGB split effect on hover', 'Red and cyan offset layers'],
+    },
+
+    'sticker': {
+        id: 'sticker',
+        props: [
+            { name: 'children', type: 'React.ReactNode', required: true, description: 'Sticker content' },
+            { name: 'className', type: 'string', required: false, description: 'Additional CSS classes' },
+            { name: 'delay', type: 'number', required: false, default: '0', description: 'Animation delay' },
+            { name: 'rotation', type: 'number', required: false, default: '12', description: 'Rotation angle' },
+        ],
+        notes: ['Bouncy spring entrance', 'Yellow background', 'Absolute positioning'],
+    },
+
+    'marquee': {
+        id: 'marquee',
+        props: [
+            { name: 'text', type: 'string', required: true, description: 'Scrolling text content' },
+            { name: 'direction', type: '"left" | "right" | "up" | "down"', required: false, default: '"left"', description: 'Scroll direction' },
+            { name: 'className', type: 'string', required: false, description: 'Additional CSS classes' },
+            { name: 'speed', type: 'string', required: false, default: '"10s"', description: 'Animation duration' },
+        ],
+        notes: ['Infinite scroll animation', 'Supports vertical and horizontal', 'Text repeats 10x for seamless loop'],
+    },
+
+    // ============================================
+    // Clay / Claymorphism Theme
+    // ============================================
+
+    'clay-card': {
+        id: 'clay-card',
+        props: [
+            { name: 'children', type: 'React.ReactNode', required: true, description: 'Card content' },
+            { name: 'className', type: 'string', required: false, description: 'Additional CSS classes' },
+            { name: 'color', type: 'string', required: false, default: '"bg-white"', description: 'Background color class' },
+            { name: 'shadowColor', type: 'string', required: false, default: '"#cad4e0"', description: 'Shadow base color (hex)' },
+            { name: 'delay', type: 'number', required: false, default: '0', description: 'Animation delay' },
+        ],
+        notes: ['3D clay effect with multiple shadows', 'Inner highlight and shadow', 'Bouncy spring animation'],
+    },
+
+    'clay-button': {
+        id: 'clay-button',
+        props: [
+            { name: 'children', type: 'React.ReactNode', required: true, description: 'Button content' },
+            { name: 'variant', type: '"primary" | "secondary" | "danger"', required: false, default: '"primary"', description: 'Color variant' },
+            { name: 'className', type: 'string', required: false, description: 'Additional CSS classes' },
+        ],
+        notes: ['Multi-layer shadow for depth', 'Color-matched shadows', 'Scale animation'],
+    },
+
+    // ============================================
+    // Blueprint Theme
+    // ============================================
+
+    'blueprint-card': {
+        id: 'blueprint-card',
+        props: [
+            { name: 'children', type: 'React.ReactNode', required: true, description: 'Card content' },
+            { name: 'className', type: 'string', required: false, description: 'Additional CSS classes' },
+            { name: 'title', type: 'string', required: false, description: 'Title in header block' },
+            { name: 'code', type: 'string', required: false, description: 'Code identifier in header' },
+        ],
+        notes: ['Corner registration marks', 'Title block with code prefix', 'White border on blue background'],
+    },
+
+    'cad-viewer': {
+        id: 'cad-viewer',
+        props: [
+            { name: 'activeLayers', type: 'Record<string, boolean>', required: true, description: 'Layer visibility states' },
+        ],
+        notes: ['SVG floor plan display', 'Layer-based visibility', 'Crosshair cursor on hover', 'Multiple layer types: Structure, Furniture, Electrical, Dimensions'],
+    },
+
+    'layer-control': {
+        id: 'layer-control',
+        props: [
+            { name: 'layers', type: 'Record<string, boolean>', required: true, description: 'Layer visibility states' },
+            { name: 'toggleLayer', type: '(layer: string) => void', required: true, description: 'Layer toggle handler' },
+        ],
+        notes: ['Toggle buttons for each layer', 'Visual checkbox indicators', 'Eye icon for visibility state'],
+    },
+
+    // ============================================
+    // Swiss Theme
+    // ============================================
+
+    'swiss-button': {
+        id: 'swiss-button',
+        props: [
+            { name: 'children', type: 'React.ReactNode', required: true, description: 'Button content' },
+            { name: 'variant', type: '"primary" | "secondary" | "ghost"', required: false, default: '"primary"', description: 'Button style' },
+            { name: 'size', type: '"sm" | "md" | "lg"', required: false, default: '"md"', description: 'Button size' },
+            { name: 'className', type: 'string', required: false, description: 'Additional CSS classes' },
+        ],
+        notes: ['Swiss red primary color', 'Bold uppercase typography', 'Diagonal stripe pattern on hover'],
+    },
+
+    'swiss-grid': {
+        id: 'swiss-grid',
+        props: [
+            { name: 'children', type: 'React.ReactNode', required: true, description: 'Grid items' },
+            { name: 'columns', type: '2 | 3 | 4 | 6 | 12', required: false, default: '12', description: 'Number of columns' },
+            { name: 'gap', type: '"sm" | "md" | "lg"', required: false, default: '"md"', description: 'Gap size' },
+            { name: 'className', type: 'string', required: false, description: 'Additional CSS classes' },
+        ],
+        notes: ['12-column grid system', 'Responsive breakpoints', 'Use with SwissGridItem for column spans'],
+    },
+
+    'swiss-typography': {
+        id: 'swiss-typography',
+        props: [
+            { name: 'children', type: 'React.ReactNode', required: true, description: 'Text content' },
+            { name: 'variant', type: '"display" | "headline" | "title" | "body" | "caption"', required: false, default: '"body"', description: 'Typography style' },
+            { name: 'color', type: '"black" | "red" | "muted"', required: false, default: '"black"', description: 'Text color' },
+            { name: 'className', type: 'string', required: false, description: 'Additional CSS classes' },
+            { name: 'as', type: 'React.ElementType', required: false, default: '"div"', description: 'HTML element to render' },
+        ],
+        notes: ['Swiss design typography scale', 'Tight letter-spacing for display sizes', 'Caption uses wide letter-spacing'],
+    },
+
+    'swiss-divider': {
+        id: 'swiss-divider',
+        props: [
+            { name: 'variant', type: '"horizontal" | "vertical"', required: false, default: '"horizontal"', description: 'Divider orientation' },
+            { name: 'weight', type: '"thin" | "medium" | "thick"', required: false, default: '"medium"', description: 'Line thickness' },
+            { name: 'color', type: '"black" | "red"', required: false, default: '"black"', description: 'Divider color' },
+            { name: 'className', type: 'string', required: false, description: 'Additional CSS classes' },
+        ],
+        notes: ['Animated scale-in on mount', 'Swiss red accent option'],
+    },
+
+    // ============================================
+    // Single Button Components (Various Themes)
+    // ============================================
+
+    'food-button': {
+        id: 'food-button',
+        props: [
+            { name: 'children', type: 'React.ReactNode', required: true, description: 'Button content' },
+            { name: 'variant', type: '"primary" | "secondary" | "outline" | "ghost"', required: false, default: '"primary"', description: 'Button style' },
+            { name: 'size', type: '"sm" | "md" | "lg"', required: false, default: '"md"', description: 'Button size' },
+            { name: 'className', type: 'string', required: false, description: 'Additional CSS classes' },
+        ],
+        notes: ['Orange accent color', 'Gradient overlay on primary', 'Warm, inviting aesthetic'],
+    },
+
+    'editorial-button': {
+        id: 'editorial-button',
+        props: [
+            { name: 'children', type: 'React.ReactNode', required: true, description: 'Button content' },
+            { name: 'variant', type: '"primary" | "link" | "outline"', required: false, default: '"primary"', description: 'Button style' },
+            { name: 'className', type: 'string', required: false, description: 'Additional CSS classes' },
+        ],
+        notes: ['Serif typography', 'Link variant with arrow', 'Hover fill effect for primary'],
+    },
+
+    'shop-button': {
+        id: 'shop-button',
+        props: [
+            { name: 'children', type: 'React.ReactNode', required: true, description: 'Button content' },
+            { name: 'variant', type: '"primary" | "secondary" | "add-to-cart"', required: false, default: '"primary"', description: 'Button style' },
+            { name: 'size', type: '"sm" | "md" | "lg"', required: false, default: '"md"', description: 'Button size' },
+            { name: 'className', type: 'string', required: false, description: 'Additional CSS classes' },
+        ],
+        notes: ['Add-to-cart variant includes shopping bag icon', 'Slide-in background on hover', 'Uppercase tracking'],
+    },
+
+    'flow-button': {
+        id: 'flow-button',
+        props: [
+            { name: 'children', type: 'React.ReactNode', required: true, description: 'Button content' },
+            { name: 'variant', type: '"primary" | "secondary" | "ghost"', required: false, default: '"primary"', description: 'Button style' },
+            { name: 'size', type: '"sm" | "md" | "lg"', required: false, default: '"md"', description: 'Button size' },
+            { name: 'className', type: 'string', required: false, description: 'Additional CSS classes' },
+        ],
+        notes: ['Amber accent color', 'Pulsing ring effect for primary', 'Focus ring styled for dark background'],
+    },
 }
 
 export const getComponentDoc = (id: string): ComponentDoc | undefined => {
