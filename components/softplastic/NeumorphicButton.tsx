@@ -8,6 +8,7 @@ interface NeumorphicButtonProps {
   onClick?: () => void;
   className?: string;
   variant?: 'circle' | 'pill' | 'square';
+  'aria-label'?: string;
 }
 
 const NeumorphicButton: React.FC<NeumorphicButtonProps> = ({ 
@@ -16,13 +17,15 @@ const NeumorphicButton: React.FC<NeumorphicButtonProps> = ({
   active = false, 
   onClick,
   className = "",
-  variant = 'square'
+  variant = 'square',
+  'aria-label': ariaLabel,
 }) => {
   const shapeClass = variant === 'circle' ? 'rounded-full' : variant === 'pill' ? 'rounded-full' : 'rounded-2xl';
   
   return (
     <button
       onClick={onClick}
+      aria-label={ariaLabel || label}
       className={`group relative flex items-center justify-center transition-all duration-300 outline-none ${shapeClass} ${
         active 
           ? 'bg-[#EFEEEE] shadow-[inset_5px_5px_10px_#D1D9E6,inset_-5px_-5px_10px_#FFFFFF]' 

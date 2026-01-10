@@ -21,6 +21,9 @@ const IntegrationToggle = () => {
         {/* Custom Toggle Switch */}
         <button 
           onClick={() => setEnabled(!enabled)}
+          role="switch"
+          aria-checked={enabled}
+          aria-label="Toggle Slack notifications"
           className={`relative h-6 w-11 rounded-full transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-zinc-500 focus:ring-offset-2 focus:ring-offset-zinc-950 ${
             enabled ? 'bg-emerald-500' : 'bg-zinc-700'
           }`}

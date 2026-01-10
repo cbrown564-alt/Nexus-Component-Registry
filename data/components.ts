@@ -105,6 +105,12 @@ import PipelineSteps from '@/components/engineering/PipelineSteps'
 import PipelineStepsSource from '@/components/engineering/PipelineSteps?raw'
 import CodeBlock from '@/components/engineering/CodeBlock'
 import CodeBlockSource from '@/components/engineering/CodeBlock?raw'
+import ConsoleOutput from '@/components/engineering/ConsoleOutput'
+import ConsoleOutputSource from '@/components/engineering/ConsoleOutput?raw'
+import GitDiffView from '@/components/engineering/GitDiffView'
+import GitDiffViewSource from '@/components/engineering/GitDiffView?raw'
+import ServerStatBadge from '@/components/engineering/ServerStatBadge'
+import ServerStatBadgeSource from '@/components/engineering/ServerStatBadge?raw'
 
 // Food Components
 import FoodButton from '@/components/food/FoodButton'
@@ -143,6 +149,162 @@ import MoodSelector from '@/components/wellness/MoodSelector'
 import MoodSelectorSource from '@/components/wellness/MoodSelector?raw'
 import WellnessButton from '@/components/wellness/WellnessButton'
 import WellnessButtonSource from '@/components/wellness/WellnessButton?raw'
+
+// SaaS Components
+import MetricCard from '@/components/saas/MetricCard'
+import MetricCardSource from '@/components/saas/MetricCard?raw'
+import RevenueChart from '@/components/saas/RevenueChart'
+import RevenueChartSource from '@/components/saas/RevenueChart?raw'
+import CustomerTable from '@/components/saas/CustomerTable'
+import CustomerTableSource from '@/components/saas/CustomerTable?raw'
+import SaasCard from '@/components/saas/SaasCard'
+import SaasCardSource from '@/components/saas/SaasCard?raw'
+import SaasButton from '@/components/saas/SaasButton'
+import SaasButtonSource from '@/components/saas/SaasButton?raw'
+
+// Music Components
+import NowPlaying from '@/components/music/NowPlaying'
+import NowPlayingSource from '@/components/music/NowPlaying?raw'
+import TrackList from '@/components/music/TrackList'
+import TrackListSource from '@/components/music/TrackList?raw'
+import AlbumGrid from '@/components/music/AlbumGrid'
+import AlbumGridSource from '@/components/music/AlbumGrid?raw'
+import MusicCard from '@/components/music/MusicCard'
+import MusicCardSource from '@/components/music/MusicCard?raw'
+import MusicButton from '@/components/music/MusicButton'
+import MusicButtonSource from '@/components/music/MusicButton?raw'
+
+// Grid Components
+import CityMap from '@/components/grid/CityMap'
+import CityMapSource from '@/components/grid/CityMap?raw'
+import ResourceGauge from '@/components/grid/ResourceGauge'
+import ResourceGaugeSource from '@/components/grid/ResourceGauge?raw'
+import SystemControls from '@/components/grid/SystemControls'
+import SystemControlsSource from '@/components/grid/SystemControls?raw'
+import GridCard from '@/components/grid/GridCard'
+import GridCardSource from '@/components/grid/GridCard?raw'
+import GridButton from '@/components/grid/GridButton'
+import GridButtonSource from '@/components/grid/GridButton?raw'
+
+// Brutalist Components
+import MarqueeHeader from '@/components/brutalist/MarqueeHeader'
+import MarqueeHeaderSource from '@/components/brutalist/MarqueeHeader?raw'
+import ArtGrid from '@/components/brutalist/ArtGrid'
+import ArtGridSource from '@/components/brutalist/ArtGrid?raw'
+import Manifesto from '@/components/brutalist/Manifesto'
+import ManifestoSource from '@/components/brutalist/Manifesto?raw'
+import BrutalistCard from '@/components/brutalist/BrutalistCard'
+import BrutalistCardSource from '@/components/brutalist/BrutalistCard?raw'
+import BrutalistButton from '@/components/brutalist/BrutalistButton'
+import BrutalistButtonSource from '@/components/brutalist/BrutalistButton?raw'
+
+// Kitchen Components
+import ActiveStep from '@/components/kitchen/ActiveStep'
+import ActiveStepSource from '@/components/kitchen/ActiveStep?raw'
+import IngredientScale from '@/components/kitchen/IngredientScale'
+import IngredientScaleSource from '@/components/kitchen/IngredientScale?raw'
+import SmartTimer from '@/components/kitchen/SmartTimer'
+import SmartTimerSource from '@/components/kitchen/SmartTimer?raw'
+import KitchenCard from '@/components/kitchen/KitchenCard'
+import KitchenCardSource from '@/components/kitchen/KitchenCard?raw'
+import KitchenButton from '@/components/kitchen/KitchenButton'
+import KitchenButtonSource from '@/components/kitchen/KitchenButton?raw'
+
+// Kids Components
+import KidsCard from '@/components/kids/KidsCard'
+import KidsCardSource from '@/components/kids/KidsCard?raw'
+import BigIconNav from '@/components/kids/BigIconNav'
+import BigIconNavSource from '@/components/kids/BigIconNav?raw'
+import StarProgress from '@/components/kids/StarProgress'
+import StarProgressSource from '@/components/kids/StarProgress?raw'
+import Mascot from '@/components/kids/Mascot'
+import MascotSource from '@/components/kids/Mascot?raw'
+import KidsButton from '@/components/kids/KidsButton'
+import KidsButtonSource from '@/components/kids/KidsButton?raw'
+
+// E-Ink Components
+import EInkSidebar from '@/components/eink/EInkSidebar'
+import EInkSidebarSource from '@/components/eink/EInkSidebar?raw'
+import ReaderContent from '@/components/eink/ReaderContent'
+import ReaderContentSource from '@/components/eink/ReaderContent?raw'
+import LibraryGrid from '@/components/eink/LibraryGrid'
+import LibraryGridSource from '@/components/eink/LibraryGrid?raw'
+import EInkCard from '@/components/eink/EInkCard'
+import EInkCardSource from '@/components/eink/EInkCard?raw'
+import EInkButton from '@/components/eink/EInkButton'
+import EInkButtonSource from '@/components/eink/EInkButton?raw'
+
+// Solarpunk Components
+import EnergySun from '@/components/solarpunk/EnergySun'
+import EnergySunSource from '@/components/solarpunk/EnergySun?raw'
+import AirQualityLeaf from '@/components/solarpunk/AirQualityLeaf'
+import AirQualityLeafSource from '@/components/solarpunk/AirQualityLeaf?raw'
+import SolarCard from '@/components/solarpunk/SolarCard'
+import SolarCardSource from '@/components/solarpunk/SolarCard?raw'
+import SolarpunkButton from '@/components/solarpunk/SolarpunkButton'
+import SolarpunkButtonSource from '@/components/solarpunk/SolarpunkButton?raw'
+
+// Legal Components
+import LegalPaper from '@/components/legal/LegalPaper'
+import LegalPaperSource from '@/components/legal/LegalPaper?raw'
+import Clause from '@/components/legal/Clause'
+import ClauseSource from '@/components/legal/Clause?raw'
+import RedlineSidebar from '@/components/legal/RedlineSidebar'
+import RedlineSidebarSource from '@/components/legal/RedlineSidebar?raw'
+import DiffViewer from '@/components/legal/DiffViewer'
+import DiffViewerSource from '@/components/legal/DiffViewer?raw'
+import LegalButton from '@/components/legal/LegalButton'
+import LegalButtonSource from '@/components/legal/LegalButton?raw'
+
+// Soft Plastic Components
+import NeumorphicCard from '@/components/softplastic/NeumorphicCard'
+import NeumorphicCardSource from '@/components/softplastic/NeumorphicCard?raw'
+import NeumorphicButton from '@/components/softplastic/NeumorphicButton'
+import NeumorphicButtonSource from '@/components/softplastic/NeumorphicButton?raw'
+import ThermostatDial from '@/components/softplastic/ThermostatDial'
+import ThermostatDialSource from '@/components/softplastic/ThermostatDial?raw'
+import DeviceToggle from '@/components/softplastic/DeviceToggle'
+import DeviceToggleSource from '@/components/softplastic/DeviceToggle?raw'
+
+// Festival Components
+import FestivalCard from '@/components/festival/FestivalCard'
+import FestivalCardSource from '@/components/festival/FestivalCard?raw'
+import SoundwaveTimeline from '@/components/festival/SoundwaveTimeline'
+import SoundwaveTimelineSource from '@/components/festival/SoundwaveTimeline?raw'
+import CrowdHeatmap from '@/components/festival/CrowdHeatmap'
+import CrowdHeatmapSource from '@/components/festival/CrowdHeatmap?raw'
+import TicketWallet from '@/components/festival/TicketWallet'
+import TicketWalletSource from '@/components/festival/TicketWallet?raw'
+import FestivalButton from '@/components/festival/FestivalButton'
+import FestivalButtonSource from '@/components/festival/FestivalButton?raw'
+
+// Acid Components
+import AcidCard from '@/components/acid/AcidCard'
+import AcidCardSource from '@/components/acid/AcidCard?raw'
+import GlitchText from '@/components/acid/GlitchText'
+import GlitchTextSource from '@/components/acid/GlitchText?raw'
+import Sticker from '@/components/acid/Sticker'
+import StickerSource from '@/components/acid/Sticker?raw'
+import Marquee from '@/components/acid/Marquee'
+import MarqueeSource from '@/components/acid/Marquee?raw'
+import AcidButton from '@/components/acid/AcidButton'
+import AcidButtonSource from '@/components/acid/AcidButton?raw'
+
+// Claymorphism Components
+import ClayCard from '@/components/clay/ClayCard'
+import ClayCardSource from '@/components/clay/ClayCard?raw'
+import ClayButton from '@/components/clay/ClayButton'
+import ClayButtonSource from '@/components/clay/ClayButton?raw'
+import ClayToggle from '@/components/clay/ClayToggle'
+import ClayToggleSource from '@/components/clay/ClayToggle?raw'
+
+// Blueprint Components
+import BlueprintCard from '@/components/blueprint/BlueprintCard'
+import BlueprintCardSource from '@/components/blueprint/BlueprintCard?raw'
+import CadViewer from '@/components/blueprint/CadViewer'
+import CadViewerSource from '@/components/blueprint/CadViewer?raw'
+import LayerControl from '@/components/blueprint/LayerControl'
+import LayerControlSource from '@/components/blueprint/LayerControl?raw'
 
 export type ComponentCategory =
     | 'layout'
@@ -191,7 +353,7 @@ export const components: ComponentMeta[] = [
         id: 'terminal',
         name: 'Terminal',
         description: 'Fake terminal display with typing animation',
-        theme: 'shared',
+        theme: 'engineering',
         category: 'data-display',
         component: Terminal,
         source: TerminalSource,
@@ -225,7 +387,7 @@ export const components: ComponentMeta[] = [
         id: 'file-tree',
         name: 'FileTree',
         description: 'Directory explorer with expandable folders',
-        theme: 'shared',
+        theme: 'engineering',
         category: 'navigation',
         component: FileTree,
         source: FileTreeSource,
@@ -241,7 +403,7 @@ export const components: ComponentMeta[] = [
         id: 'plan-picker',
         name: 'PlanPicker',
         description: 'Pricing tier selector with feature comparison',
-        theme: 'shared',
+        theme: 'saas',
         category: 'interactive',
         component: PlanPicker,
         source: PlanPickerSource,
@@ -261,7 +423,7 @@ export const components: ComponentMeta[] = [
         id: 'shortcut-guide',
         name: 'ShortcutGuide',
         description: 'Keyboard shortcuts panel with key combinations',
-        theme: 'shared',
+        theme: 'engineering',
         category: 'feedback',
         component: ShortcutGuide,
         source: ShortcutGuideSource,
@@ -271,7 +433,7 @@ export const components: ComponentMeta[] = [
         id: 'deployment-pipeline',
         name: 'DeploymentPipeline',
         description: 'CI/CD visualization with stage indicators',
-        theme: 'shared',
+        theme: 'engineering',
         category: 'visualization',
         component: DeploymentPipeline,
         source: DeploymentPipelineSource,
@@ -721,6 +883,44 @@ export const components: ComponentMeta[] = [
             filename: 'example.ts'
         }
     },
+    {
+        id: 'console-output',
+        name: 'ConsoleOutput',
+        description: 'Live console log viewer with typed log entries and auto-scroll',
+        theme: 'engineering',
+        category: 'data-display',
+        component: ConsoleOutput,
+        source: ConsoleOutputSource,
+        tags: ['console', 'logs', 'terminal', 'output', 'developer'],
+    },
+    {
+        id: 'git-diff-view',
+        name: 'GitDiffView',
+        description: 'Git diff visualization with line numbers and syntax highlighting',
+        theme: 'engineering',
+        category: 'data-display',
+        component: GitDiffView,
+        source: GitDiffViewSource,
+        tags: ['git', 'diff', 'code', 'changes', 'version-control'],
+    },
+    {
+        id: 'server-stat-badge',
+        name: 'ServerStatBadge',
+        description: 'Server status badge with health indicators and metrics',
+        theme: 'engineering',
+        category: 'data-display',
+        component: ServerStatBadge,
+        source: ServerStatBadgeSource,
+        tags: ['server', 'status', 'health', 'badge', 'monitoring'],
+        previewProps: {
+            label: 'Uptime',
+            value: '99.9%',
+            status: 'healthy',
+            metric: 'network',
+            trend: 'up',
+            trendValue: '0.1%'
+        }
+    },
 
     // Food Button
     {
@@ -810,6 +1010,825 @@ export const components: ComponentMeta[] = [
         component: SwissDivider,
         source: SwissDividerSource,
         tags: ['divider', 'line', 'swiss', 'graphic'],
+    },
+
+    // SaaS Components
+    {
+        id: 'metric-card',
+        name: 'MetricCard',
+        description: 'Key metric display with trend indicator',
+        theme: 'saas',
+        category: 'data-display',
+        component: MetricCard,
+        source: MetricCardSource,
+        tags: ['metric', 'card', 'saas', 'stats'],
+        previewProps: {
+            label: 'Total Revenue',
+            value: '$45,231',
+            trend: '+20.1%',
+            trendUp: true,
+            icon: Box
+        }
+    },
+    {
+        id: 'revenue-chart',
+        name: 'RevenueChart',
+        description: 'Revenue analytics chart with period toggle',
+        theme: 'saas',
+        category: 'visualization',
+        component: RevenueChart,
+        source: RevenueChartSource,
+        tags: ['chart', 'revenue', 'analytics', 'graph'],
+    },
+    {
+        id: 'customer-table',
+        name: 'CustomerTable',
+        description: 'Data table with status badges and actions',
+        theme: 'saas',
+        category: 'data-display',
+        component: CustomerTable,
+        source: CustomerTableSource,
+        tags: ['table', 'customers', 'data', 'list'],
+    },
+    {
+        id: 'saas-card',
+        name: 'SaasCard',
+        description: 'Clean card container for SaaS dashboards',
+        theme: 'saas',
+        category: 'layout',
+        component: SaasCard,
+        source: SaasCardSource,
+        tags: ['card', 'container', 'saas', 'layout'],
+        previewProps: {
+            children: 'Card Content',
+            className: 'p-4'
+        }
+    },
+    {
+        id: 'saas-button',
+        name: 'SaasButton',
+        description: 'Professional button with multiple variants',
+        theme: 'saas',
+        category: 'interactive',
+        component: SaasButton,
+        source: SaasButtonSource,
+        tags: ['button', 'saas', 'interactive', 'control'],
+        previewProps: {
+            children: 'Action',
+            variant: 'primary'
+        }
+    },
+
+    // Music Components
+    {
+        id: 'now-playing',
+        name: 'NowPlaying',
+        description: 'Music player control bar with album art',
+        theme: 'music',
+        category: 'interactive',
+        component: NowPlaying,
+        source: NowPlayingSource,
+        tags: ['player', 'music', 'controls', 'media'],
+    },
+    {
+        id: 'track-list',
+        name: 'TrackList',
+        description: 'Sortable list of music tracks',
+        theme: 'music',
+        category: 'data-display',
+        component: TrackList,
+        source: TrackListSource,
+        tags: ['list', 'tracks', 'music', 'playlist'],
+    },
+    {
+        id: 'album-grid',
+        name: 'AlbumGrid',
+        description: 'Grid display of album covers',
+        theme: 'music',
+        category: 'data-display',
+        component: AlbumGrid,
+        source: AlbumGridSource,
+        tags: ['grid', 'albums', 'music', 'covers'],
+    },
+    {
+        id: 'music-card',
+        name: 'MusicCard',
+        description: 'Dark themed card for music applications',
+        theme: 'music',
+        category: 'layout',
+        component: MusicCard,
+        source: MusicCardSource,
+        tags: ['card', 'music', 'dark', 'container'],
+        previewProps: {
+            children: 'Music Content',
+            className: 'p-6'
+        }
+    },
+    {
+        id: 'music-button',
+        name: 'MusicButton',
+        description: 'Rounded button with gradient accents',
+        theme: 'music',
+        category: 'interactive',
+        component: MusicButton,
+        source: MusicButtonSource,
+        tags: ['button', 'music', 'interactive', 'play'],
+        previewProps: {
+            children: 'Play',
+            variant: 'primary'
+        }
+    },
+
+    // Grid Components
+    {
+        id: 'city-map',
+        name: 'CityMap',
+        description: 'Interactive city infrastructure map overlay',
+        theme: 'grid',
+        category: 'visualization',
+        component: CityMap,
+        source: CityMapSource,
+        tags: ['map', 'city', 'grid', 'infrastructure'],
+    },
+    {
+        id: 'resource-gauge',
+        name: 'ResourceGauge',
+        description: 'Circular gauge for resource monitoring',
+        theme: 'grid',
+        category: 'visualization',
+        component: ResourceGauge,
+        source: ResourceGaugeSource,
+        tags: ['gauge', 'resource', 'monitoring', 'chart'],
+    },
+    {
+        id: 'system-controls',
+        name: 'SystemControls',
+        description: 'Control panel with toggles and status',
+        theme: 'grid',
+        category: 'interactive',
+        component: SystemControls,
+        source: SystemControlsSource,
+        tags: ['controls', 'system', 'panel', 'grid'],
+    },
+    {
+        id: 'grid-card',
+        name: 'GridCard',
+        description: 'Technical data container with header',
+        theme: 'grid',
+        category: 'layout',
+        component: GridCard,
+        source: GridCardSource,
+        tags: ['card', 'grid', 'container', 'technical'],
+        previewProps: {
+            title: 'System Status',
+            children: 'Operational',
+            className: 'h-32'
+        }
+    },
+    {
+        id: 'grid-button',
+        name: 'GridButton',
+        description: 'Technical button with status indicator',
+        theme: 'grid',
+        category: 'interactive',
+        component: GridButton,
+        source: GridButtonSource,
+        tags: ['button', 'grid', 'technical', 'control'],
+        previewProps: {
+            children: 'Execute',
+            variant: 'primary',
+            status: 'online'
+        }
+    },
+
+    // Brutalist Components
+    {
+        id: 'marquee-header',
+        name: 'MarqueeHeader',
+        description: 'Scrolling text marquee header',
+        theme: 'brutalist',
+        category: 'navigation',
+        component: MarqueeHeader,
+        source: MarqueeHeaderSource,
+        tags: ['marquee', 'header', 'scrolling', 'brutalist'],
+    },
+    {
+        id: 'art-grid',
+        name: 'ArtGrid',
+        description: 'Masonry-style grid for art display',
+        theme: 'brutalist',
+        category: 'layout',
+        component: ArtGrid,
+        source: ArtGridSource,
+        tags: ['grid', 'art', 'masonry', 'gallery'],
+    },
+    {
+        id: 'manifesto',
+        name: 'Manifesto',
+        description: 'Bold text block with brutalist typography',
+        theme: 'brutalist',
+        category: 'data-display',
+        component: Manifesto,
+        source: ManifestoSource,
+        tags: ['text', 'typography', 'brutalist', 'manifesto'],
+    },
+    {
+        id: 'brutalist-card',
+        name: 'BrutalistCard',
+        description: 'Hard-edge card with heavy borders',
+        theme: 'brutalist',
+        category: 'layout',
+        component: BrutalistCard,
+        source: BrutalistCardSource,
+        tags: ['card', 'brutalist', 'border', 'bold'],
+        previewProps: {
+            children: 'Brutalist Content',
+            className: 'p-6 bg-yellow-400'
+        }
+    },
+    {
+        id: 'brutalist-button',
+        name: 'BrutalistButton',
+        description: 'High-contrast button with hard shadows',
+        theme: 'brutalist',
+        category: 'interactive',
+        component: BrutalistButton,
+        source: BrutalistButtonSource,
+        tags: ['button', 'brutalist', 'bold', 'contrast'],
+        previewProps: {
+            children: 'CLICK ME',
+            variant: 'neo'
+        }
+    },
+
+    // Kitchen Components
+    {
+        id: 'active-step',
+        name: 'ActiveStep',
+        description: 'Current cooking step with voice controls',
+        theme: 'kitchen',
+        category: 'data-display',
+        component: ActiveStep,
+        source: ActiveStepSource,
+        tags: ['step', 'recipe', 'cooking', 'instructions'],
+    },
+    {
+        id: 'ingredient-scale',
+        name: 'IngredientScale',
+        description: 'Smart scale visualization for ingredients',
+        theme: 'kitchen',
+        category: 'visualization',
+        component: IngredientScale,
+        source: IngredientScaleSource,
+        tags: ['scale', 'ingredients', 'measure', 'kitchen'],
+    },
+    {
+        id: 'smart-timer',
+        name: 'SmartTimer',
+        description: 'Countdown timer with notifications',
+        theme: 'kitchen',
+        category: 'interactive',
+        component: SmartTimer,
+        source: SmartTimerSource,
+        tags: ['timer', 'countdown', 'kitchen', 'clock'],
+    },
+    {
+        id: 'kitchen-card',
+        name: 'KitchenCard',
+        description: 'Clean, airy card with soft shadows',
+        theme: 'kitchen',
+        category: 'layout',
+        component: KitchenCard,
+        source: KitchenCardSource,
+        tags: ['card', 'kitchen', 'clean', 'recipe'],
+        previewProps: {
+            children: 'Kitchen Content',
+            className: 'p-6'
+        }
+    },
+    {
+        id: 'kitchen-button',
+        name: 'KitchenButton',
+        description: 'Minimalist button with rounded corners',
+        theme: 'kitchen',
+        category: 'interactive',
+        component: KitchenButton,
+        source: KitchenButtonSource,
+        tags: ['button', 'kitchen', 'minimal', 'clean'],
+        previewProps: {
+            children: 'Start Cooking',
+            variant: 'primary'
+        }
+    },
+
+    // Kids Components
+    {
+        id: 'kids-card',
+        name: 'KidsCard',
+        description: 'Colorful playful card with bounce effects',
+        theme: 'kids',
+        category: 'layout',
+        component: KidsCard,
+        source: KidsCardSource,
+        tags: ['card', 'kids', 'playful', 'colorful'],
+        previewProps: {
+            children: 'Play!',
+            color: 'bg-red-400',
+            borderColor: 'border-red-600',
+            className: 'p-4 aspect-square flex items-center justify-center text-white font-bold'
+        }
+    },
+    {
+        id: 'big-icon-nav',
+        name: 'BigIconNav',
+        description: 'Large touch-friendly navigation bar',
+        theme: 'kids',
+        category: 'navigation',
+        component: BigIconNav,
+        source: BigIconNavSource,
+        tags: ['nav', 'kids', 'icons', 'touch'],
+    },
+    {
+        id: 'star-progress',
+        name: 'StarProgress',
+        description: 'Gamified progress bar with stars',
+        theme: 'kids',
+        category: 'visualization',
+        component: StarProgress,
+        source: StarProgressSource,
+        tags: ['progress', 'stars', 'gamification', 'kids'],
+    },
+    {
+        id: 'mascot',
+        name: 'Mascot',
+        description: 'Animated character assistant',
+        theme: 'kids',
+        category: 'data-display',
+        component: Mascot,
+        source: MascotSource,
+        tags: ['mascot', 'character', 'kids', 'animation'],
+    },
+    {
+        id: 'kids-button',
+        name: 'KidsButton',
+        description: 'Chunky button with pop animation',
+        theme: 'kids',
+        category: 'interactive',
+        component: KidsButton,
+        source: KidsButtonSource,
+        tags: ['button', 'kids', 'chunky', 'animation'],
+        previewProps: {
+            children: 'Go!',
+            variant: 'primary'
+        }
+    },
+
+    // E-Ink Components
+    {
+        id: 'eink-sidebar',
+        name: 'EInkSidebar',
+        description: 'Sidebar navigation with E-Ink refresh effect',
+        theme: 'eink',
+        category: 'navigation',
+        component: EInkSidebar,
+        source: EInkSidebarSource,
+        tags: ['sidebar', 'eink', 'navigation', 'grayscale'],
+    },
+    {
+        id: 'reader-content',
+        name: 'ReaderContent',
+        description: 'Readable text layout for E-Ink displays',
+        theme: 'eink',
+        category: 'data-display',
+        component: ReaderContent,
+        source: ReaderContentSource,
+        tags: ['reader', 'text', 'eink', 'layout'],
+    },
+    {
+        id: 'library-grid',
+        name: 'LibraryGrid',
+        description: 'Book cover grid for E-Ink library',
+        theme: 'eink',
+        category: 'data-display',
+        component: LibraryGrid,
+        source: LibraryGridSource,
+        tags: ['library', 'grid', 'books', 'eink'],
+    },
+    {
+        id: 'eink-card',
+        name: 'EInkCard',
+        description: 'High contrast card for E-Ink legibility',
+        theme: 'eink',
+        category: 'layout',
+        component: EInkCard,
+        source: EInkCardSource,
+        tags: ['card', 'eink', 'contrast', 'layout'],
+        previewProps: {
+            children: 'E-Ink Content',
+            className: 'p-6'
+        }
+    },
+    {
+        id: 'eink-button',
+        name: 'EInkButton',
+        description: 'High contrast button with ghosting effects',
+        theme: 'eink',
+        category: 'interactive',
+        component: EInkButton,
+        source: EInkButtonSource,
+        tags: ['button', 'eink', 'contrast', 'interactive'],
+        previewProps: {
+            children: 'Refresh',
+            variant: 'primary'
+        }
+    },
+
+    // Solarpunk Components
+    {
+        id: 'energy-sun',
+        name: 'EnergySun',
+        description: 'Solar energy visualization',
+        theme: 'solarpunk',
+        category: 'visualization',
+        component: EnergySun,
+        source: EnergySunSource,
+        tags: ['sun', 'energy', 'solar', 'visualization'],
+    },
+    {
+        id: 'air-quality-leaf',
+        name: 'AirQualityLeaf',
+        description: 'Air quality gauge shaped like a leaf',
+        theme: 'solarpunk',
+        category: 'visualization',
+        component: AirQualityLeaf,
+        source: AirQualityLeafSource,
+        tags: ['leaf', 'air', 'quality', 'gauge'],
+    },
+    {
+        id: 'solar-card',
+        name: 'SolarCard',
+        description: 'Organic card with soft gradients',
+        theme: 'solarpunk',
+        category: 'layout',
+        component: SolarCard,
+        source: SolarCardSource,
+        tags: ['card', 'organic', 'solarpunk', 'soft'],
+        previewProps: {
+            children: 'Solar Content',
+            className: 'p-6'
+        }
+    },
+    {
+        id: 'solarpunk-button',
+        name: 'SolarpunkButton',
+        description: 'Organic button with nature-inspired colors',
+        theme: 'solarpunk',
+        category: 'interactive',
+        component: SolarpunkButton,
+        source: SolarpunkButtonSource,
+        tags: ['button', 'organic', 'solarpunk', 'nature'],
+        previewProps: {
+            children: 'Plant',
+            variant: 'primary'
+        }
+    },
+
+    // Legal Components
+    {
+        id: 'legal-paper',
+        name: 'LegalPaper',
+        description: 'Document interface for contracts',
+        theme: 'legal',
+        category: 'layout',
+        component: LegalPaper,
+        source: LegalPaperSource,
+        tags: ['paper', 'legal', 'document', 'contract'],
+        previewProps: {
+            title: 'Terms of Service',
+            children: 'This agreement...'
+        }
+    },
+    {
+        id: 'clause',
+        name: 'Clause',
+        description: 'Contract clause with highlighting',
+        theme: 'legal',
+        category: 'data-display',
+        component: Clause,
+        source: ClauseSource,
+        tags: ['clause', 'legal', 'contract', 'text'],
+        previewProps: {
+            number: '1.0',
+            title: 'Scope',
+            children: 'This is a clause.'
+        }
+    },
+    {
+        id: 'redline-sidebar',
+        name: 'RedlineSidebar',
+        description: 'Sidebar for tracking document changes',
+        theme: 'legal',
+        category: 'data-display',
+        component: RedlineSidebar,
+        source: RedlineSidebarSource,
+        tags: ['sidebar', 'changes', 'redline', 'legal'],
+    },
+    {
+        id: 'diff-viewer',
+        name: 'DiffViewer',
+        description: 'Visual diff comparison tool',
+        theme: 'legal',
+        category: 'visualization',
+        component: DiffViewer,
+        source: DiffViewerSource,
+        tags: ['diff', 'compare', 'legal', 'changes'],
+    },
+    {
+        id: 'legal-button',
+        name: 'LegalButton',
+        description: 'Formal serif button',
+        theme: 'legal',
+        category: 'interactive',
+        component: LegalButton,
+        source: LegalButtonSource,
+        tags: ['button', 'legal', 'formal', 'serif'],
+        previewProps: {
+            children: 'Sign Agreement',
+            variant: 'primary'
+        }
+    },
+
+    // Soft Plastic Components
+    {
+        id: 'neumorphic-card',
+        name: 'NeumorphicCard',
+        description: 'Soft UI card with neumorphic shadows',
+        theme: 'softplastic',
+        category: 'layout',
+        component: NeumorphicCard,
+        source: NeumorphicCardSource,
+        tags: ['card', 'neumorphic', 'soft', 'shadow'],
+        previewProps: {
+            children: 'Soft Content',
+            className: 'p-6 h-32'
+        }
+    },
+    {
+        id: 'neumorphic-button',
+        name: 'NeumorphicButton',
+        description: 'Soft UI button with pressed state',
+        theme: 'softplastic',
+        category: 'interactive',
+        component: NeumorphicButton,
+        source: NeumorphicButtonSource,
+        tags: ['button', 'neumorphic', 'soft', 'shadow'],
+        previewProps: {
+            children: 'Press Me',
+            variant: 'pill'
+        }
+    },
+    {
+        id: 'thermostat-dial',
+        name: 'ThermostatDial',
+        description: 'Interactive rotary dial for temperature',
+        theme: 'softplastic',
+        category: 'interactive',
+        component: ThermostatDial,
+        source: ThermostatDialSource,
+        tags: ['dial', 'thermostat', 'neumorphic', 'control'],
+    },
+    {
+        id: 'device-toggle',
+        name: 'DeviceToggle',
+        description: 'Toggle switch for smart devices',
+        theme: 'softplastic',
+        category: 'interactive',
+        component: DeviceToggle,
+        source: DeviceToggleSource,
+        tags: ['toggle', 'switch', 'device', 'control'],
+        previewProps: {
+            label: 'Lights',
+            initialState: true,
+            icon: Box
+        }
+    },
+
+    // Festival Components
+    {
+        id: 'festival-card',
+        name: 'FestivalCard',
+        description: 'Vibrant gradient card for events',
+        theme: 'festival',
+        category: 'layout',
+        component: FestivalCard,
+        source: FestivalCardSource,
+        tags: ['card', 'festival', 'gradient', 'event'],
+        previewProps: {
+            children: 'Event Details',
+            className: 'p-6',
+            gradient: 'from-purple-500 to-pink-500'
+        }
+    },
+    {
+        id: 'soundwave-timeline',
+        name: 'SoundwaveTimeline',
+        description: 'Interactive schedule timeline',
+        theme: 'festival',
+        category: 'visualization',
+        component: SoundwaveTimeline,
+        source: SoundwaveTimelineSource,
+        tags: ['timeline', 'soundwave', 'schedule', 'festival'],
+    },
+    {
+        id: 'crowd-heatmap',
+        name: 'CrowdHeatmap',
+        description: 'Heatmap visualization of crowd density',
+        theme: 'festival',
+        category: 'visualization',
+        component: CrowdHeatmap,
+        source: CrowdHeatmapSource,
+        tags: ['heatmap', 'crowd', 'map', 'festival'],
+    },
+    {
+        id: 'ticket-wallet',
+        name: 'TicketWallet',
+        description: 'Digital ticket display',
+        theme: 'festival',
+        category: 'data-display',
+        component: TicketWallet,
+        source: TicketWalletSource,
+        tags: ['ticket', 'wallet', 'pass', 'festival'],
+    },
+    {
+        id: 'festival-button',
+        name: 'FestivalButton',
+        description: 'Bold button with glowing gradients',
+        theme: 'festival',
+        category: 'interactive',
+        component: FestivalButton,
+        source: FestivalButtonSource,
+        tags: ['button', 'festival', 'gradient', 'glow'],
+        previewProps: {
+            children: 'Get Tickets',
+            variant: 'primary'
+        }
+    },
+
+    // Acid Components
+    {
+        id: 'acid-card',
+        name: 'AcidCard',
+        description: 'Chaotic card with brutalist elements',
+        theme: 'acid',
+        category: 'layout',
+        component: AcidCard,
+        source: AcidCardSource,
+        tags: ['card', 'acid', 'chaotic', 'brutalist'],
+        previewProps: {
+            children: 'ACID CONTENT',
+            rotate: 2,
+            color: 'bg-yellow-400'
+        }
+    },
+    {
+        id: 'glitch-text',
+        name: 'GlitchText',
+        description: 'Text with glitch animation effects',
+        theme: 'acid',
+        category: 'data-display',
+        component: GlitchText,
+        source: GlitchTextSource,
+        tags: ['text', 'glitch', 'animation', 'acid'],
+        previewProps: {
+            text: 'ERROR'
+        }
+    },
+    {
+        id: 'sticker',
+        name: 'Sticker',
+        description: 'Decorative sticker element',
+        theme: 'acid',
+        category: 'data-display',
+        component: Sticker,
+        source: StickerSource,
+        tags: ['sticker', 'decoration', 'acid', 'fun'],
+        previewProps: {
+            children: 'NEW!'
+        }
+    },
+    {
+        id: 'marquee',
+        name: 'Marquee',
+        description: 'Scrolling text banner',
+        theme: 'acid',
+        category: 'navigation',
+        component: Marquee,
+        source: MarqueeSource,
+        tags: ['marquee', 'scroll', 'banner', 'acid'],
+        previewProps: {
+            text: 'BREAKING NEWS'
+        }
+    },
+    {
+        id: 'acid-button',
+        name: 'AcidButton',
+        description: 'High energy button with hover effects',
+        theme: 'acid',
+        category: 'interactive',
+        component: AcidButton,
+        source: AcidButtonSource,
+        tags: ['button', 'acid', 'energy', 'interactive'],
+        previewProps: {
+            children: 'CLICK ME',
+            variant: 'black'
+        }
+    },
+
+    // Claymorphism Components
+    {
+        id: 'clay-card',
+        name: 'ClayCard',
+        description: 'Soft 3D card with clay-like appearance',
+        theme: 'clay',
+        category: 'layout',
+        component: ClayCard,
+        source: ClayCardSource,
+        tags: ['card', 'clay', '3d', 'soft'],
+        previewProps: {
+            children: 'Clay Content',
+            className: 'p-6'
+        }
+    },
+    {
+        id: 'clay-button',
+        name: 'ClayButton',
+        description: 'Soft 3D button that depresses when clicked',
+        theme: 'clay',
+        category: 'interactive',
+        component: ClayButton,
+        source: ClayButtonSource,
+        tags: ['button', 'clay', '3d', 'soft'],
+        previewProps: {
+            children: 'Press',
+            variant: 'primary'
+        }
+    },
+    {
+        id: 'clay-toggle',
+        name: 'ClayToggle',
+        description: 'Soft 3D toggle switch',
+        theme: 'clay',
+        category: 'interactive',
+        component: ClayToggle,
+        source: ClayToggleSource,
+        tags: ['toggle', 'clay', '3d', 'switch'],
+        previewProps: {
+            checked: true
+        }
+    },
+
+    // Blueprint Components
+    {
+        id: 'blueprint-card',
+        name: 'BlueprintCard',
+        description: 'Technical drawing card style',
+        theme: 'blueprint',
+        category: 'layout',
+        component: BlueprintCard,
+        source: BlueprintCardSource,
+        tags: ['card', 'blueprint', 'technical', 'drawing'],
+        previewProps: {
+            title: 'Schematic',
+            code: 'A-01',
+            children: 'Diagram content'
+        }
+    },
+    {
+        id: 'cad-viewer',
+        name: 'CadViewer',
+        description: 'Interactive CAD-like viewer',
+        theme: 'blueprint',
+        category: 'visualization',
+        component: CadViewer,
+        source: CadViewerSource,
+        tags: ['cad', 'viewer', 'blueprint', 'technical'],
+        previewProps: {
+            activeLayers: { 'Structure': true, 'Furniture': true }
+        }
+    },
+    {
+        id: 'layer-control',
+        name: 'LayerControl',
+        description: 'Layer visibility toggle panel',
+        theme: 'blueprint',
+        category: 'interactive',
+        component: LayerControl,
+        source: LayerControlSource,
+        tags: ['layers', 'controls', 'blueprint', 'panel'],
+        previewProps: {
+            layers: { 'Layer 1': true, 'Layer 2': false },
+            toggleLayer: () => { }
+        }
     },
 ]
 

@@ -26,14 +26,21 @@ const LegacyWindow: React.FC<LegacyWindowProps> = ({
             <span className="font-mono text-lg font-bold tracking-wide">{title}</span>
         </div>
         <div className="flex gap-1">
-            <button className="flex h-4 w-4 items-center justify-center bg-[#c0c0c0] shadow-[inset_1px_1px_#ffffff,inset_-1px_-1px_#000000] active:shadow-[inset_1px_1px_#000000]">
+            <button 
+                aria-label="Minimize window"
+                className="flex h-4 w-4 items-center justify-center bg-[#c0c0c0] shadow-[inset_1px_1px_#ffffff,inset_-1px_-1px_#000000] active:shadow-[inset_1px_1px_#000000]"
+            >
                 <Minus className="h-3 w-3 text-black" strokeWidth={3} />
             </button>
-            <button className="flex h-4 w-4 items-center justify-center bg-[#c0c0c0] shadow-[inset_1px_1px_#ffffff,inset_-1px_-1px_#000000] active:shadow-[inset_1px_1px_#000000]">
+            <button 
+                aria-label="Maximize window"
+                className="flex h-4 w-4 items-center justify-center bg-[#c0c0c0] shadow-[inset_1px_1px_#ffffff,inset_-1px_-1px_#000000] active:shadow-[inset_1px_1px_#000000]"
+            >
                 <Square className="h-2 w-2 text-black fill-transparent stroke-[3px]" />
             </button>
             <button 
                 onClick={onClose}
+                aria-label="Close window"
                 className="flex h-4 w-4 items-center justify-center bg-[#c0c0c0] shadow-[inset_1px_1px_#ffffff,inset_-1px_-1px_#000000] active:shadow-[inset_1px_1px_#000000]"
             >
                 <X className="h-3 w-3 text-black" strokeWidth={3} />

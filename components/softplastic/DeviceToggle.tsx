@@ -11,9 +11,13 @@ const DeviceToggle: React.FC<DeviceToggleProps> = ({ label, icon: Icon, initialS
   const [isOn, setIsOn] = useState(initialState);
 
   return (
-    <div 
+    <button 
+      type="button"
       onClick={() => setIsOn(!isOn)}
-      className="cursor-pointer group select-none"
+      role="switch"
+      aria-checked={isOn}
+      aria-label={`Toggle ${label}`}
+      className="cursor-pointer group select-none w-full text-left focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 rounded-2xl"
     >
       <NeumorphicCard 
         className={`flex items-center justify-between p-5 transition-all ${!isOn ? 'hover:-translate-y-1' : ''}`}
@@ -43,7 +47,7 @@ const DeviceToggle: React.FC<DeviceToggleProps> = ({ label, icon: Icon, initialS
             }`} />
         </div>
       </NeumorphicCard>
-    </div>
+    </button>
   );
 };
 

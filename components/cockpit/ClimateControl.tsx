@@ -14,6 +14,7 @@ const ClimateControl = ({ temperature = 72 }: ClimateControlProps) => {
             <div className="flex items-center justify-between">
                 <button
                     onClick={() => setTemp(t => t - 1)}
+                    aria-label="Decrease temperature"
                     className="h-16 w-16 rounded-xl border-2 border-zinc-700 flex items-center justify-center text-blue-400 hover:border-blue-400 hover:bg-blue-900/20 active:scale-95 transition-all"
                 >
                     <Minus className="w-8 h-8" />
@@ -28,6 +29,7 @@ const ClimateControl = ({ temperature = 72 }: ClimateControlProps) => {
 
                 <button
                     onClick={() => setTemp(t => t + 1)}
+                    aria-label="Increase temperature"
                     className="h-16 w-16 rounded-xl border-2 border-zinc-700 flex items-center justify-center text-red-400 hover:border-red-400 hover:bg-red-900/20 active:scale-95 transition-all"
                 >
                     <Plus className="w-8 h-8" />

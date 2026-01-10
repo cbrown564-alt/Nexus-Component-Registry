@@ -41,6 +41,7 @@ const ThermostatDial = () => {
             variant="circle" 
             className="h-14 w-14" 
             onClick={() => setTemp(temp - 1)}
+            aria-label="Decrease temperature"
           />
           
           <div className="flex flex-col items-center gap-1">
@@ -54,7 +55,8 @@ const ThermostatDial = () => {
             icon={Plus} 
             variant="circle" 
             className="h-14 w-14" 
-            onClick={() => setTemp(temp + 1)} 
+            onClick={() => setTemp(temp + 1)}
+            aria-label="Increase temperature"
           />
       </div>
     </NeumorphicCard>

@@ -6,13 +6,18 @@ interface ClayToggleProps {
   checked: boolean;
   onChange: () => void;
   color?: string; // e.g. bg-green-400
+  'aria-label'?: string;
 }
 
-const ClayToggle: React.FC<ClayToggleProps> = ({ checked, onChange, color = "bg-emerald-400" }) => {
+const ClayToggle: React.FC<ClayToggleProps> = ({ checked, onChange, color = "bg-emerald-400", 'aria-label': ariaLabel = "Toggle" }) => {
   return (
-    <div 
+    <button 
+      type="button"
       onClick={onChange}
-      className={`relative h-8 w-8 cursor-pointer rounded-xl transition-all duration-300 ${checked ? color : 'bg-slate-100'}`}
+      role="switch"
+      aria-checked={checked}
+      aria-label={ariaLabel}
+      className={`relative h-8 w-8 cursor-pointer rounded-xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 ${checked ? color : 'bg-slate-100'}`}
       style={{
         boxShadow: checked 
           ? `inset 2px 2px 5px rgba(0,0,0,0.1), inset -2px -2px 5px rgba(255,255,255,0.3)`
@@ -26,7 +31,7 @@ const ClayToggle: React.FC<ClayToggleProps> = ({ checked, onChange, color = "bg-
       >
         <Check className="h-5 w-5 stroke-[4px]" />
       </motion.div>
-    </div>
+    </button>
   );
 };
 

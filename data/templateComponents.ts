@@ -8,30 +8,24 @@ export interface TemplateComponentMapping {
     sharedComponentIds: string[]    // Curated universal components that pair well with theme
 }
 
-// Shared component IDs available in components/ui
+// Truly universal shared components (work well across all themes)
 const SHARED_COMPONENT_IDS = [
-    'spotlight-card',
-    'glow-button',
-    'terminal',
-    'stats-card',
-    'activity-feed',
-    'file-tree',
-    'plan-picker',
-    'team-members',
-    'shortcut-guide',
-    'deployment-pipeline',
-    'integration-toggle',
-    'bento-card',
+    'spotlight-card',      // Universal visual effect for dark themes
+    'glow-button',         // Universal button with glow
+    'stats-card',          // Universal metrics display
+    'activity-feed',       // Universal for any app
+    'team-members',        // Universal for any app
+    'integration-toggle',  // Universal toggle switch
+    'bento-card',          // Universal layout card
 ] as const
 
 // Curated shared component sets by visual style
 const SHARED_SETS = {
     dark: ['spotlight-card', 'glow-button', 'stats-card', 'activity-feed'],
     light: ['bento-card', 'stats-card', 'team-members', 'activity-feed'],
-    developer: ['terminal', 'file-tree', 'shortcut-guide', 'deployment-pipeline', 'stats-card'],
-    business: ['stats-card', 'plan-picker', 'team-members', 'integration-toggle', 'bento-card'],
-    technical: ['terminal', 'deployment-pipeline', 'stats-card', 'integration-toggle'],
+    business: ['stats-card', 'team-members', 'integration-toggle', 'bento-card'],
     creative: ['spotlight-card', 'glow-button', 'activity-feed'],
+    minimal: ['stats-card', 'bento-card', 'activity-feed'],
 }
 
 export const templateComponentMap: TemplateComponentMapping[] = [
@@ -40,8 +34,11 @@ export const templateComponentMap: TemplateComponentMapping[] = [
         id: 'engineering',
         name: 'Engineering',
         usedComponentIds: ['engineering-card', 'engineering-button', 'pipeline-steps', 'code-block'],
-        extendedComponentIds: [], // All theme components are used
-        sharedComponentIds: SHARED_SETS.developer,
+        extendedComponentIds: [
+            'console-output', 'git-diff-view', 'server-stat-badge',  // New components
+            'terminal', 'file-tree', 'shortcut-guide', 'deployment-pipeline'  // Dev-specific (formerly shared)
+        ],
+        sharedComponentIds: SHARED_SETS.dark,
     },
 
     // Game - Arcade theme
@@ -111,8 +108,8 @@ export const templateComponentMap: TemplateComponentMapping[] = [
     {
         id: 'saas',
         name: 'SaaS',
-        usedComponentIds: [],
-        extendedComponentIds: [],
+        usedComponentIds: ['metric-card', 'revenue-chart', 'customer-table', 'saas-card', 'saas-button'],
+        extendedComponentIds: ['plan-picker'],  // Business-specific (formerly shared)
         sharedComponentIds: SHARED_SETS.business,
     },
 
@@ -156,7 +153,7 @@ export const templateComponentMap: TemplateComponentMapping[] = [
     {
         id: 'music',
         name: 'Music',
-        usedComponentIds: [],
+        usedComponentIds: ['now-playing', 'track-list', 'album-grid', 'music-card', 'music-button'],
         extendedComponentIds: [],
         sharedComponentIds: ['spotlight-card', 'glow-button'],
     },
@@ -174,16 +171,16 @@ export const templateComponentMap: TemplateComponentMapping[] = [
     {
         id: 'grid',
         name: 'Grid',
-        usedComponentIds: [],
+        usedComponentIds: ['city-map', 'resource-gauge', 'system-controls', 'grid-card', 'grid-button'],
         extendedComponentIds: [],
-        sharedComponentIds: SHARED_SETS.technical,
+        sharedComponentIds: ['stats-card', 'integration-toggle', 'activity-feed'],
     },
 
     // Brutalist - High contrast
     {
         id: 'brutalist',
         name: 'Brutalist',
-        usedComponentIds: [],
+        usedComponentIds: ['marquee-header', 'art-grid', 'manifesto', 'brutalist-card', 'brutalist-button'],
         extendedComponentIds: [],
         sharedComponentIds: [], // Pure brutalist aesthetic
     },
@@ -192,7 +189,7 @@ export const templateComponentMap: TemplateComponentMapping[] = [
     {
         id: 'kitchen',
         name: 'Kitchen',
-        usedComponentIds: [],
+        usedComponentIds: ['active-step', 'ingredient-scale', 'smart-timer', 'kitchen-card', 'kitchen-button'],
         extendedComponentIds: [],
         sharedComponentIds: ['bento-card', 'stats-card'],
     },
@@ -201,7 +198,7 @@ export const templateComponentMap: TemplateComponentMapping[] = [
     {
         id: 'kids',
         name: 'Kids',
-        usedComponentIds: [],
+        usedComponentIds: ['kids-card', 'big-icon-nav', 'star-progress', 'mascot', 'kids-button'],
         extendedComponentIds: [],
         sharedComponentIds: [], // Unique playful aesthetic
     },
@@ -210,7 +207,7 @@ export const templateComponentMap: TemplateComponentMapping[] = [
     {
         id: 'eink',
         name: 'E-Ink',
-        usedComponentIds: [],
+        usedComponentIds: ['eink-sidebar', 'reader-content', 'library-grid', 'eink-card', 'eink-button'],
         extendedComponentIds: [],
         sharedComponentIds: [], // Minimal grayscale aesthetic
     },
@@ -219,7 +216,7 @@ export const templateComponentMap: TemplateComponentMapping[] = [
     {
         id: 'solarpunk',
         name: 'Solarpunk',
-        usedComponentIds: [],
+        usedComponentIds: ['energy-sun', 'air-quality-leaf', 'solar-card', 'solarpunk-button'],
         extendedComponentIds: [],
         sharedComponentIds: ['stats-card', 'activity-feed'],
     },
@@ -228,7 +225,7 @@ export const templateComponentMap: TemplateComponentMapping[] = [
     {
         id: 'legal',
         name: 'Legal',
-        usedComponentIds: [],
+        usedComponentIds: ['legal-paper', 'clause', 'redline-sidebar', 'diff-viewer', 'legal-button'],
         extendedComponentIds: [],
         sharedComponentIds: ['stats-card', 'activity-feed'],
     },
@@ -237,7 +234,7 @@ export const templateComponentMap: TemplateComponentMapping[] = [
     {
         id: 'softplastic',
         name: 'Soft Plastic',
-        usedComponentIds: [],
+        usedComponentIds: ['neumorphic-card', 'neumorphic-button', 'thermostat-dial', 'device-toggle'],
         extendedComponentIds: [],
         sharedComponentIds: [], // Pure neumorphic aesthetic
     },
@@ -246,7 +243,7 @@ export const templateComponentMap: TemplateComponentMapping[] = [
     {
         id: 'festival',
         name: 'Festival',
-        usedComponentIds: [],
+        usedComponentIds: ['festival-card', 'soundwave-timeline', 'crowd-heatmap', 'ticket-wallet', 'festival-button'],
         extendedComponentIds: [],
         sharedComponentIds: ['spotlight-card', 'glow-button'],
     },
@@ -255,7 +252,7 @@ export const templateComponentMap: TemplateComponentMapping[] = [
     {
         id: 'acid',
         name: 'Acid',
-        usedComponentIds: [],
+        usedComponentIds: ['acid-card', 'glitch-text', 'sticker', 'marquee', 'acid-button'],
         extendedComponentIds: [],
         sharedComponentIds: ['glow-button'], // Limited shared - very unique aesthetic
     },
@@ -264,7 +261,7 @@ export const templateComponentMap: TemplateComponentMapping[] = [
     {
         id: 'clay',
         name: 'Claymorphism',
-        usedComponentIds: [],
+        usedComponentIds: ['clay-card', 'clay-button', 'clay-toggle'],
         extendedComponentIds: [],
         sharedComponentIds: [],
     },
@@ -273,7 +270,7 @@ export const templateComponentMap: TemplateComponentMapping[] = [
     {
         id: 'blueprint',
         name: 'Blueprint',
-        usedComponentIds: [],
+        usedComponentIds: ['blueprint-card', 'cad-viewer', 'layer-control'],
         extendedComponentIds: [],
         sharedComponentIds: ['stats-card'],
     },
