@@ -182,32 +182,49 @@ export default function TemplateComponentsPage() {
         templateComponents.shared.length
 
     const isLight = theme.category === 'light'
+    
+    // Determine if the theme is dark for styling purposes
+    const isDark = theme.category === 'dark' || 
+        ['engineering', 'saas', 'social', 'fintech', 'productivity', 'game', 'music', 'food', 'grid', 'scifi', 'festival', 'cockpit', 'blueprint'].includes(theme.id)
 
     return (
-        <div className={`relative z-10 min-h-screen ${isLight ? 'bg-zinc-50' : 'bg-zinc-950'}`}>
-            {/* Floating Navigation Bar */}
-            <div className="sticky top-0 z-50 flex items-center justify-between px-6 py-3 bg-zinc-950/80 backdrop-blur-md border-b border-zinc-800">
+        // No background here - let the global Background component show through
+        <div className="relative z-10 min-h-screen">
+            {/* Floating Navigation Bar - adapts to theme */}
+            <div className={`sticky top-0 z-50 flex items-center justify-between px-6 py-3 backdrop-blur-md border-b ${
+                isDark 
+                    ? 'bg-zinc-950/80 border-zinc-800' 
+                    : 'bg-white/80 border-zinc-200'
+            }`}>
                 <div className="flex items-center gap-4">
                     <Link
                         to={`/templates/${id}`}
-                        className="flex items-center gap-2 text-sm text-zinc-400 hover:text-white transition-colors"
+                        className={`flex items-center gap-2 text-sm transition-colors ${
+                            isDark 
+                                ? 'text-zinc-400 hover:text-white' 
+                                : 'text-zinc-600 hover:text-zinc-900'
+                        }`}
                     >
                         <ArrowLeft className="h-4 w-4" />
                         Back to Template
                     </Link>
-                    <div className="h-4 w-px bg-zinc-800" />
+                    <div className={`h-4 w-px ${isDark ? 'bg-zinc-800' : 'bg-zinc-300'}`} />
                     <div className="flex items-center gap-2">
                         <div className={`h-3 w-3 rounded-full ${theme.colorClass}`} />
-                        <span className="font-medium text-white">{theme.name}</span>
-                        <span className="text-zinc-500">·</span>
-                        <span className="text-zinc-400 text-sm">Component Library</span>
+                        <span className={`font-medium ${isDark ? 'text-white' : 'text-zinc-900'}`}>{theme.name}</span>
+                        <span className={isDark ? 'text-zinc-500' : 'text-zinc-400'}>·</span>
+                        <span className={`text-sm ${isDark ? 'text-zinc-400' : 'text-zinc-600'}`}>Component Library</span>
                     </div>
                 </div>
 
                 <div className="flex items-center gap-3">
                     <Link
                         to="/components"
-                        className="flex items-center gap-2 text-sm text-zinc-400 hover:text-white transition-colors"
+                        className={`flex items-center gap-2 text-sm transition-colors ${
+                            isDark 
+                                ? 'text-zinc-400 hover:text-white' 
+                                : 'text-zinc-600 hover:text-zinc-900'
+                        }`}
                     >
                         <Box className="h-4 w-4" />
                         All Components
@@ -224,10 +241,10 @@ export default function TemplateComponentsPage() {
                     transition={{ duration: 0.4 }}
                     className="mb-12"
                 >
-                    <h1 className={`text-4xl font-bold mb-4 ${isLight ? 'text-zinc-900' : 'text-white'}`}>
+                    <h1 className={`text-4xl font-bold mb-4 ${isDark ? 'text-white' : 'text-zinc-900'}`}>
                         {theme.name} Components
                     </h1>
-                    <p className={`text-lg max-w-2xl ${isLight ? 'text-zinc-600' : 'text-zinc-400'}`}>
+                    <p className={`text-lg max-w-2xl ${isDark ? 'text-zinc-400' : 'text-zinc-600'}`}>
                         Explore {totalComponents} components that power and complement this template.
                         Each component is designed to work seamlessly with the {theme.name} visual style.
                     </p>
@@ -241,7 +258,7 @@ export default function TemplateComponentsPage() {
                     components={templateComponents.used}
                     startIndex={0}
                     accentColor="text-emerald-400"
-                    isLight={isLight}
+                    isLight={!isDark}
                     themeBackgroundColor={theme.backgroundColor}
                 />
 
@@ -253,7 +270,7 @@ export default function TemplateComponentsPage() {
                     components={templateComponents.extended}
                     startIndex={templateComponents.used.length}
                     accentColor="text-blue-400"
-                    isLight={isLight}
+                    isLight={!isDark}
                     themeBackgroundColor={theme.backgroundColor}
                 />
 
@@ -265,7 +282,7 @@ export default function TemplateComponentsPage() {
                     components={templateComponents.shared}
                     startIndex={templateComponents.used.length + templateComponents.extended.length}
                     accentColor="text-amber-400"
-                    isLight={isLight}
+                    isLight={!isDark}
                     themeBackgroundColor={theme.backgroundColor}
                     isSharedSection={true}
                 />
@@ -273,10 +290,10 @@ export default function TemplateComponentsPage() {
                 {/* Empty State */}
                 {totalComponents === 0 && (
                     <div className="text-center py-16">
-                        <p className="text-zinc-500 mb-2">No documented components for this template yet.</p>
+                        <p className={`mb-2 ${isDark ? 'text-zinc-500' : 'text-zinc-600'}`}>No documented components for this template yet.</p>
                         <Link
                             to="/components"
-                            className="text-sm text-zinc-400 hover:text-white transition-colors"
+                            className={`text-sm transition-colors ${isDark ? 'text-zinc-400 hover:text-white' : 'text-zinc-500 hover:text-zinc-900'}`}
                         >
                             Browse all components
                         </Link>
