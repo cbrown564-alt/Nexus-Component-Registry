@@ -1,6 +1,6 @@
 # Nexus Component Registry — Project Status
 
-> Last Updated: 2026-01-10 (evening)
+> Last Updated: 2026-01-10 (night)
 
 ---
 
@@ -13,6 +13,7 @@ In just **24 commits** over two days, Nexus has transformed from a blank reposit
 | Metric | Count |
 |--------|-------|
 | **Template Dashboards** | 28 |
+| **Template Preview Wireframes** | 20 unique styles |
 | **Registered Components** | 125 |
 | **Documented Components** | 125 (100% coverage!) |
 | **Playground Themes** | 8 |
@@ -20,7 +21,7 @@ In just **24 commits** over two days, Nexus has transformed from a blank reposit
 | **Reusable Hooks** | 9 |
 | **Routes** | 8 |
 | **A11y Tests** | 69 |
-| **Total Commits** | 24+ |
+| **Total Commits** | 27+ |
 
 ---
 
@@ -78,6 +79,48 @@ A comprehensive audit revealed gaps: many templates were visually interesting bu
 - Data layer mapping components to templates (`data/templateComponents.ts`)
 - "In This Template" component library view for each dashboard
 - Component catalog expansion strategy documented
+
+### Day 3: Template Preview System (Jan 10, 2026)
+
+The template gallery needed meaningful previews. Instead of generic colored squares or identical dashboard wireframes, each template now has a **unique wireframe** that captures its visual identity.
+
+**Problem Identified:**
+- Homepage used `ThemePreview` — same dashboard layout for all templates, just recolored
+- Templates page used simple colored squares — no layout differentiation
+- Templates like Legacy (Windows 95), Cockpit (gauges), Swiss (grid typography) are fundamentally different
+
+**Solution: Template-Specific Wireframes**
+
+Created `TemplatePreview` component with 20 unique wireframe variants:
+
+| Wireframe | Templates | Visual Signature |
+|-----------|-----------|------------------|
+| `EngineeringWireframe` | Engineering | IDE with activity bar, explorer, tabs, terminal |
+| `LegacyWireframe` | Legacy | Windows 95-style stacked windows with title bars |
+| `CockpitWireframe` | Cockpit | Three circular gauges (speedometer center) |
+| `SwissWireframe` | Swiss | Red square + bold typography + grid |
+| `BrutalistWireframe` | Brutalist, Acid | "RAW DESIGN" header + asymmetric blocks |
+| `SciFiWireframe` | SciFi, Blueprint | Hexagonal grid + HUD circle with crosshairs |
+| `ArcadeWireframe` | Game | PLAYER ONE neon header + game grid |
+| `FestivalWireframe` | Festival | Audio bar visualizer + LIVE indicator |
+| `WellnessWireframe` | Wellness | Breathing circle with concentric rings |
+| `EducationWireframe` | Education | Course cards with progress bars |
+| `MagazineWireframe` | Magazine, Legal | Editorial columns with bold headlines |
+| `EInkWireframe` | E-Ink | Minimal black/white with stark borders |
+| `KidsWireframe` | Kids | Bright rainbow activity tiles with clouds |
+| `KitchenWireframe` | Kitchen | Recipe step + timer + appliance status |
+| `SolarpunkWireframe` | Solarpunk | Sun energy + plant progress bars |
+| `MusicWireframe` | Music | Album art + track list |
+| `SocialWireframe` | Social | Three-column feed with stories |
+| `FintechWireframe` | Fintech | Chart + digital card + ticker |
+| `ProductivityWireframe` | Productivity | Kanban board + focus timer |
+| `FoodWireframe` | Food | Category chips + menu grid |
+| `GridWireframe` | Grid | City map with nodes + gauges |
+| `ClayWireframe` | Clay, SoftPlastic | Neumorphic cards + calendar strip |
+| `EcommerceWireframe` | Ecommerce | Product grid + cart sidebar |
+| `DashboardWireframe` | SaaS | Classic sidebar + metrics + chart |
+
+**Documentation:** Created `docs/TEMPLATE_PREVIEW_AUDIT.md` with comprehensive analysis of each template's form, function, and vibe.
 
 ---
 
@@ -189,6 +232,14 @@ Investigated and fixed visibility issues affecting SciFi components on detail pa
 ```
 
 **Related**: Created `docs/AUDIT-componentDocs-gaps.md` documenting that 87 of 125 components are missing `componentDocs` entries.
+
+#### 5. Template Preview Wireframes — DONE (Jan 10, 2026)
+Created unique visual previews for each template that capture their distinct identity:
+- ✅ Created `TemplatePreview` component with 20 unique wireframe variants
+- ✅ Fixed critical mismatches: Kids (was dark arcade, now bright tiles), Kitchen (was breathing circle, now recipe/timer), Solarpunk (was wellness, now plants/energy)
+- ✅ Added 13 new wireframes: Engineering, Music, Social, Fintech, Productivity, Food, Grid, Clay, Ecommerce, Kids, Kitchen, Solarpunk, + generic Dashboard
+- ✅ Created `docs/TEMPLATE_PREVIEW_AUDIT.md` with form/function/vibe analysis for all 28 templates
+- ✅ Unified preview component used on both homepage and /templates page
 
 ### Short-term (Next 2 Weeks)
 
@@ -318,6 +369,7 @@ npx nexus add fintech/DigitalCard
 - [x] All 28 templates have complete component mappings
 - [x] 100% components with `componentDocs` entries (125/125 = 100%) ✅
 - [x] WCAG AA compliance across all interactive components (69 passing tests)
+- [x] Unique template previews that capture each template's identity (20 wireframes) ✅
 - [ ] <3s load time on 3G networks
 - [ ] CLI for component installation
 - [ ] Featured in at least 3 design community newsletters
