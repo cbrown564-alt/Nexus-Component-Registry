@@ -1,17 +1,44 @@
 import { useParams, Link, Navigate } from 'react-router-dom'
+import { useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { ArrowLeft, Box, Layers, Sparkles, Puzzle } from 'lucide-react'
 import { getThemeById } from '@/data/themes'
 import { getAllTemplateComponents } from '@/data/templateComponents'
 import { type ComponentMeta, type ComponentCategory } from '@/data/components'
+import { useTheme } from '@/context/ThemeContext'
+
+/**
+ * Extract CSS color value from Tailwind bg class
+ * e.g., 'bg-[#F5F5F5]' -> '#F5F5F5'
+ *       'bg-zinc-950' -> undefined (let Tailwind handle it)
+ */
+function extractBackgroundColor(bgClass: string): string | undefined {
+    // Handle arbitrary values like bg-[#F5F5F5]
+    const arbitraryMatch = bgClass.match(/bg-\[([^\]]+)\]/)
+    if (arbitraryMatch) {
+        return arbitraryMatch[1]
+    }
+    // For Tailwind color classes, we'll use a mapping for common ones
+    const tailwindColors: Record<string, string> = {
+        'bg-zinc-950': '#09090b',
+        'bg-zinc-900': '#18181b',
+        'bg-white': '#ffffff',
+        'bg-black': '#000000',
+        'bg-slate-50': '#f8fafc',
+        'bg-slate-950': '#020617',
+    }
+    return tailwindColors[bgClass]
+}
 
 interface ComponentCardProps {
     comp: ComponentMeta
     index: number
     isLight: boolean
+    themeBackgroundColor: string
+    isSharedComponent?: boolean
 }
 
-function ComponentCard({ comp, index, isLight }: ComponentCardProps) {
+function ComponentCard({ comp, index, isLight, themeBackgroundColor, isSharedComponent = false }: ComponentCardProps) {
     const getCategoryColor = (category: ComponentCategory) => {
         const colors: Record<ComponentCategory, string> = {
             layout: 'bg-blue-500/20 text-blue-400',
@@ -42,8 +69,18 @@ function ComponentCard({ comp, index, isLight }: ComponentCardProps) {
                     }`}
             >
                 {/* Live Preview Area */}
-                <div className={`h-40 flex items-center justify-center border-b relative overflow-hidden p-4 ${isLight ? 'bg-zinc-100/50 border-zinc-100' : 'bg-zinc-950 border-zinc-800'
-                    }`}>
+                {/* For template components: use actual template background for accurate preview */}
+                {/* For shared components: use dark background (their native context) */}
+                <div 
+                    className={`h-40 flex items-center justify-center border-b relative overflow-hidden p-4 ${
+                        isSharedComponent 
+                            ? 'bg-zinc-950 border-zinc-800' 
+                            : isLight 
+                                ? 'border-zinc-200' 
+                                : 'border-zinc-800'
+                    }`}
+                    style={!isSharedComponent ? { backgroundColor: extractBackgroundColor(themeBackgroundColor) } : undefined}
+                >
                     <div className="transform scale-75 origin-center pointer-events-none">
                         <PreviewComponent {...(comp.previewProps || {})} />
                     </div>
@@ -78,9 +115,21 @@ interface ComponentSectionProps {
     startIndex: number
     accentColor?: string
     isLight: boolean
+    themeBackgroundColor: string
+    isSharedSection?: boolean
 }
 
-function ComponentSection({ title, description, icon, components, startIndex, accentColor = 'text-zinc-400', isLight }: ComponentSectionProps) {
+function ComponentSection({ 
+    title, 
+    description, 
+    icon, 
+    components, 
+    startIndex, 
+    accentColor = 'text-zinc-400', 
+    isLight,
+    themeBackgroundColor,
+    isSharedSection = false
+}: ComponentSectionProps) {
     if (components.length === 0) return null
 
     return (
@@ -95,7 +144,14 @@ function ComponentSection({ title, description, icon, components, startIndex, ac
             <p className="text-sm text-zinc-500 mb-6 ml-9">{description}</p>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {components.map((comp, i) => (
-                    <ComponentCard key={comp.id} comp={comp} index={startIndex + i} isLight={isLight} />
+                    <ComponentCard 
+                        key={comp.id} 
+                        comp={comp} 
+                        index={startIndex + i} 
+                        isLight={isLight} 
+                        themeBackgroundColor={themeBackgroundColor}
+                        isSharedComponent={isSharedSection}
+                    />
                 ))}
             </div>
         </section>
@@ -104,9 +160,17 @@ function ComponentSection({ title, description, icon, components, startIndex, ac
 
 export default function TemplateComponentsPage() {
     const { id } = useParams<{ id: string }>()
+    const { setTheme } = useTheme()
 
     const theme = id ? getThemeById(id) : undefined
     const templateComponents = id ? getAllTemplateComponents(id) : null
+
+    // Set the theme when viewing template components (keeps us in template mode)
+    useEffect(() => {
+        if (id) {
+            setTheme(id)
+        }
+    }, [id, setTheme])
 
     if (!theme || !templateComponents) {
         return <Navigate to="/templates" replace />
@@ -178,6 +242,7 @@ export default function TemplateComponentsPage() {
                     startIndex={0}
                     accentColor="text-emerald-400"
                     isLight={isLight}
+                    themeBackgroundColor={theme.backgroundColor}
                 />
 
                 {/* Extended Components Section */}
@@ -189,17 +254,20 @@ export default function TemplateComponentsPage() {
                     startIndex={templateComponents.used.length}
                     accentColor="text-blue-400"
                     isLight={isLight}
+                    themeBackgroundColor={theme.backgroundColor}
                 />
 
                 {/* Shared Components Section */}
                 <ComponentSection
                     title="Compatible Shared Components"
-                    description="Universal components curated to pair well with this theme's aesthetic."
+                    description="Universal components curated to pair well with this theme's aesthetic. Shown on dark background (their native context)."
                     icon={<Sparkles className="h-5 w-5" />}
                     components={templateComponents.shared}
                     startIndex={templateComponents.used.length + templateComponents.extended.length}
                     accentColor="text-amber-400"
                     isLight={isLight}
+                    themeBackgroundColor={theme.backgroundColor}
+                    isSharedSection={true}
                 />
 
                 {/* Empty State */}

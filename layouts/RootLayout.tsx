@@ -1,5 +1,5 @@
 import { Outlet, NavLink, useLocation } from 'react-router-dom'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import {
     Box,
     LayoutTemplate,
@@ -18,11 +18,41 @@ import { ThemeProvider, useTheme } from '@/context/ThemeContext'
 import GlobalSearch from '@/components/search/GlobalSearch'
 import SkipLink from '@/components/a11y/SkipLink'
 
+/**
+ * Hook to reset theme to registry default when navigating away from template pages.
+ * Template pages are: /templates/:id and /templates/:id/components
+ * Registry pages are: /, /templates, /components, /hooks, /tokens, /themes, etc.
+ */
+function useTemplateModeReset() {
+    const location = useLocation()
+    const { clearTemplateTheme, isTemplateMode } = useTheme()
+    
+    useEffect(() => {
+        const pathname = location.pathname
+        
+        // Check if we're on a template-specific page
+        // /templates/:id or /templates/:id/components
+        const templateMatch = pathname.match(/^\/templates\/([^/]+)/)
+        const isTemplatePage = templateMatch !== null && templateMatch[1] !== undefined
+        
+        // If we're not on a template page and we're in template mode, reset
+        if (!isTemplatePage && isTemplateMode) {
+            clearTemplateTheme()
+        }
+    }, [location.pathname, isTemplateMode, clearTemplateTheme])
+}
+
 function Background() {
-    const { currentTheme } = useTheme()
+    const { currentTheme, isTemplateMode } = useTheme()
 
     const getBackgroundImage = () => {
         const id = currentTheme.id
+        
+        // Registry mode uses a subtle dot pattern
+        if (!isTemplateMode || id === 'registry') {
+            return `radial-gradient(#3f3f46 1px, transparent 1px)`
+        }
+        
         if (id === 'education') {
             return `linear-gradient(#cbd5e1 1px, transparent 1px), linear-gradient(90deg, #cbd5e1 1px, transparent 1px)`
         }
@@ -65,11 +95,14 @@ function Background() {
 
 // function Sidebar imports
 function Sidebar() {
-    const { currentTheme } = useTheme()
+    const { currentTheme, isTemplateMode } = useTheme()
     // const [isGalleriesOpen, setIsGalleriesOpen] = useState(true) // Removed state
     const location = useLocation()
 
-    const isDark = ['engineering', 'saas', 'social', 'fintech', 'productivity', 'game', 'music', 'food', 'grid', 'scifi', 'festival', 'cockpit', 'blueprint'].includes(currentTheme.id)
+    // Registry pages always use dark styling, template pages check theme category
+    const isDark = isTemplateMode 
+        ? ['engineering', 'saas', 'social', 'fintech', 'productivity', 'game', 'music', 'food', 'grid', 'scifi', 'festival', 'cockpit', 'blueprint'].includes(currentTheme.id)
+        : true
 
     const navItems = [
         { to: '/', icon: Home, label: 'Home' },
@@ -128,11 +161,15 @@ function Sidebar() {
 }
 
 function Header() {
-    const { currentTheme } = useTheme()
-    const isDark = ['engineering', 'saas', 'social', 'fintech', 'productivity', 'game', 'music', 'food', 'grid', 'scifi', 'festival', 'cockpit', 'blueprint'].includes(currentTheme.id)
+    const { currentTheme, isTemplateMode } = useTheme()
+    
+    // Registry pages always use dark styling
+    const isDark = isTemplateMode 
+        ? ['engineering', 'saas', 'social', 'fintech', 'productivity', 'game', 'music', 'food', 'grid', 'scifi', 'festival', 'cockpit', 'blueprint'].includes(currentTheme.id)
+        : true
 
-    // Hide header on immersive themes
-    const hideHeader = ['brutalist', 'kitchen', 'kids', 'scifi', 'eink', 'solarpunk', 'legal', 'softplastic', 'festival', 'acid', 'legacy', 'cockpit', 'clay', 'blueprint', 'swiss'].includes(currentTheme.id)
+    // Hide header on immersive template themes (only when in template mode)
+    const hideHeader = isTemplateMode && ['brutalist', 'kitchen', 'kids', 'scifi', 'eink', 'solarpunk', 'legal', 'softplastic', 'festival', 'acid', 'legacy', 'cockpit', 'clay', 'blueprint', 'swiss'].includes(currentTheme.id)
 
     if (hideHeader) return null
 
@@ -165,10 +202,16 @@ function Header() {
 }
 
 function LayoutContent() {
-    const { currentTheme } = useTheme()
+    const { currentTheme, isTemplateMode } = useTheme()
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+    
+    // Reset to registry theme when navigating away from template pages
+    useTemplateModeReset()
 
-    const isDark = ['engineering', 'saas', 'social', 'fintech', 'productivity', 'game', 'music', 'food', 'grid', 'scifi', 'festival', 'cockpit', 'blueprint'].includes(currentTheme.id)
+    // Registry pages always use dark theme, template pages use their theme
+    const isDark = isTemplateMode 
+        ? ['engineering', 'saas', 'social', 'fintech', 'productivity', 'game', 'music', 'food', 'grid', 'scifi', 'festival', 'cockpit', 'blueprint'].includes(currentTheme.id)
+        : true // Registry always dark
 
     return (
         <div className={`flex min-h-screen w-full font-sans transition-colors duration-500 ${currentTheme.textColorClass}`}>
