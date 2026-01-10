@@ -17,19 +17,23 @@ const CockpitCard: React.FC<CockpitCardProps> = ({
   noPadding = false
 }) => {
   return (
-    <div className={`relative bg-[#1a1a1a] border-2 ${alert ? 'border-red-500' : 'border-zinc-800'} rounded-2xl overflow-hidden shadow-2xl ${className}`}>
+    <div className={`relative bg-black/40 backdrop-blur-2xl border ${alert ? 'border-red-500/50' : 'border-white/10'} rounded-3xl overflow-hidden shadow-2xl ring-1 ring-white/5 ${className}`}>
+      {/* Glossy Gradient Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent opacity-50 pointer-events-none" />
+
       {/* Matte Texture Overlay */}
-      <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPgo8cmVjdCB3aWR0aD0iNCIgaGVpZ2h0PSI0IiBmaWxsPSIjMWExYTFhIiAvPgo8cmVjdCB3aWR0aD0iMSIgaGVpZ2h0PSIxIiBmaWxsPSIjMjIyMjIyIiAvPgo8L3N2Zz4=')] opacity-20 pointer-events-none" />
+      <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPgo8cmVjdCB3aWR0aD0iNCIgaGVpZ2h0PSI0IiBmaWxsPSIjMWExYTFhIiAvPgo8cmVjdCB3aWR0aD0iMSIgaGVpZ2h0PSIxIiBmaWxsPSIjMjIyMjIyIiAvPgo8L3N2Zz4=')] opacity-10 pointer-events-none mix-blend-overlay" />
 
       {label && (
-        <div className="absolute top-3 left-5 z-10">
-          <span className={`text-xs font-bold uppercase tracking-[0.2em] ${alert ? 'text-red-500' : 'text-zinc-500'}`}>
+        <div className="absolute top-4 left-6 z-20">
+          <span className={`text-[10px] font-black uppercase tracking-[0.2em] ${alert ? 'text-red-400' : 'text-zinc-500'} flex items-center gap-2`}>
+            {alert && <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />}
             {label}
           </span>
         </div>
       )}
 
-      <div className={`relative z-10 h-full w-full ${noPadding ? 'p-0' : 'p-5'}`}>
+      <div className={`relative z-10 h-full w-full ${noPadding ? 'p-0' : 'p-6'}`}>
         {children}
       </div>
     </div>
