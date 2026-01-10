@@ -182,6 +182,7 @@ Each theme should grow beyond its dashboard requirements:
 - ~~**Engineering**: Add `ConsoleOutput`, `GitDiffView`, `ServerStatBadge`~~ ✅ DONE
 - **SciFi**: Add `HolographicTable`, `GlitchHeading`, `NeonToggle`
 - **Wellness**: Add `JournalEntry`, `MeditationTimer`, `HabitCheckbox`
+- Need to identify extended components to add for all other templates/themes.
 
 #### Semantic Search Upgrade
 Move from string matching to intent-based discovery:

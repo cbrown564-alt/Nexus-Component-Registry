@@ -64,7 +64,7 @@ export const templateComponentMap: TemplateComponentMapping[] = [
         id: 'scifi',
         name: 'SciFi',
         usedComponentIds: ['scifi-card', 'body-scanner', 'vitals-monitor', 'dna-list'],
-        extendedComponentIds: [],
+        extendedComponentIds: ['holographic-table', 'glitch-heading', 'neon-toggle'],
         sharedComponentIds: ['spotlight-card', 'glow-button', 'stats-card'],
     },
 

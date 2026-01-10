@@ -69,6 +69,12 @@ import DNAList from '@/components/scifi/DNAList'
 import DNAListSource from '@/components/scifi/DNAList?raw'
 import VitalsMonitor from '@/components/scifi/VitalsMonitor'
 import VitalsMonitorSource from '@/components/scifi/VitalsMonitor?raw'
+import HolographicTable from '@/components/scifi/HolographicTable'
+import HolographicTableSource from '@/components/scifi/HolographicTable?raw'
+import GlitchHeading from '@/components/scifi/GlitchHeading'
+import GlitchHeadingSource from '@/components/scifi/GlitchHeading?raw'
+import NeonToggle from '@/components/scifi/NeonToggle'
+import NeonToggleSource from '@/components/scifi/NeonToggle?raw'
 
 // Education Components
 import CourseCard from '@/components/education/CourseCard'
@@ -642,6 +648,58 @@ export const components: ComponentMeta[] = [
         component: VitalsMonitor,
         source: VitalsMonitorSource,
         tags: ['vitals', 'monitor', 'health', 'graph'],
+    },
+    {
+        id: 'holographic-table',
+        name: 'HolographicTable',
+        description: 'Transparent data table with scanline hover effects',
+        theme: 'scifi',
+        category: 'data-display',
+        component: HolographicTable,
+        source: HolographicTableSource,
+        tags: ['table', 'hologram', 'data', 'scifi'],
+        previewProps: {
+            columns: [
+                { key: 'id', header: 'ID', width: '20%' },
+                { key: 'system', header: 'System', width: '40%' },
+                { key: 'status', header: 'Status', width: '40%' },
+            ],
+            data: [
+                { id: 'SYS-01', system: 'Navigation', status: 'Online' },
+                { id: 'SYS-02', system: 'Life Support', status: 'Optimal' },
+                { id: 'SYS-03', system: 'Shields', status: 'Charging' },
+            ],
+            title: 'System Diagnostics'
+        }
+    },
+    {
+        id: 'glitch-heading',
+        name: 'GlitchHeading',
+        description: 'Cyberpunk heading with glitch animation effects',
+        theme: 'scifi',
+        category: 'layout',
+        component: GlitchHeading,
+        source: GlitchHeadingSource,
+        tags: ['heading', 'text', 'glitch', 'animation'],
+        previewProps: {
+            text: 'CYBERPUNK',
+            size: 'lg'
+        }
+    },
+    {
+        id: 'neon-toggle',
+        name: 'NeonToggle',
+        description: 'Neon tube style toggle switch with glow',
+        theme: 'scifi',
+        category: 'forms',
+        component: NeonToggle,
+        source: NeonToggleSource,
+        tags: ['toggle', 'switch', 'neon', 'glow'],
+        previewProps: {
+            label: 'Power',
+            initialState: true,
+            color: 'cyan'
+        }
     },
 
     // Education Components
