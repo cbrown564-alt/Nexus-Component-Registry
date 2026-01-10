@@ -1,4 +1,5 @@
 import type { ComponentType } from 'react'
+import { Box } from 'lucide-react'
 
 // Shared UI Components
 import SpotlightCard from '@/components/ui/SpotlightCard'
@@ -131,6 +132,18 @@ import SwissTypographySource from '@/components/swiss/SwissTypography?raw'
 import SwissDivider from '@/components/swiss/SwissDivider'
 import SwissDividerSource from '@/components/swiss/SwissDivider?raw'
 
+// Wellness Components
+import WellnessCard from '@/components/wellness/WellnessCard'
+import WellnessCardSource from '@/components/wellness/WellnessCard?raw'
+import BreathPlayer from '@/components/wellness/BreathPlayer'
+import BreathPlayerSource from '@/components/wellness/BreathPlayer?raw'
+import SleepGraph from '@/components/wellness/SleepGraph'
+import SleepGraphSource from '@/components/wellness/SleepGraph?raw'
+import MoodSelector from '@/components/wellness/MoodSelector'
+import MoodSelectorSource from '@/components/wellness/MoodSelector?raw'
+import WellnessButton from '@/components/wellness/WellnessButton'
+import WellnessButtonSource from '@/components/wellness/WellnessButton?raw'
+
 export type ComponentCategory =
     | 'layout'
     | 'data-display'
@@ -146,9 +159,10 @@ export interface ComponentMeta {
     description: string
     theme: string
     category: ComponentCategory
-    component: ComponentType<unknown>
+    component: ComponentType<any>
     source?: string
     tags: string[]
+    previewProps?: Record<string, any>
 }
 
 export const components: ComponentMeta[] = [
@@ -182,6 +196,10 @@ export const components: ComponentMeta[] = [
         component: Terminal,
         source: TerminalSource,
         tags: ['terminal', 'code', 'animation', 'developer'],
+        previewProps: {
+            initialLines: ['npm install nexus-ui', 'Installing dependencies...', 'Success!'],
+            typingSpeed: 50
+        }
     },
     {
         id: 'stats-card',
@@ -212,6 +230,12 @@ export const components: ComponentMeta[] = [
         component: FileTree,
         source: FileTreeSource,
         tags: ['files', 'tree', 'explorer', 'folders'],
+        previewProps: {
+            files: [
+                { name: 'src', type: 'folder', children: [{ name: 'App.tsx', type: 'file' }] },
+                { name: 'package.json', type: 'file' }
+            ]
+        }
     },
     {
         id: 'plan-picker',
@@ -272,6 +296,12 @@ export const components: ComponentMeta[] = [
         component: BentoCard,
         source: BentoCardSource,
         tags: ['bento', 'grid', 'card', 'layout'],
+        previewProps: {
+            icon: Box,
+            title: 'Bento Card',
+            description: 'A sample bento grid card component.',
+            className: 'min-h-[200px]'
+        }
     },
 
     // Fintech Components
@@ -462,6 +492,15 @@ export const components: ComponentMeta[] = [
         component: CourseCard,
         source: CourseCardSource,
         tags: ['course', 'learning', 'education', 'progress'],
+        previewProps: {
+            title: 'Advanced React Patterns',
+            category: 'Development',
+            progress: 75,
+            totalModules: 12,
+            completedModules: 9,
+            image: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=800&auto=format&fit=crop&q=60',
+            color: 'bg-violet-500',
+        }
     },
     {
         id: 'upcoming-schedule',
@@ -484,6 +523,16 @@ export const components: ComponentMeta[] = [
         component: FeedPost,
         source: FeedPostSource,
         tags: ['post', 'social', 'feed', 'interactions'],
+        previewProps: {
+            author: {
+                name: "Alex Rivera",
+                handle: "arivera",
+                avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&auto=format&fit=crop&q=60",
+                time: "2h ago"
+            },
+            content: "Just shipped the new dashboard update! 🚀 The performance improvements are insane. #engineering #webdev",
+            stats: { likes: 128, comments: 24, shares: 12 }
+        }
     },
     {
         id: 'profile-summary',
@@ -548,6 +597,71 @@ export const components: ComponentMeta[] = [
         component: DesktopIcon,
         source: DesktopIconSource,
         tags: ['icon', 'desktop', 'shortcut', 'retro'],
+        previewProps: {
+            icon: Box,
+            label: 'My Computer',
+            selected: false
+        }
+    },
+
+    // Wellness Components
+    {
+        id: 'wellness-card',
+        name: 'WellnessCard',
+        description: 'Serene card container with glassmorphism',
+        theme: 'wellness',
+        category: 'layout',
+        component: WellnessCard,
+        source: WellnessCardSource,
+        tags: ['card', 'container', 'wellness', 'glass'],
+        previewProps: {
+            children: "Wellness Card Content",
+            className: "h-32 flex items-center justify-center text-stone-500"
+        }
+    },
+    {
+        id: 'breath-player',
+        name: 'BreathPlayer',
+        description: 'Breathing exercise visualizer with animations',
+        theme: 'wellness',
+        category: 'interactive',
+        component: BreathPlayer,
+        source: BreathPlayerSource,
+        tags: ['breathing', 'health', 'animation', 'wellness'],
+    },
+    {
+        id: 'sleep-graph',
+        name: 'SleepGraph',
+        description: 'Sleep quality visualization graph',
+        theme: 'wellness',
+        category: 'visualization',
+        component: SleepGraph,
+        source: SleepGraphSource,
+        tags: ['graph', 'sleep', 'data', 'health'],
+    },
+    {
+        id: 'mood-selector',
+        name: 'MoodSelector',
+        description: 'Interactive mood tracking component',
+        theme: 'wellness',
+        category: 'forms',
+        component: MoodSelector,
+        source: MoodSelectorSource,
+        tags: ['mood', 'tracker', 'interactive', 'wellness'],
+    },
+    {
+        id: 'wellness-button',
+        name: 'WellnessButton',
+        description: 'Soft, organic button styles',
+        theme: 'wellness',
+        category: 'interactive',
+        component: WellnessButton,
+        source: WellnessButtonSource,
+        tags: ['button', 'wellness', 'organic', 'soft'],
+        previewProps: {
+            children: "Wellness Button",
+            variant: 'primary'
+        }
     },
 
     // Engineering Components
@@ -560,6 +674,10 @@ export const components: ComponentMeta[] = [
         component: EngineeringCard,
         source: EngineeringCardSource,
         tags: ['card', 'container', 'engineering', 'dark'],
+        previewProps: {
+            children: "Engineering Card Content",
+            className: "min-h-[100px] flex items-center justify-center text-zinc-400 text-sm"
+        }
     },
     {
         id: 'engineering-button',
@@ -580,6 +698,13 @@ export const components: ComponentMeta[] = [
         component: PipelineSteps,
         source: PipelineStepsSource,
         tags: ['pipeline', 'ci-cd', 'status', 'steps'],
+        previewProps: {
+            steps: [
+                { name: 'Build', status: 'success' },
+                { name: 'Test', status: 'running' },
+                { name: 'Deploy', status: 'pending' }
+            ]
+        }
     },
     {
         id: 'code-block',
@@ -590,6 +715,11 @@ export const components: ComponentMeta[] = [
         component: CodeBlock,
         source: CodeBlockSource,
         tags: ['code', 'syntax', 'copy', 'developer'],
+        previewProps: {
+            code: "function hello() {\n  console.log('Hello World');\n}",
+            language: 'typescript',
+            filename: 'example.ts'
+        }
     },
 
     // Food Button

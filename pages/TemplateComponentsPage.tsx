@@ -8,9 +8,10 @@ import { type ComponentMeta, type ComponentCategory } from '@/data/components'
 interface ComponentCardProps {
     comp: ComponentMeta
     index: number
+    isLight: boolean
 }
 
-function ComponentCard({ comp, index }: ComponentCardProps) {
+function ComponentCard({ comp, index, isLight }: ComponentCardProps) {
     const getCategoryColor = (category: ComponentCategory) => {
         const colors: Record<ComponentCategory, string> = {
             layout: 'bg-blue-500/20 text-blue-400',
@@ -35,21 +36,27 @@ function ComponentCard({ comp, index }: ComponentCardProps) {
         >
             <Link
                 to={`/components/${comp.theme}/${comp.id}`}
-                className="group block rounded-xl border border-zinc-800 bg-zinc-900/50 overflow-hidden hover:border-zinc-600 transition-all"
+                className={`group block rounded-xl border overflow-hidden transition-all ${isLight
+                        ? 'bg-white border-zinc-200 hover:border-zinc-300 shadow-sm hover:shadow-md'
+                        : 'bg-zinc-900/50 border-zinc-800 hover:border-zinc-600'
+                    }`}
             >
                 {/* Live Preview Area */}
-                <div className="h-40 bg-zinc-950 flex items-center justify-center border-b border-zinc-800 relative overflow-hidden p-4">
+                <div className={`h-40 flex items-center justify-center border-b relative overflow-hidden p-4 ${isLight ? 'bg-zinc-100/50 border-zinc-100' : 'bg-zinc-950 border-zinc-800'
+                    }`}>
                     <div className="transform scale-75 origin-center pointer-events-none">
-                        <PreviewComponent />
+                        <PreviewComponent {...(comp.previewProps || {})} />
                     </div>
                     {/* Hover overlay to emphasize clickability */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <div className={`absolute inset-0 bg-gradient-to-t via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity ${isLight ? 'from-zinc-200' : 'from-zinc-950'
+                        }`} />
                 </div>
 
                 {/* Info */}
                 <div className="p-4">
                     <div className="flex items-center gap-2 mb-2">
-                        <h3 className="font-semibold text-white group-hover:text-zinc-100 transition-colors">
+                        <h3 className={`font-semibold transition-colors ${isLight ? 'text-zinc-900 group-hover:text-zinc-700' : 'text-white group-hover:text-zinc-100'
+                            }`}>
                             {comp.name}
                         </h3>
                         <span className={`px-1.5 py-0.5 text-[10px] rounded ${getCategoryColor(comp.category)}`}>
@@ -70,24 +77,25 @@ interface ComponentSectionProps {
     components: ComponentMeta[]
     startIndex: number
     accentColor?: string
+    isLight: boolean
 }
 
-function ComponentSection({ title, description, icon, components, startIndex, accentColor = 'text-zinc-400' }: ComponentSectionProps) {
+function ComponentSection({ title, description, icon, components, startIndex, accentColor = 'text-zinc-400', isLight }: ComponentSectionProps) {
     if (components.length === 0) return null
 
     return (
         <section className="mb-12">
             <div className="flex items-center gap-3 mb-2">
                 <div className={accentColor}>{icon}</div>
-                <h2 className="text-xl font-bold text-white">{title}</h2>
-                <span className="px-2 py-0.5 text-xs bg-zinc-800 rounded-full text-zinc-400">
+                <h2 className={`text-xl font-bold ${isLight ? 'text-zinc-900' : 'text-white'}`}>{title}</h2>
+                <span className={`px-2 py-0.5 text-xs rounded-full ${isLight ? 'bg-zinc-200 text-zinc-600' : 'bg-zinc-800 text-zinc-400'}`}>
                     {components.length}
                 </span>
             </div>
             <p className="text-sm text-zinc-500 mb-6 ml-9">{description}</p>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {components.map((comp, i) => (
-                    <ComponentCard key={comp.id} comp={comp} index={startIndex + i} />
+                    <ComponentCard key={comp.id} comp={comp} index={startIndex + i} isLight={isLight} />
                 ))}
             </div>
         </section>
@@ -109,8 +117,10 @@ export default function TemplateComponentsPage() {
         templateComponents.extended.length +
         templateComponents.shared.length
 
+    const isLight = theme.category === 'light'
+
     return (
-        <div className="relative z-10">
+        <div className={`relative z-10 min-h-screen ${isLight ? 'bg-zinc-50' : 'bg-zinc-950'}`}>
             {/* Floating Navigation Bar */}
             <div className="sticky top-0 z-50 flex items-center justify-between px-6 py-3 bg-zinc-950/80 backdrop-blur-md border-b border-zinc-800">
                 <div className="flex items-center gap-4">
@@ -150,10 +160,10 @@ export default function TemplateComponentsPage() {
                     transition={{ duration: 0.4 }}
                     className="mb-12"
                 >
-                    <h1 className="text-4xl font-bold text-white mb-4">
+                    <h1 className={`text-4xl font-bold mb-4 ${isLight ? 'text-zinc-900' : 'text-white'}`}>
                         {theme.name} Components
                     </h1>
-                    <p className="text-lg text-zinc-400 max-w-2xl">
+                    <p className={`text-lg max-w-2xl ${isLight ? 'text-zinc-600' : 'text-zinc-400'}`}>
                         Explore {totalComponents} components that power and complement this template.
                         Each component is designed to work seamlessly with the {theme.name} visual style.
                     </p>
@@ -167,6 +177,7 @@ export default function TemplateComponentsPage() {
                     components={templateComponents.used}
                     startIndex={0}
                     accentColor="text-emerald-400"
+                    isLight={isLight}
                 />
 
                 {/* Extended Components Section */}
@@ -177,6 +188,7 @@ export default function TemplateComponentsPage() {
                     components={templateComponents.extended}
                     startIndex={templateComponents.used.length}
                     accentColor="text-blue-400"
+                    isLight={isLight}
                 />
 
                 {/* Shared Components Section */}
@@ -187,6 +199,7 @@ export default function TemplateComponentsPage() {
                     components={templateComponents.shared}
                     startIndex={templateComponents.used.length + templateComponents.extended.length}
                     accentColor="text-amber-400"
+                    isLight={isLight}
                 />
 
                 {/* Empty State */}

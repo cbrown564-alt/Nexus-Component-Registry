@@ -93,7 +93,7 @@ export const templateComponentMap: TemplateComponentMapping[] = [
     {
         id: 'wellness',
         name: 'Wellness',
-        usedComponentIds: [],
+        usedComponentIds: ['wellness-card', 'breath-player', 'sleep-graph', 'mood-selector', 'wellness-button'],
         extendedComponentIds: [],
         sharedComponentIds: SHARED_SETS.light,
     },
