@@ -63,6 +63,12 @@ For each theme, identify gaps in common UI patterns and build them:
 ## Implementation Standard
 All new components must:
 1.  Be registered in `data/components.ts`.
-2.  Include `previewProps` for safe live rendering.
-3.  Be mapped to their respective `data/templateComponents.ts` entry.
-4.  Pass the `npm run check:components` validation.
+2.  Include `previewProps` for safe live rendering in fallback preview mode.
+3.  **Add an entry to `data/componentDocs.ts`** with props, examples, and notes. This enables:
+    - Interactive LivePlayground with prop controls
+    - Full API reference table on component detail pages
+    - Proper rendering with default values (without relying solely on `previewProps`)
+4.  Be mapped to their respective `data/templateComponents.ts` entry.
+5.  Pass the `npm run check:components` validation.
+
+> ⚠️ **Critical**: Components without `componentDocs` entries fall back to static preview using only `previewProps`. If props are missing or incomplete, components may render incorrectly or appear invisible. See `docs/AUDIT-componentDocs-gaps.md` for the current gap analysis (87 of 125 components missing docs).

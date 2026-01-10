@@ -121,7 +121,7 @@ export function Example() {
                     <LivePlayground component={component} doc={doc} />
                 </motion.div>
             ) : (
-                /* Fallback if no docs found */
+                /* Fallback if no docs found - use previewProps for proper rendering */
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -133,7 +133,7 @@ export function Example() {
                     </h2>
                     <div className="rounded-xl border border-zinc-800 bg-zinc-950 p-8 min-h-[200px] flex items-center justify-center">
                         <div className="w-full max-w-md">
-                            <Component />
+                            <Component {...(component.previewProps || {})} />
                         </div>
                     </div>
                 </motion.div>
