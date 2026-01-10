@@ -46,7 +46,7 @@ export const templateComponentMap: TemplateComponentMapping[] = [
         id: 'game',
         name: 'Game',
         usedComponentIds: ['character-profile', 'inventory-grid', 'quest-log', 'leaderboard-widget'],
-        extendedComponentIds: [],
+        extendedComponentIds: ['game-button', 'game-card', 'achievement-badge', 'health-bar'],
         sharedComponentIds: ['spotlight-card', 'glow-button', 'activity-feed'],
     },
 
@@ -55,7 +55,7 @@ export const templateComponentMap: TemplateComponentMapping[] = [
         id: 'fintech',
         name: 'Fintech',
         usedComponentIds: ['portfolio-chart', 'digital-card', 'market-ticker', 'transaction-list'],
-        extendedComponentIds: [],
+        extendedComponentIds: ['fintech-button', 'fintech-card', 'currency-converter', 'sparkline-chart'],
         sharedComponentIds: SHARED_SETS.business,
     },
 
@@ -91,7 +91,7 @@ export const templateComponentMap: TemplateComponentMapping[] = [
         id: 'wellness',
         name: 'Wellness',
         usedComponentIds: ['wellness-card', 'breath-player', 'sleep-graph', 'mood-selector', 'wellness-button'],
-        extendedComponentIds: [],
+        extendedComponentIds: ['journal-entry', 'meditation-timer', 'habit-checkbox'],
         sharedComponentIds: SHARED_SETS.light,
     },
 
@@ -136,7 +136,7 @@ export const templateComponentMap: TemplateComponentMapping[] = [
         id: 'social',
         name: 'Social',
         usedComponentIds: ['feed-post', 'profile-summary'],
-        extendedComponentIds: [],
+        extendedComponentIds: ['social-button', 'social-card', 'story-rail'],
         sharedComponentIds: ['activity-feed', 'stats-card'],
     },
 
@@ -145,7 +145,7 @@ export const templateComponentMap: TemplateComponentMapping[] = [
         id: 'productivity',
         name: 'Productivity',
         usedComponentIds: ['flow-button'],
-        extendedComponentIds: [],
+        extendedComponentIds: ['productivity-card', 'focus-timer', 'task-inbox', 'kanban-board'],
         sharedComponentIds: ['stats-card', 'activity-feed', 'integration-toggle'],
     },
 
@@ -163,7 +163,7 @@ export const templateComponentMap: TemplateComponentMapping[] = [
         id: 'food',
         name: 'Food',
         usedComponentIds: ['food-button'],
-        extendedComponentIds: [],
+        extendedComponentIds: ['food-card', 'hero-dish', 'menu-grid', 'cart-widget'],
         sharedComponentIds: ['spotlight-card', 'stats-card'],
     },
 
@@ -199,7 +199,7 @@ export const templateComponentMap: TemplateComponentMapping[] = [
         id: 'kids',
         name: 'Kids',
         usedComponentIds: ['kids-card', 'big-icon-nav', 'star-progress', 'mascot', 'kids-button'],
-        extendedComponentIds: [],
+        extendedComponentIds: ['reward-star', 'speech-bubble'],
         sharedComponentIds: [], // Unique playful aesthetic
     },
 
@@ -217,7 +217,7 @@ export const templateComponentMap: TemplateComponentMapping[] = [
         id: 'solarpunk',
         name: 'Solarpunk',
         usedComponentIds: ['energy-sun', 'air-quality-leaf', 'solar-card', 'solarpunk-button'],
-        extendedComponentIds: [],
+        extendedComponentIds: ['eco-stats', 'plant-progress'],
         sharedComponentIds: ['stats-card', 'activity-feed'],
     },
 
@@ -271,7 +271,7 @@ export const templateComponentMap: TemplateComponentMapping[] = [
         id: 'blueprint',
         name: 'Blueprint',
         usedComponentIds: ['blueprint-card', 'cad-viewer', 'layer-control'],
-        extendedComponentIds: [],
+        extendedComponentIds: ['measurement-label'],
         sharedComponentIds: ['stats-card'],
     },
 

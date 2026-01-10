@@ -36,6 +36,14 @@ import PortfolioChart from '@/components/fintech/PortfolioChart'
 import PortfolioChartSource from '@/components/fintech/PortfolioChart?raw'
 import TransactionList from '@/components/fintech/TransactionList'
 import TransactionListSource from '@/components/fintech/TransactionList?raw'
+import FintechButton from '@/components/fintech/FintechButton'
+import FintechButtonSource from '@/components/fintech/FintechButton?raw'
+import FintechCard from '@/components/fintech/FintechCard'
+import FintechCardSource from '@/components/fintech/FintechCard?raw'
+import CurrencyConverter from '@/components/fintech/CurrencyConverter'
+import CurrencyConverterSource from '@/components/fintech/CurrencyConverter?raw'
+import SparklineChart from '@/components/fintech/SparklineChart'
+import SparklineChartSource from '@/components/fintech/SparklineChart?raw'
 
 // Cockpit Components
 import Speedometer from '@/components/cockpit/Speedometer'
@@ -59,6 +67,14 @@ import LeaderboardWidgetSource from '@/components/game/LeaderboardWidget?raw'
 
 import QuestLog from '@/components/game/QuestLog'
 import QuestLogSource from '@/components/game/QuestLog?raw'
+import GameButton from '@/components/game/GameButton'
+import GameButtonSource from '@/components/game/GameButton?raw'
+import GameCard from '@/components/game/GameCard'
+import GameCardSource from '@/components/game/GameCard?raw'
+import AchievementBadge from '@/components/game/AchievementBadge'
+import AchievementBadgeSource from '@/components/game/AchievementBadge?raw'
+import HealthBar from '@/components/game/HealthBar'
+import HealthBarSource from '@/components/game/HealthBar?raw'
 
 // Scifi Components
 import SciFiCard from '@/components/scifi/SciFiCard'
@@ -87,6 +103,12 @@ import FeedPost from '@/components/social/FeedPost'
 import FeedPostSource from '@/components/social/FeedPost?raw'
 import { ProfileSummary } from '@/components/social/ProfileSidebar'
 import ProfileSidebarSource from '@/components/social/ProfileSidebar?raw'
+import SocialButton from '@/components/social/SocialButton'
+import SocialButtonSource from '@/components/social/SocialButton?raw'
+import SocialCard from '@/components/social/SocialCard'
+import SocialCardSource from '@/components/social/SocialCard?raw'
+import StoryRail from '@/components/social/StoryRail'
+import StoryRailSource from '@/components/social/StoryRail?raw'
 
 // Ecommerce Components
 import ProductCard from '@/components/ecommerce/ProductCard'
@@ -121,6 +143,14 @@ import ServerStatBadgeSource from '@/components/engineering/ServerStatBadge?raw'
 // Food Components
 import FoodButton from '@/components/food/FoodButton'
 import FoodButtonSource from '@/components/food/FoodButton?raw'
+import FoodCard from '@/components/food/FoodCard'
+import FoodCardSource from '@/components/food/FoodCard?raw'
+import HeroDish from '@/components/food/HeroDish'
+import HeroDishSource from '@/components/food/HeroDish?raw'
+import MenuGrid from '@/components/food/MenuGrid'
+import MenuGridSource from '@/components/food/MenuGrid?raw'
+import CartWidget from '@/components/food/CartWidget'
+import CartWidgetSource from '@/components/food/CartWidget?raw'
 
 // Magazine Components
 import EditorialButton from '@/components/magazine/EditorialButton'
@@ -133,6 +163,14 @@ import ShopButtonSource from '@/components/ecommerce/ShopButton?raw'
 // Productivity Components
 import FlowButton from '@/components/productivity/FlowButton'
 import FlowButtonSource from '@/components/productivity/FlowButton?raw'
+import ProductivityCard from '@/components/productivity/ProductivityCard'
+import ProductivityCardSource from '@/components/productivity/ProductivityCard?raw'
+import FocusTimer from '@/components/productivity/FocusTimer'
+import FocusTimerSource from '@/components/productivity/FocusTimer?raw'
+import TaskInbox from '@/components/productivity/TaskInbox'
+import TaskInboxSource from '@/components/productivity/TaskInbox?raw'
+import KanbanBoard from '@/components/productivity/KanbanBoard'
+import KanbanBoardSource from '@/components/productivity/KanbanBoard?raw'
 
 // Swiss Components
 import SwissButton from '@/components/swiss/SwissButton'
@@ -155,6 +193,12 @@ import MoodSelector from '@/components/wellness/MoodSelector'
 import MoodSelectorSource from '@/components/wellness/MoodSelector?raw'
 import WellnessButton from '@/components/wellness/WellnessButton'
 import WellnessButtonSource from '@/components/wellness/WellnessButton?raw'
+import JournalEntry from '@/components/wellness/JournalEntry'
+import JournalEntrySource from '@/components/wellness/JournalEntry?raw'
+import MeditationTimer from '@/components/wellness/MeditationTimer'
+import MeditationTimerSource from '@/components/wellness/MeditationTimer?raw'
+import HabitCheckbox from '@/components/wellness/HabitCheckbox'
+import HabitCheckboxSource from '@/components/wellness/HabitCheckbox?raw'
 
 // SaaS Components
 import MetricCard from '@/components/saas/MetricCard'
@@ -227,6 +271,10 @@ import Mascot from '@/components/kids/Mascot'
 import MascotSource from '@/components/kids/Mascot?raw'
 import KidsButton from '@/components/kids/KidsButton'
 import KidsButtonSource from '@/components/kids/KidsButton?raw'
+import RewardStar from '@/components/kids/RewardStar'
+import RewardStarSource from '@/components/kids/RewardStar?raw'
+import SpeechBubble from '@/components/kids/SpeechBubble'
+import SpeechBubbleSource from '@/components/kids/SpeechBubble?raw'
 
 // E-Ink Components
 import EInkSidebar from '@/components/eink/EInkSidebar'
@@ -249,6 +297,10 @@ import SolarCard from '@/components/solarpunk/SolarCard'
 import SolarCardSource from '@/components/solarpunk/SolarCard?raw'
 import SolarpunkButton from '@/components/solarpunk/SolarpunkButton'
 import SolarpunkButtonSource from '@/components/solarpunk/SolarpunkButton?raw'
+import EcoStats from '@/components/solarpunk/EcoStats'
+import EcoStatsSource from '@/components/solarpunk/EcoStats?raw'
+import PlantProgress from '@/components/solarpunk/PlantProgress'
+import PlantProgressSource from '@/components/solarpunk/PlantProgress?raw'
 
 // Legal Components
 import LegalPaper from '@/components/legal/LegalPaper'
@@ -311,6 +363,8 @@ import CadViewer from '@/components/blueprint/CadViewer'
 import CadViewerSource from '@/components/blueprint/CadViewer?raw'
 import LayerControl from '@/components/blueprint/LayerControl'
 import LayerControlSource from '@/components/blueprint/LayerControl?raw'
+import MeasurementLabel from '@/components/blueprint/MeasurementLabel'
+import MeasurementLabelSource from '@/components/blueprint/MeasurementLabel?raw'
 
 export type ComponentCategory =
     | 'layout'
@@ -513,6 +567,60 @@ export const components: ComponentMeta[] = [
         source: TransactionListSource,
         tags: ['transactions', 'history', 'payments', 'list'],
     },
+    {
+        id: 'fintech-button',
+        name: 'FintechButton',
+        description: 'Professional banking button with shimmer effect',
+        theme: 'fintech',
+        category: 'interactive',
+        component: FintechButton,
+        source: FintechButtonSource,
+        tags: ['button', 'fintech', 'banking', 'professional'],
+        previewProps: {
+            children: 'Transfer',
+            variant: 'primary'
+        }
+    },
+    {
+        id: 'fintech-card',
+        name: 'FintechCard',
+        description: 'Dark, professional card for financial dashboards',
+        theme: 'fintech',
+        category: 'layout',
+        component: FintechCard,
+        source: FintechCardSource,
+        tags: ['card', 'fintech', 'container', 'dark'],
+        previewProps: {
+            children: 'Financial Data',
+            className: 'p-6'
+        }
+    },
+    {
+        id: 'currency-converter',
+        name: 'CurrencyConverter',
+        description: 'Interactive currency exchange widget with swap functionality',
+        theme: 'fintech',
+        category: 'interactive',
+        component: CurrencyConverter,
+        source: CurrencyConverterSource,
+        tags: ['currency', 'converter', 'exchange', 'fintech'],
+    },
+    {
+        id: 'sparkline-chart',
+        name: 'SparklineChart',
+        description: 'Compact inline chart for trend visualization',
+        theme: 'fintech',
+        category: 'visualization',
+        component: SparklineChart,
+        source: SparklineChartSource,
+        tags: ['chart', 'sparkline', 'trend', 'fintech', 'graph'],
+        previewProps: {
+            data: [20, 25, 18, 30, 28, 35, 32, 40, 38, 45],
+            label: 'AAPL',
+            value: '$178.50',
+            change: 2.34
+        }
+    },
 
     // Cockpit Components
     {
@@ -606,6 +714,68 @@ export const components: ComponentMeta[] = [
         component: LeaderboardWidget,
         source: LeaderboardWidgetSource,
         tags: ['leaderboard', 'rank', 'multiplayer', 'score'],
+    },
+    {
+        id: 'game-button',
+        name: 'GameButton',
+        description: 'Neon arcade-style button with gradient glow effects',
+        theme: 'game',
+        category: 'interactive',
+        component: GameButton,
+        source: GameButtonSource,
+        tags: ['button', 'game', 'arcade', 'neon', 'glow'],
+        previewProps: {
+            children: 'START GAME',
+            variant: 'primary'
+        }
+    },
+    {
+        id: 'game-card',
+        name: 'GameCard',
+        description: 'Gaming container with glossy sheen and color variants',
+        theme: 'game',
+        category: 'layout',
+        component: GameCard,
+        source: GameCardSource,
+        tags: ['card', 'game', 'container', 'arcade'],
+        previewProps: {
+            children: 'Game Content',
+            variant: 'primary',
+            className: 'p-6'
+        }
+    },
+    {
+        id: 'achievement-badge',
+        name: 'AchievementBadge',
+        description: 'Rarity-based achievement badge with unlock progress',
+        theme: 'game',
+        category: 'data-display',
+        component: AchievementBadge,
+        source: AchievementBadgeSource,
+        tags: ['badge', 'achievement', 'unlock', 'game', 'rarity'],
+        previewProps: {
+            title: 'First Blood',
+            description: 'Win your first match',
+            icon: 'trophy',
+            rarity: 'epic',
+            unlocked: true
+        }
+    },
+    {
+        id: 'health-bar',
+        name: 'HealthBar',
+        description: 'Animated resource bar with multiple types (HP, mana, energy)',
+        theme: 'game',
+        category: 'visualization',
+        component: HealthBar,
+        source: HealthBarSource,
+        tags: ['health', 'bar', 'game', 'status', 'resource'],
+        previewProps: {
+            type: 'health',
+            current: 75,
+            max: 100,
+            label: 'HP'
+        }
     },
 
     // Scifi Components
@@ -764,6 +934,44 @@ export const components: ComponentMeta[] = [
         source: ProfileSidebarSource,
         tags: ['profile', 'user', 'card', 'sidebar'],
     },
+    {
+        id: 'social-button',
+        name: 'SocialButton',
+        description: 'Social media button with follow and icon variants',
+        theme: 'social',
+        category: 'interactive',
+        component: SocialButton,
+        source: SocialButtonSource,
+        tags: ['button', 'social', 'follow', 'interactive'],
+        previewProps: {
+            children: 'Follow',
+            variant: 'primary'
+        }
+    },
+    {
+        id: 'social-card',
+        name: 'SocialCard',
+        description: 'Glass-effect card for social media content',
+        theme: 'social',
+        category: 'layout',
+        component: SocialCard,
+        source: SocialCardSource,
+        tags: ['card', 'social', 'container', 'glass'],
+        previewProps: {
+            children: 'Social Content',
+            className: 'p-6'
+        }
+    },
+    {
+        id: 'story-rail',
+        name: 'StoryRail',
+        description: 'Horizontal scrolling story avatars with gradient rings',
+        theme: 'social',
+        category: 'navigation',
+        component: StoryRail,
+        source: StoryRailSource,
+        tags: ['stories', 'avatars', 'social', 'feed'],
+    },
 
     // Ecommerce Components
     {
@@ -883,6 +1091,51 @@ export const components: ComponentMeta[] = [
             variant: 'primary'
         }
     },
+    {
+        id: 'journal-entry',
+        name: 'JournalEntry',
+        description: 'Gratitude and reflection journal with lined paper aesthetic',
+        theme: 'wellness',
+        category: 'forms',
+        component: JournalEntry,
+        source: JournalEntrySource,
+        tags: ['journal', 'gratitude', 'writing', 'wellness', 'mindfulness'],
+        previewProps: {
+            prompt: "What are you grateful for today?",
+            gratitudeMode: true
+        }
+    },
+    {
+        id: 'meditation-timer',
+        name: 'MeditationTimer',
+        description: 'Circular countdown timer with breathing animations for meditation sessions',
+        theme: 'wellness',
+        category: 'interactive',
+        component: MeditationTimer,
+        source: MeditationTimerSource,
+        tags: ['timer', 'meditation', 'mindfulness', 'wellness', 'countdown'],
+        previewProps: {
+            duration: 5,
+            presets: [5, 10, 15, 20]
+        }
+    },
+    {
+        id: 'habit-checkbox',
+        name: 'HabitCheckbox',
+        description: 'Animated checkbox for habit tracking with streak counter and celebration effects',
+        theme: 'wellness',
+        category: 'forms',
+        component: HabitCheckbox,
+        source: HabitCheckboxSource,
+        tags: ['habit', 'checkbox', 'tracker', 'wellness', 'streak'],
+        previewProps: {
+            label: "Morning meditation",
+            description: "10 minutes of mindfulness",
+            icon: "sun",
+            streak: 7,
+            color: "sage"
+        }
+    },
 
     // Engineering Components
     {
@@ -991,6 +1244,50 @@ export const components: ComponentMeta[] = [
         source: FoodButtonSource,
         tags: ['button', 'animation', 'food', 'orange'],
     },
+    {
+        id: 'food-card',
+        name: 'FoodCard',
+        description: 'Warm dark card with rounded corners for food apps',
+        theme: 'food',
+        category: 'layout',
+        component: FoodCard,
+        source: FoodCardSource,
+        tags: ['card', 'food', 'container', 'warm'],
+        previewProps: {
+            children: 'Menu Item',
+            className: 'p-6'
+        }
+    },
+    {
+        id: 'hero-dish',
+        name: 'HeroDish',
+        description: 'Large featured dish card with image overlay and details',
+        theme: 'food',
+        category: 'data-display',
+        component: HeroDish,
+        source: HeroDishSource,
+        tags: ['hero', 'dish', 'food', 'featured', 'menu'],
+    },
+    {
+        id: 'menu-grid',
+        name: 'MenuGrid',
+        description: 'Food menu grid with category filters and item cards',
+        theme: 'food',
+        category: 'data-display',
+        component: MenuGrid,
+        source: MenuGridSource,
+        tags: ['menu', 'grid', 'food', 'categories'],
+    },
+    {
+        id: 'cart-widget',
+        name: 'CartWidget',
+        description: 'Order summary sidebar with items and checkout',
+        theme: 'food',
+        category: 'interactive',
+        component: CartWidget,
+        source: CartWidgetSource,
+        tags: ['cart', 'order', 'food', 'checkout'],
+    },
 
     // Magazine Button
     {
@@ -1026,6 +1323,50 @@ export const components: ComponentMeta[] = [
         component: FlowButton,
         source: FlowButtonSource,
         tags: ['button', 'productivity', 'amber', 'pulse'],
+    },
+    {
+        id: 'productivity-card',
+        name: 'ProductivityCard',
+        description: 'Clean card container for productivity dashboards',
+        theme: 'productivity',
+        category: 'layout',
+        component: ProductivityCard,
+        source: ProductivityCardSource,
+        tags: ['card', 'productivity', 'container', 'clean'],
+        previewProps: {
+            children: 'Task Content',
+            className: 'p-6'
+        }
+    },
+    {
+        id: 'focus-timer',
+        name: 'FocusTimer',
+        description: 'Pomodoro-style focus session timer with ring progress',
+        theme: 'productivity',
+        category: 'interactive',
+        component: FocusTimer,
+        source: FocusTimerSource,
+        tags: ['timer', 'pomodoro', 'focus', 'productivity'],
+    },
+    {
+        id: 'task-inbox',
+        name: 'TaskInbox',
+        description: 'Task list inbox with due dates and quick add',
+        theme: 'productivity',
+        category: 'data-display',
+        component: TaskInbox,
+        source: TaskInboxSource,
+        tags: ['tasks', 'inbox', 'todo', 'productivity'],
+    },
+    {
+        id: 'kanban-board',
+        name: 'KanbanBoard',
+        description: 'Kanban-style task board with columns and cards',
+        theme: 'productivity',
+        category: 'data-display',
+        component: KanbanBoard,
+        source: KanbanBoardSource,
+        tags: ['kanban', 'board', 'tasks', 'productivity', 'project'],
     },
 
     // Swiss Components
@@ -1440,6 +1781,37 @@ export const components: ComponentMeta[] = [
             variant: 'primary'
         }
     },
+    {
+        id: 'reward-star',
+        name: 'RewardStar',
+        description: 'Animated reward badge with sparkle effects',
+        theme: 'kids',
+        category: 'data-display',
+        component: RewardStar,
+        source: RewardStarSource,
+        tags: ['reward', 'star', 'badge', 'kids', 'gamification'],
+        previewProps: {
+            type: 'star',
+            count: 3,
+            label: 'Great Job!',
+            color: 'yellow'
+        }
+    },
+    {
+        id: 'speech-bubble',
+        name: 'SpeechBubble',
+        description: 'Playful speech bubble for character dialogue',
+        theme: 'kids',
+        category: 'data-display',
+        component: SpeechBubble,
+        source: SpeechBubbleSource,
+        tags: ['speech', 'bubble', 'dialogue', 'kids', 'character'],
+        previewProps: {
+            children: "Great job! You're doing amazing! 🎉",
+            color: 'blue',
+            character: '🦊'
+        }
+    },
 
     // E-Ink Components
     {
@@ -1548,6 +1920,32 @@ export const components: ComponentMeta[] = [
         previewProps: {
             children: 'Plant',
             variant: 'primary'
+        }
+    },
+    {
+        id: 'eco-stats',
+        name: 'EcoStats',
+        description: 'Environmental statistics grid with icons',
+        theme: 'solarpunk',
+        category: 'data-display',
+        component: EcoStats,
+        source: EcoStatsSource,
+        tags: ['stats', 'eco', 'environment', 'solarpunk'],
+    },
+    {
+        id: 'plant-progress',
+        name: 'PlantProgress',
+        description: 'Plant growth tracker with water and sun levels',
+        theme: 'solarpunk',
+        category: 'data-display',
+        component: PlantProgress,
+        source: PlantProgressSource,
+        tags: ['plant', 'progress', 'growth', 'solarpunk', 'garden'],
+        previewProps: {
+            name: 'Tomato Plant',
+            stage: 'growing',
+            waterLevel: 60,
+            sunLevel: 80
         }
     },
 
@@ -1886,6 +2284,20 @@ export const components: ComponentMeta[] = [
         previewProps: {
             layers: { 'Layer 1': true, 'Layer 2': false },
             toggleLayer: () => { }
+        }
+    },
+    {
+        id: 'measurement-label',
+        name: 'MeasurementLabel',
+        description: 'Technical dimension label for blueprints',
+        theme: 'blueprint',
+        category: 'data-display',
+        component: MeasurementLabel,
+        source: MeasurementLabelSource,
+        tags: ['measurement', 'dimension', 'blueprint', 'technical'],
+        previewProps: {
+            value: '2.5m',
+            orientation: 'horizontal'
         }
     },
 ]

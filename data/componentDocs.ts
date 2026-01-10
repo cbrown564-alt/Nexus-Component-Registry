@@ -1013,6 +1013,97 @@ export const componentDocs: Record<string, ComponentDoc> = {
         notes: ['4 mood options with icons', 'Weekly balance indicator', 'Selection state with subtle highlight'],
     },
 
+    'journal-entry': {
+        id: 'journal-entry',
+        props: [
+            { name: 'date', type: 'string', required: false, description: 'Display date for the entry (defaults to current date)' },
+            { name: 'prompt', type: 'string', required: false, default: '"What made you smile today?"', description: 'Writing prompt to inspire reflection' },
+            { name: 'initialText', type: 'string', required: false, default: '""', description: 'Pre-filled journal text' },
+            { name: 'onSave', type: '(text: string) => void', required: false, description: 'Callback when entry is saved' },
+            { name: 'gratitudeMode', type: 'boolean', required: false, default: 'false', description: 'Enables gratitude styling with heart icon' },
+        ],
+        examples: [
+            {
+                title: 'Gratitude Journal',
+                code: `<JournalEntry 
+  gratitudeMode={true}
+  prompt="What are you grateful for today?"
+  onSave={(text) => console.log('Saved:', text)}
+/>`,
+            },
+            {
+                title: 'Reflection Journal',
+                code: `<JournalEntry 
+  prompt="What did you learn today?"
+  date="Monday, January 10"
+/>`,
+            },
+        ],
+        notes: ['Lined paper aesthetic with repeating gradient', 'Character count display', 'Save confirmation animation'],
+    },
+
+    'meditation-timer': {
+        id: 'meditation-timer',
+        props: [
+            { name: 'duration', type: 'number', required: false, default: '10', description: 'Default duration in minutes' },
+            { name: 'onComplete', type: '() => void', required: false, description: 'Callback when timer completes' },
+            { name: 'soundEnabled', type: 'boolean', required: false, default: 'true', description: 'Initial sound toggle state' },
+            { name: 'presets', type: 'number[]', required: false, default: '[5, 10, 15, 20]', description: 'Available duration presets in minutes' },
+        ],
+        examples: [
+            {
+                title: 'Basic Timer',
+                code: `<MeditationTimer 
+  duration={10}
+  onComplete={() => alert('Session complete!')}
+/>`,
+            },
+            {
+                title: 'Custom Presets',
+                code: `<MeditationTimer 
+  presets={[3, 5, 10, 20, 30]}
+  soundEnabled={false}
+/>`,
+            },
+        ],
+        notes: ['Circular progress ring with gradient', 'Breathing glow animation when running', 'Play/pause and reset controls'],
+    },
+
+    'habit-checkbox': {
+        id: 'habit-checkbox',
+        props: [
+            { name: 'label', type: 'string', required: true, description: 'Habit name/title' },
+            { name: 'description', type: 'string', required: false, description: 'Secondary description text' },
+            { name: 'icon', type: '"flame" | "droplets" | "moon" | "sun" | "heart" | "dumbbell" | "book" | "salad"', required: false, default: '"flame"', description: 'Icon to display' },
+            { name: 'streak', type: 'number', required: false, default: '0', description: 'Current streak count' },
+            { name: 'checked', type: 'boolean', required: false, description: 'Controlled checked state' },
+            { name: 'onToggle', type: '(checked: boolean) => void', required: false, description: 'Toggle callback' },
+            { name: 'color', type: '"sage" | "amber" | "rose" | "sky" | "violet"', required: false, default: '"sage"', description: 'Color theme' },
+        ],
+        examples: [
+            {
+                title: 'Morning Habit',
+                code: `<HabitCheckbox 
+  label="Morning meditation"
+  description="10 minutes of mindfulness"
+  icon="sun"
+  streak={7}
+  color="amber"
+/>`,
+            },
+            {
+                title: 'Hydration Tracker',
+                code: `<HabitCheckbox 
+  label="Drink 8 glasses"
+  icon="droplets"
+  color="sky"
+  onToggle={(checked) => console.log(checked)}
+/>`,
+            },
+        ],
+        notes: ['Celebration particles on check', 'Streak counter with flame icon', 'Keyboard accessible'],
+    },
+
     // ============================================
     // SaaS Theme
     // ============================================
@@ -1723,6 +1814,258 @@ export const componentDocs: Record<string, ComponentDoc> = {
             { name: 'className', type: 'string', required: false, description: 'Additional CSS classes' },
         ],
         notes: ['Amber accent color', 'Pulsing ring effect for primary', 'Focus ring styled for dark background'],
+    },
+
+    // ============================================
+    // Extended Components (Jan 2026)
+    // ============================================
+
+    // Game Extended
+    'game-button': {
+        id: 'game-button',
+        props: [
+            { name: 'children', type: 'React.ReactNode', required: false, description: 'Button content' },
+            { name: 'variant', type: '"primary" | "secondary" | "accent" | "ghost" | "icon"', required: false, default: '"primary"', description: 'Button style' },
+            { name: 'size', type: '"sm" | "md" | "lg" | "icon"', required: false, default: '"md"', description: 'Button size' },
+            { name: 'icon', type: 'React.ReactNode', required: false, description: 'Icon element' },
+            { name: 'disabled', type: 'boolean', required: false, default: 'false', description: 'Disabled state' },
+        ],
+        notes: ['Neon gradient glow', 'Arcade-style uppercase font', 'Animated gradient background for primary'],
+    },
+
+    'game-card': {
+        id: 'game-card',
+        props: [
+            { name: 'children', type: 'React.ReactNode', required: true, description: 'Card content' },
+            { name: 'variant', type: '"primary" | "secondary" | "accent"', required: false, default: '"primary"', description: 'Color variant' },
+            { name: 'className', type: 'string', required: false, description: 'Additional CSS classes' },
+            { name: 'delay', type: 'number', required: false, default: '0', description: 'Animation delay' },
+        ],
+        notes: ['Fuchsia/cyan/amber color variants', 'Glossy sheen overlay', 'Spring bounce animation'],
+    },
+
+    'achievement-badge': {
+        id: 'achievement-badge',
+        props: [
+            { name: 'title', type: 'string', required: true, description: 'Achievement title' },
+            { name: 'description', type: 'string', required: false, description: 'Achievement description' },
+            { name: 'icon', type: '"trophy" | "star" | "target" | "zap" | "crown" | "medal" | "award" | "gem"', required: false, default: '"trophy"', description: 'Badge icon' },
+            { name: 'rarity', type: '"common" | "rare" | "epic" | "legendary"', required: false, default: '"common"', description: 'Rarity level' },
+            { name: 'unlocked', type: 'boolean', required: false, default: 'true', description: 'Unlock state' },
+            { name: 'progress', type: 'number', required: false, description: 'Progress percentage (0-100) for locked badges' },
+            { name: 'compact', type: 'boolean', required: false, default: 'false', description: 'Compact icon-only mode' },
+        ],
+        notes: ['Rarity-based gradient colors', 'Legendary has rotating shine effect', 'Progress ring for locked badges'],
+    },
+
+    'health-bar': {
+        id: 'health-bar',
+        props: [
+            { name: 'type', type: '"health" | "shield" | "energy" | "mana" | "rage"', required: false, default: '"health"', description: 'Resource type' },
+            { name: 'current', type: 'number', required: true, description: 'Current value' },
+            { name: 'max', type: 'number', required: true, description: 'Maximum value' },
+            { name: 'label', type: 'string', required: false, description: 'Label text' },
+            { name: 'showNumbers', type: 'boolean', required: false, default: 'true', description: 'Show numeric values' },
+            { name: 'animated', type: 'boolean', required: false, default: 'true', description: 'Enable animations' },
+            { name: 'size', type: '"sm" | "md" | "lg"', required: false, default: '"md"', description: 'Bar size' },
+            { name: 'compact', type: 'boolean', required: false, default: 'false', description: 'Compact mode' },
+        ],
+        notes: ['Pulsing animation when low', 'Critical flash at 10% or below', 'Segmented background for visual style'],
+    },
+
+    // Fintech Extended
+    'fintech-button': {
+        id: 'fintech-button',
+        props: [
+            { name: 'children', type: 'React.ReactNode', required: true, description: 'Button content' },
+            { name: 'variant', type: '"primary" | "secondary" | "ghost"', required: false, default: '"secondary"', description: 'Button style' },
+            { name: 'size', type: '"sm" | "md" | "lg"', required: false, default: '"md"', description: 'Button size' },
+            { name: 'icon', type: 'React.ReactNode', required: false, description: 'Icon element' },
+        ],
+        notes: ['Emerald green primary', 'Shimmer effect on hover', 'Professional banking aesthetic'],
+    },
+
+    'fintech-card': {
+        id: 'fintech-card',
+        props: [
+            { name: 'children', type: 'React.ReactNode', required: true, description: 'Card content' },
+            { name: 'className', type: 'string', required: false, description: 'Additional CSS classes' },
+            { name: 'delay', type: 'number', required: false, default: '0', description: 'Animation delay' },
+        ],
+        notes: ['Dark zinc background', 'Subtle border styling', 'Fade-in scale animation'],
+    },
+
+    'currency-converter': {
+        id: 'currency-converter',
+        props: [
+            { name: 'currencies', type: 'Currency[]', required: false, description: 'Available currencies' },
+            { name: 'exchangeRates', type: 'Record<string, number>', required: false, description: 'Exchange rates relative to USD' },
+            { name: 'initialFrom', type: 'string', required: false, default: '"USD"', description: 'Initial from currency' },
+            { name: 'initialTo', type: 'string', required: false, default: '"EUR"', description: 'Initial to currency' },
+            { name: 'onConvert', type: '(from, to, amount, result) => void', required: false, description: 'Conversion callback' },
+        ],
+        notes: ['Swap button with rotation animation', 'Live conversion display', 'Default currencies: USD, EUR, GBP, JPY, BTC'],
+    },
+
+    'sparkline-chart': {
+        id: 'sparkline-chart',
+        props: [
+            { name: 'data', type: 'number[]', required: true, description: 'Data points array' },
+            { name: 'label', type: 'string', required: false, description: 'Label text' },
+            { name: 'value', type: 'string', required: false, description: 'Current value display' },
+            { name: 'change', type: 'number', required: false, description: 'Percentage change' },
+            { name: 'color', type: '"emerald" | "rose" | "amber" | "cyan" | "auto"', required: false, default: '"auto"', description: 'Line color' },
+            { name: 'height', type: 'number', required: false, default: '40', description: 'Chart height in pixels' },
+            { name: 'showDot', type: 'boolean', required: false, default: 'true', description: 'Show end dot' },
+            { name: 'animated', type: 'boolean', required: false, default: 'true', description: 'Enable animations' },
+        ],
+        notes: ['SVG path animation', 'Auto color based on trend', 'Area fill gradient'],
+    },
+
+    // Social Extended
+    'social-button': {
+        id: 'social-button',
+        props: [
+            { name: 'children', type: 'React.ReactNode', required: false, description: 'Button content' },
+            { name: 'variant', type: '"primary" | "secondary" | "ghost" | "icon" | "follow"', required: false, default: '"primary"', description: 'Button style' },
+            { name: 'size', type: '"sm" | "md" | "lg" | "icon" | "fab"', required: false, default: '"md"', description: 'Button size' },
+            { name: 'icon', type: 'React.ReactNode', required: false, description: 'Icon element' },
+            { name: 'fullWidth', type: 'boolean', required: false, default: 'false', description: 'Full width mode' },
+        ],
+        notes: ['Sky blue primary', 'Pill-shaped rounded corners', 'FAB size for floating action'],
+    },
+
+    'social-card': {
+        id: 'social-card',
+        props: [
+            { name: 'children', type: 'React.ReactNode', required: true, description: 'Card content' },
+            { name: 'className', type: 'string', required: false, description: 'Additional CSS classes' },
+            { name: 'delay', type: 'number', required: false, default: '0', description: 'Animation delay' },
+        ],
+        notes: ['Glass-effect background', 'Dark mode optimized', 'Fade-up animation'],
+    },
+
+    'story-rail': {
+        id: 'story-rail',
+        props: [],
+        notes: ['Horizontal scrolling stories', 'Gradient rings for unseen stories', 'Add story button on first item', 'Zoom effect on hover'],
+    },
+
+    // Productivity Extended
+    'productivity-card': {
+        id: 'productivity-card',
+        props: [
+            { name: 'children', type: 'React.ReactNode', required: true, description: 'Card content' },
+            { name: 'className', type: 'string', required: false, description: 'Additional CSS classes' },
+            { name: 'delay', type: 'number', required: false, default: '0', description: 'Animation delay' },
+        ],
+        notes: ['Clean dark theme', 'Subtle border and shadow', 'Backdrop blur effect'],
+    },
+
+    'focus-timer': {
+        id: 'focus-timer',
+        props: [],
+        notes: ['Pomodoro-style timer', 'Circular progress ring', 'Amber accent color', 'Deep Work status indicator'],
+    },
+
+    'task-inbox': {
+        id: 'task-inbox',
+        props: [],
+        notes: ['Task list with due dates', 'Project labels on hover', 'Quick add input field', 'Today items highlighted in amber'],
+    },
+
+    'kanban-board': {
+        id: 'kanban-board',
+        props: [],
+        notes: ['Three columns: To Do, In Progress, Review', 'Priority badges', 'Dashed add card button', 'Horizontal scroll container'],
+    },
+
+    // Food Extended
+    'food-card': {
+        id: 'food-card',
+        props: [
+            { name: 'children', type: 'React.ReactNode', required: true, description: 'Card content' },
+            { name: 'className', type: 'string', required: false, description: 'Additional CSS classes' },
+            { name: 'delay', type: 'number', required: false, default: '0', description: 'Animation delay' },
+        ],
+        notes: ['Warm dark stone colors', 'Extra-rounded corners', 'Subtle shadow'],
+    },
+
+    'hero-dish': {
+        id: 'hero-dish',
+        props: [],
+        notes: ['Large featured image', 'Gradient overlay', 'Trending badge', 'Star rating display', 'Add to order button with price'],
+    },
+
+    'menu-grid': {
+        id: 'menu-grid',
+        props: [],
+        notes: ['Category filter tabs', 'Food item grid with images', 'Best Seller/Popular/Healthy tags', 'Heart favorite button'],
+    },
+
+    'cart-widget': {
+        id: 'cart-widget',
+        props: [],
+        notes: ['Order summary sidebar', 'Item quantity controls', 'Table number/Dine-in indicator', 'Subtotal/service charge/total breakdown'],
+    },
+
+    // Kids Extended
+    'reward-star': {
+        id: 'reward-star',
+        props: [
+            { name: 'type', type: '"star" | "crown" | "trophy" | "gift" | "heart" | "sparkle"', required: false, default: '"star"', description: 'Reward icon type' },
+            { name: 'count', type: 'number', required: false, description: 'Badge counter' },
+            { name: 'label', type: 'string', required: false, description: 'Label text below badge' },
+            { name: 'color', type: '"yellow" | "pink" | "blue" | "green" | "purple"', required: false, default: '"yellow"', description: 'Color theme' },
+            { name: 'size', type: '"sm" | "md" | "lg"', required: false, default: '"md"', description: 'Badge size' },
+            { name: 'animated', type: 'boolean', required: false, default: 'true', description: 'Enable animations' },
+            { name: 'earned', type: 'boolean', required: false, default: 'true', description: 'Earned/locked state' },
+        ],
+        notes: ['Sparkle particle effects', 'Scale animation on mount', 'Glow pulse for earned badges', 'Grayscale for unearned'],
+    },
+
+    'speech-bubble': {
+        id: 'speech-bubble',
+        props: [
+            { name: 'children', type: 'React.ReactNode', required: true, description: 'Bubble content' },
+            { name: 'direction', type: '"left" | "right" | "bottom"', required: false, default: '"left"', description: 'Tail direction' },
+            { name: 'color', type: '"white" | "blue" | "pink" | "yellow" | "green"', required: false, default: '"white"', description: 'Background color' },
+            { name: 'animated', type: 'boolean', required: false, default: 'true', description: 'Enable animations' },
+            { name: 'character', type: 'string', required: false, description: 'Emoji character for avatar' },
+        ],
+        notes: ['Comic-style speech bubble', 'Character avatar integration', 'Spring bounce animation', 'Tail pointer in direction specified'],
+    },
+
+    // Solarpunk Extended
+    'eco-stats': {
+        id: 'eco-stats',
+        props: [],
+        notes: ['4-column stats grid', 'Icon badges with colors', 'Water, Growth, Compost, Temperature metrics', 'Hover scale effect'],
+    },
+
+    'plant-progress': {
+        id: 'plant-progress',
+        props: [
+            { name: 'name', type: 'string', required: true, description: 'Plant name' },
+            { name: 'stage', type: '"seed" | "sprout" | "growing" | "mature" | "flowering"', required: false, default: '"growing"', description: 'Growth stage' },
+            { name: 'waterLevel', type: 'number', required: false, default: '60', description: 'Water level 0-100' },
+            { name: 'sunLevel', type: 'number', required: false, default: '80', description: 'Sunlight level 0-100' },
+            { name: 'daysOld', type: 'number', required: false, default: '14', description: 'Age in days' },
+            { name: 'nextWater', type: 'string', required: false, default: '"2 hours"', description: 'Time until next watering' },
+            { name: 'image', type: 'string', required: false, description: 'Plant image URL' },
+        ],
+        notes: ['Stage emoji indicators', 'Growth progress bar', 'Water and sun gauges', 'Low water warning at 30%'],
+    },
+
+    // Blueprint Extended
+    'measurement-label': {
+        id: 'measurement-label',
+        props: [
+            { name: 'value', type: 'string', required: true, description: 'Measurement value with unit' },
+            { name: 'width', type: 'string', required: false, default: '"100%"', description: 'Label width/height' },
+            { name: 'orientation', type: '"horizontal" | "vertical"', required: false, default: '"horizontal"', description: 'Label orientation' },
+        ],
+        notes: ['Technical dimension label', 'End caps with border lines', 'Value centered on line', 'Blueprint blue background'],
     },
 }
 
