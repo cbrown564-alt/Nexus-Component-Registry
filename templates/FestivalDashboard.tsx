@@ -4,6 +4,7 @@ import FestivalCard from '../components/festival/FestivalCard';
 import SoundwaveTimeline from '../components/festival/SoundwaveTimeline';
 import CrowdHeatmap from '../components/festival/CrowdHeatmap';
 import TicketWallet from '../components/festival/TicketWallet';
+import FestivalButton from '../components/festival/FestivalButton';
 
 const FestivalDashboard = () => {
     const lineup = [
@@ -31,9 +32,9 @@ const FestivalDashboard = () => {
                         </div>
                         <h1 className="text-2xl font-black italic tracking-tighter">PULSE<span className="text-fuchsia-500">24</span></h1>
                     </div>
-                    <button className="p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors">
+                    <FestivalButton variant="icon" size="sm">
                         <Menu className="w-6 h-6" />
-                    </button>
+                    </FestivalButton>
                 </header>
 
                 {/* Mobile Grid / Desktop Grid */}
@@ -51,7 +52,7 @@ const FestivalDashboard = () => {
                         <div className="flex-1 space-y-4">
                             <div className="flex justify-between items-end px-2">
                                 <h2 className="text-xl font-bold uppercase italic">Up Next</h2>
-                                <button className="text-xs text-fuchsia-400 font-bold uppercase tracking-widest hover:text-fuchsia-300">View Full Schedule</button>
+                                <FestivalButton variant="secondary" size="sm">View Full Schedule</FestivalButton>
                             </div>
 
                             {lineup.map((artist, i) => (
@@ -77,9 +78,9 @@ const FestivalDashboard = () => {
                                                 </p>
                                             </div>
                                         </div>
-                                        <button className="p-3 rounded-full bg-white/5 hover:bg-fuchsia-500 hover:text-black transition-all">
+                                        <FestivalButton variant="icon" size="sm">
                                             <Heart className="w-5 h-5" />
-                                        </button>
+                                        </FestivalButton>
                                     </div>
                                 </div>
                             ))}

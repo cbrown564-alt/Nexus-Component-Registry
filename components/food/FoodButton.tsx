@@ -3,7 +3,7 @@ import { motion, HTMLMotionProps } from 'framer-motion';
 
 interface FoodButtonProps extends Omit<HTMLMotionProps<'button'>, 'children'> {
     children: React.ReactNode;
-    variant?: 'primary' | 'secondary' | 'outline';
+    variant?: 'primary' | 'secondary' | 'outline' | 'ghost';
     size?: 'sm' | 'md' | 'lg';
 }
 
@@ -22,6 +22,8 @@ const FoodButton: React.FC<FoodButtonProps> = ({
                 return 'bg-stone-800 text-stone-100 hover:bg-stone-700 border border-stone-700';
             case 'outline':
                 return 'bg-transparent text-stone-300 hover:text-white border border-stone-700 hover:border-orange-500 hover:bg-orange-500/10';
+            case 'ghost':
+                return 'bg-stone-900/50 border border-stone-800 text-stone-400 hover:text-white hover:border-orange-500/50 hover:bg-orange-500/10';
             default:
                 return 'bg-orange-500 text-white hover:bg-orange-400';
         }

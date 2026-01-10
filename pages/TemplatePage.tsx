@@ -105,11 +105,11 @@ export default function TemplatePage() {
 
                 <div className="flex items-center gap-3">
                     <Link
-                        to={`/components?theme=${theme.id}`}
+                        to={`/templates/${theme.id}/components`}
                         className="flex items-center gap-2 text-sm text-zinc-400 hover:text-white transition-colors"
                     >
                         <Box className="h-4 w-4" />
-                        View Components
+                        Components
                     </Link>
                     <button className="flex items-center gap-2 px-3 py-1.5 text-sm bg-white text-zinc-950 rounded-lg font-medium hover:bg-zinc-200 transition-colors">
                         <ExternalLink className="h-4 w-4" />

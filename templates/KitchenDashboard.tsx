@@ -33,21 +33,21 @@ const KitchenDashboard = () => {
 
             {/* Main Content Grid */}
             <main className="p-6 md:p-8 h-[calc(100vh-5rem)]">
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 h-full">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 h-full">
 
                     {/* Left Sidebar: Ingredients */}
-                    <div className="lg:col-span-4 h-full flex flex-col gap-6 overflow-hidden">
+                    <div className="lg:col-span-3 h-full flex flex-col gap-5 overflow-hidden">
                         <IngredientScale />
 
                         {/* Quick Tip */}
-                        <KitchenCard className="p-6 bg-green-50 border-green-100 !shadow-none">
+                        <KitchenCard className="p-5 bg-gradient-to-br from-green-50 to-emerald-50 border-green-100 !shadow-none">
                             <div className="flex gap-4">
-                                <div className="h-10 w-10 rounded-full bg-green-200 flex items-center justify-center shrink-0 text-green-800">
-                                    <ChefHat className="h-6 w-6" />
+                                <div className="h-10 w-10 rounded-full bg-green-200 flex items-center justify-center shrink-0 text-green-800 shadow-sm">
+                                    <ChefHat className="h-5 w-5" />
                                 </div>
                                 <div>
-                                    <h4 className="font-bold text-green-900 mb-1">Chef's Tip</h4>
-                                    <p className="text-sm text-green-800 leading-relaxed">
+                                    <h4 className="font-bold text-green-900 mb-1 text-sm">Chef's Tip</h4>
+                                    <p className="text-xs text-green-800 leading-relaxed">
                                         Save a cup of pasta water before draining. The starch helps emulsify the sauce.
                                     </p>
                                 </div>
@@ -56,8 +56,49 @@ const KitchenDashboard = () => {
                     </div>
 
                     {/* Center: Active Step */}
-                    <div className="lg:col-span-8 h-full">
+                    <div className="lg:col-span-6 h-full">
                         <ActiveStep />
+                    </div>
+
+                    {/* Right Sidebar: Smart Appliances & Connected Devices */}
+                    <div className="lg:col-span-3 h-full flex flex-col gap-5 overflow-hidden">
+                        {/* Smart Appliances */}
+                        <KitchenCard className="flex-1 p-5 bg-gradient-to-br from-stone-50 to-stone-100">
+                            <div className="flex items-center justify-between mb-4">
+                                <h3 className="font-serif font-bold text-stone-900">Smart Appliances</h3>
+                                <Wifi className="h-4 w-4 text-green-500" />
+                            </div>
+                            <div className="space-y-3">
+                                {[
+                                    { name: 'Stovetop', status: 'HIGH HEAT', active: true, color: 'bg-orange-500' },
+                                    { name: 'Oven', status: '375°F • Preheating', active: true, color: 'bg-amber-500' },
+                                    { name: 'Exhaust Fan', status: 'AUTO', active: true, color: 'bg-sky-500' },
+                                    { name: 'Sous Vide', status: 'Standby', active: false, color: 'bg-stone-400' },
+                                ].map((appliance) => (
+                                    <div key={appliance.name} className="flex items-center justify-between p-3 bg-white rounded-xl border border-stone-200 shadow-sm">
+                                        <div className="flex items-center gap-3">
+                                            <div className={`h-2.5 w-2.5 rounded-full ${appliance.color} ${appliance.active ? 'animate-pulse' : ''}`} />
+                                            <span className="font-medium text-stone-800 text-sm">{appliance.name}</span>
+                                        </div>
+                                        <span className={`text-xs font-medium ${appliance.active ? 'text-stone-600' : 'text-stone-400'}`}>
+                                            {appliance.status}
+                                        </span>
+                                    </div>
+                                ))}
+                            </div>
+                        </KitchenCard>
+
+                        {/* Quick Actions */}
+                        <KitchenCard className="p-4 bg-white">
+                            <div className="grid grid-cols-2 gap-2">
+                                <KitchenButton variant="secondary" size="sm" className="text-xs">
+                                    Pause All
+                                </KitchenButton>
+                                <KitchenButton variant="primary" size="sm" className="text-xs">
+                                    Voice Control
+                                </KitchenButton>
+                            </div>
+                        </KitchenCard>
                     </div>
 
                 </div>

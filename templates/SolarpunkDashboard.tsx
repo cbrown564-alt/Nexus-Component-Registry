@@ -3,6 +3,7 @@ import { Sun, Leaf, CloudRain, Wind, Droplets, Sprout, Users } from 'lucide-reac
 import EnergySun from '../components/solarpunk/EnergySun';
 import AirQualityLeaf from '../components/solarpunk/AirQualityLeaf';
 import SolarCard from '../components/solarpunk/SolarCard';
+import SolarpunkButton from '../components/solarpunk/SolarpunkButton';
 
 const SolarpunkDashboard = () => {
     return (
@@ -130,9 +131,9 @@ const SolarpunkDashboard = () => {
                                 ))}
                             </div>
 
-                            <button className="mt-8 w-full py-4 text-emerald-600 font-bold border-2 border-emerald-100 rounded-2xl hover:bg-emerald-50 hover:border-emerald-200 transition-all font-sans uppercase tracking-widest text-xs">
+                            <SolarpunkButton variant="secondary" size="lg" className="mt-8 w-full">
                                 View All Zones
-                            </button>
+                            </SolarpunkButton>
                         </SolarCard>
                     </div>
 

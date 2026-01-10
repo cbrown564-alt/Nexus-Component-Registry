@@ -82,13 +82,13 @@ const FoodDashboard = () => {
                             animate={{ opacity: 1, x: 0 }}
                             className="flex items-center gap-2"
                         >
-                            <button className="rounded-full bg-stone-900/50 border border-stone-800 p-2.5 text-stone-400 hover:text-white hover:border-orange-500/50 hover:bg-orange-500/10 transition-all">
+                            <FoodButton variant="ghost" size="sm" className="text-stone-400 hover:text-white">
                                 <Heart className="h-5 w-5" />
-                            </button>
-                            <button className="rounded-full bg-stone-900/50 border border-stone-800 p-2.5 text-stone-400 hover:text-white hover:border-orange-500/50 hover:bg-orange-500/10 transition-all relative">
+                            </FoodButton>
+                            <FoodButton variant="ghost" size="sm" className="text-stone-400 hover:text-white relative">
                                 <Bell className="h-5 w-5" />
-                                <span className="absolute top-1.5 right-1.5 h-2 w-2 rounded-full bg-orange-500 ring-2 ring-[#0c0a09]" />
-                            </button>
+                                <span className="absolute top-1 right-1 h-2 w-2 rounded-full bg-orange-500 ring-2 ring-[#0c0a09]" />
+                            </FoodButton>
                             <div className="h-9 w-9 rounded-full bg-gradient-to-br from-orange-400 to-rose-500 ring-2 ring-orange-500/20" />
                         </motion.div>
                     </div>
@@ -162,8 +162,8 @@ const FoodDashboard = () => {
                                 whileTap={{ scale: 0.95 }}
                                 onClick={() => setActiveCategory(cat.name)}
                                 className={`flex items-center gap-2 px-5 py-3 rounded-2xl font-medium text-sm whitespace-nowrap transition-all ${activeCategory === cat.name
-                                        ? 'bg-orange-500 text-white shadow-lg shadow-orange-500/25'
-                                        : 'bg-stone-900/50 text-stone-300 border border-stone-800 hover:border-orange-500/50'
+                                    ? 'bg-orange-500 text-white shadow-lg shadow-orange-500/25'
+                                    : 'bg-stone-900/50 text-stone-300 border border-stone-800 hover:border-orange-500/50'
                                     }`}
                             >
                                 <span className="text-lg">{cat.emoji}</span>

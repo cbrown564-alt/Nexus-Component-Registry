@@ -5,6 +5,7 @@ import SciFiCard from '../components/scifi/SciFiCard';
 import BodyScanner from '../components/scifi/BodyScanner';
 import VitalsMonitor from '../components/scifi/VitalsMonitor';
 import DNAList from '../components/scifi/DNAList';
+import SciFiButton from '../components/scifi/SciFiButton';
 
 const SciFiDashboard = () => {
     const [scanActive, setScanActive] = useState(false);
@@ -40,17 +41,16 @@ const SciFiDashboard = () => {
                             { id: 'scan', icon: Scan, label: 'FULL_BODY_SCAN' },
                             { id: 'shield', icon: Shield, label: 'DEFENSE_SYS' },
                         ].map((item) => (
-                            <button
+                            <SciFiButton
                                 key={item.id}
+                                variant={activeTab === item.id ? 'primary' : 'command'}
+                                size="sm"
+                                icon={<item.icon className="w-4 h-4" />}
                                 onClick={() => setActiveTab(item.id)}
-                                className={`flex items-center gap-3 p-3 text-xs tracking-wider transition-all border-l-2 ${activeTab === item.id
-                                    ? 'bg-cyan-950/40 text-cyan-300 border-cyan-400'
-                                    : 'text-cyan-700 hover:text-cyan-400 hover:bg-cyan-950/20 border-transparent'
-                                    }`}
+                                className={`w-full justify-start border-l-2 rounded-none ${activeTab === item.id ? 'border-l-cyan-400' : 'border-l-transparent'}`}
                             >
-                                <item.icon className="w-4 h-4" />
                                 {item.label}
-                            </button>
+                            </SciFiButton>
                         ))}
                     </SciFiCard>
 
