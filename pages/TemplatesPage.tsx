@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { useState, useMemo } from 'react'
 import { themes, type Theme } from '@/data/themes'
+import TemplatePreview from '@/components/ui/TemplatePreview'
 
 type CategoryFilter = 'all' | Theme['category']
 
@@ -86,10 +87,8 @@ export default function TemplatesPage() {
                             className="group block rounded-xl border border-zinc-800 bg-zinc-900/50 overflow-hidden hover:border-zinc-600 transition-all hover:scale-[1.01]"
                         >
                             {/* Preview Area */}
-                            <div className={`aspect-video ${theme.backgroundColor} relative overflow-hidden`}>
-                                <div className="absolute inset-0 flex items-center justify-center">
-                                    <div className={`h-12 w-12 rounded-xl ${theme.colorClass} shadow-lg`} />
-                                </div>
+                            <div className="aspect-video relative overflow-hidden">
+                                <TemplatePreview theme={theme} className="absolute inset-0" />
                                 {/* Gradient overlay */}
                                 <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                             </div>

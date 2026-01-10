@@ -81,19 +81,18 @@ export default function HomePage() {
                 </div>
             </motion.section>
 
-            {/* COMPARISON: New Template-Specific Previews */}
+            {/* Featured Templates */}
             <motion.section
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
-                className="mb-16"
+                className="mb-24"
             >
-                <div className="flex items-center justify-between mb-6">
-                    <div>
-                        <h2 className="text-2xl font-bold text-white">Option A: Template-Specific Wireframes</h2>
-                        <p className="text-sm text-zinc-500 mt-1">Each template gets a unique wireframe that captures its visual identity</p>
-                    </div>
-                    <span className="px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-400 text-xs font-medium">NEW</span>
+                <div className="flex items-center justify-between mb-8">
+                    <h2 className="text-2xl font-bold text-white">Featured Templates</h2>
+                    <Link to="/templates" className="text-sm text-zinc-400 hover:text-white transition-colors flex items-center gap-1">
+                        View all 28 templates <ArrowRight className="h-4 w-4" />
+                    </Link>
                 </div>
 
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -114,54 +113,6 @@ export default function HomePage() {
                                 >
                                     <div className="aspect-video relative overflow-hidden">
                                         <TemplatePreview theme={theme} className="absolute inset-0" />
-                                    </div>
-                                    <div className="p-4">
-                                        <div className="flex items-center gap-2 mb-1">
-                                            <div className={`h-2 w-2 rounded-full ${theme.colorClass}`} />
-                                            <span className="font-medium text-white group-hover:text-zinc-100">{theme.name}</span>
-                                        </div>
-                                        <p className="text-sm text-zinc-500 line-clamp-1">{theme.description}</p>
-                                    </div>
-                                </Link>
-                            </motion.div>
-                        )
-                    })}
-                </div>
-            </motion.section>
-
-            {/* COMPARISON: Original Dashboard Wireframe */}
-            <motion.section
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-                className="mb-24"
-            >
-                <div className="flex items-center justify-between mb-6">
-                    <div>
-                        <h2 className="text-2xl font-bold text-white">Option B: Universal Dashboard Wireframe</h2>
-                        <p className="text-sm text-zinc-500 mt-1">Current approach: same layout, different colors</p>
-                    </div>
-                    <span className="px-3 py-1 rounded-full bg-zinc-700 text-zinc-400 text-xs font-medium">CURRENT</span>
-                </div>
-
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    {featuredThemes.map((themeId, index) => {
-                        const theme = getThemeById(themeId)
-                        if (!theme) return null
-
-                        return (
-                            <motion.div
-                                key={theme.id}
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.4, delay: index * 0.05 }}
-                            >
-                                <Link
-                                    to={`/templates/${theme.id}`}
-                                    className="group block rounded-xl border border-zinc-800 bg-zinc-900/50 overflow-hidden hover:border-zinc-700 transition-all hover:scale-[1.02]"
-                                >
-                                    <div className="aspect-video relative overflow-hidden">
-                                        <ThemePreview theme={theme} className="absolute inset-0" />
                                     </div>
                                     <div className="p-4">
                                         <div className="flex items-center gap-2 mb-1">
