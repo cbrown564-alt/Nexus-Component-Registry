@@ -511,6 +511,10 @@ This audit examines all 28 templates in the Nexus Component Registry, evaluating
 | KitchenDashboard | Created `KitchenButton` with warm/tactile interactions, hard shadows in organic colors. Replaced navigation and settings touch targets |
 | SaasDashboard | Created `SaasButton` with professional density, precise control variants, subtle states. Replaced toggle controls and action buttons for tighter UI |
 | BrutalistDashboard | Created `BrutalistButton` with neo-brutalist interaction style (hard black shadows, bold borders, aggressive hover offsets). Replaced card-based buttons for clearer affordance |
+| **Batch 7: Game, Social, Kids** | |
+| GameDashboard | Created `GameButton` with high-tech neon styling, animated gradients for primary actions, and distinct variants for secondary/accent interactions |
+| SocialDashboard | Created `SocialButton` with modern app-like styling, pill shapes, and familiar social interaction states (Post, Follow, Ghost). Replaced FAB and action buttons |
+| KidsDashboard | Created `KidsButton` with chunky borders, bouncy spring animations, and "push-down" active states. Added header navigation buttons (Friends, Settings) |
 
 ---
 
@@ -530,9 +534,9 @@ This audit examines all 28 templates in the Nexus Component Registry, evaluating
 | festival | `/components/festival/` | 4 | — |
 | fintech | `/components/fintech/` | 6 | FintechButton ✓ |
 | food | `/components/food/` | 4 | — |
-| game | `/components/game/` | 5 | — |
+| game | `/components/game/` | 6 | GameButton ✓ |
 | grid | `/components/grid/` | 5 | GridButton ✓ |
-| kids | `/components/kids/` | 4 | — |
+| kids | `/components/kids/` | 5 | KidsButton ✓ |
 | kitchen | `/components/kitchen/` | 5 | KitchenButton ✓ |
 | legacy | `/components/legacy/` | 4 | LegacyButton ✓ |
 | legal | `/components/legal/` | 5 | LegalButton ✓ |
@@ -541,7 +545,7 @@ This audit examines all 28 templates in the Nexus Component Registry, evaluating
 | productivity | `/components/productivity/` | 4 | — |
 | saas | `/components/saas/` | 5 | SaasButton ✓ |
 | scifi | `/components/scifi/` | 4 | — |
-| social | `/components/social/` | 4 | — |
+| social | `/components/social/` | 5 | SocialButton ✓ |
 | softplastic | `/components/softplastic/` | 4 | NeumorphicButton ✓, DeviceToggle ✓ |
 | solarpunk | `/components/solarpunk/` | 4 | — |
 | **swiss** | `/components/swiss/` | **2** | — (lowest count) |

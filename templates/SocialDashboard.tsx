@@ -4,6 +4,7 @@ import StoryRail from '../components/social/StoryRail';
 import FeedPost from '../components/social/FeedPost';
 import { ProfileSummary, SuggestedFollows } from '../components/social/ProfileSidebar';
 import SocialCard from '../components/social/SocialCard';
+import SocialButton from '../components/social/SocialButton';
 
 const SocialDashboard = () => {
     return (
@@ -54,14 +55,14 @@ const SocialDashboard = () => {
                                 <div className="mt-4 flex items-center justify-between border-t border-zinc-800 pt-3">
                                     <div className="flex gap-2 text-sky-500">
                                         {/* Mock Icons */}
-                                        <div className="h-5 w-5 rounded cursor-pointer hover:bg-sky-500/10">📷</div>
-                                        <div className="h-5 w-5 rounded cursor-pointer hover:bg-sky-500/10">GIF</div>
-                                        <div className="h-5 w-5 rounded cursor-pointer hover:bg-sky-500/10">📊</div>
-                                        <div className="h-5 w-5 rounded cursor-pointer hover:bg-sky-500/10">📍</div>
+                                        <SocialButton variant="icon" size="icon" icon="📷" />
+                                        <SocialButton variant="icon" size="icon" icon="GIF" />
+                                        <SocialButton variant="icon" size="icon" icon="📊" />
+                                        <SocialButton variant="icon" size="icon" icon="📍" />
                                     </div>
-                                    <button className="rounded-full bg-sky-500 px-4 py-1.5 text-sm font-bold text-white hover:bg-sky-600 transition-colors disabled:opacity-50">
+                                    <SocialButton variant="primary" size="md">
                                         Post
-                                    </button>
+                                    </SocialButton>
                                 </div>
                             </div>
                         </div>
@@ -160,9 +161,7 @@ const SocialDashboard = () => {
 
             {/* Mobile Floating Action Button */}
             <div className="fixed bottom-6 right-6 md:hidden">
-                <button className="flex h-14 w-14 items-center justify-center rounded-full bg-sky-500 text-white shadow-lg hover:bg-sky-600 active:scale-95 transition-all">
-                    <PenSquare className="h-6 w-6" />
-                </button>
+                <SocialButton variant="primary" size="fab" icon={<PenSquare className="h-6 w-6" />} />
             </div>
 
         </div>
