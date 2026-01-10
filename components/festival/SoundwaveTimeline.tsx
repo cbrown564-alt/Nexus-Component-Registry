@@ -25,7 +25,7 @@ const SoundwaveTimeline = () => {
         <span className="text-cyan-400 font-mono text-xs">LIVE NOW</span>
       </div>
 
-      <div className="relative h-24 w-full flex items-center gap-[2px] overflow-x-auto px-4 scrollbar-hide mask-fade-sides">
+      <div className="relative h-28 w-full flex items-center gap-[2px] overflow-x-auto px-4 scrollbar-hide mask-fade-sides overflow-y-hidden">
         {bars.map((bar, i) => (
           <motion.div
             key={i}

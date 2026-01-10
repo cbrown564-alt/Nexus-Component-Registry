@@ -42,7 +42,7 @@ const TrackList = () => {
                                     "https://images.unsplash.com/photo-1493225255756-d9584f8606e9?auto=format&fit=crop&q=80&w=100",
                                     "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&q=80&w=100",
                                     "https://images.unsplash.com/photo-1511379938547-c1f69419868d?auto=format&fit=crop&q=80&w=100",
-                                    "https://images.unsplash.com/photo-1514525253440-b393452e8d26?auto=format&fit=crop&q=80&w=100"
+                                    "https://images.unsplash.com/photo-1496293455970-f8581aae0e3b?auto=format&fit=crop&q=80&w=100"
                                 ][i % 5]}
                                 alt="Art"
                                 className="h-10 w-10 rounded bg-zinc-800 object-cover"

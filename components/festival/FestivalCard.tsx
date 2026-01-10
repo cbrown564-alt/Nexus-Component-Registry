@@ -8,8 +8,8 @@ interface FestivalCardProps {
   gradient?: string;
 }
 
-const FestivalCard: React.FC<FestivalCardProps> = ({ 
-  children, 
+const FestivalCard: React.FC<FestivalCardProps> = ({
+  children,
   className = "",
   delay = 0,
   gradient = "from-fuchsia-500 via-purple-500 to-cyan-500"
@@ -23,12 +23,12 @@ const FestivalCard: React.FC<FestivalCardProps> = ({
     >
       {/* Top Gradient Border */}
       <div className={`absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r ${gradient} opacity-80`} />
-      
+
       {/* Content */}
-      <div className="relative z-10">
+      <div className="relative z-10 h-full">
         {children}
       </div>
-      
+
       {/* Ambient Glow */}
       <div className={`absolute -bottom-20 -right-20 w-40 h-40 bg-gradient-to-br ${gradient} rounded-full blur-[80px] opacity-20 pointer-events-none`} />
     </motion.div>

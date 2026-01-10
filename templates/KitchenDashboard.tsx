@@ -65,19 +65,19 @@ const KitchenDashboard = () => {
                         {/* Smart Appliances */}
                         <KitchenCard className="flex-1 p-5 bg-gradient-to-br from-stone-50 to-stone-100">
                             <div className="flex items-center justify-between mb-4">
-                                <h3 className="font-serif font-bold text-stone-900">Smart Appliances</h3>
+                                <h3 className="font-serif font-bold text-stone-900 text-base">Appliances</h3>
                                 <Wifi className="h-4 w-4 text-green-500" />
                             </div>
-                            <div className="space-y-3">
+                            <div className="space-y-2">
                                 {[
-                                    { name: 'Stovetop', status: 'HIGH HEAT', active: true, color: 'bg-orange-500' },
-                                    { name: 'Oven', status: '375°F • Preheating', active: true, color: 'bg-amber-500' },
-                                    { name: 'Exhaust Fan', status: 'AUTO', active: true, color: 'bg-sky-500' },
-                                    { name: 'Sous Vide', status: 'Standby', active: false, color: 'bg-stone-400' },
+                                    { name: 'Stovetop', status: 'HIGH', active: true, color: 'bg-orange-500' },
+                                    { name: 'Oven', status: '375°F', active: true, color: 'bg-amber-500' },
+                                    { name: 'Exhaust', status: 'AUTO', active: true, color: 'bg-sky-500' },
+                                    { name: 'Sous Vide', status: 'Off', active: false, color: 'bg-stone-400' },
                                 ].map((appliance) => (
-                                    <div key={appliance.name} className="flex items-center justify-between p-3 bg-white rounded-xl border border-stone-200 shadow-sm">
-                                        <div className="flex items-center gap-3">
-                                            <div className={`h-2.5 w-2.5 rounded-full ${appliance.color} ${appliance.active ? 'animate-pulse' : ''}`} />
+                                    <div key={appliance.name} className="flex items-center justify-between p-2.5 bg-white rounded-lg border border-stone-200 shadow-sm">
+                                        <div className="flex items-center gap-2">
+                                            <div className={`h-2 w-2 rounded-full ${appliance.color} ${appliance.active ? 'animate-pulse' : ''}`} />
                                             <span className="font-medium text-stone-800 text-sm">{appliance.name}</span>
                                         </div>
                                         <span className={`text-xs font-medium ${appliance.active ? 'text-stone-600' : 'text-stone-400'}`}>

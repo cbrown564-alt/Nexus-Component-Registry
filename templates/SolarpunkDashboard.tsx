@@ -7,7 +7,7 @@ import SolarpunkButton from '../components/solarpunk/SolarpunkButton';
 
 const SolarpunkDashboard = () => {
     return (
-        <div className="min-h-screen bg-[#F0F7F4] font-serif text-emerald-900 relative overflow-hidden selection:bg-emerald-200 selection:text-emerald-900">
+        <div className="min-h-screen bg-[#F0F7F4] font-sans text-emerald-900 relative overflow-hidden selection:bg-emerald-200 selection:text-emerald-900">
 
             {/* Background Ambience */}
             <div className="fixed inset-0 pointer-events-none">

@@ -54,18 +54,34 @@ const GameDashboard = () => {
             </header>
 
             {/* Main Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
 
-                {/* Left Column: Character */}
-                <div className="lg:col-span-1">
+                {/* Left Column: Character + Quick Actions */}
+                <div className="lg:col-span-3 flex flex-col gap-6 pt-12">
                     <CharacterProfile />
+
+                    {/* Quick Menu */}
+                    <div className="flex gap-3">
+                        <GameCard className="flex-1 flex flex-col items-center justify-center gap-2 py-4 cursor-pointer hover:bg-white/5 transition-colors group" variant="secondary" delay={0.1}>
+                            <div className="h-10 w-10 rounded-xl bg-cyan-500/20 flex items-center justify-center group-hover:scale-110 transition-transform">
+                                <Gamepad2 className="h-5 w-5 text-cyan-400" />
+                            </div>
+                            <span className="font-bold text-cyan-100 text-sm">Story</span>
+                        </GameCard>
+                        <GameCard className="flex-1 flex flex-col items-center justify-center gap-2 py-4 cursor-pointer hover:bg-white/5 transition-colors group" variant="accent" delay={0.2}>
+                            <div className="h-10 w-10 rounded-xl bg-amber-500/20 flex items-center justify-center group-hover:scale-110 transition-transform">
+                                <Trophy className="h-5 w-5 text-amber-400" />
+                            </div>
+                            <span className="font-bold text-amber-100 text-sm">Ranked</span>
+                        </GameCard>
+                    </div>
                 </div>
 
-                {/* Center Column: Gameplay/Menu */}
-                <div className="lg:col-span-2 space-y-6">
+                {/* Center Column: Featured + Quests */}
+                <div className="lg:col-span-6 space-y-6">
 
                     {/* Featured Banner */}
-                    <GameCard className="relative h-64 flex items-end p-8 group cursor-pointer overflow-hidden" variant="primary">
+                    <GameCard className="relative h-56 flex items-end p-6 group cursor-pointer overflow-hidden" variant="primary">
                         <div className="absolute inset-0">
                             <img
                                 src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&q=80&w=1000"
@@ -78,43 +94,21 @@ const GameDashboard = () => {
                             <span className="inline-block px-3 py-1 rounded bg-fuchsia-600 text-xs font-bold uppercase tracking-widest mb-2 shadow-lg shadow-fuchsia-500/40">
                                 Live Event
                             </span>
-                            <h2 className="text-3xl font-bold mb-2 text-white drop-shadow-md">The Neon Tournament</h2>
-                            <p className="text-zinc-300 max-w-md text-sm mb-4">Join the battle arena and earn exclusive legendary rewards. Ends in 24h.</p>
+                            <h2 className="text-2xl font-bold mb-2 text-white drop-shadow-md">The Neon Tournament</h2>
+                            <p className="text-zinc-300 max-w-md text-sm mb-3">Join the battle arena and earn exclusive legendary rewards. Ends in 24h.</p>
                             <GameButton variant="primary" size="md">
                                 Enter Arena
                             </GameButton>
                         </div>
                     </GameCard>
 
-                    {/* Menu Grid */}
-                    <div className="grid grid-cols-2 gap-4 h-48">
-                        <GameCard className="flex flex-col items-center justify-center gap-3 cursor-pointer hover:bg-white/5 transition-colors group" variant="secondary" delay={0.1}>
-                            <div className="h-12 w-12 rounded-2xl bg-cyan-500/20 flex items-center justify-center group-hover:scale-110 transition-transform">
-                                <Gamepad2 className="h-6 w-6 text-cyan-400" />
-                            </div>
-                            <span className="font-bold text-cyan-100">Story Mode</span>
-                        </GameCard>
-                        <GameCard className="flex flex-col items-center justify-center gap-3 cursor-pointer hover:bg-white/5 transition-colors group" variant="accent" delay={0.2}>
-                            <div className="h-12 w-12 rounded-2xl bg-amber-500/20 flex items-center justify-center group-hover:scale-110 transition-transform">
-                                <Trophy className="h-6 w-6 text-amber-400" />
-                            </div>
-                            <span className="font-bold text-amber-100">Ranked</span>
-                        </GameCard>
-                    </div>
-
-                    <div className="h-64">
-                        <QuestLog />
-                    </div>
+                    <QuestLog />
                 </div>
 
-                {/* Right Column: Social/Items */}
-                <div className="lg:col-span-1 flex flex-col gap-6">
-                    <div className="h-1/2 min-h-[300px]">
-                        <InventoryGrid />
-                    </div>
-                    <div className="h-1/2 min-h-[300px]">
-                        <LeaderboardWidget />
-                    </div>
+                {/* Right Column: Inventory + Leaderboard */}
+                <div className="lg:col-span-3 flex flex-col gap-6">
+                    <InventoryGrid />
+                    <LeaderboardWidget />
                 </div>
 
             </div>

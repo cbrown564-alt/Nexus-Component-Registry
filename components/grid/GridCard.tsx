@@ -7,6 +7,7 @@ interface GridCardProps {
   delay?: number;
   title?: string;
   noPadding?: boolean;
+  headerClassName?: string;
 }
 
 const GridCard: React.FC<GridCardProps> = ({
@@ -14,14 +15,15 @@ const GridCard: React.FC<GridCardProps> = ({
   className = "",
   delay = 0,
   title,
-  noPadding = false
+  noPadding = false,
+  headerClassName = ""
 }) => {
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.98 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.4, delay, ease: "easeOut" }}
-      className={`relative overflow-hidden border border-blue-900/50 bg-[#0f172a]/90 backdrop-blur-sm ${noPadding ? '' : 'p-4'} ${className}`}
+      className={`relative overflow-hidden border border-blue-900/50 bg-[#0f172a]/90 backdrop-blur-sm flex flex-col ${className}`}
     >
       {/* Blueprint Grid Background */}
       <div
@@ -39,12 +41,12 @@ const GridCard: React.FC<GridCardProps> = ({
       <div className="absolute bottom-0 right-0 h-2 w-2 border-b border-r border-blue-500" />
 
       {title && (
-        <div className="relative z-10 border-b border-blue-900/50 bg-blue-950/30 px-4 py-2">
+        <div className={`relative z-10 border-b border-blue-900/50 bg-blue-950/30 px-4 py-2 shrink-0 ${headerClassName}`}>
           <h3 className="text-xs font-bold uppercase tracking-widest text-blue-400 font-mono">{title}</h3>
         </div>
       )}
 
-      <div className={`relative z-10 ${noPadding ? 'h-full' : ''}`}>
+      <div className={`relative z-10 ${noPadding ? 'flex-1 min-h-0' : 'flex-1 p-4'}`}>
         {children}
       </div>
     </motion.div>

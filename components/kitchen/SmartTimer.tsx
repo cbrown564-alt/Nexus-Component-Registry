@@ -48,7 +48,7 @@ const SmartTimer = () => {
   return (
     <motion.div
         layoutId="timer-widget"
-        className="fixed bottom-8 right-8 z-50 w-80 bg-stone-900 rounded-3xl p-6 shadow-2xl shadow-stone-900/40 text-stone-100"
+        className="fixed bottom-24 right-8 z-50 w-80 bg-stone-900 rounded-3xl p-6 shadow-2xl shadow-stone-900/40 text-stone-100"
     >
         <div className="flex justify-between items-center mb-6">
             <h3 className="font-bold text-lg flex items-center gap-2">

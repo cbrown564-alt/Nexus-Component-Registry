@@ -97,49 +97,7 @@ const FoodDashboard = () => {
 
             <div className="container mx-auto px-4 md:px-8 py-6">
 
-                {/* Active Order Tracker */}
-                {hasActiveOrder && (
-                    <motion.div
-                        initial={{ opacity: 0, y: -20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        className="mb-6"
-                    >
-                        <FoodCard className="bg-gradient-to-r from-orange-500/10 to-amber-500/10 border-orange-500/30 p-4">
-                            <div className="flex items-center justify-between">
-                                <div className="flex items-center gap-4">
-                                    <div className="h-12 w-12 rounded-xl bg-orange-500/20 flex items-center justify-center">
-                                        <Package className="h-6 w-6 text-orange-500" />
-                                    </div>
-                                    <div>
-                                        <div className="text-sm font-semibold text-white">Order on the way!</div>
-                                        <div className="text-xs text-stone-400">Estimated arrival: 15-20 min</div>
-                                    </div>
-                                </div>
-                                <div className="flex items-center gap-3">
-                                    {/* Progress Steps */}
-                                    <div className="hidden sm:flex items-center gap-2">
-                                        {['Confirmed', 'Preparing', 'On the way', 'Delivered'].map((step, i) => (
-                                            <React.Fragment key={step}>
-                                                <div className={`flex items-center gap-1.5 ${i <= 2 ? 'text-orange-500' : 'text-stone-500'}`}>
-                                                    <div className={`h-6 w-6 rounded-full flex items-center justify-center text-xs font-bold ${i <= 2 ? 'bg-orange-500 text-white' : 'bg-stone-800 text-stone-400'
-                                                        }`}>
-                                                        {i <= 2 ? <Check className="h-3.5 w-3.5" /> : i + 1}
-                                                    </div>
-                                                    <span className="text-xs hidden lg:block">{step}</span>
-                                                </div>
-                                                {i < 3 && <div className={`w-8 h-0.5 ${i < 2 ? 'bg-orange-500' : 'bg-stone-700'}`} />}
-                                            </React.Fragment>
-                                        ))}
-                                    </div>
-                                    <FoodButton variant="outline" size="sm">
-                                        Track Order
-                                        <ChevronRight className="h-4 w-4" />
-                                    </FoodButton>
-                                </div>
-                            </div>
-                        </FoodCard>
-                    </motion.div>
-                )}
+
 
                 {/* Categories */}
                 <motion.div
@@ -173,31 +131,7 @@ const FoodDashboard = () => {
                     </div>
                 </motion.div>
 
-                {/* Promotional Banner */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.15 }}
-                    className="mb-8"
-                >
-                    <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-orange-600 via-orange-500 to-amber-500 p-6">
-                        <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2" />
-                        <div className="absolute bottom-0 left-0 w-32 h-32 bg-black/10 rounded-full translate-y-1/2 -translate-x-1/2" />
-                        <div className="relative z-10 flex items-center justify-between">
-                            <div>
-                                <div className="flex items-center gap-2 mb-2">
-                                    <Sparkles className="h-5 w-5 text-yellow-300" />
-                                    <span className="text-xs font-bold uppercase tracking-wider text-orange-200">Limited Time</span>
-                                </div>
-                                <h3 className="text-2xl font-bold text-white mb-1">Get 25% off your first order!</h3>
-                                <p className="text-orange-100 text-sm">Use code WELCOME25 at checkout</p>
-                            </div>
-                            <FoodButton variant="secondary" className="bg-white text-orange-600 hover:bg-orange-50 shadow-lg">
-                                Order Now
-                            </FoodButton>
-                        </div>
-                    </div>
-                </motion.div>
+
 
                 {/* Main Grid */}
                 <div className="grid grid-cols-1 gap-8 lg:grid-cols-12">
@@ -217,6 +151,31 @@ const FoodDashboard = () => {
                                 </h2>
                             </div>
                             <HeroDish />
+                        </motion.div>
+
+                        {/* Promotional Banner */}
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.25 }}
+                        >
+                            <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-orange-600 via-orange-500 to-amber-500 p-6">
+                                <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2" />
+                                <div className="absolute bottom-0 left-0 w-32 h-32 bg-black/10 rounded-full translate-y-1/2 -translate-x-1/2" />
+                                <div className="relative z-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                                    <div>
+                                        <div className="flex items-center gap-2 mb-2">
+                                            <Sparkles className="h-5 w-5 text-yellow-300" />
+                                            <span className="text-xs font-bold uppercase tracking-wider text-orange-200">Limited Time</span>
+                                        </div>
+                                        <h3 className="text-2xl font-bold text-white mb-1">Get 25% off your first order!</h3>
+                                        <p className="text-orange-100 text-sm">Use code WELCOME25 at checkout</p>
+                                    </div>
+                                    <FoodButton variant="secondary" className="bg-white !text-orange-600 hover:bg-orange-50 shadow-lg font-bold">
+                                        Order Now
+                                    </FoodButton>
+                                </div>
+                            </div>
                         </motion.div>
 
                         {/* Menu Grid */}
@@ -240,6 +199,38 @@ const FoodDashboard = () => {
 
                     {/* Right Sidebar */}
                     <div className="lg:col-span-4 space-y-6">
+                        {/* Active Order Tracker (Sidebar) */}
+                        {hasActiveOrder && (
+                            <motion.div
+                                initial={{ opacity: 0, x: 20 }}
+                                animate={{ opacity: 1, x: 0 }}
+                            >
+                                <FoodCard className="bg-gradient-to-r from-orange-500/10 to-amber-500/10 border-orange-500/30 p-4">
+                                    <div className="flex items-center justify-between">
+                                        <div className="flex items-center gap-3">
+                                            <div className="h-10 w-10 rounded-xl bg-orange-500/20 flex items-center justify-center">
+                                                <Package className="h-5 w-5 text-orange-500" />
+                                            </div>
+                                            <div>
+                                                <div className="text-sm font-semibold text-white">Order on the way!</div>
+                                                <div className="text-xs text-stone-400">15-20 min</div>
+                                            </div>
+                                        </div>
+                                        <FoodButton variant="outline" size="sm" className="h-8 px-3 text-xs">
+                                            Track
+                                        </FoodButton>
+                                    </div>
+                                    <div className="mt-3 relative h-1.5 w-full bg-stone-800 rounded-full overflow-hidden">
+                                        <div className="absolute top-0 left-0 h-full w-[60%] bg-orange-500 rounded-full" />
+                                    </div>
+                                    <div className="flex justify-between text-[10px] text-stone-500 mt-1">
+                                        <span>Confirmed</span>
+                                        <span className="text-orange-400">On the way</span>
+                                        <span>Delivered</span>
+                                    </div>
+                                </FoodCard>
+                            </motion.div>
+                        )}
                         {/* Cart */}
                         <motion.div
                             initial={{ opacity: 0, x: 20 }}

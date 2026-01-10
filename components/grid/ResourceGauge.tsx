@@ -44,8 +44,8 @@ const Gauge: React.FC<ResourceGaugeProps> = ({ label, value, max, unit, color = 
           />
         </svg>
         <div className="absolute inset-0 flex flex-col items-center justify-center">
-            <span className="text-lg font-bold font-mono text-white">{value}</span>
-            <span className="text-[10px] text-slate-400">{unit}</span>
+          <span className="text-lg font-bold font-mono text-white">{value}</span>
+          <span className="text-[10px] text-slate-400">{unit}</span>
         </div>
       </div>
       <span className="mt-2 text-xs font-medium text-slate-300 uppercase tracking-wide">{label}</span>
@@ -55,10 +55,12 @@ const Gauge: React.FC<ResourceGaugeProps> = ({ label, value, max, unit, color = 
 
 const ResourceGauge = () => {
   return (
-    <GridCard title="Resource Consumption" className="flex items-center justify-around py-6">
+    <GridCard title="Resource Consumption">
+      <div className="flex items-center justify-around gap-4">
         <Gauge label="Power" value={842} max={1000} unit="MW" color="text-amber-500" />
         <Gauge label="Water" value={450} max={1000} unit="kL" color="text-cyan-500" />
         <Gauge label="Bandwidth" value={92} max={100} unit="TB" color="text-emerald-500" />
+      </div>
     </GridCard>
   );
 };

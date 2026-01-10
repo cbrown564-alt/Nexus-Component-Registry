@@ -52,7 +52,7 @@ const GridDashboard = () => {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <ResourceGauge />
                         <GridCard title="Alert Log" className="overflow-hidden">
-                            <div className="space-y-0 text-xs font-mono h-32 overflow-y-auto">
+                            <div className="space-y-0 text-xs font-mono">
                                 {[
                                     { time: '10:42:05', type: 'WARN', msg: 'Pressure spike in Sector 4A', color: 'text-amber-500' },
                                     { time: '10:41:58', type: 'INFO', msg: 'Grid synchronization complete', color: 'text-blue-400' },

@@ -67,12 +67,6 @@ const SciFiDashboard = () => {
 
                 {/* Center Column: The Scanner (Hero) */}
                 <div className="lg:col-span-7 flex flex-col relative group">
-                    {/* Corner Brackets */}
-                    <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-cyan-500/50" />
-                    <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-cyan-500/50" />
-                    <div className="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-cyan-500/50" />
-                    <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-cyan-500/50" />
-
                     {/* Top Info Bar */}
                     <div className="flex justify-between items-center px-4 py-2 bg-cyan-950/10 border-b border-cyan-900/30 mb-4">
                         <div className="flex items-center gap-4">
@@ -86,6 +80,12 @@ const SciFiDashboard = () => {
 
                     {/* Main Visual */}
                     <div className="flex-1 relative flex items-center justify-center border-x border-cyan-900/10 bg-cyan-950/5">
+                        {/* Corner Brackets */}
+                        <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-cyan-500/50" />
+                        <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-cyan-500/50" />
+                        <div className="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-cyan-500/50" />
+                        <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-cyan-500/50" />
+
                         <div className="absolute inset-0 flex items-center justify-center opacity-30">
                             <div className="w-[500px] h-[500px] border border-cyan-500/20 rounded-full animate-pulse" />
                             <div className="absolute w-[300px] h-[300px] border border-cyan-500/20 rounded-full" />
@@ -112,14 +112,15 @@ const SciFiDashboard = () => {
                 </div>
 
                 {/* Right Column: Data Analysis */}
-                <div className="lg:col-span-3 flex flex-col gap-6">
+                <div className="lg:col-span-3 flex flex-col gap-4">
+                    {/* Neural Sync - now properly above the genetic markers */}
                     <div className="bg-cyan-950/10 p-4 border border-cyan-900/30">
-                        <h3 className="text-xs text-cyan-500 mb-4 font-bold flex items-center gap-2">
+                        <h3 className="text-xs text-cyan-500 mb-3 font-bold flex items-center gap-2">
                             <Radio className="w-3 h-3" />
                             NEURAL_SYNC
                         </h3>
-                        <div className="flex items-center justify-center py-6">
-                            <div className="relative w-24 h-24">
+                        <div className="flex items-center justify-center py-4">
+                            <div className="relative w-20 h-20">
                                 <svg className="animate-spin-slow w-full h-full" viewBox="0 0 100 100">
                                     <circle cx="50" cy="50" r="45" stroke="currentColor" strokeWidth="1" fill="none" className="text-cyan-800" />
                                     <path d="M50 5 A 45 45 0 0 1 95 50" stroke="currentColor" strokeWidth="2" fill="none" className="text-cyan-400" />

@@ -1,9 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Search, Bell, Sparkles, GraduationCap, Play, BookOpen, Plus } from 'lucide-react';
+import { Search, Bell, Sparkles, GraduationCap, Play, BookOpen, Plus, Calendar } from 'lucide-react';
 import EducationCard from '../components/education/EducationCard';
 import CourseCard from '../components/education/CourseCard';
-import UpcomingSchedule from '../components/education/UpcomingSchedule';
 import StudyStats from '../components/education/StudyStats';
 import EducationButton from '../components/education/EducationButton';
 
@@ -106,11 +105,39 @@ const EducationDashboard = () => {
                 </div>
 
                 {/* Right Column (Sidebar) */}
-                <div className="space-y-8">
-                    <UpcomingSchedule />
+                <div className="space-y-6">
+                    {/* Schedule and Assignments in same flex container */}
+                    <div className="flex flex-col gap-6">
+                        <EducationCard className="p-6">
+                            <div className="mb-4 flex items-center justify-between">
+                                <h3 className="font-display text-lg font-bold text-slate-900">Today's Schedule</h3>
+                                <button className="rounded-lg bg-slate-100 p-2 text-slate-600 hover:bg-slate-200">
+                                    <Calendar className="h-4 w-4" />
+                                </button>
+                            </div>
+                            <div className="relative space-y-4">
+                                <div className="absolute left-[7px] top-2 bottom-2 w-[2px] bg-slate-100" />
+                                {[
+                                    { title: 'Advanced UI Design', time: '10:00 AM', status: 'live' },
+                                    { title: 'React Workshop', time: '2:00 PM', status: 'upcoming' },
+                                ].map((event, i) => (
+                                    <div key={i} className="relative flex gap-4">
+                                        <div className={`relative z-10 h-4 w-4 rounded-full border-2 bg-white ${event.status === 'live' ? 'border-red-500' : 'border-slate-300'}`}>
+                                            {event.status === 'live' && <div className="absolute inset-0 animate-ping rounded-full bg-red-500 opacity-75" />}
+                                        </div>
+                                        <div className="flex-1 rounded-xl bg-slate-50 p-3 transition-colors hover:bg-slate-100">
+                                            <span className={`text-xs font-bold uppercase tracking-wider ${event.status === 'live' ? 'text-red-500' : 'text-slate-500'}`}>
+                                                {event.status === 'live' ? 'Now' : event.time}
+                                            </span>
+                                            <h4 className="font-bold text-slate-800 text-sm">{event.title}</h4>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </EducationCard>
 
-                    {/* Homework / Tasks */}
-                    <EducationCard className="p-6">
+                        {/* Assignments */}
+                        <EducationCard className="p-6">
                         <h3 className="mb-4 font-display text-lg font-bold text-slate-900">Assignments</h3>
                         <div className="space-y-3">
                             {[
@@ -136,6 +163,7 @@ const EducationDashboard = () => {
                             Add New Task
                         </EducationButton>
                     </EducationCard>
+                    </div>
                 </div>
 
             </div>

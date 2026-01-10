@@ -66,7 +66,7 @@ const EcommerceDashboard = () => {
                                 delay={0.4}
                             />
                             <ProductCard
-                                image="https://images.unsplash.com/photo-1591369045385-115fe21d6003?auto=format&fit=crop&q=80&w=600"
+                                image="https://images.unsplash.com/photo-1578500494198-246f612d3b3d?auto=format&fit=crop&q=80&w=600"
                                 title="Ceramic Vase Set"
                                 category="Home"
                                 price="$89.00"

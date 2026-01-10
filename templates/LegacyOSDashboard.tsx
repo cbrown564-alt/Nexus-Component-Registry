@@ -77,11 +77,11 @@ const LegacyOSDashboard = () => {
         {/* Notepad / Text Editor */}
         <div className="pointer-events-auto transform translate-y-12 md:translate-x-12 hover:z-10 hover:scale-[1.01] transition-transform">
             <LegacyWindow title="Untitled - Notepad" isActive={activeWindow === 'notepad'}>
-                <div className="flex gap-2 px-2 pb-1 text-sm border-b border-[#808080] shadow-[0_1px_0_#ffffff]">
-                    <span className="underline decoration-1 underline-offset-2">F</span>ile
-                    <span className="underline decoration-1 underline-offset-2">E</span>dit
-                    <span className="underline decoration-1 underline-offset-2">S</span>earch
-                    <span className="underline decoration-1 underline-offset-2">H</span>elp
+                <div className="flex gap-4 px-2 pb-1 text-sm border-b border-[#808080] shadow-[0_1px_0_#ffffff]">
+                    <span><span className="underline decoration-1 underline-offset-2">F</span>ile</span>
+                    <span><span className="underline decoration-1 underline-offset-2">E</span>dit</span>
+                    <span><span className="underline decoration-1 underline-offset-2">S</span>earch</span>
+                    <span><span className="underline decoration-1 underline-offset-2">H</span>elp</span>
                 </div>
                 <div className="bg-white h-48 w-full p-2 text-sm outline-none resize-none border-[2px] border-inset border-[#808080] overflow-y-auto">
                     <p>TODO LIST:</p>

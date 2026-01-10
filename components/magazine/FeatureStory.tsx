@@ -20,7 +20,7 @@ const FeatureStory = () => {
         </div>
       </div>
 
-      <div className="mt-8 pr-4">
+      <div className="mt-8 px-4 pb-4">
         <div className="mb-3 flex items-center gap-2 text-xs font-medium text-neutral-500">
           <span>Oct 24, 2024</span>
           <span className="h-px w-8 bg-neutral-300" />

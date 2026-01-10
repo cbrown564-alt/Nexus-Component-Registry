@@ -7,49 +7,55 @@ const FocusTimer = () => {
     const [isActive, setIsActive] = useState(false);
 
     return (
-        <ProductivityCard className="p-6">
-            <div className="flex items-center justify-between mb-8">
+        <ProductivityCard className="p-5">
+            <div className="flex items-center justify-between mb-4">
                 <h3 className="text-sm font-medium text-zinc-200">Focus Session</h3>
-                <div className="flex gap-1">
+                <div className="flex items-center gap-1.5">
                     <span className="h-1.5 w-1.5 rounded-full bg-amber-500 animate-pulse" />
                     <span className="text-[10px] font-medium text-amber-500 uppercase tracking-wider">Deep Work</span>
                 </div>
             </div>
 
-            <div className="relative flex flex-col items-center justify-center py-4">
-                {/* Ring Background */}
-                <div className="absolute h-48 w-48 rounded-full border-4 border-zinc-800" />
-
-                {/* Ring Progress (Static representation for 25:00) */}
-                <svg className="absolute h-48 w-48 -rotate-90">
+            <div className="relative flex flex-col items-center justify-center py-2 mx-auto">
+                {/* Ring Progress with Background */}
+                <svg className="absolute h-40 w-40 -rotate-90">
+                    {/* Background Ring */}
                     <circle
-                        cx="96" cy="96" r="94"
+                        cx="80" cy="80" r="77"
+                        fill="none"
+                        className="stroke-zinc-800"
+                        strokeWidth="6"
+                    />
+                    {/* Progress Ring */}
+                    <circle
+                        cx="80" cy="80" r="77"
                         fill="none"
                         stroke="currentColor"
-                        strokeWidth="4"
-                        strokeDasharray="590"
-                        strokeDashoffset="100"
+                        strokeWidth="6"
+                        strokeDasharray="484"
+                        strokeDashoffset="83"
+                        strokeLinecap="round"
                         className="text-amber-500 transition-all duration-1000"
                     />
                 </svg>
 
-                <div className="text-center z-10">
-                    <div className="font-mono text-5xl font-bold tracking-tight text-white mb-2">24:12</div>
-                    <div className="text-xs text-zinc-500 uppercase tracking-widest">Minutes Remaining</div>
+                <div className="text-center z-10 h-40 w-40 flex flex-col items-center justify-center">
+                    <div className="font-mono text-4xl font-bold tracking-tight text-white mb-1">24:12</div>
+                    <div className="text-[10px] text-zinc-500 uppercase tracking-widest">Remaining</div>
                 </div>
             </div>
 
-            <div className="mt-10 flex justify-center gap-4">
-                <FlowButton variant="ghost" className="rounded-full p-3">
-                    <RefreshCw className="h-5 w-5" />
+            <div className="mt-4 flex justify-center gap-3">
+                <FlowButton variant="ghost" className="rounded-full p-2.5">
+                    <RefreshCw className="h-4 w-4" />
                 </FlowButton>
                 <FlowButton
                     variant="primary"
                     onClick={() => setIsActive(!isActive)}
-                    className="rounded-full px-8 py-3"
+                    className="rounded-full px-6 py-2.5"
                 >
                     {isActive ? <Pause className="h-4 w-4 fill-current" /> : <Play className="h-4 w-4 fill-current" />}
-                    {isActive ? 'Pause' : 'Start Focus'}
+                    {isActive ? 'Pause' : 'Start'}
                 </FlowButton>
             </div>
         </ProductivityCard>

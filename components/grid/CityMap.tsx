@@ -39,12 +39,12 @@ const CityMap = () => {
                     >
                         {/* Ping Animation */}
                         <div className={`absolute inset-0 animate-ping rounded-full h-4 w-4 opacity-75 ${zone.status === 'critical' ? 'bg-red-500' :
-                                zone.status === 'warning' ? 'bg-amber-500' : 'bg-emerald-500'
+                            zone.status === 'warning' ? 'bg-amber-500' : 'bg-emerald-500'
                             }`} />
 
                         {/* Node Icon */}
                         <div className={`relative flex h-4 w-4 items-center justify-center rounded-full border border-black shadow-lg ${zone.status === 'critical' ? 'bg-red-500 text-white' :
-                                zone.status === 'warning' ? 'bg-amber-500 text-black' : 'bg-emerald-500 text-black'
+                            zone.status === 'warning' ? 'bg-amber-500 text-black' : 'bg-emerald-500 text-black'
                             }`}>
                             <div className="h-1.5 w-1.5 rounded-full bg-current" />
                         </div>
@@ -56,7 +56,7 @@ const CityMap = () => {
                                 <div className="flex items-center justify-between mb-1">
                                     <span className="text-slate-400">Status</span>
                                     <span className={`font-mono font-bold uppercase ${zone.status === 'critical' ? 'text-red-400' :
-                                            zone.status === 'warning' ? 'text-amber-400' : 'text-emerald-400'
+                                        zone.status === 'warning' ? 'text-amber-400' : 'text-emerald-400'
                                         }`}>{zone.status}</span>
                                 </div>
                                 <div className="flex items-center justify-between">
@@ -85,15 +85,11 @@ const CityMap = () => {
                 </div>
 
                 {/* Legend */}
-                <div className="absolute bottom-4 left-4 bg-slate-900/80 border border-blue-900/50 p-2 rounded backdrop-blur-sm">
-                    <div className="flex items-center gap-2 text-[10px] text-slate-300 mb-1">
-                        <span className="h-2 w-2 rounded-full bg-emerald-500" /> Normal
-                    </div>
-                    <div className="flex items-center gap-2 text-[10px] text-slate-300 mb-1">
-                        <span className="h-2 w-2 rounded-full bg-amber-500" /> Warning
-                    </div>
-                    <div className="flex items-center gap-2 text-[10px] text-slate-300">
-                        <span className="h-2 w-2 rounded-full bg-red-500" /> Critical
+                <div className="absolute bottom-4 left-4 bg-slate-900/90 border border-blue-900/50 px-3 py-2 rounded backdrop-blur-sm">
+                    <div className="flex items-center gap-4 text-[10px] text-slate-300">
+                        <span className="flex items-center gap-1.5"><span className="h-2 w-2 rounded-full bg-emerald-500" /> Normal</span>
+                        <span className="flex items-center gap-1.5"><span className="h-2 w-2 rounded-full bg-amber-500" /> Warning</span>
+                        <span className="flex items-center gap-1.5"><span className="h-2 w-2 rounded-full bg-red-500" /> Critical</span>
                     </div>
                 </div>
 

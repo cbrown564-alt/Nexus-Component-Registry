@@ -26,8 +26,8 @@ const SwissDashboard = () => {
                </SwissTypography>
             </div>
 
-            <div className="md:col-span-12 lg:col-span-4 flex flex-col justify-end items-start mb-12">
-               <div className="w-full border-t-4 border-black pt-4">
+            <div className="md:col-span-12 lg:col-span-4 flex flex-col justify-end items-end mb-12">
+               <div className="w-64 border-t-4 border-black pt-1">
                   <div className="flex justify-between items-center text-xl font-bold">
                      <span>ZÜRICH</span>
                      <span>10:42</span>

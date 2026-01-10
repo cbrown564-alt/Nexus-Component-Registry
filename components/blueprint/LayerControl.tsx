@@ -9,7 +9,7 @@ interface LayerControlProps {
 
 const LayerControl: React.FC<LayerControlProps> = ({ layers, toggleLayer }) => {
   return (
-    <BlueprintCard title="Layer Properties" code="LYR-01" className="h-full bg-[#1e3a8a]/50">
+    <BlueprintCard title="Layers" code="LYR-01" className="h-full bg-[#1e3a8a]/50">
       <div className="space-y-1">
         {Object.keys(layers).map((layer) => (
           <button

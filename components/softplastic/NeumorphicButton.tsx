@@ -26,10 +26,10 @@ const NeumorphicButton: React.FC<NeumorphicButtonProps> = ({
     <button
       onClick={onClick}
       aria-label={ariaLabel || label}
-      className={`group relative flex items-center justify-center transition-all duration-300 outline-none ${shapeClass} ${
+      className={`group relative flex items-center justify-center transition-all duration-200 outline-none select-none ${shapeClass} ${
         active 
           ? 'bg-[#EFEEEE] shadow-[inset_5px_5px_10px_#D1D9E6,inset_-5px_-5px_10px_#FFFFFF]' 
-          : 'bg-[#EFEEEE] shadow-[8px_8px_16px_#D1D9E6,-8px_-8px_16px_#FFFFFF] hover:shadow-[5px_5px_10px_#D1D9E6,-5px_-5px_10px_#FFFFFF] active:shadow-[inset_5px_5px_10px_#D1D9E6,inset_-5px_-5px_10px_#FFFFFF]'
+          : 'bg-[#EFEEEE] shadow-[8px_8px_16px_#D1D9E6,-8px_-8px_16px_#FFFFFF] hover:shadow-[5px_5px_10px_#D1D9E6,-5px_-5px_10px_#FFFFFF] active:shadow-[inset_4px_4px_8px_#D1D9E6,inset_-4px_-4px_8px_#FFFFFF] active:scale-[0.98]'
       } ${className}`}
     >
       <div className={`flex flex-col items-center gap-2 ${variant === 'pill' ? 'flex-row px-6 py-3' : 'p-4'}`}>

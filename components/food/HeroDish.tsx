@@ -45,7 +45,7 @@ const HeroDish = () => {
                         </div>
                     </div>
 
-                    <FoodButton variant="primary" className="rounded-full bg-white text-stone-900 hover:bg-orange-50 shadow-none">
+                    <FoodButton variant="primary" className="rounded-full bg-white !text-stone-900 hover:bg-orange-50 shadow-none">
                         <Plus className="h-4 w-4" />
                         Add to Order <span className="ml-1 text-stone-400">|</span> $24.00
                     </FoodButton>
