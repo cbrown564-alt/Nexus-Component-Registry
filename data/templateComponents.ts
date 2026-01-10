@@ -73,7 +73,7 @@ export const templateComponentMap: TemplateComponentMapping[] = [
         id: 'legacy',
         name: 'Legacy OS',
         usedComponentIds: ['legacy-window', 'legacy-button', 'desktop-icon'],
-        extendedComponentIds: [],
+        extendedComponentIds: ['legacy-alert'],
         sharedComponentIds: [], // Retro theme doesn't mix well with modern components
     },
 
@@ -82,7 +82,7 @@ export const templateComponentMap: TemplateComponentMapping[] = [
         id: 'cockpit',
         name: 'Cockpit',
         usedComponentIds: ['speedometer', 'climate-control', 'lane-assist', 'media-widget', 'nav-widget'],
-        extendedComponentIds: [],
+        extendedComponentIds: ['cockpit-card'],
         sharedComponentIds: ['stats-card'],
     },
 
@@ -100,7 +100,7 @@ export const templateComponentMap: TemplateComponentMapping[] = [
         id: 'education',
         name: 'Education',
         usedComponentIds: ['course-card', 'upcoming-schedule'],
-        extendedComponentIds: [],
+        extendedComponentIds: ['education-button', 'education-card', 'study-stats'],
         sharedComponentIds: ['stats-card', 'activity-feed', 'bento-card'],
     },
 
@@ -118,7 +118,7 @@ export const templateComponentMap: TemplateComponentMapping[] = [
         id: 'magazine',
         name: 'Magazine',
         usedComponentIds: ['editorial-button'],
-        extendedComponentIds: [],
+        extendedComponentIds: ['magazine-card', 'feature-story', 'newsletter', 'trending-list'],
         sharedComponentIds: ['spotlight-card', 'activity-feed'],
     },
 
@@ -127,7 +127,7 @@ export const templateComponentMap: TemplateComponentMapping[] = [
         id: 'ecommerce',
         name: 'E-commerce',
         usedComponentIds: ['product-card', 'cart-summary', 'shop-button'],
-        extendedComponentIds: [],
+        extendedComponentIds: ['commerce-card', 'promo-banner'],
         sharedComponentIds: ['spotlight-card', 'stats-card'],
     },
 
@@ -280,7 +280,7 @@ export const templateComponentMap: TemplateComponentMapping[] = [
         id: 'swiss',
         name: 'Swiss',
         usedComponentIds: ['swiss-button', 'swiss-grid', 'swiss-typography', 'swiss-divider'],
-        extendedComponentIds: [],
+        extendedComponentIds: ['swiss-card', 'swiss-metric'],
         sharedComponentIds: ['stats-card'],
     },
 ]

@@ -463,6 +463,16 @@ export const componentDocs: Record<string, ComponentDoc> = {
             },
         ],
     },
+    'cockpit-card': {
+        id: 'cockpit-card',
+        props: [
+            { name: 'children', type: 'ReactNode', required: true, description: 'Card content' },
+            { name: 'className', type: 'string', required: false, description: 'Additional CSS classes' },
+            { name: 'label', type: 'string', required: false, description: 'Header label text' },
+            { name: 'alert', type: 'boolean', required: false, defaultValue: 'false', description: 'Alert state with red border' },
+        ],
+        notes: ['Dark automotive aesthetic with matte texture', 'Optional alert state for warnings'],
+    },
 
     // Game components
     'character-profile': {
@@ -593,6 +603,11 @@ export const componentDocs: Record<string, ComponentDoc> = {
             },
         ],
     },
+    'legacy-alert': {
+        id: 'legacy-alert',
+        props: [],
+        notes: ['Classic Windows 95/98 error dialog', 'Uses LegacyWindow and LegacyButton internally', 'Authentic retro styling'],
+    },
 
     // Game components (continued)
     'leaderboard-widget': {
@@ -699,6 +714,35 @@ export const componentDocs: Record<string, ComponentDoc> = {
         id: 'upcoming-schedule',
         props: [],
         notes: ['Timeline view of daily events', 'Includes "live" pulsing indicator state'],
+    },
+    'education-button': {
+        id: 'education-button',
+        props: [
+            { name: 'children', type: 'ReactNode', required: true, description: 'Button content' },
+            { name: 'variant', type: "'primary' | 'secondary' | 'ghost' | 'outline'", required: false, defaultValue: "'primary'", description: 'Visual style variant' },
+            { name: 'size', type: "'sm' | 'md' | 'lg'", required: false, defaultValue: "'md'", description: 'Button size' },
+            { name: 'icon', type: 'ReactNode', required: false, description: 'Optional leading icon' },
+            { name: 'disabled', type: 'boolean', required: false, defaultValue: 'false', description: 'Disabled state' },
+            { name: 'onClick', type: '() => void', required: false, description: 'Click handler' },
+        ],
+        examples: [{ name: 'Primary', code: '<EducationButton>Start Learning</EducationButton>' }],
+        notes: ['Gradient shine effect on primary variant', 'Includes pulsing progress dot'],
+    },
+    'education-card': {
+        id: 'education-card',
+        props: [
+            { name: 'children', type: 'ReactNode', required: true, description: 'Card content' },
+            { name: 'className', type: 'string', required: false, description: 'Additional CSS classes' },
+            { name: 'delay', type: 'number', required: false, defaultValue: '0', description: 'Animation delay in seconds' },
+            { name: 'featured', type: 'boolean', required: false, defaultValue: 'false', description: 'Featured purple variant' },
+        ],
+        examples: [{ name: 'Featured Card', code: '<EducationCard featured>Special Offer</EducationCard>' }],
+        notes: ['Animated entry with fade and slide', 'Featured variant has purple gradient background'],
+    },
+    'study-stats': {
+        id: 'study-stats',
+        props: [],
+        notes: ['Displays 4 key metrics: Hours, Assignments, Grade, Courses', 'Uses EducationCard internally'],
     },
 
     // Social Components
@@ -1768,6 +1812,28 @@ export const componentDocs: Record<string, ComponentDoc> = {
         ],
         notes: ['Animated scale-in on mount', 'Swiss red accent option'],
     },
+    'swiss-card': {
+        id: 'swiss-card',
+        props: [
+            { name: 'children', type: 'ReactNode', required: true, description: 'Card content' },
+            { name: 'className', type: 'string', required: false, description: 'Additional CSS classes' },
+            { name: 'bordered', type: 'boolean', required: false, defaultValue: 'false', description: 'Add black border' },
+            { name: 'inverted', type: 'boolean', required: false, defaultValue: 'false', description: 'International red background' },
+            { name: 'black', type: 'boolean', required: false, defaultValue: 'false', description: 'Black background variant' },
+            { name: 'delay', type: 'number', required: false, defaultValue: '0', description: 'Animation delay' },
+        ],
+        notes: ['Sharp rectangular corners for Swiss aesthetic', 'Three variants: white, red (inverted), black'],
+    },
+    'swiss-metric': {
+        id: 'swiss-metric',
+        props: [
+            { name: 'label', type: 'string', required: true, description: 'Metric label text' },
+            { name: 'value', type: 'string', required: true, description: 'Large display value' },
+            { name: 'description', type: 'string', required: false, description: 'Optional description text' },
+            { name: 'size', type: '"large" | "medium" | "small"', required: false, defaultValue: '"medium"', description: 'Typography size' },
+        ],
+        notes: ['Animated border expansion on hover', 'Massive typography for data visualization'],
+    },
 
     // ============================================
     // Single Button Components (Various Themes)
@@ -1793,6 +1859,32 @@ export const componentDocs: Record<string, ComponentDoc> = {
         ],
         notes: ['Serif typography', 'Link variant with arrow', 'Hover fill effect for primary'],
     },
+    'magazine-card': {
+        id: 'magazine-card',
+        props: [
+            { name: 'children', type: 'ReactNode', required: true, description: 'Card content' },
+            { name: 'className', type: 'string', required: false, description: 'Additional CSS classes' },
+            { name: 'delay', type: 'number', required: false, defaultValue: '0', description: 'Animation delay' },
+            { name: 'hoverEffect', type: 'boolean', required: false, defaultValue: 'true', description: 'Enable hover lift effect' },
+            { name: 'noPadding', type: 'boolean', required: false, defaultValue: 'false', description: 'Remove default padding' },
+        ],
+        notes: ['Elegant editorial feel with custom bezier animation', 'Shadow lift on hover'],
+    },
+    'feature-story': {
+        id: 'feature-story',
+        props: [],
+        notes: ['Full-width hero article component', 'Large image with overlay text', 'Uses EditorialButton for CTA'],
+    },
+    'newsletter': {
+        id: 'newsletter',
+        props: [],
+        notes: ['Dark themed signup card', 'Minimal email input with inline submit', 'Uses MagazineCard internally'],
+    },
+    'trending-list': {
+        id: 'trending-list',
+        props: [],
+        notes: ['Numbered list (01-04) of trending articles', 'Hover underline effect', 'Category tags'],
+    },
 
     'shop-button': {
         id: 'shop-button',
@@ -1803,6 +1895,20 @@ export const componentDocs: Record<string, ComponentDoc> = {
             { name: 'className', type: 'string', required: false, description: 'Additional CSS classes' },
         ],
         notes: ['Add-to-cart variant includes shopping bag icon', 'Slide-in background on hover', 'Uppercase tracking'],
+    },
+    'commerce-card': {
+        id: 'commerce-card',
+        props: [
+            { name: 'children', type: 'ReactNode', required: true, description: 'Card content' },
+            { name: 'className', type: 'string', required: false, description: 'Additional CSS classes' },
+            { name: 'delay', type: 'number', required: false, defaultValue: '0', description: 'Animation delay' },
+        ],
+        notes: ['Clean minimal white card', 'Fade-up animation on mount'],
+    },
+    'promo-banner': {
+        id: 'promo-banner',
+        props: [],
+        notes: ['Full-width promotional hero', 'Background image with gradient overlay', 'CTA with arrow animation'],
     },
 
     'flow-button': {

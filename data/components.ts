@@ -56,6 +56,8 @@ import MediaWidget from '@/components/cockpit/MediaWidget'
 import MediaWidgetSource from '@/components/cockpit/MediaWidget?raw'
 import NavWidget from '@/components/cockpit/NavWidget'
 import NavWidgetSource from '@/components/cockpit/NavWidget?raw'
+import CockpitCard from '@/components/cockpit/CockpitCard'
+import CockpitCardSource from '@/components/cockpit/CockpitCard?raw'
 
 // Game Components
 import CharacterProfile from '@/components/game/CharacterProfile'
@@ -97,6 +99,12 @@ import CourseCard from '@/components/education/CourseCard'
 import CourseCardSource from '@/components/education/CourseCard?raw'
 import UpcomingSchedule from '@/components/education/UpcomingSchedule'
 import UpcomingScheduleSource from '@/components/education/UpcomingSchedule?raw'
+import EducationButton from '@/components/education/EducationButton'
+import EducationButtonSource from '@/components/education/EducationButton?raw'
+import EducationCard from '@/components/education/EducationCard'
+import EducationCardSource from '@/components/education/EducationCard?raw'
+import StudyStats from '@/components/education/StudyStats'
+import StudyStatsSource from '@/components/education/StudyStats?raw'
 
 // Social Components
 import FeedPost from '@/components/social/FeedPost'
@@ -115,6 +123,10 @@ import ProductCard from '@/components/ecommerce/ProductCard'
 import ProductCardSource from '@/components/ecommerce/ProductCard?raw'
 import CartSummary from '@/components/ecommerce/CartSummary'
 import CartSummarySource from '@/components/ecommerce/CartSummary?raw'
+import CommerceCard from '@/components/ecommerce/CommerceCard'
+import CommerceCardSource from '@/components/ecommerce/CommerceCard?raw'
+import PromoBanner from '@/components/ecommerce/PromoBanner'
+import PromoBannerSource from '@/components/ecommerce/PromoBanner?raw'
 
 // Legacy Components
 import LegacyWindow from '@/components/legacy/LegacyWindow'
@@ -123,6 +135,8 @@ import LegacyButton from '@/components/legacy/LegacyButton'
 import LegacyButtonSource from '@/components/legacy/LegacyButton?raw'
 import DesktopIcon from '@/components/legacy/DesktopIcon'
 import DesktopIconSource from '@/components/legacy/DesktopIcon?raw'
+import LegacyAlert from '@/components/legacy/LegacyAlert'
+import LegacyAlertSource from '@/components/legacy/LegacyAlert?raw'
 
 // Engineering Components
 import EngineeringCard from '@/components/engineering/EngineeringCard'
@@ -155,6 +169,14 @@ import CartWidgetSource from '@/components/food/CartWidget?raw'
 // Magazine Components
 import EditorialButton from '@/components/magazine/EditorialButton'
 import EditorialButtonSource from '@/components/magazine/EditorialButton?raw'
+import MagazineCard from '@/components/magazine/MagazineCard'
+import MagazineCardSource from '@/components/magazine/MagazineCard?raw'
+import FeatureStory from '@/components/magazine/FeatureStory'
+import FeatureStorySource from '@/components/magazine/FeatureStory?raw'
+import Newsletter from '@/components/magazine/Newsletter'
+import NewsletterSource from '@/components/magazine/Newsletter?raw'
+import TrendingList from '@/components/magazine/TrendingList'
+import TrendingListSource from '@/components/magazine/TrendingList?raw'
 
 // Ecommerce Button Component
 import ShopButton from '@/components/ecommerce/ShopButton'
@@ -181,6 +203,10 @@ import SwissTypography from '@/components/swiss/SwissTypography'
 import SwissTypographySource from '@/components/swiss/SwissTypography?raw'
 import SwissDivider from '@/components/swiss/SwissDivider'
 import SwissDividerSource from '@/components/swiss/SwissDivider?raw'
+import SwissCard from '@/components/swiss/SwissCard'
+import SwissCardSource from '@/components/swiss/SwissCard?raw'
+import SwissMetric from '@/components/swiss/SwissMetric'
+import SwissMetricSource from '@/components/swiss/SwissMetric?raw'
 
 // Wellness Components
 import WellnessCard from '@/components/wellness/WellnessCard'
@@ -673,6 +699,17 @@ export const components: ComponentMeta[] = [
         source: NavWidgetSource,
         tags: ['navigation', 'map', 'gps', 'directions'],
     },
+    {
+        id: 'cockpit-card',
+        name: 'CockpitCard',
+        description: 'Dark automotive card with matte texture and optional alert state',
+        theme: 'cockpit',
+        category: 'layout',
+        component: CockpitCard,
+        source: CockpitCardSource,
+        tags: ['card', 'container', 'automotive', 'dashboard'],
+        previewProps: { children: 'Cockpit Card Content', label: 'Status' },
+    },
 
     // Game Components
     {
@@ -902,6 +939,37 @@ export const components: ComponentMeta[] = [
         source: UpcomingScheduleSource,
         tags: ['schedule', 'calendar', 'timeline', 'events'],
     },
+    {
+        id: 'education-button',
+        name: 'EducationButton',
+        description: 'Vibrant button with gradient and shine effect for learning apps',
+        theme: 'education',
+        category: 'interactive',
+        component: EducationButton,
+        source: EducationButtonSource,
+        tags: ['button', 'education', 'gradient', 'learning'],
+    },
+    {
+        id: 'education-card',
+        name: 'EducationCard',
+        description: 'Card container with featured state for education content',
+        theme: 'education',
+        category: 'layout',
+        component: EducationCard,
+        source: EducationCardSource,
+        tags: ['card', 'container', 'education', 'featured'],
+        previewProps: { children: 'Education Card Content', featured: false },
+    },
+    {
+        id: 'study-stats',
+        name: 'StudyStats',
+        description: 'Dashboard grid showing study metrics like hours, assignments, and grades',
+        theme: 'education',
+        category: 'data-display',
+        component: StudyStats,
+        source: StudyStatsSource,
+        tags: ['stats', 'metrics', 'dashboard', 'education'],
+    },
 
     // Social Components
     {
@@ -1030,6 +1098,16 @@ export const components: ComponentMeta[] = [
             label: 'My Computer',
             selected: false
         }
+    },
+    {
+        id: 'legacy-alert',
+        name: 'LegacyAlert',
+        description: 'Classic Windows 95/98 style error dialog box',
+        theme: 'legacy',
+        category: 'feedback',
+        component: LegacyAlert,
+        source: LegacyAlertSource,
+        tags: ['dialog', 'error', 'alert', 'retro', 'windows'],
     },
 
     // Wellness Components
@@ -1300,6 +1378,47 @@ export const components: ComponentMeta[] = [
         source: EditorialButtonSource,
         tags: ['button', 'editorial', 'serif', 'magazine'],
     },
+    {
+        id: 'magazine-card',
+        name: 'MagazineCard',
+        description: 'Editorial card with elegant hover animation and optional padding',
+        theme: 'magazine',
+        category: 'layout',
+        component: MagazineCard,
+        source: MagazineCardSource,
+        tags: ['card', 'editorial', 'magazine', 'container'],
+        previewProps: { children: 'Magazine Card Content', hoverEffect: true },
+    },
+    {
+        id: 'feature-story',
+        name: 'FeatureStory',
+        description: 'Hero article component with large image and elegant typography',
+        theme: 'magazine',
+        category: 'data-display',
+        component: FeatureStory,
+        source: FeatureStorySource,
+        tags: ['article', 'hero', 'feature', 'editorial'],
+    },
+    {
+        id: 'newsletter',
+        name: 'Newsletter',
+        description: 'Dark themed newsletter signup with elegant styling',
+        theme: 'magazine',
+        category: 'form',
+        component: Newsletter,
+        source: NewsletterSource,
+        tags: ['newsletter', 'email', 'signup', 'form'],
+    },
+    {
+        id: 'trending-list',
+        name: 'TrendingList',
+        description: 'Numbered list of trending articles with category tags',
+        theme: 'magazine',
+        category: 'data-display',
+        component: TrendingList,
+        source: TrendingListSource,
+        tags: ['list', 'trending', 'articles', 'editorial'],
+    },
 
     // Ecommerce Button
     {
@@ -1311,6 +1430,27 @@ export const components: ComponentMeta[] = [
         component: ShopButton,
         source: ShopButtonSource,
         tags: ['button', 'shop', 'cart', 'ecommerce'],
+    },
+    {
+        id: 'commerce-card',
+        name: 'CommerceCard',
+        description: 'Clean minimal card container for e-commerce content',
+        theme: 'ecommerce',
+        category: 'layout',
+        component: CommerceCard,
+        source: CommerceCardSource,
+        tags: ['card', 'container', 'ecommerce', 'minimal'],
+        previewProps: { children: 'Commerce Card Content' },
+    },
+    {
+        id: 'promo-banner',
+        name: 'PromoBanner',
+        description: 'Full-width promotional banner with background image and CTA',
+        theme: 'ecommerce',
+        category: 'marketing',
+        component: PromoBanner,
+        source: PromoBannerSource,
+        tags: ['banner', 'promo', 'hero', 'marketing'],
     },
 
     // Productivity Button
@@ -1409,6 +1549,28 @@ export const components: ComponentMeta[] = [
         component: SwissDivider,
         source: SwissDividerSource,
         tags: ['divider', 'line', 'swiss', 'graphic'],
+    },
+    {
+        id: 'swiss-card',
+        name: 'SwissCard',
+        description: 'Bold Swiss design card with inverted/black variants',
+        theme: 'swiss',
+        category: 'layout',
+        component: SwissCard,
+        source: SwissCardSource,
+        tags: ['card', 'container', 'swiss', 'minimal'],
+        previewProps: { children: 'Swiss Card Content', bordered: true },
+    },
+    {
+        id: 'swiss-metric',
+        name: 'SwissMetric',
+        description: 'Large typography metric display with animated border',
+        theme: 'swiss',
+        category: 'data-display',
+        component: SwissMetric,
+        source: SwissMetricSource,
+        tags: ['metric', 'stats', 'typography', 'swiss'],
+        previewProps: { label: 'Projects', value: '147', description: 'Active this quarter' },
     },
 
     // SaaS Components
