@@ -249,6 +249,10 @@ import MusicCard from '@/components/music/MusicCard'
 import MusicCardSource from '@/components/music/MusicCard?raw'
 import MusicButton from '@/components/music/MusicButton'
 import MusicButtonSource from '@/components/music/MusicButton?raw'
+import VolumeSlider from '@/components/music/VolumeSlider'
+import VolumeSliderSource from '@/components/music/VolumeSlider?raw'
+import EqualizerBars from '@/components/music/EqualizerBars'
+import EqualizerBarsSource from '@/components/music/EqualizerBars?raw'
 
 // Grid Components
 import CityMap from '@/components/grid/CityMap'
@@ -261,6 +265,8 @@ import GridCard from '@/components/grid/GridCard'
 import GridCardSource from '@/components/grid/GridCard?raw'
 import GridButton from '@/components/grid/GridButton'
 import GridButtonSource from '@/components/grid/GridButton?raw'
+import AlertBanner from '@/components/grid/AlertBanner'
+import AlertBannerSource from '@/components/grid/AlertBanner?raw'
 
 // Brutalist Components
 import MarqueeHeader from '@/components/brutalist/MarqueeHeader'
@@ -273,6 +279,8 @@ import BrutalistCard from '@/components/brutalist/BrutalistCard'
 import BrutalistCardSource from '@/components/brutalist/BrutalistCard?raw'
 import BrutalistButton from '@/components/brutalist/BrutalistButton'
 import BrutalistButtonSource from '@/components/brutalist/BrutalistButton?raw'
+import StampBadge from '@/components/brutalist/StampBadge'
+import StampBadgeSource from '@/components/brutalist/StampBadge?raw'
 
 // Kitchen Components
 import ActiveStep from '@/components/kitchen/ActiveStep'
@@ -285,6 +293,8 @@ import KitchenCard from '@/components/kitchen/KitchenCard'
 import KitchenCardSource from '@/components/kitchen/KitchenCard?raw'
 import KitchenButton from '@/components/kitchen/KitchenButton'
 import KitchenButtonSource from '@/components/kitchen/KitchenButton?raw'
+import RecipeProgress from '@/components/kitchen/RecipeProgress'
+import RecipeProgressSource from '@/components/kitchen/RecipeProgress?raw'
 
 // Kids Components
 import KidsCard from '@/components/kids/KidsCard'
@@ -313,6 +323,8 @@ import EInkCard from '@/components/eink/EInkCard'
 import EInkCardSource from '@/components/eink/EInkCard?raw'
 import EInkButton from '@/components/eink/EInkButton'
 import EInkButtonSource from '@/components/eink/EInkButton?raw'
+import ReadingProgress from '@/components/eink/ReadingProgress'
+import ReadingProgressSource from '@/components/eink/ReadingProgress?raw'
 
 // Solarpunk Components
 import EnergySun from '@/components/solarpunk/EnergySun'
@@ -339,6 +351,8 @@ import DiffViewer from '@/components/legal/DiffViewer'
 import DiffViewerSource from '@/components/legal/DiffViewer?raw'
 import LegalButton from '@/components/legal/LegalButton'
 import LegalButtonSource from '@/components/legal/LegalButton?raw'
+import DocumentStatus from '@/components/legal/DocumentStatus'
+import DocumentStatusSource from '@/components/legal/DocumentStatus?raw'
 
 // Soft Plastic Components
 import NeumorphicCard from '@/components/softplastic/NeumorphicCard'
@@ -349,6 +363,8 @@ import ThermostatDial from '@/components/softplastic/ThermostatDial'
 import ThermostatDialSource from '@/components/softplastic/ThermostatDial?raw'
 import DeviceToggle from '@/components/softplastic/DeviceToggle'
 import DeviceToggleSource from '@/components/softplastic/DeviceToggle?raw'
+import NeumorphicSlider from '@/components/softplastic/NeumorphicSlider'
+import NeumorphicSliderSource from '@/components/softplastic/NeumorphicSlider?raw'
 
 // Festival Components
 import FestivalCard from '@/components/festival/FestivalCard'
@@ -361,6 +377,8 @@ import TicketWallet from '@/components/festival/TicketWallet'
 import TicketWalletSource from '@/components/festival/TicketWallet?raw'
 import FestivalButton from '@/components/festival/FestivalButton'
 import FestivalButtonSource from '@/components/festival/FestivalButton?raw'
+import ArtistCard from '@/components/festival/ArtistCard'
+import ArtistCardSource from '@/components/festival/ArtistCard?raw'
 
 // Acid Components
 import AcidCard from '@/components/acid/AcidCard'
@@ -373,6 +391,8 @@ import Marquee from '@/components/acid/Marquee'
 import MarqueeSource from '@/components/acid/Marquee?raw'
 import AcidButton from '@/components/acid/AcidButton'
 import AcidButtonSource from '@/components/acid/AcidButton?raw'
+import ChromaShift from '@/components/acid/ChromaShift'
+import ChromaShiftSource from '@/components/acid/ChromaShift?raw'
 
 // Claymorphism Components
 import ClayCard from '@/components/clay/ClayCard'
@@ -381,6 +401,8 @@ import ClayButton from '@/components/clay/ClayButton'
 import ClayButtonSource from '@/components/clay/ClayButton?raw'
 import ClayToggle from '@/components/clay/ClayToggle'
 import ClayToggleSource from '@/components/clay/ClayToggle?raw'
+import ClayProgress from '@/components/clay/ClayProgress'
+import ClayProgressSource from '@/components/clay/ClayProgress?raw'
 
 // Blueprint Components
 import BlueprintCard from '@/components/blueprint/BlueprintCard'
@@ -1699,6 +1721,28 @@ export const components: ComponentMeta[] = [
             variant: 'primary'
         }
     },
+    {
+        id: 'volume-slider',
+        name: 'VolumeSlider',
+        description: 'Volume control slider with mute toggle and gradient fill',
+        theme: 'music',
+        category: 'interactive',
+        component: VolumeSlider,
+        source: VolumeSliderSource,
+        tags: ['slider', 'volume', 'audio', 'control'],
+        previewProps: { initialVolume: 70 },
+    },
+    {
+        id: 'equalizer-bars',
+        name: 'EqualizerBars',
+        description: 'Animated audio equalizer visualization bars',
+        theme: 'music',
+        category: 'visualization',
+        component: EqualizerBars,
+        source: EqualizerBarsSource,
+        tags: ['equalizer', 'audio', 'animation', 'visualizer'],
+        previewProps: { isPlaying: true, barCount: 5 },
+    },
 
     // Grid Components
     {
@@ -1761,6 +1805,17 @@ export const components: ComponentMeta[] = [
             status: 'online'
         }
     },
+    {
+        id: 'alert-banner',
+        name: 'AlertBanner',
+        description: 'System alert notification with type variants',
+        theme: 'grid',
+        category: 'feedback',
+        component: AlertBanner,
+        source: AlertBannerSource,
+        tags: ['alert', 'notification', 'warning', 'status'],
+        previewProps: { type: 'warning', title: 'Grid Overload Warning' },
+    },
 
     // Brutalist Components
     {
@@ -1821,6 +1876,17 @@ export const components: ComponentMeta[] = [
             variant: 'neo'
         }
     },
+    {
+        id: 'stamp-badge',
+        name: 'StampBadge',
+        description: 'Retro rubber stamp badge with animated entrance',
+        theme: 'brutalist',
+        category: 'feedback',
+        component: StampBadge,
+        source: StampBadgeSource,
+        tags: ['stamp', 'badge', 'approved', 'brutalist'],
+        previewProps: { text: 'APPROVED', variant: 'approved' },
+    },
 
     // Kitchen Components
     {
@@ -1880,6 +1946,16 @@ export const components: ComponentMeta[] = [
             children: 'Start Cooking',
             variant: 'primary'
         }
+    },
+    {
+        id: 'recipe-progress',
+        name: 'RecipeProgress',
+        description: 'Recipe step tracker with progress bar and step list',
+        theme: 'kitchen',
+        category: 'data-display',
+        component: RecipeProgress,
+        source: RecipeProgressSource,
+        tags: ['recipe', 'progress', 'cooking', 'steps'],
     },
 
     // Kids Components
@@ -2034,6 +2110,16 @@ export const components: ComponentMeta[] = [
             variant: 'primary'
         }
     },
+    {
+        id: 'reading-progress',
+        name: 'ReadingProgress',
+        description: 'Book reading progress card with page count and time estimate',
+        theme: 'eink',
+        category: 'data-display',
+        component: ReadingProgress,
+        source: ReadingProgressSource,
+        tags: ['reading', 'progress', 'book', 'ereader'],
+    },
 
     // Solarpunk Components
     {
@@ -2175,6 +2261,17 @@ export const components: ComponentMeta[] = [
             variant: 'primary'
         }
     },
+    {
+        id: 'document-status',
+        name: 'DocumentStatus',
+        description: 'Document status indicator with state variants',
+        theme: 'legal',
+        category: 'feedback',
+        component: DocumentStatus,
+        source: DocumentStatusSource,
+        tags: ['document', 'status', 'approval', 'workflow'],
+        previewProps: { status: 'pending', documentName: 'Service Agreement v2.4' },
+    },
 
     // Soft Plastic Components
     {
@@ -2229,6 +2326,17 @@ export const components: ComponentMeta[] = [
             initialState: true,
             icon: Box
         }
+    },
+    {
+        id: 'neumorphic-slider',
+        name: 'NeumorphicSlider',
+        description: 'Neumorphic range slider with soft UI shadows',
+        theme: 'softplastic',
+        category: 'interactive',
+        component: NeumorphicSlider,
+        source: NeumorphicSliderSource,
+        tags: ['slider', 'range', 'neumorphic', 'control'],
+        previewProps: { label: 'Brightness', initialValue: 75 },
     },
 
     // Festival Components
@@ -2290,6 +2398,16 @@ export const components: ComponentMeta[] = [
             children: 'Get Tickets',
             variant: 'primary'
         }
+    },
+    {
+        id: 'artist-card',
+        name: 'ArtistCard',
+        description: 'Festival artist profile card with set time and favorite toggle',
+        theme: 'festival',
+        category: 'data-display',
+        component: ArtistCard,
+        source: ArtistCardSource,
+        tags: ['artist', 'festival', 'profile', 'lineup'],
     },
 
     // Acid Components
@@ -2361,6 +2479,17 @@ export const components: ComponentMeta[] = [
             variant: 'black'
         }
     },
+    {
+        id: 'chroma-shift',
+        name: 'ChromaShift',
+        description: 'RGB chromatic aberration text effect with animation',
+        theme: 'acid',
+        category: 'visualization',
+        component: ChromaShift,
+        source: ChromaShiftSource,
+        tags: ['glitch', 'chromatic', 'text', 'effect'],
+        previewProps: { text: 'CHROMATIC' },
+    },
 
     // Claymorphism Components
     {
@@ -2403,6 +2532,17 @@ export const components: ComponentMeta[] = [
         previewProps: {
             checked: true
         }
+    },
+    {
+        id: 'clay-progress',
+        name: 'ClayProgress',
+        description: 'Soft 3D progress bar with color variants',
+        theme: 'clay',
+        category: 'feedback',
+        component: ClayProgress,
+        source: ClayProgressSource,
+        tags: ['progress', 'clay', '3d', 'bar'],
+        previewProps: { value: 65, label: 'Progress', color: 'blue' },
     },
 
     // Blueprint Components

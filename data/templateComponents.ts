@@ -154,7 +154,7 @@ export const templateComponentMap: TemplateComponentMapping[] = [
         id: 'music',
         name: 'Music',
         usedComponentIds: ['now-playing', 'track-list', 'album-grid', 'music-card', 'music-button'],
-        extendedComponentIds: [],
+        extendedComponentIds: ['volume-slider', 'equalizer-bars'],
         sharedComponentIds: ['spotlight-card', 'glow-button'],
     },
 
@@ -172,7 +172,7 @@ export const templateComponentMap: TemplateComponentMapping[] = [
         id: 'grid',
         name: 'Grid',
         usedComponentIds: ['city-map', 'resource-gauge', 'system-controls', 'grid-card', 'grid-button'],
-        extendedComponentIds: [],
+        extendedComponentIds: ['alert-banner'],
         sharedComponentIds: ['stats-card', 'integration-toggle', 'activity-feed'],
     },
 
@@ -181,7 +181,7 @@ export const templateComponentMap: TemplateComponentMapping[] = [
         id: 'brutalist',
         name: 'Brutalist',
         usedComponentIds: ['marquee-header', 'art-grid', 'manifesto', 'brutalist-card', 'brutalist-button'],
-        extendedComponentIds: [],
+        extendedComponentIds: ['stamp-badge'],
         sharedComponentIds: [], // Pure brutalist aesthetic
     },
 
@@ -190,7 +190,7 @@ export const templateComponentMap: TemplateComponentMapping[] = [
         id: 'kitchen',
         name: 'Kitchen',
         usedComponentIds: ['active-step', 'ingredient-scale', 'smart-timer', 'kitchen-card', 'kitchen-button'],
-        extendedComponentIds: [],
+        extendedComponentIds: ['recipe-progress'],
         sharedComponentIds: ['bento-card', 'stats-card'],
     },
 
@@ -208,7 +208,7 @@ export const templateComponentMap: TemplateComponentMapping[] = [
         id: 'eink',
         name: 'E-Ink',
         usedComponentIds: ['eink-sidebar', 'reader-content', 'library-grid', 'eink-card', 'eink-button'],
-        extendedComponentIds: [],
+        extendedComponentIds: ['reading-progress'],
         sharedComponentIds: [], // Minimal grayscale aesthetic
     },
 
@@ -226,7 +226,7 @@ export const templateComponentMap: TemplateComponentMapping[] = [
         id: 'legal',
         name: 'Legal',
         usedComponentIds: ['legal-paper', 'clause', 'redline-sidebar', 'diff-viewer', 'legal-button'],
-        extendedComponentIds: [],
+        extendedComponentIds: ['document-status'],
         sharedComponentIds: ['stats-card', 'activity-feed'],
     },
 
@@ -235,7 +235,7 @@ export const templateComponentMap: TemplateComponentMapping[] = [
         id: 'softplastic',
         name: 'Soft Plastic',
         usedComponentIds: ['neumorphic-card', 'neumorphic-button', 'thermostat-dial', 'device-toggle'],
-        extendedComponentIds: [],
+        extendedComponentIds: ['neumorphic-slider'],
         sharedComponentIds: [], // Pure neumorphic aesthetic
     },
 
@@ -244,7 +244,7 @@ export const templateComponentMap: TemplateComponentMapping[] = [
         id: 'festival',
         name: 'Festival',
         usedComponentIds: ['festival-card', 'soundwave-timeline', 'crowd-heatmap', 'ticket-wallet', 'festival-button'],
-        extendedComponentIds: [],
+        extendedComponentIds: ['artist-card'],
         sharedComponentIds: ['spotlight-card', 'glow-button'],
     },
 
@@ -253,7 +253,7 @@ export const templateComponentMap: TemplateComponentMapping[] = [
         id: 'acid',
         name: 'Acid',
         usedComponentIds: ['acid-card', 'glitch-text', 'sticker', 'marquee', 'acid-button'],
-        extendedComponentIds: [],
+        extendedComponentIds: ['chroma-shift'],
         sharedComponentIds: ['glow-button'], // Limited shared - very unique aesthetic
     },
 
@@ -262,7 +262,7 @@ export const templateComponentMap: TemplateComponentMapping[] = [
         id: 'clay',
         name: 'Claymorphism',
         usedComponentIds: ['clay-card', 'clay-button', 'clay-toggle'],
-        extendedComponentIds: [],
+        extendedComponentIds: ['clay-progress'],
         sharedComponentIds: [],
     },
 

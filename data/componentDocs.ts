@@ -935,6 +935,16 @@ export const componentDocs: Record<string, ComponentDoc> = {
         ],
         notes: ['Neumorphic clay styling with soft shadows', 'Checkmark appears when checked'],
     },
+    'clay-progress': {
+        id: 'clay-progress',
+        props: [
+            { name: 'value', type: 'number', required: false, defaultValue: '65', description: 'Current progress value' },
+            { name: 'max', type: 'number', required: false, defaultValue: '100', description: 'Maximum value' },
+            { name: 'label', type: 'string', required: false, defaultValue: "'Progress'", description: 'Progress label' },
+            { name: 'color', type: "'blue' | 'green' | 'purple' | 'orange'", required: false, defaultValue: "'blue'", description: 'Color theme' },
+        ],
+        notes: ['Soft 3D inset track', 'Animated fill on mount', 'Color gradient variants'],
+    },
 
     'device-toggle': {
         id: 'device-toggle',
@@ -944,6 +954,18 @@ export const componentDocs: Record<string, ComponentDoc> = {
             { name: 'initialState', type: 'boolean', required: false, default: 'false', description: 'Initial toggle state' },
         ],
         notes: ['Smart home style toggle', 'Uses NeumorphicCard container', 'Full accessible button semantics'],
+    },
+    'neumorphic-slider': {
+        id: 'neumorphic-slider',
+        props: [
+            { name: 'min', type: 'number', required: false, defaultValue: '0', description: 'Minimum value' },
+            { name: 'max', type: 'number', required: false, defaultValue: '100', description: 'Maximum value' },
+            { name: 'initialValue', type: 'number', required: false, defaultValue: '50', description: 'Starting value' },
+            { name: 'label', type: 'string', required: false, defaultValue: "'Brightness'", description: 'Slider label' },
+            { name: 'unit', type: 'string', required: false, defaultValue: "'%'", description: 'Value unit suffix' },
+            { name: 'onChange', type: '(value: number) => void', required: false, description: 'Value change callback' },
+        ],
+        notes: ['Inset track with neumorphic shadows', 'Raised thumb with soft shadows', 'Gradient fill'],
     },
 
     // ============================================
@@ -1215,6 +1237,24 @@ export const componentDocs: Record<string, ComponentDoc> = {
         ],
         notes: ['Spotify-inspired aesthetics', 'Glow effect on primary icon size'],
     },
+    'volume-slider': {
+        id: 'volume-slider',
+        props: [
+            { name: 'initialVolume', type: 'number', required: false, defaultValue: '70', description: 'Starting volume 0-100' },
+            { name: 'onVolumeChange', type: '(volume: number) => void', required: false, description: 'Volume change callback' },
+            { name: 'className', type: 'string', required: false, description: 'Additional CSS classes' },
+        ],
+        notes: ['Includes mute toggle button', 'Gradient fill animation', 'Thumb appears on hover'],
+    },
+    'equalizer-bars': {
+        id: 'equalizer-bars',
+        props: [
+            { name: 'isPlaying', type: 'boolean', required: false, defaultValue: 'true', description: 'Animate when playing' },
+            { name: 'barCount', type: 'number', required: false, defaultValue: '5', description: 'Number of bars' },
+            { name: 'className', type: 'string', required: false, description: 'Additional CSS classes' },
+        ],
+        notes: ['Animated bars sync with audio feel', 'Purple gradient coloring'],
+    },
 
     'now-playing': {
         id: 'now-playing',
@@ -1263,6 +1303,16 @@ export const componentDocs: Record<string, ComponentDoc> = {
         ],
         notes: ['Industrial beveled styling', 'Status LED indicator', 'Corner decorations'],
     },
+    'alert-banner': {
+        id: 'alert-banner',
+        props: [
+            { name: 'type', type: "'info' | 'warning' | 'success' | 'error'", required: false, defaultValue: "'warning'", description: 'Alert type and color' },
+            { name: 'title', type: 'string', required: false, description: 'Alert title' },
+            { name: 'message', type: 'string', required: false, description: 'Alert description' },
+            { name: 'onDismiss', type: '() => void', required: false, description: 'Dismiss callback' },
+        ],
+        notes: ['Animated entry with slide-down', 'Type-based icon and color theming'],
+    },
 
     'city-map': {
         id: 'city-map',
@@ -1308,6 +1358,15 @@ export const componentDocs: Record<string, ComponentDoc> = {
             { name: 'onClick', type: '() => void', required: false, description: 'Click handler' },
         ],
         notes: ['Hard shadow with active press animation', 'Monospace uppercase text'],
+    },
+    'stamp-badge': {
+        id: 'stamp-badge',
+        props: [
+            { name: 'text', type: 'string', required: false, defaultValue: "'APPROVED'", description: 'Stamp text' },
+            { name: 'variant', type: "'approved' | 'rejected' | 'pending' | 'custom'", required: false, defaultValue: "'approved'", description: 'Color variant' },
+            { name: 'rotation', type: 'number', required: false, defaultValue: '-12', description: 'Rotation angle in degrees' },
+        ],
+        notes: ['Spring animation on mount', 'Double border retro stamp look', 'Monospace typography'],
     },
 
     'marquee-header': {
@@ -1357,6 +1416,14 @@ export const componentDocs: Record<string, ComponentDoc> = {
             { name: 'onClick', type: '() => void', required: false, description: 'Click handler' },
         ],
         notes: ['Orange accent color', 'Tactile offset shadow'],
+    },
+    'recipe-progress': {
+        id: 'recipe-progress',
+        props: [
+            { name: 'recipeName', type: 'string', required: false, defaultValue: "'Pasta Carbonara'", description: 'Recipe title' },
+            { name: 'steps', type: 'Step[]', required: false, description: 'Array of step objects with title, completed, current' },
+        ],
+        notes: ['Animated progress bar', 'Step completion checkmarks', 'Current step highlight'],
     },
 
     'active-step': {
@@ -1452,6 +1519,15 @@ export const componentDocs: Record<string, ComponentDoc> = {
             { name: 'onClick', type: '() => void', required: false, description: 'Click handler' },
         ],
         notes: ['E-ink screen refresh flash effect on click', 'High contrast black/white'],
+    },
+    'reading-progress': {
+        id: 'reading-progress',
+        props: [
+            { name: 'bookTitle', type: 'string', required: false, defaultValue: "'The Great Gatsby'", description: 'Book title' },
+            { name: 'currentPage', type: 'number', required: false, defaultValue: '127', description: 'Current page number' },
+            { name: 'totalPages', type: 'number', required: false, defaultValue: '218', description: 'Total page count' },
+        ],
+        notes: ['Percentage progress bar', 'Estimated reading time', 'E-ink grayscale styling'],
     },
 
     'eink-sidebar': {
@@ -1554,6 +1630,15 @@ export const componentDocs: Record<string, ComponentDoc> = {
         ],
         notes: ['Professional, authoritative styling', 'Ghost variant has underline animation'],
     },
+    'document-status': {
+        id: 'document-status',
+        props: [
+            { name: 'status', type: "'draft' | 'pending' | 'approved' | 'rejected'", required: false, defaultValue: "'pending'", description: 'Document status' },
+            { name: 'documentName', type: 'string', required: false, description: 'Document title' },
+            { name: 'lastUpdated', type: 'string', required: false, defaultValue: "'2 hours ago'", description: 'Last update time' },
+        ],
+        notes: ['Status-based icon and color theming', 'Animated entrance'],
+    },
 
     'redline-sidebar': {
         id: 'redline-sidebar',
@@ -1629,6 +1714,19 @@ export const componentDocs: Record<string, ComponentDoc> = {
         ],
         notes: ['Animated gradient background', 'Shimmer overlay', 'Pulsing ring effect'],
     },
+    'artist-card': {
+        id: 'artist-card',
+        props: [
+            { name: 'name', type: 'string', required: false, defaultValue: "'Aurora Nights'", description: 'Artist name' },
+            { name: 'genre', type: 'string', required: false, description: 'Music genre' },
+            { name: 'imageUrl', type: 'string', required: false, description: 'Artist image URL' },
+            { name: 'setTime', type: 'string', required: false, defaultValue: "'9:30 PM'", description: 'Set time' },
+            { name: 'stage', type: 'string', required: false, defaultValue: "'Main Stage'", description: 'Stage name' },
+            { name: 'isFavorite', type: 'boolean', required: false, defaultValue: 'false', description: 'Favorite state' },
+            { name: 'onFavoriteToggle', type: '() => void', required: false, description: 'Favorite toggle callback' },
+        ],
+        notes: ['Image zoom on hover', 'Stage badge', 'Star favorite button'],
+    },
 
     'soundwave-timeline': {
         id: 'soundwave-timeline',
@@ -1672,6 +1770,14 @@ export const componentDocs: Record<string, ComponentDoc> = {
             { name: 'className', type: 'string', required: false, description: 'Additional CSS classes' },
         ],
         notes: ['Neon yellow/magenta colors', 'Hard shadow press effect', 'Bold uppercase text'],
+    },
+    'chroma-shift': {
+        id: 'chroma-shift',
+        props: [
+            { name: 'text', type: 'string', required: false, defaultValue: "'CHROMATIC'", description: 'Text to display' },
+            { name: 'className', type: 'string', required: false, description: 'Additional CSS classes' },
+        ],
+        notes: ['RGB color separation effect', 'Animated channel movement', 'Mix-blend-multiply for overlap'],
     },
 
     'glitch-text': {
