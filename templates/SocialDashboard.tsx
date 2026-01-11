@@ -6,9 +6,24 @@ import { ProfileSummary, SuggestedFollows } from '../components/social/ProfileSi
 import SocialCard from '../components/social/SocialCard';
 import SocialButton from '../components/social/SocialButton';
 
+import { useTheme } from '@/context/ThemeContext';
+
 const SocialDashboard = () => {
+    const { currentPlaygroundTheme: theme, setScopedTheme } = useTheme();
+
+    React.useEffect(() => {
+        setScopedTheme('consumer', 'social');
+    }, []);
+
     return (
-        <div className="container mx-auto max-w-7xl min-h-screen px-4 md:px-8 py-6 font-sans text-zinc-200">
+        <div
+            className="container mx-auto max-w-7xl min-h-screen px-4 md:px-8 py-6 font-sans"
+            style={{
+                backgroundColor: theme.colors.background,
+                color: theme.colors.foreground,
+                fontFamily: theme.typography.fontFamily
+            }}
+        >
 
             <div className="grid grid-cols-1 gap-6 lg:grid-cols-4 xl:grid-cols-4">
 
@@ -35,25 +50,26 @@ const SocialDashboard = () => {
                     </div>
 
                     {/* Stories */}
-                    <div className="border-b border-zinc-800 pb-2">
-                        <h3 className="px-1 text-sm font-bold text-zinc-100 mb-2">Stories</h3>
+                    <div className="border-b mb-2" style={{ borderColor: theme.colors.border }}>
+                        <h3 className="px-1 text-sm font-bold mb-2" style={{ color: theme.colors.foreground }}>Stories</h3>
                         <StoryRail />
                     </div>
 
                     {/* Compose Box */}
                     <SocialCard className="p-4 rounded-xl hidden md:block">
                         <div className="flex gap-4">
-                            <div className="h-10 w-10 shrink-0 rounded-full bg-zinc-800 overflow-hidden">
+                            <div className="h-10 w-10 shrink-0 rounded-full overflow-hidden" style={{ backgroundColor: theme.colors.muted }}>
                                 <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&q=80&w=200" alt="Me" className="h-full w-full object-cover" />
                             </div>
                             <div className="flex-1">
                                 <input
                                     type="text"
                                     placeholder="What's happening?"
-                                    className="w-full bg-transparent text-lg text-zinc-100 placeholder-zinc-500 focus:outline-none"
+                                    className="w-full bg-transparent text-lg focus:outline-none placeholder:opacity-50"
+                                    style={{ color: theme.colors.foreground }}
                                 />
-                                <div className="mt-4 flex items-center justify-between border-t border-zinc-800 pt-3">
-                                    <div className="flex gap-2 text-sky-500">
+                                <div className="mt-4 flex items-center justify-between border-t pt-3" style={{ borderColor: theme.colors.border }}>
+                                    <div className="flex gap-2">
                                         {/* Mock Icons */}
                                         <SocialButton variant="icon" size="icon" icon="📷" />
                                         <SocialButton variant="icon" size="icon" icon="GIF" />
@@ -125,16 +141,22 @@ const SocialDashboard = () => {
                 {/* Right Sidebar (Desktop) */}
                 <div className="hidden xl:block xl:col-span-1 space-y-6 sticky top-24 h-fit">
                     <div className="relative group mb-6">
-                        <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-zinc-500 group-focus-within:text-sky-500" />
+                        <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 group-focus-within:text-sky-500" style={{ color: theme.colors.mutedForeground }} />
                         <input
                             type="text"
                             placeholder="Search Stream"
-                            className="h-10 w-full rounded-full border border-zinc-800 bg-zinc-900 pl-10 pr-4 text-sm text-zinc-200 outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition-all"
+                            className="h-10 w-full rounded-full pl-10 pr-4 text-sm outline-none focus:ring-1 transition-all"
+                            style={{
+                                backgroundColor: theme.colors.muted,
+                                borderColor: theme.colors.border,
+                                color: theme.colors.foreground,
+                                // focus ring color handled by Tailwind or need CSS variable
+                            }}
                         />
                     </div>
 
-                    <SocialCard className="p-4 rounded-xl bg-zinc-900/50">
-                        <h3 className="font-bold text-zinc-100 mb-4 text-lg">Trends for you</h3>
+                    <SocialCard className="p-4 rounded-xl">
+                        <h3 className="font-bold mb-4 text-lg" style={{ color: theme.colors.foreground }}>Trends for you</h3>
                         <div className="space-y-4">
                             {[
                                 { topic: 'Technology · Trending', title: '#React19', posts: '24.5K posts' },
@@ -142,13 +164,13 @@ const SocialDashboard = () => {
                                 { topic: 'Business · Trending', title: 'AI Startups', posts: '54K posts' },
                                 { topic: 'News · Trending', title: 'SpaceX', posts: '89K posts' },
                             ].map((trend, i) => (
-                                <div key={i} className="flex justify-between items-start cursor-pointer hover:bg-zinc-800/50 -mx-2 p-2 rounded-lg transition-colors">
+                                <div key={i} className="flex justify-between items-start cursor-pointer -mx-2 p-2 rounded-lg transition-colors hover:bg-zinc-800/50">
                                     <div>
-                                        <div className="text-xs text-zinc-500">{trend.topic}</div>
-                                        <div className="font-bold text-zinc-200 mt-0.5">{trend.title}</div>
-                                        <div className="text-xs text-zinc-500 mt-0.5">{trend.posts}</div>
+                                        <div className="text-xs" style={{ color: theme.colors.mutedForeground }}>{trend.topic}</div>
+                                        <div className="font-bold mt-0.5" style={{ color: theme.colors.foreground }}>{trend.title}</div>
+                                        <div className="text-xs mt-0.5" style={{ color: theme.colors.mutedForeground }}>{trend.posts}</div>
                                     </div>
-                                    <button className="text-zinc-500 hover:text-zinc-300">···</button>
+                                    <button className="hover:text-zinc-300" style={{ color: theme.colors.mutedForeground }}>···</button>
                                 </div>
                             ))}
                         </div>

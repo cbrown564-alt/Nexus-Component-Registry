@@ -1,32 +1,34 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useTheme } from '@/context/ThemeContext';
 
 interface MagazineCardProps {
   children: React.ReactNode;
   className?: string;
-  delay?: number;
-  hoverEffect?: boolean;
-  noPadding?: boolean;
+  style?: React.CSSProperties;
 }
 
 const MagazineCard: React.FC<MagazineCardProps> = ({
   children,
   className = "",
-  delay = 0,
-  hoverEffect = true,
-  noPadding = false
+  style
 }) => {
+  const { currentPlaygroundTheme } = useTheme()
+  const theme = currentPlaygroundTheme
+
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8, delay, ease: [0.22, 1, 0.36, 1] }} // Custom bezier for "editorial" feel
-      className={`relative bg-white border border-neutral-200 ${noPadding ? '' : 'p-6'
-        } ${hoverEffect ? 'transition-all duration-500 hover:shadow-xl hover:shadow-neutral-900/5 hover:-translate-y-1' : ''
-        } ${className}`}
+    <div
+      className={`border p-6 ${className}`}
+      style={{
+        backgroundColor: theme.colors.card,
+        color: theme.colors.cardForeground,
+        borderColor: theme.colors.border,
+        borderRadius: theme.radius === 'lg' ? '0.5rem' : theme.radius === 'md' ? '0.25rem' : '0',
+        ...style
+      }}
     >
       {children}
-    </motion.div>
+    </div>
   );
 };
 

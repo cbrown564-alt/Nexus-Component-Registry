@@ -7,7 +7,15 @@ import Mascot from '../components/kids/Mascot';
 import KidsButton from '../components/kids/KidsButton';
 import { Settings, Users } from 'lucide-react';
 
+import { useTheme } from '@/context/ThemeContext';
+
 const KidsDashboard = () => {
+    const { currentPlaygroundTheme: theme, setScopedTheme } = useTheme();
+
+    React.useEffect(() => {
+        setScopedTheme('consumer', 'kids');
+    }, []);
+
     const activities = [
         { title: "Read", icon: BookOpen, color: "bg-red-400", border: "border-red-600", text: "text-red-900" },
         { title: "Art", icon: Palette, color: "bg-yellow-300", border: "border-yellow-600", text: "text-yellow-900" },
@@ -18,7 +26,15 @@ const KidsDashboard = () => {
     ];
 
     return (
-        <div className="min-h-screen bg-[#7dd3fc] font-sans selection:bg-yellow-300 selection:text-black p-4 flex flex-col overflow-hidden relative">
+        <div
+            className="min-h-screen font-sans p-4 flex flex-col overflow-hidden relative"
+            style={{
+                backgroundColor: theme.colors.background,
+                color: theme.colors.foreground,
+                fontFamily: theme.typography.fontFamily,
+                // selection styles should be in global CSS or separate style block, removing inline pseudo-element attempt
+            }}
+        >
 
             {/* Clouds Background Pattern */}
             <div className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -30,17 +46,17 @@ const KidsDashboard = () => {
             {/* Header */}
             <div className="flex justify-between items-start mb-6 md:mb-12 relative z-10 px-2 md:px-8 pt-4">
                 <div className="flex items-center gap-4">
-                    <div className="w-16 h-16 md:w-20 md:h-20 bg-orange-400 rounded-3xl border-4 border-white overflow-hidden shadow-lg rotate-3">
-                        <img src="https://api.dicebear.com/7.x/fun-emoji/svg?seed=Leo" alt="Avatar" className="w-full h-full bg-white" />
+                    <div className="w-16 h-16 md:w-20 md:h-20 rounded-3xl border-4 overflow-hidden shadow-lg rotate-3" style={{ backgroundColor: theme.colors.primary, borderColor: theme.colors.card }}>
+                        <img src="https://api.dicebear.com/7.x/fun-emoji/svg?seed=Leo" alt="Avatar" className="w-full h-full" style={{ backgroundColor: theme.colors.card }} />
                     </div>
-                    <div className="bg-white/80 backdrop-blur px-6 py-2 rounded-2xl border-4 border-white shadow-sm -rotate-2 hidden md:block">
-                        <h1 className="text-3xl font-black text-sky-600 tracking-wide">LEO</h1>
+                    <div className="px-6 py-2 rounded-2xl border-4 shadow-sm -rotate-2 hidden md:block" style={{ backgroundColor: `${theme.colors.card}cc`, borderColor: theme.colors.card, backdropFilter: 'blur(8px)' }}>
+                        <h1 className="text-3xl font-black tracking-wide" style={{ color: theme.colors.secondaryForeground }}>LEO</h1>
                     </div>
                     <div className="hidden md:flex gap-2">
-                        <KidsButton variant="secondary" size="sm" icon={<Users className="h-5 w-5 text-sky-500" />} className="bg-white border-sky-200 text-sky-500 hover:bg-sky-50">
+                        <KidsButton variant="secondary" size="sm" icon={<Users className="h-5 w-5" />} style={{ color: theme.colors.secondaryForeground }} >
                             Friends
                         </KidsButton>
-                        <KidsButton variant="secondary" size="sm" icon={<Settings className="h-5 w-5 text-slate-400" />} className="bg-white border-slate-200 text-slate-400 hover:bg-slate-50" />
+                        <KidsButton variant="secondary" size="sm" icon={<Settings className="h-5 w-5" />} style={{ color: theme.colors.mutedForeground }} />
                     </div>
                 </div>
                 <StarProgress />

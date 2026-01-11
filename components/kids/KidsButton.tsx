@@ -1,58 +1,75 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, HTMLMotionProps } from 'framer-motion';
+import { useTheme } from '@/context/ThemeContext';
 
-interface KidsButtonProps {
+interface KidsButtonProps extends Omit<HTMLMotionProps<'button'>, 'children'> {
     children?: React.ReactNode;
-    variant?: 'primary' | 'secondary' | 'accent' | 'success';
+    variant?: 'primary' | 'secondary' | 'ghost';
     size?: 'sm' | 'md' | 'lg';
     icon?: React.ReactNode;
-    className?: string;
-    disabled?: boolean;
-    onClick?: () => void;
-    color?: string; // Allow custom color override
+    style?: React.CSSProperties;
 }
 
 const KidsButton: React.FC<KidsButtonProps> = ({
     children,
+    className = "",
     variant = 'primary',
-    size = 'lg',
+    size = 'md',
     icon,
-    className = '',
-    disabled = false,
-    onClick,
-    color,
+    style,
+    ...props
 }) => {
-    const baseStyles = 'relative inline-flex items-center justify-center gap-3 font-black uppercase tracking-wider transition-all border-b-4 active:border-b-0 active:translate-y-1 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed';
+    const { currentPlaygroundTheme: theme } = useTheme();
 
-    const sizeStyles = {
-        sm: 'px-4 py-2 text-sm rounded-xl',
-        md: 'px-6 py-3 text-lg rounded-2xl',
-        lg: 'px-8 py-4 text-xl rounded-3xl',
+    const getBaseStyles = () => {
+        let base = "font-black tracking-wide uppercase transition-all duration-200 flex items-center justify-center ";
+        if (size === 'sm') base += "px-4 py-2 text-sm ";
+        else if (size === 'md') base += "px-6 py-3 text-base ";
+        else if (size === 'lg') base += "px-8 py-4 text-xl ";
+
+        base += "rounded-2xl border-4 "; // chunky borders
+
+        return base;
     };
 
-    const defaultColors = {
-        primary: 'bg-orange-400 border-orange-600 text-white hover:bg-orange-300',
-        secondary: 'bg-white border-slate-200 text-slate-700 hover:bg-slate-50',
-        accent: 'bg-sky-400 border-sky-600 text-white hover:bg-sky-300',
-        success: 'bg-green-400 border-green-600 text-white hover:bg-green-300',
+    const getVariantStyles = () => {
+        switch (variant) {
+            case 'primary':
+                return {
+                    backgroundColor: theme.colors.primary,
+                    color: theme.colors.primaryForeground,
+                    borderColor: theme.colors.ring, // Using ring color for border contrast if available
+                    boxShadow: '0 4px 0 rgba(0,0,0,0.2)',
+                };
+            case 'secondary':
+                return {
+                    backgroundColor: theme.colors.card,
+                    color: theme.colors.foreground,
+                    borderColor: theme.colors.mutedForeground,
+                };
+            case 'ghost':
+                return {
+                    backgroundColor: 'transparent',
+                    color: theme.colors.foreground,
+                    borderColor: 'transparent',
+                };
+            default: return {};
+        }
     };
-
-    const colorStyle = color ? `bg-${color}-400 border-${color}-600 text-white hover:bg-${color}-300` : defaultColors[variant];
 
     return (
         <motion.button
-            whileHover={{ scale: 1.05, rotate: [-1, 1, -1] }}
+            whileHover={{ scale: 1.05, rotate: -2 }}
             whileTap={{ scale: 0.95 }}
-            transition={{ type: 'spring', stiffness: 400, damping: 10 }}
-            className={`${baseStyles} ${sizeStyles[size]} ${colorStyle} ${className}`}
-            disabled={disabled}
-            onClick={onClick}
+            className={`${getBaseStyles()} ${className}`}
+            style={{
+                ...getVariantStyles(),
+                ...style
+            }}
+            {...props}
         >
-            {/* Glossy top reflection */}
-            <span className="absolute top-1 left-2 right-2 h-1/3 bg-white/20 rounded-full blur-[1px]" />
-
-            {icon && <span className="shrink-0 drop-shadow-sm">{icon}</span>}
-            <span className="drop-shadow-sm">{children}</span>
+            {icon && <span className={children ? "mr-2" : ""}>{icon}</span>}
+            {children}
         </motion.button>
     );
 };

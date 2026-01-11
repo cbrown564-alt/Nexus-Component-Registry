@@ -1,57 +1,79 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, HTMLMotionProps } from 'framer-motion';
+import { useTheme } from '@/context/ThemeContext';
 
-interface MusicButtonProps {
+interface MusicButtonProps extends Omit<HTMLMotionProps<'button'>, 'children'> {
     children?: React.ReactNode;
     variant?: 'primary' | 'secondary' | 'ghost' | 'pill';
     size?: 'sm' | 'md' | 'lg' | 'icon';
     icon?: React.ReactNode;
-    className?: string;
-    disabled?: boolean;
-    onClick?: () => void;
+    style?: React.CSSProperties;
 }
 
 const MusicButton: React.FC<MusicButtonProps> = ({
     children,
-    variant = 'secondary',
+    className = "",
+    variant = 'primary',
     size = 'md',
     icon,
-    className = '',
-    disabled = false,
-    onClick,
+    style,
+    ...props
 }) => {
-    const baseStyles = 'relative inline-flex items-center justify-center gap-2 font-medium transition-all duration-200 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed';
+    const { currentPlaygroundTheme: theme } = useTheme();
 
-    const sizeStyles = {
-        sm: 'px-3 py-1.5 text-xs rounded-md',
-        md: 'px-4 py-2 text-sm rounded-lg',
-        lg: 'px-6 py-3 text-base rounded-lg',
-        icon: 'h-12 w-12 rounded-full',
+    const getBaseStyles = () => {
+        let base = "font-bold transition-all duration-200 flex items-center justify-center ";
+        if (size === 'sm') base += "px-3 py-1.5 text-xs ";
+        else if (size === 'md') base += "px-5 py-2.5 text-sm ";
+        else if (size === 'lg') base += "px-8 py-3 text-base ";
+        else if (size === 'icon') base += "p-2 ";
+
+        if (size !== 'icon') base += "rounded-full "; // Music apps love rounded buttons
+        else base += "rounded-full "; // Icons too
+
+        return base;
     };
 
-    // Spotify/music app aesthetic - rose/violet accent, dark theme
-    const variantStyles = {
-        primary: 'bg-rose-500 text-white hover:bg-rose-400 hover:scale-105 shadow-lg shadow-rose-500/30 active:scale-95',
-        secondary: 'bg-white/10 text-white border border-white/10 backdrop-blur-sm hover:bg-white/20 hover:border-white/20 active:scale-95',
-        ghost: 'bg-transparent text-zinc-400 hover:text-white hover:bg-white/5',
-        pill: 'bg-white text-black font-bold hover:scale-105 active:scale-95 rounded-full',
+    const getVariantStyles = () => {
+        switch (variant) {
+            case 'primary':
+                return {
+                    backgroundColor: theme.colors.primary,
+                    color: theme.colors.primaryForeground,
+                    boxShadow: theme.shadow === 'lg' ? '0 10px 15px -3px rgba(0, 0, 0, 0.1)' : 'none',
+                };
+            case 'secondary':
+                return {
+                    backgroundColor: theme.colors.secondary,
+                    color: theme.colors.secondaryForeground,
+                };
+            case 'ghost':
+                return {
+                    backgroundColor: 'transparent',
+                    color: theme.colors.mutedForeground,
+                };
+            case 'pill':
+                return {
+                    backgroundColor: 'transparent',
+                    border: `1px solid ${theme.colors.border}`,
+                    color: theme.colors.foreground,
+                };
+            default: return {};
+        }
     };
 
     return (
         <motion.button
-            whileHover={{ scale: disabled ? 1 : (variant === 'ghost' ? 1 : 1.05) }}
-            whileTap={{ scale: disabled ? 1 : 0.95 }}
-            transition={{ type: 'spring', stiffness: 400, damping: 17 }}
-            className={`${baseStyles} ${sizeStyles[size]} ${variantStyles[variant]} ${className}`}
-            disabled={disabled}
-            onClick={onClick}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className={`${getBaseStyles()} ${className}`}
+            style={{
+                ...getVariantStyles(),
+                ...style
+            }}
+            {...props}
         >
-            {/* Glow effect for primary play button */}
-            {variant === 'primary' && size === 'icon' && (
-                <span className="absolute inset-0 rounded-full bg-rose-500/50 blur-md -z-10" />
-            )}
-
-            {icon && <span className="shrink-0">{icon}</span>}
+            {icon && <span className={children ? "mr-2" : ""}>{icon}</span>}
             {children}
         </motion.button>
     );

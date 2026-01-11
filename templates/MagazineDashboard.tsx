@@ -7,7 +7,10 @@ import Newsletter from '../components/magazine/Newsletter';
 import MagazineCard from '../components/magazine/MagazineCard';
 import EditorialButton from '../components/magazine/EditorialButton';
 
+import { useTheme } from '@/context/ThemeContext';
+
 const MagazineDashboard = () => {
+    const { currentPlaygroundTheme: theme, setScopedTheme } = useTheme();
     const [activeSection, setActiveSection] = useState('All');
     const [savedArticle, setSavedArticle] = useState<number | null>(null);
 
@@ -34,18 +37,29 @@ const MagazineDashboard = () => {
         }
     ];
 
+    React.useEffect(() => {
+        setScopedTheme('consumer', 'magazine');
+    }, []);
+
     return (
-        <div className="min-h-screen font-sans text-neutral-900 bg-[#fdfbf7]">
+        <div
+            className="min-h-screen font-sans"
+            style={{
+                backgroundColor: theme.colors.background,
+                color: theme.colors.foreground,
+                fontFamily: theme.typography.fontFamily,
+            }}
+        >
 
             {/* Masthead Header */}
-            <header className="sticky top-0 z-50 bg-[#fdfbf7]/95 backdrop-blur-sm border-b border-neutral-200">
+            <header className="sticky top-0 z-50 backdrop-blur-sm border-b" style={{ backgroundColor: `${theme.colors.background}f2`, borderColor: theme.colors.border }}>
                 <div className="container mx-auto max-w-[1400px] px-6 lg:px-12">
                     {/* Top bar */}
-                    <div className="flex items-center justify-between py-3 border-b border-neutral-100">
-                        <div className="text-xs font-medium text-neutral-500">Thursday, October 24, 2024</div>
+                    <div className="flex items-center justify-between py-3 border-b" style={{ borderColor: theme.colors.muted }}>
+                        <div className="text-xs font-medium" style={{ color: theme.colors.mutedForeground }}>Thursday, October 24, 2024</div>
                         <div className="flex items-center gap-4 text-xs font-bold uppercase tracking-widest">
-                            <button className="hover:text-neutral-500 transition-colors">Subscribe</button>
-                            <button className="hover:text-neutral-500 transition-colors">Sign In</button>
+                            <button className="transition-colors hover:opacity-70">Subscribe</button>
+                            <button className="transition-colors hover:opacity-70">Sign In</button>
                         </div>
                     </div>
 
@@ -55,14 +69,15 @@ const MagazineDashboard = () => {
                             initial={{ opacity: 0, y: -20 }}
                             animate={{ opacity: 1, y: 0 }}
                             className="font-serif text-5xl lg:text-7xl tracking-tight"
+                            style={{ color: theme.colors.foreground }}
                         >
                             THE EDIT
                         </motion.h1>
                         <div className="absolute top-1/2 right-0 -translate-y-1/2 hidden lg:block">
-                            <span className="font-serif italic text-lg text-neutral-400">Vol. 24</span>
+                            <span className="font-serif italic text-lg" style={{ color: theme.colors.mutedForeground }}>Vol. 24</span>
                         </div>
                         <div className="absolute top-1/2 left-0 -translate-y-1/2 hidden lg:flex items-center gap-2">
-                            <button className="p-2 hover:bg-neutral-100 rounded-full transition-colors">
+                            <button className="p-2 rounded-full transition-colors hover:bg-black/5" style={{ color: theme.colors.foreground }}>
                                 <Search className="h-5 w-5" />
                             </button>
                         </div>
@@ -74,8 +89,10 @@ const MagazineDashboard = () => {
                             <motion.button
                                 key={section}
                                 onClick={() => setActiveSection(section)}
-                                className={`relative px-4 py-2 text-xs font-bold uppercase tracking-widest transition-colors ${activeSection === section ? 'text-black' : 'text-neutral-400 hover:text-neutral-600'
-                                    }`}
+                                className={`relative px-4 py-2 text-xs font-bold uppercase tracking-widest transition-colors`}
+                                style={{
+                                    color: activeSection === section ? theme.colors.foreground : theme.colors.mutedForeground
+                                }}
                                 whileHover={{ y: -1 }}
                                 whileTap={{ y: 0 }}
                             >
@@ -83,7 +100,8 @@ const MagazineDashboard = () => {
                                 {activeSection === section && (
                                     <motion.div
                                         layoutId="activeSection"
-                                        className="absolute bottom-0 left-0 right-0 h-0.5 bg-black"
+                                        className="absolute bottom-0 left-0 right-0 h-0.5"
+                                        style={{ backgroundColor: theme.colors.foreground }}
                                     />
                                 )}
                             </motion.button>
@@ -103,9 +121,9 @@ const MagazineDashboard = () => {
 
                         {/* Reading Progress Indicator */}
                         <div className="flex items-center gap-4">
-                            <div className="flex-1 h-px bg-neutral-200" />
-                            <span className="text-xs font-bold uppercase tracking-widest text-neutral-400">Editor's Picks</span>
-                            <div className="flex-1 h-px bg-neutral-200" />
+                            <div className="flex-1 h-px" style={{ backgroundColor: theme.colors.muted }} />
+                            <span className="text-xs font-bold uppercase tracking-widest" style={{ color: theme.colors.mutedForeground }}>Editor's Picks</span>
+                            <div className="flex-1 h-px" style={{ backgroundColor: theme.colors.muted }} />
                         </div>
 
                         {/* Editor's Picks Grid */}
@@ -131,20 +149,21 @@ const MagazineDashboard = () => {
                                                 e.stopPropagation();
                                                 setSavedArticle(savedArticle === i ? null : i);
                                             }}
-                                            className="absolute top-3 right-3 p-2 bg-white/90 backdrop-blur-sm rounded-full shadow-sm hover:bg-white transition-colors"
+                                            className="absolute top-3 right-3 p-2 backdrop-blur-sm rounded-full shadow-sm transition-colors"
+                                            style={{ backgroundColor: `${theme.colors.card}90`, color: theme.colors.foreground }}
                                         >
-                                            <Bookmark className={`h-4 w-4 ${savedArticle === i ? 'fill-black' : ''}`} />
+                                            <Bookmark className={`h-4 w-4 ${savedArticle === i ? 'fill-current' : ''}`} />
                                         </motion.button>
                                     </div>
                                     <div className="flex items-center gap-2 mb-2">
-                                        <span className="text-[10px] font-bold uppercase tracking-widest text-neutral-400">{item.category}</span>
-                                        <span className="text-neutral-300">·</span>
-                                        <span className="text-[10px] text-neutral-400 flex items-center gap-1">
+                                        <span className="text-[10px] font-bold uppercase tracking-widest" style={{ color: theme.colors.mutedForeground }}>{item.category}</span>
+                                        <span style={{ color: theme.colors.muted }}>·</span>
+                                        <span className="text-[10px] flex items-center gap-1" style={{ color: theme.colors.mutedForeground }}>
                                             <Clock className="h-3 w-3" />
                                             {item.readTime}
                                         </span>
                                     </div>
-                                    <h3 className="font-serif text-xl leading-tight group-hover:text-neutral-600 transition-colors">
+                                    <h3 className="font-serif text-xl leading-tight transition-colors group-hover:opacity-70" style={{ color: theme.colors.foreground }}>
                                         {item.title}
                                     </h3>
                                     <EditorialButton variant="link" className="mt-3 text-sm">
@@ -162,15 +181,15 @@ const MagazineDashboard = () => {
                         <Newsletter />
 
                         {/* Quote of the day */}
-                        <MagazineCard className="bg-neutral-100 border-none text-center py-12 px-8">
-                            <span className="text-6xl font-serif text-neutral-200 leading-none">"</span>
-                            <p className="font-serif text-xl italic leading-relaxed text-neutral-800 -mt-6">
+                        <MagazineCard className="border-none text-center py-12 px-8" style={{ backgroundColor: theme.colors.secondary }}>
+                            <span className="text-6xl font-serif leading-none" style={{ color: theme.colors.muted }}>"</span>
+                            <p className="font-serif text-xl italic leading-relaxed -mt-6" style={{ color: theme.colors.foreground }}>
                                 Design is not just what it looks like and feels like. Design is how it works.
                             </p>
                             <div className="mt-6 flex justify-center">
-                                <div className="h-px w-12 bg-neutral-300" />
+                                <div className="h-px w-12" style={{ backgroundColor: theme.colors.mutedForeground }} />
                             </div>
-                            <p className="mt-4 text-xs font-bold uppercase tracking-widest text-neutral-500">Steve Jobs</p>
+                            <p className="mt-4 text-xs font-bold uppercase tracking-widest" style={{ color: theme.colors.mutedForeground }}>Steve Jobs</p>
                         </MagazineCard>
 
                         {/* Related Topics */}
@@ -180,9 +199,10 @@ const MagazineDashboard = () => {
                                 {['Minimalism', 'Sustainability', 'Typography', 'Urban Planning', 'Craftsmanship', 'Innovation'].map((topic) => (
                                     <motion.button
                                         key={topic}
-                                        whileHover={{ scale: 1.05, backgroundColor: '#000', color: '#fff' }}
+                                        whileHover={{ scale: 1.05, backgroundColor: theme.colors.primary, color: theme.colors.primaryForeground }}
                                         whileTap={{ scale: 0.95 }}
-                                        className="px-4 py-2 border border-neutral-300 text-xs font-bold uppercase tracking-wider transition-colors hover:border-black"
+                                        className="px-4 py-2 border text-xs font-bold uppercase tracking-wider transition-colors"
+                                        style={{ borderColor: theme.colors.border, color: theme.colors.mutedForeground }}
                                     >
                                         {topic}
                                     </motion.button>

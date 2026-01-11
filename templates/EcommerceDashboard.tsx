@@ -5,17 +5,32 @@ import ProductCard from '../components/ecommerce/ProductCard';
 import CartSummary from '../components/ecommerce/CartSummary';
 import ShopButton from '../components/ecommerce/ShopButton';
 
+import { useTheme } from '@/context/ThemeContext';
+
 const EcommerceDashboard = () => {
+    const { currentPlaygroundTheme: theme, setScopedTheme } = useTheme();
+
+    React.useEffect(() => {
+        setScopedTheme('consumer', 'ecommerce');
+    }, []);
+
     return (
-        <div className="container mx-auto min-h-screen max-w-[1600px] p-6 lg:p-10 font-sans text-neutral-900 bg-white">
+        <div
+            className="container mx-auto min-h-screen max-w-[1600px] p-6 lg:p-10 font-sans"
+            style={{
+                backgroundColor: theme.colors.background,
+                color: theme.colors.foreground,
+                fontFamily: theme.typography.fontFamily
+            }}
+        >
 
             {/* Navbar Minimal */}
             <nav className="mb-8 flex items-center justify-between py-4">
-                <div className="flex gap-8 text-xs font-bold uppercase tracking-widest text-neutral-500">
-                    <a href="#" className="text-black">New Arrivals</a>
-                    <a href="#" className="hover:text-black transition-colors">Apparel</a>
-                    <a href="#" className="hover:text-black transition-colors">Accessories</a>
-                    <a href="#" className="hover:text-black transition-colors">Home</a>
+                <div className="flex gap-8 text-xs font-bold uppercase tracking-widest" style={{ color: theme.colors.mutedForeground }}>
+                    <a href="#" style={{ color: theme.colors.foreground }}>New Arrivals</a>
+                    <a href="#" className="hover:text-opacity-70 transition-colors">Apparel</a>
+                    <a href="#" className="hover:text-opacity-70 transition-colors">Accessories</a>
+                    <a href="#" className="hover:text-opacity-70 transition-colors">Home</a>
                 </div>
             </nav>
 
@@ -28,7 +43,7 @@ const EcommerceDashboard = () => {
 
                     <div>
                         <div className="mb-6 flex items-center justify-between">
-                            <h2 className="font-serif text-2xl font-medium text-neutral-900">New Arrivals</h2>
+                            <h2 className="font-serif text-2xl font-medium" style={{ color: theme.colors.foreground }}>New Arrivals</h2>
                             <ShopButton variant="secondary">
                                 <SlidersHorizontal className="h-4 w-4" />
                                 Filter
@@ -84,11 +99,11 @@ const EcommerceDashboard = () => {
                     </div>
 
                     {/* Secondary Banner */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-0 border border-neutral-100">
-                        <div className="bg-neutral-50 p-12 flex flex-col justify-center items-start">
-                            <span className="mb-4 text-xs font-bold uppercase tracking-widest text-neutral-500">Limited Edition</span>
-                            <h3 className="mb-6 font-serif text-3xl">The Monogram Series</h3>
-                            <p className="mb-8 text-neutral-600 max-w-sm">Hand-finished leather goods featuring our signature embossing. Available for a limited time.</p>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-0 border" style={{ borderColor: theme.colors.border }}>
+                        <div className="p-12 flex flex-col justify-center items-start" style={{ backgroundColor: theme.colors.secondary }}>
+                            <span className="mb-4 text-xs font-bold uppercase tracking-widest" style={{ color: theme.colors.mutedForeground }}>Limited Edition</span>
+                            <h3 className="mb-6 font-serif text-3xl" style={{ color: theme.colors.foreground }}>The Monogram Series</h3>
+                            <p className="mb-8 max-w-sm" style={{ color: theme.colors.mutedForeground }}>Hand-finished leather goods featuring our signature embossing. Available for a limited time.</p>
                             <ShopButton variant="secondary">Explore Collection</ShopButton>
                         </div>
                         <div className="h-[400px]">

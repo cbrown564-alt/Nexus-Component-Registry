@@ -1,10 +1,13 @@
 import React from 'react';
 import { motion, HTMLMotionProps } from 'framer-motion';
+import { useTheme } from '@/context/ThemeContext';
 
 interface FoodButtonProps extends Omit<HTMLMotionProps<'button'>, 'children'> {
-    children: React.ReactNode;
-    variant?: 'primary' | 'secondary' | 'outline' | 'ghost';
-    size?: 'sm' | 'md' | 'lg';
+    children?: React.ReactNode;
+    variant?: 'primary' | 'secondary' | 'ghost' | 'outline';
+    size?: 'sm' | 'md' | 'lg' | 'icon';
+    className?: string;
+    style?: React.CSSProperties;
 }
 
 const FoodButton: React.FC<FoodButtonProps> = ({
@@ -12,47 +15,63 @@ const FoodButton: React.FC<FoodButtonProps> = ({
     className = "",
     variant = 'primary',
     size = 'md',
+    style,
     ...props
 }) => {
+    const { currentPlaygroundTheme: theme } = useTheme();
+
+    const getBaseStyles = () => {
+        let base = "font-bold transition-all duration-200 flex items-center justify-center ";
+        if (size === 'sm') base += "px-3 py-1.5 text-xs ";
+        else if (size === 'md') base += "px-5 py-2.5 text-sm ";
+        else if (size === 'lg') base += "px-8 py-3.5 text-base ";
+        else if (size === 'icon') base += "p-2 ";
+
+        base += "rounded-xl ";
+
+        return base;
+    };
+
     const getVariantStyles = () => {
         switch (variant) {
             case 'primary':
-                return 'bg-orange-500 text-white hover:bg-orange-400 shadow-lg shadow-orange-500/25';
+                return {
+                    backgroundColor: theme.colors.primary,
+                    color: theme.colors.primaryForeground,
+                    boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)', // Subtle shadow
+                };
             case 'secondary':
-                return 'bg-stone-800 text-stone-100 hover:bg-stone-700 border border-stone-700';
-            case 'outline':
-                return 'bg-transparent text-stone-300 hover:text-white border border-stone-700 hover:border-orange-500 hover:bg-orange-500/10';
+                return {
+                    backgroundColor: theme.colors.secondary,
+                    color: theme.colors.secondaryForeground,
+                };
             case 'ghost':
-                return 'bg-stone-900/50 border border-stone-800 text-stone-400 hover:text-white hover:border-orange-500/50 hover:bg-orange-500/10';
-            default:
-                return 'bg-orange-500 text-white hover:bg-orange-400';
-        }
-    };
-
-    const getSizeStyles = () => {
-        switch (size) {
-            case 'sm':
-                return 'px-3 py-1.5 text-xs rounded-lg';
-            case 'lg':
-                return 'px-8 py-4 text-base rounded-2xl';
-            default:
-                return 'px-6 py-3 text-sm rounded-xl';
+                return {
+                    backgroundColor: 'transparent',
+                    color: theme.colors.mutedForeground,
+                };
+            case 'outline':
+                return {
+                    backgroundColor: 'transparent',
+                    border: `1px solid ${theme.colors.border}`,
+                    color: theme.colors.foreground,
+                };
+            default: return {};
         }
     };
 
     return (
         <motion.button
-            whileHover={{ scale: 1.02, y: -2 }}
+            whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            className={`relative inline-flex items-center justify-center font-bold tracking-wide transition-all duration-200 ${getVariantStyles()} ${getSizeStyles()} ${className}`}
+            className={`${getBaseStyles()} ${className}`}
+            style={{
+                ...getVariantStyles(),
+                ...style
+            }}
             {...props}
         >
-            {variant === 'primary' && (
-                <span className="absolute inset-0 rounded-xl bg-gradient-to-t from-orange-600/50 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300" />
-            )}
-            <span className="relative z-10 flex items-center gap-2">
-                {children}
-            </span>
+            {children}
         </motion.button>
     );
 };

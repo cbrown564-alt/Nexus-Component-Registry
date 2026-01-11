@@ -1,59 +1,77 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useTheme } from '@/context/ThemeContext';
 
 interface WellnessButtonProps {
     children: React.ReactNode;
     variant?: 'primary' | 'secondary' | 'ghost' | 'soft';
-    size?: 'sm' | 'md' | 'lg';
     icon?: React.ReactNode;
     className?: string;
-    disabled?: boolean;
-    onClick?: () => void;
+    size?: 'sm' | 'md' | 'lg';
+    style?: React.CSSProperties;
 }
 
 const WellnessButton: React.FC<WellnessButtonProps> = ({
     children,
     variant = 'primary',
-    size = 'md',
     icon,
-    className = '',
-    disabled = false,
-    onClick,
+    className = "",
+    size = 'md',
+    style
 }) => {
-    const baseStyles = 'relative inline-flex items-center justify-center gap-2 font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed';
+    const { currentPlaygroundTheme } = useTheme()
+    const theme = currentPlaygroundTheme
 
-    const sizeStyles = {
-        sm: 'px-4 py-2 text-xs rounded-xl',
-        md: 'px-6 py-3 text-sm rounded-2xl',
-        lg: 'px-8 py-4 text-base rounded-2xl',
+    const sizeClasses = {
+        sm: "px-4 py-2 text-sm",
+        md: "px-6 py-3 text-base",
+        lg: "px-8 py-4 text-lg",
     };
 
-    // Calm, serene wellness aesthetic - sage greens, soft transitions
-    const variantStyles = {
-        primary: 'bg-gradient-to-br from-sage-500 to-sage-600 text-white shadow-md shadow-sage-200/50 hover:shadow-lg hover:shadow-sage-300/50 hover:from-sage-400 hover:to-sage-500 focus:ring-sage-400',
-        secondary: 'bg-stone-100 text-stone-700 hover:bg-stone-200 focus:ring-stone-400',
-        soft: 'bg-white/80 backdrop-blur-sm border border-stone-200 text-stone-700 hover:bg-white hover:border-stone-300 focus:ring-stone-300 shadow-sm',
-        ghost: 'bg-transparent text-stone-600 hover:text-stone-900 hover:bg-stone-100/50 focus:ring-stone-300',
-    };
+    const getVariantStyles = () => {
+        switch (variant) {
+            case 'primary':
+                return {
+                    backgroundColor: theme.colors.primary,
+                    color: theme.colors.primaryForeground,
+                }
+            case 'soft':
+                return {
+                    backgroundColor: theme.colors.secondary,
+                    color: theme.colors.secondaryForeground,
+                }
+            case 'ghost':
+                return {
+                    backgroundColor: 'transparent',
+                    color: theme.colors.mutedForeground,
+                }
+            case 'secondary':
+            default:
+                return {
+                    backgroundColor: 'transparent',
+                    border: `1px solid ${theme.colors.border}`,
+                    color: theme.colors.foreground,
+                }
+        }
+    }
 
     return (
         <motion.button
-            whileHover={{ scale: disabled ? 1 : 1.02, y: disabled ? 0 : -1 }}
-            whileTap={{ scale: disabled ? 1 : 0.98 }}
-            transition={{ duration: 0.3, ease: 'easeOut' }}
-            className={`${baseStyles} ${sizeStyles[size]} ${variantStyles[variant]} ${className}`}
-            disabled={disabled}
-            onClick={onClick}
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            className={`
+        inline-flex items-center justify-center gap-2 rounded-full font-serif font-medium transition-colors
+        ${sizeClasses[size]}
+        ${className}
+      `}
+            style={{
+                borderRadius: '9999px', // Always pill shaped for wellness
+                ...getVariantStyles(),
+                ...style
+            }}
         >
-            {/* Soft glow for primary */}
-            {variant === 'primary' && (
-                <span className="absolute inset-0 rounded-2xl bg-gradient-to-br from-sage-400/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-            )}
-
-            <span className="relative z-10 flex items-center gap-2">
-                {icon && <span className="shrink-0">{icon}</span>}
-                {children}
-            </span>
+            {icon}
+            {children}
         </motion.button>
     );
 };

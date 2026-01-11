@@ -19,6 +19,15 @@ import { saas } from '@/data/themes/saas'
 import { productivity } from '@/data/themes/productivity'
 import { grid } from '@/data/themes/grid'
 import { legal } from '@/data/themes/legal'
+import { wellness } from '@/data/themes/wellness'
+import { education } from '@/data/themes/education'
+import { magazine } from '@/data/themes/magazine'
+import { ecommerce } from '@/data/themes/ecommerce'
+import { social } from '@/data/themes/social'
+import { music } from '@/data/themes/music'
+import { food } from '@/data/themes/food'
+import { kitchen } from '@/data/themes/kitchen'
+import { kids } from '@/data/themes/kids'
 
 // The default registry theme - dark, neutral, always consistent
 const REGISTRY_THEME: Theme = {
@@ -105,6 +114,15 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
         else if (activeLikeThemeId === 'productivity') theme = productivity
         else if (activeLikeThemeId === 'grid') theme = grid
         else if (activeLikeThemeId === 'legal') theme = legal
+        else if (activeLikeThemeId === 'wellness') theme = wellness
+        else if (activeLikeThemeId === 'education') theme = education
+        else if (activeLikeThemeId === 'magazine') theme = magazine
+        else if (activeLikeThemeId === 'ecommerce') theme = ecommerce
+        else if (activeLikeThemeId === 'social') theme = social
+        else if (activeLikeThemeId === 'music') theme = music
+        else if (activeLikeThemeId === 'food') theme = food
+        else if (activeLikeThemeId === 'kitchen') theme = kitchen
+        else if (activeLikeThemeId === 'kids') theme = kids
         else theme = getPlaygroundThemeById(activeLikeThemeId)
 
         if (theme) {

@@ -1,52 +1,78 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, HTMLMotionProps } from 'framer-motion';
+import { useTheme } from '@/context/ThemeContext';
 
-interface KitchenButtonProps {
+interface KitchenButtonProps extends Omit<HTMLMotionProps<'button'>, 'children'> {
     children?: React.ReactNode;
     variant?: 'primary' | 'secondary' | 'ghost' | 'icon';
     size?: 'sm' | 'md' | 'lg' | 'icon';
     icon?: React.ReactNode;
-    className?: string;
-    disabled?: boolean;
-    onClick?: () => void;
-    isActive?: boolean;
+    style?: React.CSSProperties;
 }
 
 const KitchenButton: React.FC<KitchenButtonProps> = ({
     children,
+    className = "",
     variant = 'primary',
     size = 'md',
     icon,
-    className = '',
-    disabled = false,
-    onClick,
-    isActive = false,
+    style,
+    ...props
 }) => {
-    const baseStyles = 'relative inline-flex items-center justify-center gap-2 font-bold transition-all duration-150 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed';
+    const { currentPlaygroundTheme: theme } = useTheme();
 
-    const sizeStyles = {
-        sm: 'px-3 py-1.5 text-xs rounded-xl',
-        md: 'px-5 py-2.5 text-sm rounded-2xl',
-        lg: 'px-8 py-3.5 text-base rounded-2xl',
-        icon: 'p-3 rounded-xl',
+    const getBaseStyles = () => {
+        let base = "font-medium transition-all duration-200 flex items-center justify-center ";
+        if (size === 'sm') base += "px-3 py-1.5 text-xs ";
+        else if (size === 'md') base += "px-4 py-2 text-sm ";
+        else if (size === 'lg') base += "px-6 py-3 text-base ";
+        else if (size === 'icon') base += "p-2 ";
+
+        base += "rounded-lg ";
+
+        return base;
     };
 
-    // Warm, tactile cooking feel
-    const variantStyles = {
-        primary: 'bg-orange-500 text-white border-2 border-orange-600 shadow-[4px_4px_0px_#fed7aa] hover:translate-y-[2px] hover:translate-x-[2px] hover:shadow-[2px_2px_0px_#fed7aa] active:translate-y-[4px] active:translate-x-[4px] active:shadow-none',
-        secondary: `bg-[#FFFBF7] text-stone-700 border-2 border-stone-200 shadow-[4px_4px_0px_#e7e5e4] hover:bg-white hover:translate-y-[2px] hover:translate-x-[2px] hover:shadow-[2px_2px_0px_#e7e5e4] active:translate-y-[4px] active:translate-x-[4px] active:shadow-none ${isActive ? 'bg-orange-50 border-orange-200 text-orange-700' : ''}`,
-        ghost: 'bg-transparent text-stone-500 hover:bg-stone-100/50 hover:text-stone-800 border-2 border-transparent',
-        icon: 'bg-stone-100 text-stone-600 hover:bg-stone-200 hover:text-stone-900',
+    const getVariantStyles = () => {
+        switch (variant) {
+            case 'primary':
+                return {
+                    backgroundColor: theme.colors.primary,
+                    color: theme.colors.primaryForeground,
+                    boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.05)',
+                };
+            case 'secondary':
+                return {
+                    backgroundColor: theme.colors.secondary,
+                    color: theme.colors.secondaryForeground,
+                    border: `1px solid ${theme.colors.border}`,
+                };
+            case 'ghost':
+                return {
+                    backgroundColor: 'transparent',
+                    color: theme.colors.mutedForeground,
+                };
+            case 'icon':
+                return {
+                    backgroundColor: theme.colors.secondary,
+                    color: theme.colors.foreground,
+                };
+            default: return {};
+        }
     };
 
     return (
         <motion.button
-            whileTap={{ scale: 0.95 }}
-            className={`${baseStyles} ${sizeStyles[size]} ${variantStyles[variant]} ${className}`}
-            disabled={disabled}
-            onClick={onClick}
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            className={`${getBaseStyles()} ${className}`}
+            style={{
+                ...getVariantStyles(),
+                ...style
+            }}
+            {...props}
         >
-            {icon && <span className="shrink-0">{icon}</span>}
+            {icon && <span className={children ? "mr-2" : ""}>{icon}</span>}
             {children}
         </motion.button>
     );

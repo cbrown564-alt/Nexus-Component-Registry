@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useTheme } from '@/context/ThemeContext';
 
 interface EducationButtonProps {
     children: React.ReactNode;
@@ -9,6 +10,7 @@ interface EducationButtonProps {
     className?: string;
     disabled?: boolean;
     onClick?: () => void;
+    style?: React.CSSProperties;
 }
 
 const EducationButton: React.FC<EducationButtonProps> = ({
@@ -19,37 +21,62 @@ const EducationButton: React.FC<EducationButtonProps> = ({
     className = '',
     disabled = false,
     onClick,
+    style
 }) => {
+    const { currentPlaygroundTheme } = useTheme()
+    const theme = currentPlaygroundTheme
+
     const baseStyles = 'relative inline-flex items-center justify-center gap-2 font-semibold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed overflow-hidden';
 
     const sizeStyles = {
-        sm: 'px-4 py-2 text-xs rounded-lg',
-        md: 'px-6 py-3 text-sm rounded-xl',
-        lg: 'px-8 py-4 text-base rounded-xl',
+        sm: 'px-4 py-2 text-xs',
+        md: 'px-6 py-3 text-sm',
+        lg: 'px-8 py-4 text-base',
     };
 
-    const variantStyles = {
-        primary: 'bg-gradient-to-r from-violet-600 to-indigo-600 text-white shadow-lg shadow-violet-500/25 hover:shadow-violet-500/40 hover:from-violet-500 hover:to-indigo-500 focus:ring-violet-500 active:scale-95',
-        secondary: 'bg-violet-100 text-violet-700 hover:bg-violet-200 focus:ring-violet-400 active:scale-95',
-        outline: 'bg-transparent border-2 border-violet-600/50 text-violet-600 hover:bg-violet-50 hover:border-violet-600 focus:ring-violet-400',
-        ghost: 'bg-transparent text-violet-600 hover:bg-violet-50 focus:ring-violet-400',
-    };
+    const getVariantStyles = () => {
+        switch (variant) {
+            case 'primary':
+                return {
+                    backgroundColor: theme.colors.primary,
+                    color: theme.colors.primaryForeground,
+                    boxShadow: `0 4px 6px -1px ${theme.colors.primary}40`,
+                }
+            case 'secondary':
+                return {
+                    backgroundColor: theme.colors.secondary,
+                    color: theme.colors.primary, // Often primary color on secondary bg looks good
+                }
+            case 'outline':
+                return {
+                    backgroundColor: 'transparent',
+                    border: `2px solid ${theme.colors.border}`,
+                    color: theme.colors.primaryForeground, // Assuming outline is used on dark bg often in this template
+                }
+            case 'ghost':
+                return {
+                    backgroundColor: 'transparent',
+                    color: theme.colors.primary,
+                }
+            default: return {}
+        }
+    }
 
     return (
         <motion.button
             whileHover={{ scale: disabled ? 1 : 1.03, y: disabled ? 0 : -2 }}
             whileTap={{ scale: disabled ? 1 : 0.97 }}
             transition={{ type: 'spring', stiffness: 400, damping: 17 }}
-            className={`${baseStyles} ${sizeStyles[size]} ${variantStyles[variant]} ${className}`}
+            className={`${baseStyles} ${sizeStyles[size]} ${className}`}
             disabled={disabled}
             onClick={onClick}
+            style={{
+                borderRadius: theme.radius === 'lg' ? '0.75rem' : theme.radius === 'md' ? '0.5rem' : '0.25rem',
+                ...getVariantStyles(),
+                ...style
+            }}
         >
-            {/* Shine effect on primary */}
-            {variant === 'primary' && (
-                <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/25 to-transparent skew-x-12 group-hover:translate-x-full transition-transform duration-700" />
-            )}
-
-            {/* Progress indicator dot for learning context */}
+            {/* Progress indicator dot for learning context - keeping simplistic for now */}
             {variant === 'primary' && (
                 <span className="absolute top-1.5 right-1.5 h-2 w-2 rounded-full bg-white/30 animate-pulse" />
             )}

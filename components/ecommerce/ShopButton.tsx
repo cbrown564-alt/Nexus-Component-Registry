@@ -1,11 +1,13 @@
 import React from 'react';
 import { motion, HTMLMotionProps } from 'framer-motion';
 import { ShoppingBag } from 'lucide-react';
+import { useTheme } from '@/context/ThemeContext';
 
 interface ShopButtonProps extends Omit<HTMLMotionProps<'button'>, 'children'> {
     children: React.ReactNode;
     variant?: 'primary' | 'secondary' | 'add-to-cart';
     size?: 'sm' | 'md' | 'lg';
+    style?: React.CSSProperties;
 }
 
 const ShopButton: React.FC<ShopButtonProps> = ({
@@ -13,8 +15,12 @@ const ShopButton: React.FC<ShopButtonProps> = ({
     className = "",
     variant = 'primary',
     size = 'md',
+    style,
     ...props
 }) => {
+    const { currentPlaygroundTheme } = useTheme()
+    const theme = currentPlaygroundTheme
+
     const getSizeStyles = () => {
         switch (size) {
             case 'sm':
@@ -31,14 +37,20 @@ const ShopButton: React.FC<ShopButtonProps> = ({
             <motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.95 }}
-                className={`group relative overflow-hidden bg-neutral-900 text-white font-medium tracking-wide uppercase ${getSizeStyles()} transition-all duration-300 ${className}`}
+                className={`group relative overflow-hidden font-medium tracking-wide uppercase ${getSizeStyles()} transition-all duration-300 ${className}`}
+                style={{
+                    backgroundColor: theme.colors.primary,
+                    color: theme.colors.primaryForeground,
+                    ...style
+                }}
                 {...props}
             >
                 <motion.span
-                    className="absolute inset-0 bg-neutral-700"
+                    className="absolute inset-0"
                     initial={{ x: '-100%' }}
                     whileHover={{ x: 0 }}
                     transition={{ duration: 0.3, ease: 'easeOut' }}
+                    style={{ backgroundColor: theme.colors.secondary }} /* Hover fill color */
                 />
                 <span className="relative z-10 flex items-center justify-center gap-2">
                     <ShoppingBag className="w-4 h-4" />
@@ -51,9 +63,14 @@ const ShopButton: React.FC<ShopButtonProps> = ({
     if (variant === 'secondary') {
         return (
             <motion.button
-                whileHover={{ backgroundColor: 'rgb(245, 245, 244)' }}
+                whileHover={{ backgroundColor: theme.colors.secondary }}
                 whileTap={{ scale: 0.98 }}
-                className={`font-medium tracking-wide uppercase text-neutral-600 hover:text-neutral-900 border-b border-neutral-400 hover:border-neutral-900 pb-1 transition-all duration-300 ${className}`}
+                className={`font-medium tracking-wide uppercase border-b pb-1 transition-all duration-300 ${className}`}
+                style={{
+                    color: theme.colors.secondaryForeground,
+                    borderColor: theme.colors.muted,
+                    ...style
+                }}
                 {...props}
             >
                 {children}
@@ -65,7 +82,12 @@ const ShopButton: React.FC<ShopButtonProps> = ({
         <motion.button
             whileHover={{ y: -2 }}
             whileTap={{ scale: 0.98 }}
-            className={`relative bg-neutral-900 text-white font-medium tracking-wide uppercase ${getSizeStyles()} transition-all duration-200 hover:bg-neutral-800 ${className}`}
+            className={`relative font-medium tracking-wide uppercase ${getSizeStyles()} transition-all duration-200 ${className}`}
+            style={{
+                backgroundColor: theme.colors.primary,
+                color: theme.colors.primaryForeground,
+                ...style
+            }}
             {...props}
         >
             {children}
