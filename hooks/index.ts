@@ -10,4 +10,3 @@ export { useFocusTrap } from './useFocusTrap'
 
 // Re-export useTheme from context
 export { useTheme } from '@/context/ThemeContext'
-

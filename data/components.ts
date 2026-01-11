@@ -422,6 +422,7 @@ export type ComponentCategory =
     | 'feedback'
     | 'interactive'
     | 'visualization'
+    | 'marketing'
 
 export interface ComponentMeta {
     id: string
@@ -445,7 +446,7 @@ export const components: ComponentMeta[] = [
         category: 'layout',
         component: SpotlightCard,
         source: SpotlightCardSource,
-        tags: ['card', 'hover', 'spotlight', 'mouse-tracking'],
+        tags: ['card', 'hover', 'spotlight', 'mouse-tracking', 'wrapper', 'container', 'effect', 'shadow'],
     },
     {
         id: 'glow-button',
@@ -455,7 +456,7 @@ export const components: ComponentMeta[] = [
         category: 'interactive',
         component: GlowButton,
         source: GlowButtonSource,
-        tags: ['button', 'glow', 'gradient', 'cta'],
+        tags: ['button', 'glow', 'gradient', 'cta', 'action', 'shiny', 'neon'],
     },
     {
         id: 'terminal',
@@ -465,7 +466,7 @@ export const components: ComponentMeta[] = [
         category: 'data-display',
         component: Terminal,
         source: TerminalSource,
-        tags: ['terminal', 'code', 'animation', 'developer'],
+        tags: ['terminal', 'code', 'animation', 'developer', 'console', 'cli', 'command', 'prompt'],
         previewProps: {
             initialLines: ['npm install nexus-ui', 'Installing dependencies...', 'Success!'],
             typingSpeed: 50
@@ -479,7 +480,7 @@ export const components: ComponentMeta[] = [
         category: 'data-display',
         component: StatsCard,
         source: StatsCardSource,
-        tags: ['metrics', 'stats', 'dashboard', 'numbers'],
+        tags: ['metrics', 'stats', 'dashboard', 'numbers', 'kpi', 'analytics', 'data'],
     },
     {
         id: 'activity-feed',
@@ -489,7 +490,7 @@ export const components: ComponentMeta[] = [
         category: 'data-display',
         component: ActivityFeed,
         source: ActivityFeedSource,
-        tags: ['feed', 'activity', 'log', 'timeline'],
+        tags: ['feed', 'activity', 'log', 'timeline', 'history', 'stream', 'updates'],
     },
     {
         id: 'file-tree',
@@ -499,7 +500,7 @@ export const components: ComponentMeta[] = [
         category: 'navigation',
         component: FileTree,
         source: FileTreeSource,
-        tags: ['files', 'tree', 'explorer', 'folders'],
+        tags: ['files', 'tree', 'explorer', 'folders', 'directory', 'navigation', 'structure'],
         previewProps: {
             files: [
                 { name: 'src', type: 'folder', children: [{ name: 'App.tsx', type: 'file' }] },
@@ -515,7 +516,7 @@ export const components: ComponentMeta[] = [
         category: 'interactive',
         component: PlanPicker,
         source: PlanPickerSource,
-        tags: ['pricing', 'plans', 'tiers', 'selector'],
+        tags: ['pricing', 'plans', 'tiers', 'selector', 'subscription', 'billing', 'compare'],
     },
     {
         id: 'team-members',
@@ -525,7 +526,7 @@ export const components: ComponentMeta[] = [
         category: 'data-display',
         component: TeamMembers,
         source: TeamMembersSource,
-        tags: ['team', 'avatars', 'users', 'members'],
+        tags: ['team', 'avatars', 'users', 'members', 'people', 'profiles', 'group'],
     },
     {
         id: 'shortcut-guide',
@@ -535,7 +536,7 @@ export const components: ComponentMeta[] = [
         category: 'feedback',
         component: ShortcutGuide,
         source: ShortcutGuideSource,
-        tags: ['shortcuts', 'keyboard', 'help', 'guide'],
+        tags: ['shortcuts', 'keyboard', 'help', 'guide', 'hotkeys', 'keybindings', 'cheatsheet'],
     },
     {
         id: 'deployment-pipeline',
@@ -545,7 +546,7 @@ export const components: ComponentMeta[] = [
         category: 'visualization',
         component: DeploymentPipeline,
         source: DeploymentPipelineSource,
-        tags: ['pipeline', 'ci-cd', 'deployment', 'stages'],
+        tags: ['pipeline', 'ci-cd', 'deployment', 'stages', 'process', 'workflow', 'build', 'release'],
     },
     {
         id: 'integration-toggle',
@@ -555,7 +556,7 @@ export const components: ComponentMeta[] = [
         category: 'forms',
         component: IntegrationToggle,
         source: IntegrationToggleSource,
-        tags: ['toggle', 'switch', 'integration', 'settings'],
+        tags: ['toggle', 'switch', 'integration', 'settings', 'config', 'plugin', 'connect'],
     },
     {
         id: 'bento-card',
@@ -565,7 +566,7 @@ export const components: ComponentMeta[] = [
         category: 'layout',
         component: BentoCard,
         source: BentoCardSource,
-        tags: ['bento', 'grid', 'card', 'layout'],
+        tags: ['bento', 'grid', 'card', 'layout', 'dashboard', 'box', 'panel'],
         previewProps: {
             icon: Box,
             title: 'Bento Card',
@@ -583,7 +584,7 @@ export const components: ComponentMeta[] = [
         category: 'data-display',
         component: DigitalCard,
         source: DigitalCardSource,
-        tags: ['card', 'payment', 'credit', 'banking'],
+        tags: ['card', 'payment', 'credit', 'banking', 'debit', 'money', 'finance', 'plastic'],
     },
     {
         id: 'market-ticker',
@@ -593,7 +594,7 @@ export const components: ComponentMeta[] = [
         category: 'data-display',
         component: MarketTicker,
         source: MarketTickerSource,
-        tags: ['stocks', 'ticker', 'market', 'prices'],
+        tags: ['stocks', 'ticker', 'market', 'prices', 'finance', 'investing', 'trading', 'crypto', 'forex'],
     },
     {
         id: 'portfolio-chart',
@@ -603,7 +604,7 @@ export const components: ComponentMeta[] = [
         category: 'visualization',
         component: PortfolioChart,
         source: PortfolioChartSource,
-        tags: ['chart', 'portfolio', 'investment', 'graph'],
+        tags: ['chart', 'portfolio', 'investment', 'graph', 'analytics', 'finance', 'wealth', 'growth'],
     },
     {
         id: 'transaction-list',
@@ -613,7 +614,7 @@ export const components: ComponentMeta[] = [
         category: 'data-display',
         component: TransactionList,
         source: TransactionListSource,
-        tags: ['transactions', 'history', 'payments', 'list'],
+        tags: ['transactions', 'history', 'payments', 'list', 'ledger', 'spending', 'records'],
     },
     {
         id: 'fintech-button',
@@ -623,7 +624,7 @@ export const components: ComponentMeta[] = [
         category: 'interactive',
         component: FintechButton,
         source: FintechButtonSource,
-        tags: ['button', 'fintech', 'banking', 'professional'],
+        tags: ['button', 'fintech', 'banking', 'professional', 'payment', 'transfer', 'submit'],
         previewProps: {
             children: 'Transfer',
             variant: 'primary'
@@ -637,7 +638,7 @@ export const components: ComponentMeta[] = [
         category: 'layout',
         component: FintechCard,
         source: FintechCardSource,
-        tags: ['card', 'fintech', 'container', 'dark'],
+        tags: ['card', 'fintech', 'container', 'dark', 'dashboard', 'panel'],
         previewProps: {
             children: 'Financial Data',
             className: 'p-6'
@@ -651,7 +652,7 @@ export const components: ComponentMeta[] = [
         category: 'interactive',
         component: CurrencyConverter,
         source: CurrencyConverterSource,
-        tags: ['currency', 'converter', 'exchange', 'fintech'],
+        tags: ['currency', 'converter', 'exchange', 'fintech', 'money', 'swap', 'forex', 'rate', 'calculator'],
     },
     {
         id: 'sparkline-chart',
@@ -661,7 +662,7 @@ export const components: ComponentMeta[] = [
         category: 'visualization',
         component: SparklineChart,
         source: SparklineChartSource,
-        tags: ['chart', 'sparkline', 'trend', 'fintech', 'graph'],
+        tags: ['chart', 'sparkline', 'trend', 'fintech', 'graph', 'mini', 'analytics'],
         previewProps: {
             data: [20, 25, 18, 30, 28, 35, 32, 40, 38, 45],
             label: 'AAPL',
@@ -679,7 +680,7 @@ export const components: ComponentMeta[] = [
         category: 'visualization',
         component: Speedometer,
         source: SpeedometerSource,
-        tags: ['gauge', 'speed', 'automotive', 'dial'],
+        tags: ['gauge', 'speed', 'automotive', 'dial', 'car', 'dashboard', 'velocity', 'meter'],
     },
     {
         id: 'climate-control',
@@ -689,7 +690,7 @@ export const components: ComponentMeta[] = [
         category: 'interactive',
         component: ClimateControl,
         source: ClimateControlSource,
-        tags: ['climate', 'temperature', 'ac', 'controls'],
+        tags: ['climate', 'temperature', 'ac', 'controls', 'heat', 'cool', 'hvac', 'thermostat', 'knob'],
     },
     {
         id: 'lane-assist',
@@ -699,7 +700,7 @@ export const components: ComponentMeta[] = [
         category: 'visualization',
         component: LaneAssist,
         source: LaneAssistSource,
-        tags: ['lane', 'assist', 'driving', 'safety'],
+        tags: ['lane', 'assist', 'driving', 'safety', 'car', 'warning', 'road'],
     },
     {
         id: 'media-widget',
@@ -709,7 +710,7 @@ export const components: ComponentMeta[] = [
         category: 'interactive',
         component: MediaWidget,
         source: MediaWidgetSource,
-        tags: ['media', 'audio', 'music', 'player'],
+        tags: ['media', 'audio', 'music', 'player', 'controls', 'song', 'playback'],
     },
     {
         id: 'nav-widget',
@@ -719,7 +720,7 @@ export const components: ComponentMeta[] = [
         category: 'navigation',
         component: NavWidget,
         source: NavWidgetSource,
-        tags: ['navigation', 'map', 'gps', 'directions'],
+        tags: ['navigation', 'map', 'gps', 'directions', 'location', 'route', 'travel'],
     },
     {
         id: 'cockpit-card',
@@ -729,7 +730,7 @@ export const components: ComponentMeta[] = [
         category: 'layout',
         component: CockpitCard,
         source: CockpitCardSource,
-        tags: ['card', 'container', 'automotive', 'dashboard'],
+        tags: ['card', 'container', 'automotive', 'dashboard', 'panel', 'dark'],
         previewProps: { children: 'Cockpit Card Content', label: 'Status' },
     },
 
@@ -742,7 +743,7 @@ export const components: ComponentMeta[] = [
         category: 'data-display',
         component: CharacterProfile,
         source: CharacterProfileSource,
-        tags: ['character', 'profile', 'rpg', 'avatar'],
+        tags: ['character', 'profile', 'rpg', 'avatar', 'stats', 'hero', 'player'],
     },
     {
         id: 'inventory-grid',
@@ -752,7 +753,7 @@ export const components: ComponentMeta[] = [
         category: 'interactive',
         component: InventoryGrid,
         source: InventoryGridSource,
-        tags: ['inventory', 'items', 'grid', 'slots'],
+        tags: ['inventory', 'items', 'grid', 'slots', 'backpack', 'storage', 'collection'],
     },
     {
         id: 'quest-log',
@@ -762,7 +763,7 @@ export const components: ComponentMeta[] = [
         category: 'data-display',
         component: QuestLog,
         source: QuestLogSource,
-        tags: ['quests', 'objectives', 'progress', 'tracker'],
+        tags: ['quests', 'objectives', 'progress', 'tracker', 'missions', 'tasks', 'journal'],
     },
     {
         id: 'leaderboard-widget',
@@ -772,7 +773,7 @@ export const components: ComponentMeta[] = [
         category: 'data-display',
         component: LeaderboardWidget,
         source: LeaderboardWidgetSource,
-        tags: ['leaderboard', 'rank', 'multiplayer', 'score'],
+        tags: ['leaderboard', 'rank', 'multiplayer', 'score', 'competition', 'top', 'winners'],
     },
     {
         id: 'game-button',
@@ -782,7 +783,7 @@ export const components: ComponentMeta[] = [
         category: 'interactive',
         component: GameButton,
         source: GameButtonSource,
-        tags: ['button', 'game', 'arcade', 'neon', 'glow'],
+        tags: ['button', 'game', 'arcade', 'neon', 'glow', 'play', 'start', 'pixel'],
         previewProps: {
             children: 'START GAME',
             variant: 'primary'
@@ -796,7 +797,7 @@ export const components: ComponentMeta[] = [
         category: 'layout',
         component: GameCard,
         source: GameCardSource,
-        tags: ['card', 'game', 'container', 'arcade'],
+        tags: ['card', 'game', 'container', 'arcade', 'panel', 'box'],
         previewProps: {
             children: 'Game Content',
             variant: 'primary',
@@ -811,7 +812,7 @@ export const components: ComponentMeta[] = [
         category: 'data-display',
         component: AchievementBadge,
         source: AchievementBadgeSource,
-        tags: ['badge', 'achievement', 'unlock', 'game', 'rarity'],
+        tags: ['badge', 'achievement', 'unlock', 'game', 'rarity', 'trophy', 'reward'],
         previewProps: {
             title: 'First Blood',
             description: 'Win your first match',
@@ -828,7 +829,7 @@ export const components: ComponentMeta[] = [
         category: 'visualization',
         component: HealthBar,
         source: HealthBarSource,
-        tags: ['health', 'bar', 'game', 'status', 'resource'],
+        tags: ['health', 'bar', 'game', 'status', 'resource', 'life', 'mana', 'energy'],
         previewProps: {
             type: 'health',
             current: 75,
@@ -846,7 +847,7 @@ export const components: ComponentMeta[] = [
         category: 'layout',
         component: SciFiCard,
         source: SciFiCardSource,
-        tags: ['container', 'scifi', 'hud', 'futuristic'],
+        tags: ['container', 'scifi', 'hud', 'futuristic', 'cyberpunk', 'panel', 'interface'],
     },
     {
         id: 'body-scanner',
@@ -856,7 +857,7 @@ export const components: ComponentMeta[] = [
         category: 'visualization',
         component: BodyScanner,
         source: BodyScannerSource,
-        tags: ['scanner', 'medical', 'biometric', 'hud'],
+        tags: ['scanner', 'medical', 'biometric', 'hud', 'health', 'anatomy', 'visualization'],
     },
     {
         id: 'dna-list',
@@ -866,7 +867,7 @@ export const components: ComponentMeta[] = [
         category: 'data-display',
         component: DNAList,
         source: DNAListSource,
-        tags: ['dna', 'list', 'data', 'genetics'],
+        tags: ['dna', 'list', 'data', 'genetics', 'biology', 'sequence', 'code'],
     },
     {
         id: 'vitals-monitor',
@@ -876,7 +877,7 @@ export const components: ComponentMeta[] = [
         category: 'visualization',
         component: VitalsMonitor,
         source: VitalsMonitorSource,
-        tags: ['vitals', 'monitor', 'health', 'graph'],
+        tags: ['vitals', 'monitor', 'health', 'graph', 'ecg', 'heartbeat', 'medical'],
     },
     {
         id: 'holographic-table',
@@ -886,7 +887,7 @@ export const components: ComponentMeta[] = [
         category: 'data-display',
         component: HolographicTable,
         source: HolographicTableSource,
-        tags: ['table', 'hologram', 'data', 'scifi'],
+        tags: ['table', 'hologram', 'data', 'scifi', 'grid', 'cyberpunk', 'futuristic'],
         previewProps: {
             columns: [
                 { key: 'id', header: 'ID', width: '20%' },
@@ -909,7 +910,7 @@ export const components: ComponentMeta[] = [
         category: 'layout',
         component: GlitchHeading,
         source: GlitchHeadingSource,
-        tags: ['heading', 'text', 'glitch', 'animation'],
+        tags: ['heading', 'text', 'glitch', 'animation', 'typography', 'distortion', 'cyberpunk'],
         previewProps: {
             text: 'CYBERPUNK',
             size: 'lg'
@@ -923,7 +924,7 @@ export const components: ComponentMeta[] = [
         category: 'forms',
         component: NeonToggle,
         source: NeonToggleSource,
-        tags: ['toggle', 'switch', 'neon', 'glow'],
+        tags: ['toggle', 'switch', 'neon', 'glow', 'input', 'interactive', 'light'],
         previewProps: {
             label: 'Power',
             initialState: true,
@@ -940,7 +941,7 @@ export const components: ComponentMeta[] = [
         category: 'data-display',
         component: CourseCard,
         source: CourseCardSource,
-        tags: ['course', 'learning', 'education', 'progress'],
+        tags: ['course', 'learning', 'education', 'progress', 'card', 'lesson', 'class'],
         previewProps: {
             title: 'Advanced React Patterns',
             category: 'Development',
@@ -959,7 +960,7 @@ export const components: ComponentMeta[] = [
         category: 'data-display',
         component: UpcomingSchedule,
         source: UpcomingScheduleSource,
-        tags: ['schedule', 'calendar', 'timeline', 'events'],
+        tags: ['schedule', 'calendar', 'timeline', 'events', 'agenda', 'planner', 'time'],
     },
     {
         id: 'education-button',
@@ -969,7 +970,7 @@ export const components: ComponentMeta[] = [
         category: 'interactive',
         component: EducationButton,
         source: EducationButtonSource,
-        tags: ['button', 'education', 'gradient', 'learning'],
+        tags: ['button', 'education', 'gradient', 'learning', 'primary', 'cta'],
     },
     {
         id: 'education-card',
@@ -979,7 +980,7 @@ export const components: ComponentMeta[] = [
         category: 'layout',
         component: EducationCard,
         source: EducationCardSource,
-        tags: ['card', 'container', 'education', 'featured'],
+        tags: ['card', 'container', 'education', 'featured', 'box', 'panel'],
         previewProps: { children: 'Education Card Content', featured: false },
     },
     {
@@ -990,7 +991,7 @@ export const components: ComponentMeta[] = [
         category: 'data-display',
         component: StudyStats,
         source: StudyStatsSource,
-        tags: ['stats', 'metrics', 'dashboard', 'education'],
+        tags: ['stats', 'metrics', 'dashboard', 'education', 'grades', 'analytics', 'progress'],
     },
 
     // Social Components
@@ -1002,7 +1003,7 @@ export const components: ComponentMeta[] = [
         category: 'data-display',
         component: FeedPost,
         source: FeedPostSource,
-        tags: ['post', 'social', 'feed', 'interactions'],
+        tags: ['post', 'social', 'feed', 'interactions', 'card', 'comment', 'share', 'like'],
         previewProps: {
             author: {
                 name: "Alex Rivera",
@@ -1022,7 +1023,7 @@ export const components: ComponentMeta[] = [
         category: 'data-display',
         component: ProfileSummary,
         source: ProfileSidebarSource,
-        tags: ['profile', 'user', 'card', 'sidebar'],
+        tags: ['profile', 'user', 'card', 'sidebar', 'bio', 'avatar', 'social'],
     },
     {
         id: 'social-button',
@@ -1032,7 +1033,7 @@ export const components: ComponentMeta[] = [
         category: 'interactive',
         component: SocialButton,
         source: SocialButtonSource,
-        tags: ['button', 'social', 'follow', 'interactive'],
+        tags: ['button', 'social', 'follow', 'interactive', 'share', 'like', 'connect'],
         previewProps: {
             children: 'Follow',
             variant: 'primary'
@@ -1046,7 +1047,7 @@ export const components: ComponentMeta[] = [
         category: 'layout',
         component: SocialCard,
         source: SocialCardSource,
-        tags: ['card', 'social', 'container', 'glass'],
+        tags: ['card', 'social', 'container', 'glass', 'panel', 'transparent'],
         previewProps: {
             children: 'Social Content',
             className: 'p-6'
@@ -1060,7 +1061,7 @@ export const components: ComponentMeta[] = [
         category: 'navigation',
         component: StoryRail,
         source: StoryRailSource,
-        tags: ['stories', 'avatars', 'social', 'feed'],
+        tags: ['stories', 'avatars', 'social', 'feed', 'instagram', 'carousel', 'scroll'],
     },
 
     // Ecommerce Components
@@ -1072,7 +1073,7 @@ export const components: ComponentMeta[] = [
         category: 'data-display',
         component: ProductCard,
         source: ProductCardSource,
-        tags: ['product', 'shop', 'card', 'ecommerce'],
+        tags: ['product', 'shop', 'card', 'ecommerce', 'item', 'merchandise', 'grid'],
     },
     {
         id: 'cart-summary',
@@ -1082,7 +1083,7 @@ export const components: ComponentMeta[] = [
         category: 'data-display',
         component: CartSummary,
         source: CartSummarySource,
-        tags: ['cart', 'checkout', 'shop', 'summary'],
+        tags: ['cart', 'checkout', 'shop', 'summary', 'order', 'total', 'payment'],
     },
 
     // Legacy Components
@@ -1094,7 +1095,7 @@ export const components: ComponentMeta[] = [
         category: 'layout',
         component: LegacyWindow,
         source: LegacyWindowSource,
-        tags: ['window', 'retro', 'win95', 'nostalgic'],
+        tags: ['window', 'retro', 'win95', 'nostalgic', 'modal', 'dialog', '90s'],
     },
     {
         id: 'legacy-button',
@@ -1104,7 +1105,7 @@ export const components: ComponentMeta[] = [
         category: 'interactive',
         component: LegacyButton,
         source: LegacyButtonSource,
-        tags: ['button', 'retro', 'win95', 'classic'],
+        tags: ['button', 'retro', 'win95', 'classic', 'windows', 'click', '3d'],
     },
     {
         id: 'desktop-icon',
@@ -1114,7 +1115,7 @@ export const components: ComponentMeta[] = [
         category: 'navigation',
         component: DesktopIcon,
         source: DesktopIconSource,
-        tags: ['icon', 'desktop', 'shortcut', 'retro'],
+        tags: ['icon', 'desktop', 'shortcut', 'retro', 'file', 'application', 'launcher'],
         previewProps: {
             icon: Box,
             label: 'My Computer',
@@ -1129,7 +1130,7 @@ export const components: ComponentMeta[] = [
         category: 'feedback',
         component: LegacyAlert,
         source: LegacyAlertSource,
-        tags: ['dialog', 'error', 'alert', 'retro', 'windows'],
+        tags: ['dialog', 'error', 'alert', 'retro', 'windows', 'warning', 'popup', 'message'],
     },
 
     // Wellness Components
@@ -1141,7 +1142,7 @@ export const components: ComponentMeta[] = [
         category: 'layout',
         component: WellnessCard,
         source: WellnessCardSource,
-        tags: ['card', 'container', 'wellness', 'glass'],
+        tags: ['card', 'container', 'wellness', 'glass', 'soft', 'calm'],
         previewProps: {
             children: "Wellness Card Content",
             className: "h-32 flex items-center justify-center text-stone-500"
@@ -1155,7 +1156,7 @@ export const components: ComponentMeta[] = [
         category: 'interactive',
         component: BreathPlayer,
         source: BreathPlayerSource,
-        tags: ['breathing', 'health', 'animation', 'wellness'],
+        tags: ['breathing', 'health', 'animation', 'wellness', 'meditation', 'relax', 'circle'],
     },
     {
         id: 'sleep-graph',
@@ -1165,7 +1166,7 @@ export const components: ComponentMeta[] = [
         category: 'visualization',
         component: SleepGraph,
         source: SleepGraphSource,
-        tags: ['graph', 'sleep', 'data', 'health'],
+        tags: ['graph', 'sleep', 'data', 'health', 'chart', 'analytics', 'wellness'],
     },
     {
         id: 'mood-selector',
@@ -1175,7 +1176,7 @@ export const components: ComponentMeta[] = [
         category: 'forms',
         component: MoodSelector,
         source: MoodSelectorSource,
-        tags: ['mood', 'tracker', 'interactive', 'wellness'],
+        tags: ['mood', 'tracker', 'interactive', 'wellness', 'emotion', 'feeling', 'input'],
     },
     {
         id: 'wellness-button',
@@ -1185,7 +1186,7 @@ export const components: ComponentMeta[] = [
         category: 'interactive',
         component: WellnessButton,
         source: WellnessButtonSource,
-        tags: ['button', 'wellness', 'organic', 'soft'],
+        tags: ['button', 'wellness', 'organic', 'soft', 'calm', 'primary'],
         previewProps: {
             children: "Wellness Button",
             variant: 'primary'
@@ -1199,7 +1200,7 @@ export const components: ComponentMeta[] = [
         category: 'forms',
         component: JournalEntry,
         source: JournalEntrySource,
-        tags: ['journal', 'gratitude', 'writing', 'wellness', 'mindfulness'],
+        tags: ['journal', 'gratitude', 'writing', 'wellness', 'mindfulness', 'input', 'text'],
         previewProps: {
             prompt: "What are you grateful for today?",
             gratitudeMode: true
@@ -1213,7 +1214,7 @@ export const components: ComponentMeta[] = [
         category: 'interactive',
         component: MeditationTimer,
         source: MeditationTimerSource,
-        tags: ['timer', 'meditation', 'mindfulness', 'wellness', 'countdown'],
+        tags: ['timer', 'meditation', 'mindfulness', 'wellness', 'countdown', 'clock', 'focus'],
         previewProps: {
             duration: 5,
             presets: [5, 10, 15, 20]
@@ -1227,7 +1228,7 @@ export const components: ComponentMeta[] = [
         category: 'forms',
         component: HabitCheckbox,
         source: HabitCheckboxSource,
-        tags: ['habit', 'checkbox', 'tracker', 'wellness', 'streak'],
+        tags: ['habit', 'checkbox', 'tracker', 'wellness', 'streak', 'check', 'done'],
         previewProps: {
             label: "Morning meditation",
             description: "10 minutes of mindfulness",
@@ -1246,7 +1247,7 @@ export const components: ComponentMeta[] = [
         category: 'layout',
         component: EngineeringCard,
         source: EngineeringCardSource,
-        tags: ['card', 'container', 'engineering', 'dark'],
+        tags: ['card', 'container', 'engineering', 'dark', 'industrial', 'technical'],
         previewProps: {
             children: "Engineering Card Content",
             className: "min-h-[100px] flex items-center justify-center text-zinc-400 text-sm"
@@ -1260,7 +1261,7 @@ export const components: ComponentMeta[] = [
         category: 'interactive',
         component: EngineeringButton,
         source: EngineeringButtonSource,
-        tags: ['button', 'animation', 'shine', 'engineering'],
+        tags: ['button', 'animation', 'shine', 'engineering', 'technical', 'primary'],
     },
     {
         id: 'pipeline-steps',
@@ -1270,7 +1271,7 @@ export const components: ComponentMeta[] = [
         category: 'visualization',
         component: PipelineSteps,
         source: PipelineStepsSource,
-        tags: ['pipeline', 'ci-cd', 'status', 'steps'],
+        tags: ['pipeline', 'ci-cd', 'status', 'steps', 'process', 'workflow', 'devops'],
         previewProps: {
             steps: [
                 { name: 'Build', status: 'success' },
@@ -1287,7 +1288,7 @@ export const components: ComponentMeta[] = [
         category: 'data-display',
         component: CodeBlock,
         source: CodeBlockSource,
-        tags: ['code', 'syntax', 'copy', 'developer'],
+        tags: ['code', 'syntax', 'copy', 'developer', 'snippet', 'programming', 'typescript'],
         previewProps: {
             code: "function hello() {\n  console.log('Hello World');\n}",
             language: 'typescript',
@@ -1302,7 +1303,7 @@ export const components: ComponentMeta[] = [
         category: 'data-display',
         component: ConsoleOutput,
         source: ConsoleOutputSource,
-        tags: ['console', 'logs', 'terminal', 'output', 'developer'],
+        tags: ['console', 'logs', 'terminal', 'output', 'developer', 'debug', 'monitor'],
     },
     {
         id: 'git-diff-view',
@@ -1312,7 +1313,7 @@ export const components: ComponentMeta[] = [
         category: 'data-display',
         component: GitDiffView,
         source: GitDiffViewSource,
-        tags: ['git', 'diff', 'code', 'changes', 'version-control'],
+        tags: ['git', 'diff', 'code', 'changes', 'version-control', 'comparison', 'review'],
     },
     {
         id: 'server-stat-badge',
@@ -1322,7 +1323,7 @@ export const components: ComponentMeta[] = [
         category: 'data-display',
         component: ServerStatBadge,
         source: ServerStatBadgeSource,
-        tags: ['server', 'status', 'health', 'badge', 'monitoring'],
+        tags: ['server', 'status', 'health', 'badge', 'monitoring', 'uptime', 'metric'],
         previewProps: {
             label: 'Uptime',
             value: '99.9%',
@@ -1342,7 +1343,7 @@ export const components: ComponentMeta[] = [
         category: 'interactive',
         component: FoodButton,
         source: FoodButtonSource,
-        tags: ['button', 'animation', 'food', 'orange'],
+        tags: ['button', 'animation', 'food', 'orange', 'tasty', 'order', 'cta'],
     },
     {
         id: 'food-card',
@@ -1352,7 +1353,7 @@ export const components: ComponentMeta[] = [
         category: 'layout',
         component: FoodCard,
         source: FoodCardSource,
-        tags: ['card', 'food', 'container', 'warm'],
+        tags: ['card', 'food', 'container', 'warm', 'menu', 'item'],
         previewProps: {
             children: 'Menu Item',
             className: 'p-6'
@@ -1366,7 +1367,7 @@ export const components: ComponentMeta[] = [
         category: 'data-display',
         component: HeroDish,
         source: HeroDishSource,
-        tags: ['hero', 'dish', 'food', 'featured', 'menu'],
+        tags: ['hero', 'dish', 'food', 'featured', 'menu', 'highlight', 'special'],
     },
     {
         id: 'menu-grid',
@@ -1376,7 +1377,7 @@ export const components: ComponentMeta[] = [
         category: 'data-display',
         component: MenuGrid,
         source: MenuGridSource,
-        tags: ['menu', 'grid', 'food', 'categories'],
+        tags: ['menu', 'grid', 'food', 'categories', 'list', 'restaurant', 'items'],
     },
     {
         id: 'cart-widget',
@@ -1386,7 +1387,7 @@ export const components: ComponentMeta[] = [
         category: 'interactive',
         component: CartWidget,
         source: CartWidgetSource,
-        tags: ['cart', 'order', 'food', 'checkout'],
+        tags: ['cart', 'order', 'food', 'checkout', 'sidebar', 'summary'],
     },
 
     // Magazine Button
@@ -1398,7 +1399,7 @@ export const components: ComponentMeta[] = [
         category: 'interactive',
         component: EditorialButton,
         source: EditorialButtonSource,
-        tags: ['button', 'editorial', 'serif', 'magazine'],
+        tags: ['button', 'editorial', 'serif', 'magazine', 'read', 'link'],
     },
     {
         id: 'magazine-card',
@@ -1408,7 +1409,7 @@ export const components: ComponentMeta[] = [
         category: 'layout',
         component: MagazineCard,
         source: MagazineCardSource,
-        tags: ['card', 'editorial', 'magazine', 'container'],
+        tags: ['card', 'editorial', 'magazine', 'container', 'article', 'news'],
         previewProps: { children: 'Magazine Card Content', hoverEffect: true },
     },
     {
@@ -1419,17 +1420,17 @@ export const components: ComponentMeta[] = [
         category: 'data-display',
         component: FeatureStory,
         source: FeatureStorySource,
-        tags: ['article', 'hero', 'feature', 'editorial'],
+        tags: ['article', 'hero', 'feature', 'editorial', 'headline', 'news', 'story'],
     },
     {
         id: 'newsletter',
         name: 'Newsletter',
         description: 'Dark themed newsletter signup with elegant styling',
         theme: 'magazine',
-        category: 'form',
+        category: 'forms',
         component: Newsletter,
         source: NewsletterSource,
-        tags: ['newsletter', 'email', 'signup', 'form'],
+        tags: ['newsletter', 'email', 'signup', 'form', 'subscribe', 'input'],
     },
     {
         id: 'trending-list',
@@ -1439,7 +1440,7 @@ export const components: ComponentMeta[] = [
         category: 'data-display',
         component: TrendingList,
         source: TrendingListSource,
-        tags: ['list', 'trending', 'articles', 'editorial'],
+        tags: ['list', 'trending', 'articles', 'editorial', 'ranking', 'news', 'top'],
     },
 
     // Ecommerce Button
@@ -1451,7 +1452,7 @@ export const components: ComponentMeta[] = [
         category: 'interactive',
         component: ShopButton,
         source: ShopButtonSource,
-        tags: ['button', 'shop', 'cart', 'ecommerce'],
+        tags: ['button', 'shop', 'cart', 'ecommerce', 'buy', 'purchase', 'interaction'],
     },
     {
         id: 'commerce-card',
@@ -1461,7 +1462,7 @@ export const components: ComponentMeta[] = [
         category: 'layout',
         component: CommerceCard,
         source: CommerceCardSource,
-        tags: ['card', 'container', 'ecommerce', 'minimal'],
+        tags: ['card', 'container', 'ecommerce', 'minimal', 'product', 'shop'],
         previewProps: { children: 'Commerce Card Content' },
     },
     {
@@ -1472,7 +1473,7 @@ export const components: ComponentMeta[] = [
         category: 'marketing',
         component: PromoBanner,
         source: PromoBannerSource,
-        tags: ['banner', 'promo', 'hero', 'marketing'],
+        tags: ['banner', 'promo', 'hero', 'marketing', 'sale', 'advertisement', 'header'],
     },
 
     // Productivity Button
@@ -1484,7 +1485,7 @@ export const components: ComponentMeta[] = [
         category: 'interactive',
         component: FlowButton,
         source: FlowButtonSource,
-        tags: ['button', 'productivity', 'amber', 'pulse'],
+        tags: ['button', 'productivity', 'amber', 'pulse', 'action', 'focus'],
     },
     {
         id: 'productivity-card',
@@ -1494,7 +1495,7 @@ export const components: ComponentMeta[] = [
         category: 'layout',
         component: ProductivityCard,
         source: ProductivityCardSource,
-        tags: ['card', 'productivity', 'container', 'clean'],
+        tags: ['card', 'productivity', 'container', 'clean', 'task', 'white'],
         previewProps: {
             children: 'Task Content',
             className: 'p-6'
@@ -1508,7 +1509,7 @@ export const components: ComponentMeta[] = [
         category: 'interactive',
         component: FocusTimer,
         source: FocusTimerSource,
-        tags: ['timer', 'pomodoro', 'focus', 'productivity'],
+        tags: ['timer', 'pomodoro', 'focus', 'productivity', 'countdown', 'clock', 'work'],
     },
     {
         id: 'task-inbox',
@@ -1518,7 +1519,7 @@ export const components: ComponentMeta[] = [
         category: 'data-display',
         component: TaskInbox,
         source: TaskInboxSource,
-        tags: ['tasks', 'inbox', 'todo', 'productivity'],
+        tags: ['tasks', 'inbox', 'todo', 'productivity', 'list', 'checklist', 'management'],
     },
     {
         id: 'kanban-board',
@@ -1528,7 +1529,7 @@ export const components: ComponentMeta[] = [
         category: 'data-display',
         component: KanbanBoard,
         source: KanbanBoardSource,
-        tags: ['kanban', 'board', 'tasks', 'productivity', 'project'],
+        tags: ['kanban', 'board', 'tasks', 'productivity', 'project', 'drag-drop', 'agile'],
     },
 
     // Swiss Components
@@ -1540,7 +1541,7 @@ export const components: ComponentMeta[] = [
         category: 'interactive',
         component: SwissButton,
         source: SwissButtonSource,
-        tags: ['button', 'swiss', 'bold', 'typography'],
+        tags: ['button', 'swiss', 'bold', 'typography', 'design', 'international', 'minimal'],
     },
     {
         id: 'swiss-grid',
@@ -1550,7 +1551,7 @@ export const components: ComponentMeta[] = [
         category: 'layout',
         component: SwissGrid,
         source: SwissGridSource,
-        tags: ['grid', 'layout', 'swiss', 'columns'],
+        tags: ['grid', 'layout', 'swiss', 'columns', 'structure', 'design'],
     },
     {
         id: 'swiss-typography',
@@ -1560,7 +1561,7 @@ export const components: ComponentMeta[] = [
         category: 'data-display',
         component: SwissTypography,
         source: SwissTypographySource,
-        tags: ['typography', 'text', 'swiss', 'bold'],
+        tags: ['typography', 'text', 'swiss', 'bold', 'font', 'heading', 'helvetica'],
     },
     {
         id: 'swiss-divider',
@@ -1570,7 +1571,7 @@ export const components: ComponentMeta[] = [
         category: 'layout',
         component: SwissDivider,
         source: SwissDividerSource,
-        tags: ['divider', 'line', 'swiss', 'graphic'],
+        tags: ['divider', 'line', 'swiss', 'graphic', 'separator', 'border'],
     },
     {
         id: 'swiss-card',
@@ -1580,7 +1581,7 @@ export const components: ComponentMeta[] = [
         category: 'layout',
         component: SwissCard,
         source: SwissCardSource,
-        tags: ['card', 'container', 'swiss', 'minimal'],
+        tags: ['card', 'container', 'swiss', 'minimal', 'box', 'border'],
         previewProps: { children: 'Swiss Card Content', bordered: true },
     },
     {
@@ -1591,7 +1592,7 @@ export const components: ComponentMeta[] = [
         category: 'data-display',
         component: SwissMetric,
         source: SwissMetricSource,
-        tags: ['metric', 'stats', 'typography', 'swiss'],
+        tags: ['metric', 'stats', 'typography', 'swiss', 'number', 'data'],
         previewProps: { label: 'Projects', value: '147', description: 'Active this quarter' },
     },
 
@@ -1604,7 +1605,7 @@ export const components: ComponentMeta[] = [
         category: 'data-display',
         component: MetricCard,
         source: MetricCardSource,
-        tags: ['metric', 'card', 'saas', 'stats'],
+        tags: ['metric', 'card', 'saas', 'stats', 'kpi', 'analytics'],
         previewProps: {
             label: 'Total Revenue',
             value: '$45,231',
@@ -1621,7 +1622,7 @@ export const components: ComponentMeta[] = [
         category: 'visualization',
         component: RevenueChart,
         source: RevenueChartSource,
-        tags: ['chart', 'revenue', 'analytics', 'graph'],
+        tags: ['chart', 'revenue', 'analytics', 'graph', 'money', 'finance', 'trends'],
     },
     {
         id: 'customer-table',
@@ -1631,7 +1632,7 @@ export const components: ComponentMeta[] = [
         category: 'data-display',
         component: CustomerTable,
         source: CustomerTableSource,
-        tags: ['table', 'customers', 'data', 'list'],
+        tags: ['table', 'customers', 'data', 'list', 'crm', 'users', 'grid'],
     },
     {
         id: 'saas-card',
@@ -1641,7 +1642,7 @@ export const components: ComponentMeta[] = [
         category: 'layout',
         component: SaasCard,
         source: SaasCardSource,
-        tags: ['card', 'container', 'saas', 'layout'],
+        tags: ['card', 'container', 'saas', 'layout', 'box', 'panel'],
         previewProps: {
             children: 'Card Content',
             className: 'p-4'
@@ -1655,7 +1656,7 @@ export const components: ComponentMeta[] = [
         category: 'interactive',
         component: SaasButton,
         source: SaasButtonSource,
-        tags: ['button', 'saas', 'interactive', 'control'],
+        tags: ['button', 'saas', 'interactive', 'control', 'primary', 'action'],
         previewProps: {
             children: 'Action',
             variant: 'primary'
@@ -1671,7 +1672,7 @@ export const components: ComponentMeta[] = [
         category: 'interactive',
         component: NowPlaying,
         source: NowPlayingSource,
-        tags: ['player', 'music', 'controls', 'media'],
+        tags: ['player', 'music', 'controls', 'media', 'audio', 'song'],
     },
     {
         id: 'track-list',
@@ -1681,7 +1682,7 @@ export const components: ComponentMeta[] = [
         category: 'data-display',
         component: TrackList,
         source: TrackListSource,
-        tags: ['list', 'tracks', 'music', 'playlist'],
+        tags: ['list', 'tracks', 'music', 'playlist', 'songs', 'audio'],
     },
     {
         id: 'album-grid',
@@ -1691,7 +1692,7 @@ export const components: ComponentMeta[] = [
         category: 'data-display',
         component: AlbumGrid,
         source: AlbumGridSource,
-        tags: ['grid', 'albums', 'music', 'covers'],
+        tags: ['grid', 'albums', 'music', 'covers', 'gallery', 'art'],
     },
     {
         id: 'music-card',
@@ -1701,7 +1702,7 @@ export const components: ComponentMeta[] = [
         category: 'layout',
         component: MusicCard,
         source: MusicCardSource,
-        tags: ['card', 'music', 'dark', 'container'],
+        tags: ['card', 'music', 'dark', 'container', 'panel', 'media'],
         previewProps: {
             children: 'Music Content',
             className: 'p-6'
@@ -1715,7 +1716,7 @@ export const components: ComponentMeta[] = [
         category: 'interactive',
         component: MusicButton,
         source: MusicButtonSource,
-        tags: ['button', 'music', 'interactive', 'play'],
+        tags: ['button', 'music', 'interactive', 'play', 'control', 'audio'],
         previewProps: {
             children: 'Play',
             variant: 'primary'
@@ -1729,7 +1730,7 @@ export const components: ComponentMeta[] = [
         category: 'interactive',
         component: VolumeSlider,
         source: VolumeSliderSource,
-        tags: ['slider', 'volume', 'audio', 'control'],
+        tags: ['slider', 'volume', 'audio', 'control', 'sound', 'input'],
         previewProps: { initialVolume: 70 },
     },
     {
@@ -1740,7 +1741,7 @@ export const components: ComponentMeta[] = [
         category: 'visualization',
         component: EqualizerBars,
         source: EqualizerBarsSource,
-        tags: ['equalizer', 'audio', 'animation', 'visualizer'],
+        tags: ['equalizer', 'audio', 'animation', 'visualizer', 'bars', 'music'],
         previewProps: { isPlaying: true, barCount: 5 },
     },
 
@@ -1753,7 +1754,7 @@ export const components: ComponentMeta[] = [
         category: 'visualization',
         component: CityMap,
         source: CityMapSource,
-        tags: ['map', 'city', 'grid', 'infrastructure'],
+        tags: ['map', 'city', 'grid', 'infrastructure', 'visualization', 'geo'],
     },
     {
         id: 'resource-gauge',
@@ -1763,7 +1764,7 @@ export const components: ComponentMeta[] = [
         category: 'visualization',
         component: ResourceGauge,
         source: ResourceGaugeSource,
-        tags: ['gauge', 'resource', 'monitoring', 'chart'],
+        tags: ['gauge', 'resource', 'monitoring', 'chart', 'meter', 'level'],
     },
     {
         id: 'system-controls',
@@ -1773,7 +1774,7 @@ export const components: ComponentMeta[] = [
         category: 'interactive',
         component: SystemControls,
         source: SystemControlsSource,
-        tags: ['controls', 'system', 'panel', 'grid'],
+        tags: ['controls', 'system', 'panel', 'grid', 'dashboard', 'settings'],
     },
     {
         id: 'grid-card',
@@ -1783,7 +1784,7 @@ export const components: ComponentMeta[] = [
         category: 'layout',
         component: GridCard,
         source: GridCardSource,
-        tags: ['card', 'grid', 'container', 'technical'],
+        tags: ['card', 'grid', 'container', 'technical', 'layout', 'panel'],
         previewProps: {
             title: 'System Status',
             children: 'Operational',
@@ -1798,7 +1799,7 @@ export const components: ComponentMeta[] = [
         category: 'interactive',
         component: GridButton,
         source: GridButtonSource,
-        tags: ['button', 'grid', 'technical', 'control'],
+        tags: ['button', 'grid', 'technical', 'control', 'action', 'execute'],
         previewProps: {
             children: 'Execute',
             variant: 'primary',
@@ -1813,7 +1814,7 @@ export const components: ComponentMeta[] = [
         category: 'feedback',
         component: AlertBanner,
         source: AlertBannerSource,
-        tags: ['alert', 'notification', 'warning', 'status'],
+        tags: ['alert', 'notification', 'warning', 'status', 'message', 'error'],
         previewProps: { type: 'warning', title: 'Grid Overload Warning' },
     },
 
@@ -1826,7 +1827,7 @@ export const components: ComponentMeta[] = [
         category: 'navigation',
         component: MarqueeHeader,
         source: MarqueeHeaderSource,
-        tags: ['marquee', 'header', 'scrolling', 'brutalist'],
+        tags: ['marquee', 'header', 'scrolling', 'brutalist', 'text', 'banner'],
     },
     {
         id: 'art-grid',
@@ -1836,7 +1837,7 @@ export const components: ComponentMeta[] = [
         category: 'layout',
         component: ArtGrid,
         source: ArtGridSource,
-        tags: ['grid', 'art', 'masonry', 'gallery'],
+        tags: ['grid', 'art', 'masonry', 'gallery', 'images', 'layout'],
     },
     {
         id: 'manifesto',
@@ -1846,7 +1847,7 @@ export const components: ComponentMeta[] = [
         category: 'data-display',
         component: Manifesto,
         source: ManifestoSource,
-        tags: ['text', 'typography', 'brutalist', 'manifesto'],
+        tags: ['text', 'typography', 'brutalist', 'manifesto', 'content', 'block'],
     },
     {
         id: 'brutalist-card',
@@ -1856,7 +1857,7 @@ export const components: ComponentMeta[] = [
         category: 'layout',
         component: BrutalistCard,
         source: BrutalistCardSource,
-        tags: ['card', 'brutalist', 'border', 'bold'],
+        tags: ['card', 'brutalist', 'border', 'bold', 'container', 'box'],
         previewProps: {
             children: 'Brutalist Content',
             className: 'p-6 bg-yellow-400'
@@ -1870,7 +1871,7 @@ export const components: ComponentMeta[] = [
         category: 'interactive',
         component: BrutalistButton,
         source: BrutalistButtonSource,
-        tags: ['button', 'brutalist', 'bold', 'contrast'],
+        tags: ['button', 'brutalist', 'bold', 'contrast', 'neo', 'click'],
         previewProps: {
             children: 'CLICK ME',
             variant: 'neo'
@@ -1884,7 +1885,7 @@ export const components: ComponentMeta[] = [
         category: 'feedback',
         component: StampBadge,
         source: StampBadgeSource,
-        tags: ['stamp', 'badge', 'approved', 'brutalist'],
+        tags: ['stamp', 'badge', 'approved', 'brutalist', 'label', 'sticker'],
         previewProps: { text: 'APPROVED', variant: 'approved' },
     },
 
@@ -1897,7 +1898,7 @@ export const components: ComponentMeta[] = [
         category: 'data-display',
         component: ActiveStep,
         source: ActiveStepSource,
-        tags: ['step', 'recipe', 'cooking', 'instructions'],
+        tags: ['step', 'recipe', 'cooking', 'instructions', 'guide', 'process'],
     },
     {
         id: 'ingredient-scale',
@@ -1907,7 +1908,7 @@ export const components: ComponentMeta[] = [
         category: 'visualization',
         component: IngredientScale,
         source: IngredientScaleSource,
-        tags: ['scale', 'ingredients', 'measure', 'kitchen'],
+        tags: ['scale', 'ingredients', 'measure', 'kitchen', 'weight', 'food'],
     },
     {
         id: 'smart-timer',
@@ -1917,7 +1918,7 @@ export const components: ComponentMeta[] = [
         category: 'interactive',
         component: SmartTimer,
         source: SmartTimerSource,
-        tags: ['timer', 'countdown', 'kitchen', 'clock'],
+        tags: ['timer', 'countdown', 'kitchen', 'clock', 'alarm', 'time'],
     },
     {
         id: 'kitchen-card',
@@ -1927,7 +1928,7 @@ export const components: ComponentMeta[] = [
         category: 'layout',
         component: KitchenCard,
         source: KitchenCardSource,
-        tags: ['card', 'kitchen', 'clean', 'recipe'],
+        tags: ['card', 'kitchen', 'clean', 'recipe', 'food', 'container'],
         previewProps: {
             children: 'Kitchen Content',
             className: 'p-6'
@@ -1941,7 +1942,7 @@ export const components: ComponentMeta[] = [
         category: 'interactive',
         component: KitchenButton,
         source: KitchenButtonSource,
-        tags: ['button', 'kitchen', 'minimal', 'clean'],
+        tags: ['button', 'kitchen', 'minimal', 'clean', 'action', 'cook'],
         previewProps: {
             children: 'Start Cooking',
             variant: 'primary'
@@ -1955,7 +1956,7 @@ export const components: ComponentMeta[] = [
         category: 'data-display',
         component: RecipeProgress,
         source: RecipeProgressSource,
-        tags: ['recipe', 'progress', 'cooking', 'steps'],
+        tags: ['recipe', 'progress', 'cooking', 'steps', 'tracker', 'list'],
     },
 
     // Kids Components
@@ -1967,7 +1968,7 @@ export const components: ComponentMeta[] = [
         category: 'layout',
         component: KidsCard,
         source: KidsCardSource,
-        tags: ['card', 'kids', 'playful', 'colorful'],
+        tags: ['card', 'kids', 'playful', 'colorful', 'fun', 'container'],
         previewProps: {
             children: 'Play!',
             color: 'bg-red-400',
@@ -1983,7 +1984,7 @@ export const components: ComponentMeta[] = [
         category: 'navigation',
         component: BigIconNav,
         source: BigIconNavSource,
-        tags: ['nav', 'kids', 'icons', 'touch'],
+        tags: ['nav', 'kids', 'icons', 'touch', 'menu', 'navigation'],
     },
     {
         id: 'star-progress',
@@ -1993,7 +1994,7 @@ export const components: ComponentMeta[] = [
         category: 'visualization',
         component: StarProgress,
         source: StarProgressSource,
-        tags: ['progress', 'stars', 'gamification', 'kids'],
+        tags: ['progress', 'stars', 'gamification', 'kids', 'level', 'rating'],
     },
     {
         id: 'mascot',
@@ -2003,7 +2004,7 @@ export const components: ComponentMeta[] = [
         category: 'data-display',
         component: Mascot,
         source: MascotSource,
-        tags: ['mascot', 'character', 'kids', 'animation'],
+        tags: ['mascot', 'character', 'kids', 'animation', 'helper', 'friend'],
     },
     {
         id: 'kids-button',
@@ -2013,7 +2014,7 @@ export const components: ComponentMeta[] = [
         category: 'interactive',
         component: KidsButton,
         source: KidsButtonSource,
-        tags: ['button', 'kids', 'chunky', 'animation'],
+        tags: ['button', 'kids', 'chunky', 'animation', 'play', 'fun'],
         previewProps: {
             children: 'Go!',
             variant: 'primary'
@@ -2027,7 +2028,7 @@ export const components: ComponentMeta[] = [
         category: 'data-display',
         component: RewardStar,
         source: RewardStarSource,
-        tags: ['reward', 'star', 'badge', 'kids', 'gamification'],
+        tags: ['reward', 'star', 'badge', 'kids', 'gamification', 'achievement'],
         previewProps: {
             type: 'star',
             count: 3,
@@ -2043,7 +2044,7 @@ export const components: ComponentMeta[] = [
         category: 'data-display',
         component: SpeechBubble,
         source: SpeechBubbleSource,
-        tags: ['speech', 'bubble', 'dialogue', 'kids', 'character'],
+        tags: ['speech', 'bubble', 'dialogue', 'kids', 'character', 'text', 'chat'],
         previewProps: {
             children: "Great job! You're doing amazing! 🎉",
             color: 'blue',
@@ -2060,7 +2061,7 @@ export const components: ComponentMeta[] = [
         category: 'navigation',
         component: EInkSidebar,
         source: EInkSidebarSource,
-        tags: ['sidebar', 'eink', 'navigation', 'grayscale'],
+        tags: ['sidebar', 'eink', 'navigation', 'grayscale', 'menu', 'drawer'],
     },
     {
         id: 'reader-content',
@@ -2070,7 +2071,7 @@ export const components: ComponentMeta[] = [
         category: 'data-display',
         component: ReaderContent,
         source: ReaderContentSource,
-        tags: ['reader', 'text', 'eink', 'layout'],
+        tags: ['reader', 'text', 'eink', 'layout', 'article', 'content'],
     },
     {
         id: 'library-grid',
@@ -2080,7 +2081,7 @@ export const components: ComponentMeta[] = [
         category: 'data-display',
         component: LibraryGrid,
         source: LibraryGridSource,
-        tags: ['library', 'grid', 'books', 'eink'],
+        tags: ['library', 'grid', 'books', 'eink', 'covers', 'collection'],
     },
     {
         id: 'eink-card',
@@ -2090,7 +2091,7 @@ export const components: ComponentMeta[] = [
         category: 'layout',
         component: EInkCard,
         source: EInkCardSource,
-        tags: ['card', 'eink', 'contrast', 'layout'],
+        tags: ['card', 'eink', 'contrast', 'layout', 'panel', 'paper'],
         previewProps: {
             children: 'E-Ink Content',
             className: 'p-6'
@@ -2104,7 +2105,7 @@ export const components: ComponentMeta[] = [
         category: 'interactive',
         component: EInkButton,
         source: EInkButtonSource,
-        tags: ['button', 'eink', 'contrast', 'interactive'],
+        tags: ['button', 'eink', 'contrast', 'interactive', 'refresh', 'action'],
         previewProps: {
             children: 'Refresh',
             variant: 'primary'
@@ -2118,7 +2119,7 @@ export const components: ComponentMeta[] = [
         category: 'data-display',
         component: ReadingProgress,
         source: ReadingProgressSource,
-        tags: ['reading', 'progress', 'book', 'ereader'],
+        tags: ['reading', 'progress', 'book', 'ereader', 'tracker', 'status'],
     },
 
     // Solarpunk Components
@@ -2130,7 +2131,7 @@ export const components: ComponentMeta[] = [
         category: 'visualization',
         component: EnergySun,
         source: EnergySunSource,
-        tags: ['sun', 'energy', 'solar', 'visualization'],
+        tags: ['sun', 'energy', 'solar', 'visualization', 'power', 'eco'],
     },
     {
         id: 'air-quality-leaf',
@@ -2140,7 +2141,7 @@ export const components: ComponentMeta[] = [
         category: 'visualization',
         component: AirQualityLeaf,
         source: AirQualityLeafSource,
-        tags: ['leaf', 'air', 'quality', 'gauge'],
+        tags: ['leaf', 'air', 'quality', 'gauge', 'eco', 'environment'],
     },
     {
         id: 'solar-card',
@@ -2150,7 +2151,7 @@ export const components: ComponentMeta[] = [
         category: 'layout',
         component: SolarCard,
         source: SolarCardSource,
-        tags: ['card', 'organic', 'solarpunk', 'soft'],
+        tags: ['card', 'organic', 'solarpunk', 'soft', 'nature', 'container'],
         previewProps: {
             children: 'Solar Content',
             className: 'p-6'
@@ -2164,7 +2165,7 @@ export const components: ComponentMeta[] = [
         category: 'interactive',
         component: SolarpunkButton,
         source: SolarpunkButtonSource,
-        tags: ['button', 'organic', 'solarpunk', 'nature'],
+        tags: ['button', 'organic', 'solarpunk', 'nature', 'eco', 'green'],
         previewProps: {
             children: 'Plant',
             variant: 'primary'
@@ -2178,7 +2179,7 @@ export const components: ComponentMeta[] = [
         category: 'data-display',
         component: EcoStats,
         source: EcoStatsSource,
-        tags: ['stats', 'eco', 'environment', 'solarpunk'],
+        tags: ['stats', 'eco', 'environment', 'solarpunk', 'metrics', 'dashboard'],
     },
     {
         id: 'plant-progress',
@@ -2188,7 +2189,7 @@ export const components: ComponentMeta[] = [
         category: 'data-display',
         component: PlantProgress,
         source: PlantProgressSource,
-        tags: ['plant', 'progress', 'growth', 'solarpunk', 'garden'],
+        tags: ['plant', 'progress', 'growth', 'solarpunk', 'garden', 'nature'],
         previewProps: {
             name: 'Tomato Plant',
             stage: 'growing',
@@ -2206,7 +2207,7 @@ export const components: ComponentMeta[] = [
         category: 'layout',
         component: LegalPaper,
         source: LegalPaperSource,
-        tags: ['paper', 'legal', 'document', 'contract'],
+        tags: ['paper', 'legal', 'document', 'contract', 'text', 'page'],
         previewProps: {
             title: 'Terms of Service',
             children: 'This agreement...'
@@ -2220,7 +2221,7 @@ export const components: ComponentMeta[] = [
         category: 'data-display',
         component: Clause,
         source: ClauseSource,
-        tags: ['clause', 'legal', 'contract', 'text'],
+        tags: ['clause', 'legal', 'contract', 'text', 'law', 'section'],
         previewProps: {
             number: '1.0',
             title: 'Scope',
@@ -2235,7 +2236,7 @@ export const components: ComponentMeta[] = [
         category: 'data-display',
         component: RedlineSidebar,
         source: RedlineSidebarSource,
-        tags: ['sidebar', 'changes', 'redline', 'legal'],
+        tags: ['sidebar', 'changes', 'redline', 'legal', 'diff', 'track'],
     },
     {
         id: 'diff-viewer',
@@ -2245,7 +2246,7 @@ export const components: ComponentMeta[] = [
         category: 'visualization',
         component: DiffViewer,
         source: DiffViewerSource,
-        tags: ['diff', 'compare', 'legal', 'changes'],
+        tags: ['diff', 'compare', 'legal', 'changes', 'version', 'text'],
     },
     {
         id: 'legal-button',
@@ -2255,7 +2256,7 @@ export const components: ComponentMeta[] = [
         category: 'interactive',
         component: LegalButton,
         source: LegalButtonSource,
-        tags: ['button', 'legal', 'formal', 'serif'],
+        tags: ['button', 'legal', 'formal', 'serif', 'primary', 'action'],
         previewProps: {
             children: 'Sign Agreement',
             variant: 'primary'
@@ -2269,7 +2270,7 @@ export const components: ComponentMeta[] = [
         category: 'feedback',
         component: DocumentStatus,
         source: DocumentStatusSource,
-        tags: ['document', 'status', 'approval', 'workflow'],
+        tags: ['document', 'status', 'approval', 'workflow', 'legal', 'state'],
         previewProps: { status: 'pending', documentName: 'Service Agreement v2.4' },
     },
 
@@ -2282,7 +2283,7 @@ export const components: ComponentMeta[] = [
         category: 'layout',
         component: NeumorphicCard,
         source: NeumorphicCardSource,
-        tags: ['card', 'neumorphic', 'soft', 'shadow'],
+        tags: ['card', 'neumorphic', 'soft', 'shadow', 'container', 'embossed'],
         previewProps: {
             children: 'Soft Content',
             className: 'p-6 h-32'
@@ -2296,7 +2297,7 @@ export const components: ComponentMeta[] = [
         category: 'interactive',
         component: NeumorphicButton,
         source: NeumorphicButtonSource,
-        tags: ['button', 'neumorphic', 'soft', 'shadow'],
+        tags: ['button', 'neumorphic', 'soft', 'shadow', 'pressed', 'tactile'],
         previewProps: {
             children: 'Press Me',
             variant: 'pill'
@@ -2310,7 +2311,7 @@ export const components: ComponentMeta[] = [
         category: 'interactive',
         component: ThermostatDial,
         source: ThermostatDialSource,
-        tags: ['dial', 'thermostat', 'neumorphic', 'control'],
+        tags: ['dial', 'thermostat', 'neumorphic', 'control', 'knob', 'temperature'],
     },
     {
         id: 'device-toggle',
@@ -2320,7 +2321,7 @@ export const components: ComponentMeta[] = [
         category: 'interactive',
         component: DeviceToggle,
         source: DeviceToggleSource,
-        tags: ['toggle', 'switch', 'device', 'control'],
+        tags: ['toggle', 'switch', 'device', 'control', 'smart-home', 'iot'],
         previewProps: {
             label: 'Lights',
             initialState: true,
@@ -2335,7 +2336,7 @@ export const components: ComponentMeta[] = [
         category: 'interactive',
         component: NeumorphicSlider,
         source: NeumorphicSliderSource,
-        tags: ['slider', 'range', 'neumorphic', 'control'],
+        tags: ['slider', 'range', 'neumorphic', 'control', 'input', 'level'],
         previewProps: { label: 'Brightness', initialValue: 75 },
     },
 
@@ -2348,7 +2349,7 @@ export const components: ComponentMeta[] = [
         category: 'layout',
         component: FestivalCard,
         source: FestivalCardSource,
-        tags: ['card', 'festival', 'gradient', 'event'],
+        tags: ['card', 'festival', 'gradient', 'event', 'music', 'party'],
         previewProps: {
             children: 'Event Details',
             className: 'p-6',
@@ -2363,7 +2364,7 @@ export const components: ComponentMeta[] = [
         category: 'visualization',
         component: SoundwaveTimeline,
         source: SoundwaveTimelineSource,
-        tags: ['timeline', 'soundwave', 'schedule', 'festival'],
+        tags: ['timeline', 'soundwave', 'schedule', 'festival', 'audio', 'events'],
     },
     {
         id: 'crowd-heatmap',
@@ -2373,7 +2374,7 @@ export const components: ComponentMeta[] = [
         category: 'visualization',
         component: CrowdHeatmap,
         source: CrowdHeatmapSource,
-        tags: ['heatmap', 'crowd', 'map', 'festival'],
+        tags: ['heatmap', 'crowd', 'map', 'festival', 'visualization', 'density'],
     },
     {
         id: 'ticket-wallet',
@@ -2383,7 +2384,7 @@ export const components: ComponentMeta[] = [
         category: 'data-display',
         component: TicketWallet,
         source: TicketWalletSource,
-        tags: ['ticket', 'wallet', 'pass', 'festival'],
+        tags: ['ticket', 'wallet', 'pass', 'festival', 'qrcode', 'access'],
     },
     {
         id: 'festival-button',
@@ -2393,7 +2394,7 @@ export const components: ComponentMeta[] = [
         category: 'interactive',
         component: FestivalButton,
         source: FestivalButtonSource,
-        tags: ['button', 'festival', 'gradient', 'glow'],
+        tags: ['button', 'festival', 'gradient', 'glow', 'primary', 'party'],
         previewProps: {
             children: 'Get Tickets',
             variant: 'primary'
@@ -2407,7 +2408,7 @@ export const components: ComponentMeta[] = [
         category: 'data-display',
         component: ArtistCard,
         source: ArtistCardSource,
-        tags: ['artist', 'festival', 'profile', 'lineup'],
+        tags: ['artist', 'festival', 'profile', 'lineup', 'music', 'performer'],
     },
 
     // Acid Components
@@ -2419,7 +2420,7 @@ export const components: ComponentMeta[] = [
         category: 'layout',
         component: AcidCard,
         source: AcidCardSource,
-        tags: ['card', 'acid', 'chaotic', 'brutalist'],
+        tags: ['card', 'acid', 'chaotic', 'brutalist', 'container', 'yellow'],
         previewProps: {
             children: 'ACID CONTENT',
             rotate: 2,
@@ -2434,7 +2435,7 @@ export const components: ComponentMeta[] = [
         category: 'data-display',
         component: GlitchText,
         source: GlitchTextSource,
-        tags: ['text', 'glitch', 'animation', 'acid'],
+        tags: ['text', 'glitch', 'animation', 'acid', 'error', 'distort'],
         previewProps: {
             text: 'ERROR'
         }
@@ -2447,7 +2448,7 @@ export const components: ComponentMeta[] = [
         category: 'data-display',
         component: Sticker,
         source: StickerSource,
-        tags: ['sticker', 'decoration', 'acid', 'fun'],
+        tags: ['sticker', 'decoration', 'acid', 'fun', 'decal', 'badge'],
         previewProps: {
             children: 'NEW!'
         }
@@ -2460,7 +2461,7 @@ export const components: ComponentMeta[] = [
         category: 'navigation',
         component: Marquee,
         source: MarqueeSource,
-        tags: ['marquee', 'scroll', 'banner', 'acid'],
+        tags: ['marquee', 'scroll', 'banner', 'acid', 'ticker', 'news'],
         previewProps: {
             text: 'BREAKING NEWS'
         }
@@ -2473,7 +2474,7 @@ export const components: ComponentMeta[] = [
         category: 'interactive',
         component: AcidButton,
         source: AcidButtonSource,
-        tags: ['button', 'acid', 'energy', 'interactive'],
+        tags: ['button', 'acid', 'energy', 'interactive', 'black', 'click'],
         previewProps: {
             children: 'CLICK ME',
             variant: 'black'
@@ -2487,7 +2488,7 @@ export const components: ComponentMeta[] = [
         category: 'visualization',
         component: ChromaShift,
         source: ChromaShiftSource,
-        tags: ['glitch', 'chromatic', 'text', 'effect'],
+        tags: ['glitch', 'chromatic', 'text', 'effect', 'rgb', 'shift'],
         previewProps: { text: 'CHROMATIC' },
     },
 
@@ -2500,7 +2501,7 @@ export const components: ComponentMeta[] = [
         category: 'layout',
         component: ClayCard,
         source: ClayCardSource,
-        tags: ['card', 'clay', '3d', 'soft'],
+        tags: ['card', 'clay', '3d', 'soft', 'container', 'morphism'],
         previewProps: {
             children: 'Clay Content',
             className: 'p-6'
@@ -2514,7 +2515,7 @@ export const components: ComponentMeta[] = [
         category: 'interactive',
         component: ClayButton,
         source: ClayButtonSource,
-        tags: ['button', 'clay', '3d', 'soft'],
+        tags: ['button', 'clay', '3d', 'soft', 'click', 'interactive'],
         previewProps: {
             children: 'Press',
             variant: 'primary'
@@ -2528,7 +2529,7 @@ export const components: ComponentMeta[] = [
         category: 'interactive',
         component: ClayToggle,
         source: ClayToggleSource,
-        tags: ['toggle', 'clay', '3d', 'switch'],
+        tags: ['toggle', 'clay', '3d', 'switch', 'control', 'input'],
         previewProps: {
             checked: true
         }
@@ -2541,7 +2542,7 @@ export const components: ComponentMeta[] = [
         category: 'feedback',
         component: ClayProgress,
         source: ClayProgressSource,
-        tags: ['progress', 'clay', '3d', 'bar'],
+        tags: ['progress', 'clay', '3d', 'bar', 'loader', 'status'],
         previewProps: { value: 65, label: 'Progress', color: 'blue' },
     },
 
@@ -2554,7 +2555,7 @@ export const components: ComponentMeta[] = [
         category: 'layout',
         component: BlueprintCard,
         source: BlueprintCardSource,
-        tags: ['card', 'blueprint', 'technical', 'drawing'],
+        tags: ['card', 'blueprint', 'technical', 'drawing', 'schematic', 'plan'],
         previewProps: {
             title: 'Schematic',
             code: 'A-01',
@@ -2569,7 +2570,7 @@ export const components: ComponentMeta[] = [
         category: 'visualization',
         component: CadViewer,
         source: CadViewerSource,
-        tags: ['cad', 'viewer', 'blueprint', 'technical'],
+        tags: ['cad', 'viewer', 'blueprint', 'technical', 'plan', 'layout'],
         previewProps: {
             activeLayers: { 'Structure': true, 'Furniture': true }
         }
@@ -2582,7 +2583,7 @@ export const components: ComponentMeta[] = [
         category: 'interactive',
         component: LayerControl,
         source: LayerControlSource,
-        tags: ['layers', 'controls', 'blueprint', 'panel'],
+        tags: ['layers', 'controls', 'blueprint', 'panel', 'settings', 'switch'],
         previewProps: {
             layers: { 'Layer 1': true, 'Layer 2': false },
             toggleLayer: () => { }
@@ -2596,7 +2597,7 @@ export const components: ComponentMeta[] = [
         category: 'data-display',
         component: MeasurementLabel,
         source: MeasurementLabelSource,
-        tags: ['measurement', 'dimension', 'blueprint', 'technical'],
+        tags: ['measurement', 'dimension', 'blueprint', 'technical', 'size', 'length'],
         previewProps: {
             value: '2.5m',
             orientation: 'horizontal'
@@ -2625,4 +2626,5 @@ export const allCategories: ComponentCategory[] = [
     'feedback',
     'interactive',
     'visualization',
+    'marketing',
 ]

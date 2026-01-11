@@ -1,21 +1,22 @@
-import { useState, useEffect, useRef, type KeyboardEvent } from 'react'
+import { useState, useEffect, useRef, type KeyboardEvent as ReactKeyboardEvent } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Search, Command, LayoutTemplate, Box, Zap, ArrowRight } from 'lucide-react'
+import { Search, Command, LayoutTemplate, Box, Zap, ArrowRight, Component } from 'lucide-react'
 import { themes } from '@/data/themes'
 import { useFocusTrap } from '@/hooks'
+import { useComponentSearch } from '@/hooks/useComponentSearch'
 
-interface SearchResult {
+interface GlobalSearchResult {
     id: string
     title: string
     description: string
     type: 'template' | 'component' | 'hook'
     path: string
     icon: typeof LayoutTemplate
+    matchReason?: string
 }
 
-// Generate search index from themes
-const searchIndex: SearchResult[] = themes.map((theme) => ({
+const themeResults: GlobalSearchResult[] = themes.map((theme) => ({
     id: theme.id,
     title: theme.name,
     description: theme.description,
@@ -24,16 +25,18 @@ const searchIndex: SearchResult[] = themes.map((theme) => ({
     icon: LayoutTemplate,
 }))
 
-// Add placeholder component/hook results for future
-const additionalResults: SearchResult[] = [
-    { id: 'spotlight', title: 'SpotlightCard', description: 'Mouse-tracking spotlight effect', type: 'component', path: '/components', icon: Box },
-    { id: 'glow-button', title: 'GlowButton', description: 'Gradient border button', type: 'component', path: '/components', icon: Box },
-    { id: 'terminal', title: 'Terminal', description: 'Fake terminal display', type: 'component', path: '/components', icon: Box },
+// Placeholder for hooks until they are formally indexed with metadata
+const hookResults: GlobalSearchResult[] = [
     { id: 'useSpotlight', title: 'useSpotlight', description: 'Mouse tracking for spotlight effects', type: 'hook', path: '/hooks', icon: Zap },
     { id: 'useTheme', title: 'useTheme', description: 'Current theme context and switching', type: 'hook', path: '/hooks', icon: Zap },
+    { id: 'useAnimatedMount', title: 'useAnimatedMount', description: 'Mount/unmount animations', type: 'hook', path: '/hooks', icon: Zap },
+    { id: 'useClickOutside', title: 'useClickOutside', description: 'Detect clicks outside element', type: 'hook', path: '/hooks', icon: Zap },
+    { id: 'useCopyToClipboard', title: 'useCopyToClipboard', description: 'Copy text to clipboard', type: 'hook', path: '/hooks', icon: Zap },
+    { id: 'useDebounce', title: 'useDebounce', description: 'Debounce value changes', type: 'hook', path: '/hooks', icon: Zap },
+    { id: 'useFocusTrap', title: 'useFocusTrap', description: 'Trap focus within element', type: 'hook', path: '/hooks', icon: Zap },
+    { id: 'useMediaQuery', title: 'useMediaQuery', description: 'Responsive media queries', type: 'hook', path: '/hooks', icon: Zap },
+    { id: 'useMousePosition', title: 'useMousePosition', description: 'Track mouse coordinates', type: 'hook', path: '/hooks', icon: Zap },
 ]
-
-const allResults = [...searchIndex, ...additionalResults]
 
 export default function GlobalSearch() {
     const [isOpen, setIsOpen] = useState(false)
@@ -46,14 +49,51 @@ export default function GlobalSearch() {
     // Focus trap for modal
     const focusTrapRef = useFocusTrap<HTMLDivElement>(isOpen)
 
-    // Filter results based on query
-    const filteredResults = query.trim()
-        ? allResults.filter(
-            (item) =>
-                item.title.toLowerCase().includes(query.toLowerCase()) ||
-                item.description.toLowerCase().includes(query.toLowerCase())
-        )
-        : allResults.slice(0, 8) // Show first 8 when no query
+    // Get semantic search results for components
+    const componentResults = useComponentSearch(query)
+
+    // Combine and filter all results
+    const filteredResults: GlobalSearchResult[] = query.trim()
+        ? [
+            // Filter themes (simple name/desc match)
+            ...themeResults.filter(t =>
+                t.title.toLowerCase().includes(query.toLowerCase()) ||
+                t.description.toLowerCase().includes(query.toLowerCase())
+            ),
+            // Map semantic component results
+            ...componentResults.map(r => {
+                // Determine best match reason
+                let matchReason = undefined;
+                if (r.matches && r.matches.length > 0) {
+                    const tagMatch = r.matches.find(m => m.key === 'tags');
+                    if (tagMatch) {
+                        matchReason = `Matched tag: "${tagMatch.value}"`
+                    }
+                }
+
+                return {
+                    id: r.component.id,
+                    title: r.component.name,
+                    description: r.component.description,
+                    type: 'component' as const,
+                    path: `/components/${r.component.theme}/${r.component.id}`, // Navigate to component in list
+                    icon: Box,
+                    matchReason
+                }
+            }),
+            // Filter hooks
+            ...hookResults.filter(h =>
+                h.title.toLowerCase().includes(query.toLowerCase()) ||
+                h.description.toLowerCase().includes(query.toLowerCase())
+            )
+        ].slice(0, 50) // Limit total results
+        : [
+            ...themeResults.slice(0, 3),
+            ...hookResults.slice(0, 3),
+            // Add some popular components as default suggestions?
+            { id: 'spotlight-card', title: 'SpotlightCard', description: 'Mouse-tracking spotlight effect card', type: 'component', path: '/components/shared/spotlight-card', icon: Box },
+            { id: 'glow-button', title: 'GlowButton', description: 'Button with glowing gradient border', type: 'component', path: '/components/shared/glow-button', icon: Box }
+        ]
 
     // Keyboard shortcut to open
     useEffect(() => {
@@ -82,7 +122,7 @@ export default function GlobalSearch() {
     }, [isOpen])
 
     // Handle keyboard navigation
-    const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
+    const handleKeyDown = (e: ReactKeyboardEvent<HTMLInputElement>) => {
         if (e.key === 'ArrowDown') {
             e.preventDefault()
             setSelectedIndex((prev) => Math.min(prev + 1, filteredResults.length - 1))
@@ -90,17 +130,16 @@ export default function GlobalSearch() {
             e.preventDefault()
             setSelectedIndex((prev) => Math.max(prev - 1, 0))
         } else if (e.key === 'Enter' && filteredResults[selectedIndex]) {
-            navigate(filteredResults[selectedIndex].path)
-            setIsOpen(false)
+            handleSelect(filteredResults[selectedIndex])
         }
     }
 
-    const handleSelect = (result: SearchResult) => {
+    const handleSelect = (result: GlobalSearchResult) => {
         navigate(result.path)
         setIsOpen(false)
     }
 
-    const getTypeColor = (type: SearchResult['type']) => {
+    const getTypeColor = (type: GlobalSearchResult['type']) => {
         switch (type) {
             case 'template':
                 return 'bg-blue-500/20 text-blue-400'
@@ -170,7 +209,7 @@ export default function GlobalSearch() {
                                             setSelectedIndex(0)
                                         }}
                                         onKeyDown={handleKeyDown}
-                                        placeholder="Search templates, components, hooks..."
+                                        placeholder="Search elements by name, tag, or intent..."
                                         className="flex-1 bg-transparent text-white placeholder-zinc-500 outline-none"
                                         aria-label="Search query"
                                         aria-autocomplete="list"
@@ -195,7 +234,7 @@ export default function GlobalSearch() {
                                         <div className="space-y-1">
                                             {filteredResults.map((result, index) => (
                                                 <button
-                                                    key={result.id}
+                                                    key={`${result.type}-${result.id}`}
                                                     id={`result-${result.id}`}
                                                     onClick={() => handleSelect(result)}
                                                     onMouseEnter={() => setSelectedIndex(index)}
@@ -223,7 +262,12 @@ export default function GlobalSearch() {
                                                                 {result.type}
                                                             </span>
                                                         </div>
-                                                        <p className="text-sm text-zinc-500 truncate">{result.description}</p>
+                                                        <p className="text-sm text-zinc-500 truncate">
+                                                            {result.matchReason ? (
+                                                                <span className="text-emerald-500/80 mr-2 font-medium">{result.matchReason}</span>
+                                                            ) : null}
+                                                            {result.description}
+                                                        </p>
                                                     </div>
                                                     {index === selectedIndex && (
                                                         <ArrowRight className="h-4 w-4 text-zinc-500" aria-hidden="true" />
@@ -257,4 +301,3 @@ export default function GlobalSearch() {
         </>
     )
 }
-
