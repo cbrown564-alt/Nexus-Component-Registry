@@ -10,6 +10,7 @@ export interface Theme {
     textColorClass: string
     sidebarStyles: string
     category: 'dark' | 'light' | 'colorful'
+    collection: 'professional' | 'consumer' | 'scifi' | 'retro' | 'experimental'
     tags: string[]
 }
 
@@ -23,6 +24,7 @@ export const themes: Theme[] = [
         textColorClass: 'text-zinc-100',
         sidebarStyles: 'border-zinc-800 bg-zinc-950',
         category: 'dark',
+        collection: 'professional',
         tags: ['developer', 'terminal', 'dark', 'minimal'],
     },
     {
@@ -34,6 +36,7 @@ export const themes: Theme[] = [
         textColorClass: 'text-stone-800',
         sidebarStyles: 'border-stone-200 bg-white/80 backdrop-blur-md',
         category: 'light',
+        collection: 'consumer',
         tags: ['health', 'calm', 'organic', 'light'],
     },
     {
@@ -45,6 +48,7 @@ export const themes: Theme[] = [
         textColorClass: 'text-slate-800',
         sidebarStyles: 'border-slate-200 bg-white',
         category: 'light',
+        collection: 'consumer',
         tags: ['academic', 'clean', 'learning', 'light'],
     },
     {
@@ -56,6 +60,7 @@ export const themes: Theme[] = [
         textColorClass: 'text-slate-200',
         sidebarStyles: 'border-slate-800 bg-slate-950',
         category: 'dark',
+        collection: 'professional',
         tags: ['enterprise', 'professional', 'dark', 'business'],
     },
     {
@@ -67,6 +72,7 @@ export const themes: Theme[] = [
         textColorClass: 'text-neutral-900',
         sidebarStyles: 'border-neutral-200 bg-[#fdfbf7]',
         category: 'light',
+        collection: 'consumer',
         tags: ['editorial', 'typography', 'classic', 'light'],
     },
     {
@@ -78,6 +84,7 @@ export const themes: Theme[] = [
         textColorClass: 'text-neutral-900',
         sidebarStyles: 'border-neutral-100 bg-white',
         category: 'light',
+        collection: 'consumer',
         tags: ['shopping', 'retail', 'clean', 'light'],
     },
     {
@@ -89,6 +96,7 @@ export const themes: Theme[] = [
         textColorClass: 'text-zinc-200',
         sidebarStyles: 'border-zinc-800 bg-black',
         category: 'dark',
+        collection: 'consumer',
         tags: ['social', 'media', 'dark', 'vibrant'],
     },
     {
@@ -100,6 +108,7 @@ export const themes: Theme[] = [
         textColorClass: 'text-zinc-200',
         sidebarStyles: 'border-zinc-800 bg-zinc-950',
         category: 'dark',
+        collection: 'professional',
         tags: ['finance', 'data', 'dark', 'professional'],
     },
     {
@@ -111,6 +120,7 @@ export const themes: Theme[] = [
         textColorClass: 'text-zinc-200',
         sidebarStyles: 'border-zinc-800 bg-zinc-950',
         category: 'dark',
+        collection: 'professional',
         tags: ['productivity', 'focus', 'dark', 'minimal'],
     },
     {
@@ -122,6 +132,7 @@ export const themes: Theme[] = [
         textColorClass: 'text-white',
         sidebarStyles: 'border-white/10 bg-[#130f26]/90 backdrop-blur-md',
         category: 'colorful',
+        collection: 'retro',
         tags: ['gaming', 'neon', 'vibrant', 'dark'],
     },
     {
@@ -133,6 +144,7 @@ export const themes: Theme[] = [
         textColorClass: 'text-white',
         sidebarStyles: 'border-white/5 bg-black/90 backdrop-blur-md',
         category: 'dark',
+        collection: 'consumer',
         tags: ['music', 'audio', 'dark', 'media'],
     },
     {
@@ -144,6 +156,7 @@ export const themes: Theme[] = [
         textColorClass: 'text-stone-200',
         sidebarStyles: 'border-stone-800 bg-[#0c0a09]',
         category: 'dark',
+        collection: 'consumer',
         tags: ['food', 'delivery', 'warm', 'dark'],
     },
     {
@@ -155,6 +168,7 @@ export const themes: Theme[] = [
         textColorClass: 'text-blue-100',
         sidebarStyles: 'border-blue-900/30 bg-[#0b1121]',
         category: 'dark',
+        collection: 'professional',
         tags: ['data', 'analytics', 'grid', 'dark'],
     },
     {
@@ -166,6 +180,7 @@ export const themes: Theme[] = [
         textColorClass: 'text-black',
         sidebarStyles: 'border-black border-r-[3px] bg-white',
         category: 'light',
+        collection: 'experimental',
         tags: ['brutalist', 'bold', 'stark', 'light'],
     },
     {
@@ -177,6 +192,7 @@ export const themes: Theme[] = [
         textColorClass: 'text-stone-800',
         sidebarStyles: 'border-stone-200 bg-white',
         category: 'light',
+        collection: 'consumer',
         tags: ['culinary', 'warm', 'kitchen', 'light'],
     },
     {
@@ -188,6 +204,7 @@ export const themes: Theme[] = [
         textColorClass: 'text-slate-900',
         sidebarStyles: 'border-sky-200 bg-white',
         category: 'colorful',
+        collection: 'consumer',
         tags: ['kids', 'fun', 'colorful', 'playful'],
     },
     {
@@ -199,6 +216,7 @@ export const themes: Theme[] = [
         textColorClass: 'text-cyan-50',
         sidebarStyles: 'border-cyan-900/50 bg-[#050b14]',
         category: 'dark',
+        collection: 'scifi',
         tags: ['scifi', 'futuristic', 'holographic', 'dark'],
     },
     {
@@ -210,6 +228,7 @@ export const themes: Theme[] = [
         textColorClass: 'text-black',
         sidebarStyles: 'border-black border-r-2 bg-[#f4f4f3]',
         category: 'light',
+        collection: 'retro',
         tags: ['eink', 'minimal', 'reading', 'light'],
     },
     {
@@ -221,6 +240,7 @@ export const themes: Theme[] = [
         textColorClass: 'text-emerald-900',
         sidebarStyles: 'border-emerald-200 bg-[#F0F7F4]',
         category: 'light',
+        collection: 'experimental',
         tags: ['eco', 'organic', 'green', 'light'],
     },
     {
@@ -232,6 +252,7 @@ export const themes: Theme[] = [
         textColorClass: 'text-stone-900',
         sidebarStyles: 'border-stone-300 bg-[#e5e5e4]',
         category: 'light',
+        collection: 'professional',
         tags: ['legal', 'professional', 'government', 'light'],
     },
     {
@@ -243,6 +264,7 @@ export const themes: Theme[] = [
         textColorClass: 'text-slate-600',
         sidebarStyles: 'border-slate-200 bg-[#EFEEEE]',
         category: 'light',
+        collection: 'experimental',
         tags: ['neumorphic', 'soft', 'plastic', 'light'],
     },
     {
@@ -254,6 +276,7 @@ export const themes: Theme[] = [
         textColorClass: 'text-white',
         sidebarStyles: 'border-white/10 bg-black/90 backdrop-blur-md',
         category: 'colorful',
+        collection: 'experimental',
         tags: ['festival', 'event', 'energy', 'dark'],
     },
     {
@@ -265,6 +288,7 @@ export const themes: Theme[] = [
         textColorClass: 'text-black',
         sidebarStyles: 'border-black border-r-4 bg-white',
         category: 'colorful',
+        collection: 'experimental',
         tags: ['acid', 'bold', 'contrast', 'colorful'],
     },
     {
@@ -276,6 +300,7 @@ export const themes: Theme[] = [
         textColorClass: 'text-black',
         sidebarStyles: 'border-white border-r-2 bg-[#c0c0c0] shadow-[2px_0_0_#808080]',
         category: 'colorful',
+        collection: 'retro',
         tags: ['retro', 'windows', 'nostalgic', 'classic'],
     },
     {
@@ -287,6 +312,7 @@ export const themes: Theme[] = [
         textColorClass: 'text-white',
         sidebarStyles: 'border-zinc-800 bg-[#1a1a1a]',
         category: 'dark',
+        collection: 'scifi',
         tags: ['automotive', 'dashboard', 'instruments', 'dark'],
     },
     {
@@ -298,6 +324,7 @@ export const themes: Theme[] = [
         textColorClass: 'text-slate-700',
         sidebarStyles: 'border-white/50 bg-white/50 backdrop-blur-lg',
         category: 'light',
+        collection: 'experimental',
         tags: ['clay', 'soft', 'rounded', 'light'],
     },
     {
@@ -309,6 +336,7 @@ export const themes: Theme[] = [
         textColorClass: 'text-white',
         sidebarStyles: 'border-white/30 bg-[#1e3a8a]',
         category: 'dark',
+        collection: 'scifi',
         tags: ['blueprint', 'technical', 'schematic', 'dark'],
     },
     {
@@ -320,6 +348,7 @@ export const themes: Theme[] = [
         textColorClass: 'text-black',
         sidebarStyles: 'border-transparent bg-white',
         category: 'light',
+        collection: 'experimental',
         tags: ['swiss', 'grid', 'clean', 'minimal'],
     },
 ]

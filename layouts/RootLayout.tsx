@@ -281,13 +281,13 @@ function LayoutContent() {
 
             <main
                 id="main-content"
-                className="relative flex flex-1 flex-col pl-0 lg:pl-16 transition-[padding] duration-300"
+                className="relative flex flex-1 flex-col pl-0 lg:pl-16 transition-[padding] duration-300 overflow-x-hidden"
             >
                 <Header />
                 <CommandPalette />
                 <Outlet />
             </main>
-        </div>
+        </div >
     )
 }
 

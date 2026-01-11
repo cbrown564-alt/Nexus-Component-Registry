@@ -46,7 +46,7 @@ function DashboardWireframe({ theme }: WireframeProps) {
     const isLight = theme.category === 'light'
     const baseColor = isLight ? 'bg-black' : 'bg-white'
     const borderColor = isLight ? 'border-black/10' : 'border-white/10'
-    
+
     return (
         <div className="absolute inset-0 flex">
             {/* Sidebar */}
@@ -111,26 +111,26 @@ function CockpitWireframe({ theme }: WireframeProps) {
     return (
         <div className="absolute inset-0 flex items-center justify-center gap-4 p-3">
             {/* Left gauge */}
-            <div className="relative w-12 h-12 rounded-full border-2 border-zinc-700 bg-zinc-900/50 flex items-center justify-center">
-                <div className="absolute inset-1 rounded-full border border-zinc-800">
-                    <div className={`absolute w-0.5 h-4 ${theme.colorClass} left-1/2 bottom-1/2 origin-bottom -translate-x-1/2 rotate-[-30deg]`} />
+            <div className="relative w-[20%] aspect-square rounded-full border-2 border-zinc-700 bg-zinc-900/50 flex items-center justify-center">
+                <div className="absolute inset-[10%] rounded-full border border-zinc-800">
+                    <div className={`absolute w-[2px] h-[40%] ${theme.colorClass} left-1/2 bottom-1/2 origin-bottom -translate-x-1/2 rotate-[-30deg]`} />
                 </div>
-                <div className="absolute bottom-1 text-[5px] text-zinc-500 font-mono">RPM</div>
+                <div className="absolute bottom-[15%] text-[10px] sm:text-xs text-zinc-500 font-mono">RPM</div>
             </div>
             {/* Center speedometer */}
-            <div className="relative w-20 h-20 rounded-full border-4 border-zinc-700 bg-zinc-900 flex items-center justify-center shadow-lg">
-                <div className="absolute inset-2 rounded-full border border-zinc-800">
-                    <div className={`absolute w-0.5 h-7 ${theme.colorClass} left-1/2 bottom-1/2 origin-bottom -translate-x-1/2 rotate-[15deg]`} />
+            <div className="relative w-[30%] aspect-square rounded-full border-4 border-zinc-700 bg-zinc-900 flex items-center justify-center shadow-lg">
+                <div className="absolute inset-[8%] rounded-full border border-zinc-800">
+                    <div className={`absolute w-[3px] h-[45%] ${theme.colorClass} left-1/2 bottom-1/2 origin-bottom -translate-x-1/2 rotate-[15deg]`} />
                 </div>
-                <div className="absolute bottom-2 text-[6px] text-white font-mono font-bold">88</div>
-                <div className="absolute bottom-0.5 text-[4px] text-zinc-600">MPH</div>
+                <div className="absolute bottom-[20%] text-xs sm:text-lg text-white font-mono font-bold">88</div>
+                <div className="absolute bottom-[10%] text-[8px] sm:text-xs text-zinc-600">MPH</div>
             </div>
             {/* Right gauge */}
-            <div className="relative w-12 h-12 rounded-full border-2 border-zinc-700 bg-zinc-900/50 flex items-center justify-center">
-                <div className="absolute inset-1 rounded-full border border-zinc-800">
-                    <div className={`absolute w-0.5 h-4 ${theme.colorClass} opacity-60 left-1/2 bottom-1/2 origin-bottom -translate-x-1/2 rotate-[45deg]`} />
+            <div className="relative w-[20%] aspect-square rounded-full border-2 border-zinc-700 bg-zinc-900/50 flex items-center justify-center">
+                <div className="absolute inset-[10%] rounded-full border border-zinc-800">
+                    <div className={`absolute w-[2px] h-[40%] ${theme.colorClass} opacity-60 left-1/2 bottom-1/2 origin-bottom -translate-x-1/2 rotate-[45deg]`} />
                 </div>
-                <div className="absolute bottom-1 text-[5px] text-zinc-500 font-mono">FUEL</div>
+                <div className="absolute bottom-[15%] text-[10px] sm:text-xs text-zinc-500 font-mono">FUEL</div>
             </div>
         </div>
     )
@@ -201,19 +201,19 @@ function SciFiWireframe({ theme }: WireframeProps) {
                 </svg>
             </div>
             {/* Central HUD element */}
-            <div className="relative">
-                <div className={`w-16 h-16 rounded-full border-2 ${theme.colorClass.replace('bg-', 'border-')} opacity-60`} />
-                <div className={`absolute inset-2 rounded-full border ${theme.colorClass.replace('bg-', 'border-')} opacity-40`} />
-                <div className={`absolute inset-4 rounded-full ${theme.colorClass} opacity-30`} />
+            <div className={`relative w-[30%] aspect-square flex items-center justify-center`}>
+                <div className={`absolute inset-0 rounded-full border-2 ${theme.colorClass.replace('bg-', 'border-')} opacity-60`} />
+                <div className={`absolute inset-[10%] rounded-full border ${theme.colorClass.replace('bg-', 'border-')} opacity-40`} />
+                <div className={`absolute inset-[20%] rounded-full ${theme.colorClass} opacity-30`} />
                 {/* Scanner lines */}
-                <div className={`absolute left-1/2 top-0 bottom-0 w-px ${theme.colorClass} opacity-60`} />
-                <div className={`absolute top-1/2 left-0 right-0 h-px ${theme.colorClass} opacity-60`} />
+                <div className={`absolute left-1/2 top-0 bottom-0 w-[1px] ${theme.colorClass} opacity-60`} />
+                <div className={`absolute top-1/2 left-0 right-0 h-[1px] ${theme.colorClass} opacity-60`} />
             </div>
             {/* Side data */}
-            <div className="absolute right-3 top-3 space-y-1">
-                <div className={`h-1 w-8 ${theme.colorClass} opacity-50`} />
-                <div className={`h-1 w-6 ${theme.colorClass} opacity-30`} />
-                <div className={`h-1 w-10 ${theme.colorClass} opacity-40`} />
+            <div className="absolute right-[10%] top-[10%] space-y-2 w-[15%]">
+                <div className={`h-1.5 w-full ${theme.colorClass} opacity-50`} />
+                <div className={`h-1.5 w-3/4 ${theme.colorClass} opacity-30`} />
+                <div className={`h-1.5 w-5/6 ${theme.colorClass} opacity-40`} />
             </div>
         </div>
     )
@@ -754,11 +754,10 @@ function ClayWireframe({ theme }: WireframeProps) {
                 {/* Calendar strip */}
                 <div className="flex gap-1 mb-1">
                     {['M', 'T', 'W', 'T', 'F'].map((day, i) => (
-                        <div 
-                            key={i} 
-                            className={`flex-1 h-6 rounded-lg flex flex-col items-center justify-center ${
-                                i === 2 ? 'bg-sky-400 text-white' : 'bg-white'
-                            }`}
+                        <div
+                            key={i}
+                            className={`flex-1 h-6 rounded-lg flex flex-col items-center justify-center ${i === 2 ? 'bg-sky-400 text-white' : 'bg-white'
+                                }`}
                             style={{ boxShadow: '4px 4px 8px #d1d9e6, -4px -4px 8px #ffffff' }}
                         >
                             <div className="text-[5px] font-bold">{day}</div>
@@ -771,13 +770,13 @@ function ClayWireframe({ theme }: WireframeProps) {
                     { color: 'bg-rose-200' },
                     { color: 'bg-violet-200' },
                 ].map((task, i) => (
-                    <div 
-                        key={i} 
+                    <div
+                        key={i}
                         className="bg-white rounded-xl p-1.5 flex items-center gap-1.5"
                         style={{ boxShadow: '6px 6px 12px #d1d9e6, -6px -6px 12px #ffffff' }}
                     >
-                        <div className={`w-4 h-4 rounded-lg ${task.color}`} 
-                             style={{ boxShadow: 'inset 2px 2px 4px rgba(255,255,255,0.6), inset -2px -2px 4px rgba(0,0,0,0.05)' }} />
+                        <div className={`w-4 h-4 rounded-lg ${task.color}`}
+                            style={{ boxShadow: 'inset 2px 2px 4px rgba(255,255,255,0.6), inset -2px -2px 4px rgba(0,0,0,0.05)' }} />
                         <div className="flex-1">
                             <div className="h-1 w-3/4 bg-slate-300 rounded" />
                             <div className="h-0.5 w-1/2 bg-slate-200 rounded mt-0.5" />
@@ -790,8 +789,8 @@ function ClayWireframe({ theme }: WireframeProps) {
                 <div className="relative w-12 h-12">
                     <svg className="w-full h-full rotate-[-90deg]" viewBox="0 0 40 40">
                         <circle cx="20" cy="20" r="16" stroke="#e2e8f0" strokeWidth="4" fill="none" />
-                        <circle cx="20" cy="20" r="16" stroke="#7dd3fc" strokeWidth="4" fill="none" 
-                                strokeDasharray="100" strokeDashoffset="25" strokeLinecap="round" />
+                        <circle cx="20" cy="20" r="16" stroke="#7dd3fc" strokeWidth="4" fill="none"
+                            strokeDasharray="100" strokeDashoffset="25" strokeLinecap="round" />
                     </svg>
                     <div className="absolute inset-0 flex items-center justify-center">
                         <div className="text-[8px] font-black text-slate-700">75%</div>
@@ -839,19 +838,134 @@ function EcommerceWireframe({ theme }: WireframeProps) {
     )
 }
 
+// Blueprint / Technical wireframe
+function BlueprintWireframe({ theme }: WireframeProps) {
+    return (
+        <div className="absolute inset-0 p-2 flex flex-col items-center justify-center">
+            {/* Grid background */}
+            <div className="absolute inset-0 opacity-20"
+                style={{ backgroundImage: 'linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(90deg, #ffffff 1px, transparent 1px)', backgroundSize: '10px 10px' }}
+            />
+            {/* Main schematic */}
+            <div className="relative border-2 border-white/50 w-3/4 h-3/4 flex items-center justify-center">
+                <div className="absolute -top-1 -left-1 w-2 h-2 border-l-2 border-t-2 border-white" />
+                <div className="absolute -top-1 -right-1 w-2 h-2 border-r-2 border-t-2 border-white" />
+                <div className="absolute -bottom-1 -left-1 w-2 h-2 border-l-2 border-b-2 border-white" />
+                <div className="absolute -bottom-1 -right-1 w-2 h-2 border-r-2 border-b-2 border-white" />
+
+                {/* Crosshair */}
+                <div className="absolute w-full h-px bg-white/30" />
+                <div className="absolute h-full w-px bg-white/30" />
+
+                {/* Object */}
+                <div className="w-10 h-10 border border-white rotate-45" />
+                <div className="absolute w-14 h-14 border border-white/50 rounded-full" />
+            </div>
+            {/* Measurement labels */}
+            <div className="absolute bottom-2 right-2 text-[5px] text-white/70 font-mono">
+                SCALE 1:100<br />DWG-001
+            </div>
+        </div>
+    )
+}
+
+// Legal / Eagle wireframe
+function LegalWireframe({ theme }: WireframeProps) {
+    return (
+        <div className="absolute inset-0 p-3 flex gap-2">
+            {/* Document list sidebar */}
+            <div className="w-1/4 border-r border-stone-300 flex flex-col gap-1">
+                <div className="w-full h-1.5 bg-stone-300 rounded mb-1" />
+                {[...Array(5)].map((_, i) => (
+                    <div key={i} className="w-4/5 h-1 bg-stone-200 rounded" />
+                ))}
+            </div>
+            {/* Main document */}
+            <div className="flex-1 bg-white shadow-sm border border-stone-200 p-2 flex flex-col gap-1">
+                <div className="w-1/3 h-2 bg-stone-800 mb-2" /> {/* Title */}
+                {[...Array(6)].map((_, i) => (
+                    <div key={i} className="w-full h-1 bg-stone-400 rounded-sm" />
+                ))}
+                <div className="flex gap-1 mt-2">
+                    <div className="w-1/4 h-1.5 bg-red-700 rounded-sm" /> {/* Action button */}
+                </div>
+            </div>
+        </div>
+    )
+}
+
+// Soft Plastic / Neumorphic wireframe
+function SoftPlasticWireframe({ theme }: WireframeProps) {
+    return (
+        <div className="absolute inset-0 p-3 flex flex-col gap-2 items-center justify-center">
+            {/* Control panel */}
+            <div className="w-full max-w-[80%] p-2 rounded-xl bg-[#EFEEEE] flex justify-between items-center"
+                style={{ boxShadow: 'inset 3px 3px 6px #cbcaca, inset -3px -3px 6px #ffffff' }}>
+
+                {/* Toggle button */}
+                <div className="w-8 h-4 rounded-full bg-[#EFEEEE] relative"
+                    style={{ boxShadow: '3px 3px 6px #cbcaca, -3px -3px 6px #ffffff' }}>
+                    <div className="absolute right-0.5 top-0.5 w-3 h-3 rounded-full bg-slate-400" />
+                </div>
+
+                {/* Push button */}
+                <div className="w-8 h-8 rounded-full bg-[#EFEEEE] flex items-center justify-center"
+                    style={{ boxShadow: '3px 3px 6px #cbcaca, -3px -3px 6px #ffffff' }}>
+                    <div className="w-3 h-3 rounded-full bg-slate-300" />
+                </div>
+            </div>
+
+            {/* Slider track */}
+            <div className="w-[80%] h-3 rounded-full bg-[#EFEEEE] relative"
+                style={{ boxShadow: 'inset 2px 2px 5px #cbcaca, inset -2px -2px 5px #ffffff' }}>
+                <div className="absolute top-0 bottom-0 left-0 w-1/2 rounded-full bg-slate-300" />
+                <div className="absolute top-1/2 left-1/2 w-4 h-4 rounded-full bg-[#EFEEEE] -translate-y-1/2 -translate-x-1/2"
+                    style={{ boxShadow: '2px 2px 5px #cbcaca, -2px -2px 5px #ffffff' }} />
+            </div>
+        </div>
+    )
+}
+
+// Acid wireframe
+function AcidWireframe({ theme }: WireframeProps) {
+    return (
+        <div className="absolute inset-0 flex flex-col overflow-hidden">
+            {/* Marquee header */}
+            <div className="bg-black text-[#ccff00] text-[8px] font-black p-1 whitespace-nowrap overflow-hidden">
+                ACID MODE /// ACID MODE /// ACID MODE
+            </div>
+
+            {/* Content chaos */}
+            <div className="flex-1 relative p-2">
+                <div className="absolute top-4 left-4 w-12 h-12 border-2 border-black bg-[#ccff00] rotate-6 z-10 flex items-center justify-center">
+                    <div className="text-[14px] font-black">:)</div>
+                </div>
+
+                <div className="absolute bottom-4 right-4 w-16 h-8 bg-black text-white flex items-center justify-center -rotate-3 z-0">
+                    <div className="text-[6px] font-mono">ERROR_404</div>
+                </div>
+
+                {/* Glitch lines */}
+                <div className="absolute top-1/2 left-0 w-full h-px bg-black rotate-12" />
+                <div className="absolute top-1/2 left-0 w-full h-px bg-black -rotate-12" />
+            </div>
+        </div>
+    )
+}
+
 // Map template IDs to their wireframe components
 function getTemplateWireframe(templateId: string): React.FC<WireframeProps> {
     const wireframes: Record<string, React.FC<WireframeProps>> = {
         // Templates with unique wireframes
         engineering: EngineeringWireframe,
-        saas: DashboardWireframe, // Classic dashboard layout fits SaaS
+        saas: DashboardWireframe,
         fintech: FintechWireframe,
         productivity: ProductivityWireframe,
         grid: GridWireframe,
         social: SocialWireframe,
         music: MusicWireframe,
         food: FoodWireframe,
-        
+
         // Unique templates
         legacy: LegacyWireframe,
         cockpit: CockpitWireframe,
@@ -864,20 +978,20 @@ function getTemplateWireframe(templateId: string): React.FC<WireframeProps> {
         education: EducationWireframe,
         magazine: MagazineWireframe,
         eink: EInkWireframe,
-        
-        // Fixed mappings (previously mismatched)
+
+        // Fixed mappings
         kids: KidsWireframe,
         kitchen: KitchenWireframe,
         solarpunk: SolarpunkWireframe,
-        
-        // Light themes with appropriate wireframes
         ecommerce: EcommerceWireframe,
-        legal: MagazineWireframe, // Editorial structure fits legal
-        softplastic: ClayWireframe, // Neumorphic style similar to clay
-        acid: BrutalistWireframe, // Shares stark aesthetic
+
+        // Newly implemented wireframes
+        legal: LegalWireframe,
+        softplastic: SoftPlasticWireframe,
+        acid: AcidWireframe,
+        blueprint: BlueprintWireframe,
         clay: ClayWireframe,
-        blueprint: SciFiWireframe, // Technical feel matches
     }
-    
+
     return wireframes[templateId] || DashboardWireframe
 }

@@ -1,137 +1,81 @@
-import { Link } from 'react-router-dom'
-import { motion } from 'framer-motion'
-import { useState, useMemo } from 'react'
-import { themes, type Theme } from '@/data/themes'
-import TemplatePreview from '@/components/ui/TemplatePreview'
-
-type CategoryFilter = 'all' | Theme['category']
-
-const categories: { id: CategoryFilter; label: string }[] = [
-    { id: 'all', label: 'All' },
-    { id: 'dark', label: 'Dark' },
-    { id: 'light', label: 'Light' },
-    { id: 'colorful', label: 'Colorful' },
-]
+import { useMemo } from 'react'
+import { Search } from 'lucide-react'
+import { themes } from '@/data/themes'
+import HeroTemplate from '@/components/ui/HeroTemplate'
+import TemplateSwimlane from '@/components/ui/TemplateSwimlane'
 
 export default function TemplatesPage() {
-    const [activeCategory, setActiveCategory] = useState<CategoryFilter>('all')
 
-    const filteredThemes = useMemo(() => {
-        if (activeCategory === 'all') return themes
-        return themes.filter((theme) => theme.category === activeCategory)
-    }, [activeCategory])
+    // Categorize themes for swimlanes
+    const { featured, trending, professional, consumer, scifi, retro, experimental } = useMemo(() => {
+        // Pick a specific featured theme - 'scifi' as requested
+        const featured = themes.find(t => t.id === 'scifi') || themes[0]
 
-    const getCounts = () => ({
-        all: themes.length,
-        dark: themes.filter((t) => t.category === 'dark').length,
-        light: themes.filter((t) => t.category === 'light').length,
-        colorful: themes.filter((t) => t.category === 'colorful').length,
-    })
+        // Mock trending logic (just first 10 for now)
+        const trending = themes.slice(0, 10)
 
-    const counts = getCounts()
+        const professional = themes.filter(t => t.collection === 'professional')
+        const consumer = themes.filter(t => t.collection === 'consumer')
+        const scifi = themes.filter(t => t.collection === 'scifi')
+        const retro = themes.filter(t => t.collection === 'retro')
+        const experimental = themes.filter(t => t.collection === 'experimental')
+
+        return { featured, trending, professional, consumer, scifi, retro, experimental }
+    }, [])
 
     return (
-        <div className="relative z-10 mx-auto max-w-7xl px-8 py-12">
-            <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4 }}
-                className="mb-12"
-            >
-                <h1 className="text-4xl font-bold text-white mb-4">Template Gallery</h1>
-                <p className="text-lg text-zinc-400 max-w-2xl">
-                    Explore all 28 templates. Each template is a complete dashboard showcasing
-                    how components work together in context.
-                </p>
-            </motion.div>
+        <div className="relative z-10 min-h-screen bg-zinc-950 pb-20 w-full overflow-x-hidden">
 
-            {/* Filter Tabs */}
-            <div className="flex gap-2 mb-8">
-                {categories.map((category) => (
+            {/* Hero Section */}
+            <HeroTemplate theme={featured} />
+
+            {/* Content Stacks */}
+            <div className="-mt-20 relative z-20 space-y-8">
+                <TemplateSwimlane
+                    title="Trending Now"
+                    themes={trending}
+                />
+
+                <TemplateSwimlane
+                    title="Professional & SaaS"
+                    themes={professional}
+                />
+
+                <TemplateSwimlane
+                    title="Consumer & Lifestyle"
+                    themes={consumer}
+                />
+
+                <TemplateSwimlane
+                    title="High-Concept & Sci-Fi"
+                    themes={scifi}
+                />
+
+                <TemplateSwimlane
+                    title="Retro & Nostalgia"
+                    themes={retro}
+                />
+
+                <TemplateSwimlane
+                    title="Experimental & Specialized"
+                    themes={experimental}
+                />
+
+                <div className="px-8 mt-12 pb-20 border-t border-zinc-900 pt-16 flex flex-col items-center justify-center text-center">
+                    <h2 className="text-2xl font-bold text-white mb-4">Looking for something specific?</h2>
+                    <p className="text-zinc-400 mb-8 max-w-xl">
+                        Explore our complete library of components, hooks, and templates using the command palette.
+                    </p>
                     <button
-                        key={category.id}
-                        onClick={() => setActiveCategory(category.id)}
-                        className={`px-4 py-2 text-sm font-medium rounded-full transition-colors flex items-center gap-2 ${activeCategory === category.id
-                            ? 'bg-white text-zinc-950'
-                            : 'bg-zinc-900 text-zinc-400 hover:bg-zinc-800 hover:text-white'
-                            }`}
+                        onClick={() => document.dispatchEvent(new KeyboardEvent('keydown', { key: 'k', metaKey: true }))}
+                        className="group flex items-center gap-3 px-8 py-4 bg-white text-zinc-950 rounded-full font-bold hover:bg-zinc-200 transition-all hover:scale-105 active:scale-95"
                     >
-                        {category.label}
-                        <span
-                            className={`text-xs ${activeCategory === category.id ? 'text-zinc-500' : 'text-zinc-600'
-                                }`}
-                        >
-                            {counts[category.id]}
-                        </span>
+                        <Search className="w-5 h-5" />
+                        Search Registry
+                        <span className="ml-2 px-2 py-0.5 bg-black/10 rounded text-xs font-medium">⌘K</span>
                     </button>
-                ))}
-            </div>
-
-            {/* Theme Grid */}
-            <motion.div
-                key={activeCategory}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.2 }}
-                className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
-            >
-                {filteredThemes.map((theme, index) => (
-                    <motion.div
-                        key={theme.id}
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.4, delay: index * 0.03 }}
-                    >
-                        <Link
-                            to={`/templates/${theme.id}`}
-                            className="group block rounded-xl border border-zinc-800 bg-zinc-900/50 overflow-hidden hover:border-zinc-600 transition-all hover:scale-[1.01]"
-                        >
-                            {/* Preview Area */}
-                            <div className="aspect-video relative overflow-hidden">
-                                <TemplatePreview theme={theme} className="absolute inset-0" />
-                                {/* Gradient overlay */}
-                                <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                            </div>
-
-                            {/* Info */}
-                            <div className="p-5">
-                                <div className="flex items-center gap-3 mb-2">
-                                    <div className={`h-3 w-3 rounded-full ${theme.colorClass}`} />
-                                    <h3 className="font-semibold text-white text-lg">{theme.name}</h3>
-                                    <span
-                                        className={`ml-auto px-2 py-0.5 text-xs rounded-full ${theme.category === 'dark'
-                                            ? 'bg-zinc-800 text-zinc-300'
-                                            : theme.category === 'light'
-                                                ? 'bg-zinc-700 text-zinc-200'
-                                                : 'bg-fuchsia-900/50 text-fuchsia-300'
-                                            }`}
-                                    >
-                                        {theme.category}
-                                    </span>
-                                </div>
-                                <p className="text-sm text-zinc-400 mb-3">{theme.description}</p>
-                                <div className="flex flex-wrap gap-1.5">
-                                    {theme.tags.slice(0, 3).map((tag) => (
-                                        <span
-                                            key={tag}
-                                            className="px-2 py-0.5 text-xs bg-zinc-800/50 text-zinc-500 rounded"
-                                        >
-                                            {tag}
-                                        </span>
-                                    ))}
-                                </div>
-                            </div>
-                        </Link>
-                    </motion.div>
-                ))}
-            </motion.div>
-
-            {/* Empty State */}
-            {filteredThemes.length === 0 && (
-                <div className="text-center py-16">
-                    <p className="text-zinc-500">No templates found in this category.</p>
                 </div>
-            )}
+            </div>
         </div>
     )
 }
