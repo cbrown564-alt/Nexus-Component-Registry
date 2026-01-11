@@ -1,6 +1,12 @@
 import { createContext, useContext, useState, ReactNode, useMemo } from 'react'
 import { legacyThemes as themes, LegacyTheme as Theme, getThemeById, VisualLanguageId } from '@/lib/registry'
 import { playgroundThemes, PlaygroundTheme, getPlaygroundThemeById, defaultPlaygroundTheme } from '@/data/playgroundThemes'
+import { helix } from '@/data/themes/scifi'
+import { legacy } from '@/data/themes/retro'
+import { cockpit } from '@/data/themes/cockpit'
+import { blueprint } from '@/data/themes/blueprint'
+import { arcade } from '@/data/themes/arcade'
+import { eink } from '@/data/themes/eink'
 
 // The default registry theme - dark, neutral, always consistent
 const REGISTRY_THEME: Theme = {
@@ -50,8 +56,8 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     const [scopedThemes, setScopedThemes] = useState<Record<VisualLanguageId, string>>({
         professional: 'emerald_tier',
         consumer: 'cupcake',
-        scifi: 'cyberpunk',
-        retro: 'retro',
+        scifi: 'scifi', // Now pointing to the extracted Helix theme
+        retro: 'legacy', // Now pointing to the extracted Legacy theme
         experimental: 'coffee',
         nature: 'forest'
     })
@@ -66,7 +72,17 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
 
     // Sync playground theme when scope or scoped-selection changes
     useMemo(() => {
-        const theme = getPlaygroundThemeById(activeLikeThemeId)
+        // Special lookup for extracted themes until everything is unified
+        let theme: PlaygroundTheme | undefined
+
+        if (activeLikeThemeId === 'scifi') theme = helix
+        else if (activeLikeThemeId === 'legacy') theme = legacy
+        else if (activeLikeThemeId === 'cockpit') theme = cockpit
+        else if (activeLikeThemeId === 'blueprint') theme = blueprint
+        else if (activeLikeThemeId === 'arcade') theme = arcade
+        else if (activeLikeThemeId === 'eink') theme = eink
+        else theme = getPlaygroundThemeById(activeLikeThemeId)
+
         if (theme) {
             setCurrentPlaygroundTheme(theme)
         }

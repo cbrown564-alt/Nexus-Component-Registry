@@ -6,10 +6,16 @@ import LibraryGrid from '../components/eink/LibraryGrid';
 import EInkCard from '../components/eink/EInkCard';
 import EInkButton from '../components/eink/EInkButton';
 import { Battery, Wifi, Menu } from 'lucide-react';
+import { useTheme } from '@/context/ThemeContext';
 
 const EInkDashboard = () => {
     const [activeTab, setActiveTab] = useState('reading');
     const [refreshing, setRefreshing] = useState(false);
+    const { currentPlaygroundTheme: theme, setScopedTheme } = useTheme();
+
+    useEffect(() => {
+        setScopedTheme('retro', 'eink'); // Lock to eink theme
+    }, []);
 
     // Simulate E-Ink refresh flash on tab change
     useEffect(() => {
@@ -19,7 +25,13 @@ const EInkDashboard = () => {
     }, [activeTab]);
 
     return (
-        <div className="min-h-screen bg-[#f4f4f3] text-black font-sans flex overflow-hidden relative">
+        <div
+            className="min-h-screen font-sans flex overflow-hidden relative"
+            style={{
+                backgroundColor: theme.colors.background,
+                color: theme.colors.foreground
+            }}
+        >
 
             {/* Screen Refresh Effect Overlay */}
             <AnimatePresence>
@@ -30,14 +42,16 @@ const EInkDashboard = () => {
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
                             transition={{ duration: 0.1 }}
-                            className="absolute inset-0 bg-black z-[100] pointer-events-none mix-blend-exclusion"
+                            className="absolute inset-0 z-[100] pointer-events-none mix-blend-exclusion"
+                            style={{ backgroundColor: '#000000' }}
                         />
                         <motion.div
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
                             transition={{ duration: 0.2, delay: 0.1 }}
-                            className="absolute inset-0 bg-white z-[90] pointer-events-none"
+                            className="absolute inset-0 z-[90] pointer-events-none"
+                            style={{ backgroundColor: '#ffffff' }}
                         />
                     </>
                 )}
@@ -48,7 +62,13 @@ const EInkDashboard = () => {
             <main className="flex-1 flex flex-col h-screen overflow-hidden relative">
 
                 {/* Mobile Header */}
-                <header className="h-16 border-b-2 border-black flex md:hidden items-center justify-between px-6 bg-[#f4f4f3] shrink-0">
+                <header
+                    className="h-16 border-b-2 flex md:hidden items-center justify-between px-6 shrink-0"
+                    style={{
+                        backgroundColor: theme.colors.background,
+                        borderColor: theme.colors.border
+                    }}
+                >
                     <span className="font-serif font-bold text-xl">CANVAS</span>
                     <EInkButton variant="icon" onClick={() => setActiveTab('menu')}>
                         <Menu className="h-6 w-6" />
@@ -56,7 +76,14 @@ const EInkDashboard = () => {
                 </header>
 
                 {/* Status Bar (Desktop) */}
-                <div className="h-12 border-b-2 border-black hidden md:flex items-center justify-between px-8 bg-[#f4f4f3] shrink-0 font-mono text-xs uppercase tracking-wider">
+                <div
+                    className="h-12 border-b-2 hidden md:flex items-center justify-between px-8 shrink-0 font-mono text-xs uppercase tracking-wider"
+                    style={{
+                        backgroundColor: theme.colors.background,
+                        borderColor: theme.colors.border,
+                        color: theme.colors.foreground
+                    }}
+                >
                     <span>10:42 AM</span>
                     <span className="font-bold">{activeTab}</span>
                     <div className="flex items-center gap-4">
@@ -84,9 +111,9 @@ const EInkDashboard = () => {
 
                         {(activeTab !== 'reading' && activeTab !== 'library') && (
                             <div className="h-full flex items-center justify-center">
-                                <EInkCard className="p-12 text-center border-dashed border-2 border-stone-400 shadow-none bg-transparent">
+                                <EInkCard className="p-12 text-center border-dashed border-2 shadow-none bg-transparent" style={{ borderColor: theme.colors.mutedForeground }}>
                                     <h3 className="font-serif text-2xl font-bold mb-2">Module Offline</h3>
-                                    <p className="font-sans text-sm uppercase tracking-widest text-stone-500">Please connect to WiFi to access {activeTab}</p>
+                                    <p className="font-sans text-sm uppercase tracking-widest text-stone-500" style={{ color: theme.colors.mutedForeground }}>Please connect to WiFi to access {activeTab}</p>
                                 </EInkCard>
                             </div>
                         )}

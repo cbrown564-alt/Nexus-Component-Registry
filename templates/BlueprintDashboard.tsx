@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import {
     Maximize2,
@@ -29,6 +29,7 @@ import {
 import BlueprintCard from '../components/blueprint/BlueprintCard';
 import CadViewer from '../components/blueprint/CadViewer';
 import LayerControl from '../components/blueprint/LayerControl';
+import { useTheme } from '@/context/ThemeContext';
 
 const BlueprintDashboard = () => {
     const [layers, setLayers] = useState({
@@ -41,6 +42,11 @@ const BlueprintDashboard = () => {
     const [activeTool, setActiveTool] = useState('select');
     const [zoom, setZoom] = useState(100);
     const [gridVisible, setGridVisible] = useState(true);
+    const { currentPlaygroundTheme: theme, setScopedTheme } = useTheme();
+
+    useEffect(() => {
+        setScopedTheme('scifi', 'blueprint');
+    }, []);
 
     const toggleLayer = (layer: string) => {
         setLayers(prev => ({ ...prev, [layer]: !prev[layer] as boolean }));
@@ -57,45 +63,61 @@ const BlueprintDashboard = () => {
     ];
 
     return (
-        <div className="h-screen bg-[#1e3a8a] text-white font-sans overflow-hidden flex flex-col selection:bg-cyan-500 selection:text-black">
+        <div
+            className="h-screen font-sans overflow-hidden flex flex-col selection:bg-cyan-500 selection:text-black"
+            style={{
+                backgroundColor: theme.colors.background,
+                color: theme.colors.foreground
+            }}
+        >
 
             {/* Top Ribbon */}
-            <header className="h-12 bg-[#172554] border-b-2 border-white flex items-center px-4 justify-between shrink-0">
+            <header
+                className="h-12 border-b-2 flex items-center px-4 justify-between shrink-0"
+                style={{
+                    backgroundColor: theme.colors.primary,
+                    borderColor: theme.colors.border
+                }}
+            >
                 <div className="flex items-center gap-4">
-                    <div className="flex items-center gap-2 text-cyan-400 font-bold uppercase tracking-widest">
+                    <div className="flex items-center gap-2 font-bold uppercase tracking-widest" style={{ color: theme.colors.accent }}>
                         <DraftingCompass className="w-5 h-5" />
-                        NEXUS_CAD <span className="text-white/50 text-[10px]">v.24.0.1</span>
+                        NEXUS_CAD <span className="text-[10px]" style={{ color: theme.colors.mutedForeground }}>v.24.0.1</span>
                     </div>
 
                     {/* File Actions */}
-                    <div className="h-6 w-px bg-white/20" />
+                    <div className="h-6 w-px" style={{ backgroundColor: `${theme.colors.foreground}33` }} />
                     <div className="flex gap-1">
                         <motion.button
                             whileHover={{ scale: 1.1 }}
                             whileTap={{ scale: 0.9 }}
-                            className="p-1.5 hover:bg-white/10 rounded text-white/70 hover:text-cyan-400 transition-colors"
+                            className="p-1.5 rounded transition-colors"
+                            style={{ color: `${theme.colors.foreground}b3` }}
                         >
                             <Save size={14} />
                         </motion.button>
                         <motion.button
                             whileHover={{ scale: 1.1 }}
                             whileTap={{ scale: 0.9 }}
-                            className="p-1.5 hover:bg-white/10 rounded text-white/70 hover:text-cyan-400 transition-colors"
+                            className="p-1.5 rounded transition-colors"
+                            style={{ color: `${theme.colors.foreground}b3` }}
                         >
                             <Download size={14} />
                         </motion.button>
-                        <div className="w-px bg-white/10 mx-1" />
+                        <div className="w-px mx-1" style={{ backgroundColor: `${theme.colors.foreground}1a` }} />
                         <motion.button
                             whileHover={{ scale: 1.1 }}
                             whileTap={{ scale: 0.9 }}
-                            className="p-1.5 hover:bg-white/10 rounded text-white/70 hover:text-white transition-colors"
+                            className="p-1.5 rounded transition-colors"
+                            style={{ color: `${theme.colors.foreground}b3` }}
                         >
                             <Undo size={14} />
                         </motion.button>
                         <motion.button
                             whileHover={{ scale: 1.1 }}
                             whileTap={{ scale: 0.9 }}
-                            className="p-1.5 hover:bg-white/10 rounded text-white/70 hover:text-white transition-colors"
+                            className="p-1.5 rounded transition-colors"
+                            style={{ color: `${theme.colors.foreground}b3` }}
                         >
                             <Redo size={14} />
                         </motion.button>
@@ -104,13 +126,13 @@ const BlueprintDashboard = () => {
 
                 {/* View Info */}
                 <div className="flex items-center gap-4">
-                    <div className="flex items-center gap-2 text-xs font-mono text-white/50">
+                    <div className="flex items-center gap-2 text-xs font-mono" style={{ color: theme.colors.mutedForeground }}>
                         <span>X: 2491.04</span>
                         <span>Y: 882.12</span>
                         <span>Z: 0.00</span>
                     </div>
                     <div className="flex items-center gap-1 bg-black/30 px-2 py-1 rounded text-xs">
-                        <span className="text-cyan-400 font-bold">{zoom}%</span>
+                        <span className="font-bold" style={{ color: theme.colors.accent }}>{zoom}%</span>
                     </div>
                 </div>
             </header>
@@ -119,24 +141,30 @@ const BlueprintDashboard = () => {
             <div className="flex-1 flex overflow-hidden">
 
                 {/* Left Sidebar - Project & Layers */}
-                <div className="w-64 bg-[#1e3a8a] border-r-2 border-white flex flex-col shrink-0">
+                <div
+                    className="w-64 border-r-2 flex flex-col shrink-0"
+                    style={{
+                        backgroundColor: theme.colors.background,
+                        borderColor: theme.colors.border
+                    }}
+                >
                     <div className="p-4 flex-1 flex flex-col gap-4 overflow-y-auto">
                         <BlueprintCard title="Project Info" code="PRJ-A1">
-                            <div className="space-y-2 text-xs text-white/90">
-                                <div className="flex justify-between border-b border-white/20 pb-1">
-                                    <span className="text-white/50">Client:</span>
+                            <div className="space-y-2 text-xs" style={{ color: `${theme.colors.foreground}e6` }}>
+                                <div className="flex justify-between border-b pb-1" style={{ borderColor: `${theme.colors.border}33` }}>
+                                    <span style={{ color: theme.colors.mutedForeground }}>Client:</span>
                                     <span className="font-bold">Stark Industries</span>
                                 </div>
-                                <div className="flex justify-between border-b border-white/20 pb-1">
-                                    <span className="text-white/50">Date:</span>
+                                <div className="flex justify-between border-b pb-1" style={{ borderColor: `${theme.colors.border}33` }}>
+                                    <span style={{ color: theme.colors.mutedForeground }}>Date:</span>
                                     <span>2024-10-24</span>
                                 </div>
-                                <div className="flex justify-between border-b border-white/20 pb-1">
-                                    <span className="text-white/50">Scale:</span>
+                                <div className="flex justify-between border-b pb-1" style={{ borderColor: `${theme.colors.border}33` }}>
+                                    <span style={{ color: theme.colors.mutedForeground }}>Scale:</span>
                                     <span>1:50</span>
                                 </div>
                                 <div className="flex justify-between">
-                                    <span className="text-white/50">Drafter:</span>
+                                    <span style={{ color: theme.colors.mutedForeground }}>Drafter:</span>
                                     <span>A. Morrison</span>
                                 </div>
                             </div>
@@ -153,9 +181,13 @@ const BlueprintDashboard = () => {
                                         whileTap={{ scale: 0.95 }}
                                         onClick={() => setActiveTool(tool.id)}
                                         className={`p-2 rounded flex items-center justify-center transition-all ${activeTool === tool.id
-                                                ? 'bg-cyan-500 text-black'
-                                                : 'bg-white/5 text-white/70 hover:bg-white/10 hover:text-white'
+                                            ? 'text-black'
+                                            : 'bg-white/5 hover:bg-white/10'
                                             }`}
+                                        style={{
+                                            backgroundColor: activeTool === tool.id ? theme.colors.accent : undefined,
+                                            color: activeTool === tool.id ? undefined : theme.colors.mutedForeground
+                                        }}
                                         title={tool.label}
                                     >
                                         <tool.icon size={16} />
@@ -167,22 +199,35 @@ const BlueprintDashboard = () => {
                 </div>
 
                 {/* Canvas Area */}
-                <div className="flex-1 relative bg-[#172554] p-4 overflow-hidden">
-                    <div className="w-full h-full shadow-[0_0_50px_rgba(0,0,0,0.5)] border-2 border-white relative">
+                <div
+                    className="flex-1 relative p-4 overflow-hidden"
+                    style={{ backgroundColor: theme.colors.secondary }}
+                >
+                    <div
+                        className="w-full h-full shadow-[0_0_50px_rgba(0,0,0,0.5)] border-2 relative"
+                        style={{ borderColor: theme.colors.border }}
+                    >
                         <CadViewer activeLayers={layers} />
 
                         {/* Floating Toolbar */}
-                        <div className="absolute top-4 left-4 bg-[#1e3a8a]/95 backdrop-blur border border-white/50 p-1 flex gap-1">
+                        <div
+                            className="absolute top-4 left-4 backdrop-blur border p-1 flex gap-1"
+                            style={{
+                                backgroundColor: `${theme.colors.background}f2`, // 95% opacity
+                                borderColor: `${theme.colors.border}80`
+                            }}
+                        >
                             {tools.slice(0, 5).map((tool) => (
                                 <motion.button
                                     key={tool.id}
                                     whileHover={{ scale: 1.05 }}
                                     whileTap={{ scale: 0.95 }}
                                     onClick={() => setActiveTool(tool.id)}
-                                    className={`p-2 transition-all ${activeTool === tool.id
-                                            ? 'bg-cyan-500 text-black'
-                                            : 'text-white/70 hover:text-cyan-400'
-                                        }`}
+                                    className="p-2 transition-all"
+                                    style={{
+                                        backgroundColor: activeTool === tool.id ? theme.colors.accent : 'transparent',
+                                        color: activeTool === tool.id ? theme.colors.background : theme.colors.mutedForeground
+                                    }}
                                     title={tool.label}
                                 >
                                     <tool.icon size={16} />
@@ -196,12 +241,22 @@ const BlueprintDashboard = () => {
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
                                 onClick={() => setGridVisible(!gridVisible)}
-                                className={`bg-[#1e3a8a] border border-white p-2 transition-colors ${gridVisible ? 'text-cyan-400' : 'text-white/50'
-                                    }`}
+                                className="border p-2 transition-colors"
+                                style={{
+                                    backgroundColor: theme.colors.background,
+                                    borderColor: theme.colors.border,
+                                    color: gridVisible ? theme.colors.accent : theme.colors.mutedForeground
+                                }}
                             >
                                 <Grid3X3 size={14} />
                             </motion.button>
-                            <div className="bg-[#1e3a8a] border border-white p-2 flex gap-2 items-center">
+                            <div
+                                className="border p-2 flex gap-2 items-center"
+                                style={{
+                                    backgroundColor: theme.colors.background,
+                                    borderColor: theme.colors.border
+                                }}
+                            >
                                 <motion.button
                                     whileTap={{ scale: 0.9 }}
                                     onClick={() => setZoom(Math.max(25, zoom - 25))}
@@ -217,7 +272,7 @@ const BlueprintDashboard = () => {
                                 >
                                     <ZoomIn size={14} />
                                 </motion.button>
-                                <div className="w-px bg-white/50 mx-1 h-4" />
+                                <div className="w-px mx-1 h-4" style={{ backgroundColor: `${theme.colors.foreground}80` }} />
                                 <motion.button
                                     whileTap={{ scale: 0.9 }}
                                     className="hover:text-cyan-400 transition-colors"
@@ -230,32 +285,38 @@ const BlueprintDashboard = () => {
                 </div>
 
                 {/* Right Sidebar - Properties */}
-                <div className="w-56 bg-[#1e3a8a] border-l-2 border-white flex flex-col shrink-0">
+                <div
+                    className="w-56 border-l-2 flex flex-col shrink-0"
+                    style={{
+                        backgroundColor: theme.colors.background,
+                        borderColor: theme.colors.border
+                    }}
+                >
                     <div className="p-4 flex-1 flex flex-col gap-4">
                         <BlueprintCard title="Selection" code="SEL">
-                            <div className="text-xs text-white/50 font-mono">
+                            <div className="text-xs font-mono" style={{ color: theme.colors.mutedForeground }}>
                                 No object selected
                             </div>
                         </BlueprintCard>
 
                         <BlueprintCard title="Properties" code="PROP" className="flex-1">
-                            <div className="text-[10px] font-mono space-y-4 text-white/70">
+                            <div className="text-[10px] font-mono space-y-4" style={{ color: `${theme.colors.foreground}b3` }}>
                                 <div>
-                                    <span className="block text-cyan-400 mb-1 uppercase tracking-wider">Position</span>
+                                    <span className="block mb-1 uppercase tracking-wider" style={{ color: theme.colors.accent }}>Position</span>
                                     <div className="grid grid-cols-2 gap-2">
                                         <div className="bg-black/30 px-2 py-1 rounded">X: 0</div>
                                         <div className="bg-black/30 px-2 py-1 rounded">Y: 0</div>
                                     </div>
                                 </div>
                                 <div>
-                                    <span className="block text-cyan-400 mb-1 uppercase tracking-wider">Size</span>
+                                    <span className="block mb-1 uppercase tracking-wider" style={{ color: theme.colors.accent }}>Size</span>
                                     <div className="grid grid-cols-2 gap-2">
                                         <div className="bg-black/30 px-2 py-1 rounded">W: —</div>
                                         <div className="bg-black/30 px-2 py-1 rounded">H: —</div>
                                     </div>
                                 </div>
                                 <div>
-                                    <span className="block text-cyan-400 mb-1 uppercase tracking-wider">Rotation</span>
+                                    <span className="block mb-1 uppercase tracking-wider" style={{ color: theme.colors.accent }}>Rotation</span>
                                     <div className="bg-black/30 px-2 py-1 rounded">0°</div>
                                 </div>
                             </div>
@@ -266,7 +327,8 @@ const BlueprintDashboard = () => {
                                 <motion.button
                                     whileHover={{ scale: 1.1 }}
                                     whileTap={{ scale: 0.95 }}
-                                    className="p-2 bg-white/5 rounded text-white/50 hover:text-white hover:bg-white/10 transition-all"
+                                    className="p-2 bg-white/5 rounded hover:bg-white/10 transition-all"
+                                    style={{ color: theme.colors.mutedForeground }}
                                     title="Duplicate"
                                 >
                                     <Copy size={14} />
@@ -274,7 +336,8 @@ const BlueprintDashboard = () => {
                                 <motion.button
                                     whileHover={{ scale: 1.1 }}
                                     whileTap={{ scale: 0.95 }}
-                                    className="p-2 bg-white/5 rounded text-white/50 hover:text-white hover:bg-white/10 transition-all"
+                                    className="p-2 bg-white/5 rounded hover:bg-white/10 transition-all"
+                                    style={{ color: theme.colors.mutedForeground }}
                                     title="Rotate"
                                 >
                                     <RotateCcw size={14} />
@@ -282,7 +345,8 @@ const BlueprintDashboard = () => {
                                 <motion.button
                                     whileHover={{ scale: 1.1 }}
                                     whileTap={{ scale: 0.95 }}
-                                    className="p-2 bg-white/5 rounded text-white/50 hover:text-red-400 hover:bg-red-500/10 transition-all"
+                                    className="p-2 bg-white/5 rounded hover:text-red-400 hover:bg-red-500/10 transition-all"
+                                    style={{ color: theme.colors.mutedForeground }}
                                     title="Delete"
                                 >
                                     <Trash2 size={14} />
@@ -292,7 +356,7 @@ const BlueprintDashboard = () => {
                     </div>
 
                     {/* Status */}
-                    <div className="p-4 border-t border-white/20">
+                    <div className="p-4 border-t" style={{ borderColor: `${theme.colors.border}33` }}>
                         <div className="flex items-center gap-2">
                             <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
                             <span className="text-[10px] font-mono text-emerald-400 uppercase tracking-wider">Ready</span>
@@ -303,11 +367,17 @@ const BlueprintDashboard = () => {
             </div>
 
             {/* Command Line */}
-            <footer className="h-8 bg-black border-t-2 border-white flex items-center px-4 text-xs font-mono shrink-0">
-                <span className="text-white/50 mr-2">COMMAND:</span>
-                <span className="text-cyan-400">{activeTool.toUpperCase()}</span>
-                <span className="text-white animate-pulse ml-1">_</span>
-                <span className="ml-auto text-white/30">Press F1 for help</span>
+            <footer
+                className="h-8 border-t-2 flex items-center px-4 text-xs font-mono shrink-0"
+                style={{
+                    backgroundColor: '#000000',
+                    borderColor: theme.colors.border
+                }}
+            >
+                <span className="mr-2" style={{ color: theme.colors.mutedForeground }}>COMMAND:</span>
+                <span style={{ color: theme.colors.accent }}>{activeTool.toUpperCase()}</span>
+                <span className="animate-pulse ml-1" style={{ color: theme.colors.foreground }}>_</span>
+                <span className="ml-auto opacity-30">Press F1 for help</span>
             </footer>
 
         </div>

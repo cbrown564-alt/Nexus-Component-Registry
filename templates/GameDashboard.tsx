@@ -1,28 +1,51 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Gamepad2, Coins, Gem, Settings, Bell, Plus } from 'lucide-react';
+import { Gamepad2, Coins, Gem, Settings, Bell, Plus, Trophy } from 'lucide-react';
 import CharacterProfile from '../components/game/CharacterProfile';
 import InventoryGrid from '../components/game/InventoryGrid';
 import QuestLog from '../components/game/QuestLog';
 import LeaderboardWidget from '../components/game/LeaderboardWidget';
 import GameCard from '../components/game/GameCard';
 import GameButton from '../components/game/GameButton';
+import { useTheme } from '@/context/ThemeContext';
 
 const GameDashboard = () => {
+    const { currentPlaygroundTheme: theme, setScopedTheme } = useTheme();
+
+    useEffect(() => {
+        setScopedTheme('retro', 'arcade'); // Using 'retro' scope as per category
+    }, []);
+
     return (
-        <div className="container mx-auto min-h-screen p-4 md:p-8 font-display text-white overflow-hidden">
+        <div
+            className="container mx-auto min-h-screen p-4 md:p-8 font-display overflow-hidden"
+            style={{
+                backgroundColor: theme.colors.background,
+                color: theme.colors.foreground
+            }}
+        >
 
             {/* Top HUD */}
             <header className="flex flex-col md:flex-row items-center justify-between gap-4 mb-8">
                 <motion.div
                     initial={{ y: -50, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
-                    className="flex items-center gap-3 bg-black/40 backdrop-blur-md p-2 pr-6 rounded-full border border-white/10"
+                    className="flex items-center gap-3 backdrop-blur-md p-2 pr-6 rounded-full border"
+                    style={{
+                        backgroundColor: `${theme.colors.card}66`, // 40% opacity
+                        borderColor: `${theme.colors.border}20`
+                    }}
                 >
-                    <div className="h-10 w-10 rounded-full bg-fuchsia-600 flex items-center justify-center shadow-lg shadow-fuchsia-500/50">
+                    <div
+                        className="h-10 w-10 rounded-full flex items-center justify-center shadow-lg"
+                        style={{
+                            backgroundColor: theme.colors.primary,
+                            '--tw-shadow-color': theme.colors.primary
+                        } as React.CSSProperties}
+                    >
                         <Gamepad2 className="h-6 w-6 text-white" />
                     </div>
-                    <h1 className="text-xl font-bold tracking-wider">ARCADE<span className="text-fuchsia-500">OS</span></h1>
+                    <h1 className="text-xl font-bold tracking-wider">ARCADE<span style={{ color: theme.colors.primary }}>OS</span></h1>
                 </motion.div>
 
                 <motion.div
@@ -32,18 +55,24 @@ const GameDashboard = () => {
                     className="flex items-center gap-4"
                 >
                     {/* Resources */}
-                    <div className="flex items-center gap-2 bg-black/40 backdrop-blur-md px-3 py-1.5 rounded-full border border-amber-500/30">
-                        <Coins className="h-4 w-4 text-amber-400" />
-                        <span className="font-mono text-sm font-bold text-amber-100">24,500</span>
-                        <button className="h-4 w-4 rounded bg-amber-500/20 text-amber-400 flex items-center justify-center hover:bg-amber-500 hover:text-black transition-colors">
+                    <div className="flex items-center gap-2 backdrop-blur-md px-3 py-1.5 rounded-full border" style={{ backgroundColor: `${theme.colors.card}66`, borderColor: `${theme.colors.accent}4d` }}>
+                        <Coins className="h-4 w-4" style={{ color: theme.colors.accent }} />
+                        <span className="font-mono text-sm font-bold" style={{ color: `${theme.colors.accent}e6` }}>24,500</span>
+                        <button
+                            className="h-4 w-4 rounded flex items-center justify-center transition-colors"
+                            style={{ backgroundColor: `${theme.colors.accent}33`, color: theme.colors.accent }}
+                        >
                             <Plus className="h-3 w-3" />
                         </button>
                     </div>
 
-                    <div className="flex items-center gap-2 bg-black/40 backdrop-blur-md px-3 py-1.5 rounded-full border border-cyan-500/30">
-                        <Gem className="h-4 w-4 text-cyan-400" />
-                        <span className="font-mono text-sm font-bold text-cyan-100">1,204</span>
-                        <button className="h-4 w-4 rounded bg-cyan-500/20 text-cyan-400 flex items-center justify-center hover:bg-cyan-500 hover:text-black transition-colors">
+                    <div className="flex items-center gap-2 backdrop-blur-md px-3 py-1.5 rounded-full border" style={{ backgroundColor: `${theme.colors.card}66`, borderColor: `${theme.colors.secondary}4d` }}>
+                        <Gem className="h-4 w-4" style={{ color: theme.colors.secondary }} />
+                        <span className="font-mono text-sm font-bold" style={{ color: `${theme.colors.secondary}e6` }}>1,204</span>
+                        <button
+                            className="h-4 w-4 rounded flex items-center justify-center transition-colors"
+                            style={{ backgroundColor: `${theme.colors.secondary}33`, color: theme.colors.secondary }}
+                        >
                             <Plus className="h-3 w-3" />
                         </button>
                     </div>
@@ -62,17 +91,27 @@ const GameDashboard = () => {
 
                     {/* Quick Menu */}
                     <div className="flex gap-3">
-                        <GameCard className="flex-1 flex flex-col items-center justify-center gap-2 py-4 cursor-pointer hover:bg-white/5 transition-colors group" variant="secondary" delay={0.1}>
-                            <div className="h-10 w-10 rounded-xl bg-cyan-500/20 flex items-center justify-center group-hover:scale-110 transition-transform">
-                                <Gamepad2 className="h-5 w-5 text-cyan-400" />
+                        <GameCard
+                            className="flex-1 flex flex-col items-center justify-center gap-2 py-4 cursor-pointer transition-colors group"
+                            variant="secondary"
+                            delay={0.1}
+                            style={{ ':hover': { backgroundColor: `${theme.colors.foreground}0d` } } as any}
+                        >
+                            <div className="h-10 w-10 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform" style={{ backgroundColor: `${theme.colors.secondary}33` }}>
+                                <Gamepad2 className="h-5 w-5" style={{ color: theme.colors.secondary }} />
                             </div>
-                            <span className="font-bold text-cyan-100 text-sm">Story</span>
+                            <span className="font-bold text-sm" style={{ color: `${theme.colors.secondary}e6` }}>Story</span>
                         </GameCard>
-                        <GameCard className="flex-1 flex flex-col items-center justify-center gap-2 py-4 cursor-pointer hover:bg-white/5 transition-colors group" variant="accent" delay={0.2}>
-                            <div className="h-10 w-10 rounded-xl bg-amber-500/20 flex items-center justify-center group-hover:scale-110 transition-transform">
-                                <Trophy className="h-5 w-5 text-amber-400" />
+                        <GameCard
+                            className="flex-1 flex flex-col items-center justify-center gap-2 py-4 cursor-pointer transition-colors group"
+                            variant="accent"
+                            delay={0.2}
+                            style={{ ':hover': { backgroundColor: `${theme.colors.foreground}0d` } } as any}
+                        >
+                            <div className="h-10 w-10 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform" style={{ backgroundColor: `${theme.colors.accent}33` }}>
+                                <Trophy className="h-5 w-5" style={{ color: theme.colors.accent }} />
                             </div>
-                            <span className="font-bold text-amber-100 text-sm">Ranked</span>
+                            <span className="font-bold text-sm" style={{ color: `${theme.colors.accent}e6` }}>Ranked</span>
                         </GameCard>
                     </div>
                 </div>
@@ -88,14 +127,14 @@ const GameDashboard = () => {
                                 alt="Event"
                                 className="h-full w-full object-cover opacity-60 transition-transform duration-700 group-hover:scale-110"
                             />
-                            <div className="absolute inset-0 bg-gradient-to-t from-[#130f26] via-transparent to-transparent" />
+                            <div className="absolute inset-0 bg-gradient-to-t via-transparent to-transparent" style={{ '--tw-gradient-from': theme.colors.background } as any} />
                         </div>
                         <div className="relative z-10">
-                            <span className="inline-block px-3 py-1 rounded bg-fuchsia-600 text-xs font-bold uppercase tracking-widest mb-2 shadow-lg shadow-fuchsia-500/40">
+                            <span className="inline-block px-3 py-1 rounded text-xs font-bold uppercase tracking-widest mb-2 shadow-lg" style={{ backgroundColor: theme.colors.primary, color: theme.colors.primaryForeground }}>
                                 Live Event
                             </span>
-                            <h2 className="text-2xl font-bold mb-2 text-white drop-shadow-md">The Neon Tournament</h2>
-                            <p className="text-zinc-300 max-w-md text-sm mb-3">Join the battle arena and earn exclusive legendary rewards. Ends in 24h.</p>
+                            <h2 className="text-2xl font-bold mb-2 drop-shadow-md" style={{ color: theme.colors.foreground }}>The Neon Tournament</h2>
+                            <p className="max-w-md text-sm mb-3" style={{ color: theme.colors.mutedForeground }}>Join the battle arena and earn exclusive legendary rewards. Ends in 24h.</p>
                             <GameButton variant="primary" size="md">
                                 Enter Arena
                             </GameButton>
@@ -115,7 +154,5 @@ const GameDashboard = () => {
         </div>
     );
 };
-
-import { Trophy } from 'lucide-react';
 
 export default GameDashboard;

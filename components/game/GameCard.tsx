@@ -1,25 +1,26 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, HTMLMotionProps } from 'framer-motion';
 
-interface GameCardProps {
+interface GameCardProps extends HTMLMotionProps<"div"> {
   children: React.ReactNode;
   className?: string;
   delay?: number;
   variant?: 'primary' | 'secondary' | 'accent';
 }
 
-const GameCard: React.FC<GameCardProps> = ({ 
-  children, 
+const GameCard: React.FC<GameCardProps> = ({
+  children,
   className = "",
   delay = 0,
-  variant = 'primary'
+  variant = 'primary',
+  ...props
 }) => {
   const getBorderColor = () => {
-      switch(variant) {
-          case 'secondary': return 'border-cyan-500/30 bg-cyan-950/30';
-          case 'accent': return 'border-amber-500/30 bg-amber-950/30';
-          default: return 'border-fuchsia-500/30 bg-fuchsia-950/30';
-      }
+    switch (variant) {
+      case 'secondary': return 'border-cyan-500/30 bg-cyan-950/30';
+      case 'accent': return 'border-amber-500/30 bg-amber-950/30';
+      default: return 'border-fuchsia-500/30 bg-fuchsia-950/30';
+    }
   }
 
   return (
@@ -28,6 +29,7 @@ const GameCard: React.FC<GameCardProps> = ({
       animate={{ opacity: 1, scale: 1, y: 0 }}
       transition={{ type: "spring", bounce: 0.4, duration: 0.6, delay }}
       className={`relative overflow-hidden rounded-2xl border backdrop-blur-md shadow-lg ${getBorderColor()} ${className}`}
+      {...props}
     >
       {/* Glossy sheen */}
       <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent pointer-events-none" />
