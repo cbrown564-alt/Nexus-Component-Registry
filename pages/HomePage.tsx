@@ -2,7 +2,9 @@ import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { Box, Palette, Github, CheckCircle2, ArrowRight } from 'lucide-react'
 import { featuredThemes, getThemeById } from '@/data/themes'
+import { components } from '@/data/components'
 import TemplatePreview from '@/components/ui/TemplatePreview'
+import LiveComponentCard from '@/components/ui/LiveComponentCard'
 
 const stats = [
     { label: 'Templates', value: '28' },
@@ -58,6 +60,13 @@ export default function HomePage() {
                     <br />
                     One Registry.
                 </h1>
+
+                <div className="flex items-center justify-center gap-2 mb-8 animate-fade-in opacity-0 fill-mode-forwards" style={{ animationDelay: '0.8s' }}>
+                    <kbd className="hidden sm:inline-flex items-center gap-1 px-2 py-1 bg-zinc-800 border border-zinc-700 rounded-lg text-xs text-zinc-400 font-mono">
+                        <span>⌘</span>K
+                    </kbd>
+                    <span className="text-sm text-zinc-500">to search everything</span>
+                </div>
 
                 <p className="text-xl text-zinc-400 max-w-2xl mx-auto mb-10">
                     Explore a curated collection of React components across 28 unique templates.
@@ -125,6 +134,34 @@ export default function HomePage() {
                             </motion.div>
                         )
                     })}
+                </div>
+            </motion.section>
+
+            {/* New Arrivals */}
+            <motion.section
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className="mb-24"
+            >
+                <div className="flex items-center justify-between mb-8">
+                    <h2 className="text-2xl font-bold text-white">New Arrivals</h2>
+                    <Link to="/components" className="text-sm text-zinc-400 hover:text-white transition-colors flex items-center gap-1">
+                        Browse all components <ArrowRight className="h-4 w-4" />
+                    </Link>
+                </div>
+
+                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    {components.slice(0, 4).map((comp, index) => (
+                        <motion.div
+                            key={comp.id}
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.4, delay: index * 0.05 }}
+                        >
+                            <LiveComponentCard component={comp} />
+                        </motion.div>
+                    ))}
                 </div>
             </motion.section>
 

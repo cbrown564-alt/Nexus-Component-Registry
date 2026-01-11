@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { useState, useMemo } from 'react'
-import { Search } from 'lucide-react'
+import { Search, SlidersHorizontal, ArrowUpDown } from 'lucide-react'
+import LiveComponentCard from '@/components/ui/LiveComponentCard'
 import {
     components,
     allThemes,
@@ -36,19 +37,6 @@ export default function ComponentsPage() {
         })
     }, [themeFilter, categoryFilter, searchQuery])
 
-    const getCategoryColor = (category: ComponentCategory) => {
-        const colors: Record<ComponentCategory, string> = {
-            layout: 'bg-blue-500/20 text-blue-400',
-            'data-display': 'bg-emerald-500/20 text-emerald-400',
-            forms: 'bg-purple-500/20 text-purple-400',
-            navigation: 'bg-cyan-500/20 text-cyan-400',
-            feedback: 'bg-amber-500/20 text-amber-400',
-            interactive: 'bg-rose-500/20 text-rose-400',
-            visualization: 'bg-indigo-500/20 text-indigo-400',
-        }
-        return colors[category]
-    }
-
     const getThemeColor = (theme: string) => {
         const colors: Record<string, string> = {
             shared: 'bg-zinc-600',
@@ -61,164 +49,138 @@ export default function ComponentsPage() {
     }
 
     return (
-        <div className="relative z-10 mx-auto max-w-7xl px-8 py-12">
-            {/* Header */}
-            <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4 }}
-                className="mb-12"
-            >
-                <h1 className="text-4xl font-bold text-white mb-4">Component Gallery</h1>
-                <p className="text-lg text-zinc-400 max-w-2xl">
-                    Browse {components.length} components across {allThemes.length} themes.
-                    Each component is production-ready with multiple variants and states.
-                </p>
-            </motion.div>
+        <div className="relative z-10 mx-auto max-w-[1600px] px-8 py-12">
 
-            {/* Filters */}
-            <div className="flex flex-col gap-4 mb-8">
-                {/* Search */}
-                <div className="relative">
-                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-500" />
-                    <input
-                        type="text"
-                        value={searchQuery}
-                        onChange={(e) => setSearchQuery(e.target.value)}
-                        placeholder="Search components..."
-                        className="w-full max-w-md pl-10 pr-4 py-2.5 bg-zinc-900/50 border border-zinc-800 rounded-lg text-white placeholder-zinc-500 outline-none focus:border-zinc-700 transition-colors"
-                    />
-                </div>
+            <div className="flex flex-col lg:flex-row gap-12">
+                {/* Sidebar Filters */}
+                <aside className="w-full lg:w-64 flex-shrink-0 space-y-8 lg:sticky lg:top-24 lg:h-[calc(100vh-6rem)] lg:overflow-y-auto no-scrollbar">
+                    <div className="space-y-4">
+                        <div className="relative">
+                            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-500" />
+                            <input
+                                type="text"
+                                value={searchQuery}
+                                onChange={(e) => setSearchQuery(e.target.value)}
+                                placeholder="Filter components..."
+                                className="w-full pl-10 pr-4 py-2 bg-zinc-900 border border-zinc-800 rounded-lg text-sm text-white placeholder-zinc-500 outline-none focus:border-zinc-700 transition-colors"
+                            />
+                        </div>
+                    </div>
 
-                {/* Theme Filter */}
-                <div className="flex flex-wrap gap-2">
-                    <span className="text-sm text-zinc-500 mr-2 self-center">Theme:</span>
-                    <button
-                        onClick={() => setThemeFilter('all')}
-                        className={`px-3 py-1.5 text-sm font-medium rounded-lg transition-colors ${themeFilter === 'all'
-                            ? 'bg-white text-zinc-950'
-                            : 'bg-zinc-900 text-zinc-400 hover:bg-zinc-800 hover:text-white'
-                            }`}
-                    >
-                        All ({components.length})
-                    </button>
-                    {allThemes.map((theme) => {
-                        const count = components.filter((c) => c.theme === theme).length
-                        return (
+                    {/* Themes */}
+                    <div>
+                        <h3 className="text-sm font-semibold text-zinc-400 mb-3 uppercase tracking-wider">Themes</h3>
+                        <div className="space-y-1">
                             <button
-                                key={theme}
-                                onClick={() => setThemeFilter(theme)}
-                                className={`px-3 py-1.5 text-sm font-medium rounded-lg transition-colors flex items-center gap-2 ${themeFilter === theme
-                                        ? 'bg-white text-zinc-950'
-                                        : 'bg-zinc-900 text-zinc-400 hover:bg-zinc-800 hover:text-white'
+                                onClick={() => setThemeFilter('all')}
+                                className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-colors flex items-center justify-between group ${themeFilter === 'all'
+                                        ? 'bg-white text-zinc-950 font-medium'
+                                        : 'text-zinc-400 hover:bg-zinc-900 hover:text-white'
                                     }`}
                             >
-                                <span className={`h-2 w-2 rounded-full ${getThemeColor(theme)}`} />
-                                {theme.charAt(0).toUpperCase() + theme.slice(1)} ({count})
+                                <span>All Themes</span>
+                                <span className={`text-xs ${themeFilter === 'all' ? 'text-zinc-500' : 'text-zinc-600 group-hover:text-zinc-500'}`}>
+                                    {components.length}
+                                </span>
                             </button>
-                        )
-                    })}
-                </div>
-
-                {/* Category Filter */}
-                <div className="flex flex-wrap gap-2">
-                    <span className="text-sm text-zinc-500 mr-2 self-center">Category:</span>
-                    <button
-                        onClick={() => setCategoryFilter('all')}
-                        className={`px - 3 py - 1.5 text - sm font - medium rounded - lg transition - colors ${categoryFilter === 'all'
-                                ? 'bg-white text-zinc-950'
-                                : 'bg-zinc-900 text-zinc-400 hover:bg-zinc-800 hover:text-white'
-                            }`}
-                    >
-                        All
-                    </button>
-                    {allCategories.map((category) => (
-                        <button
-                            key={category}
-                            onClick={() => setCategoryFilter(category)}
-                            className={`px-3 py-1.5 text-sm font-medium rounded-lg transition-colors ${categoryFilter === category
-                                ? 'bg-white text-zinc-950'
-                                : 'bg-zinc-900 text-zinc-400 hover:bg-zinc-800 hover:text-white'
-                                }`}
-                        >
-                            {category.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')}
-                        </button>
-                    ))}
-                </div>
-            </div>
-
-            {/* Results Count */}
-            <div className="mb-6 text-sm text-zinc-500">
-                Showing {filteredComponents.length} of {components.length} components
-            </div>
-
-            {/* Component Grid */}
-            <motion.div
-                key={`${themeFilter}-${categoryFilter}-${searchQuery}`}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.2 }}
-                className="grid md:grid-cols-2 lg:grid-cols-3 gap-4"
-            >
-                {filteredComponents.map((comp, index) => (
-                    <motion.div
-                        key={comp.id}
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.3, delay: index * 0.02 }}
-                    >
-                        <Link
-                            to={`/components/${comp.theme}/${comp.id}`}
-                            className="group block rounded-xl border border-zinc-800 bg-zinc-900/50 overflow-hidden hover:border-zinc-600 transition-all"
-                        >
-                            {/* Preview Area */}
-                            <div className="h-32 bg-zinc-950 flex items-center justify-center border-b border-zinc-800 relative overflow-hidden">
-                                <div className="text-4xl font-bold text-zinc-800 group-hover:text-zinc-700 transition-colors">
-                                    {'</>'}
-                                </div>
-                                {/* Theme indicator */}
-                                <div className={`absolute top-3 right-3 h-2 w-2 rounded-full ${getThemeColor(comp.theme)}`} />
-                            </div>
-
-                            {/* Info */}
-                            <div className="p-4">
-                                <div className="flex items-center gap-2 mb-2">
-                                    <h3 className="font-semibold text-white group-hover:text-zinc-100 transition-colors">
-                                        {comp.name}
-                                    </h3>
-                                    <span className={`px-1.5 py-0.5 text-[10px] rounded ${getCategoryColor(comp.category)}`}>
-                                        {comp.category}
-                                    </span>
-                                </div>
-                                <p className="text-sm text-zinc-500 mb-3 line-clamp-2">{comp.description}</p>
-                                <div className="flex items-center gap-2">
-                                    <span className={`h-2 w-2 rounded-full ${getThemeColor(comp.theme)}`} />
-                                    <span className="text-xs text-zinc-600">{comp.theme}</span>
-                                </div>
-                            </div>
-                        </Link>
-                    </motion.div>
-                ))}
-            </motion.div>
-
-            {/* Empty State */}
-            {
-                filteredComponents.length === 0 && (
-                    <div className="text-center py-16">
-                        <p className="text-zinc-500 mb-2">No components found</p>
-                        <button
-                            onClick={() => {
-                                setThemeFilter('all')
-                                setCategoryFilter('all')
-                                setSearchQuery('')
-                            }}
-                            className="text-sm text-zinc-400 hover:text-white transition-colors"
-                        >
-                            Clear filters
-                        </button>
+                            {allThemes.map((theme) => {
+                                const count = components.filter((c) => c.theme === theme).length
+                                return (
+                                    <button
+                                        key={theme}
+                                        onClick={() => setThemeFilter(theme)}
+                                        className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-colors flex items-center justify-between group ${themeFilter === theme
+                                                ? 'bg-zinc-800 text-white font-medium shadow-sm border border-zinc-700'
+                                                : 'text-zinc-400 hover:bg-zinc-900 hover:text-white'
+                                            }`}
+                                    >
+                                        <div className="flex items-center gap-2">
+                                            <div className={`w-2 h-2 rounded-full ${getThemeColor(theme)}`} />
+                                            <span className="capitalize">{theme}</span>
+                                        </div>
+                                        <span className={`text-xs ${themeFilter === theme ? 'text-zinc-400' : 'text-zinc-600 group-hover:text-zinc-500'}`}>
+                                            {count}
+                                        </span>
+                                    </button>
+                                )
+                            })}
+                        </div>
                     </div>
-                )
-            }
-        </div >
+
+                    {/* Categories */}
+                    <div>
+                        <h3 className="text-sm font-semibold text-zinc-400 mb-3 uppercase tracking-wider">Categories</h3>
+                        <div className="space-y-1">
+                            <button
+                                onClick={() => setCategoryFilter('all')}
+                                className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-colors flex items-center justify-between group ${categoryFilter === 'all'
+                                        ? 'bg-white text-zinc-950 font-medium'
+                                        : 'text-zinc-400 hover:bg-zinc-900 hover:text-white'
+                                    }`}
+                            >
+                                <span>All Categories</span>
+                            </button>
+                            {allCategories.map((category) => (
+                                <button
+                                    key={category}
+                                    onClick={() => setCategoryFilter(category)}
+                                    className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-colors flex items-center justify-between group ${categoryFilter === category
+                                            ? 'bg-zinc-800 text-white font-medium border border-zinc-700'
+                                            : 'text-zinc-400 hover:bg-zinc-900 hover:text-white'
+                                        }`}
+                                >
+                                    <span className="capitalize">{category.replace('-', ' ')}</span>
+                                </button>
+                            ))}
+                        </div>
+                    </div>
+                </aside>
+
+                {/* Main Content */}
+                <div className="flex-1 min-w-0">
+                    <div className="flex items-center justify-between mb-8">
+                        <div>
+                            <h1 className="text-3xl font-bold text-white mb-2">Component Vault</h1>
+                            <p className="text-zinc-400">
+                                {filteredComponents.length} result{filteredComponents.length !== 1 ? 's' : ''} found
+                                {themeFilter !== 'all' && <span className="text-zinc-500"> in <span className="text-zinc-300 capitalize">{themeFilter}</span></span>}
+                                {categoryFilter !== 'all' && <span className="text-zinc-500"> type <span className="text-zinc-300 capitalize">{categoryFilter}</span></span>}
+                            </p>
+                        </div>
+
+                        {/* Sort/Actions could go here */}
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+                        {filteredComponents.map((comp, index) => (
+                            <motion.div
+                                key={comp.id}
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.3, delay: index * 0.02 }}
+                            >
+                                <LiveComponentCard component={comp} />
+                            </motion.div>
+                        ))}
+                    </div>
+
+                    {filteredComponents.length === 0 && (
+                        <div className="text-center py-20 border border-dashed border-zinc-800 rounded-xl">
+                            <h3 className="text-zinc-300 font-medium mb-2">No components found</h3>
+                            <button
+                                onClick={() => {
+                                    setThemeFilter('all')
+                                    setCategoryFilter('all')
+                                    setSearchQuery('')
+                                }}
+                                className="text-sm text-zinc-500 hover:text-white transition-colors"
+                            >
+                                Clear all filters
+                            </button>
+                        </div>
+                    )}
+                </div>
+            </div>
+        </div>
     )
 }

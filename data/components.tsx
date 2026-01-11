@@ -447,6 +447,10 @@ export const components: ComponentMeta[] = [
         component: SpotlightCard,
         source: SpotlightCardSource,
         tags: ['card', 'hover', 'spotlight', 'mouse-tracking', 'wrapper', 'container', 'effect', 'shadow'],
+        previewProps: {
+            className: 'w-64 h-64 flex items-center justify-center p-8 text-center',
+            children: <div className="text-zinc-400"> Hover for spotlight </div>
+        }
     },
     {
         id: 'glow-button',
@@ -457,6 +461,9 @@ export const components: ComponentMeta[] = [
         component: GlowButton,
         source: GlowButtonSource,
         tags: ['button', 'glow', 'gradient', 'cta', 'action', 'shiny', 'neon'],
+        previewProps: {
+            children: 'Hover Me'
+        }
     },
     {
         id: 'terminal',

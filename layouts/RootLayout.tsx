@@ -15,8 +15,9 @@ import {
     Coins,
 } from 'lucide-react'
 import { ThemeProvider, useTheme } from '@/context/ThemeContext'
-import GlobalSearch from '@/components/search/GlobalSearch'
+import CommandPalette from '@/components/ui/CommandPalette'
 import SkipLink from '@/components/a11y/SkipLink'
+import { Search } from 'lucide-react'
 
 /**
  * Hook to reset theme to registry default when navigating away from template pages.
@@ -26,15 +27,15 @@ import SkipLink from '@/components/a11y/SkipLink'
 function useTemplateModeReset() {
     const location = useLocation()
     const { clearTemplateTheme, isTemplateMode } = useTheme()
-    
+
     useEffect(() => {
         const pathname = location.pathname
-        
+
         // Check if we're on a template-specific page
         // /templates/:id or /templates/:id/components
         const templateMatch = pathname.match(/^\/templates\/([^/]+)/)
         const isTemplatePage = templateMatch !== null && templateMatch[1] !== undefined
-        
+
         // If we're not on a template page and we're in template mode, reset
         if (!isTemplatePage && isTemplateMode) {
             clearTemplateTheme()
@@ -45,18 +46,18 @@ function useTemplateModeReset() {
 function Background() {
     const { currentTheme, isTemplateMode } = useTheme()
     const location = useLocation()
-    
+
     // Determine if we're on a registry page (not a template-specific page)
     const isRegistryPage = !location.pathname.match(/^\/templates\/[^/]+/)
 
     const getBackgroundImage = () => {
         const id = currentTheme.id
-        
+
         // Registry pages always use the dark dot pattern
         if (isRegistryPage || !isTemplateMode || id === 'registry') {
             return `radial-gradient(#3f3f46 1px, transparent 1px)`
         }
-        
+
         if (id === 'education') {
             return `linear-gradient(#cbd5e1 1px, transparent 1px), linear-gradient(90deg, #cbd5e1 1px, transparent 1px)`
         }
@@ -83,7 +84,7 @@ function Background() {
         }
         return `radial-gradient(#d6d3d1 1px, transparent 1px)`
     }
-    
+
     // Registry pages always use dark background, regardless of any lingering theme state
     const backgroundColor = isRegistryPage ? 'bg-zinc-950' : currentTheme.backgroundColor
 
@@ -105,7 +106,7 @@ function Sidebar() {
     const { currentTheme, isTemplateMode } = useTheme()
     // const [isGalleriesOpen, setIsGalleriesOpen] = useState(true) // Removed state
     const location = useLocation()
-    
+
     // Use route-based detection for reliable styling (avoids timing issues with state)
     const isTemplatePage = location.pathname.match(/^\/templates\/[^/]+/) !== null
 
@@ -123,10 +124,10 @@ function Sidebar() {
         { to: '/tokens', icon: Coins, label: 'Tokens' },
         // { to: '/settings', icon: Settings, label: 'Settings' },
     ]
-    
+
     // Registry pages use dark sidebar, template pages use their theme's sidebar
-    const sidebarStyles = isTemplatePage && isTemplateMode 
-        ? currentTheme.sidebarStyles 
+    const sidebarStyles = isTemplatePage && isTemplateMode
+        ? currentTheme.sidebarStyles
         : 'border-zinc-800 bg-zinc-950'
 
     return (
@@ -162,7 +163,7 @@ function Sidebar() {
                                     : 'text-slate-500 hover:bg-slate-100 hover:text-slate-900'
                             }`
                         }
-                        aria-current={({ isActive }) => isActive ? 'page' : undefined}
+                        aria-current={location.pathname === item.to ? 'page' : undefined}
                     >
                         <item.icon className="h-5 w-5 shrink-0" strokeWidth={1.5} aria-hidden="true" />
                         <span className="ml-3 overflow-hidden whitespace-nowrap text-sm font-medium opacity-0 transition-opacity duration-200 group-hover:opacity-100">
@@ -178,10 +179,10 @@ function Sidebar() {
 function Header() {
     const { currentTheme, isTemplateMode } = useTheme()
     const location = useLocation()
-    
+
     // Use route-based detection for reliable styling
     const isTemplatePage = location.pathname.match(/^\/templates\/[^/]+/) !== null
-    
+
     // Registry pages always use dark styling
     const isDark = isTemplatePage && isTemplateMode
         ? ['engineering', 'saas', 'social', 'fintech', 'productivity', 'game', 'music', 'food', 'grid', 'scifi', 'festival', 'cockpit', 'blueprint'].includes(currentTheme.id)
@@ -196,7 +197,16 @@ function Header() {
         <header className={`sticky top-0 z-40 flex h-16 w-full items-center justify-between border-b px-8 backdrop-blur-md transition-colors ${isDark ? 'border-zinc-800 bg-zinc-950/80' : 'border-slate-200 bg-white/80'
             }`}>
             <div className="flex items-center gap-4">
-                <GlobalSearch />
+                <button
+                    onClick={() => document.dispatchEvent(new KeyboardEvent('keydown', { key: 'k', metaKey: true }))}
+                    className={`flex items-center gap-2 px-3 py-1.5 border rounded-lg text-sm transition-colors text-zinc-500 hover:text-zinc-300 ${isDark ? 'bg-zinc-900 border-zinc-800 hover:border-zinc-700' : 'bg-slate-50 border-slate-200 hover:border-slate-300'}`}
+                >
+                    <Search className="w-4 h-4" />
+                    <span className="hidden sm:inline">Search...</span>
+                    <kbd className="hidden sm:inline-flex items-center gap-0.5 text-[10px] font-medium opacity-60">
+                        <span className="text-xs">⌘</span>K
+                    </kbd>
+                </button>
             </div>
 
             <div className="flex items-center gap-4">
@@ -224,21 +234,21 @@ function LayoutContent() {
     const { currentTheme, isTemplateMode } = useTheme()
     const location = useLocation()
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-    
+
     // Reset to registry theme when navigating away from template pages
     useTemplateModeReset()
-    
+
     // Use route-based detection for reliable styling
     const isTemplatePage = location.pathname.match(/^\/templates\/[^/]+/) !== null
 
     // Registry pages always use dark theme, template pages use their theme
-    const isDark = isTemplatePage && isTemplateMode 
+    const isDark = isTemplatePage && isTemplateMode
         ? ['engineering', 'saas', 'social', 'fintech', 'productivity', 'game', 'music', 'food', 'grid', 'scifi', 'festival', 'cockpit', 'blueprint'].includes(currentTheme.id)
         : true // Registry always dark
-    
+
     // Text color: registry pages use light text, template pages use their theme's text
-    const textColorClass = isTemplatePage && isTemplateMode 
-        ? currentTheme.textColorClass 
+    const textColorClass = isTemplatePage && isTemplateMode
+        ? currentTheme.textColorClass
         : 'text-zinc-100'
 
     return (
@@ -274,6 +284,7 @@ function LayoutContent() {
                 className="relative flex flex-1 flex-col pl-0 lg:pl-16 transition-[padding] duration-300"
             >
                 <Header />
+                <CommandPalette />
                 <Outlet />
             </main>
         </div>
