@@ -9,6 +9,7 @@
     "preview": "vite preview",
     "test": "NODE_OPTIONS='--experimental-vm-modules' jest",
     "test:a11y": "NODE_OPTIONS='--experimental-vm-modules' jest --testPathPattern=a11y",
+    "test:static": "NODE_OPTIONS='--experimental-vm-modules' jest --testPathPattern=static",
     "check:components": "npx vite-node scripts/verify-components.tsx"
   },
   "dependencies": {
