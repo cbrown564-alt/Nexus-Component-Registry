@@ -1,40 +1,46 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useTheme } from '@/context/ThemeContext';
 
 interface LegalPaperProps {
   children: React.ReactNode;
-  className?: string;
   title?: string;
+  style?: React.CSSProperties;
 }
 
-const LegalPaper: React.FC<LegalPaperProps> = ({ 
-  children, 
-  className = "",
-  title
-}) => {
+const LegalPaper: React.FC<LegalPaperProps> = ({ children, title, style }) => {
+  const { currentPlaygroundTheme: theme } = useTheme();
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className={`relative mx-auto max-w-[850px] bg-white shadow-xl shadow-stone-200 border border-stone-200 min-h-[1100px] ${className}`}
+      className="mx-auto max-w-[850px] shadow-sm min-h-[1000px] p-12 relative"
+      style={{
+        backgroundColor: theme.colors.card,
+        color: theme.colors.cardForeground,
+        boxShadow: `0 20px 25px -5px ${theme.colors.border}`,
+        border: `1px solid ${theme.colors.border}`,
+        ...style
+      }}
     >
-      {/* Hole punches */}
-      <div className="absolute left-4 top-8 h-4 w-4 rounded-full bg-stone-100 shadow-inner" />
-      <div className="absolute left-4 top-1/2 h-4 w-4 rounded-full bg-stone-100 shadow-inner" />
-      <div className="absolute left-4 bottom-8 h-4 w-4 rounded-full bg-stone-100 shadow-inner" />
+      {/* Dynamic Watermark/Background Pattern - using simple CSS for now could be SVG */}
+      <div className="absolute inset-0 pointer-events-none opacity-[0.03]"
+        style={{ backgroundImage: `repeating-linear-gradient(45deg, ${theme.colors.foreground} 0, ${theme.colors.foreground} 1px, transparent 0, transparent 50%)`, backgroundSize: '10px 10px' }}
+      >
+      </div>
 
-      {/* Red margin line */}
-      <div className="absolute left-16 top-0 bottom-0 w-px bg-red-200" />
+      {title && (
+        <div className="mb-12 text-center border-b-2 pb-6" style={{ borderColor: theme.colors.foreground }}>
+          <h2 className="text-3xl font-bold uppercase tracking-widest font-serif" style={{ color: theme.colors.foreground }}>{title}</h2>
+        </div>
+      )}
 
-      <div className="pl-24 pr-12 py-16">
-        {title && (
-          <div className="mb-12 text-center">
-            <h1 className="font-serif text-2xl font-bold uppercase tracking-widest text-stone-900 border-b-2 border-stone-900 pb-2 inline-block">
-              {title}
-            </h1>
-          </div>
-        )}
+      {/* Red margin line simulation */}
+      <div className="absolute left-16 top-0 bottom-0 w-px opacity-30" style={{ backgroundColor: 'red' }} />
+
+      <div className="relative pl-8">
         {children}
       </div>
     </motion.div>

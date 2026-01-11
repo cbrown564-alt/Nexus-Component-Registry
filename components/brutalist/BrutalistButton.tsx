@@ -1,7 +1,6 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, HTMLMotionProps } from 'framer-motion';
 
-interface BrutalistButtonProps {
+interface BrutalistButtonProps extends HTMLMotionProps<"button"> {
     children?: React.ReactNode;
     variant?: 'neo' | 'reverse' | 'outline';
     size?: 'sm' | 'md' | 'lg' | 'icon';
@@ -21,6 +20,7 @@ const BrutalistButton: React.FC<BrutalistButtonProps> = ({
     disabled = false,
     onClick,
     color,
+    ...props
 }) => {
     const baseStyles = 'relative inline-flex items-center justify-center gap-2 font-mono font-bold uppercase tracking-wide border-2 border-black transition-all focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed';
 
@@ -48,6 +48,7 @@ const BrutalistButton: React.FC<BrutalistButtonProps> = ({
             className={`${baseStyles} ${sizeStyles[size]} ${styleClass} ${variant !== 'outline' ? shadowStyles : 'shadow-none hover:bg-black hover:text-white'} ${className}`}
             disabled={disabled}
             onClick={onClick}
+            {...props}
         >
             {icon && <span className="shrink-0">{icon}</span>}
             {children}

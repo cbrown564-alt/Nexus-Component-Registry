@@ -8,15 +8,29 @@ import TransactionList from '../components/fintech/TransactionList';
 import FintechCard from '../components/fintech/FintechCard';
 import FintechButton from '../components/fintech/FintechButton';
 
+import { useTheme } from '@/context/ThemeContext';
+
 const FintechDashboard = () => {
+    const { currentPlaygroundTheme: theme, setScopedTheme } = useTheme();
+
+    React.useEffect(() => {
+        setScopedTheme('professional', 'fintech');
+    }, []);
+
     return (
-        <div className="container mx-auto max-w-[1600px] min-h-screen p-6 lg:p-10 font-sans text-zinc-200">
+        <div
+            className="container mx-auto max-w-[1600px] min-h-screen p-6 lg:p-10 font-sans text-zinc-200"
+            style={{
+                backgroundColor: theme.colors.background,
+                color: theme.colors.foreground
+            }}
+        >
 
             {/* Header */}
             <div className="mb-8 flex flex-col justify-between gap-4 md:flex-row md:items-end">
                 <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }}>
-                    <h1 className="text-3xl font-bold tracking-tight text-white">Dashboard</h1>
-                    <p className="text-zinc-500 mt-1">Welcome back, Alexander.</p>
+                    <h1 className="text-3xl font-bold tracking-tight" style={{ color: theme.colors.foreground }}>Dashboard</h1>
+                    <p className="mt-1" style={{ color: theme.colors.mutedForeground }}>Welcome back, Alexander.</p>
                 </motion.div>
                 <motion.div
                     initial={{ opacity: 0, x: 20 }}
@@ -46,13 +60,13 @@ const FintechDashboard = () => {
                             { label: 'Cash Flow', value: '$12,800', change: '+8%', icon: ArrowRightLeft },
                             { label: 'Security Status', value: 'Protected', change: 'Active', icon: ShieldCheck },
                         ].map((stat, i) => (
-                            <FintechCard key={i} className="p-6" delay={0.1 * i}>
+                            <FintechCard key={i} className="p-6" delay={0.1 * i} style={{ backgroundColor: theme.colors.card, borderColor: theme.colors.border }}>
                                 <div className="flex items-start justify-between mb-4">
-                                    <div className="text-sm font-medium text-zinc-500">{stat.label}</div>
-                                    <stat.icon className="h-5 w-5 text-zinc-600" />
+                                    <div className="text-sm font-medium" style={{ color: theme.colors.mutedForeground }}>{stat.label}</div>
+                                    <stat.icon className="h-5 w-5" style={{ color: theme.colors.mutedForeground }} />
                                 </div>
-                                <div className="text-2xl font-bold text-white mb-1">{stat.value}</div>
-                                <div className="text-xs text-emerald-500">{stat.change}</div>
+                                <div className="text-2xl font-bold mb-1" style={{ color: theme.colors.foreground }}>{stat.value}</div>
+                                <div className="text-xs" style={{ color: theme.colors.primary }}>{stat.change}</div>
                             </FintechCard>
                         ))}
                     </div>

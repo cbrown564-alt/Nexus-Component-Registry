@@ -16,23 +16,38 @@ import RedlineSidebar from '../components/legal/RedlineSidebar';
 import DiffViewer from '../components/legal/DiffViewer';
 import LegalButton from '../components/legal/LegalButton';
 
+import { useTheme } from '@/context/ThemeContext';
+
 const LegalDashboard = () => {
+  const { currentPlaygroundTheme: theme, setScopedTheme } = useTheme();
+
+  React.useEffect(() => {
+    setScopedTheme('professional', 'legal');
+  }, []);
+
   const [activeClause, setActiveClause] = useState<string | null>('1.2');
 
   return (
-    <div className="flex h-screen w-full bg-[#e5e5e4] font-sans text-stone-900 overflow-hidden">
+    <div
+      className="flex h-screen w-full font-sans overflow-hidden"
+      style={{
+        backgroundColor: theme.colors.background,
+        color: theme.colors.foreground,
+        fontFamily: theme.typography.fontFamily,
+      }}
+    >
 
       {/* Left Navigation (Sidebar) */}
-      <aside className="w-16 md:w-64 flex-shrink-0 bg-[#1c1c1c] text-stone-400 flex flex-col border-r border-stone-800">
-        <div className="h-16 flex items-center justify-center md:justify-start md:px-6 border-b border-white/10">
-          <div className="h-8 w-8 bg-red-700 rounded-sm flex items-center justify-center text-white font-serif font-bold text-lg">
+      <aside className="w-16 md:w-64 flex-shrink-0 flex flex-col border-r" style={{ backgroundColor: theme.colors.primary, color: theme.colors.mutedForeground, borderColor: theme.colors.border }}>
+        <div className="h-16 flex items-center justify-center md:justify-start md:px-6 border-b" style={{ borderColor: theme.colors.border }}>
+          <div className="h-8 w-8 rounded-sm flex items-center justify-center font-serif font-bold text-lg" style={{ backgroundColor: '#b91c1c', color: '#ffffff' }}>
             §
           </div>
-          <span className="ml-3 font-serif font-bold text-stone-200 hidden md:block">LegalEagle</span>
+          <span className="ml-3 font-serif font-bold hidden md:block" style={{ color: theme.colors.primaryForeground }}>LegalEagle</span>
         </div>
 
         <nav className="flex-1 p-2 md:p-4 space-y-1">
-          <div className="hidden md:block px-2 mb-2 text-[10px] uppercase tracking-wider font-bold text-stone-600">Documents</div>
+          <div className="hidden md:block px-2 mb-2 text-[10px] uppercase tracking-wider font-bold" style={{ color: theme.colors.secondaryForeground }}>Documents</div>
           {[
             { icon: FileText, label: 'Master Agreement', active: true },
             { icon: History, label: 'Version History', active: false },
@@ -40,10 +55,12 @@ const LegalDashboard = () => {
           ].map((item, i) => (
             <button
               key={i}
-              className={`w-full flex items-center gap-3 p-2 rounded-md transition-all ${item.active
-                  ? 'bg-white/10 text-white shadow-sm'
-                  : 'hover:bg-white/5 hover:text-stone-200'
-                }`}
+              className={`w-full flex items-center gap-3 p-2 rounded-md transition-all`}
+              style={{
+                backgroundColor: item.active ? 'rgba(255,255,255,0.1)' : 'transparent',
+                color: item.active ? theme.colors.primaryForeground : theme.colors.secondaryForeground,
+                boxShadow: item.active ? '0 1px 2px 0 rgba(0, 0, 0, 0.05)' : 'none'
+              }}
             >
               <item.icon className="h-5 w-5" />
               <span className="hidden md:block text-sm font-medium">{item.label}</span>
@@ -51,10 +68,10 @@ const LegalDashboard = () => {
           ))}
         </nav>
 
-        <div className="p-4 border-t border-white/10 hidden md:block">
-          <div className="rounded-md bg-stone-800 p-3">
-            <div className="text-xs font-bold text-stone-300 mb-1">Audit Trail</div>
-            <div className="text-[10px] text-stone-500 font-mono">
+        <div className="p-4 border-t hidden md:block" style={{ borderColor: theme.colors.border }}>
+          <div className="rounded-md p-3" style={{ backgroundColor: theme.colors.secondary }}>
+            <div className="text-xs font-bold mb-1" style={{ color: theme.colors.foreground }}>Audit Trail</div>
+            <div className="text-[10px] font-mono" style={{ color: theme.colors.mutedForeground }}>
               User: J. Doe<br />
               Session: #8821<br />
               Last Edit: 2m ago
@@ -67,25 +84,25 @@ const LegalDashboard = () => {
       <main className="flex-1 flex flex-col min-w-0">
 
         {/* Top Toolbar */}
-        <header className="h-16 bg-white border-b border-stone-200 flex items-center justify-between px-6 shadow-sm z-10">
+        <header className="h-16 border-b flex items-center justify-between px-6 shadow-sm z-10" style={{ backgroundColor: theme.colors.card, borderColor: theme.colors.border }}>
           <div className="flex items-center gap-4">
-            <button className="p-2 hover:bg-stone-100 rounded-full text-stone-500">
+            <button className="p-2 rounded-full" style={{ color: theme.colors.mutedForeground }}>
               <ChevronLeft className="h-5 w-5" />
             </button>
             <div>
-              <h1 className="text-lg font-bold text-stone-900 leading-tight">Master Services Agreement v2.4</h1>
-              <div className="flex items-center gap-2 text-xs text-stone-500">
+              <h1 className="text-lg font-bold leading-tight" style={{ color: theme.colors.foreground }}>Master Services Agreement v2.4</h1>
+              <div className="flex items-center gap-2 text-xs" style={{ color: theme.colors.mutedForeground }}>
                 <span className="w-2 h-2 bg-yellow-500 rounded-full" />
                 Draft Mode
-                <span className="text-stone-300">|</span>
+                <span style={{ color: theme.colors.border }}>|</span>
                 Last modified by Sarah Jenkins
               </div>
             </div>
           </div>
 
           <div className="flex items-center gap-2">
-            <div className="hidden lg:flex items-center bg-stone-100 rounded-lg p-1 mr-4">
-              <LegalButton variant="secondary" size="sm" className="shadow-sm bg-white">Edit</LegalButton>
+            <div className="hidden lg:flex items-center rounded-lg p-1 mr-4" style={{ backgroundColor: theme.colors.muted }}>
+              <LegalButton variant="secondary" size="sm" className="shadow-sm" style={{ backgroundColor: theme.colors.card }}>Edit</LegalButton>
               <LegalButton variant="toolbar" size="sm">Review</LegalButton>
               <LegalButton variant="toolbar" size="sm">Sign</LegalButton>
             </div>
@@ -99,7 +116,7 @@ const LegalDashboard = () => {
         </header>
 
         {/* Scrollable Content Area */}
-        <div className="flex-1 overflow-hidden flex bg-[#e5e5e4]">
+        <div className="flex-1 overflow-hidden flex" style={{ backgroundColor: theme.colors.background }}>
 
           {/* Document Canvas */}
           <div className="flex-1 overflow-y-auto p-8 lg:p-12 relative scroll-smooth">

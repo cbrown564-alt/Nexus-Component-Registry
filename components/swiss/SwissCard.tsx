@@ -1,7 +1,7 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, HTMLMotionProps } from 'framer-motion';
 
-interface SwissCardProps {
+interface SwissCardProps extends HTMLMotionProps<"div"> {
   children: React.ReactNode;
   className?: string;
   bordered?: boolean;
@@ -10,13 +10,14 @@ interface SwissCardProps {
   delay?: number;
 }
 
-const SwissCard: React.FC<SwissCardProps> = ({ 
-  children, 
+const SwissCard: React.FC<SwissCardProps> = ({
+  children,
   className = "",
   bordered = false,
   inverted = false,
   black = false,
-  delay = 0
+  delay = 0,
+  ...props
 }) => {
   let bgColor = 'bg-transparent';
   let textColor = 'text-black';
@@ -42,6 +43,7 @@ const SwissCard: React.FC<SwissCardProps> = ({
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay, ease: [0.16, 1, 0.3, 1] }}
       className={`relative p-6 md:p-8 ${bgColor} ${textColor} ${bordered ? 'border-2' : ''} border-solid rounded-none ${borderColor} ${className}`}
+      {...props}
     >
       {children}
     </motion.div>

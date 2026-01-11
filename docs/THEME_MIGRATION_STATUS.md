@@ -41,13 +41,24 @@ Tracking the status of extracting hardcoded template identities into independent
 - [x] **Canvas** (`eink`) - *Extracted*
 
 ### Experimental
-- [ ] **Raw** (`brutalist`)
-- [ ] **Eden** (`solarpunk`)
-- [ ] **Plastic** (`softplastic`)
-- [ ] **Pulse** (`festival`)
-- [ ] **Acid** (`acid`)
-- [ ] **Clay** (`clay`)
-- [ ] **Swiss** (`swiss`)
+- [x] **Raw** (`brutalist`) - *Extracted*
+- [x] **Eden** (`solarpunk`) - *Extracted*
+- [x] **Plastic** (`soft-plastic`) - *Extracted*
+- [x] **Pulse** (`festival`) - *Extracted*
+- [x] **Acid** (`acid`) - *Extracted*
+- [x] **Clay** (`clay`) - *Extracted*
+- [x] **Swiss** (`swiss`) - *Extracted*
+
+### Standard (Playground)
+- [x] **Midnight** (`midnight`) - *Extracted*
+- [x] **Emerald Tier** (`emerald_tier`) - *Extracted*
+- [x] **Ember** (`ember`) - *Extracted*
+- [x] **Neon** (`neon`) - *Extracted*
+- [x] **Forest** (`forest`) - *Extracted*
+- [x] **Paper** (`paper`) - *Extracted*
+- [x] **Ocean** (`ocean`) - *Extracted*
+- [x] **Sand** (`sand`) - *Extracted*
+- [x] **Mono** (`mono`) - *Extracted*
 
 ## Next Steps
 1. Extract **Helix** (SciFi) and **Retro** (Legacy) during this refactor session.

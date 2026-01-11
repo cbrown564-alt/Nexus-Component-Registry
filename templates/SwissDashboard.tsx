@@ -1,14 +1,29 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { ArrowUpRight, Grid3X3, Circle, Square, Triangle } from 'lucide-react';
 import SwissCard from '../components/swiss/SwissCard';
 import SwissMetric from '../components/swiss/SwissMetric';
 import SwissButton from '../components/swiss/SwissButton';
 import SwissTypography from '../components/swiss/SwissTypography';
 import SwissDivider from '../components/swiss/SwissDivider';
+import { useTheme } from '@/context/ThemeContext';
 
 const SwissDashboard = () => {
+   const { currentPlaygroundTheme: theme, setScopedTheme } = useTheme();
+
+   useEffect(() => {
+      setScopedTheme('experimental', 'swiss');
+   }, []);
+
    return (
-      <div className="min-h-screen bg-[#F5F5F5] font-sans text-black p-4 md:p-12 overflow-hidden selection:bg-[#DC2626] selection:text-white">
+      <div
+         className="min-h-screen font-sans p-4 md:p-12 overflow-hidden selection:text-white"
+         style={{
+            backgroundColor: theme.colors.background,
+            color: theme.colors.foreground,
+            '--tw-selection-bg': theme.colors.primary,
+         } as React.CSSProperties}
+      >
+         <style>{`::selection { background-color: ${theme.colors.primary}; color: ${theme.colors.primaryForeground}; }`}</style>
 
          {/* The Grid Container */}
          <div className="max-w-[1600px] mx-auto grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8">
@@ -18,7 +33,7 @@ const SwissDashboard = () => {
                <SwissTypography variant="display" className="mb-6">
                   DESIGN<br />
                   SYSTEM<br />
-                  <span className="text-[#DC2626]">2024</span>
+                  <span style={{ color: theme.colors.primary }}>2024</span>
                </SwissTypography>
                <SwissDivider weight="thick" className="mb-4 w-24" />
                <SwissTypography variant="body" className="max-w-md font-bold leading-tight">
@@ -27,12 +42,12 @@ const SwissDashboard = () => {
             </div>
 
             <div className="md:col-span-12 lg:col-span-4 flex flex-col justify-end items-end mb-12">
-               <div className="w-64 border-t-4 border-black pt-1">
+               <div className="w-64 border-t-4 pt-1" style={{ borderColor: theme.colors.border }}>
                   <div className="flex justify-between items-center text-xl font-bold">
                      <span>ZÜRICH</span>
                      <span>10:42</span>
                   </div>
-                  <div className="flex justify-between items-center text-xl font-bold text-[#DC2626]">
+                  <div className="flex justify-between items-center text-xl font-bold" style={{ color: theme.colors.primary }}>
                      <span>LATENCY</span>
                      <span>12ms</span>
                   </div>
@@ -40,7 +55,7 @@ const SwissDashboard = () => {
             </div>
 
             {/* Row 1 */}
-            <div className="md:col-span-6 lg:col-span-4 bg-white">
+            <div className="md:col-span-6 lg:col-span-4" style={{ backgroundColor: theme.colors.card }}>
                <SwissCard className="h-full">
                   <SwissMetric
                      label="Active Users"
@@ -51,7 +66,7 @@ const SwissDashboard = () => {
                </SwissCard>
             </div>
 
-            <div className="md:col-span-6 lg:col-span-4 bg-[#DC2626] text-white">
+            <div className="md:col-span-6 lg:col-span-4" style={{ backgroundColor: theme.colors.primary, color: theme.colors.primaryForeground }}>
                <SwissCard inverted className="h-full flex flex-col justify-between">
                   <div className="text-9xl font-black opacity-20 absolute top-[-20px] right-[-20px] rotate-12">
                      %
@@ -69,9 +84,9 @@ const SwissDashboard = () => {
             </div>
 
             <div className="md:col-span-12 lg:col-span-4 flex flex-col gap-4">
-               <SwissCard bordered className="bg-white flex-1">
+               <SwissCard bordered className="flex-1" style={{ backgroundColor: theme.colors.card }}>
                   <div className="flex items-center gap-4 mb-4">
-                     <Circle className="h-4 w-4 fill-black" />
+                     <Circle className="h-4 w-4" style={{ fill: theme.colors.foreground }} />
                      <span className="font-bold text-sm uppercase tracking-widest">System Status</span>
                   </div>
                   <div className="text-4xl font-black">OPERATIONAL</div>
@@ -89,12 +104,12 @@ const SwissDashboard = () => {
             </div>
 
             {/* Row 2: List / Typography */}
-            <div className="md:col-span-12 lg:col-span-8 bg-white p-8 md:p-12 relative overflow-hidden group">
+            <div className="md:col-span-12 lg:col-span-8 p-8 md:p-12 relative overflow-hidden group" style={{ backgroundColor: theme.colors.card }}>
                {/* Hover Effect Background */}
-               <div className="absolute inset-0 bg-[#DC2626] transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-in-out z-0" />
+               <div className="absolute inset-0 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-in-out z-0" style={{ backgroundColor: theme.colors.primary }} />
 
                <div className="relative z-10 group-hover:text-white transition-colors duration-300">
-                  <h3 className="text-xs font-bold uppercase tracking-[0.3em] mb-12 border-b-2 border-black group-hover:border-white pb-4 inline-block">Recent Activity</h3>
+                  <h3 className="text-xs font-bold uppercase tracking-[0.3em] mb-12 border-b-2 group-hover:border-white pb-4 inline-block" style={{ borderColor: theme.colors.border }}>Recent Activity</h3>
 
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                      {[
@@ -116,23 +131,23 @@ const SwissDashboard = () => {
             </div>
 
             {/* Row 2: Graphic Element */}
-            <div className="md:col-span-12 lg:col-span-4 bg-white p-8 flex items-center justify-center relative overflow-hidden">
-               <div className="absolute inset-0 grid grid-cols-6 grid-rows-6 gap-px bg-[#f0f0f0]">
+            <div className="md:col-span-12 lg:col-span-4 p-8 flex items-center justify-center relative overflow-hidden" style={{ backgroundColor: theme.colors.card }}>
+               <div className="absolute inset-0 grid grid-cols-6 grid-rows-6 gap-px" style={{ backgroundColor: theme.colors.secondary }}>
                   {[...Array(36)].map((_, i) => (
-                     <div key={i} className="bg-white" />
+                     <div key={i} style={{ backgroundColor: theme.colors.card }} />
                   ))}
                </div>
 
                <div className="relative z-10 grid grid-cols-2 gap-4">
-                  <Square className="h-16 w-16 fill-[#DC2626] text-[#DC2626] mix-blend-multiply" />
-                  <Circle className="h-16 w-16 fill-black text-black mix-blend-multiply" />
-                  <Triangle className="h-16 w-16 fill-black text-black mix-blend-multiply" />
-                  <Square className="h-16 w-16 fill-[#DC2626] text-[#DC2626] mix-blend-multiply rounded-full" />
+                  <Square className="h-16 w-16 mix-blend-multiply" style={{ fill: theme.colors.primary, color: theme.colors.primary }} />
+                  <Circle className="h-16 w-16 mix-blend-multiply" style={{ fill: theme.colors.foreground, color: theme.colors.foreground }} />
+                  <Triangle className="h-16 w-16 mix-blend-multiply" style={{ fill: theme.colors.foreground, color: theme.colors.foreground }} />
+                  <Square className="h-16 w-16 mix-blend-multiply rounded-full" style={{ fill: theme.colors.primary, color: theme.colors.primary }} />
                </div>
             </div>
 
             {/* Footer Info */}
-            <div className="md:col-span-12 mt-8 border-t-2 border-black pt-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+            <div className="md:col-span-12 mt-8 border-t-2 pt-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-4" style={{ borderColor: theme.colors.border }}>
                <div className="text-xs font-bold uppercase tracking-widest max-w-sm">
                   Form follows function. Less is more. The grid is the master.
                </div>

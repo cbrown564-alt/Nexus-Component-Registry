@@ -1,25 +1,32 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, HTMLMotionProps } from 'framer-motion';
 
-interface StickerProps {
+interface StickerProps extends HTMLMotionProps<"div"> {
   children: React.ReactNode;
   className?: string;
   delay?: number;
-  rotation?: number;
 }
 
-const Sticker: React.FC<StickerProps> = ({ 
-  children, 
+const Sticker: React.FC<StickerProps> = ({
+  children,
   className = "",
   delay = 0,
-  rotation = 12
+  ...props
 }) => {
+  // Extract rotation from props.animate if it exists, otherwise use a default
+  const defaultRotation = 12;
+  const initialRotate = props.initial?.rotate ?? 180;
+  const animateRotate = (props.animate && typeof props.animate === 'object' && 'rotate' in props.animate)
+    ? props.animate.rotate
+    : defaultRotation;
+
   return (
     <motion.div
-      initial={{ scale: 0, rotate: 180 }}
-      animate={{ scale: 1, rotate: rotation }}
+      initial={{ scale: 0, rotate: initialRotate }}
+      animate={{ scale: 1, rotate: animateRotate }}
       transition={{ type: "spring", bounce: 0.6, delay }}
-      className={`absolute z-20 flex items-center justify-center p-2 border-2 border-black bg-yellow-300 text-black font-black text-xs uppercase tracking-widest shadow-[4px_4px_0px_rgba(0,0,0,0.5)] select-none ${className}`}
+      className={`absolute z-20 px-4 py-2 font-black uppercase tracking-tighter text-black shadow-[4px_4px_0px_rgba(0,0,0,1)] border-2 border-black ${className}`}
+      {...props}
     >
       {children}
     </motion.div>

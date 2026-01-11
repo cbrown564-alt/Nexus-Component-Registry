@@ -15,9 +15,23 @@ import CustomerTable from '../components/saas/CustomerTable';
 import SaasCard from '../components/saas/SaasCard';
 import SaasButton from '../components/saas/SaasButton';
 
+import { useTheme } from '@/context/ThemeContext';
+
 const SaasDashboard = () => {
+    const { currentPlaygroundTheme: theme, setScopedTheme } = useTheme();
+
+    React.useEffect(() => {
+        setScopedTheme('professional', 'saas');
+    }, []);
+
     return (
-        <div className="container mx-auto max-w-[1600px] p-6 lg:p-10 font-sans text-slate-200">
+        <div
+            className="container mx-auto max-w-[1600px] p-6 lg:p-10 font-sans"
+            style={{
+                backgroundColor: theme.colors.background,
+                color: theme.colors.foreground
+            }}
+        >
 
             {/* Header */}
             <section className="mb-8 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
@@ -25,8 +39,8 @@ const SaasDashboard = () => {
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                 >
-                    <h1 className="text-2xl font-bold tracking-tight text-white">Dashboard</h1>
-                    <p className="text-sm text-slate-500">Overview of your SaaS performance.</p>
+                    <h1 className="text-2xl font-bold tracking-tight" style={{ color: theme.colors.foreground }}>Dashboard</h1>
+                    <p className="text-sm" style={{ color: theme.colors.mutedForeground }}>Overview of your SaaS performance.</p>
                 </motion.div>
 
                 <motion.div
@@ -94,8 +108,8 @@ const SaasDashboard = () => {
                 <div className="lg:col-span-1">
                     <SaasCard className="h-full">
                         <div className="mb-4">
-                            <h3 className="font-medium text-slate-100">Recent Sales</h3>
-                            <p className="text-xs text-slate-500">You made 265 sales this month.</p>
+                            <h3 className="font-medium" style={{ color: theme.colors.cardForeground }}>Recent Sales</h3>
+                            <p className="text-xs" style={{ color: theme.colors.mutedForeground }}>You made 265 sales this month.</p>
                         </div>
                         <div className="space-y-6">
                             {[
@@ -107,13 +121,13 @@ const SaasDashboard = () => {
                             ].map((sale, i) => (
                                 <div key={i} className="flex items-center justify-between">
                                     <div className="flex items-center gap-3">
-                                        <div className="h-9 w-9 rounded-full bg-slate-800 border border-slate-700" />
+                                        <div className="h-9 w-9 rounded-full border" style={{ backgroundColor: theme.colors.muted, borderColor: theme.colors.border }} />
                                         <div>
-                                            <div className="text-sm font-medium text-slate-200">{sale.name}</div>
-                                            <div className="text-xs text-slate-500">{sale.email}</div>
+                                            <div className="text-sm font-medium" style={{ color: theme.colors.foreground }}>{sale.name}</div>
+                                            <div className="text-xs" style={{ color: theme.colors.mutedForeground }}>{sale.email}</div>
                                         </div>
                                     </div>
-                                    <div className="text-sm font-medium text-slate-100">{sale.amount}</div>
+                                    <div className="text-sm font-medium" style={{ color: theme.colors.foreground }}>{sale.amount}</div>
                                 </div>
                             ))}
                         </div>

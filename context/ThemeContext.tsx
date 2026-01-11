@@ -7,6 +7,18 @@ import { cockpit } from '@/data/themes/cockpit'
 import { blueprint } from '@/data/themes/blueprint'
 import { arcade } from '@/data/themes/arcade'
 import { eink } from '@/data/themes/eink'
+import { swiss } from '@/data/themes/swiss'
+import { brutalist } from '@/data/themes/brutalist'
+import { acid } from '@/data/themes/acid'
+import { solarpunk } from '@/data/themes/solarpunk'
+import { festival } from '@/data/themes/festival'
+import { clay } from '@/data/themes/clay'
+import { softPlastic } from '@/data/themes/soft-plastic'
+import { fintech } from '@/data/themes/fintech'
+import { saas } from '@/data/themes/saas'
+import { productivity } from '@/data/themes/productivity'
+import { grid } from '@/data/themes/grid'
+import { legal } from '@/data/themes/legal'
 
 // The default registry theme - dark, neutral, always consistent
 const REGISTRY_THEME: Theme = {
@@ -81,6 +93,18 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
         else if (activeLikeThemeId === 'blueprint') theme = blueprint
         else if (activeLikeThemeId === 'arcade') theme = arcade
         else if (activeLikeThemeId === 'eink') theme = eink
+        else if (activeLikeThemeId === 'swiss') theme = swiss
+        else if (activeLikeThemeId === 'brutalist') theme = brutalist
+        else if (activeLikeThemeId === 'acid') theme = acid
+        else if (activeLikeThemeId === 'solarpunk') theme = solarpunk
+        else if (activeLikeThemeId === 'festival') theme = festival
+        else if (activeLikeThemeId === 'clay') theme = clay
+        else if (activeLikeThemeId === 'soft-plastic') theme = softPlastic
+        else if (activeLikeThemeId === 'fintech') theme = fintech
+        else if (activeLikeThemeId === 'saas') theme = saas
+        else if (activeLikeThemeId === 'productivity') theme = productivity
+        else if (activeLikeThemeId === 'grid') theme = grid
+        else if (activeLikeThemeId === 'legal') theme = legal
         else theme = getPlaygroundThemeById(activeLikeThemeId)
 
         if (theme) {
