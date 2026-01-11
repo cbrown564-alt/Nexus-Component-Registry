@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { Play, Info } from 'lucide-react'
-import { Theme } from '@/data/themes'
+import { LegacyTheme as Theme } from '@/lib/registry'
 import TemplatePreview from './TemplatePreview'
 
 interface HeroTemplateProps {

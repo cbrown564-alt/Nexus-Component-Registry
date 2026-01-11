@@ -2,7 +2,7 @@ import React, { useState, useEffect, useMemo } from 'react'
 import { Check, Copy, RefreshCw, Sun, Moon } from 'lucide-react'
 import { ComponentDoc } from '@/data/componentDocs'
 import { ComponentMeta } from '@/data/components'
-import { getThemeById } from '@/data/themes'
+import { getThemeById } from '@/lib/registry'
 
 interface LivePlaygroundProps {
     component: ComponentMeta
@@ -32,15 +32,15 @@ export default function LivePlayground({ component, doc }: LivePlaygroundProps) 
     const [props, setProps] = useState<Record<string, any>>({})
     const [copied, setCopied] = useState(false)
     const [key, setKey] = useState(0) // Force re-render on reset
-    
+
     // Get the theme for this component to determine appropriate preview background
     const componentTheme = useMemo(() => getThemeById(component.theme), [component.theme])
-    
+
     // Initialize dark/light based on the component's theme category
     // Shared components default to dark, light themes default to light
     const isLightTheme = componentTheme?.category === 'light'
     const [darkPreview, setDarkPreview] = useState(!isLightTheme)
-    
+
     // Get the actual background color for this theme
     const themeBackgroundColor = componentTheme?.backgroundColor
 
@@ -160,9 +160,9 @@ export default function LivePlayground({ component, doc }: LivePlaygroundProps) 
                      *   use the actual theme background color for accurate rendering
                      * - When toggled to the opposite, use simple dark/white
                      */}
-                    <div 
+                    <div
                         className={`rounded-xl border border-zinc-800 p-8 min-h-[300px] flex items-center justify-center relative overflow-hidden group transition-colors`}
-                        style={{ 
+                        style={{
                             backgroundColor: (() => {
                                 // If user hasn't toggled (darkPreview matches theme's natural state)
                                 if (themeBackgroundColor && darkPreview === !isLightTheme) {

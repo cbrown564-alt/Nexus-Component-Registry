@@ -3,7 +3,7 @@ import { useState, useEffect, useMemo } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Search as SearchIcon, Box, Layout, ArrowRight } from 'lucide-react'
 import { components } from '@/data/components'
-import { themes } from '@/data/themes'
+import { legacyThemes as themes } from '@/lib/registry'
 import TemplatePreview from './TemplatePreview'
 
 export default function CommandPalette() {

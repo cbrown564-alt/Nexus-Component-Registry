@@ -2,7 +2,7 @@ import type { ComponentType } from 'react'
 import { useParams, Link, Navigate } from 'react-router-dom'
 import { ArrowLeft, Box, ExternalLink } from 'lucide-react'
 import { useEffect } from 'react'
-import { getThemeById } from '@/data/themes'
+import { getThemeById } from '@/lib/registry'
 import { useTheme } from '@/context/ThemeContext'
 
 // Import all dashboards

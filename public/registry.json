@@ -1,7 +1,7 @@
 {
   "name": "nexus-component-registry",
   "version": "0.1.0",
-  "generatedAt": "2026-01-09T20:16:48.780Z",
+  "generatedAt": "2026-01-11T14:07:07.572Z",
   "items": [
     {
       "name": "Header",
@@ -52,6 +52,15 @@
       "registryDependencies": []
     },
     {
+      "name": "ChromaShift",
+      "type": "registry:component",
+      "path": "components/acid/ChromaShift.tsx",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": []
+    },
+    {
       "name": "GlitchText",
       "type": "registry:component",
       "path": "components/acid/GlitchText.tsx",
@@ -87,9 +96,7 @@
       "name": "CadViewer",
       "type": "registry:component",
       "path": "components/blueprint/CadViewer.tsx",
-      "dependencies": [
-        "framer-motion"
-      ],
+      "dependencies": [],
       "registryDependencies": []
     },
     {
@@ -118,6 +125,15 @@
       "registryDependencies": []
     },
     {
+      "name": "BrutalistButton",
+      "type": "registry:component",
+      "path": "components/brutalist/BrutalistButton.tsx",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": []
+    },
+    {
       "name": "BrutalistCard",
       "type": "registry:component",
       "path": "components/brutalist/BrutalistCard.tsx",
@@ -141,6 +157,15 @@
       "registryDependencies": []
     },
     {
+      "name": "StampBadge",
+      "type": "registry:component",
+      "path": "components/brutalist/StampBadge.tsx",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": []
+    },
+    {
       "name": "ClayButton",
       "type": "registry:component",
       "path": "components/clay/ClayButton.tsx",
@@ -153,6 +178,15 @@
       "name": "ClayCard",
       "type": "registry:component",
       "path": "components/clay/ClayCard.tsx",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "ClayProgress",
+      "type": "registry:component",
+      "path": "components/clay/ClayProgress.tsx",
       "dependencies": [
         "framer-motion"
       ],
@@ -191,7 +225,8 @@
       "type": "registry:component",
       "path": "components/cockpit/LaneAssist.tsx",
       "dependencies": [
-        "lucide-react"
+        "lucide-react",
+        "framer-motion"
       ],
       "registryDependencies": []
     },
@@ -229,7 +264,8 @@
       ],
       "registryDependencies": [
         "@/data/componentDocs",
-        "@/data/components"
+        "@/data/components",
+        "@/lib/registry"
       ]
     },
     {
@@ -278,11 +314,30 @@
       "registryDependencies": []
     },
     {
+      "name": "ShopButton",
+      "type": "registry:component",
+      "path": "components/ecommerce/ShopButton.tsx",
+      "dependencies": [
+        "framer-motion",
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
       "name": "CourseCard",
       "type": "registry:component",
       "path": "components/education/CourseCard.tsx",
       "dependencies": [
         "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "EducationButton",
+      "type": "registry:component",
+      "path": "components/education/EducationButton.tsx",
+      "dependencies": [
+        "framer-motion"
       ],
       "registryDependencies": []
     },
@@ -310,6 +365,15 @@
       "path": "components/education/UpcomingSchedule.tsx",
       "dependencies": [
         "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "EInkButton",
+      "type": "registry:component",
+      "path": "components/eink/EInkButton.tsx",
+      "dependencies": [
+        "framer-motion"
       ],
       "registryDependencies": []
     },
@@ -350,6 +414,81 @@
       "registryDependencies": []
     },
     {
+      "name": "ReadingProgress",
+      "type": "registry:component",
+      "path": "components/eink/ReadingProgress.tsx",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "CodeBlock",
+      "type": "registry:component",
+      "path": "components/engineering/CodeBlock.tsx",
+      "dependencies": [
+        "framer-motion",
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "ConsoleOutput",
+      "type": "registry:component",
+      "path": "components/engineering/ConsoleOutput.tsx",
+      "dependencies": [
+        "framer-motion",
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "EngineeringButton",
+      "type": "registry:component",
+      "path": "components/engineering/EngineeringButton.tsx",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "EngineeringCard",
+      "type": "registry:component",
+      "path": "components/engineering/EngineeringCard.tsx",
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "GitDiffView",
+      "type": "registry:component",
+      "path": "components/engineering/GitDiffView.tsx",
+      "dependencies": [
+        "framer-motion",
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "PipelineSteps",
+      "type": "registry:component",
+      "path": "components/engineering/PipelineSteps.tsx",
+      "dependencies": [
+        "framer-motion",
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "ServerStatBadge",
+      "type": "registry:component",
+      "path": "components/engineering/ServerStatBadge.tsx",
+      "dependencies": [
+        "framer-motion",
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
       "name": "CodeExport",
       "type": "registry:component",
       "path": "components/export/CodeExport.tsx",
@@ -359,11 +498,30 @@
       "registryDependencies": []
     },
     {
+      "name": "ArtistCard",
+      "type": "registry:component",
+      "path": "components/festival/ArtistCard.tsx",
+      "dependencies": [
+        "lucide-react",
+        "framer-motion"
+      ],
+      "registryDependencies": []
+    },
+    {
       "name": "CrowdHeatmap",
       "type": "registry:component",
       "path": "components/festival/CrowdHeatmap.tsx",
       "dependencies": [
         "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "FestivalButton",
+      "type": "registry:component",
+      "path": "components/festival/FestivalButton.tsx",
+      "dependencies": [
+        "framer-motion"
       ],
       "registryDependencies": []
     },
@@ -395,11 +553,30 @@
       "registryDependencies": []
     },
     {
+      "name": "CurrencyConverter",
+      "type": "registry:component",
+      "path": "components/fintech/CurrencyConverter.tsx",
+      "dependencies": [
+        "framer-motion",
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
       "name": "DigitalCard",
       "type": "registry:component",
       "path": "components/fintech/DigitalCard.tsx",
       "dependencies": [
         "lucide-react",
+        "framer-motion"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "FintechButton",
+      "type": "registry:component",
+      "path": "components/fintech/FintechButton.tsx",
+      "dependencies": [
         "framer-motion"
       ],
       "registryDependencies": []
@@ -432,6 +609,16 @@
       "registryDependencies": []
     },
     {
+      "name": "SparklineChart",
+      "type": "registry:component",
+      "path": "components/fintech/SparklineChart.tsx",
+      "dependencies": [
+        "framer-motion",
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
       "name": "TransactionList",
       "type": "registry:component",
       "path": "components/fintech/TransactionList.tsx",
@@ -446,6 +633,15 @@
       "path": "components/food/CartWidget.tsx",
       "dependencies": [
         "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "FoodButton",
+      "type": "registry:component",
+      "path": "components/food/FoodButton.tsx",
+      "dependencies": [
+        "framer-motion"
       ],
       "registryDependencies": []
     },
@@ -484,8 +680,18 @@
         "framer-motion"
       ],
       "registryDependencies": [
-        "@/data/themes"
+        "@/lib/registry"
       ]
+    },
+    {
+      "name": "AchievementBadge",
+      "type": "registry:component",
+      "path": "components/game/AchievementBadge.tsx",
+      "dependencies": [
+        "framer-motion",
+        "lucide-react"
+      ],
+      "registryDependencies": []
     },
     {
       "name": "CharacterProfile",
@@ -497,11 +703,30 @@
       "registryDependencies": []
     },
     {
+      "name": "GameButton",
+      "type": "registry:component",
+      "path": "components/game/GameButton.tsx",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": []
+    },
+    {
       "name": "GameCard",
       "type": "registry:component",
       "path": "components/game/GameCard.tsx",
       "dependencies": [
         "framer-motion"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "HealthBar",
+      "type": "registry:component",
+      "path": "components/game/HealthBar.tsx",
+      "dependencies": [
+        "framer-motion",
+        "lucide-react"
       ],
       "registryDependencies": []
     },
@@ -533,11 +758,30 @@
       "registryDependencies": []
     },
     {
+      "name": "AlertBanner",
+      "type": "registry:component",
+      "path": "components/grid/AlertBanner.tsx",
+      "dependencies": [
+        "lucide-react",
+        "framer-motion"
+      ],
+      "registryDependencies": []
+    },
+    {
       "name": "CityMap",
       "type": "registry:component",
       "path": "components/grid/CityMap.tsx",
       "dependencies": [
         "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "GridButton",
+      "type": "registry:component",
+      "path": "components/grid/GridButton.tsx",
+      "dependencies": [
+        "framer-motion"
       ],
       "registryDependencies": []
     },
@@ -577,6 +821,15 @@
       "registryDependencies": []
     },
     {
+      "name": "KidsButton",
+      "type": "registry:component",
+      "path": "components/kids/KidsButton.tsx",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": []
+    },
+    {
       "name": "KidsCard",
       "type": "registry:component",
       "path": "components/kids/KidsCard.tsx",
@@ -589,6 +842,25 @@
       "name": "Mascot",
       "type": "registry:component",
       "path": "components/kids/Mascot.tsx",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "RewardStar",
+      "type": "registry:component",
+      "path": "components/kids/RewardStar.tsx",
+      "dependencies": [
+        "framer-motion",
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "SpeechBubble",
+      "type": "registry:component",
+      "path": "components/kids/SpeechBubble.tsx",
       "dependencies": [
         "framer-motion"
       ],
@@ -623,10 +895,29 @@
       "registryDependencies": []
     },
     {
+      "name": "KitchenButton",
+      "type": "registry:component",
+      "path": "components/kitchen/KitchenButton.tsx",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": []
+    },
+    {
       "name": "KitchenCard",
       "type": "registry:component",
       "path": "components/kitchen/KitchenCard.tsx",
       "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "RecipeProgress",
+      "type": "registry:component",
+      "path": "components/kitchen/RecipeProgress.tsx",
+      "dependencies": [
+        "lucide-react",
         "framer-motion"
       ],
       "registryDependencies": []
@@ -694,6 +985,25 @@
       "registryDependencies": []
     },
     {
+      "name": "DocumentStatus",
+      "type": "registry:component",
+      "path": "components/legal/DocumentStatus.tsx",
+      "dependencies": [
+        "lucide-react",
+        "framer-motion"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "LegalButton",
+      "type": "registry:component",
+      "path": "components/legal/LegalButton.tsx",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": []
+    },
+    {
       "name": "LegalPaper",
       "type": "registry:component",
       "path": "components/legal/LegalPaper.tsx",
@@ -708,6 +1018,15 @@
       "path": "components/legal/RedlineSidebar.tsx",
       "dependencies": [
         "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "EditorialButton",
+      "type": "registry:component",
+      "path": "components/magazine/EditorialButton.tsx",
+      "dependencies": [
+        "framer-motion"
       ],
       "registryDependencies": []
     },
@@ -756,6 +1075,24 @@
       "registryDependencies": []
     },
     {
+      "name": "EqualizerBars",
+      "type": "registry:component",
+      "path": "components/music/EqualizerBars.tsx",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "MusicButton",
+      "type": "registry:component",
+      "path": "components/music/MusicButton.tsx",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": []
+    },
+    {
       "name": "MusicCard",
       "type": "registry:component",
       "path": "components/music/MusicCard.tsx",
@@ -779,6 +1116,16 @@
       "path": "components/music/TrackList.tsx",
       "dependencies": [
         "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "VolumeSlider",
+      "type": "registry:component",
+      "path": "components/music/VolumeSlider.tsx",
+      "dependencies": [
+        "lucide-react",
+        "framer-motion"
       ],
       "registryDependencies": []
     },
@@ -852,6 +1199,15 @@
       "registryDependencies": []
     },
     {
+      "name": "FlowButton",
+      "type": "registry:component",
+      "path": "components/productivity/FlowButton.tsx",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": []
+    },
+    {
       "name": "FocusTimer",
       "type": "registry:component",
       "path": "components/productivity/FocusTimer.tsx",
@@ -913,6 +1269,15 @@
       "registryDependencies": []
     },
     {
+      "name": "SaasButton",
+      "type": "registry:component",
+      "path": "components/saas/SaasButton.tsx",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": []
+    },
+    {
       "name": "SaasCard",
       "type": "registry:component",
       "path": "components/saas/SaasCard.tsx",
@@ -939,6 +1304,42 @@
       "registryDependencies": []
     },
     {
+      "name": "GlitchHeading",
+      "type": "registry:component",
+      "path": "components/scifi/GlitchHeading.tsx",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "HolographicTable",
+      "type": "registry:component",
+      "path": "components/scifi/HolographicTable.tsx",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "NeonToggle",
+      "type": "registry:component",
+      "path": "components/scifi/NeonToggle.tsx",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "SciFiButton",
+      "type": "registry:component",
+      "path": "components/scifi/SciFiButton.tsx",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": []
+    },
+    {
       "name": "SciFiCard",
       "type": "registry:component",
       "path": "components/scifi/SciFiCard.tsx",
@@ -957,19 +1358,6 @@
       "registryDependencies": []
     },
     {
-      "name": "GlobalSearch",
-      "type": "registry:component",
-      "path": "components/search/GlobalSearch.tsx",
-      "dependencies": [
-        "framer-motion",
-        "lucide-react"
-      ],
-      "registryDependencies": [
-        "@/data/themes",
-        "@/hooks"
-      ]
-    },
-    {
       "name": "FeedPost",
       "type": "registry:component",
       "path": "components/social/FeedPost.tsx",
@@ -985,6 +1373,15 @@
       "path": "components/social/ProfileSidebar.tsx",
       "dependencies": [
         "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "SocialButton",
+      "type": "registry:component",
+      "path": "components/social/SocialButton.tsx",
+      "dependencies": [
+        "framer-motion"
       ],
       "registryDependencies": []
     },
@@ -1033,6 +1430,15 @@
       "registryDependencies": []
     },
     {
+      "name": "NeumorphicSlider",
+      "type": "registry:component",
+      "path": "components/softplastic/NeumorphicSlider.tsx",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": []
+    },
+    {
       "name": "ThermostatDial",
       "type": "registry:component",
       "path": "components/softplastic/ThermostatDial.tsx",
@@ -1071,9 +1477,37 @@
       "registryDependencies": []
     },
     {
+      "name": "PlantProgress",
+      "type": "registry:component",
+      "path": "components/solarpunk/PlantProgress.tsx",
+      "dependencies": [
+        "framer-motion",
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
       "name": "SolarCard",
       "type": "registry:component",
       "path": "components/solarpunk/SolarCard.tsx",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "SolarpunkButton",
+      "type": "registry:component",
+      "path": "components/solarpunk/SolarpunkButton.tsx",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "SwissButton",
+      "type": "registry:component",
+      "path": "components/swiss/SwissButton.tsx",
       "dependencies": [
         "framer-motion"
       ],
@@ -1089,9 +1523,34 @@
       "registryDependencies": []
     },
     {
+      "name": "SwissDivider",
+      "type": "registry:component",
+      "path": "components/swiss/SwissDivider.tsx",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "SwissGrid",
+      "type": "registry:component",
+      "path": "components/swiss/SwissGrid.tsx",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": []
+    },
+    {
       "name": "SwissMetric",
       "type": "registry:component",
       "path": "components/swiss/SwissMetric.tsx",
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "SwissTypography",
+      "type": "registry:component",
+      "path": "components/swiss/SwissTypography.tsx",
       "dependencies": [],
       "registryDependencies": []
     },
@@ -1112,6 +1571,19 @@
         "lucide-react"
       ],
       "registryDependencies": []
+    },
+    {
+      "name": "CommandPalette",
+      "type": "registry:ui",
+      "path": "components/ui/CommandPalette.tsx",
+      "dependencies": [
+        "cmdk",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@/data/components",
+        "@/lib/registry"
+      ]
     },
     {
       "name": "DeploymentPipeline",
@@ -1139,6 +1611,18 @@
       "registryDependencies": []
     },
     {
+      "name": "HeroTemplate",
+      "type": "registry:ui",
+      "path": "components/ui/HeroTemplate.tsx",
+      "dependencies": [
+        "framer-motion",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@/lib/registry"
+      ]
+    },
+    {
       "name": "IntegrationToggle",
       "type": "registry:ui",
       "path": "components/ui/IntegrationToggle.tsx",
@@ -1146,6 +1630,17 @@
         "lucide-react"
       ],
       "registryDependencies": []
+    },
+    {
+      "name": "LiveComponentCard",
+      "type": "registry:ui",
+      "path": "components/ui/LiveComponentCard.tsx",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "@/data/components"
+      ]
     },
     {
       "name": "MobileMenuButton",
@@ -1202,6 +1697,27 @@
       "registryDependencies": []
     },
     {
+      "name": "TemplatePreview",
+      "type": "registry:ui",
+      "path": "components/ui/TemplatePreview.tsx",
+      "dependencies": [],
+      "registryDependencies": [
+        "@/lib/registry"
+      ]
+    },
+    {
+      "name": "TemplateSwimlane",
+      "type": "registry:ui",
+      "path": "components/ui/TemplateSwimlane.tsx",
+      "dependencies": [
+        "framer-motion",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@/lib/registry"
+      ]
+    },
+    {
       "name": "Terminal",
       "type": "registry:ui",
       "path": "components/ui/Terminal.tsx",
@@ -1214,7 +1730,7 @@
       "path": "components/ui/ThemePreview.tsx",
       "dependencies": [],
       "registryDependencies": [
-        "@/data/themes"
+        "@/lib/registry"
       ]
     },
     {
@@ -1224,6 +1740,36 @@
       "dependencies": [
         "lucide-react",
         "framer-motion"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "HabitCheckbox",
+      "type": "registry:component",
+      "path": "components/wellness/HabitCheckbox.tsx",
+      "dependencies": [
+        "framer-motion",
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "JournalEntry",
+      "type": "registry:component",
+      "path": "components/wellness/JournalEntry.tsx",
+      "dependencies": [
+        "framer-motion",
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "MeditationTimer",
+      "type": "registry:component",
+      "path": "components/wellness/MeditationTimer.tsx",
+      "dependencies": [
+        "framer-motion",
+        "lucide-react"
       ],
       "registryDependencies": []
     },
@@ -1246,11 +1792,29 @@
       "registryDependencies": []
     },
     {
+      "name": "WellnessButton",
+      "type": "registry:component",
+      "path": "components/wellness/WellnessButton.tsx",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": []
+    },
+    {
       "name": "WellnessCard",
       "type": "registry:component",
       "path": "components/wellness/WellnessCard.tsx",
       "dependencies": [
         "framer-motion"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "useComponentSearch.test",
+      "type": "registry:hook",
+      "path": "hooks/__tests__/useComponentSearch.test.ts",
+      "dependencies": [
+        "@testing-library/react"
       ],
       "registryDependencies": []
     },
@@ -1274,6 +1838,17 @@
       "path": "hooks/useClickOutside.ts",
       "dependencies": [],
       "registryDependencies": []
+    },
+    {
+      "name": "useComponentSearch",
+      "type": "registry:hook",
+      "path": "hooks/useComponentSearch.ts",
+      "dependencies": [
+        "fuse.js"
+      ],
+      "registryDependencies": [
+        "@/data/components"
+      ]
     },
     {
       "name": "useCopyToClipboard",

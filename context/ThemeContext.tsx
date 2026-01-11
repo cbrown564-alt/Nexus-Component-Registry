@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, ReactNode, useMemo } from 'react'
-import { themes, Theme, getThemeById } from '@/data/themes'
+import { legacyThemes as themes, LegacyTheme as Theme, getThemeById } from '@/lib/registry'
 import { playgroundThemes, PlaygroundTheme, getPlaygroundThemeById, defaultPlaygroundTheme } from '@/data/playgroundThemes'
 
 // The default registry theme - dark, neutral, always consistent
@@ -13,6 +13,8 @@ const REGISTRY_THEME: Theme = {
     sidebarStyles: 'border-zinc-800 bg-zinc-950',
     category: 'dark',
     tags: ['registry', 'default', 'dark'],
+    visualLanguageId: 'professional',
+    collection: 'professional'
 }
 
 interface ThemeContextType {
@@ -21,10 +23,10 @@ interface ThemeContextType {
     setTheme: (id: string) => void
     clearTemplateTheme: () => void
     themes: Theme[]
-    
+
     // Whether we're in template mode (viewing a template) or registry mode
     isTemplateMode: boolean
-    
+
     // The theme to use for Background (accounts for mode)
     activeTheme: Theme
 
@@ -42,12 +44,12 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     const [currentPlaygroundTheme, setCurrentPlaygroundTheme] = useState<PlaygroundTheme>(defaultPlaygroundTheme)
 
     const isTemplateMode = templateTheme !== null
-    
+
     // The active theme for Background - registry theme when not in template mode
     const activeTheme = useMemo(() => {
         return templateTheme ?? REGISTRY_THEME
     }, [templateTheme])
-    
+
     // For backwards compatibility, currentTheme maps to activeTheme
     const currentTheme = activeTheme
 
@@ -57,7 +59,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
             setTemplateTheme(theme)
         }
     }
-    
+
     const clearTemplateTheme = () => {
         setTemplateTheme(null)
     }

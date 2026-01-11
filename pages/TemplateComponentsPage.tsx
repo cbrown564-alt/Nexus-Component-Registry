@@ -2,7 +2,7 @@ import { useParams, Link, Navigate } from 'react-router-dom'
 import { useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { ArrowLeft, Box, Layers, Sparkles, Puzzle } from 'lucide-react'
-import { getThemeById } from '@/data/themes'
+import { getThemeById } from '@/lib/registry'
 import { getAllTemplateComponents } from '@/data/templateComponents'
 import { type ComponentMeta, type ComponentCategory } from '@/data/components'
 import { useTheme } from '@/context/ThemeContext'
@@ -64,21 +64,20 @@ function ComponentCard({ comp, index, isLight, themeBackgroundColor, isSharedCom
             <Link
                 to={`/components/${comp.theme}/${comp.id}`}
                 className={`group block rounded-xl border overflow-hidden transition-all ${isLight
-                        ? 'bg-white border-zinc-200 hover:border-zinc-300 shadow-sm hover:shadow-md'
-                        : 'bg-zinc-900/50 border-zinc-800 hover:border-zinc-600'
+                    ? 'bg-white border-zinc-200 hover:border-zinc-300 shadow-sm hover:shadow-md'
+                    : 'bg-zinc-900/50 border-zinc-800 hover:border-zinc-600'
                     }`}
             >
                 {/* Live Preview Area */}
                 {/* For template components: use actual template background for accurate preview */}
                 {/* For shared components: use dark background (their native context) */}
-                <div 
-                    className={`h-40 flex items-center justify-center border-b relative overflow-hidden p-4 ${
-                        isSharedComponent 
-                            ? 'bg-zinc-950 border-zinc-800' 
-                            : isLight 
-                                ? 'border-zinc-200' 
+                <div
+                    className={`h-40 flex items-center justify-center border-b relative overflow-hidden p-4 ${isSharedComponent
+                            ? 'bg-zinc-950 border-zinc-800'
+                            : isLight
+                                ? 'border-zinc-200'
                                 : 'border-zinc-800'
-                    }`}
+                        }`}
                     style={!isSharedComponent ? { backgroundColor: extractBackgroundColor(themeBackgroundColor) } : undefined}
                 >
                     <div className="transform scale-75 origin-center pointer-events-none">
@@ -119,13 +118,13 @@ interface ComponentSectionProps {
     isSharedSection?: boolean
 }
 
-function ComponentSection({ 
-    title, 
-    description, 
-    icon, 
-    components, 
-    startIndex, 
-    accentColor = 'text-zinc-400', 
+function ComponentSection({
+    title,
+    description,
+    icon,
+    components,
+    startIndex,
+    accentColor = 'text-zinc-400',
     isLight,
     themeBackgroundColor,
     isSharedSection = false
@@ -144,11 +143,11 @@ function ComponentSection({
             <p className="text-sm text-zinc-500 mb-6 ml-9">{description}</p>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {components.map((comp, i) => (
-                    <ComponentCard 
-                        key={comp.id} 
-                        comp={comp} 
-                        index={startIndex + i} 
-                        isLight={isLight} 
+                    <ComponentCard
+                        key={comp.id}
+                        comp={comp}
+                        index={startIndex + i}
+                        isLight={isLight}
                         themeBackgroundColor={themeBackgroundColor}
                         isSharedComponent={isSharedSection}
                     />
@@ -182,28 +181,26 @@ export default function TemplateComponentsPage() {
         templateComponents.shared.length
 
     const isLight = theme.category === 'light'
-    
+
     // Determine if the theme is dark for styling purposes
-    const isDark = theme.category === 'dark' || 
+    const isDark = theme.category === 'dark' ||
         ['engineering', 'saas', 'social', 'fintech', 'productivity', 'game', 'music', 'food', 'grid', 'scifi', 'festival', 'cockpit', 'blueprint'].includes(theme.id)
 
     return (
         // No background here - let the global Background component show through
         <div className="relative z-10 min-h-screen">
             {/* Floating Navigation Bar - adapts to theme */}
-            <div className={`sticky top-0 z-50 flex items-center justify-between px-6 py-3 backdrop-blur-md border-b ${
-                isDark 
-                    ? 'bg-zinc-950/80 border-zinc-800' 
+            <div className={`sticky top-0 z-50 flex items-center justify-between px-6 py-3 backdrop-blur-md border-b ${isDark
+                    ? 'bg-zinc-950/80 border-zinc-800'
                     : 'bg-white/80 border-zinc-200'
-            }`}>
+                }`}>
                 <div className="flex items-center gap-4">
                     <Link
                         to={`/templates/${id}`}
-                        className={`flex items-center gap-2 text-sm transition-colors ${
-                            isDark 
-                                ? 'text-zinc-400 hover:text-white' 
+                        className={`flex items-center gap-2 text-sm transition-colors ${isDark
+                                ? 'text-zinc-400 hover:text-white'
                                 : 'text-zinc-600 hover:text-zinc-900'
-                        }`}
+                            }`}
                     >
                         <ArrowLeft className="h-4 w-4" />
                         Back to Template
@@ -220,11 +217,10 @@ export default function TemplateComponentsPage() {
                 <div className="flex items-center gap-3">
                     <Link
                         to="/components"
-                        className={`flex items-center gap-2 text-sm transition-colors ${
-                            isDark 
-                                ? 'text-zinc-400 hover:text-white' 
+                        className={`flex items-center gap-2 text-sm transition-colors ${isDark
+                                ? 'text-zinc-400 hover:text-white'
                                 : 'text-zinc-600 hover:text-zinc-900'
-                        }`}
+                            }`}
                     >
                         <Box className="h-4 w-4" />
                         All Components

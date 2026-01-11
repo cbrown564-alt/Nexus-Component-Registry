@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import type { Theme } from '@/data/themes'
+import type { LegacyTheme as Theme } from '@/lib/registry'
 
 interface ThemeCardProps {
     theme: Theme
@@ -68,10 +68,10 @@ export default function ThemeCard({ theme, index = 0, size = 'md' }: ThemeCardPr
                         {size !== 'sm' && (
                             <span
                                 className={`ml-auto px-2 py-0.5 text-xs rounded-full ${theme.category === 'dark'
-                                        ? 'bg-zinc-800 text-zinc-300'
-                                        : theme.category === 'light'
-                                            ? 'bg-zinc-700 text-zinc-200'
-                                            : 'bg-fuchsia-900/50 text-fuchsia-300'
+                                    ? 'bg-zinc-800 text-zinc-300'
+                                    : theme.category === 'light'
+                                        ? 'bg-zinc-700 text-zinc-200'
+                                        : 'bg-fuchsia-900/50 text-fuchsia-300'
                                     }`}
                             >
                                 {theme.category}

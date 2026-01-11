@@ -2,7 +2,7 @@ import { useRef, useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, useScroll } from 'framer-motion'
 import { ChevronRight, ChevronLeft } from 'lucide-react'
-import { Theme } from '@/data/themes'
+import { LegacyTheme as Theme } from '@/lib/registry'
 import TemplatePreview from './TemplatePreview'
 
 interface TemplateSwimlaneProps {

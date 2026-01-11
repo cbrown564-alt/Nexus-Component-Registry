@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { Box, Palette, Github, CheckCircle2, ArrowRight } from 'lucide-react'
-import { featuredThemes, getThemeById } from '@/data/themes'
+import { featuredThemes, getThemeById } from '@/lib/registry'
 import { components } from '@/data/components'
 import TemplatePreview from '@/components/ui/TemplatePreview'
 import LiveComponentCard from '@/components/ui/LiveComponentCard'

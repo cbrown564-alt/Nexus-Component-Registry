@@ -1,5 +1,5 @@
 import React from 'react'
-import { Theme } from '@/data/themes'
+import { LegacyTheme as Theme } from '@/lib/registry'
 
 interface TemplatePreviewProps {
     theme: Theme

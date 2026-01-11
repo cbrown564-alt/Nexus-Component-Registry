@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
 import { Search } from 'lucide-react'
-import { themes } from '@/data/themes'
+import { legacyThemes as themes } from '@/lib/registry'
 import HeroTemplate from '@/components/ui/HeroTemplate'
 import TemplateSwimlane from '@/components/ui/TemplateSwimlane'
 
