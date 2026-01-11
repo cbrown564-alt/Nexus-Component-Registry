@@ -62,8 +62,8 @@ const TransactionList = () => {
                                     <div className="flex items-center gap-3">
                                         <div className={`rounded-full p-1.5`}
                                             style={{
-                                                backgroundColor: trx.type === 'incoming' ? `${primaryColor}1A` : `${currentPlaygroundTheme.colors.secondary}1A`,
-                                                color: trx.type === 'incoming' ? primaryColor : currentPlaygroundTheme.colors.secondary
+                                                backgroundColor: trx.type === 'incoming' ? `${primaryColor}1A` : `${currentPlaygroundTheme.colors.secondary}`,
+                                                color: trx.type === 'incoming' ? primaryColor : currentPlaygroundTheme.colors.secondaryForeground
                                             }}>
                                             {trx.type === 'incoming' ? <ArrowDownLeft className="h-3 w-3" /> : <ArrowUpRight className="h-3 w-3" />}
                                         </div>

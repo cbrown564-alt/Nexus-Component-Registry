@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { TrendingUp, TrendingDown, Minus } from 'lucide-react';
+import { useTheme } from '@/context/ThemeContext';
 
 interface SparklineChartProps {
   data: number[];
@@ -23,6 +24,7 @@ const SparklineChart: React.FC<SparklineChartProps> = ({
   showDot = true,
   animated = true,
 }) => {
+  const { theme } = useTheme();
   if (data.length === 0) return null;
 
   const min = Math.min(...data);
@@ -79,7 +81,7 @@ const SparklineChart: React.FC<SparklineChartProps> = ({
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
           />
-          
+
           {/* Line */}
           <motion.path
             d={linePath}
@@ -111,8 +113,8 @@ const SparklineChart: React.FC<SparklineChartProps> = ({
       {/* Info */}
       {(label || value || change !== undefined) && (
         <div className="flex flex-col min-w-0">
-          {label && <span className="text-xs text-zinc-500 truncate">{label}</span>}
-          {value && <span className="text-sm font-semibold text-white">{value}</span>}
+          {label && <span className="text-xs truncate" style={{ color: theme.colors.mutedForeground }}>{label}</span>}
+          {value && <span className="text-sm font-semibold" style={{ color: theme.colors.foreground }}>{value}</span>}
           {change !== undefined && (
             <div className={`flex items-center gap-1 ${styles.text}`}>
               {TrendIcon && <TrendIcon className="h-3 w-3" />}

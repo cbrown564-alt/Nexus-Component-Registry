@@ -62,6 +62,9 @@ interface ThemeContextType {
     setPlaygroundTheme: (id: string) => void
     playgroundThemes: PlaygroundTheme[]
 
+    // Convenience alias for components
+    theme: PlaygroundTheme
+
     // Scoped Theming
     scopedThemes: Record<VisualLanguageId, string>
     setScopedTheme: (language: VisualLanguageId, themeId: string) => void
@@ -75,12 +78,15 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
 
     // Scoped themes state - maps each Visual Language to its active "Mood" (PlaygroundTheme ID)
     const [scopedThemes, setScopedThemes] = useState<Record<VisualLanguageId, string>>({
-        professional: 'emerald_tier',
-        consumer: 'cupcake',
-        scifi: 'scifi', // Now pointing to the extracted Helix theme
-        retro: 'legacy', // Now pointing to the extracted Legacy theme
-        experimental: 'coffee',
-        nature: 'forest'
+        gilded: 'legal',
+        constructivist: 'swiss',
+        brutalist: 'brutalist',
+        glass: 'cockpit',
+        cyberpunk: 'scifi',
+        organic: 'wellness',
+        consumer: 'social',
+        professional: 'fintech',
+        skeuomorphic: 'soft-plastic'
     })
 
     // Current active tokens (PlaygroundTheme)
@@ -178,6 +184,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
                 currentPlaygroundTheme,
                 setPlaygroundTheme,
                 playgroundThemes,
+                theme: currentPlaygroundTheme,
                 scopedThemes,
                 setScopedTheme,
             }}

@@ -22,7 +22,7 @@ const FintechCard: React.FC<FintechCardProps> = ({
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, delay }}
-      className={`bg-zinc-900 border border-zinc-800 rounded-xl overflow-hidden ${className}`}
+      className={`rounded-xl overflow-hidden ${className}`}
       style={{
         backgroundColor: currentPlaygroundTheme.colors.card,
         borderColor: currentPlaygroundTheme.colors.border,

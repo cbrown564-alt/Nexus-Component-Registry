@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowDownUp, RefreshCw } from 'lucide-react';
+import { useTheme } from '@/context/ThemeContext';
 
 interface Currency {
   code: string;
@@ -44,6 +45,7 @@ const CurrencyConverter: React.FC<CurrencyConverterProps> = ({
   const [toCurrency, setToCurrency] = useState(initialTo);
   const [amount, setAmount] = useState('1000');
   const [isSwapping, setIsSwapping] = useState(false);
+  const { theme } = useTheme();
 
   const fromRate = exchangeRates[fromCurrency] || 1;
   const toRate = exchangeRates[toCurrency] || 1;
@@ -73,13 +75,25 @@ const CurrencyConverter: React.FC<CurrencyConverterProps> = ({
   };
 
   return (
-    <div className="rounded-xl border border-zinc-800 bg-zinc-950 p-5">
+    <div
+      className="rounded-xl border p-5"
+      style={{
+        backgroundColor: theme.colors.background,
+        borderColor: theme.colors.border
+      }}
+    >
       <div className="flex items-center justify-between mb-5">
-        <h3 className="text-sm font-medium text-zinc-400">Convert</h3>
+        <h3
+          className="text-sm font-medium"
+          style={{ color: theme.colors.mutedForeground }}
+        >
+          Convert
+        </h3>
         <motion.button
           whileHover={{ rotate: 180 }}
           transition={{ duration: 0.3 }}
-          className="p-2 rounded-lg text-zinc-500 hover:text-zinc-300 hover:bg-zinc-800 transition-colors"
+          className="p-2 rounded-lg transition-colors hover:opacity-80"
+          style={{ color: theme.colors.mutedForeground }}
           aria-label="Refresh rates"
         >
           <RefreshCw className="h-4 w-4" />
@@ -87,28 +101,50 @@ const CurrencyConverter: React.FC<CurrencyConverterProps> = ({
       </div>
 
       {/* From Currency */}
-      <div className="relative rounded-lg bg-zinc-900 border border-zinc-800 p-4 mb-2">
+      <div
+        className="relative rounded-lg border p-4 mb-2"
+        style={{
+          backgroundColor: theme.colors.muted,
+          borderColor: theme.colors.border
+        }}
+      >
         <div className="flex items-center justify-between mb-2">
-          <span className="text-xs text-zinc-500">From</span>
+          <span
+            className="text-xs"
+            style={{ color: theme.colors.mutedForeground }}
+          >
+            From
+          </span>
           <select
             value={fromCurrency}
             onChange={(e) => setFromCurrency(e.target.value)}
-            className="bg-transparent text-sm font-medium text-zinc-300 focus:outline-none cursor-pointer hover:text-white"
+            className="bg-transparent text-sm font-medium focus:outline-none cursor-pointer"
+            style={{ color: theme.colors.foreground }}
           >
             {currencies.map((c) => (
-              <option key={c.code} value={c.code} className="bg-zinc-900">
+              <option
+                key={c.code}
+                value={c.code}
+                style={{ backgroundColor: theme.colors.muted }}
+              >
                 {c.flag} {c.code}
               </option>
             ))}
           </select>
         </div>
         <div className="flex items-baseline gap-2">
-          <span className="text-2xl text-zinc-500">{fromCurrencyData.symbol}</span>
+          <span
+            className="text-2xl"
+            style={{ color: theme.colors.mutedForeground }}
+          >
+            {fromCurrencyData.symbol}
+          </span>
           <input
             type="text"
             value={amount}
             onChange={(e) => setAmount(e.target.value.replace(/[^0-9.]/g, ''))}
-            className="bg-transparent text-3xl font-semibold text-white focus:outline-none w-full"
+            className="bg-transparent text-3xl font-semibold focus:outline-none w-full"
+            style={{ color: theme.colors.foreground }}
             placeholder="0"
           />
         </div>
@@ -121,7 +157,12 @@ const CurrencyConverter: React.FC<CurrencyConverterProps> = ({
           whileTap={{ scale: 0.9 }}
           animate={{ rotate: isSwapping ? 180 : 0 }}
           onClick={handleSwap}
-          className="flex items-center justify-center w-10 h-10 rounded-full bg-emerald-500 text-white shadow-lg shadow-emerald-500/25 hover:bg-emerald-400 transition-colors"
+          className="flex items-center justify-center w-10 h-10 rounded-full shadow-lg transition-colors"
+          style={{
+            backgroundColor: theme.colors.accent,
+            color: theme.colors.accentForeground,
+            boxShadow: `0 10px 25px ${theme.colors.accent}40`
+          }}
           aria-label="Swap currencies"
         >
           <ArrowDownUp className="h-4 w-4" />
@@ -129,31 +170,58 @@ const CurrencyConverter: React.FC<CurrencyConverterProps> = ({
       </div>
 
       {/* To Currency */}
-      <div className="relative rounded-lg bg-zinc-900 border border-zinc-800 p-4 mb-4">
+      <div
+        className="relative rounded-lg border p-4 mb-4"
+        style={{
+          backgroundColor: theme.colors.muted,
+          borderColor: theme.colors.border
+        }}
+      >
         <div className="flex items-center justify-between mb-2">
-          <span className="text-xs text-zinc-500">To</span>
+          <span
+            className="text-xs"
+            style={{ color: theme.colors.mutedForeground }}
+          >
+            To
+          </span>
           <select
             value={toCurrency}
             onChange={(e) => setToCurrency(e.target.value)}
-            className="bg-transparent text-sm font-medium text-zinc-300 focus:outline-none cursor-pointer hover:text-white"
+            className="bg-transparent text-sm font-medium focus:outline-none cursor-pointer"
+            style={{ color: theme.colors.foreground }}
           >
             {currencies.map((c) => (
-              <option key={c.code} value={c.code} className="bg-zinc-900">
+              <option
+                key={c.code}
+                value={c.code}
+                style={{ backgroundColor: theme.colors.muted }}
+              >
                 {c.flag} {c.code}
               </option>
             ))}
           </select>
         </div>
         <div className="flex items-baseline gap-2">
-          <span className="text-2xl text-zinc-500">{toCurrencyData.symbol}</span>
-          <span className="text-3xl font-semibold text-emerald-400">
+          <span
+            className="text-2xl"
+            style={{ color: theme.colors.mutedForeground }}
+          >
+            {toCurrencyData.symbol}
+          </span>
+          <span
+            className="text-3xl font-semibold"
+            style={{ color: theme.colors.accent }}
+          >
             {formatAmount(convertedAmount, toCurrency)}
           </span>
         </div>
       </div>
 
       {/* Exchange Rate */}
-      <div className="flex items-center justify-center text-xs text-zinc-500">
+      <div
+        className="flex items-center justify-center text-xs"
+        style={{ color: theme.colors.mutedForeground }}
+      >
         <span>
           1 {fromCurrency} = {formatAmount(toRate / fromRate, toCurrency)} {toCurrency}
         </span>
