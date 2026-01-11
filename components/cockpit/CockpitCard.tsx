@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useTheme } from '@/context/ThemeContext';
 
 interface CockpitCardProps {
   children: React.ReactNode;
@@ -16,6 +17,8 @@ const CockpitCard: React.FC<CockpitCardProps> = ({
   alert = false,
   noPadding = false
 }) => {
+  const { theme } = useTheme();
+
   return (
     <div className={`relative bg-black/40 backdrop-blur-2xl border ${alert ? 'border-red-500/50' : 'border-white/10'} rounded-3xl overflow-hidden shadow-2xl ring-1 ring-white/5 ${className}`}>
       {/* Glossy Gradient Overlay */}
@@ -26,7 +29,10 @@ const CockpitCard: React.FC<CockpitCardProps> = ({
 
       {label && (
         <div className="absolute top-4 left-6 z-20">
-          <span className={`text-[10px] font-black uppercase tracking-[0.2em] ${alert ? 'text-red-400' : 'text-zinc-500'} flex items-center gap-2`}>
+          <span
+            className={`text-[10px] font-black uppercase tracking-[0.2em] flex items-center gap-2`}
+            style={{ color: alert ? '#f87171' : theme.colors.mutedForeground }}
+          >
             {alert && <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />}
             {label}
           </span>

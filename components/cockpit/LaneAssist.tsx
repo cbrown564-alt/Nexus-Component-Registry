@@ -1,6 +1,7 @@
 import React from 'react';
 import { CarFront, AlertTriangle } from 'lucide-react';
 import CockpitCard from './CockpitCard';
+import { useTheme } from '@/context/ThemeContext';
 
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -12,6 +13,8 @@ interface LaneAssistProps {
 }
 
 const LaneAssist = ({ children, activeMode = 'comfort', onModeChange, className = '' }: LaneAssistProps) => {
+    const { theme } = useTheme();
+
     const modes = [
         { id: 'eco', label: 'ECO', color: 'emerald', icon: '🍃' },
         { id: 'comfort', label: 'COMFORT', color: 'blue', icon: '☁️' },
@@ -33,8 +36,11 @@ const LaneAssist = ({ children, activeMode = 'comfort', onModeChange, className 
                             onClick={() => onModeChange?.(mode.id)}
                             className={`
                                 relative px-3 py-1.5 rounded-full flex items-center gap-2 transition-all duration-300
-                                ${activeMode === mode.id ? `text-${mode.color}-400` : 'text-zinc-500 hover:text-zinc-300'}
+                                ${activeMode === mode.id ? `text-${mode.color}-400` : ''} 
                             `}
+                            style={{
+                                color: activeMode !== mode.id ? theme.colors.mutedForeground : undefined
+                            }}
                         >
                             {activeMode === mode.id && (
                                 <motion.div
@@ -56,29 +62,49 @@ const LaneAssist = ({ children, activeMode = 'comfort', onModeChange, className 
             <div className="absolute inset-0 opacity-20 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-900/20 via-transparent to-transparent" />
 
             {/* Horizon Line with Glow */}
-            <div className="absolute top-[45%] left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-500/50 to-transparent shadow-[0_0_20px_rgba(59,130,246,0.5)]" />
+            <div
+                className="absolute top-[45%] left-0 right-0 h-px bg-gradient-to-r from-transparent to-transparent shadow-[0_0_20px_rgba(59,130,246,0.5)]"
+                style={{ backgroundImage: `linear-gradient(to right, transparent, ${theme.colors.primary}80, transparent)` }}
+            />
 
             {/* Road Perspective */}
             <div className="absolute top-[45%] bottom-0 left-1/2 -translate-x-1/2 w-full max-w-3xl flex justify-center perspective-[500px]">
                 {/* Left Lane Marker */}
-                <div className="absolute h-[150%] w-3 bg-gradient-to-b from-blue-500/0 via-blue-500/50 to-blue-500 shadow-[0_0_25px_rgba(59,130,246,0.6)] blur-[1px]"
-                    style={{ transform: 'perspective(300px) rotateX(60deg) translateX(-120px) skewX(25deg)', transformOrigin: 'bottom' }}
+                <div
+                    className="absolute h-[150%] w-3 shadow-[0_0_25px_rgba(59,130,246,0.6)] blur-[1px]"
+                    style={{
+                        background: `linear-gradient(to bottom, transparent, ${theme.colors.primary}80, ${theme.colors.primary})`,
+                        transform: 'perspective(300px) rotateX(60deg) translateX(-120px) skewX(25deg)',
+                        transformOrigin: 'bottom'
+                    }}
                 />
 
                 {/* Right Lane Marker */}
-                <div className="absolute h-[150%] w-3 bg-gradient-to-b from-blue-500/0 via-blue-500/50 to-blue-500 shadow-[0_0_25px_rgba(59,130,246,0.6)] blur-[1px]"
-                    style={{ transform: 'perspective(300px) rotateX(60deg) translateX(120px) skewX(-25deg)', transformOrigin: 'bottom' }}
+                <div
+                    className="absolute h-[150%] w-3 shadow-[0_0_25px_rgba(59,130,246,0.6)] blur-[1px]"
+                    style={{
+                        background: `linear-gradient(to bottom, transparent, ${theme.colors.primary}80, ${theme.colors.primary})`,
+                        transform: 'perspective(300px) rotateX(60deg) translateX(120px) skewX(-25deg)',
+                        transformOrigin: 'bottom'
+                    }}
                 />
 
                 {/* Center Dashed Line */}
-                <div className="absolute h-full w-0.5 border-l-2 border-dashed border-zinc-700/30"
-                    style={{ transform: 'perspective(300px) rotateX(60deg)' }}
+                <div
+                    className="absolute h-full w-0.5 border-l-2 border-dashed"
+                    style={{
+                        borderColor: `${theme.colors.border}50`,
+                        transform: 'perspective(300px) rotateX(60deg)'
+                    }}
                 />
             </div>
 
             {/* Other Car (Simulated) */}
             <div className="absolute top-[55%] left-[55%] transition-all duration-[3000ms] ease-in-out scale-50">
-                <div className="w-16 h-10 bg-zinc-800 rounded-lg shadow-lg opacity-40 blur-[1px] relative">
+                <div
+                    className="w-16 h-10 rounded-lg shadow-lg opacity-40 blur-[1px] relative"
+                    style={{ backgroundColor: theme.colors.secondary }}
+                >
                     <div className="absolute bottom-1 w-full flex justify-between px-1">
                         <div className="w-1.5 h-1.5 bg-red-500 rounded-full blur-[1px]" />
                         <div className="w-1.5 h-1.5 bg-red-500 rounded-full blur-[1px]" />
@@ -88,7 +114,10 @@ const LaneAssist = ({ children, activeMode = 'comfort', onModeChange, className 
 
             {/* Battery / Range Indicator - Top Left */}
             <div className="absolute top-6 left-6 z-40 flex items-center gap-3 text-emerald-400/90">
-                <div className="h-1.5 w-10 bg-zinc-800/50 rounded-full overflow-hidden backdrop-blur-sm border border-white/5">
+                <div
+                    className="h-1.5 w-10 rounded-full overflow-hidden backdrop-blur-sm border border-white/5"
+                    style={{ backgroundColor: `${theme.colors.secondary}80` }}
+                >
                     <div className="h-full w-[80%] bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.5)]" />
                 </div>
                 <span className="font-mono text-xs font-bold tracking-wider">240 MI</span>
@@ -97,7 +126,11 @@ const LaneAssist = ({ children, activeMode = 'comfort', onModeChange, className 
             {/* User Car - Moved Up and Scaled Down to sit 'behind' the speedometer */}
             <div className="absolute bottom-48 left-1/2 -translate-x-1/2 z-10 perspective-[1000px]">
                 <div className="relative transform transition-transform duration-700 hover:scale-105">
-                    <CarFront className="w-24 h-24 text-zinc-100 drop-shadow-[0_10px_30px_rgba(0,0,0,0.9)]" strokeWidth={1} />
+                    <CarFront
+                        className="w-24 h-24 drop-shadow-[0_10px_30px_rgba(0,0,0,0.9)]"
+                        strokeWidth={1}
+                        style={{ color: theme.colors.foreground }}
+                    />
                     {/* Headlight Beams */}
                     <div className="absolute top-2/3 left-2 w-32 h-64 bg-gradient-to-t from-blue-100/10 to-transparent -rotate-[15deg] blur-2xl origin-top rounded-full pointer-events-none" />
                     <div className="absolute top-2/3 right-2 w-32 h-64 bg-gradient-to-t from-blue-100/10 to-transparent rotate-[15deg] blur-2xl origin-top rounded-full pointer-events-none" />
