@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, ReactNode, useMemo } from 'react'
-import { legacyThemes as themes, LegacyTheme as Theme, getThemeById } from '@/lib/registry'
+import { legacyThemes as themes, LegacyTheme as Theme, getThemeById, VisualLanguageId } from '@/lib/registry'
 import { playgroundThemes, PlaygroundTheme, getPlaygroundThemeById, defaultPlaygroundTheme } from '@/data/playgroundThemes'
 
 // The default registry theme - dark, neutral, always consistent
@@ -34,6 +34,10 @@ interface ThemeContextType {
     currentPlaygroundTheme: PlaygroundTheme
     setPlaygroundTheme: (id: string) => void
     playgroundThemes: PlaygroundTheme[]
+
+    // Scoped Theming
+    scopedThemes: Record<VisualLanguageId, string>
+    setScopedTheme: (language: VisualLanguageId, themeId: string) => void
 }
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined)
@@ -41,7 +45,32 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined)
 export function ThemeProvider({ children }: { children: ReactNode }) {
     // Template theme - only set when viewing a specific template
     const [templateTheme, setTemplateTheme] = useState<Theme | null>(null)
+
+    // Scoped themes state - maps each Visual Language to its active "Mood" (PlaygroundTheme ID)
+    const [scopedThemes, setScopedThemes] = useState<Record<VisualLanguageId, string>>({
+        professional: 'emerald_tier',
+        consumer: 'cupcake',
+        scifi: 'cyberpunk',
+        retro: 'retro',
+        experimental: 'coffee',
+        nature: 'forest'
+    })
+
+    // Current active tokens (PlaygroundTheme)
+    // Derived from the current scope (template) or default
+    const currentScope = templateTheme?.visualLanguageId || 'professional' as VisualLanguageId
+    const activeLikeThemeId = scopedThemes[currentScope]
+
+    // We maintain this state for immediate feedback but sync it with scopes
     const [currentPlaygroundTheme, setCurrentPlaygroundTheme] = useState<PlaygroundTheme>(defaultPlaygroundTheme)
+
+    // Sync playground theme when scope or scoped-selection changes
+    useMemo(() => {
+        const theme = getPlaygroundThemeById(activeLikeThemeId)
+        if (theme) {
+            setCurrentPlaygroundTheme(theme)
+        }
+    }, [activeLikeThemeId])
 
     const isTemplateMode = templateTheme !== null
 
@@ -65,10 +94,18 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     }
 
     const setPlaygroundTheme = (id: string) => {
-        const theme = getPlaygroundThemeById(id)
-        if (theme) {
-            setCurrentPlaygroundTheme(theme)
-        }
+        // Update the theme for the CURRENT scope
+        setScopedThemes(prev => ({
+            ...prev,
+            [currentScope]: id
+        }))
+    }
+
+    const setScopedTheme = (language: VisualLanguageId, themeId: string) => {
+        setScopedThemes(prev => ({
+            ...prev,
+            [language]: themeId
+        }))
     }
 
     return (
@@ -83,6 +120,8 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
                 currentPlaygroundTheme,
                 setPlaygroundTheme,
                 playgroundThemes,
+                scopedThemes,
+                setScopedTheme,
             }}
         >
             {children}
