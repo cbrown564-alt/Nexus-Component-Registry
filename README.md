@@ -185,13 +185,12 @@ nexus-component-registry/
 
 ## Roadmap
 
-See [STATUS.md](./STATUS.md) for the full roadmap. Key priorities:
+See [CHANGELOG.md](./CHANGELOG.md) for the full history or [docs/TEMPLATES.md](./docs/TEMPLATES.md) for the catalog.
 
-1. **Homepage** — Replace Engineering dashboard with proper landing page
-2. **Routing** — Implement navigation to Templates, Components, Hooks
-3. **Component Gallery** — Searchable, filterable component browser
-4. **Template Polish** — Upgrade early templates to full layouts
-5. **Hooks Documentation** — Extract and document utility patterns
+### Documentation
+- **[Architecture Guide](./docs/ARCHITECTURE.md)** — System design and patterns
+- **[Template Catalog](./docs/TEMPLATES.md)** — Guide to all 28 design systems
+- **[Research](./docs/RESEARCH-component-gallery-best-practices.md)** — Design system analysis
 
 ---
 
@@ -227,6 +226,6 @@ MIT License — see [LICENSE](./LICENSE) for details.
 
 <div align="center">
 
-**[Demo](https://ai.studio/apps/drive/1v0-Z70I56VYzhD52AZ6DZuelVRtZZQ9u)** · **[Status](./STATUS.md)** · **[Research](./docs/RESEARCH-component-gallery-best-practices.md)**
+**[Demo](https://ai.studio/apps/drive/1v0-Z70I56VYzhD52AZ6DZuelVRtZZQ9u)** · **[Changelog](./CHANGELOG.md)** · **[Architecture](./docs/ARCHITECTURE.md)**
 
 </div>
