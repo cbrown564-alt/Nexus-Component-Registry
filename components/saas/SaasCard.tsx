@@ -1,8 +1,8 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, HTMLMotionProps } from 'framer-motion';
 import { useTheme } from '@/context/ThemeContext';
 
-interface SaasCardProps {
+interface SaasCardProps extends HTMLMotionProps<'div'> {
   children: React.ReactNode;
   className?: string;
   delay?: number;
@@ -15,7 +15,8 @@ const SaasCard: React.FC<SaasCardProps> = ({
   className = "",
   delay = 0,
   noPadding = false,
-  style
+  style,
+  ...props
 }) => {
   const { currentPlaygroundTheme } = useTheme()
   const theme = currentPlaygroundTheme
@@ -40,6 +41,7 @@ const SaasCard: React.FC<SaasCardProps> = ({
                 theme.radius === 'xl' ? '0.75rem' : '1rem',
         ...style
       }}
+      {...props}
     >
       {children}
     </motion.div>
