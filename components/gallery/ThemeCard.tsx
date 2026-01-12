@@ -49,7 +49,8 @@ export default function ThemeCard({ theme, index = 0, size = 'md' }: ThemeCardPr
         >
             <Link
                 to={`/templates/${theme.id}`}
-                className={`group block border border-zinc-800 bg-zinc-900/50 overflow-hidden hover:border-zinc-600 transition-all hover:scale-[1.01] ${styles.container}`}
+                className={`group block border overflow-hidden hover:scale-[1.01] transition-all ${styles.container}`}
+                style={{ borderColor: '#27272a', backgroundColor: 'rgba(24,24,27,0.5)' }}
             >
                 {/* Preview Area */}
                 <div className={`${styles.preview} ${theme.backgroundColor} relative overflow-hidden`}>
@@ -64,15 +65,16 @@ export default function ThemeCard({ theme, index = 0, size = 'md' }: ThemeCardPr
                 <div className={styles.padding}>
                     <div className="flex items-center gap-3 mb-2">
                         <div className={`${styles.dot} rounded-full ${theme.colorClass}`} />
-                        <h3 className={`font-semibold text-white ${styles.title}`}>{theme.name}</h3>
+                        <h3 className={`font-semibold ${styles.title}`} style={{ color: '#ffffff' }}>{theme.name}</h3>
                         {size !== 'sm' && (
                             <span
-                                className={`ml-auto px-2 py-0.5 text-xs rounded-full ${theme.category === 'dark'
-                                    ? 'bg-zinc-800 text-zinc-300'
+                                className="ml-auto px-2 py-0.5 text-xs rounded-full"
+                                style={theme.category === 'dark'
+                                    ? { backgroundColor: '#27272a', color: '#d4d4d8' }
                                     : theme.category === 'light'
-                                        ? 'bg-zinc-700 text-zinc-200'
-                                        : 'bg-fuchsia-900/50 text-fuchsia-300'
-                                    }`}
+                                        ? { backgroundColor: '#3f3f46', color: '#e4e4e7' }
+                                        : { backgroundColor: 'rgba(112,26,117,0.5)', color: '#f0abfc' }
+                                }
                             >
                                 {theme.category}
                             </span>
@@ -80,12 +82,13 @@ export default function ThemeCard({ theme, index = 0, size = 'md' }: ThemeCardPr
                     </div>
                     {size !== 'sm' && (
                         <>
-                            <p className={`text-zinc-400 mb-3 ${styles.description}`}>{theme.description}</p>
+                            <p className={`mb-3 ${styles.description}`} style={{ color: '#a1a1aa' }}>{theme.description}</p>
                             <div className="flex flex-wrap gap-1.5">
                                 {theme.tags.slice(0, 3).map((tag) => (
                                     <span
                                         key={tag}
-                                        className="px-2 py-0.5 text-xs bg-zinc-800/50 text-zinc-500 rounded"
+                                        className="px-2 py-0.5 text-xs rounded"
+                                        style={{ backgroundColor: 'rgba(39,39,42,0.5)', color: '#71717a' }}
                                     >
                                         {tag}
                                     </span>

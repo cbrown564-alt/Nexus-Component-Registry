@@ -7,22 +7,22 @@ const ReaderContent = () => {
         <EInkCard className="h-full flex flex-col p-8 md:p-12 relative shadow-[8px_8px_0px_rgba(0,0,0,0.15)]">
 
             {/* Header */}
-            <div className="flex justify-between items-start mb-8 border-b-2 border-black pb-4">
+            <div className="flex justify-between items-start mb-8 border-b-2 pb-4" style={{ borderColor: '#000000' }}>
                 <div>
-                    <h2 className="font-serif text-3xl md:text-4xl font-bold text-black leading-tight mb-1">
+                    <h2 className="font-serif text-3xl md:text-4xl font-bold leading-tight mb-1" style={{ color: '#000000' }}>
                         The Architecture of Silence
                     </h2>
-                    <p className="font-sans text-xs uppercase tracking-[0.2em] text-stone-500">
+                    <p className="font-sans text-xs uppercase tracking-[0.2em]" style={{ color: '#78716c' }}>
                         Chapter 4 • K. Yamamoto
                     </p>
                 </div>
-                <button className="p-2 border-2 border-transparent hover:border-black rounded-full transition-all">
-                    <Bookmark className="h-6 w-6 text-black fill-current" />
+                <button className="p-2 border-2 border-transparent rounded-full transition-all">
+                    <Bookmark className="h-6 w-6 fill-current" style={{ color: '#000000' }} />
                 </button>
             </div>
 
             {/* Content */}
-            <div className="flex-1 overflow-y-auto pr-4 font-serif text-lg md:text-xl leading-loose text-black text-justify selection:bg-black selection:text-white">
+            <div className="flex-1 overflow-y-auto pr-4 font-serif text-lg md:text-xl leading-loose text-justify" style={{ color: '#000000' }}>
                 <p className="mb-6">
                     <span className="text-8xl float-left mr-0 -mt-0.5 font-bold leading-[0.8]">T</span>rue silence is not merely the absence of sound, but the presence of a specific kind of attention. In the digital age, we have replaced this attention with a constant, low-level hum of information. It coats our thoughts like a fine dust, obscuring the sharp edges of our own consciousness.
                 </p>

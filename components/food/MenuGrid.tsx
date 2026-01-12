@@ -26,10 +26,11 @@ const MenuGrid = () => {
         {categories.map((cat, i) => (
           <button
             key={i}
-            className={`whitespace-nowrap rounded-full px-6 py-2.5 text-sm font-bold transition-all ${cat.active
-              ? 'bg-orange-500 text-white shadow-lg shadow-orange-500/20'
-              : 'bg-stone-800 text-stone-400 hover:bg-stone-700 hover:text-white'
-              }`}
+            className="whitespace-nowrap rounded-full px-6 py-2.5 text-sm font-bold transition-all"
+            style={cat.active
+              ? { backgroundColor: '#f97316', color: '#ffffff', boxShadow: '0 10px 15px -3px rgba(249,115,22,0.2)' }
+              : { backgroundColor: '#292524', color: '#a8a29e' }
+            }
           >
             {cat.name}
           </button>
@@ -39,14 +40,14 @@ const MenuGrid = () => {
       {/* Grid */}
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
         {items.map((item, i) => (
-          <FoodCard key={i} delay={0.1 * i} className="group cursor-pointer hover:border-orange-500/30 transition-colors">
+          <FoodCard key={i} delay={0.1 * i} className="group cursor-pointer transition-colors">
             <div className="relative h-48 w-full overflow-hidden">
               <img src={item.img} alt={item.title} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110" />
-              <button className="absolute right-3 top-3 rounded-full bg-black/40 p-2 text-white backdrop-blur-md transition-colors hover:bg-rose-500 hover:text-white">
+              <button className="absolute right-3 top-3 rounded-full p-2 backdrop-blur-md transition-colors" style={{ backgroundColor: 'rgba(0,0,0,0.4)', color: '#ffffff' }}>
                 <Heart className="h-4 w-4" />
               </button>
               {item.tag && (
-                <span className="absolute left-3 top-3 rounded-md bg-white/90 px-2 py-1 text-[10px] font-bold uppercase tracking-wider text-black backdrop-blur-md">
+                <span className="absolute left-3 top-3 rounded-md px-2 py-1 text-[10px] font-bold uppercase tracking-wider backdrop-blur-md" style={{ backgroundColor: 'rgba(255,255,255,0.9)', color: '#000000' }}>
                   {item.tag}
                 </span>
               )}
@@ -54,12 +55,12 @@ const MenuGrid = () => {
             <div className="p-5">
               <div className="mb-2 flex items-start justify-between">
                 <div>
-                  <h3 className="font-serif text-lg font-medium text-white">{item.title}</h3>
-                  <span className="text-xs text-stone-500">{item.cal} kcal</span>
+                  <h3 className="font-serif text-lg font-medium" style={{ color: '#ffffff' }}>{item.title}</h3>
+                  <span className="text-xs" style={{ color: '#78716c' }}>{item.cal} kcal</span>
                 </div>
-                <span className="text-lg font-bold text-orange-400">{item.price}</span>
+                <span className="text-lg font-bold" style={{ color: '#fb923c' }}>{item.price}</span>
               </div>
-              <button className="mt-4 flex w-full items-center justify-center gap-2 rounded-xl bg-stone-800 py-3 text-sm font-bold text-white transition-colors hover:bg-stone-700 group-hover:bg-orange-500">
+              <button className="mt-4 flex w-full items-center justify-center gap-2 rounded-xl py-3 text-sm font-bold transition-colors" style={{ backgroundColor: '#292524', color: '#ffffff' }}>
                 <Plus className="h-4 w-4" />
                 Add to Cart
               </button>
