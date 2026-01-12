@@ -1,4 +1,5 @@
 import { motion, HTMLMotionProps } from 'framer-motion';
+import { useTheme } from '@/context/ThemeContext';
 
 interface BrutalistButtonProps extends HTMLMotionProps<"button"> {
     children?: React.ReactNode;
@@ -22,7 +23,8 @@ const BrutalistButton: React.FC<BrutalistButtonProps> = ({
     color,
     ...props
 }) => {
-    const baseStyles = 'relative inline-flex items-center justify-center gap-2 font-mono font-bold uppercase tracking-wide border-2 border-black transition-all focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed';
+    const { theme } = useTheme();
+    const baseStyles = 'relative inline-flex items-center justify-center gap-2 font-mono font-bold uppercase tracking-wide border-2 transition-all focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed';
 
     const sizeStyles = {
         sm: 'px-3 py-1.5 text-xs',
@@ -31,21 +33,48 @@ const BrutalistButton: React.FC<BrutalistButtonProps> = ({
         icon: 'p-3',
     };
 
-    // Base colors if not overridden
-    const defaultColors = {
-        neo: 'bg-white text-black',
-        reverse: 'bg-black text-white',
-        outline: 'bg-transparent text-black',
+    // Replace defaultColors classes with style objects
+    const getDefaultStyle = () => {
+        switch (variant) {
+            case 'neo':
+                return {
+                    backgroundColor: theme.colors.background,
+                    color: theme.colors.foreground,
+                    borderColor: theme.colors.foreground
+                };
+            case 'reverse':
+                return {
+                    backgroundColor: theme.colors.foreground,
+                    color: theme.colors.background,
+                    borderColor: theme.colors.background
+                };
+            case 'outline':
+                return {
+                    backgroundColor: 'transparent',
+                    color: theme.colors.foreground,
+                    borderColor: theme.colors.foreground
+                };
+        }
     };
 
-    const shadowStyles = 'shadow-[4px_4px_0px_0px_#000] active:shadow-none active:translate-x-[4px] active:translate-y-[4px] hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[6px_6px_0px_0px_#000]';
+    // Shadow needs to match border/foreground
+    const shadowColor = theme.colors.foreground;
+    // We can't inject var easily into tailwind arbitrary value without CSS var.
+    // So we use style for box-shadow.
 
-    const styleClass = color ? color : defaultColors[variant];
+    const shadowStyle = variant !== 'outline' ? {
+        boxShadow: `4px 4px 0px 0px ${shadowColor}`
+    } : {};
 
     return (
         <motion.button
             whileTap={{ scale: 0.98 }}
-            className={`${baseStyles} ${sizeStyles[size]} ${styleClass} ${variant !== 'outline' ? shadowStyles : 'shadow-none hover:bg-black hover:text-white'} ${className}`}
+            className={`${baseStyles} ${sizeStyles[size]} ${className}`}
+            style={{
+                ...getDefaultStyle(),
+                ...shadowStyle,
+                ...(color ? { backgroundColor: color } : {})
+            }}
             disabled={disabled}
             onClick={onClick}
             {...props}

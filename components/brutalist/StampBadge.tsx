@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useTheme } from '@/context/ThemeContext';
 
 interface StampBadgeProps {
   text?: string;
@@ -14,11 +15,13 @@ const StampBadge: React.FC<StampBadgeProps> = ({
   rotation = -12,
   className = "",
 }) => {
+  const { theme } = useTheme();
+
   const variantStyles = {
-    approved: 'border-green-600 text-green-600',
-    rejected: 'border-red-600 text-red-600',
-    pending: 'border-amber-600 text-amber-600',
-    custom: 'border-black text-black',
+    approved: { borderColor: '#16a34a', color: '#16a34a' }, // green-600
+    rejected: { borderColor: '#dc2626', color: '#dc2626' }, // red-600
+    pending: { borderColor: '#d97706', color: '#d97706' }, // amber-600
+    custom: { borderColor: theme.colors.foreground, color: theme.colors.foreground }, // black -> foreground
   };
 
   return (
@@ -26,10 +29,11 @@ const StampBadge: React.FC<StampBadgeProps> = ({
       initial={{ scale: 0, rotate: rotation - 30 }}
       animate={{ scale: 1, rotate: rotation }}
       transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-      className={`inline-block px-6 py-2 border-4 ${variantStyles[variant]} ${className}`}
+      className={`inline-block px-6 py-2 border-4 ${className}`}
       style={{
         borderStyle: 'double',
         fontFamily: 'monospace',
+        ...variantStyles[variant]
       }}
     >
       <span className="text-lg font-black uppercase tracking-[0.3em]">
