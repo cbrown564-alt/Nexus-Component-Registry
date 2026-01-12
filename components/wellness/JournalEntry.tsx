@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { BookOpen, Calendar, Heart, Sparkles, Check } from 'lucide-react';
 import WellnessCard from './WellnessCard';
+import { useTheme } from '@/context/ThemeContext';
 
 interface JournalEntryProps {
   date?: string;
@@ -18,6 +19,7 @@ const JournalEntry: React.FC<JournalEntryProps> = ({
   onSave,
   gratitudeMode = false,
 }) => {
+  const { theme } = useTheme();
   const [text, setText] = useState(initialText);
   const [saved, setSaved] = useState(false);
 
@@ -33,7 +35,10 @@ const JournalEntry: React.FC<JournalEntryProps> = ({
     <WellnessCard className="flex flex-col">
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
-        <div className="flex items-center gap-2 text-stone-600">
+        <div
+          className="flex items-center gap-2"
+          style={{ color: theme.colors.mutedForeground }}
+        >
           {gratitudeMode ? (
             <Heart className="h-4 w-4 text-rose-400" />
           ) : (
@@ -43,7 +48,10 @@ const JournalEntry: React.FC<JournalEntryProps> = ({
             {gratitudeMode ? 'Gratitude' : 'Journal'}
           </span>
         </div>
-        <div className="flex items-center gap-1.5 text-stone-400">
+        <div
+          className="flex items-center gap-1.5"
+          style={{ color: theme.colors.mutedForeground }}
+        >
           <Calendar className="h-3 w-3" />
           <span className="text-xs">{date}</span>
         </div>
@@ -52,7 +60,12 @@ const JournalEntry: React.FC<JournalEntryProps> = ({
       {/* Prompt */}
       <div className="flex items-start gap-2 mb-4">
         <Sparkles className="h-4 w-4 text-amber-400 mt-0.5 flex-shrink-0" />
-        <p className="font-serif text-lg text-stone-700 leading-relaxed">{prompt}</p>
+        <p
+          className="font-serif text-lg leading-relaxed"
+          style={{ color: theme.colors.foreground }}
+        >
+          {prompt}
+        </p>
       </div>
 
       {/* Text Area */}
@@ -61,9 +74,10 @@ const JournalEntry: React.FC<JournalEntryProps> = ({
           value={text}
           onChange={(e) => setText(e.target.value)}
           placeholder="Start writing..."
-          className="w-full h-full min-h-[120px] bg-transparent resize-none text-stone-600 placeholder:text-stone-300 focus:outline-none font-light leading-relaxed"
-          style={{ 
-            backgroundImage: 'repeating-linear-gradient(transparent, transparent 27px, rgba(120, 113, 108, 0.1) 28px)',
+          className="w-full h-full min-h-[120px] bg-transparent resize-none focus:outline-none font-light leading-relaxed"
+          style={{
+            color: theme.colors.foreground,
+            backgroundImage: `repeating-linear-gradient(transparent, transparent 27px, ${theme.colors.border} 28px)`,
             lineHeight: '28px',
             paddingTop: '4px'
           }}
@@ -71,8 +85,14 @@ const JournalEntry: React.FC<JournalEntryProps> = ({
       </div>
 
       {/* Footer */}
-      <div className="flex items-center justify-between mt-4 pt-4 border-t border-stone-100">
-        <span className="text-xs text-stone-400">
+      <div
+        className="flex items-center justify-between mt-4 pt-4 border-t"
+        style={{ borderColor: theme.colors.border }}
+      >
+        <span
+          className="text-xs"
+          style={{ color: theme.colors.mutedForeground }}
+        >
           {text.length} characters
         </span>
         <motion.button
@@ -80,13 +100,18 @@ const JournalEntry: React.FC<JournalEntryProps> = ({
           whileTap={{ scale: 0.98 }}
           onClick={handleSave}
           disabled={!text.trim()}
-          className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all ${
-            saved 
-              ? 'bg-sage-100 text-sage-700' 
-              : text.trim()
-                ? 'bg-stone-800 text-white hover:bg-stone-700'
-                : 'bg-stone-100 text-stone-400 cursor-not-allowed'
-          }`}
+          className="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all"
+          style={saved ? {
+            backgroundColor: theme.colors.muted,
+            color: theme.colors.foreground
+          } : text.trim() ? {
+            backgroundColor: theme.colors.primary,
+            color: theme.colors.primaryForeground
+          } : {
+            backgroundColor: theme.colors.muted,
+            color: theme.colors.mutedForeground,
+            cursor: 'not-allowed'
+          }}
         >
           {saved ? (
             <>

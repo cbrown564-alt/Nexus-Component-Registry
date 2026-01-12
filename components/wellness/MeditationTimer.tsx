@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Play, Pause, RotateCcw, Volume2, VolumeX } from 'lucide-react';
 import WellnessCard from './WellnessCard';
+import { useTheme } from '@/context/ThemeContext';
 
 interface MeditationTimerProps {
   duration?: number; // in minutes
@@ -16,6 +17,7 @@ const MeditationTimer: React.FC<MeditationTimerProps> = ({
   soundEnabled = true,
   presets = [5, 10, 15, 20],
 }) => {
+  const { theme } = useTheme();
   const [selectedDuration, setSelectedDuration] = useState(duration);
   const [timeLeft, setTimeLeft] = useState(duration * 60);
   const [isRunning, setIsRunning] = useState(false);
@@ -66,12 +68,16 @@ const MeditationTimer: React.FC<MeditationTimerProps> = ({
     <WellnessCard className="flex flex-col items-center text-center">
       {/* Header */}
       <div className="flex items-center justify-between w-full mb-6">
-        <span className="text-xs font-medium uppercase tracking-widest text-stone-600">
+        <span
+          className="text-xs font-medium uppercase tracking-widest"
+          style={{ color: theme.colors.mutedForeground }}
+        >
           Meditation
         </span>
         <button
           onClick={() => setIsSoundOn(!isSoundOn)}
-          className="p-2 rounded-full hover:bg-stone-100 transition-colors text-stone-500"
+          className="p-2 rounded-full transition-colors"
+          style={{ color: theme.colors.mutedForeground }}
           aria-label={isSoundOn ? 'Mute sound' : 'Enable sound'}
         >
           {isSoundOn ? <Volume2 className="h-4 w-4" /> : <VolumeX className="h-4 w-4" />}
@@ -99,7 +105,7 @@ const MeditationTimer: React.FC<MeditationTimerProps> = ({
             cy="100"
             r="90"
             fill="none"
-            stroke="#f5f5f4"
+            stroke={theme.colors.muted}
             strokeWidth="4"
           />
           {/* Progress ring */}
@@ -131,12 +137,16 @@ const MeditationTimer: React.FC<MeditationTimerProps> = ({
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
-              className="font-serif text-4xl text-stone-800"
+              className="font-serif text-4xl"
+              style={{ color: theme.colors.foreground }}
             >
               {formatTime(timeLeft)}
             </motion.span>
           </AnimatePresence>
-          <span className="text-xs text-stone-500 mt-1">
+          <span
+            className="text-xs mt-1"
+            style={{ color: theme.colors.mutedForeground }}
+          >
             {isRunning ? 'remaining' : 'ready'}
           </span>
         </div>
@@ -153,11 +163,14 @@ const MeditationTimer: React.FC<MeditationTimerProps> = ({
               }
             }}
             disabled={isRunning}
-            className={`px-3 py-1.5 rounded-full text-sm transition-all ${
-              selectedDuration === mins
-                ? 'bg-stone-800 text-white'
-                : 'bg-stone-100 text-stone-600 hover:bg-stone-200 disabled:opacity-50'
-            }`}
+            className="px-3 py-1.5 rounded-full text-sm transition-all disabled:opacity-50"
+            style={selectedDuration === mins ? {
+              backgroundColor: theme.colors.primary,
+              color: theme.colors.primaryForeground
+            } : {
+              backgroundColor: theme.colors.muted,
+              color: theme.colors.mutedForeground
+            }}
           >
             {mins}m
           </button>
@@ -170,7 +183,11 @@ const MeditationTimer: React.FC<MeditationTimerProps> = ({
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           onClick={handleReset}
-          className="p-3 rounded-full bg-stone-100 text-stone-600 hover:bg-stone-200 transition-colors"
+          className="p-3 rounded-full transition-colors"
+          style={{
+            backgroundColor: theme.colors.muted,
+            color: theme.colors.mutedForeground
+          }}
           aria-label="Reset timer"
         >
           <RotateCcw className="h-5 w-5" />
@@ -180,7 +197,11 @@ const MeditationTimer: React.FC<MeditationTimerProps> = ({
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           onClick={() => setIsRunning(!isRunning)}
-          className="flex items-center justify-center w-16 h-16 rounded-full bg-stone-800 text-white shadow-lg hover:bg-stone-700 transition-colors"
+          className="flex items-center justify-center w-16 h-16 rounded-full shadow-lg transition-colors"
+          style={{
+            backgroundColor: theme.colors.primary,
+            color: theme.colors.primaryForeground
+          }}
           aria-label={isRunning ? 'Pause' : 'Play'}
         >
           {isRunning ? (
@@ -194,7 +215,10 @@ const MeditationTimer: React.FC<MeditationTimerProps> = ({
       </div>
 
       {/* Session info */}
-      <p className="text-xs text-stone-400 mt-6">
+      <p
+        className="text-xs mt-6"
+        style={{ color: theme.colors.mutedForeground }}
+      >
         Find a comfortable position and focus on your breath
       </p>
     </WellnessCard>

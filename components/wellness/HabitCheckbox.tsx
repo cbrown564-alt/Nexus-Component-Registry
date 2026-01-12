@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Check, Flame, Droplets, Moon, Sun, Heart, Dumbbell, BookOpen, Salad } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
+import { useTheme } from '@/context/ThemeContext';
 
 type HabitIcon = 'flame' | 'droplets' | 'moon' | 'sun' | 'heart' | 'dumbbell' | 'book' | 'salad';
 
@@ -73,6 +74,7 @@ const HabitCheckbox: React.FC<HabitCheckboxProps> = ({
   onToggle,
   color = 'sage',
 }) => {
+  const { theme } = useTheme();
   const [internalChecked, setInternalChecked] = useState(false);
   const isChecked = controlledChecked ?? internalChecked;
   const IconComponent = iconMap[icon];
@@ -90,11 +92,14 @@ const HabitCheckbox: React.FC<HabitCheckboxProps> = ({
     <motion.div
       initial={{ opacity: 0, y: 5 }}
       animate={{ opacity: 1, y: 0 }}
-      className={`relative flex items-center gap-4 p-4 rounded-2xl border transition-all duration-300 cursor-pointer ${
-        isChecked 
-          ? `${colors.bg} ${colors.border}` 
-          : 'bg-white/60 border-stone-200 hover:border-stone-300'
-      }`}
+      className={`relative flex items-center gap-4 p-4 rounded-2xl border transition-all duration-300 cursor-pointer ${isChecked
+          ? `${colors.bg} ${colors.border}`
+          : 'hover:border-opacity-100' // Base styles handled via inline
+        }`}
+      style={!isChecked ? {
+        backgroundColor: theme.colors.card, // or card/secondary
+        borderColor: theme.colors.border
+      } : undefined}
       onClick={handleToggle}
       role="checkbox"
       aria-checked={isChecked}
@@ -107,14 +112,23 @@ const HabitCheckbox: React.FC<HabitCheckboxProps> = ({
       }}
     >
       {/* Icon */}
-      <div className={`flex-shrink-0 p-2 rounded-xl ${isChecked ? colors.bg : 'bg-stone-50'}`}>
-        <IconComponent className={`h-5 w-5 ${isChecked ? colors.icon : 'text-stone-400'}`} />
+      <div
+        className={`flex-shrink-0 p-2 rounded-xl ${isChecked ? colors.bg : ''}`}
+        style={!isChecked ? { backgroundColor: theme.colors.muted } : undefined}
+      >
+        <IconComponent
+          className={`h-5 w-5 ${isChecked ? colors.icon : ''}`}
+          style={!isChecked ? { color: theme.colors.mutedForeground } : undefined}
+        />
       </div>
 
       {/* Content */}
       <div className="flex-1 min-w-0">
         <div className="flex items-center gap-2">
-          <span className={`font-medium ${isChecked ? 'text-stone-700' : 'text-stone-600'}`}>
+          <span
+            className="font-medium"
+            style={{ color: isChecked ? undefined : theme.colors.foreground }}
+          >
             {label}
           </span>
           {streak > 0 && (
@@ -129,18 +143,26 @@ const HabitCheckbox: React.FC<HabitCheckboxProps> = ({
           )}
         </div>
         {description && (
-          <p className="text-sm text-stone-400 truncate">{description}</p>
+          <p
+            className="text-sm truncate"
+            style={{ color: theme.colors.mutedForeground }}
+          >
+            {description}
+          </p>
         )}
       </div>
 
       {/* Checkbox */}
       <div className="flex-shrink-0">
         <motion.div
-          className={`relative w-7 h-7 rounded-full border-2 flex items-center justify-center transition-colors ${
-            isChecked 
-              ? `${colors.checked} border-transparent` 
-              : 'border-stone-300 bg-white'
-          }`}
+          className={`relative w-7 h-7 rounded-full border-2 flex items-center justify-center transition-colors ${isChecked
+              ? `${colors.checked} border-transparent`
+              : ''
+            }`}
+          style={!isChecked ? {
+            borderColor: theme.colors.border,
+            backgroundColor: theme.colors.background
+          } : undefined}
           whileTap={{ scale: 0.9 }}
         >
           <AnimatePresence>
@@ -165,13 +187,13 @@ const HabitCheckbox: React.FC<HabitCheckboxProps> = ({
             {[...Array(6)].map((_, i) => (
               <motion.div
                 key={i}
-                initial={{ 
-                  scale: 0, 
-                  x: 0, 
+                initial={{
+                  scale: 0,
+                  x: 0,
                   y: 0,
-                  opacity: 1 
+                  opacity: 1
                 }}
-                animate={{ 
+                animate={{
                   scale: [0, 1, 0],
                   x: Math.cos(i * 60 * Math.PI / 180) * 30,
                   y: Math.sin(i * 60 * Math.PI / 180) * 30,
