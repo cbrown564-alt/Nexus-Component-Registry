@@ -45,37 +45,47 @@ const RedlineSidebar = () => {
   ];
 
   return (
-    <div className="h-full border-l border-stone-200 bg-stone-50 p-4 overflow-y-auto">
+    <div className="h-full border-l p-4 overflow-y-auto" style={{ borderColor: '#e7e5e4', backgroundColor: '#fafaf9' }}>
       <div className="mb-6 flex items-center justify-between">
-        <h3 className="text-xs font-bold uppercase tracking-widest text-stone-500">Redlines & Comments</h3>
-        <span className="bg-blue-100 text-blue-700 text-[10px] font-bold px-2 py-0.5 rounded-full">3 Open</span>
+        <h3 className="text-xs font-bold uppercase tracking-widest" style={{ color: '#78716c' }}>Redlines & Comments</h3>
+        <span className="text-[10px] font-bold px-2 py-0.5 rounded-full" style={{ backgroundColor: '#dbeafe', color: '#1d4ed8' }}>3 Open</span>
       </div>
 
       <div className="space-y-4">
         {comments.map((comment) => (
-          <div 
+          <div
             key={comment.id}
-            className={`rounded-lg border p-4 shadow-sm transition-all ${
-              comment.active 
-                ? 'bg-white border-blue-500 shadow-md ring-1 ring-blue-500/20' 
-                : 'bg-white border-stone-200 hover:border-stone-300'
-            }`}
+            className={`rounded-lg border p-4 shadow-sm transition-all ${comment.active
+                ? 'shadow-md ring-1'
+                : 'hover:border-stone-300'
+              }`}
+            style={{
+              backgroundColor: '#ffffff',
+              borderColor: comment.active ? '#3b82f6' : '#e7e5e4',
+              '--tw-ring-color': comment.active ? 'rgba(59, 130, 246, 0.2)' : 'transparent',
+              '--tw-ring-opacity': 1,
+            } as React.CSSProperties}
           >
             <div className="flex items-start gap-3 mb-2">
-              <div className={`h-6 w-6 rounded-full flex items-center justify-center text-[10px] font-bold text-white ${
-                comment.type === 'change' ? 'bg-red-500' : 'bg-blue-600'
-              }`}>
+              <div
+                className={`h-6 w-6 rounded-full flex items-center justify-center text-[10px] font-bold`}
+                style={{
+                  color: '#ffffff',
+                  backgroundColor: comment.type === 'change' ? '#ef4444' : '#2563eb'
+                }}
+              >
                 {comment.initials}
               </div>
               <div className="flex-1">
                 <div className="flex justify-between items-center">
-                  <span className="text-xs font-bold text-stone-900">{comment.user}</span>
-                  <span className="text-[10px] text-stone-400">{comment.timestamp}</span>
+                  <span className="text-xs font-bold" style={{ color: '#1c1917' }}>{comment.user}</span>
+                  <span className="text-[10px]" style={{ color: '#a8a29e' }}>{comment.timestamp}</span>
                 </div>
                 {comment.type === 'change' && (
-                  <span className={`text-[10px] font-mono uppercase ${
-                    comment.changeType === 'addition' ? 'text-blue-600' : 'text-red-600'
-                  }`}>
+                  <span
+                    className="text-[10px] font-mono uppercase"
+                    style={{ color: comment.changeType === 'addition' ? '#2563eb' : '#dc2626' }}
+                  >
                     {comment.changeType}
                   </span>
                 )}
@@ -83,25 +93,41 @@ const RedlineSidebar = () => {
             </div>
 
             {comment.originalText && (
-              <div className="mb-2 rounded bg-stone-100 p-1.5 text-xs text-stone-500 line-through decoration-red-400 decoration-2">
+              <div
+                className="mb-2 rounded p-1.5 text-xs line-through decoration-2"
+                style={{
+                  backgroundColor: '#f5f5f4',
+                  color: '#44403c',
+                  textDecorationColor: '#f87171'
+                }}
+              >
                 {comment.originalText}
               </div>
             )}
 
-            <p className="text-sm text-stone-700 mb-3 leading-relaxed">
+            <p className="text-sm mb-3 leading-relaxed" style={{ color: '#44403c' }}>
               {comment.text}
             </p>
 
-            <div className="flex items-center gap-2 border-t border-stone-100 pt-2">
-              <button className="flex-1 flex items-center justify-center gap-1 py-1 text-[10px] font-bold text-stone-500 hover:bg-stone-50 rounded">
+            <div className="flex items-center gap-2 border-t pt-2" style={{ borderColor: '#f5f5f4' }}>
+              <button
+                className="flex-1 flex items-center justify-center gap-1 py-1 text-[10px] font-bold hover:bg-stone-50 rounded"
+                style={{ color: '#78716c' }}
+              >
                 <Reply className="h-3 w-3" /> Reply
               </button>
               {comment.type === 'change' && (
                 <>
-                  <button className="flex-1 flex items-center justify-center gap-1 py-1 text-[10px] font-bold text-green-600 hover:bg-green-50 rounded">
+                  <button
+                    className="flex-1 flex items-center justify-center gap-1 py-1 text-[10px] font-bold hover:bg-green-50 rounded"
+                    style={{ color: '#16a34a' }}
+                  >
                     <Check className="h-3 w-3" /> Accept
                   </button>
-                  <button className="flex-1 flex items-center justify-center gap-1 py-1 text-[10px] font-bold text-red-600 hover:bg-red-50 rounded">
+                  <button
+                    className="flex-1 flex items-center justify-center gap-1 py-1 text-[10px] font-bold hover:bg-red-50 rounded"
+                    style={{ color: '#dc2626' }}
+                  >
                     <X className="h-3 w-3" /> Reject
                   </button>
                 </>
