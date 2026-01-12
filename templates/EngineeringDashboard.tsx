@@ -22,10 +22,17 @@ import EngineeringCard from '../components/engineering/EngineeringCard';
 import EngineeringButton from '../components/engineering/EngineeringButton';
 import PipelineSteps from '../components/engineering/PipelineSteps';
 import CodeBlock from '../components/engineering/CodeBlock';
+import { useTheme } from '@/context/ThemeContext';
 
 const EngineeringDashboard = () => {
+  const { setPlaygroundTheme } = useTheme();
   const [activeTab, setActiveTab] = useState('App.tsx');
   const [isAnalyzing, setIsAnalyzing] = useState(false);
+
+  // Set the engineering theme on mount
+  React.useEffect(() => {
+    setPlaygroundTheme('engineering');
+  }, []);
 
   const runAnalysis = () => {
     setIsAnalyzing(true);

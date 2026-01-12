@@ -69,17 +69,17 @@ const dashboardComponents: Record<string, ComponentType> = {
 
 export default function TemplatePage() {
     const { id } = useParams<{ id: string }>()
-    const { setTheme } = useTheme()
+    const { setTemplateTheme } = useTheme()
 
     const theme = id ? getThemeById(id) : undefined
     const DashboardComponent = id ? dashboardComponents[id] : undefined
 
-    // Update the global theme when viewing a template
+    // AUTO-SET THEME ON MOUNT
     useEffect(() => {
         if (id) {
-            setTheme(id)
+            setTemplateTheme(id)
         }
-    }, [id, setTheme])
+    }, [id, setTemplateTheme])
 
     if (!theme || !DashboardComponent) {
         return <Navigate to="/templates" replace />

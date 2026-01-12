@@ -28,6 +28,7 @@ import { music } from '@/data/themes/music'
 import { food } from '@/data/themes/food'
 import { kitchen } from '@/data/themes/kitchen'
 import { kids } from '@/data/themes/kids'
+import { engineering } from '@/data/themes/engineering'
 
 // The default registry theme - dark, neutral, always consistent
 const REGISTRY_THEME: Theme = {
@@ -47,7 +48,7 @@ const REGISTRY_THEME: Theme = {
 interface ThemeContextType {
     // Template themes (for full-page templates)
     currentTheme: Theme
-    setTheme: (id: string) => void
+    setTemplateTheme: (id: string) => void
     clearTemplateTheme: () => void
     themes: Theme[]
 
@@ -57,17 +58,20 @@ interface ThemeContextType {
     // The theme to use for Background (accounts for mode)
     activeTheme: Theme
 
-    // Playground themes (for theme playground)
+    // Playground themes (for theme playground) - PRIMARY API
     currentPlaygroundTheme: PlaygroundTheme
-    setPlaygroundTheme: (id: string) => void
+    setTheme: (id: string) => void  // Primary API for setting themes
     playgroundThemes: PlaygroundTheme[]
 
     // Convenience alias for components
     theme: PlaygroundTheme
 
-    // Scoped Theming
+    // Scoped Theming (DEPRECATED)
     scopedThemes: Record<VisualLanguageId, string>
+    /** @deprecated Use setTheme() instead */
     setScopedTheme: (language: VisualLanguageId, themeId: string) => void
+    /** @deprecated Use setTheme() instead */
+    setPlaygroundTheme: (id: string) => void
 }
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined)
@@ -129,6 +133,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
         else if (activeLikeThemeId === 'food') theme = food
         else if (activeLikeThemeId === 'kitchen') theme = kitchen
         else if (activeLikeThemeId === 'kids') theme = kids
+        else if (activeLikeThemeId === 'engineering') theme = engineering
         else theme = getPlaygroundThemeById(activeLikeThemeId)
 
         if (theme) {
@@ -146,7 +151,8 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     // For backwards compatibility, currentTheme maps to activeTheme
     const currentTheme = activeTheme
 
-    const setTheme = (id: string) => {
+    // Internal function to set template theme by ID
+    const setTemplateThemeById = (id: string) => {
         const theme = getThemeById(id)
         if (theme) {
             setTemplateTheme(theme)
@@ -158,7 +164,44 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     }
 
     const setPlaygroundTheme = (id: string) => {
-        // Update the theme for the CURRENT scope
+        // Directly look up and set the theme
+        let theme: PlaygroundTheme | undefined
+
+        if (id === 'scifi') theme = helix
+        else if (id === 'legacy') theme = legacy
+        else if (id === 'cockpit') theme = cockpit
+        else if (id === 'blueprint') theme = blueprint
+        else if (id === 'arcade') theme = arcade
+        else if (id === 'eink') theme = eink
+        else if (id === 'swiss') theme = swiss
+        else if (id === 'brutalist') theme = brutalist
+        else if (id === 'acid') theme = acid
+        else if (id === 'solarpunk') theme = solarpunk
+        else if (id === 'festival') theme = festival
+        else if (id === 'clay') theme = clay
+        else if (id === 'soft-plastic') theme = softPlastic
+        else if (id === 'fintech') theme = fintech
+        else if (id === 'saas') theme = saas
+        else if (id === 'productivity') theme = productivity
+        else if (id === 'grid') theme = grid
+        else if (id === 'legal') theme = legal
+        else if (id === 'wellness') theme = wellness
+        else if (id === 'education') theme = education
+        else if (id === 'magazine') theme = magazine
+        else if (id === 'ecommerce') theme = ecommerce
+        else if (id === 'social') theme = social
+        else if (id === 'music') theme = music
+        else if (id === 'food') theme = food
+        else if (id === 'kitchen') theme = kitchen
+        else if (id === 'kids') theme = kids
+        else if (id === 'engineering') theme = engineering
+        else theme = getPlaygroundThemeById(id)
+
+        if (theme) {
+            setCurrentPlaygroundTheme(theme)
+        }
+
+        // Also update the scoped themes for backwards compatibility
         setScopedThemes(prev => ({
             ...prev,
             [currentScope]: id
@@ -166,23 +209,28 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     }
 
     const setScopedTheme = (language: VisualLanguageId, themeId: string) => {
+        console.warn('setScopedTheme is deprecated. Use setTheme() instead.')
         setScopedThemes(prev => ({
             ...prev,
             [language]: themeId
         }))
     }
 
+    // setTheme is now the primary API - alias for setPlaygroundTheme
+    const setTheme = setPlaygroundTheme
+
     return (
         <ThemeContext.Provider
             value={{
                 currentTheme,
-                setTheme,
+                setTemplateTheme: setTemplateThemeById,
                 clearTemplateTheme,
                 themes,
                 isTemplateMode,
                 activeTheme,
                 currentPlaygroundTheme,
-                setPlaygroundTheme,
+                setTheme,
+                setPlaygroundTheme, // deprecated alias
                 playgroundThemes,
                 theme: currentPlaygroundTheme,
                 scopedThemes,

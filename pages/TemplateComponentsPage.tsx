@@ -73,10 +73,10 @@ function ComponentCard({ comp, index, isLight, themeBackgroundColor, isSharedCom
                 {/* For shared components: use dark background (their native context) */}
                 <div
                     className={`h-40 flex items-center justify-center border-b relative overflow-hidden p-4 ${isSharedComponent
-                            ? 'bg-zinc-950 border-zinc-800'
-                            : isLight
-                                ? 'border-zinc-200'
-                                : 'border-zinc-800'
+                        ? 'bg-zinc-950 border-zinc-800'
+                        : isLight
+                            ? 'border-zinc-200'
+                            : 'border-zinc-800'
                         }`}
                     style={!isSharedComponent ? { backgroundColor: extractBackgroundColor(themeBackgroundColor) } : undefined}
                 >
@@ -159,17 +159,17 @@ function ComponentSection({
 
 export default function TemplateComponentsPage() {
     const { id } = useParams<{ id: string }>()
-    const { setTheme } = useTheme()
+    const { setTemplateTheme } = useTheme()
 
     const theme = id ? getThemeById(id) : undefined
     const templateComponents = id ? getAllTemplateComponents(id) : null
 
-    // Set the theme when viewing template components (keeps us in template mode)
+    // AUTO-SET THEME ON MOUNT
     useEffect(() => {
         if (id) {
-            setTheme(id)
+            setTemplateTheme(id)
         }
-    }, [id, setTheme])
+    }, [id, setTemplateTheme])
 
     if (!theme || !templateComponents) {
         return <Navigate to="/templates" replace />
@@ -191,15 +191,15 @@ export default function TemplateComponentsPage() {
         <div className="relative z-10 min-h-screen">
             {/* Floating Navigation Bar - adapts to theme */}
             <div className={`sticky top-0 z-50 flex items-center justify-between px-6 py-3 backdrop-blur-md border-b ${isDark
-                    ? 'bg-zinc-950/80 border-zinc-800'
-                    : 'bg-white/80 border-zinc-200'
+                ? 'bg-zinc-950/80 border-zinc-800'
+                : 'bg-white/80 border-zinc-200'
                 }`}>
                 <div className="flex items-center gap-4">
                     <Link
                         to={`/templates/${id}`}
                         className={`flex items-center gap-2 text-sm transition-colors ${isDark
-                                ? 'text-zinc-400 hover:text-white'
-                                : 'text-zinc-600 hover:text-zinc-900'
+                            ? 'text-zinc-400 hover:text-white'
+                            : 'text-zinc-600 hover:text-zinc-900'
                             }`}
                     >
                         <ArrowLeft className="h-4 w-4" />
@@ -218,8 +218,8 @@ export default function TemplateComponentsPage() {
                     <Link
                         to="/components"
                         className={`flex items-center gap-2 text-sm transition-colors ${isDark
-                                ? 'text-zinc-400 hover:text-white'
-                                : 'text-zinc-600 hover:text-zinc-900'
+                            ? 'text-zinc-400 hover:text-white'
+                            : 'text-zinc-600 hover:text-zinc-900'
                             }`}
                     >
                         <Box className="h-4 w-4" />
