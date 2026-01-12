@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useTheme } from '@/context/ThemeContext';
 
 interface GameButtonProps {
     children?: React.ReactNode;
@@ -20,6 +21,8 @@ const GameButton: React.FC<GameButtonProps> = ({
     disabled = false,
     onClick,
 }) => {
+    const { theme } = useTheme();
+
     const baseStyles = 'relative inline-flex items-center justify-center gap-2 font-bold font-display uppercase tracking-wider transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-black disabled:opacity-50 disabled:cursor-not-allowed overflow-hidden';
 
     const sizeStyles = {
@@ -29,12 +32,23 @@ const GameButton: React.FC<GameButtonProps> = ({
         icon: 'p-3 rounded-full',
     };
 
+    // Keep semantic game colors for primary/secondary/accent, use theme for ghost/icon
     const variantStyles = {
-        primary: 'bg-gradient-to-r from-fuchsia-600 to-purple-600 text-white shadow-lg shadow-fuchsia-500/30 border border-fuchsia-400/50 hover:shadow-fuchsia-500/50 hover:border-fuchsia-300',
+        primary: 'bg-gradient-to-r from-fuchsia-600 to-purple-600 shadow-lg shadow-fuchsia-500/30 border border-fuchsia-400/50 hover:shadow-fuchsia-500/50 hover:border-fuchsia-300',
         secondary: 'bg-cyan-950/50 text-cyan-400 border border-cyan-500/30 hover:bg-cyan-900/50 hover:border-cyan-400 hover:shadow-[0_0_15px_rgba(34,211,238,0.3)]',
-        accent: 'bg-amber-500/20 text-amber-400 border border-amber-500/50 hover:bg-amber-500 hover:text-black hover:border-amber-400 shadow-amber-500/10 hover:shadow-amber-500/50',
-        ghost: 'bg-transparent text-zinc-400 hover:text-white hover:bg-white/10 border border-transparent',
-        icon: 'bg-black/40 border border-white/10 text-zinc-400 hover:text-white hover:bg-white/10 hover:border-white/30 backdrop-blur-md',
+        accent: 'bg-amber-500/20 text-amber-400 border border-amber-500/50 hover:bg-amber-500 hover:border-amber-400 shadow-amber-500/10 hover:shadow-amber-500/50',
+        ghost: 'bg-transparent border border-transparent hover:bg-white/10',
+        icon: 'bg-black/40 border border-white/10 hover:bg-white/10 hover:border-white/30 backdrop-blur-md',
+    };
+
+    // Determine text color based on variant
+    const getTextColor = () => {
+        if (variant === 'primary') return theme.colors.foreground;
+        if (variant === 'secondary') return undefined; // Keep cyan-400
+        if (variant === 'accent') return undefined; // Keep amber-400
+        if (variant === 'ghost') return theme.colors.mutedForeground;
+        if (variant === 'icon') return theme.colors.mutedForeground;
+        return theme.colors.foreground;
     };
 
     return (
@@ -45,7 +59,10 @@ const GameButton: React.FC<GameButtonProps> = ({
             animate={variant === 'primary' ? { backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'] } : {}}
             transition={variant === 'primary' ? { duration: 3, repeat: Infinity, ease: 'linear' } : { type: 'spring', stiffness: 400, damping: 17 }}
             className={`${baseStyles} ${sizeStyles[size]} ${variantStyles[variant]} ${className}`}
-            style={variant === 'primary' ? { backgroundSize: '200% 200%' } : {}}
+            style={{
+                backgroundSize: variant === 'primary' ? '200% 200%' : undefined,
+                color: getTextColor(),
+            }}
             disabled={disabled}
             onClick={onClick}
         >

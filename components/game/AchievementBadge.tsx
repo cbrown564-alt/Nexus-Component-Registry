@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Trophy, Star, Target, Zap, Crown, Medal, Award, Gem } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
+import { useTheme } from '@/context/ThemeContext';
 
 type BadgeIcon = 'trophy' | 'star' | 'target' | 'zap' | 'crown' | 'medal' | 'award' | 'gem';
 type BadgeRarity = 'common' | 'rare' | 'epic' | 'legendary';
@@ -65,6 +66,7 @@ const AchievementBadge: React.FC<AchievementBadgeProps> = ({
   unlockedAt,
   compact = false,
 }) => {
+  const { theme } = useTheme();
   const IconComponent = iconMap[icon];
   const styles = rarityStyles[rarity];
 
@@ -72,14 +74,19 @@ const AchievementBadge: React.FC<AchievementBadgeProps> = ({
     return (
       <motion.div
         whileHover={{ scale: 1.1, y: -2 }}
-        className={`relative inline-flex items-center justify-center w-12 h-12 rounded-xl border ${
-          unlocked ? styles.border : 'border-zinc-700'
-        } ${unlocked ? `bg-gradient-to-br ${styles.gradient}` : 'bg-zinc-800/50'} ${
-          unlocked ? `shadow-lg ${styles.glow}` : ''
-        }`}
+        className={`relative inline-flex items-center justify-center w-12 h-12 rounded-xl border ${unlocked ? styles.border : ''
+          } ${unlocked ? `bg-gradient-to-br ${styles.gradient}` : ''} ${unlocked ? `shadow-lg ${styles.glow}` : ''
+          }`}
+        style={{
+          borderColor: !unlocked ? theme.colors.border : undefined,
+          backgroundColor: !unlocked ? theme.colors.muted : undefined
+        }}
         title={title}
       >
-        <IconComponent className={`h-5 w-5 ${unlocked ? 'text-white' : 'text-zinc-600'}`} />
+        <IconComponent
+          className="h-5 w-5"
+          style={{ color: unlocked ? theme.colors.foreground : theme.colors.mutedForeground }}
+        />
         {!unlocked && progress !== undefined && (
           <svg className="absolute inset-0 w-full h-full -rotate-90">
             <circle
@@ -118,19 +125,27 @@ const AchievementBadge: React.FC<AchievementBadgeProps> = ({
   return (
     <motion.div
       whileHover={{ scale: 1.02 }}
-      className={`relative flex items-center gap-4 p-4 rounded-2xl border ${
-        unlocked ? styles.border : 'border-zinc-700/50'
-      } ${unlocked ? 'bg-black/40' : 'bg-zinc-900/30'} backdrop-blur-sm`}
+      className={`relative flex items-center gap-4 p-4 rounded-2xl border ${unlocked ? styles.border : ''
+        } backdrop-blur-sm`}
+      style={{
+        borderColor: !unlocked ? `${theme.colors.border}80` : undefined,
+        backgroundColor: unlocked ? 'rgba(0,0,0,0.4)' : theme.colors.muted
+      }}
     >
       {/* Badge Icon */}
       <div
-        className={`relative flex-shrink-0 flex items-center justify-center w-14 h-14 rounded-xl border ${
-          unlocked ? styles.border : 'border-zinc-700'
-        } ${unlocked ? `bg-gradient-to-br ${styles.gradient}` : 'bg-zinc-800/50'} ${
-          unlocked ? `shadow-lg ${styles.glow}` : ''
-        }`}
+        className={`relative flex-shrink-0 flex items-center justify-center w-14 h-14 rounded-xl border ${unlocked ? styles.border : ''
+          } ${unlocked ? `bg-gradient-to-br ${styles.gradient}` : ''} ${unlocked ? `shadow-lg ${styles.glow}` : ''
+          }`}
+        style={{
+          borderColor: !unlocked ? theme.colors.border : undefined,
+          backgroundColor: !unlocked ? theme.colors.muted : undefined
+        }}
       >
-        <IconComponent className={`h-6 w-6 ${unlocked ? 'text-white' : 'text-zinc-600'}`} />
+        <IconComponent
+          className="h-6 w-6"
+          style={{ color: unlocked ? theme.colors.foreground : theme.colors.mutedForeground }}
+        />
         {rarity === 'legendary' && unlocked && (
           <motion.div
             animate={{ rotate: 360 }}
@@ -143,7 +158,10 @@ const AchievementBadge: React.FC<AchievementBadgeProps> = ({
       {/* Content */}
       <div className="flex-1 min-w-0">
         <div className="flex items-center gap-2">
-          <h4 className={`font-display font-bold ${unlocked ? 'text-white' : 'text-zinc-500'}`}>
+          <h4
+            className="font-display font-bold"
+            style={{ color: unlocked ? theme.colors.foreground : theme.colors.mutedForeground }}
+          >
             {title}
           </h4>
           <span className={`text-[10px] font-bold uppercase tracking-wider ${styles.text}`}>
@@ -151,13 +169,19 @@ const AchievementBadge: React.FC<AchievementBadgeProps> = ({
           </span>
         </div>
         {description && (
-          <p className={`text-xs ${unlocked ? 'text-zinc-400' : 'text-zinc-600'} mt-0.5`}>
+          <p
+            className="text-xs mt-0.5"
+            style={{ color: unlocked ? theme.colors.mutedForeground : theme.colors.border }}
+          >
             {description}
           </p>
         )}
         {!unlocked && progress !== undefined && (
           <div className="mt-2">
-            <div className="h-1.5 w-full rounded-full bg-zinc-800">
+            <div
+              className="h-1.5 w-full rounded-full"
+              style={{ backgroundColor: theme.colors.secondary }}
+            >
               <motion.div
                 initial={{ width: 0 }}
                 animate={{ width: `${progress}%` }}
@@ -165,11 +189,21 @@ const AchievementBadge: React.FC<AchievementBadgeProps> = ({
                 className={`h-full rounded-full bg-gradient-to-r ${styles.gradient}`}
               />
             </div>
-            <span className="text-[10px] text-zinc-500 mt-1">{progress}% complete</span>
+            <span
+              className="text-[10px] mt-1"
+              style={{ color: theme.colors.mutedForeground }}
+            >
+              {progress}% complete
+            </span>
           </div>
         )}
         {unlocked && unlockedAt && (
-          <span className="text-[10px] text-zinc-600 mt-1">Unlocked {unlockedAt}</span>
+          <span
+            className="text-[10px] mt-1"
+            style={{ color: theme.colors.border }}
+          >
+            Unlocked {unlockedAt}
+          </span>
         )}
       </div>
     </motion.div>

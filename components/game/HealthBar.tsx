@@ -2,6 +2,7 @@ import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Heart, Shield, Zap, Flame, Droplets } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
+import { useTheme } from '@/context/ThemeContext';
 
 type BarType = 'health' | 'shield' | 'energy' | 'mana' | 'rage';
 
@@ -59,6 +60,7 @@ const HealthBar: React.FC<HealthBarProps> = ({
   size = 'md',
   compact = false,
 }) => {
+  const { theme } = useTheme();
   const percentage = Math.min(100, Math.max(0, (current / max) * 100));
   const config = typeConfig[type];
   const Icon = config.icon;
@@ -83,14 +85,16 @@ const HealthBar: React.FC<HealthBarProps> = ({
               initial={animated ? { width: 0 } : false}
               animate={{ width: `${percentage}%` }}
               transition={{ duration: 0.5, ease: 'easeOut' }}
-              className={`h-full rounded-full bg-gradient-to-r ${config.gradient} ${
-                isCritical && animated ? 'animate-pulse' : ''
-              }`}
+              className={`h-full rounded-full bg-gradient-to-r ${config.gradient} ${isCritical && animated ? 'animate-pulse' : ''
+                }`}
             />
           </div>
         </div>
         {showNumbers && (
-          <span className={`${styles.text} font-bold text-white tabular-nums min-w-[4ch]`}>
+          <span
+            className={`${styles.text} font-bold tabular-nums min-w-[4ch]`}
+            style={{ color: theme.colors.foreground }}
+          >
             {Math.round(current)}
           </span>
         )}
@@ -103,11 +107,24 @@ const HealthBar: React.FC<HealthBarProps> = ({
       {/* Header */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-1.5">
-          <Icon className={`${styles.icon} ${isLow ? 'text-rose-400' : 'text-zinc-400'}`} />
-          {label && <span className={`${styles.text} font-medium text-zinc-400 uppercase tracking-wider`}>{label}</span>}
+          <Icon
+            className={styles.icon}
+            style={{ color: isLow ? '#f87171' : theme.colors.mutedForeground }}
+          />
+          {label && (
+            <span
+              className={`${styles.text} font-medium uppercase tracking-wider`}
+              style={{ color: theme.colors.mutedForeground }}
+            >
+              {label}
+            </span>
+          )}
         </div>
         {showNumbers && (
-          <span className={`${styles.text} font-bold text-white tabular-nums`}>
+          <span
+            className={`${styles.text} font-bold tabular-nums`}
+            style={{ color: theme.colors.foreground }}
+          >
             {Math.round(current)} / {max}
           </span>
         )}
@@ -131,7 +148,7 @@ const HealthBar: React.FC<HealthBarProps> = ({
         >
           {/* Shine effect */}
           <div className="absolute inset-0 bg-gradient-to-b from-white/30 to-transparent rounded-full" />
-          
+
           {/* Pulse when low */}
           <AnimatePresence>
             {isLow && animated && (
