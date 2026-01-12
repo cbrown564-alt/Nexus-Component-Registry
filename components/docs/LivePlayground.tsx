@@ -70,7 +70,7 @@ export default function LivePlayground({ component, doc }: LivePlaygroundProps) 
 
             // Special handling for children
             if (p.name === 'children') {
-                defaults[p.name] = <div className="p-4 text-center text-zinc-500 border-2 border-dashed border-zinc-800 rounded-lg">Component Content</div>
+                defaults[p.name] = <div className="p-4 text-center border-2 border-dashed rounded-lg" style={{ color: '#71717a', borderColor: '#27272a' }}>Component Content</div>
             }
         })
         setProps(defaults)
@@ -99,7 +99,7 @@ export default function LivePlayground({ component, doc }: LivePlaygroundProps) 
                 if (p.type === 'boolean') defaults[p.name] = false
             }
             if (p.name === 'children') {
-                defaults[p.name] = <div className="p-4 text-center text-zinc-500 border-2 border-dashed border-zinc-800 rounded-lg">Component Content</div>
+                defaults[p.name] = <div className="p-4 text-center border-2 border-dashed rounded-lg" style={{ color: '#71717a', borderColor: '#27272a' }}>Component Content</div>
             }
         })
         setProps(defaults)
@@ -129,13 +129,14 @@ export default function LivePlayground({ component, doc }: LivePlaygroundProps) 
     return (
         <div className="space-y-6">
             <div className="flex items-center justify-between">
-                <h2 className="text-sm font-semibold text-zinc-400 uppercase tracking-wider">
+                <h2 className="text-sm font-semibold uppercase tracking-wider" style={{ color: '#a1a1aa' }}>
                     Interactive Playground
                 </h2>
                 <div className="flex items-center gap-2">
                     <button
                         onClick={() => setDarkPreview(!darkPreview)}
-                        className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-zinc-400 bg-zinc-900 rounded-lg hover:text-white hover:bg-zinc-800 transition-colors"
+                        className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg transition-colors"
+                        style={{ color: '#a1a1aa', backgroundColor: '#18181b' }}
                         title={darkPreview ? 'Switch to light background' : 'Switch to dark background'}
                     >
                         {darkPreview ? <Sun className="h-3.5 w-3.5" /> : <Moon className="h-3.5 w-3.5" />}
@@ -143,7 +144,8 @@ export default function LivePlayground({ component, doc }: LivePlaygroundProps) 
                     </button>
                     <button
                         onClick={resetProps}
-                        className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-zinc-400 bg-zinc-900 rounded-lg hover:text-white hover:bg-zinc-800 transition-colors"
+                        className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg transition-colors"
+                        style={{ color: '#a1a1aa', backgroundColor: '#18181b' }}
                     >
                         <RefreshCw className="h-3.5 w-3.5" />
                         Reset
@@ -161,8 +163,9 @@ export default function LivePlayground({ component, doc }: LivePlaygroundProps) 
                      * - When toggled to the opposite, use simple dark/white
                      */}
                     <div
-                        className={`rounded-xl border border-zinc-800 p-8 min-h-[300px] flex items-center justify-center relative overflow-hidden group transition-colors`}
+                        className={`rounded-xl border p-8 min-h-[300px] flex items-center justify-center relative overflow-hidden group transition-colors`}
                         style={{
+                            borderColor: '#27272a',
                             backgroundColor: (() => {
                                 // If user hasn't toggled (darkPreview matches theme's natural state)
                                 if (themeBackgroundColor && darkPreview === !isLightTheme) {
@@ -181,18 +184,19 @@ export default function LivePlayground({ component, doc }: LivePlaygroundProps) 
                     </div>
 
                     {/* Generated Code */}
-                    <div className="rounded-xl border border-zinc-800 bg-zinc-900/50 overflow-hidden">
-                        <div className="flex items-center justify-between px-4 py-2 border-b border-zinc-800 bg-zinc-900">
-                            <span className="text-xs text-zinc-500 font-mono">tsx</span>
+                    <div className="rounded-xl border overflow-hidden" style={{ borderColor: '#27272a', backgroundColor: 'rgba(24,24,27,0.5)' }}>
+                        <div className="flex items-center justify-between px-4 py-2 border-b" style={{ borderColor: '#27272a', backgroundColor: '#18181b' }}>
+                            <span className="text-xs font-mono" style={{ color: '#71717a' }}>tsx</span>
                             <button
                                 onClick={() => handleCopy(code)}
-                                className="flex items-center gap-1.5 px-2 py-1 text-xs text-zinc-400 hover:text-white transition-colors"
+                                className="flex items-center gap-1.5 px-2 py-1 text-xs transition-colors"
+                                style={{ color: '#a1a1aa' }}
                             >
                                 {copied ? <Check className="h-3 w-3" /> : <Copy className="h-3 w-3" />}
                                 {copied ? 'Copied!' : 'Copy'}
                             </button>
                         </div>
-                        <pre className="p-4 text-sm font-mono text-zinc-300 overflow-x-auto whitespace-pre-wrap">
+                        <pre className="p-4 text-sm font-mono overflow-x-auto whitespace-pre-wrap" style={{ color: '#d4d4d8' }}>
                             {code}
                         </pre>
                     </div>
@@ -200,8 +204,8 @@ export default function LivePlayground({ component, doc }: LivePlaygroundProps) 
 
                 {/* Controls */}
                 <div className="space-y-4">
-                    <div className="rounded-xl border border-zinc-800 bg-zinc-900/30 p-4">
-                        <h3 className="text-sm font-medium text-zinc-200 mb-4 pb-2 border-b border-zinc-800">
+                    <div className="rounded-xl border p-4" style={{ borderColor: '#27272a', backgroundColor: 'rgba(24,24,27,0.3)' }}>
+                        <h3 className="text-sm font-medium mb-4 pb-2 border-b" style={{ color: '#e4e4e7', borderColor: '#27272a' }}>
                             Controls
                         </h3>
                         <div className="space-y-4">
@@ -216,29 +220,31 @@ export default function LivePlayground({ component, doc }: LivePlaygroundProps) 
 
                                 return (
                                     <div key={prop.name} className="space-y-1.5">
-                                        <label className="text-xs font-medium text-zinc-400 flex items-center justify-between">
+                                        <label className="text-xs font-medium flex items-center justify-between" style={{ color: '#a1a1aa' }}>
                                             {prop.name}
-                                            {prop.required && <span className="text-[10px] text-zinc-600 uppercase">Required</span>}
+                                            {prop.required && <span className="text-[10px] uppercase" style={{ color: '#52525b' }}>Required</span>}
                                         </label>
 
                                         {isBoolean ? (
                                             <button
                                                 onClick={() => setProps(prev => ({ ...prev, [prop.name]: !prev[prop.name] }))}
-                                                className={`w-full flex items-center justify-between px-3 py-2 rounded-lg border transition-colors ${props[prop.name]
-                                                    ? 'bg-blue-500/10 border-blue-500/50 text-blue-400'
-                                                    : 'bg-zinc-900 border-zinc-800 text-zinc-500 hover:border-zinc-700'
-                                                    }`}
+                                                className={`w-full flex items-center justify-between px-3 py-2 rounded-lg border transition-colors`}
+                                                style={props[prop.name]
+                                                    ? { backgroundColor: 'rgba(59,130,246,0.1)', borderColor: 'rgba(59,130,246,0.5)', color: '#60a5fa' }
+                                                    : { backgroundColor: '#18181b', borderColor: '#27272a', color: '#71717a' }
+                                                }
                                             >
                                                 <span className="text-xs">{props[prop.name] ? 'True' : 'False'}</span>
-                                                <div className={`w-8 h-4 rounded-full relative transition-colors ${props[prop.name] ? 'bg-blue-500' : 'bg-zinc-700'}`}>
-                                                    <div className={`absolute top-0.5 w-3 h-3 rounded-full bg-white transition-transform ${props[prop.name] ? 'left-4.5' : 'left-0.5'}`} />
+                                                <div className="w-8 h-4 rounded-full relative transition-colors" style={{ backgroundColor: props[prop.name] ? '#3b82f6' : '#3f3f46' }}>
+                                                    <div className={`absolute top-0.5 w-3 h-3 rounded-full transition-transform ${props[prop.name] ? 'left-4.5' : 'left-0.5'}`} style={{ backgroundColor: '#ffffff' }} />
                                                 </div>
                                             </button>
                                         ) : isEnum ? (
                                             <select
                                                 value={props[prop.name] || ''}
                                                 onChange={(e) => setProps(prev => ({ ...prev, [prop.name]: e.target.value }))}
-                                                className="w-full px-3 py-2 bg-zinc-900 border border-zinc-800 rounded-lg text-sm text-zinc-300 focus:outline-none focus:border-zinc-700"
+                                                className="w-full px-3 py-2 border rounded-lg text-sm focus:outline-none"
+                                                style={{ backgroundColor: '#18181b', borderColor: '#27272a', color: '#d4d4d8' }}
                                             >
                                                 <option value="">Select...</option>
                                                 {prop.type.split('|').map(opt => {
@@ -254,11 +260,12 @@ export default function LivePlayground({ component, doc }: LivePlaygroundProps) 
                                                     ...prev,
                                                     [prop.name]: isNumber ? Number(e.target.value) : e.target.value
                                                 }))}
-                                                className="w-full px-3 py-2 bg-zinc-900 border border-zinc-800 rounded-lg text-sm text-zinc-300 focus:outline-none focus:border-zinc-700 placeholder-zinc-700"
+                                                className="w-full px-3 py-2 border rounded-lg text-sm focus:outline-none"
+                                                style={{ backgroundColor: '#18181b', borderColor: '#27272a', color: '#d4d4d8' }}
                                                 placeholder={prop.default ? `Default: ${prop.default}` : `Enter ${prop.name}...`}
                                             />
                                         )}
-                                        <p className="text-[10px] text-zinc-600 truncate">{prop.description}</p>
+                                        <p className="text-[10px] truncate" style={{ color: '#52525b' }}>{prop.description}</p>
                                     </div>
                                 )
                             })}

@@ -16,31 +16,31 @@ const LibraryGrid = () => {
     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
       {books.map((book, i) => (
         <div key={i} className="group cursor-pointer">
-            <EInkCard className="aspect-[2/3] mb-3 shadow-[4px_4px_0px_black] group-hover:translate-x-[2px] group-hover:translate-y-[2px] group-hover:shadow-[2px_2px_0px_black] transition-all">
-                <div className="absolute inset-0 grayscale contrast-125 brightness-110">
-                    <img src={book.cover} alt={book.title} className="w-full h-full object-cover mix-blend-multiply" />
-                </div>
-                {/* Progress Overlay */}
-                {book.progress > 0 && book.progress < 100 && (
-                    <div className="absolute bottom-0 left-0 h-1 bg-black" style={{ width: `${book.progress}%` }} />
-                )}
-                {book.progress === 100 && (
-                    <div className="absolute top-2 right-2 bg-black text-white text-[10px] font-bold px-2 py-1 uppercase">
-                        Read
-                    </div>
-                )}
-            </EInkCard>
-            <div className="pr-2">
-                <h3 className="font-serif font-bold text-lg leading-tight truncate group-hover:underline decoration-1 underline-offset-4">{book.title}</h3>
-                <p className="font-sans text-xs uppercase tracking-wider text-stone-600 truncate">{book.author}</p>
+          <EInkCard className="aspect-[2/3] mb-3 shadow-[4px_4px_0px_black] group-hover:translate-x-[2px] group-hover:translate-y-[2px] group-hover:shadow-[2px_2px_0px_black] transition-all">
+            <div className="absolute inset-0 grayscale contrast-125 brightness-110">
+              <img src={book.cover} alt={book.title} className="w-full h-full object-cover mix-blend-multiply" />
             </div>
+            {/* Progress Overlay */}
+            {book.progress > 0 && book.progress < 100 && (
+              <div className="absolute bottom-0 left-0 h-1 bg-black" style={{ width: `${book.progress}%` }} />
+            )}
+            {book.progress === 100 && (
+              <div className="absolute top-2 right-2 text-[10px] font-bold px-2 py-1 uppercase" style={{ backgroundColor: '#000000', color: '#ffffff' }}>
+                Read
+              </div>
+            )}
+          </EInkCard>
+          <div className="pr-2">
+            <h3 className="font-serif font-bold text-lg leading-tight truncate group-hover:underline decoration-1 underline-offset-4">{book.title}</h3>
+            <p className="font-sans text-xs uppercase tracking-wider truncate" style={{ color: '#57534e' }}>{book.author}</p>
+          </div>
         </div>
       ))}
-      
+
       {/* Add New Placeholder */}
-      <EInkCard className="aspect-[2/3] mb-3 flex flex-col items-center justify-center border-dashed border-2 border-stone-400 bg-transparent shadow-none hover:border-black hover:bg-white transition-colors cursor-pointer group">
-          <Book className="h-8 w-8 text-stone-400 group-hover:text-black mb-2" />
-          <span className="font-sans text-xs font-bold uppercase tracking-widest text-stone-400 group-hover:text-black">Browse Store</span>
+      <EInkCard className="aspect-[2/3] mb-3 flex flex-col items-center justify-center border-dashed border-2 bg-transparent shadow-none transition-colors cursor-pointer group" style={{ borderColor: '#a8a29e' }}>
+        <Book className="h-8 w-8 mb-2" style={{ color: '#a8a29e' }} />
+        <span className="font-sans text-xs font-bold uppercase tracking-widest" style={{ color: '#a8a29e' }}>Browse Store</span>
       </EInkCard>
     </div>
   );

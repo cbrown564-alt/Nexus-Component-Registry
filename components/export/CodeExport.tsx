@@ -74,7 +74,8 @@ export default function CodeExport({ componentName, code, theme = 'shared' }: Co
         <div className="relative">
             <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="flex items-center gap-2 px-3 py-1.5 text-sm bg-zinc-800 hover:bg-zinc-700 text-zinc-300 rounded-lg transition-colors"
+                className="flex items-center gap-2 px-3 py-1.5 text-sm rounded-lg transition-colors"
+                style={{ backgroundColor: '#27272a', color: '#d4d4d8' }}
                 aria-expanded={isOpen}
                 aria-haspopup="menu"
             >
@@ -92,16 +93,18 @@ export default function CodeExport({ componentName, code, theme = 'shared' }: Co
 
                     {/* Dropdown */}
                     <div
-                        className="absolute right-0 mt-2 w-48 bg-zinc-900 border border-zinc-800 rounded-xl shadow-xl z-50 overflow-hidden"
+                        className="absolute right-0 mt-2 w-48 border rounded-xl shadow-xl z-50 overflow-hidden"
+                        style={{ backgroundColor: '#18181b', borderColor: '#27272a' }}
                         role="menu"
                     >
                         <button
                             onClick={() => handleExport('tsx')}
-                            className="w-full flex items-center gap-3 px-4 py-3 text-sm text-zinc-300 hover:bg-zinc-800 transition-colors text-left"
+                            className="w-full flex items-center gap-3 px-4 py-3 text-sm transition-colors text-left"
+                            style={{ color: '#d4d4d8' }}
                             role="menuitem"
                         >
                             {exported === 'tsx' ? (
-                                <Check className="h-4 w-4 text-emerald-400" />
+                                <Check className="h-4 w-4" style={{ color: '#34d399' }} />
                             ) : (
                                 <FileCode className="h-4 w-4" />
                             )}
@@ -109,11 +112,12 @@ export default function CodeExport({ componentName, code, theme = 'shared' }: Co
                         </button>
                         <button
                             onClick={() => handleExport('jsx')}
-                            className="w-full flex items-center gap-3 px-4 py-3 text-sm text-zinc-300 hover:bg-zinc-800 transition-colors text-left"
+                            className="w-full flex items-center gap-3 px-4 py-3 text-sm transition-colors text-left"
+                            style={{ color: '#d4d4d8' }}
                             role="menuitem"
                         >
                             {exported === 'jsx' ? (
-                                <Check className="h-4 w-4 text-emerald-400" />
+                                <Check className="h-4 w-4" style={{ color: '#34d399' }} />
                             ) : (
                                 <FileCode className="h-4 w-4" />
                             )}
@@ -121,11 +125,12 @@ export default function CodeExport({ componentName, code, theme = 'shared' }: Co
                         </button>
                         <button
                             onClick={() => handleExport('json')}
-                            className="w-full flex items-center gap-3 px-4 py-3 text-sm text-zinc-300 hover:bg-zinc-800 transition-colors text-left border-t border-zinc-800"
+                            className="w-full flex items-center gap-3 px-4 py-3 text-sm transition-colors text-left border-t"
+                            style={{ color: '#d4d4d8', borderColor: '#27272a' }}
                             role="menuitem"
                         >
                             {exported === 'json' ? (
-                                <Check className="h-4 w-4 text-emerald-400" />
+                                <Check className="h-4 w-4" style={{ color: '#34d399' }} />
                             ) : (
                                 <FileJson className="h-4 w-4" />
                             )}

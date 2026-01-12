@@ -27,41 +27,46 @@ const UpcomingSchedule = () => {
   return (
     <EducationCard className="p-6 h-full">
       <div className="mb-6 flex items-center justify-between">
-        <h3 className="font-display text-lg font-bold text-slate-900">Today's Schedule</h3>
-        <button className="rounded-lg bg-slate-100 p-2 text-slate-600 hover:bg-slate-200">
-            <Calendar className="h-4 w-4" />
+        <h3 className="font-display text-lg font-bold" style={{ color: '#0f172a' }}>Today's Schedule</h3>
+        <button className="rounded-lg p-2" style={{ backgroundColor: '#f1f5f9', color: '#475569' }}>
+          <Calendar className="h-4 w-4" />
         </button>
       </div>
 
       <div className="relative space-y-6">
         {/* Vertical Line */}
-        <div className="absolute left-[7px] top-2 bottom-2 w-[2px] bg-slate-100" />
+        <div className="absolute left-[7px] top-2 bottom-2 w-[2px]" style={{ backgroundColor: '#f1f5f9' }} />
 
         {events.map((event, i) => (
-            <div key={i} className="relative flex gap-4">
-                <div className={`relative z-10 h-4 w-4 rounded-full border-2 bg-white ${
-                    event.status === 'live' ? 'border-red-500' : 'border-slate-300'
-                }`}>
-                    {event.status === 'live' && (
-                        <div className="absolute inset-0 animate-ping rounded-full bg-red-500 opacity-75" />
-                    )}
-                </div>
-                <div className="flex-1 rounded-xl bg-slate-50 p-4 transition-colors hover:bg-slate-100">
-                    <div className="mb-1 flex items-center justify-between">
-                        <span className={`text-xs font-bold uppercase tracking-wider ${
-                            event.status === 'live' ? 'text-red-500' : 'text-slate-500'
-                        }`}>
-                            {event.status === 'live' ? 'Happening Now' : event.type}
-                        </span>
-                        {event.status === 'live' && <Video className="h-3 w-3 text-red-500" />}
-                    </div>
-                    <h4 className="font-bold text-slate-800">{event.title}</h4>
-                    <div className="mt-2 flex items-center gap-1.5 text-xs text-slate-500">
-                        <Clock className="h-3.5 w-3.5" />
-                        {event.time}
-                    </div>
-                </div>
+          <div key={i} className="relative flex gap-4">
+            <div
+              className="relative z-10 h-4 w-4 rounded-full border-2"
+              style={{
+                backgroundColor: '#ffffff',
+                borderColor: event.status === 'live' ? '#ef4444' : '#cbd5e1'
+              }}
+            >
+              {event.status === 'live' && (
+                <div className="absolute inset-0 animate-ping rounded-full opacity-75" style={{ backgroundColor: '#ef4444' }} />
+              )}
             </div>
+            <div className="flex-1 rounded-xl p-4 transition-colors" style={{ backgroundColor: '#f8fafc' }}>
+              <div className="mb-1 flex items-center justify-between">
+                <span
+                  className="text-xs font-bold uppercase tracking-wider"
+                  style={{ color: event.status === 'live' ? '#ef4444' : '#64748b' }}
+                >
+                  {event.status === 'live' ? 'Happening Now' : event.type}
+                </span>
+                {event.status === 'live' && <Video className="h-3 w-3" style={{ color: '#ef4444' }} />}
+              </div>
+              <h4 className="font-bold" style={{ color: '#1e293b' }}>{event.title}</h4>
+              <div className="mt-2 flex items-center gap-1.5 text-xs" style={{ color: '#64748b' }}>
+                <Clock className="h-3.5 w-3.5" />
+                {event.time}
+              </div>
+            </div>
+          </div>
         ))}
       </div>
     </EducationCard>
