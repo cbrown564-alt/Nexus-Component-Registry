@@ -6,19 +6,23 @@ interface MagazineCardProps {
   children: React.ReactNode;
   className?: string;
   style?: React.CSSProperties;
+  hoverEffect?: boolean;
+  noPadding?: boolean;
 }
 
 const MagazineCard: React.FC<MagazineCardProps> = ({
   children,
   className = "",
-  style
+  style,
+  hoverEffect = true,
+  noPadding = false
 }) => {
   const { currentPlaygroundTheme } = useTheme()
   const theme = currentPlaygroundTheme
 
   return (
     <div
-      className={`border p-6 ${className}`}
+      className={`border ${noPadding ? '' : 'p-6'} ${hoverEffect ? 'hover:shadow-lg transition-shadow duration-300' : ''} ${className}`}
       style={{
         backgroundColor: theme.colors.card,
         color: theme.colors.cardForeground,

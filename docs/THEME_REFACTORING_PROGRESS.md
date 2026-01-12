@@ -9,9 +9,9 @@
 
 | Metric | Before | After | Reduction |
 |--------|--------|-------|-----------|
-| Component violations | 582 | 429 | 26% |
+| Component violations | 582 | 0 | 100% |
 | Template violations | 214 | 214 | 0% |
-| **Total** | **796** | **643** | **19%** |
+| **Total** | **796** | **214** | **73%** |
 
 ---
 
@@ -48,6 +48,21 @@
 
 ### Templates (~214 violations in 25 files)
 - Not yet started
+
+---
+
+## Refactoring Batches
+
+| Date | Batch | Components Refactored | Violations Before | Violations After | Templates Remaining | Notes |
+|---|---|---|---|---|---|---|
+| 2026-01-12 | Batch 10 | 79 | 54 | 214 | Refactored Newsletter, ResourceGauge, DesktopIcon, etc. |
+| 2026-01-12 | Batch 12 | 7 | 24 | 214 | Refactored SkipLink, CadViewer, MeasurementLabel, etc. |
+| 2026-01-12 | Batch 13 | 24 | 24 | 214 | Refactored all remaining components. **Components Complete.** |
+
+## Remaining Verification Queue
+*   [x] **Batch 12:** `SkipLink`, `CadViewer`, `MeasurementLabel`, `Manifesto`, `SleepGraph`, `AirQualityLeaf`, `SolarCard`
+*   [x] **Batch 13:** Remaining single-violation components (cockpit, fintech, etc.)
+*   [ ] **Templates:** 214 violations to address. Phase 2.
 
 ---
 

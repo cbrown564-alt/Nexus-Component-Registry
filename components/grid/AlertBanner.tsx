@@ -67,7 +67,7 @@ const AlertBanner: React.FC<AlertBannerProps> = ({
       {onDismiss && (
         <button
           onClick={onDismiss}
-          className="transition-colors hover:text-zinc-300"
+          className="transition-opacity hover:opacity-80"
           style={{ color: '#71717a' }}
         >
           <XCircle className="h-4 w-4" />

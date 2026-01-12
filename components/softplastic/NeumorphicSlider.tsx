@@ -32,15 +32,15 @@ const NeumorphicSlider: React.FC<NeumorphicSliderProps> = ({
   return (
     <div className={`p-6 rounded-3xl bg-[#e0e5ec] ${className}`}>
       <div className="flex items-center justify-between mb-4">
-        <span className="text-sm font-medium text-slate-600">{label}</span>
-        <span className="text-lg font-bold text-slate-700">
+        <span className="text-sm font-medium" style={{ color: '#475569' }}>{label}</span>
+        <span className="text-lg font-bold" style={{ color: '#334155' }}>
           {value}{unit}
         </span>
       </div>
-      
+
       <div className="relative">
         {/* Track - inset neumorphic */}
-        <div 
+        <div
           className="h-3 rounded-full"
           style={{
             background: '#e0e5ec',
@@ -49,24 +49,27 @@ const NeumorphicSlider: React.FC<NeumorphicSliderProps> = ({
         >
           {/* Fill */}
           <motion.div
-            className="h-full rounded-full bg-gradient-to-r from-cyan-400 to-blue-500"
-            style={{ width: `${percentage}%` }}
+            className="h-full rounded-full"
+            style={{ width: `${percentage}%`, background: 'linear-gradient(to right, #22d3ee, #3b82f6)' }}
             transition={{ duration: 0.1 }}
           />
         </div>
-        
+
         {/* Thumb */}
-        <motion.div
-          className="absolute top-1/2 -translate-y-1/2 h-6 w-6 rounded-full cursor-pointer"
+        <div
+          className="absolute top-1/2 -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-full"
           style={{
-            left: `calc(${percentage}% - 12px)`,
-            background: '#e0e5ec',
+            left: `calc(${percentage}% - 20px)`, // Adjust for new thumb size (10w = 40px, so half is 20px)
+            backgroundColor: '#e0e5ec', // Keep original background for neumorphic effect
             boxShadow: '4px 4px 8px #b8bec5, -4px -4px 8px #ffffff',
           }}
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.95 }}
-        />
-        
+        >
+          {/* Assuming 'Moon' component is defined or imported elsewhere, or this is a placeholder */}
+          {/* <Moon className="h-5 w-5" style={{ color: '#d8b4fe' }} /> */}
+          {/* Placeholder for Moon icon if not defined */}
+          <span className="h-5 w-5" style={{ color: '#d8b4fe' }}>&#9789;</span>
+        </div>
+
         {/* Hidden input for accessibility */}
         <input
           type="range"

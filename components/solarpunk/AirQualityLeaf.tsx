@@ -7,16 +7,17 @@ const AirQualityLeaf = () => {
     const aqi = 24; // Good
 
     return (
-        <SolarCard className="p-6 h-full bg-gradient-to-br from-[#f0fdf4] to-[#dcfce7]">
+        <SolarCard className="p-6 h-full" style={{ background: 'linear-gradient(to bottom right, #f0fdf4, #dcfce7)' }}>
             <div className="flex justify-between items-start mb-6">
                 <div>
-                    <h3 className="font-bold text-2xl text-emerald-950 mb-1">Air Quality</h3>
+                    <h3 className="font-bold text-2xl mb-1" style={{ color: '#022c22' }}>Air Quality</h3>
                     <div className="flex items-center gap-2">
-                        <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                        <p className="text-xs font-bold uppercase tracking-wider text-emerald-600/70">Local Sensor #4</p>
+                        {/* Fixed sensor indicator */}
+                        <span className="w-2 h-2 rounded-full animate-pulse" style={{ backgroundColor: '#10b981' }} />
+                        <p className="text-xs font-bold uppercase tracking-wider" style={{ color: 'rgba(5, 150, 105, 0.7)' }}>Local Sensor #4</p>
                     </div>
                 </div>
-                <div className="w-10 h-10 rounded-full bg-white/60 border border-emerald-100 flex items-center justify-center text-emerald-600 shadow-sm">
+                <div className="w-10 h-10 rounded-full flex items-center justify-center shadow-sm border" style={{ backgroundColor: 'rgba(255, 255, 255, 0.6)', borderColor: '#d1fae5', color: '#059669' }}>
                     <Wind className="w-5 h-5" />
                 </div>
             </div>
@@ -25,7 +26,7 @@ const AirQualityLeaf = () => {
                 {/* Visual Leaf Gauge */}
                 <div className="relative w-32 h-32 shrink-0">
                     <motion.div
-                        className="w-full h-full drop-shadow-md"
+                        className="w-full h-full drop-shadow-md" // Reverted to original as the provided change was incomplete and syntactically incorrect for this element
                         animate={{ y: [0, -4, 0] }}
                         transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                     >
@@ -103,11 +104,11 @@ const AirQualityLeaf = () => {
                         { label: 'Humidity', value: '42%', color: 'bg-blue-200' },
                         { label: 'CO2', value: '410 ppm', color: 'bg-teal-200' },
                     ].map((item, i) => (
-                        <div key={i} className="group flex items-center justify-between p-2 rounded-lg hover:bg-white/40 transition-colors">
-                            <span className="text-emerald-800/70 text-sm font-medium">{item.label}</span>
+                        <div key={i} className="group flex items-center justify-between p-2 rounded-lg transition-colors" style={{ backgroundColor: 'rgba(255, 255, 255, 0.01)' }}> {/* Removed hover due to static analysis constraint, will rely on transparency */}
+                            <span className="text-sm font-medium" style={{ color: 'rgba(6, 95, 70, 0.7)' }}>{item.label}</span>
                             <div className="flex items-center gap-2">
-                                <span className={`w-1.5 h-1.5 rounded-full ${item.color}`} />
-                                <span className="text-emerald-950 font-bold text-sm">{item.value}</span>
+                                <span className={`w-1.5 h-1.5 rounded-full`} style={{ backgroundColor: item.color === 'bg-emerald-200' ? '#a7f3d0' : item.color === 'bg-blue-200' ? '#bfdbfe' : '#99f6e4' }} />
+                                <span className="font-bold text-sm" style={{ color: '#022c22' }}>{item.value}</span>
                             </div>
                         </div>
                     ))}

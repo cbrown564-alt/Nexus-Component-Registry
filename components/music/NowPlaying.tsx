@@ -33,12 +33,7 @@ const NowPlaying = () => {
                         <h2 className="text-2xl font-bold mb-1" style={{ color: '#ffffff' }}>Midnight City</h2>
                         <p style={{ color: '#a1a1aa' }}>M83 • Hurry Up, We're Dreaming</p>
                     </div>
-                    <button
-                        onClick={() => setLiked(!liked)}
-                        className={`transition-colors ${liked ? 'text-rose-500' : 'text-zinc-600 hover:text-white'}`}
-                    >
-                        <Heart className={`h-6 w-6 ${liked ? 'fill-current' : ''}`} />
-                    </button>
+                    <LikeButton liked={liked} setLiked={setLiked} />
                 </div>
             </div>
 
@@ -98,6 +93,22 @@ const NowPlaying = () => {
          }
        `}</style>
         </MusicCard>
+    );
+
+};
+
+const LikeButton = ({ liked, setLiked }: { liked: boolean, setLiked: (l: boolean) => void }) => {
+    const [isHovered, setIsHovered] = useState(false);
+    return (
+        <button
+            onClick={() => setLiked(!liked)}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+            className="transition-colors"
+            style={{ color: liked ? '#f43f5e' : isHovered ? '#ffffff' : '#52525b' }}
+        >
+            <Heart className={`h-6 w-6 ${liked ? 'fill-current' : ''}`} />
+        </button>
     );
 };
 

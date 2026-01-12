@@ -22,17 +22,39 @@ const TrackList = () => {
             </div>
 
             <div className="flex-1 overflow-y-auto">
-                {tracks.map((track, i) => (
+                <TrackItems tracks={tracks} />
+            </div>
+        </MusicCard>
+    );
+};
+
+const TrackItems = ({ tracks }: { tracks: any[] }) => {
+    const [hoveredIndex, setHoveredIndex] = React.useState<number | null>(null);
+
+    return (
+        <>
+            {tracks.map((track, i) => {
+                const isHovered = hoveredIndex === i;
+                return (
                     <div
                         key={i}
-                        className={`group flex items-center px-6 py-3 hover:bg-white/5 transition-colors cursor-pointer rounded-lg mx-2 ${track.active ? 'bg-white/10' : ''
-                            }`}
+                        className={`group flex items-center px-6 py-3 transition-colors cursor-pointer rounded-lg mx-2`}
+                        onMouseEnter={() => setHoveredIndex(i)}
+                        onMouseLeave={() => setHoveredIndex(null)}
+                        style={{ backgroundColor: track.active ? 'rgba(255, 255, 255, 0.1)' : isHovered ? 'rgba(255, 255, 255, 0.05)' : 'transparent' }}
                     >
                         <div className="w-12 text-center text-sm font-mono relative" style={{ color: '#71717a' }}>
-                            <span className={`group-hover:hidden ${track.active ? 'text-rose-500' : ''}`}>
+                            <span className={isHovered ? 'hidden' : ''} style={{ color: track.active ? '#f43f5e' : undefined }}>
                                 {track.active ? <BarChart2 className="h-4 w-4 mx-auto animate-pulse" /> : i + 1}
                             </span>
-                            <Play className="h-4 w-4 mx-auto hidden group-hover:block" style={{ fill: '#ffffff', color: '#ffffff' }} />
+                            <Play
+                                className="h-4 w-4 mx-auto"
+                                style={{
+                                    fill: '#ffffff',
+                                    color: '#ffffff',
+                                    display: isHovered ? 'block' : 'none'
+                                }}
+                            />
                         </div>
 
                         <div className="flex-1 flex items-center gap-4">
@@ -49,7 +71,7 @@ const TrackList = () => {
                                 style={{ backgroundColor: '#27272a' }}
                             />
                             <div>
-                                <div className={`font-medium ${track.active ? 'text-rose-400' : ''}`} style={!track.active ? { color: '#e4e4e7' } : undefined}>
+                                <div className="font-medium" style={{ color: track.active ? '#fb7185' : '#e4e4e7' }}>
                                     {track.title}
                                 </div>
                                 <div className="text-xs" style={{ color: '#71717a' }}>
@@ -68,15 +90,19 @@ const TrackList = () => {
 
                         <div className="w-16 text-right text-sm font-mono flex items-center justify-end gap-4" style={{ color: '#71717a' }}>
                             {track.active ? <span style={{ color: '#ffffff' }}>2:41</span> : track.duration}
-                            <button className="opacity-0 group-hover:opacity-100" style={{ color: '#a1a1aa' }}>
+                            <button
+                                className="transition-opacity"
+                                style={{ color: '#a1a1aa', opacity: isHovered ? 1 : 0 }}
+                            >
                                 <MoreHorizontal className="h-4 w-4" />
                             </button>
                         </div>
                     </div>
-                ))}
-            </div>
-        </MusicCard>
+                );
+            })}
+        </>
     );
 };
+
 
 export default TrackList;

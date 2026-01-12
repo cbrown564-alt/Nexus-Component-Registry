@@ -33,12 +33,33 @@ const GameButton: React.FC<GameButtonProps> = ({
     };
 
     // Keep semantic game colors for primary/secondary/accent, use theme for ghost/icon
+    // Keep semantic game colors for primary/secondary/accent, use theme for ghost/icon
     const variantStyles = {
-        primary: 'bg-gradient-to-r from-fuchsia-600 to-purple-600 shadow-lg shadow-fuchsia-500/30 border border-fuchsia-400/50 hover:shadow-fuchsia-500/50 hover:border-fuchsia-300',
-        secondary: 'bg-cyan-950/50 text-cyan-400 border border-cyan-500/30 hover:bg-cyan-900/50 hover:border-cyan-400 hover:shadow-[0_0_15px_rgba(34,211,238,0.3)]',
-        accent: 'bg-amber-500/20 text-amber-400 border border-amber-500/50 hover:bg-amber-500 hover:border-amber-400 shadow-amber-500/10 hover:shadow-amber-500/50',
-        ghost: 'bg-transparent border border-transparent hover:bg-white/10',
-        icon: 'bg-black/40 border border-white/10 hover:bg-white/10 hover:border-white/30 backdrop-blur-md',
+        primary: {
+            background: 'linear-gradient(to right, #c026d3, #9333ea)', // fuchsia-600 to purple-600
+            boxShadow: '0 10px 15px -3px rgba(217, 70, 239, 0.3)', // fuchsia-500/30
+            borderColor: 'rgba(232, 121, 249, 0.5)', // fuchsia-400/50
+        },
+        secondary: {
+            backgroundColor: 'rgba(8, 51, 68, 0.5)', // cyan-950/50
+            color: '#22d3ee', // cyan-400
+            borderColor: 'rgba(6, 182, 212, 0.3)', // cyan-500/30
+        },
+        accent: {
+            backgroundColor: 'rgba(245, 158, 11, 0.2)', // amber-500/20
+            color: '#fbbf24', // amber-400
+            borderColor: 'rgba(245, 158, 11, 0.5)', // amber-500/50
+            boxShadow: '0 0 0 0 rgba(245, 158, 11, 0.1)', // amber-500/10
+        },
+        ghost: {
+            backgroundColor: 'transparent',
+            borderColor: 'transparent',
+        },
+        icon: {
+            backgroundColor: 'rgba(0, 0, 0, 0.4)',
+            borderColor: 'rgba(255, 255, 255, 0.1)',
+            backdropFilter: 'blur(12px)',
+        },
     };
 
     // Determine text color based on variant
@@ -58,10 +79,11 @@ const GameButton: React.FC<GameButtonProps> = ({
             initial={variant === 'primary' ? { backgroundPosition: '0% 50%' } : {}}
             animate={variant === 'primary' ? { backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'] } : {}}
             transition={variant === 'primary' ? { duration: 3, repeat: Infinity, ease: 'linear' } : { type: 'spring', stiffness: 400, damping: 17 }}
-            className={`${baseStyles} ${sizeStyles[size]} ${variantStyles[variant]} ${className}`}
+            className={`${baseStyles} ${sizeStyles[size]} ${className}`}
             style={{
+                ...variantStyles[variant],
                 backgroundSize: variant === 'primary' ? '200% 200%' : undefined,
-                color: getTextColor(),
+                color: getTextColor() || (variantStyles[variant] as any).color,
             }}
             disabled={disabled}
             onClick={onClick}

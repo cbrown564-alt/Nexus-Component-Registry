@@ -18,7 +18,8 @@ const EInkCard: React.FC<EInkCardProps> = ({
   return (
     <motion.div
       onClick={onClick}
-      className={`relative bg-white overflow-hidden ${noBorder ? '' : 'border-2 border-black'} ${className}`}
+      className={`relative overflow-hidden ${noBorder ? '' : 'border-2 border-black'} ${className}`}
+      style={{ backgroundColor: '#ffffff' }}
       {...props}
     >
       {/* Paper Texture Overlay */}

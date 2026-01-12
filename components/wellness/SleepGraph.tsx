@@ -10,11 +10,11 @@ const SleepGraph = () => {
 
   return (
     <WellnessCard
-      className="" // Removed !text-stone-200
+      className=""
       style={{
         backgroundColor: theme.colors.card,
         borderColor: theme.colors.border,
-        color: '#e7e5e4' // text-stone-200 equivalent
+        color: '#e7e5e4'
       }}
     >
       <div className="mb-6 flex items-center justify-between">
@@ -44,10 +44,11 @@ const SleepGraph = () => {
         {data.map((value, i) => (
           <div key={i} className="group relative flex w-full flex-col items-center gap-2">
             <div
-              className="w-full rounded-t-lg transition-all duration-500 group-hover:bg-purple-400/80"
+              className={`w-full rounded-t-lg transition-all duration-500`}
               style={{
                 height: `${(value / max) * 100}%`,
-                backgroundColor: theme.colors.muted // was stone-800
+                backgroundColor: theme.colors.muted,
+                // Hover effect handled via Framer Motion or JS would be better, but for now removing the class
               }}
             >
               {/* Tooltip */}

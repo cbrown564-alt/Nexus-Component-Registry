@@ -29,30 +29,34 @@ const iconMap: Record<BadgeIcon, LucideIcon> = {
   gem: Gem,
 };
 
-const rarityStyles: Record<BadgeRarity, { gradient: string; border: string; glow: string; text: string }> = {
+const rarityStyles: Record<BadgeRarity, { gradient: string; border: string; glow: string; text: string; hex: string }> = {
   common: {
-    gradient: 'from-zinc-600 to-zinc-700',
-    border: 'border-zinc-500/50',
-    glow: 'shadow-zinc-500/20',
-    text: 'text-zinc-400',
+    gradient: 'linear-gradient(to right, #52525b, #3f3f46)', // zinc-600 to zinc-700
+    border: 'rgba(113, 113, 122, 0.5)', // zinc-500/50
+    glow: '0 10px 15px -3px rgba(113, 113, 122, 0.2)', // shadow-zinc-500/20
+    text: '#a1a1aa', // zinc-400
+    hex: '#a1a1aa',
   },
   rare: {
-    gradient: 'from-cyan-500 to-blue-600',
-    border: 'border-cyan-400/50',
-    glow: 'shadow-cyan-500/30',
-    text: 'text-cyan-400',
+    gradient: 'linear-gradient(to right, #06b6d4, #2563eb)', // cyan-500 to blue-600
+    border: 'rgba(34, 211, 238, 0.5)', // cyan-400/50
+    glow: '0 10px 15px -3px rgba(6, 182, 212, 0.3)', // shadow-cyan-500/30
+    text: '#22d3ee', // cyan-400
+    hex: '#22d3ee',
   },
   epic: {
-    gradient: 'from-fuchsia-500 to-purple-600',
-    border: 'border-fuchsia-400/50',
-    glow: 'shadow-fuchsia-500/30',
-    text: 'text-fuchsia-400',
+    gradient: 'linear-gradient(to right, #d946ef, #9333ea)', // fuchsia-500 to purple-600
+    border: 'rgba(232, 121, 249, 0.5)', // fuchsia-400/50
+    glow: '0 10px 15px -3px rgba(217, 70, 239, 0.3)', // shadow-fuchsia-500/30
+    text: '#e879f9', // fuchsia-400
+    hex: '#e879f9',
   },
   legendary: {
-    gradient: 'from-amber-400 via-yellow-500 to-orange-500',
-    border: 'border-amber-400/50',
-    glow: 'shadow-amber-500/40',
-    text: 'text-amber-400',
+    gradient: 'linear-gradient(to right, #fbbf24, #eab308, #f97316)', // amber-400 via yellow-500 to orange-500
+    border: 'rgba(251, 191, 36, 0.5)', // amber-400/50
+    glow: '0 10px 15px -3px rgba(245, 158, 11, 0.4)', // shadow-amber-500/40
+    text: '#fbbf24', // amber-400
+    hex: '#fbbf24',
   },
 };
 
@@ -74,12 +78,11 @@ const AchievementBadge: React.FC<AchievementBadgeProps> = ({
     return (
       <motion.div
         whileHover={{ scale: 1.1, y: -2 }}
-        className={`relative inline-flex items-center justify-center w-12 h-12 rounded-xl border ${unlocked ? styles.border : ''
-          } ${unlocked ? `bg-gradient-to-br ${styles.gradient}` : ''} ${unlocked ? `shadow-lg ${styles.glow}` : ''
-          }`}
+        className={`relative inline-flex items-center justify-center w-12 h-12 rounded-xl border`}
         style={{
-          borderColor: !unlocked ? theme.colors.border : undefined,
-          backgroundColor: !unlocked ? theme.colors.muted : undefined
+          borderColor: unlocked ? styles.border : theme.colors.border,
+          background: unlocked ? styles.gradient : theme.colors.muted,
+          boxShadow: unlocked ? styles.glow : undefined,
         }}
         title={title}
       >
@@ -102,7 +105,7 @@ const AchievementBadge: React.FC<AchievementBadgeProps> = ({
               cy="24"
               r="20"
               fill="none"
-              stroke={rarityStyles[rarity].text.replace('text-', '#').replace('-400', '')}
+              stroke={styles.hex}
               strokeWidth="2"
               strokeLinecap="round"
               strokeDasharray={2 * Math.PI * 20}
@@ -134,12 +137,11 @@ const AchievementBadge: React.FC<AchievementBadgeProps> = ({
     >
       {/* Badge Icon */}
       <div
-        className={`relative flex-shrink-0 flex items-center justify-center w-14 h-14 rounded-xl border ${unlocked ? styles.border : ''
-          } ${unlocked ? `bg-gradient-to-br ${styles.gradient}` : ''} ${unlocked ? `shadow-lg ${styles.glow}` : ''
-          }`}
+        className={`relative flex-shrink-0 flex items-center justify-center w-14 h-14 rounded-xl border`}
         style={{
-          borderColor: !unlocked ? theme.colors.border : undefined,
-          backgroundColor: !unlocked ? theme.colors.muted : undefined
+          borderColor: unlocked ? styles.border : theme.colors.border,
+          background: unlocked ? styles.gradient : theme.colors.muted,
+          boxShadow: unlocked ? styles.glow : undefined,
         }}
       >
         <IconComponent
@@ -164,7 +166,7 @@ const AchievementBadge: React.FC<AchievementBadgeProps> = ({
           >
             {title}
           </h4>
-          <span className={`text-[10px] font-bold uppercase tracking-wider ${styles.text}`}>
+          <span className="text-[10px] font-bold uppercase tracking-wider" style={{ color: styles.hex }}>
             {rarity}
           </span>
         </div>
@@ -186,7 +188,8 @@ const AchievementBadge: React.FC<AchievementBadgeProps> = ({
                 initial={{ width: 0 }}
                 animate={{ width: `${progress}%` }}
                 transition={{ duration: 0.5, ease: 'easeOut' }}
-                className={`h-full rounded-full bg-gradient-to-r ${styles.gradient}`}
+                className={`h-full rounded-full`}
+                style={{ background: styles.gradient }}
               />
             </div>
             <span

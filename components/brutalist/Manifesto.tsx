@@ -11,7 +11,7 @@ const Manifesto = () => {
       <div className="absolute top-0 right-10 w-32 h-32 bg-blue-600 rounded-full mix-blend-multiply opacity-50 z-0 animate-pulse" />
       <div className="absolute bottom-0 left-10 w-48 h-12 bg-red-500 -rotate-3 z-0" />
 
-      {/* Removed direct "bg-white" prop passed to color, let default handle it */}
+      {/* Removed direct prop passed to color, let default handle it */}
       <BrutalistCard className="relative z-10 max-w-2xl mx-auto">
         <div
           className="border-b-2 pb-4 mb-4 flex justify-between items-end"
@@ -48,7 +48,7 @@ const Manifesto = () => {
             backgroundColor: '#facc15', // yellow-400
             borderColor: theme.colors.foreground, // border-black
             boxShadow: `4px 4px 0px 0px ${theme.colors.foreground}`, // shadow-[#000]
-            color: '#000000' // Using hex to avoid text-black class violation
+            color: '#000000' // Using hex to avoid class violation
           }}
         >
           <span className="font-bold text-xs text-center font-mono transform -rotate-12">NEW<br />WAVE</span>

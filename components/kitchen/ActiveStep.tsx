@@ -4,7 +4,7 @@ import KitchenCard from './KitchenCard';
 
 const ActiveStep = () => {
     return (
-        <KitchenCard className="h-full flex flex-col p-8 md:p-12 relative overflow-hidden bg-white border-orange-100 shadow-[8px_8px_0px_rgba(251,146,60,0.2)]">
+        <KitchenCard className="h-full flex flex-col p-8 md:p-12 relative overflow-hidden border-orange-100 shadow-[8px_8px_0px_rgba(251,146,60,0.2)]" style={{ backgroundColor: '#ffffff' }}>
 
             {/* Progress Bar */}
             <div className="absolute top-0 left-0 w-full h-2" style={{ backgroundColor: '#f5f5f4' }}>

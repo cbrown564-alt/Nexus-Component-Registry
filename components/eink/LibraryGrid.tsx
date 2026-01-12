@@ -22,7 +22,7 @@ const LibraryGrid = () => {
             </div>
             {/* Progress Overlay */}
             {book.progress > 0 && book.progress < 100 && (
-              <div className="absolute bottom-0 left-0 h-1 bg-black" style={{ width: `${book.progress}%` }} />
+              <div className="absolute bottom-0 left-0 h-1" style={{ width: `${book.progress}%`, backgroundColor: '#000000' }} />
             )}
             {book.progress === 100 && (
               <div className="absolute top-2 right-2 text-[10px] font-bold px-2 py-1 uppercase" style={{ backgroundColor: '#000000', color: '#ffffff' }}>

@@ -111,8 +111,8 @@ const CadViewer: React.FC<CadViewerProps> = ({ activeLayers }) => {
 
             {/* Crosshair Cursor */}
             <div className="absolute inset-0 opacity-0 group-hover:opacity-100 pointer-events-none">
-                <div className="absolute w-full h-px bg-white/30 top-1/2" />
-                <div className="absolute h-full w-px bg-white/30 left-1/2" />
+                <div className="absolute w-full h-px top-1/2" style={{ backgroundColor: 'rgba(255, 255, 255, 0.3)' }} />
+                <div className="absolute h-full w-px left-1/2" style={{ backgroundColor: 'rgba(255, 255, 255, 0.3)' }} />
             </div>
         </div>
     );

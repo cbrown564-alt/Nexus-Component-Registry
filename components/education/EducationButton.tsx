@@ -78,7 +78,7 @@ const EducationButton: React.FC<EducationButtonProps> = ({
         >
             {/* Progress indicator dot for learning context - keeping simplistic for now */}
             {variant === 'primary' && (
-                <span className="absolute top-1.5 right-1.5 h-2 w-2 rounded-full bg-white/30 animate-pulse" />
+                <span className="absolute top-1.5 right-1.5 h-2 w-2 rounded-full animate-pulse" style={{ backgroundColor: 'rgba(255, 255, 255, 0.3)' }} />
             )}
 
             <span className="relative z-10 flex items-center gap-2">

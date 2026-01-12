@@ -20,7 +20,7 @@ const CockpitCard: React.FC<CockpitCardProps> = ({
   const { theme } = useTheme();
 
   return (
-    <div className={`relative bg-black/40 backdrop-blur-2xl border ${alert ? 'border-red-500/50' : 'border-white/10'} rounded-3xl overflow-hidden shadow-2xl ring-1 ring-white/5 ${className}`}>
+    <div className={`relative backdrop-blur-2xl border ${alert ? 'border-red-500/50' : 'border-white/10'} rounded-3xl overflow-hidden shadow-2xl ring-1 ring-white/5 ${className}`} style={{ backgroundColor: 'rgba(0, 0, 0, 0.4)' }}>
       {/* Glossy Gradient Overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent opacity-50 pointer-events-none" />
 

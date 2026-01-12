@@ -17,7 +17,7 @@ const Sticker: React.FC<StickerProps> = ({
   const defaultRotation = 12;
   const initialRotate = props.initial?.rotate ?? 180;
   const animateRotate = (props.animate && typeof props.animate === 'object' && 'rotate' in props.animate)
-    ? props.animate.rotate
+    ? (props.animate as any).rotate
     : defaultRotation;
 
   return (
@@ -25,7 +25,8 @@ const Sticker: React.FC<StickerProps> = ({
       initial={{ scale: 0, rotate: initialRotate }}
       animate={{ scale: 1, rotate: animateRotate }}
       transition={{ type: "spring", bounce: 0.6, delay }}
-      className={`absolute z-20 px-4 py-2 font-black uppercase tracking-tighter text-black shadow-[4px_4px_0px_rgba(0,0,0,1)] border-2 border-black ${className}`}
+      className={`absolute z-20 px-4 py-2 font-black uppercase tracking-tighter shadow-[4px_4px_0px_rgba(0,0,0,1)] border-2 border-black ${className}`}
+      style={{ color: '#000000' }}
       {...props}
     >
       {children}

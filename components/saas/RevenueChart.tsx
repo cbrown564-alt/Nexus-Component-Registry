@@ -13,7 +13,7 @@ const RevenueChart = () => {
                     {['12M', '30D', '7D', '24H'].map((range, i) => (
                         <button
                             key={range}
-                            className={`px-3 py-1 text-xs font-medium rounded-md transition-all ${i === 1 ? 'shadow-sm' : 'hover:text-slate-300'
+                            className={`px-3 py-1 text-xs font-medium rounded-md transition-all ${i === 1 ? 'shadow-sm' : 'hover:text-[#cbd5e1]'
                                 }`}
                             style={{
                                 backgroundColor: i === 1 ? '#1e293b' : 'transparent',

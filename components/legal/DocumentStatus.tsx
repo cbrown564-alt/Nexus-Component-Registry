@@ -53,7 +53,8 @@ const DocumentStatus: React.FC<DocumentStatusProps> = ({
     <motion.div
       initial={{ opacity: 0, y: 5 }}
       animate={{ opacity: 1, y: 0 }}
-      className={`flex items-center gap-4 p-4 border rounded-lg bg-white ${className}`}
+      className={`flex items-center gap-4 p-4 border rounded-lg ${className}`}
+      style={{ backgroundColor: '#ffffff' }}
     >
       <div
         className="p-2 rounded-lg border"

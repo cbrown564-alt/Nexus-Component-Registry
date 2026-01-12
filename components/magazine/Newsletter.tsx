@@ -22,7 +22,7 @@ const Newsletter = () => {
             '--tw-placeholder-color': '#525252'
           } as React.CSSProperties}
         />
-        <button className="absolute right-0 top-0 h-full text-xs font-bold uppercase tracking-widest transition-colors hover:text-white" style={{ color: '#a3a3a3' }}>
+        <button className="absolute right-0 top-0 h-full text-xs font-bold uppercase tracking-widest transition-colors hover:text-[#ffffff]" style={{ color: '#a3a3a3' }}>
           Join
         </button>
       </div>

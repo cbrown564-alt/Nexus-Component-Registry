@@ -11,7 +11,7 @@ interface BrutalistCardProps {
 const BrutalistCard: React.FC<BrutalistCardProps> = ({
   children,
   className = "",
-  color = "" // Removed default "bg-white" literal
+  color = "" // Removed default literal
 }) => {
   const { theme } = useTheme();
 

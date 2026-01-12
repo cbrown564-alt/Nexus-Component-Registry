@@ -14,7 +14,7 @@ const FeatureStory = () => {
           className="h-full w-full object-cover transition-transform duration-1000 ease-out group-hover:scale-105"
         />
         <div className="absolute top-6 left-6">
-          <span className="bg-white px-3 py-1 text-xs font-bold uppercase tracking-widest text-neutral-900">
+          <span className="px-3 py-1 text-xs font-bold uppercase tracking-widest text-neutral-900" style={{ backgroundColor: '#ffffff' }}>
             Architecture
           </span>
         </div>

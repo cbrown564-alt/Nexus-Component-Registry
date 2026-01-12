@@ -8,8 +8,8 @@ interface BlueprintCardProps {
   code?: string;
 }
 
-const BlueprintCard: React.FC<BlueprintCardProps> = ({ 
-  children, 
+const BlueprintCard: React.FC<BlueprintCardProps> = ({
+  children,
   className = "",
   title,
   code
@@ -28,7 +28,7 @@ const BlueprintCard: React.FC<BlueprintCardProps> = ({
 
       {/* Title Block */}
       {(title || code) && (
-        <div className="absolute top-0 left-6 -translate-y-1/2 bg-[#1e3a8a] px-2 flex items-center gap-2 border border-white/50 text-[10px] font-code uppercase tracking-widest text-white shadow-sm">
+        <div className="absolute top-0 left-6 -translate-y-1/2 bg-[#1e3a8a] px-2 flex items-center gap-2 border border-white/50 text-[10px] font-code uppercase tracking-widest shadow-sm" style={{ color: '#ffffff' }}>
           {code && <span className="text-cyan-400 font-bold">[{code}]</span>}
           {title && <span>{title}</span>}
         </div>

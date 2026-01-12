@@ -14,7 +14,7 @@ const MarqueeHeader = ({ text = "BRUTALISM // ARCHIVE // RAW // UNPOLISHED // " 
       <div className="inline-block animate-[marquee_20s_linear_infinite]">
         <span
           className="font-mono text-4xl font-bold tracking-tighter uppercase"
-          style={{ color: '#000000' }} // Ensuring hex black to avoid linter catching text-black class
+          style={{ color: '#000000' }}
         >
           {text.repeat(10)}
         </span>

@@ -27,7 +27,7 @@ const DiffViewer = () => {
         </div>
 
         {/* Right Side (New) */}
-        <div className="p-4 bg-white text-xs font-mono leading-relaxed" style={{ color: '#292524' }}>
+        <div className="p-4 text-xs font-mono leading-relaxed" style={{ color: '#292524', backgroundColor: '#ffffff' }}>
           <p>
             12.1 The Service Provider shall ensure <span className="font-bold px-1" style={{ backgroundColor: '#dbeafe', color: '#1e40af' }}>99.9%</span> uptime availability <span className="font-bold px-1" style={{ backgroundColor: '#dbeafe', color: '#1e40af' }}>24/7</span>.
           </p>

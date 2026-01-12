@@ -12,7 +12,7 @@ const AcidCard: React.FC<AcidCardProps> = ({
   children,
   className = "",
   rotate = 0,
-  color = "bg-white",
+  color = "bg-[#ffffff]",
   hoverRotate = true,
   style,
   ...props

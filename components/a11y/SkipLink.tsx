@@ -2,11 +2,35 @@
  * Skip link component for keyboard accessibility
  * Allows keyboard users to skip navigation and jump to main content
  */
+import React, { useState } from 'react';
+
 export default function SkipLink() {
+    const [isFocused, setIsFocused] = useState(false);
+
     return (
         <a
             href="#main-content"
-            className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[200] focus:px-4 focus:py-2 focus:bg-white focus:text-zinc-950 focus:rounded-lg focus:font-medium focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+            className="sr-only"
+            onFocus={() => setIsFocused(true)}
+            onBlur={() => setIsFocused(false)}
+            style={isFocused ? {
+                position: 'absolute',
+                top: '1rem',
+                left: '1rem',
+                zIndex: 200,
+                padding: '0.5rem 1rem',
+                backgroundColor: '#ffffff',
+                color: '#09090b',
+                borderRadius: '0.5rem',
+                fontWeight: 500,
+                boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)',
+                outline: 'none',
+                width: 'auto',
+                height: 'auto',
+                clip: 'auto',
+                whiteSpace: 'normal',
+                overflow: 'visible'
+            } : undefined}
         >
             Skip to main content
         </a>

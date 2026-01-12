@@ -157,7 +157,8 @@ const HealthBar: React.FC<HealthBarProps> = ({
                 animate={{ opacity: [0.2, 0.5, 0.2] }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.8, repeat: Infinity }}
-                className="absolute inset-0 bg-white rounded-full"
+                className="absolute inset-0 rounded-full"
+                style={{ backgroundColor: '#ffffff' }}
               />
             )}
           </AnimatePresence>

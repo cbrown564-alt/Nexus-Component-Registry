@@ -56,40 +56,63 @@ const TransactionList = () => {
                     </thead>
                     <tbody style={{ borderColor }}>
                         {transactions.map((trx, i) => (
-                            <tr key={i} className="group transition-colors hover:bg-white/5 border-b last:border-0" style={{ borderColor: `${borderColor}33` }}>
-                                <td className="px-6 py-4 font-mono transition-colors" style={{ color: mutedColor }}>{trx.id}</td>
-                                <td className="px-6 py-4">
-                                    <div className="flex items-center gap-3">
-                                        <div className={`rounded-full p-1.5`}
-                                            style={{
-                                                backgroundColor: trx.type === 'incoming' ? `${primaryColor}1A` : `${currentPlaygroundTheme.colors.secondary}`,
-                                                color: trx.type === 'incoming' ? primaryColor : currentPlaygroundTheme.colors.secondaryForeground
-                                            }}>
-                                            {trx.type === 'incoming' ? <ArrowDownLeft className="h-3 w-3" /> : <ArrowUpRight className="h-3 w-3" />}
-                                        </div>
-                                        <span className="font-medium" style={{ color: foregroundColor }}>{trx.entity}</span>
-                                    </div>
-                                </td>
-                                <td className="px-6 py-4" style={{ color: mutedColor }}>{trx.date}</td>
-                                <td className="px-6 py-4">
-                                    <span className={`inline-flex items-center rounded-md px-2 py-1 text-xs font-medium ring-1 ring-inset`}
-                                        style={{
-                                            backgroundColor: trx.status === 'Completed' ? `${primaryColor}1A` : `${currentPlaygroundTheme.colors.accent}1A`,
-                                            color: trx.status === 'Completed' ? primaryColor : currentPlaygroundTheme.colors.accent,
-                                            '--tw-ring-color': trx.status === 'Completed' ? `${primaryColor}33` : `${currentPlaygroundTheme.colors.accent}33`
-                                        } as React.CSSProperties}>
-                                        {trx.status}
-                                    </span>
-                                </td>
-                                <td className={`px-6 py-4 text-right font-mono font-medium`} style={{ color: trx.type === 'incoming' ? primaryColor : foregroundColor }}>
-                                    {trx.amount}
-                                </td>
-                            </tr>
+                            <TransactionRow
+                                key={i}
+                                trx={trx}
+                                borderColor={borderColor}
+                                mutedColor={mutedColor}
+                                foregroundColor={foregroundColor}
+                                primaryColor={primaryColor}
+                                currentPlaygroundTheme={currentPlaygroundTheme}
+                            />
                         ))}
                     </tbody>
                 </table>
             </div>
         </FintechCard>
+    );
+};
+
+const TransactionRow = ({ trx, borderColor, mutedColor, foregroundColor, primaryColor, currentPlaygroundTheme }: any) => {
+    const [isHovered, setIsHovered] = React.useState(false);
+    return (
+        <tr
+            className="group transition-colors border-b last:border-0"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+            style={{
+                borderColor: `${borderColor}33`,
+                backgroundColor: isHovered ? 'rgba(255, 255, 255, 0.05)' : 'transparent'
+            }}
+        >
+            <td className="px-6 py-4 font-mono transition-colors" style={{ color: mutedColor }}>{trx.id}</td>
+            <td className="px-6 py-4">
+                <div className="flex items-center gap-3">
+                    <div className={`rounded-full p-1.5`}
+                        style={{
+                            backgroundColor: trx.type === 'incoming' ? `${primaryColor}1A` : `${currentPlaygroundTheme.colors.secondary}`,
+                            color: trx.type === 'incoming' ? primaryColor : currentPlaygroundTheme.colors.secondaryForeground
+                        }}>
+                        {trx.type === 'incoming' ? <ArrowDownLeft className="h-3 w-3" /> : <ArrowUpRight className="h-3 w-3" />}
+                    </div>
+                    <span className="font-medium" style={{ color: foregroundColor }}>{trx.entity}</span>
+                </div>
+            </td>
+            <td className="px-6 py-4" style={{ color: mutedColor }}>{trx.date}</td>
+            <td className="px-6 py-4">
+                <span className={`inline-flex items-center rounded-md px-2 py-1 text-xs font-medium ring-1 ring-inset`}
+                    style={{
+                        backgroundColor: trx.status === 'Completed' ? `${primaryColor}1A` : `${currentPlaygroundTheme.colors.accent}1A`,
+                        color: trx.status === 'Completed' ? primaryColor : currentPlaygroundTheme.colors.accent,
+                        '--tw-ring-color': trx.status === 'Completed' ? `${primaryColor}33` : `${currentPlaygroundTheme.colors.accent}33`
+                    } as React.CSSProperties}>
+                    {trx.status}
+                </span>
+            </td>
+            <td className={`px-6 py-4 text-right font-mono font-medium`} style={{ color: trx.type === 'incoming' ? primaryColor : foregroundColor }}>
+                {trx.amount}
+            </td>
+        </tr>
     );
 };
 

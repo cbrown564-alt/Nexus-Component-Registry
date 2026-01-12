@@ -10,7 +10,7 @@ const Toggle = ({ label, active, onClick }: { label: string; active: boolean; on
             className="w-12 h-6 rounded-full relative transition-colors duration-300 shrink-0"
             style={{ backgroundColor: active ? '#2563eb' : '#334155' }}
         >
-            <div className={`absolute top-1 w-4 h-4 rounded-full bg-white transition-all duration-300 shadow-sm ${active ? 'left-7' : 'left-1'}`} />
+            <div className={`absolute top-1 w-4 h-4 rounded-full transition-all duration-300 shadow-sm ${active ? 'left-7' : 'left-1'}`} style={{ backgroundColor: '#ffffff' }} />
         </button>
     </div>
 );

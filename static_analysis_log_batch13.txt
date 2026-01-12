@@ -1,0 +1,390 @@
+
+> nexus-component-registry@0.0.0 test:static
+> NODE_OPTIONS='--experimental-vm-modules' jest --testPathPattern=static
+
+  console.log
+    
+    📊 Template Scan Summary:
+
+      at Object.<anonymous> (__tests__/static/hardcoded-colors.test.ts:42:21)
+
+  console.log
+       Total files: 28
+
+      at Object.<anonymous> (__tests__/static/hardcoded-colors.test.ts:43:21)
+
+  console.log
+       Clean files: 3
+
+      at Object.<anonymous> (__tests__/static/hardcoded-colors.test.ts:44:21)
+
+  console.log
+       Files with violations: 25
+
+      at Object.<anonymous> (__tests__/static/hardcoded-colors.test.ts:45:21)
+
+  console.log
+       Total violations: 214
+
+      at Object.<anonymous> (__tests__/static/hardcoded-colors.test.ts:46:21)
+
+  console.log
+    
+    ⚠️  Found hardcoded colors in 25 file(s):
+    
+    📄 templates/AcidDashboard.tsx (21 violations)
+       L19:93 - "text-black"
+       L31:71 - "bg-white"
+       L32:92 - "text-black"
+       L35:92 - "text-black"
+       L43:71 - "text-white"
+       L44:110 - "text-black"
+       L72:70 - "text-white"
+       L76:66 - "text-gray-500"
+       L80:66 - "text-gray-500"
+       L89:53 - "bg-white"
+       L93:61 - "bg-black"
+       L94:61 - "bg-black"
+       L102:53 - "bg-white"
+       L104:69 - "text-black"
+       L124:154 - "text-white"
+       L127:58 - "text-black"
+       L127:49 - "bg-white"
+       L138:50 - "text-white"
+       L138:41 - "bg-black"
+       L149:81 - "text-white"
+       L149:72 - "bg-black"
+    
+    📄 templates/BlueprintDashboard.tsx (15 violations)
+       L67:105 - "text-black"
+       L134:61 - "bg-black"
+       L184:48 - "text-black"
+       L185:48 - "bg-white"
+       L185:65 - "bg-white"
+       L307:57 - "bg-black"
+       L308:57 - "bg-black"
+       L314:57 - "bg-black"
+       L315:57 - "bg-black"
+       L320:53 - "bg-black"
+       L330:52 - "bg-white"
+       L330:77 - "bg-white"
+       L339:52 - "bg-white"
+       L339:77 - "bg-white"
+       L348:52 - "bg-white"
+    
+    📄 templates/BrutalistDashboard.tsx (1 violations)
+       L46:59 - "text-white"
+    
+    📄 templates/ClaymorphismDashboard.tsx (8 violations)
+       L42:68 - "bg-white"
+       L75:74 - "bg-white"
+       L93:73 - "bg-white"
+       L93:56 - "bg-slate-100"
+       L101:58 - "text-slate-700"
+       L104:106 - "text-slate-400"
+       L149:59 - "bg-white"
+       L155:59 - "bg-white"
+    
+    📄 templates/EInkDashboard.tsx (1 violations)
+       L116:95 - "text-stone-500"
+    
+    📄 templates/EducationDashboard.tsx (8 violations)
+       L67:101 - "bg-white"
+       L71:94 - "bg-white"
+       L81:127 - "bg-white"
+       L81:142 - "bg-white"
+       L84:145 - "text-white"
+       L84:162 - "bg-white"
+       L141:101 - "bg-white"
+       L172:130 - "bg-white"
+    
+    📄 templates/EngineeringDashboard.tsx (71 violations)
+       L59:83 - "text-zinc-300"
+       L62:80 - "bg-zinc-950"
+       L62:64 - "border-zinc-800"
+       L63:96 - "text-white"
+       L68:96 - "text-white"
+       L68:111 - "text-zinc-500"
+       L68:131 - "text-zinc-300"
+       L68:84 - "bg-zinc-800"
+       L68:151 - "bg-zinc-800"
+       L74:34 - "text-zinc-500"
+       L74:54 - "text-zinc-300"
+       L82:53 - "border-zinc-800"
+       L83:137 - "text-zinc-500"
+       L83:73 - "border-zinc-800"
+       L88:52 - "text-zinc-400"
+       L93:141 - "text-zinc-500"
+       L93:161 - "text-zinc-300"
+       L102:47 - "border-zinc-800"
+       L104:81 - "text-zinc-500"
+       L104:101 - "text-zinc-300"
+       L105:49 - "bg-zinc-700"
+       L120:70 - "border-zinc-800"
+       L125:208 - "text-zinc-500"
+       L125:228 - "bg-zinc-900"
+       L125:80 - "border-zinc-800"
+       L137:41 - "border-zinc-800"
+       L138:53 - "text-zinc-500"
+       L141:32 - "text-zinc-300"
+       L148:40 - "bg-zinc-800"
+       L149:55 - "text-zinc-500"
+       L193:23 - "bg-zinc-900"
+       L195:27 - "text-zinc-400"
+       L225:41 - "border-zinc-800"
+       L226:71 - "border-zinc-800"
+       L227:68 - "text-white"
+       L228:71 - "text-zinc-500"
+       L228:91 - "text-zinc-300"
+       L229:71 - "text-zinc-500"
+       L229:91 - "text-zinc-300"
+       L231:46 - "bg-zinc-800"
+       L234:58 - "text-zinc-400"
+       L238:34 - "text-zinc-500"
+       L241:34 - "text-zinc-500"
+       L246:34 - "text-zinc-500"
+       L248:36 - "text-zinc-300"
+       L261:53 - "border-zinc-800"
+       L262:73 - "border-zinc-800"
+       L274:51 - "text-zinc-500"
+       L279:53 - "text-zinc-400"
+       L279:38 - "bg-zinc-800"
+       L279:22 - "border-zinc-700"
+       L283:24 - "bg-zinc-600"
+       L297:35 - "text-zinc-400"
+       L312:51 - "text-zinc-500"
+       L314:31 - "bg-zinc-900"
+       L314:68 - "border-zinc-800"
+       L315:45 - "text-zinc-500"
+       L316:51 - "text-white"
+       L318:31 - "bg-zinc-900"
+       L318:68 - "border-zinc-800"
+       L319:45 - "text-zinc-500"
+       L322:31 - "bg-zinc-900"
+       L322:68 - "border-zinc-800"
+       L323:45 - "text-zinc-500"
+       L326:31 - "bg-zinc-900"
+       L326:68 - "border-zinc-800"
+       L327:45 - "text-zinc-500"
+       L328:51 - "text-zinc-600"
+       L335:29 - "bg-zinc-900"
+       L335:63 - "border-zinc-700"
+       L339:58 - "text-white"
+    
+    📄 templates/FestivalDashboard.tsx (4 violations)
+       L25:82 - "text-white"
+       L124:101 - "text-white"
+       L140:101 - "text-white"
+       L144:101 - "text-white"
+    
+    📄 templates/FintechDashboard.tsx (1 violations)
+       L22:92 - "text-zinc-200"
+    
+    📄 templates/FoodDashboard.tsx (9 violations)
+       L66:147 - "text-white"
+       L70:81 - "text-stone-400"
+       L74:63 - "text-white"
+       L106:84 - "text-white"
+       L109:84 - "text-white"
+       L187:82 - "bg-white"
+       L188:84 - "bg-black"
+       L195:75 - "text-white"
+       L198:80 - "bg-white"
+    
+    📄 templates/GameDashboard.tsx (3 violations)
+       L46:54 - "text-white"
+       L80:107 - "bg-black"
+       L81:111 - "bg-black"
+    
+    📄 templates/GridDashboard.tsx (1 violations)
+       L78:108 - "bg-black"
+    
+    📄 templates/KidsDashboard.tsx (5 violations)
+       L41:67 - "bg-white"
+       L42:68 - "bg-white"
+       L43:71 - "bg-white"
+       L75:41 - "bg-white"
+       L78:99 - "text-white"
+    
+    📄 templates/LegacyOSDashboard.tsx (12 violations)
+       L43:108 - "text-white"
+       L65:40 - "bg-white"
+       L79:113 - "text-white"
+       L80:99 - "text-white"
+       L80:76 - "text-black"
+       L109:40 - "bg-white"
+       L125:41 - "bg-white"
+       L172:58 - "text-white"
+       L175:70 - "text-white"
+       L178:70 - "text-white"
+       L181:70 - "text-white"
+       L185:70 - "text-white"
+    
+    📄 templates/LegalDashboard.tsx (6 violations)
+       L131:44 - "text-stone-600"
+       L161:54 - "border-stone-900"
+       L163:49 - "border-stone-400"
+       L167:49 - "border-stone-400"
+       L178:72 - "bg-white"
+       L178:55 - "border-stone-300"
+    
+    📄 templates/MagazineDashboard.tsx (7 violations)
+       L80:89 - "bg-black"
+       L224:61 - "text-white"
+       L224:52 - "bg-black"
+       L270:58 - "text-black"
+       L271:58 - "text-black"
+       L272:58 - "text-black"
+       L273:58 - "text-black"
+    
+    📄 templates/MusicDashboard.tsx (8 violations)
+       L42:51 - "text-white"
+       L53:140 - "bg-white"
+       L57:140 - "bg-white"
+       L65:140 - "bg-white"
+       L69:140 - "bg-white"
+       L70:70 - "text-white"
+       L77:149 - "text-white"
+       L118:70 - "bg-zinc-700"
+    
+    📄 templates/ProductivityDashboard.tsx (8 violations)
+       L63:58 - "text-zinc-500"
+       L70:89 - "text-zinc-500"
+       L73:118 - "text-zinc-400"
+       L73:159 - "text-zinc-200"
+       L73:138 - "bg-zinc-800"
+       L74:75 - "bg-zinc-700"
+       L98:44 - "text-zinc-500"
+       L98:64 - "text-zinc-300"
+    
+    📄 templates/SaasDashboard.tsx (3 violations)
+       L51:90 - "bg-slate-900"
+       L51:73 - "border-slate-800"
+       L57:46 - "bg-slate-800"
+    
+    📄 templates/SciFiDashboard.tsx (3 violations)
+       L134:84 - "bg-black"
+       L140:47 - "bg-black"
+       L178:55 - "bg-black"
+    
+    📄 templates/SocialDashboard.tsx (3 violations)
+       L34:66 - "text-zinc-500"
+       L167:150 - "bg-zinc-800"
+       L173:62 - "text-zinc-300"
+    
+    📄 templates/SoftPlasticDashboard.tsx (4 violations)
+       L46:110 - "text-slate-800"
+       L46:87 - "bg-slate-300"
+       L65:129 - "bg-slate-200"
+       L175:79 - "bg-slate-300"
+    
+    📄 templates/SolarpunkDashboard.tsx (3 violations)
+       L56:55 - "bg-white"
+       L82:51 - "bg-white"
+       L93:94 - "text-white"
+    
+    📄 templates/SwissDashboard.tsx (5 violations)
+       L19:82 - "text-white"
+       L98:40 - "text-white"
+       L99:39 - "text-gray-400"
+       L101:58 - "text-white"
+       L111:58 - "text-white"
+    
+    📄 templates/WellnessDashboard.tsx (4 violations)
+       L56:98 - "text-stone-900"
+       L56:184 - "text-stone-600"
+       L56:122 - "border-stone-900"
+       L77:51 - "bg-white"
+
+      at Object.<anonymous> (__tests__/static/hardcoded-colors.test.ts:49:25)
+
+  console.log
+    
+    📊 Component Scan Summary:
+
+      at Object.<anonymous> (__tests__/static/hardcoded-colors.test.ts:71:21)
+
+  console.log
+       Total files: 199
+
+      at Object.<anonymous> (__tests__/static/hardcoded-colors.test.ts:72:21)
+
+  console.log
+       Clean files: 199
+
+      at Object.<anonymous> (__tests__/static/hardcoded-colors.test.ts:73:21)
+
+  console.log
+       Files with violations: 0
+
+      at Object.<anonymous> (__tests__/static/hardcoded-colors.test.ts:74:21)
+
+  console.log
+       Total violations: 0
+
+      at Object.<anonymous> (__tests__/static/hardcoded-colors.test.ts:75:21)
+
+  console.log
+    
+    📁 cockpit components:
+
+      at __tests__/static/hardcoded-colors.test.ts:99:21
+
+  console.log
+       Files: 6, Violations: 0
+
+      at __tests__/static/hardcoded-colors.test.ts:100:21
+
+  console.log
+       ✅ All clean!
+
+      at __tests__/static/hardcoded-colors.test.ts:109:25
+
+  console.log
+    
+    📁 fintech components:
+
+      at __tests__/static/hardcoded-colors.test.ts:99:21
+
+  console.log
+       Files: 8, Violations: 0
+
+      at __tests__/static/hardcoded-colors.test.ts:100:21
+
+  console.log
+       ✅ All clean!
+
+      at __tests__/static/hardcoded-colors.test.ts:109:25
+
+  console.log
+    
+    📁 game components:
+
+      at __tests__/static/hardcoded-colors.test.ts:99:21
+
+  console.log
+       Files: 8, Violations: 0
+
+      at __tests__/static/hardcoded-colors.test.ts:100:21
+
+  console.log
+       ✅ All clean!
+
+      at __tests__/static/hardcoded-colors.test.ts:109:25
+
+  console.log
+    
+    📁 scifi components:
+
+      at __tests__/static/hardcoded-colors.test.ts:99:21
+
+  console.log
+       Files: 8, Violations: 0
+
+      at __tests__/static/hardcoded-colors.test.ts:100:21
+
+  console.log
+       ✅ All clean!
+
+      at __tests__/static/hardcoded-colors.test.ts:109:25
+

@@ -68,7 +68,7 @@ const NeonToggle: React.FC<NeonToggleProps> = ({
                     transition={{ type: "spring", stiffness: 500, damping: 30 }}
                 >
                     {/* Shine effect on the knob */}
-                    <div className="absolute top-1 right-1 w-1.5 h-1.5 bg-white rounded-full opacity-40" />
+                    <div className="absolute top-1 right-1 w-1.5 h-1.5 rounded-full opacity-40" style={{ backgroundColor: '#ffffff' }} />
                 </motion.div>
 
                 {/* Track lines for detail */}

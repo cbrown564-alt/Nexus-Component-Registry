@@ -29,7 +29,7 @@ const LaneAssist = ({ children, activeMode = 'comfort', onModeChange, className 
 
             {/* Drive Mode Top Bar - Compacted */}
             <div className="absolute top-0 left-0 right-0 p-6 z-30 flex justify-center">
-                <div className="bg-black/60 backdrop-blur-xl border border-white/10 rounded-full p-1 flex gap-1 shadow-xl ring-1 ring-white/5">
+                <div className="backdrop-blur-xl border border-white/10 rounded-full p-1 flex gap-1 shadow-xl ring-1 ring-white/5" style={{ backgroundColor: 'rgba(0, 0, 0, 0.6)' }}>
                     {modes.map((mode) => (
                         <button
                             key={mode.id}
