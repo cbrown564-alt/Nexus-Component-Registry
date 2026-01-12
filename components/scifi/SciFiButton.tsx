@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useTheme } from '@/context/ThemeContext';
 
 interface SciFiButtonProps {
     children?: React.ReactNode;
@@ -20,6 +21,8 @@ const SciFiButton: React.FC<SciFiButtonProps> = ({
     disabled = false,
     onClick,
 }) => {
+    const { theme } = useTheme();
+
     const baseStyles = 'group relative inline-flex items-center justify-center gap-2 font-mono font-bold uppercase tracking-[0.3em] transition-all duration-200 focus:outline-none focus:ring-1 focus:ring-cyan-400 focus:ring-offset-1 focus:ring-offset-[#020408] disabled:opacity-40 disabled:cursor-not-allowed overflow-visible';
 
     const sizeStyles = {
@@ -29,7 +32,7 @@ const SciFiButton: React.FC<SciFiButtonProps> = ({
     };
 
     const variantStyles = {
-        primary: 'bg-cyan-500/10 text-cyan-400 border border-cyan-500/50 hover:bg-cyan-500 hover:text-black hover:border-cyan-400 hover:shadow-[0_0_20px_rgba(34,211,238,0.5)]',
+        primary: 'bg-cyan-500/10 text-cyan-400 border border-cyan-500/50 hover:bg-cyan-500 hover:border-cyan-400 hover:shadow-[0_0_20px_rgba(34,211,238,0.5)]',
         command: 'bg-transparent text-cyan-600 border border-cyan-900/50 hover:bg-cyan-950/50 hover:text-cyan-300 hover:border-cyan-700',
         ghost: 'bg-transparent text-cyan-700 border border-transparent hover:text-cyan-400 hover:bg-cyan-950/30',
         icon: 'bg-cyan-950/30 text-cyan-600 border border-cyan-900/50 p-3 hover:text-cyan-300 hover:bg-cyan-900/50 hover:border-cyan-700',
@@ -41,6 +44,10 @@ const SciFiButton: React.FC<SciFiButtonProps> = ({
             whileTap={{ scale: disabled ? 1 : 0.98 }}
             transition={{ type: 'spring', stiffness: 400, damping: 20 }}
             className={`${baseStyles} ${sizeStyles[size]} ${variantStyles[variant]} ${className}`}
+            style={{
+                color: variant === 'primary' ? undefined : undefined,
+                // Hover state handled by class
+            }}
             disabled={disabled}
             onClick={onClick}
         >
@@ -58,7 +65,14 @@ const SciFiButton: React.FC<SciFiButtonProps> = ({
             />
 
             {icon && <span className="shrink-0 relative z-10">{icon}</span>}
-            {children && <span className="relative z-10">{children}</span>}
+            {children && (
+                <span
+                    className="relative z-10"
+                    style={{ color: variant === 'primary' ? theme.colors.foreground : undefined }}
+                >
+                    {children}
+                </span>
+            )}
         </motion.button>
     );
 };

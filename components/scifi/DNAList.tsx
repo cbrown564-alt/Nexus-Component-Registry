@@ -1,7 +1,10 @@
 import React from 'react';
 import SciFiCard from './SciFiCard';
+import { useTheme } from '@/context/ThemeContext';
 
 const DNAList = () => {
+  const { theme } = useTheme();
+
   const sequence = [
     { id: 'SEQ-001', type: 'ADENINE', match: '99.9%', status: 'STABLE' },
     { id: 'SEQ-002', type: 'THYMINE', match: '98.2%', status: 'STABLE' },
@@ -44,7 +47,10 @@ const DNAList = () => {
         ))}
       </div>
 
-      <div className="mt-4 p-2 bg-black/40 border border-cyan-900/50 text-[10px] font-mono text-cyan-600">
+      <div
+        className="mt-4 p-2 border border-cyan-900/50 text-[10px] font-mono text-cyan-600"
+        style={{ backgroundColor: 'rgba(0,0,0,0.4)' }}
+      >
         {'>'} ANALYZING NEXT STRAND...<br />
         {'>'} ESTIMATED TIME: 00:04:22
       </div>

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { useTheme } from '@/context/ThemeContext';
 
 interface NeonToggleProps {
     label?: string;
@@ -17,6 +18,7 @@ const NeonToggle: React.FC<NeonToggleProps> = ({
     className = ""
 }) => {
     const [isOn, setIsOn] = useState(initialState);
+    const { theme } = useTheme();
 
     const handleToggle = () => {
         const newState = !isOn;
@@ -48,15 +50,20 @@ const NeonToggle: React.FC<NeonToggleProps> = ({
                 onClick={handleToggle}
                 className={`relative w-16 h-8 rounded-full border-2 transition-all duration-300 ${isOn
                     ? `border-opacity-100 ${activeFormat.replace('bg-', 'bg-opacity-10 ')}`
-                    : 'border-slate-600 bg-slate-800 shadow-none'
+                    : 'shadow-none'
                     }`}
+                style={{
+                    borderColor: !isOn ? theme.colors.border : undefined,
+                    backgroundColor: !isOn ? theme.colors.secondary : undefined
+                }}
                 aria-pressed={isOn}
                 role="switch"
             >
                 {/* Toggle Head */}
                 <motion.div
-                    className={`absolute top-1 left-1 w-5 h-5 rounded-full shadow-md transition-all duration-300 ${isOn ? activeFormat : 'bg-slate-400'
+                    className={`absolute top-1 left-1 w-5 h-5 rounded-full shadow-md transition-all duration-300 ${isOn ? activeFormat : ''
                         }`}
+                    style={{ backgroundColor: !isOn ? theme.colors.muted : undefined }}
                     animate={{ x: isOn ? 32 : 0 }}
                     transition={{ type: "spring", stiffness: 500, damping: 30 }}
                 >
@@ -74,8 +81,9 @@ const NeonToggle: React.FC<NeonToggleProps> = ({
                 <span
                     className={`font-mono text-sm uppercase tracking-wider transition-all duration-300 ${isOn
                         ? `${activeText} font-bold drop-shadow-[0_0_5px_rgba(255,255,255,0.5)]`
-                        : 'text-slate-500'
+                        : ''
                         }`}
+                    style={{ color: !isOn ? theme.colors.mutedForeground : undefined }}
                 >
                     {label}
                 </span>
