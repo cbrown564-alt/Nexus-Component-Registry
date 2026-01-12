@@ -10,7 +10,7 @@ const SolarpunkDashboard = () => {
     const { currentPlaygroundTheme: theme, setScopedTheme } = useTheme();
 
     useEffect(() => {
-        setScopedTheme('experimental', 'solarpunk');
+        setScopedTheme('organic', 'solarpunk');
     }, []);
 
     return (

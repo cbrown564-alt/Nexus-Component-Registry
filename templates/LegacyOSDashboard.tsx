@@ -22,7 +22,12 @@ const LegacyOSDashboard = () => {
     const [activeWindow, setActiveWindow] = useState('explorer');
     const [startOpen, setStartOpen] = useState(false);
     const [time, setTime] = useState('10:42 PM');
-    const { currentPlaygroundTheme: theme } = useTheme();
+    const { currentPlaygroundTheme: theme, setScopedTheme } = useTheme();
+
+    // Set scoped theme
+    React.useEffect(() => {
+        setScopedTheme('brutalist', 'legacy');
+    }, []);
 
     // Simple clock update
     React.useEffect(() => {

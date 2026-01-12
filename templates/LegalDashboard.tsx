@@ -22,7 +22,7 @@ const LegalDashboard = () => {
   const { currentPlaygroundTheme: theme, setScopedTheme } = useTheme();
 
   React.useEffect(() => {
-    setScopedTheme('professional', 'legal');
+    setScopedTheme('gilded', 'legal');
   }, []);
 
   const [activeClause, setActiveClause] = useState<string | null>('1.2');

@@ -9,7 +9,7 @@ const ClaymorphismDashboard = () => {
     const { currentPlaygroundTheme: theme, setScopedTheme } = useTheme();
 
     useEffect(() => {
-        setScopedTheme('experimental', 'clay');
+        setScopedTheme('skeuomorphic', 'clay');
     }, []);
 
     const [tasks, setTasks] = useState([

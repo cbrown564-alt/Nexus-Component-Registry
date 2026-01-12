@@ -93,8 +93,8 @@ const HabitCheckbox: React.FC<HabitCheckboxProps> = ({
       initial={{ opacity: 0, y: 5 }}
       animate={{ opacity: 1, y: 0 }}
       className={`relative flex items-center gap-4 p-4 rounded-2xl border transition-all duration-300 cursor-pointer ${isChecked
-          ? `${colors.bg} ${colors.border}`
-          : 'hover:border-opacity-100' // Base styles handled via inline
+        ? `${colors.bg} ${colors.border}`
+        : 'hover:border-opacity-100' // Base styles handled via inline
         }`}
       style={!isChecked ? {
         backgroundColor: theme.colors.card, // or card/secondary
@@ -156,8 +156,8 @@ const HabitCheckbox: React.FC<HabitCheckboxProps> = ({
       <div className="flex-shrink-0">
         <motion.div
           className={`relative w-7 h-7 rounded-full border-2 flex items-center justify-center transition-colors ${isChecked
-              ? `${colors.checked} border-transparent`
-              : ''
+            ? `${colors.checked} border-transparent`
+            : ''
             }`}
           style={!isChecked ? {
             borderColor: theme.colors.border,
@@ -173,7 +173,7 @@ const HabitCheckbox: React.FC<HabitCheckboxProps> = ({
                 exit={{ scale: 0, opacity: 0 }}
                 transition={{ type: "spring", stiffness: 500, damping: 30 }}
               >
-                <Check className="h-4 w-4 text-white" strokeWidth={3} />
+                <Check className="h-4 w-4" style={{ color: '#ffffff' }} strokeWidth={3} />
               </motion.div>
             )}
           </AnimatePresence>

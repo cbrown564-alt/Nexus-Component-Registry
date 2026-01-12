@@ -4,6 +4,7 @@ import { ArrowLeft, Box, ExternalLink } from 'lucide-react'
 import { useEffect } from 'react'
 import { getThemeById } from '@/lib/registry'
 import { useTheme } from '@/context/ThemeContext'
+import ThemeSwitcher from '@/components/ui/ThemeSwitcher'
 
 // Import all dashboards
 import EngineeringDashboard from '@/templates/EngineeringDashboard'
@@ -104,6 +105,7 @@ export default function TemplatePage() {
                 </div>
 
                 <div className="flex items-center gap-3">
+                    <ThemeSwitcher template={theme} />
                     <Link
                         to={`/templates/${theme.id}/components`}
                         className="flex items-center gap-2 text-sm text-zinc-400 hover:text-white transition-colors"

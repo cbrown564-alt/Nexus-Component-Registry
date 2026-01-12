@@ -13,7 +13,7 @@ const WellnessDashboard = () => {
    const { currentPlaygroundTheme: theme, setScopedTheme } = useTheme();
 
    React.useEffect(() => {
-      setScopedTheme('consumer', 'wellness');
+      setScopedTheme('organic', 'wellness');
    }, []);
 
    return (

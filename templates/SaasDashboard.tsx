@@ -21,7 +21,7 @@ const SaasDashboard = () => {
     const { currentPlaygroundTheme: theme, setScopedTheme } = useTheme();
 
     React.useEffect(() => {
-        setScopedTheme('professional', 'saas');
+        setScopedTheme('glass', 'saas');
     }, []);
 
     return (

@@ -13,7 +13,7 @@ const GameDashboard = () => {
     const { currentPlaygroundTheme: theme, setScopedTheme } = useTheme();
 
     useEffect(() => {
-        setScopedTheme('retro', 'arcade'); // Using 'retro' scope as per category
+        setScopedTheme('cyberpunk', 'arcade'); // Using 'retro' scope as per category
     }, []);
 
     return (

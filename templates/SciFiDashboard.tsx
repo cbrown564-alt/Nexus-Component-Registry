@@ -11,7 +11,12 @@ import { useTheme } from '@/context/ThemeContext';
 const SciFiDashboard = () => {
     const [scanActive, setScanActive] = useState(false);
     const [activeTab, setActiveTab] = useState('vitals');
-    const { currentPlaygroundTheme: theme } = useTheme();
+    const { currentPlaygroundTheme: theme, setScopedTheme } = useTheme();
+
+    // Set scoped theme
+    React.useEffect(() => {
+        setScopedTheme('cyberpunk', 'scifi');
+    }, []);
 
     return (
         <div

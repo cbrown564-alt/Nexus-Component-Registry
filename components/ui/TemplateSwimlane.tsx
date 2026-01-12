@@ -44,11 +44,12 @@ export default function TemplateSwimlane({ title, themes, viewAllLink }: Templat
     return (
         <div className="mb-12 group/lane relative">
             <div className="flex items-center justify-between px-8 mb-4">
-                <h2 className="text-xl font-semibold text-white tracking-wide">{title}</h2>
+                <h2 className="text-xl font-semibold tracking-wide" style={{ color: '#ffffff' }}>{title}</h2>
                 {viewAllLink && (
                     <Link
                         to={viewAllLink}
-                        className="text-xs font-medium text-zinc-500 hover:text-white transition-colors flex items-center gap-1 group"
+                        className="text-xs font-medium hover:text-[#ffffff] transition-colors flex items-center gap-1 group"
+                        style={{ color: '#71717a' }}
                     >
                         View all <ChevronRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
                     </Link>
@@ -60,7 +61,8 @@ export default function TemplateSwimlane({ title, themes, viewAllLink }: Templat
                 {canScrollLeft && (
                     <button
                         onClick={() => scroll('left')}
-                        className="absolute left-0 top-0 bottom-8 z-30 w-12 bg-black/60 backdrop-blur-sm opacity-0 group-hover/scroll:opacity-100 transition-opacity flex items-center justify-center text-white hover:bg-black/80"
+                        className="absolute left-0 top-0 bottom-8 z-30 w-12 backdrop-blur-sm opacity-0 group-hover/scroll:opacity-100 transition-opacity flex items-center justify-center hover:bg-[#000000]/80 transition-colors"
+                        style={{ backgroundColor: 'rgba(0,0,0,0.6)', color: '#ffffff' }}
                         aria-label="Scroll left"
                     >
                         <ChevronLeft className="w-8 h-8" />
@@ -80,7 +82,8 @@ export default function TemplateSwimlane({ title, themes, viewAllLink }: Templat
                         >
                             <motion.div
                                 whileHover={{ scale: 1.05 }}
-                                className="w-full h-full rounded-lg overflow-hidden border border-zinc-800 bg-zinc-900 shadow-lg relative origin-center"
+                                className="w-full h-full rounded-lg overflow-hidden border shadow-lg relative origin-center"
+                                style={{ backgroundColor: '#18181b', borderColor: '#27272a' }}
                                 transition={{ duration: 0.2 }}
                             >
                                 {/* Preview */}
@@ -89,17 +92,20 @@ export default function TemplateSwimlane({ title, themes, viewAllLink }: Templat
                                 </div>
 
                                 {/* Hover Overlay */}
-                                <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-6">
-                                    <h3 className="text-lg font-bold text-white mb-1 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-6" style={{ backgroundColor: 'rgba(0,0,0,0.6)' }}>
+                                    <h3
+                                        className="text-lg font-bold mb-1 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300"
+                                        style={{ color: '#ffffff' }}
+                                    >
                                         {theme.name}
                                     </h3>
                                     <div className="flex items-center gap-2 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300 delay-75">
                                         <div className={`w-2 h-2 rounded-full ${theme.colorClass}`} />
-                                        <span className="text-xs text-zinc-300 capitalize">{theme.category}</span>
+                                        <span className="text-xs capitalize" style={{ color: '#d4d4d8' }}>{theme.category}</span>
                                     </div>
                                     <div className="mt-3 flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity delay-100">
                                         {theme.tags.slice(0, 2).map(tag => (
-                                            <span key={tag} className="text-[10px] px-1.5 py-0.5 bg-white/10 rounded text-zinc-300">
+                                            <span key={tag} className="text-[10px] px-1.5 py-0.5 rounded" style={{ backgroundColor: 'rgba(255,255,255,0.1)', color: '#d4d4d8' }}>
                                                 {tag}
                                             </span>
                                         ))}
@@ -114,7 +120,8 @@ export default function TemplateSwimlane({ title, themes, viewAllLink }: Templat
                 {canScrollRight && (
                     <button
                         onClick={() => scroll('right')}
-                        className="absolute right-0 top-0 bottom-8 z-30 w-12 bg-black/60 backdrop-blur-sm opacity-0 group-hover/scroll:opacity-100 transition-opacity flex items-center justify-center text-white hover:bg-black/80"
+                        className="absolute right-0 top-0 bottom-8 z-30 w-12 backdrop-blur-sm opacity-0 group-hover/scroll:opacity-100 transition-opacity flex items-center justify-center hover:bg-[#000000]/80 transition-colors"
+                        style={{ backgroundColor: 'rgba(0,0,0,0.6)', color: '#ffffff' }}
                         aria-label="Scroll right"
                     >
                         <ChevronRight className="w-8 h-8" />

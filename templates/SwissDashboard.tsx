@@ -11,7 +11,7 @@ const SwissDashboard = () => {
    const { currentPlaygroundTheme: theme, setScopedTheme } = useTheme();
 
    useEffect(() => {
-      setScopedTheme('experimental', 'swiss');
+      setScopedTheme('constructivist', 'swiss');
    }, []);
 
    return (

@@ -1,17 +1,21 @@
 import React, { useRef, useState, MouseEvent } from 'react';
 import { motion } from 'framer-motion';
+import { useTheme } from '@/context/ThemeContext';
 
 interface SpotlightCardProps {
   children: React.ReactNode;
   className?: string;
   spotlightColor?: string;
+  style?: React.CSSProperties; // Add style prop
 }
 
-const SpotlightCard: React.FC<SpotlightCardProps> = ({ 
-  children, 
+const SpotlightCard: React.FC<SpotlightCardProps> = ({
+  children,
   className = "",
-  spotlightColor = "rgba(255, 255, 255, 0.1)"
+  spotlightColor,
+  style = {} // Default to empty object
 }) => {
+  const { theme } = useTheme();
   const divRef = useRef<HTMLDivElement>(null);
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [opacity, setOpacity] = useState(0);
@@ -31,19 +35,26 @@ const SpotlightCard: React.FC<SpotlightCardProps> = ({
     setOpacity(0);
   };
 
+  const effectiveSpotlightColor = spotlightColor || (theme.colors.foreground ? `${theme.colors.foreground}1A` : "rgba(255, 255, 255, 0.1)");
+
   return (
     <div
       ref={divRef}
       onMouseMove={handleMouseMove}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className={`relative h-full w-full overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900/50 shadow-sm transition-all duration-200 hover:border-zinc-700 ${className}`}
+      className={`relative h-full w-full overflow-hidden rounded-xl border shadow-sm transition-all duration-200 ${className}`}
+      style={{
+        borderColor: theme.colors.border,
+        backgroundColor: `${theme.colors.card}80` || 'rgba(24, 24, 27, 0.5)', // card/50 fallback
+        ...style // Merge passed style
+      }}
     >
       <div
         className="pointer-events-none absolute -inset-px opacity-0 transition duration-300"
         style={{
           opacity,
-          background: `radial-gradient(600px circle at ${position.x}px ${position.y}px, ${spotlightColor}, transparent 40%)`,
+          background: `radial-gradient(600px circle at ${position.x}px ${position.y}px, ${effectiveSpotlightColor}, transparent 40%)`,
         }}
       />
       <div className="relative h-full w-full">

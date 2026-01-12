@@ -14,7 +14,7 @@ const EInkDashboard = () => {
     const { currentPlaygroundTheme: theme, setScopedTheme } = useTheme();
 
     useEffect(() => {
-        setScopedTheme('retro', 'eink'); // Lock to eink theme
+        setScopedTheme('skeuomorphic', 'eink'); // Lock to eink theme
     }, []);
 
     // Simulate E-Ink refresh flash on tab change

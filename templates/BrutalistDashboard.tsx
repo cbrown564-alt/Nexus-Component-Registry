@@ -10,7 +10,7 @@ const BrutalistDashboard = () => {
     const { currentPlaygroundTheme: theme, setScopedTheme } = useTheme();
 
     useEffect(() => {
-        setScopedTheme('experimental', 'brutalist');
+        setScopedTheme('brutalist', 'brutalist');
     }, []);
 
     return (

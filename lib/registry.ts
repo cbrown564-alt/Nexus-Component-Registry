@@ -1,7 +1,7 @@
 import { PlaygroundTheme, playgroundThemes } from '@/data/playgroundThemes'
 
 // --- Layer 1: Visual Languages ---
-export type VisualLanguageId = 'professional' | 'consumer' | 'scifi' | 'retro' | 'experimental' | 'nature'
+export type VisualLanguageId = 'gilded' | 'constructivist' | 'brutalist' | 'glass' | 'cyberpunk' | 'organic' | 'consumer' | 'professional' | 'skeuomorphic'
 
 export interface VisualLanguage {
     id: VisualLanguageId
@@ -10,20 +10,31 @@ export interface VisualLanguage {
 }
 
 export const visualLanguages: VisualLanguage[] = [
-    { id: 'professional', name: 'Professional', description: 'Clean, data-dense interfaces for enterprise and SaaS' },
-    { id: 'consumer', name: 'Consumer', description: 'Friendly, accessible designs for mass-market apps' },
-    { id: 'scifi', name: 'SciFi', description: 'Futuristic, high-tech interfaces with distinct aesthetics' },
-    { id: 'retro', name: 'Retro', description: 'Nostalgic designs calling back to previous computing eras' },
-    { id: 'experimental', name: 'Experimental', description: 'Pushing boundaries with brutalist or neo-modern styles' },
-    { id: 'nature', name: 'Nature', description: 'Organic, calm designs inspired by the natural world' },
+    { id: 'gilded', name: 'The Gilded Machine', description: 'Art Deco verticality, geometric intricacy, and material richness' },
+    { id: 'constructivist', name: 'The Constructivist', description: 'Bauhaus rationalism with primary colors and strict grids' },
+    { id: 'brutalist', name: 'Neo-Brutalism', description: 'Honest UI with hard shadows and raw typography' },
+    { id: 'glass', name: 'Liquid Glass', description: 'Translucent layering with optical depth and refraction' },
+    { id: 'cyberpunk', name: 'Cyberpunk & Glitch', description: 'High-tech dystopia with neon, HUDs, and glitch effects' },
+    { id: 'organic', name: 'Nature Distilled', description: 'Organic curves, earth tones, and biophilic design' },
+    { id: 'consumer', name: 'Consumer & Lifestyle', description: 'Friendly, accessible designs for mass-market apps' },
+    { id: 'professional', name: 'Professional & Enterprise', description: 'Clean, data-dense interfaces for business tools' },
+    { id: 'skeuomorphic', name: 'Skeuomorphism', description: 'Tactile 3D aesthetics with soft shadows and material depth' },
 ]
 
 // --- Layer 2: Templates (The "Body") ---
+export interface ThemeVariant {
+    id: string              // e.g., 'fintech-light'
+    name: string            // e.g., 'Light Mode'
+    playgroundThemeId: string  // Reference to PlaygroundTheme id
+}
+
 export interface Template {
     id: string
     name: string
     description: string
     visualLanguageId: VisualLanguageId
+    // Optional theme variants specific to this template
+    themeVariants?: ThemeVariant[]
     // Legacy compatibility fields
     category: 'dark' | 'light' | 'colorful'
     tags: string[]
@@ -124,7 +135,11 @@ export const templates: Template[] = [
         id: 'fintech',
         name: 'Terminal',
         description: 'Financial dashboard with data-dense layouts',
-        visualLanguageId: 'professional',
+        visualLanguageId: 'glass',
+        themeVariants: [
+            { id: 'fintech-dark', name: 'Dark Mode', playgroundThemeId: 'fintech' },
+            { id: 'fintech-light', name: 'Light Mode', playgroundThemeId: 'fintech-light' },
+        ],
         colorClass: 'bg-emerald-500',
         backgroundColor: 'bg-[#09090b]',
         textColorClass: 'text-zinc-200',
@@ -148,7 +163,7 @@ export const templates: Template[] = [
         id: 'game',
         name: 'Arcade',
         description: 'Vibrant gaming theme with neon aesthetics',
-        visualLanguageId: 'retro',
+        visualLanguageId: 'cyberpunk',
         colorClass: 'bg-fuchsia-500',
         backgroundColor: 'bg-[#130f26]',
         textColorClass: 'text-white',
@@ -172,7 +187,7 @@ export const templates: Template[] = [
         id: 'food',
         name: 'Crave',
         description: 'Warm food delivery theme with appetite appeal',
-        visualLanguageId: 'consumer',
+        visualLanguageId: 'organic',
         colorClass: 'bg-orange-500',
         backgroundColor: 'bg-[#0c0a09]',
         textColorClass: 'text-stone-200',
@@ -184,7 +199,7 @@ export const templates: Template[] = [
         id: 'grid',
         name: 'Matrix',
         description: 'Data-grid focused theme for analytics',
-        visualLanguageId: 'professional',
+        visualLanguageId: 'cyberpunk',
         colorClass: 'bg-blue-600',
         backgroundColor: 'bg-[#0b1121]',
         textColorClass: 'text-blue-100',
@@ -196,7 +211,7 @@ export const templates: Template[] = [
         id: 'brutalist',
         name: 'Raw',
         description: 'Bold brutalist design with stark contrasts',
-        visualLanguageId: 'experimental',
+        visualLanguageId: 'brutalist',
         colorClass: 'bg-yellow-400',
         backgroundColor: 'bg-[#e0e0e0]',
         textColorClass: 'text-black',
@@ -208,7 +223,7 @@ export const templates: Template[] = [
         id: 'kitchen',
         name: 'Mise',
         description: 'Warm culinary theme for kitchen displays',
-        visualLanguageId: 'consumer',
+        visualLanguageId: 'organic',
         colorClass: 'bg-orange-500',
         backgroundColor: 'bg-[#F7F5F2]',
         textColorClass: 'text-stone-800',
@@ -232,7 +247,7 @@ export const templates: Template[] = [
         id: 'scifi',
         name: 'Helix',
         description: 'Futuristic sci-fi interface with holographic effects',
-        visualLanguageId: 'scifi',
+        visualLanguageId: 'cyberpunk',
         colorClass: 'bg-cyan-500',
         backgroundColor: 'bg-[#020408]',
         textColorClass: 'text-cyan-50',
@@ -244,7 +259,7 @@ export const templates: Template[] = [
         id: 'eink',
         name: 'Canvas',
         description: 'E-ink inspired minimal reading theme',
-        visualLanguageId: 'retro',
+        visualLanguageId: 'skeuomorphic',
         colorClass: 'bg-white',
         backgroundColor: 'bg-[#f4f4f3]',
         textColorClass: 'text-black',
@@ -256,7 +271,7 @@ export const templates: Template[] = [
         id: 'solarpunk',
         name: 'Eden',
         description: 'Eco-optimist theme with organic shapes',
-        visualLanguageId: 'experimental',
+        visualLanguageId: 'organic',
         colorClass: 'bg-emerald-500',
         backgroundColor: 'bg-[#F0F7F4]',
         textColorClass: 'text-emerald-900',
@@ -268,7 +283,7 @@ export const templates: Template[] = [
         id: 'legal',
         name: 'Eagle',
         description: 'Professional legal/government theme',
-        visualLanguageId: 'professional',
+        visualLanguageId: 'gilded',
         colorClass: 'bg-red-700',
         backgroundColor: 'bg-[#e5e5e4]',
         textColorClass: 'text-stone-900',
@@ -280,7 +295,7 @@ export const templates: Template[] = [
         id: 'softplastic',
         name: 'Plastic',
         description: 'Neumorphic soft plastic aesthetic',
-        visualLanguageId: 'experimental',
+        visualLanguageId: 'skeuomorphic',
         colorClass: 'bg-slate-400',
         backgroundColor: 'bg-[#EFEEEE]',
         textColorClass: 'text-slate-600',
@@ -292,7 +307,7 @@ export const templates: Template[] = [
         id: 'festival',
         name: 'Pulse',
         description: 'High-energy festival and event theme',
-        visualLanguageId: 'experimental',
+        visualLanguageId: 'glass',
         colorClass: 'bg-fuchsia-500',
         backgroundColor: 'bg-black',
         textColorClass: 'text-white',
@@ -304,7 +319,7 @@ export const templates: Template[] = [
         id: 'acid',
         name: 'Acid',
         description: 'Bold acid graphics with high contrast',
-        visualLanguageId: 'experimental',
+        visualLanguageId: 'brutalist',
         colorClass: 'bg-[#ccff00]',
         backgroundColor: 'bg-[#E0E7FF]',
         textColorClass: 'text-black',
@@ -316,7 +331,7 @@ export const templates: Template[] = [
         id: 'legacy',
         name: 'Legacy',
         description: 'Retro Windows 95/98 nostalgic interface',
-        visualLanguageId: 'retro',
+        visualLanguageId: 'brutalist',
         colorClass: 'bg-[#008080]',
         backgroundColor: 'bg-[#008080]',
         textColorClass: 'text-black',
@@ -328,7 +343,7 @@ export const templates: Template[] = [
         id: 'cockpit',
         name: 'Cockpit',
         description: 'Automotive dashboard with instrument cluster',
-        visualLanguageId: 'scifi',
+        visualLanguageId: 'glass',
         colorClass: 'bg-blue-600',
         backgroundColor: 'bg-[#121212]',
         textColorClass: 'text-white',
@@ -340,7 +355,7 @@ export const templates: Template[] = [
         id: 'clay',
         name: 'Clay',
         description: 'Soft claymorphism with rounded shapes',
-        visualLanguageId: 'experimental',
+        visualLanguageId: 'skeuomorphic',
         colorClass: 'bg-sky-400',
         backgroundColor: 'bg-[#f0f4f8]',
         textColorClass: 'text-slate-700',
@@ -352,7 +367,7 @@ export const templates: Template[] = [
         id: 'blueprint',
         name: 'Blueprint',
         description: 'Technical blueprint with schematic style',
-        visualLanguageId: 'scifi',
+        visualLanguageId: 'cyberpunk',
         colorClass: 'bg-[#1e3a8a]',
         backgroundColor: 'bg-[#1e3a8a]',
         textColorClass: 'text-white',
@@ -364,7 +379,7 @@ export const templates: Template[] = [
         id: 'swiss',
         name: 'Swiss',
         description: 'Clean Swiss design with grid perfection',
-        visualLanguageId: 'experimental',
+        visualLanguageId: 'constructivist',
         colorClass: 'bg-[#DC2626]',
         backgroundColor: 'bg-[#F5F5F5]',
         textColorClass: 'text-black',

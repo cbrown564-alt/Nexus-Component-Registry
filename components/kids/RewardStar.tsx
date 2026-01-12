@@ -26,33 +26,33 @@ const iconMap: Record<RewardType, LucideIcon> = {
 
 const colorMap = {
   yellow: {
-    bg: 'bg-yellow-400',
-    shadow: 'shadow-yellow-400/50',
-    text: 'text-yellow-600',
+    bg: '#facc15',      // yellow-400
+    shadow: 'rgba(250,204,21,0.5)',
+    text: '#ca8a04',    // yellow-600
     glow: '#facc15',
   },
   pink: {
-    bg: 'bg-pink-400',
-    shadow: 'shadow-pink-400/50',
-    text: 'text-pink-600',
+    bg: '#f472b6',      // pink-400
+    shadow: 'rgba(244,114,182,0.5)',
+    text: '#db2777',    // pink-600
     glow: '#f472b6',
   },
   blue: {
-    bg: 'bg-sky-400',
-    shadow: 'shadow-sky-400/50',
-    text: 'text-sky-600',
+    bg: '#38bdf8',      // sky-400
+    shadow: 'rgba(56,189,248,0.5)',
+    text: '#0284c7',    // sky-600
     glow: '#38bdf8',
   },
   green: {
-    bg: 'bg-emerald-400',
-    shadow: 'shadow-emerald-400/50',
-    text: 'text-emerald-600',
+    bg: '#34d399',      // emerald-400
+    shadow: 'rgba(52,211,153,0.5)',
+    text: '#059669',    // emerald-600
     glow: '#34d399',
   },
   purple: {
-    bg: 'bg-violet-400',
-    shadow: 'shadow-violet-400/50',
-    text: 'text-violet-600',
+    bg: '#a78bfa',      // violet-400
+    shadow: 'rgba(167,139,250,0.5)',
+    text: '#7c3aed',    // violet-600
     glow: '#a78bfa',
   },
 };
@@ -89,21 +89,24 @@ const RewardStar: React.FC<RewardStarProps> = ({
           <motion.div
             animate={{ scale: [1, 1.2, 1], opacity: [0.5, 0.2, 0.5] }}
             transition={{ duration: 2, repeat: Infinity }}
-            className={`absolute inset-0 rounded-full ${colors.bg} blur-xl`}
+            className={`absolute inset-0 rounded-full blur-xl`}
+            style={{ backgroundColor: colors.bg }}
           />
         )}
 
         {/* Main badge */}
         <motion.div
           whileHover={earned ? { scale: 1.1, rotate: 10 } : undefined}
-          className={`relative flex items-center justify-center ${sizes.container} rounded-full ${
-            earned ? colors.bg : 'bg-gray-200'
-          } ${earned ? `shadow-lg ${colors.shadow}` : ''} border-4 ${
-            earned ? 'border-white' : 'border-gray-300'
-          }`}
+          className={`relative flex items-center justify-center ${sizes.container} rounded-full border-4`}
+          style={{
+            backgroundColor: earned ? colors.bg : '#e5e7eb',
+            boxShadow: earned ? `0 10px 15px -3px ${colors.shadow}` : 'none',
+            borderColor: earned ? '#ffffff' : '#d1d5db'
+          }}
         >
           <Icon
-            className={`${sizes.icon} ${earned ? 'text-white' : 'text-gray-400'} drop-shadow`}
+            className={`${sizes.icon} drop-shadow`}
+            style={{ color: earned ? '#ffffff' : '#9ca3af' }}
             fill={earned ? 'currentColor' : 'none'}
           />
 
@@ -112,8 +115,8 @@ const RewardStar: React.FC<RewardStarProps> = ({
             <motion.div
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
-              className="absolute -top-1 -right-1 flex h-6 w-6 items-center justify-center rounded-full bg-white text-xs font-black shadow-md"
-              style={{ color: colors.glow }}
+              className="absolute -top-1 -right-1 flex h-6 w-6 items-center justify-center rounded-full text-xs font-black shadow-md"
+              style={{ backgroundColor: '#ffffff', color: colors.glow }}
             >
               {count}
             </motion.div>
@@ -139,7 +142,7 @@ const RewardStar: React.FC<RewardStarProps> = ({
                   }}
                   className="absolute"
                 >
-                  <Sparkles className="h-3 w-3 text-white" />
+                  <Sparkles className="h-3 w-3" style={{ color: '#ffffff' }} />
                 </motion.div>
               ))}
             </>
@@ -148,7 +151,10 @@ const RewardStar: React.FC<RewardStarProps> = ({
       </motion.div>
 
       {label && (
-        <span className={`font-black ${sizes.text} ${earned ? colors.text : 'text-gray-400'}`}>
+        <span
+          className={`font-black ${sizes.text}`}
+          style={{ color: earned ? colors.text : '#9ca3af' }}
+        >
           {label}
         </span>
       )}

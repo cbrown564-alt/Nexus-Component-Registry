@@ -14,16 +14,16 @@ const SwissButton: React.FC<SwissButtonProps> = ({
     size = 'md',
     ...props
 }) => {
-    const getVariantStyles = () => {
+    const getVariantStyles = (): React.CSSProperties => {
         switch (variant) {
             case 'primary':
-                return 'bg-[#DC2626] text-white hover:bg-red-700';
+                return { backgroundColor: '#DC2626', color: '#ffffff' };
             case 'secondary':
-                return 'bg-black text-white hover:bg-zinc-800';
+                return { backgroundColor: '#000000', color: '#ffffff' };
             case 'ghost':
-                return 'bg-transparent text-black hover:bg-black hover:text-white border-2 border-black';
+                return { backgroundColor: 'transparent', color: '#000000', borderWidth: '2px', borderColor: '#000000' };
             default:
-                return 'bg-[#DC2626] text-white';
+                return { backgroundColor: '#DC2626', color: '#ffffff' };
         }
     };
 
@@ -42,14 +42,8 @@ const SwissButton: React.FC<SwissButtonProps> = ({
         <motion.button
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            className={`
-        relative overflow-hidden
-        font-black uppercase tracking-[0.15em]
-        transition-all duration-200
-        ${getVariantStyles()}
-        ${getSizeStyles()}
-        ${className}
-      `}
+            className={`relative overflow-hidden font-black uppercase tracking-[0.15em] transition-all duration-200 ${getSizeStyles()} ${className}`}
+            style={getVariantStyles()}
             {...props}
         >
             {/* Diagonal stripe pattern on hover */}

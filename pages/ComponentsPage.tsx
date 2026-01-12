@@ -9,17 +9,25 @@ import {
     allCategories,
     type ComponentCategory,
 } from '@/data/components'
+import { visualLanguages, getTemplateById, VisualLanguageId } from '@/lib/registry'
 
 type ThemeFilter = typeof allThemes[number] | 'all'
 type CategoryFilter = ComponentCategory | 'all'
+type VisualLanguageFilter = VisualLanguageId | 'all'
 
 export default function ComponentsPage() {
+    const [visualLanguageFilter, setVisualLanguageFilter] = useState<VisualLanguageFilter>('all')
     const [themeFilter, setThemeFilter] = useState<ThemeFilter>('all')
     const [categoryFilter, setCategoryFilter] = useState<CategoryFilter>('all')
     const [searchQuery, setSearchQuery] = useState('')
 
     const filteredComponents = useMemo(() => {
         return components.filter((comp) => {
+            // Visual Language filter
+            if (visualLanguageFilter !== 'all') {
+                const template = getTemplateById(comp.theme)
+                if (!template || template.visualLanguageId !== visualLanguageFilter) return false
+            }
             // Theme filter
             if (themeFilter !== 'all' && comp.theme !== themeFilter) return false
             // Category filter
@@ -35,7 +43,7 @@ export default function ComponentsPage() {
             }
             return true
         })
-    }, [themeFilter, categoryFilter, searchQuery])
+    }, [visualLanguageFilter, themeFilter, categoryFilter, searchQuery])
 
     const getThemeColor = (theme: string) => {
         const colors: Record<string, string> = {
@@ -67,6 +75,34 @@ export default function ComponentsPage() {
                         </div>
                     </div>
 
+                    {/* Visual Languages */}
+                    <div>
+                        <h3 className="text-sm font-semibold text-zinc-400 mb-3 uppercase tracking-wider">Visual Language</h3>
+                        <div className="space-y-1">
+                            <button
+                                onClick={() => setVisualLanguageFilter('all')}
+                                className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-colors flex items-center justify-between group ${visualLanguageFilter === 'all'
+                                    ? 'bg-white text-zinc-950 font-medium'
+                                    : 'text-zinc-400 hover:bg-zinc-900 hover:text-white'
+                                    }`}
+                            >
+                                <span>All Languages</span>
+                            </button>
+                            {visualLanguages.map((lang) => (
+                                <button
+                                    key={lang.id}
+                                    onClick={() => setVisualLanguageFilter(lang.id)}
+                                    className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-colors flex items-center justify-between group ${visualLanguageFilter === lang.id
+                                        ? 'bg-zinc-800 text-white font-medium shadow-sm border border-zinc-700'
+                                        : 'text-zinc-400 hover:bg-zinc-900 hover:text-white'
+                                        }`}
+                                >
+                                    <span>{lang.name}</span>
+                                </button>
+                            ))}
+                        </div>
+                    </div>
+
                     {/* Themes */}
                     <div>
                         <h3 className="text-sm font-semibold text-zinc-400 mb-3 uppercase tracking-wider">Themes</h3>
@@ -74,8 +110,8 @@ export default function ComponentsPage() {
                             <button
                                 onClick={() => setThemeFilter('all')}
                                 className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-colors flex items-center justify-between group ${themeFilter === 'all'
-                                        ? 'bg-white text-zinc-950 font-medium'
-                                        : 'text-zinc-400 hover:bg-zinc-900 hover:text-white'
+                                    ? 'bg-white text-zinc-950 font-medium'
+                                    : 'text-zinc-400 hover:bg-zinc-900 hover:text-white'
                                     }`}
                             >
                                 <span>All Themes</span>
@@ -90,8 +126,8 @@ export default function ComponentsPage() {
                                         key={theme}
                                         onClick={() => setThemeFilter(theme)}
                                         className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-colors flex items-center justify-between group ${themeFilter === theme
-                                                ? 'bg-zinc-800 text-white font-medium shadow-sm border border-zinc-700'
-                                                : 'text-zinc-400 hover:bg-zinc-900 hover:text-white'
+                                            ? 'bg-zinc-800 text-white font-medium shadow-sm border border-zinc-700'
+                                            : 'text-zinc-400 hover:bg-zinc-900 hover:text-white'
                                             }`}
                                     >
                                         <div className="flex items-center gap-2">
@@ -114,8 +150,8 @@ export default function ComponentsPage() {
                             <button
                                 onClick={() => setCategoryFilter('all')}
                                 className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-colors flex items-center justify-between group ${categoryFilter === 'all'
-                                        ? 'bg-white text-zinc-950 font-medium'
-                                        : 'text-zinc-400 hover:bg-zinc-900 hover:text-white'
+                                    ? 'bg-white text-zinc-950 font-medium'
+                                    : 'text-zinc-400 hover:bg-zinc-900 hover:text-white'
                                     }`}
                             >
                                 <span>All Categories</span>
@@ -125,8 +161,8 @@ export default function ComponentsPage() {
                                     key={category}
                                     onClick={() => setCategoryFilter(category)}
                                     className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-colors flex items-center justify-between group ${categoryFilter === category
-                                            ? 'bg-zinc-800 text-white font-medium border border-zinc-700'
-                                            : 'text-zinc-400 hover:bg-zinc-900 hover:text-white'
+                                        ? 'bg-zinc-800 text-white font-medium border border-zinc-700'
+                                        : 'text-zinc-400 hover:bg-zinc-900 hover:text-white'
                                         }`}
                                 >
                                     <span className="capitalize">{category.replace('-', ' ')}</span>
@@ -169,6 +205,7 @@ export default function ComponentsPage() {
                             <h3 className="text-zinc-300 font-medium mb-2">No components found</h3>
                             <button
                                 onClick={() => {
+                                    setVisualLanguageFilter('all')
                                     setThemeFilter('all')
                                     setCategoryFilter('all')
                                     setSearchQuery('')

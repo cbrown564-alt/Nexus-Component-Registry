@@ -34,7 +34,10 @@ const ProductCard: React.FC<ProductCardProps> = ({
             {badge}
           </div>
         )}
-        <button className="absolute top-3 right-3 z-20 rounded-full bg-white p-2 opacity-0 transition-all duration-300 hover:text-red-500 group-hover:opacity-100">
+        <button
+          className="absolute top-3 right-3 z-20 rounded-full p-2 opacity-0 transition-all duration-300 hover:text-red-500 group-hover:opacity-100"
+          style={{ backgroundColor: '#ffffff' }}
+        >
           <Heart className="h-4 w-4" />
         </button>
 
@@ -45,7 +48,10 @@ const ProductCard: React.FC<ProductCardProps> = ({
         />
 
         {/* Quick Add Overlay */}
-        <div className="absolute inset-x-0 bottom-0 z-10 translate-y-full bg-white/90 px-4 py-4 backdrop-blur-sm transition-transform duration-300 ease-out group-hover:translate-y-0">
+        <div
+          className="absolute inset-x-0 bottom-0 z-10 translate-y-full px-4 py-4 backdrop-blur-sm transition-transform duration-300 ease-out group-hover:translate-y-0"
+          style={{ backgroundColor: 'rgba(255,255,255,0.9)' }}
+        >
           <button
             className="flex w-full items-center justify-center gap-2 py-3 text-xs font-bold uppercase tracking-wider transition-colors"
             style={{ backgroundColor: theme.colors.primary, color: theme.colors.primaryForeground }}

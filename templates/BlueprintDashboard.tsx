@@ -45,7 +45,7 @@ const BlueprintDashboard = () => {
     const { currentPlaygroundTheme: theme, setScopedTheme } = useTheme();
 
     useEffect(() => {
-        setScopedTheme('scifi', 'blueprint');
+        setScopedTheme('cyberpunk', 'blueprint');
     }, []);
 
     const toggleLayer = (layer: string) => {

@@ -14,7 +14,7 @@ const FintechDashboard = () => {
     const { currentPlaygroundTheme: theme, setScopedTheme } = useTheme();
 
     React.useEffect(() => {
-        setScopedTheme('professional', 'fintech');
+        setScopedTheme('glass', 'fintech');
     }, []);
 
     return (
@@ -84,30 +84,48 @@ const FintechDashboard = () => {
 
                     {/* Quick Transfer Widget */}
                     <FintechCard className="p-6">
-                        <h3 className="font-medium text-white mb-6">Quick Transfer</h3>
+                        <h3 className="font-medium mb-6" style={{ color: theme.colors.foreground }}>Quick Transfer</h3>
                         <div className="flex gap-4 mb-6 overflow-x-auto pb-2 scrollbar-hide">
                             {[1, 2, 3, 4, 5].map((u) => (
                                 <div key={u} className="flex flex-col items-center gap-2 min-w-[60px] cursor-pointer group">
-                                    <div className="h-12 w-12 rounded-full bg-zinc-800 border border-zinc-700 flex items-center justify-center text-zinc-400 group-hover:border-emerald-500 group-hover:text-white transition-colors">
+                                    <div
+                                        className="h-12 w-12 rounded-full border flex items-center justify-center transition-colors"
+                                        style={{
+                                            backgroundColor: theme.colors.secondary,
+                                            borderColor: theme.colors.border,
+                                            color: theme.colors.mutedForeground
+                                        }}
+                                    >
                                         AM
                                     </div>
-                                    <span className="text-xs text-zinc-500 group-hover:text-zinc-300">Alex</span>
+                                    <span className="text-xs" style={{ color: theme.colors.mutedForeground }}>Alex</span>
                                 </div>
                             ))}
                             <div className="flex flex-col items-center gap-2 min-w-[60px] cursor-pointer">
-                                <div className="h-12 w-12 rounded-full border border-dashed border-zinc-700 flex items-center justify-center text-zinc-500 hover:border-zinc-500 hover:text-zinc-300 transition-colors">
+                                <div
+                                    className="h-12 w-12 rounded-full border border-dashed flex items-center justify-center transition-colors"
+                                    style={{
+                                        borderColor: theme.colors.border,
+                                        color: theme.colors.mutedForeground
+                                    }}
+                                >
                                     <Plus className="h-5 w-5" />
                                 </div>
-                                <span className="text-xs text-zinc-500">Add</span>
+                                <span className="text-xs" style={{ color: theme.colors.mutedForeground }}>Add</span>
                             </div>
                         </div>
 
                         <div className="relative mb-4">
-                            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-zinc-500">$</span>
+                            <span className="absolute left-4 top-1/2 -translate-y-1/2" style={{ color: theme.colors.mutedForeground }}>$</span>
                             <input
                                 type="text"
                                 defaultValue="0.00"
-                                className="w-full bg-zinc-900 border border-zinc-800 rounded-lg py-3 pl-8 pr-4 text-white placeholder-zinc-600 focus:outline-none focus:border-emerald-500 transition-colors font-mono"
+                                className="w-full rounded-lg py-3 pl-8 pr-4 focus:outline-none transition-colors font-mono"
+                                style={{
+                                    backgroundColor: theme.colors.muted,
+                                    border: `1px solid ${theme.colors.border}`,
+                                    color: theme.colors.foreground
+                                }}
                             />
                         </div>
                         <FintechButton variant="primary" size="lg" className="w-full" icon={<Send className="h-4 w-4" />}>

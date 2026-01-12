@@ -38,7 +38,7 @@ const MagazineDashboard = () => {
     ];
 
     React.useEffect(() => {
-        setScopedTheme('consumer', 'magazine');
+        setScopedTheme('gilded', 'magazine');
     }, []);
 
     return (

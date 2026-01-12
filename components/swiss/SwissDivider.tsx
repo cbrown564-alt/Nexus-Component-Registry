@@ -29,12 +29,12 @@ const SwissDivider: React.FC<SwissDividerProps> = ({
         }
     };
 
-    const getColorStyles = () => {
+    const getColorStyle = (): React.CSSProperties => {
         switch (color) {
             case 'red':
-                return 'bg-[#DC2626]';
+                return { backgroundColor: '#DC2626' };
             default:
-                return 'bg-black';
+                return { backgroundColor: '#000000' };
         }
     };
 
@@ -47,7 +47,8 @@ const SwissDivider: React.FC<SwissDividerProps> = ({
             initial={{ scaleX: variant === 'horizontal' ? 0 : 1, scaleY: variant === 'vertical' ? 0 : 1 }}
             animate={{ scaleX: 1, scaleY: 1 }}
             transition={{ duration: 0.6, ease: 'easeOut' }}
-            className={`${getWeightStyles()} ${getColorStyles()} ${getOrientationStyles()} origin-left ${className}`}
+            className={`${getWeightStyles()} ${getOrientationStyles()} origin-left ${className}`}
+            style={getColorStyle()}
         />
     );
 };

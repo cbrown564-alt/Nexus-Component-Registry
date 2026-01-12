@@ -27,7 +27,7 @@ const SoftPlasticDashboard = () => {
     const { currentPlaygroundTheme: theme, setScopedTheme } = useTheme();
 
     useEffect(() => {
-        setScopedTheme('experimental', 'soft-plastic');
+        setScopedTheme('skeuomorphic', 'soft-plastic');
     }, []);
 
     const [activeRoom, setActiveRoom] = useState('Living Room');

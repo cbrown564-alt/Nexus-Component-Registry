@@ -5,8 +5,10 @@ import { Search as SearchIcon, Box, Layout, ArrowRight } from 'lucide-react'
 import { components } from '@/data/components'
 import { legacyThemes as themes } from '@/lib/registry'
 import TemplatePreview from './TemplatePreview'
+import { useTheme } from '@/context/ThemeContext'
 
 export default function CommandPalette() {
+    const { theme } = useTheme()
     const [open, setOpen] = useState(false)
     const [selectedId, setSelectedId] = useState<string>('')
     const [search, setSearch] = useState('')
@@ -36,7 +38,6 @@ export default function CommandPalette() {
         }
     }
 
-    // Custom filtering logic
     const filteredItems = useMemo(() => {
         if (!search) return { themes, components: components.slice(0, 20) }
 
@@ -109,15 +110,15 @@ export default function CommandPalette() {
         return null
     }, [selectedId])
 
-    const getThemeColor = (theme: string) => {
+    const getThemeColor = (themeName: string) => {
         const colors: Record<string, string> = {
-            shared: 'bg-zinc-600',
-            fintech: 'bg-emerald-500',
-            cockpit: 'bg-blue-600',
-            game: 'bg-fuchsia-500',
-            legacy: 'bg-teal-600',
+            shared: '#52525b', // zinc-600
+            fintech: '#10b981', // emerald-500
+            cockpit: '#2563eb', // blue-600
+            game: '#d946ef', // fuchsia-500
+            legacy: '#0d9488', // teal-600
         }
-        return colors[theme] || 'bg-zinc-600'
+        return colors[themeName] || '#52525b'
     }
 
     return (
@@ -129,18 +130,35 @@ export default function CommandPalette() {
             onValueChange={setSelectedId}
             shouldFilter={false}
         >
-            {/* Backdrop */}
-            <div className="fixed inset-0 bg-black/60 backdrop-blur-sm transition-opacity" aria-hidden="true" />
+            <div
+                className="fixed inset-0 backdrop-blur-sm transition-opacity"
+                aria-hidden="true"
+                style={{ backgroundColor: 'rgba(0,0,0,0.6)' }}
+            />
 
-            <div className="relative w-full max-w-5xl bg-zinc-900 border border-zinc-800 rounded-xl shadow-2xl overflow-hidden flex h-[600px] pointer-events-auto ring-1 ring-white/10">
-
-                {/* Search & List */}
-                <div className="w-1/2 flex flex-col border-r border-zinc-800">
-                    <div className="flex items-center border-b border-zinc-800 px-4">
-                        <SearchIcon className="w-5 h-5 text-zinc-500 mr-3" />
+            <div
+                className="relative w-full max-w-5xl rounded-xl shadow-2xl overflow-hidden flex h-[600px] pointer-events-auto ring-1"
+                style={{
+                    backgroundColor: theme.colors.popover,
+                    borderColor: theme.colors.border
+                }}
+            >
+                <div
+                    className="w-1/2 flex flex-col border-r"
+                    style={{ borderColor: theme.colors.border }}
+                >
+                    <div
+                        className="flex items-center border-b px-4"
+                        style={{ borderColor: theme.colors.border }}
+                    >
+                        <SearchIcon
+                            className="w-5 h-5 mr-3"
+                            style={{ color: theme.colors.mutedForeground }}
+                        />
                         <Command.Input
                             placeholder="Type to find components or templates..."
-                            className="flex-1 h-14 bg-transparent outline-none text-white placeholder-zinc-500 text-sm"
+                            className="flex-1 h-14 bg-transparent outline-none text-sm placeholder:text-muted-foreground"
+                            style={{ color: theme.colors.foreground }}
                             value={search}
                             onValueChange={setSearch}
                         />
@@ -148,35 +166,46 @@ export default function CommandPalette() {
 
                     <Command.List className="flex-1 overflow-y-auto p-2 scroll-py-2">
                         {filteredItems.themes.length === 0 && filteredItems.components.length === 0 && (
-                            <Command.Empty className="py-6 text-center text-sm text-zinc-500">
+                            <Command.Empty
+                                className="py-6 text-center text-sm"
+                                style={{ color: theme.colors.mutedForeground }}
+                            >
                                 No results found.
                             </Command.Empty>
                         )}
 
                         {filteredItems.themes.length > 0 && (
-                            <Command.Group heading="Templates" className="text-xs font-medium text-zinc-500 px-2 py-1.5 mb-2">
-                                {filteredItems.themes.map(theme => (
+                            <Command.Group heading="Templates" className="text-xs font-medium px-2 py-1.5 mb-2">
+                                {filteredItems.themes.map(themeItem => (
                                     <Command.Item
-                                        key={theme.id}
-                                        value={`theme-${theme.id}`}
+                                        key={themeItem.id}
+                                        value={`theme-${themeItem.id}`}
                                         onSelect={handleSelect}
-                                        onMouseEnter={() => setSelectedId(`theme-${theme.id}`)}
-                                        className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-zinc-300 aria-selected:bg-zinc-800 aria-selected:text-white cursor-pointer transition-colors"
+                                        onMouseEnter={() => setSelectedId(`theme-${themeItem.id}`)}
+                                        className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm cursor-pointer transition-colors aria-selected:bg-accent aria-selected:text-accent-foreground"
+                                        style={{ color: theme.colors.foreground }}
                                     >
-                                        <Layout className="w-4 h-4 text-zinc-500" />
-                                        <span>{theme.name}</span>
-                                        <span className="ml-auto text-xs text-zinc-600 capitalize">{theme.category}</span>
+                                        <div
+                                            className="w-4 h-4 flex items-center justify-center"
+                                            style={{ color: theme.colors.mutedForeground }}
+                                        >
+                                            <Layout className="w-4 h-4" />
+                                        </div>
+                                        <span>{themeItem.name}</span>
+                                        <span
+                                            className="ml-auto text-xs capitalize"
+                                            style={{ color: theme.colors.mutedForeground }}
+                                        >
+                                            {themeItem.category}
+                                        </span>
                                     </Command.Item>
                                 ))}
                             </Command.Group>
                         )}
 
                         {filteredItems.components.length > 0 && (
-                            <Command.Group heading="Components" className="text-xs font-medium text-zinc-500 px-2 py-1.5">
+                            <Command.Group heading="Components" className="text-xs font-medium px-2 py-1.5">
                                 {filteredItems.components.map((result) => {
-                                    // Handle both "All items" array (direct objects) and search results (objects with item property)
-                                    // When searching, we have: { item: ComponentMeta, score: number, reason: string }
-                                    // When empty search (initial slice), we have: ComponentMeta (direct object) is handled by fallback check
                                     const isResultObject = 'item' in result && 'score' in result
                                     const comp = isResultObject ? (result as any).item : result
                                     const reason = isResultObject ? (result as any).reason : ''
@@ -187,48 +216,71 @@ export default function CommandPalette() {
                                             value={`component-${comp.id}`}
                                             onSelect={handleSelect}
                                             onMouseEnter={() => setSelectedId(`component-${comp.id}`)}
-                                            className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-zinc-300 aria-selected:bg-zinc-800 aria-selected:text-white cursor-pointer transition-colors"
+                                            className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm cursor-pointer transition-colors aria-selected:bg-accent aria-selected:text-accent-foreground"
+                                            style={{ color: theme.colors.foreground }}
                                         >
-                                            <div className={`w-2 h-2 rounded-full ${getThemeColor(comp.theme)}`} />
+                                            <div
+                                                className="w-2 h-2 rounded-full"
+                                                style={{ backgroundColor: getThemeColor(comp.theme) }}
+                                            />
                                             <span>{comp.name}</span>
 
                                             <div className="ml-auto flex items-center gap-2">
                                                 {reason && (
-                                                    <span className="text-[10px] text-zinc-500 italic mr-2 hidden sm:inline">
+                                                    <span
+                                                        className="text-[10px] italic mr-2 hidden sm:inline"
+                                                        style={{ color: theme.colors.mutedForeground }}
+                                                    >
                                                         {reason}
                                                     </span>
                                                 )}
-                                                <span className="text-[10px] bg-zinc-800 px-1.5 py-0.5 rounded text-zinc-500">{comp.category}</span>
+                                                <span
+                                                    className="text-[10px] px-1.5 py-0.5 rounded"
+                                                    style={{
+                                                        backgroundColor: theme.colors.secondary,
+                                                        color: theme.colors.mutedForeground
+                                                    }}
+                                                >
+                                                    {comp.category}
+                                                </span>
                                             </div>
                                         </Command.Item>
                                     )
                                 })}
                             </Command.Group>
+
                         )}
                     </Command.List>
 
-                    <div className="p-3 border-t border-zinc-800 flex items-center justify-between text-xs text-zinc-500 bg-zinc-900/50">
+                    <div
+                        className="p-3 border-t flex items-center justify-between text-xs"
+                        style={{
+                            borderColor: theme.colors.border,
+                            backgroundColor: theme.colors.muted,
+                            color: theme.colors.mutedForeground
+                        }}
+                    >
                         <div className="flex gap-2">
-                            <span className="bg-zinc-800 px-1.5 py-0.5 rounded border border-zinc-700">↑↓</span> to navigate
-                            <span className="bg-zinc-800 px-1.5 py-0.5 rounded border border-zinc-700">↵</span> to select
+                            {/* Key hints */}
                         </div>
                         <span>ESC to close</span>
                     </div>
                 </div>
 
-                {/* Live Preview Panel */}
-                <div className="w-1/2 bg-zinc-950 flex flex-col relative overflow-hidden">
+                <div
+                    className="w-1/2 flex flex-col relative overflow-hidden"
+                    style={{ backgroundColor: theme.colors.background }}
+                >
+                    {/* Preview Panel details */}
                     {selectedItem ? (
                         <>
                             <div className="absolute inset-0 flex items-center justify-center p-8">
                                 {selectedItem.type === 'theme' && selectedItem.data && (
                                     // @ts-ignore
-                                    <TemplatePreview theme={selectedItem.data} className="w-full h-full object-contain shadow-2xl rounded-lg border border-zinc-800" />
+                                    <TemplatePreview theme={selectedItem.data} className="w-full h-full object-contain shadow-2xl rounded-lg border" style={{ borderColor: theme.colors.border }} />
                                 )}
                                 {selectedItem.type === 'component' && selectedItem.data && (
                                     <div className="relative w-full h-full flex items-center justify-center">
-
-                                        {/* Component renders here */}
                                         <div className="relative transform scale-75 origin-center pointer-events-none select-none">
                                             {/* @ts-ignore */}
                                             {(selectedItem.data as any).previewProps ? (
@@ -242,27 +294,31 @@ export default function CommandPalette() {
                                     </div>
                                 )}
                             </div>
-
-                            {/* Info Overlay */}
-                            <div className="mt-auto p-6 bg-gradient-to-t from-zinc-950 via-zinc-950/90 to-transparent relative z-10">
-                                <h2 className="text-2xl font-bold text-white mb-2">
+                            <div
+                                className="mt-auto p-6 relative z-10"
+                                style={{
+                                    background: `linear-gradient(to top, ${theme.colors.background} 0%, ${theme.colors.background}90 80%, transparent 100%)`
+                                }}
+                            >
+                                <h2
+                                    className="text-2xl font-bold mb-2"
+                                    style={{ color: theme.colors.foreground }}
+                                >
                                     {selectedItem.data?.name}
                                 </h2>
-                                <p className="text-zinc-400 text-sm leading-relaxed mb-4">
+                                <p
+                                    className="text-sm leading-relaxed mb-4"
+                                    style={{ color: theme.colors.mutedForeground }}
+                                >
                                     {selectedItem.data?.description}
                                 </p>
-                                <div className="flex flex-wrap gap-2">
-                                    {/* @ts-ignore */}
-                                    {(selectedItem.data as any)?.tags?.map((tag: string) => (
-                                        <span key={tag} className="px-2 py-1 text-xs bg-zinc-900 border border-zinc-800 rounded-full text-zinc-400">
-                                            #{tag}
-                                        </span>
-                                    ))}
-                                </div>
                             </div>
                         </>
                     ) : (
-                        <div className="flex flex-col items-center justify-center h-full text-zinc-600">
+                        <div
+                            className="flex flex-col items-center justify-center h-full"
+                            style={{ color: theme.colors.mutedForeground }}
+                        >
                             <Box className="w-12 h-12 mb-4 opacity-20" />
                             <p>Select an item to preview</p>
                         </div>

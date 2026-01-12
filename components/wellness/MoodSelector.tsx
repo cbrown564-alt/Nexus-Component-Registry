@@ -11,7 +11,7 @@ const MoodSelector = () => {
     { icon: Sun, label: 'Radiant', color: 'text-orange-400', bg: 'bg-orange-50' },
     { icon: Cloud, label: 'Calm', color: 'text-blue-400', bg: 'bg-blue-50' },
     { icon: CloudRain, label: 'Melancholy', color: 'text-indigo-400', bg: 'bg-indigo-50' },
-    { icon: CloudLightning, label: 'Anxious', color: 'text-stone-500', bg: 'bg-stone-100' },
+    { icon: CloudLightning, label: 'Anxious', color: 'text-[#78716c]', bg: 'bg-[#f5f5f4]' },
   ];
 
   return (
@@ -43,7 +43,8 @@ const MoodSelector = () => {
             }}
           >
             <div
-              className={`mb-2 p-2 rounded-xl transition-transform group-hover:scale-110 ${selected === mood.label ? 'bg-white/10' : ''}`}
+              className={`mb-2 p-2 rounded-xl transition-transform group-hover:scale-110`}
+              style={{ backgroundColor: selected === mood.label ? 'rgba(255,255,255,0.1)' : 'transparent' }}
             >
               <mood.icon className={`h-6 w-6 ${mood.color}`} />
             </div>

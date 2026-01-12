@@ -32,7 +32,7 @@ const CockpitDashboard = () => {
 
     // Force the cockpit theme when this dashboard is mounted
     useEffect(() => {
-        setScopedTheme('scifi', 'cockpit');
+        setScopedTheme('glass', 'cockpit');
     }, []);
 
     const driveModes = [

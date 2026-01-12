@@ -13,7 +13,7 @@ const GridDashboard = () => {
     const { currentPlaygroundTheme: theme, setScopedTheme } = useTheme();
 
     React.useEffect(() => {
-        setScopedTheme('professional', 'grid');
+        setScopedTheme('cyberpunk', 'grid');
     }, []);
 
     return (

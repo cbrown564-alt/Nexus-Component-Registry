@@ -32,10 +32,31 @@ const SaasButton: React.FC<SaasButtonProps> = ({
     };
 
     const variantStyles = {
-        primary: 'bg-indigo-600 text-white hover:bg-indigo-500 shadow-sm shadow-indigo-900/20 border border-transparent focus:ring-indigo-500',
-        secondary: 'bg-slate-800 text-slate-200 border border-slate-700 hover:bg-slate-700 hover:text-white hover:border-slate-600 focus:ring-slate-500',
-        ghost: 'bg-transparent text-slate-400 hover:text-white hover:bg-slate-800/50 focus:ring-slate-500',
-        control: `text-xs font-medium transition-colors ${active ? 'bg-slate-800 text-white shadow-sm' : 'text-slate-400 hover:bg-slate-800 hover:text-white'}`,
+        primary: 'bg-indigo-600 hover:bg-indigo-500 shadow-sm shadow-indigo-900/20 border border-transparent focus:ring-indigo-500',
+        secondary: 'border focus:ring-slate-500',
+        ghost: 'bg-transparent focus:ring-slate-500',
+        control: `text-xs font-medium transition-colors`,
+    };
+
+    const getVariantInlineStyles = () => {
+        switch (variant) {
+            case 'primary':
+                return { color: '#ffffff' };
+            case 'secondary':
+                return {
+                    backgroundColor: '#1e293b',
+                    color: '#e2e8f0',
+                    borderColor: '#334155'
+                };
+            case 'ghost':
+                return { color: '#94a3b8' };
+            case 'control':
+                return active
+                    ? { backgroundColor: '#1e293b', color: '#ffffff', boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.05)' }
+                    : { color: '#94a3b8' };
+            default:
+                return { color: '#ffffff' };
+        }
     };
 
     return (
@@ -43,6 +64,7 @@ const SaasButton: React.FC<SaasButtonProps> = ({
             whileHover={{ scale: disabled ? 1 : 1.01 }}
             whileTap={{ scale: disabled ? 1 : 0.98 }}
             className={`${baseStyles} ${sizeStyles[size]} ${variantStyles[variant]} ${className}`}
+            style={getVariantInlineStyles()}
             disabled={disabled}
             onClick={onClick}
         >

@@ -30,19 +30,22 @@ const SwissTypography: React.FC<SwissTypographyProps> = ({
         }
     };
 
-    const getColorStyles = () => {
+    const getColorStyle = (): React.CSSProperties => {
         switch (color) {
             case 'red':
-                return 'text-[#DC2626]';
+                return { color: '#DC2626' };
             case 'muted':
-                return 'text-gray-500';
+                return { color: '#6b7280' };
             default:
-                return 'text-black';
+                return { color: '#000000' };
         }
     };
 
     return (
-        <Component className={`${getVariantStyles()} ${getColorStyles()} ${className}`}>
+        <Component
+            className={`${getVariantStyles()} ${className}`}
+            style={getColorStyle()}
+        >
             {children}
         </Component>
     );

@@ -15,15 +15,18 @@ const LayerControl: React.FC<LayerControlProps> = ({ layers, toggleLayer }) => {
           <button
             key={layer}
             onClick={() => toggleLayer(layer)}
-            className={`w-full flex items-center justify-between p-2 text-xs font-code uppercase tracking-wider border transition-all ${
-              layers[layer] 
-                ? 'bg-blue-900/40 border-white/30 text-white' 
-                : 'bg-transparent border-transparent text-white/40 hover:bg-white/5'
-            }`}
+            className={`w-full flex items-center justify-between p-2 text-xs font-code uppercase tracking-wider border transition-all`}
+            style={layers[layer]
+              ? { backgroundColor: 'rgba(30,58,138,0.4)', borderColor: 'rgba(255,255,255,0.3)', color: '#ffffff' }
+              : { backgroundColor: 'transparent', borderColor: 'transparent', color: 'rgba(255,255,255,0.4)' }
+            }
           >
             <div className="flex items-center gap-2">
-                <div className={`w-3 h-3 border border-white ${layers[layer] ? 'bg-cyan-500' : 'bg-transparent'}`} />
-                {layer}
+              <div
+                className="w-3 h-3 border"
+                style={{ borderColor: '#ffffff', backgroundColor: layers[layer] ? '#06b6d4' : 'transparent' }}
+              />
+              {layer}
             </div>
             {layers[layer] ? <Eye size={12} /> : <EyeOff size={12} />}
           </button>

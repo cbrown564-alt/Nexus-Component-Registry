@@ -11,7 +11,7 @@ const AcidDashboard = () => {
     const { currentPlaygroundTheme: theme, setScopedTheme } = useTheme();
 
     useEffect(() => {
-        setScopedTheme('experimental', 'acid');
+        setScopedTheme('brutalist', 'acid');
     }, []);
 
     return (

@@ -13,7 +13,7 @@ const TrackList = () => {
 
     return (
         <MusicCard className="flex flex-col h-full p-0 bg-transparent border-none shadow-none backdrop-blur-none">
-            <div className="px-6 py-4 border-b border-white/5 flex items-center text-xs font-bold text-zinc-500 uppercase tracking-wider">
+            <div className="px-6 py-4 border-b flex items-center text-xs font-bold uppercase tracking-wider" style={{ borderColor: 'rgba(255,255,255,0.05)', color: '#71717a' }}>
                 <div className="w-12 text-center">#</div>
                 <div className="flex-1">Title</div>
                 <div className="w-40 hidden md:block">Album</div>
@@ -28,11 +28,11 @@ const TrackList = () => {
                         className={`group flex items-center px-6 py-3 hover:bg-white/5 transition-colors cursor-pointer rounded-lg mx-2 ${track.active ? 'bg-white/10' : ''
                             }`}
                     >
-                        <div className="w-12 text-center text-sm font-mono text-zinc-500 relative">
+                        <div className="w-12 text-center text-sm font-mono relative" style={{ color: '#71717a' }}>
                             <span className={`group-hover:hidden ${track.active ? 'text-rose-500' : ''}`}>
                                 {track.active ? <BarChart2 className="h-4 w-4 mx-auto animate-pulse" /> : i + 1}
                             </span>
-                            <Play className="h-4 w-4 mx-auto hidden group-hover:block fill-white text-white" />
+                            <Play className="h-4 w-4 mx-auto hidden group-hover:block" style={{ fill: '#ffffff', color: '#ffffff' }} />
                         </div>
 
                         <div className="flex-1 flex items-center gap-4">
@@ -45,29 +45,30 @@ const TrackList = () => {
                                     "https://images.unsplash.com/photo-1496293455970-f8581aae0e3b?auto=format&fit=crop&q=80&w=100"
                                 ][i % 5]}
                                 alt="Art"
-                                className="h-10 w-10 rounded bg-zinc-800 object-cover"
+                                className="h-10 w-10 rounded object-cover"
+                                style={{ backgroundColor: '#27272a' }}
                             />
                             <div>
-                                <div className={`font-medium ${track.active ? 'text-rose-400' : 'text-zinc-200 group-hover:text-white'}`}>
+                                <div className={`font-medium ${track.active ? 'text-rose-400' : ''}`} style={!track.active ? { color: '#e4e4e7' } : undefined}>
                                     {track.title}
                                 </div>
-                                <div className="text-xs text-zinc-500 group-hover:text-zinc-400">
+                                <div className="text-xs" style={{ color: '#71717a' }}>
                                     {track.artist}
                                 </div>
                             </div>
                         </div>
 
-                        <div className="w-40 hidden md:block text-sm text-zinc-500 group-hover:text-zinc-400 truncate pr-4">
+                        <div className="w-40 hidden md:block text-sm truncate pr-4" style={{ color: '#71717a' }}>
                             {track.album}
                         </div>
 
-                        <div className="w-32 hidden lg:block text-right pr-8 text-sm font-mono text-zinc-600 group-hover:text-zinc-500">
+                        <div className="w-32 hidden lg:block text-right pr-8 text-sm font-mono" style={{ color: '#52525b' }}>
                             {track.plays}
                         </div>
 
-                        <div className="w-16 text-right text-sm font-mono text-zinc-500 flex items-center justify-end gap-4">
-                            {track.active ? <span className="text-white">2:41</span> : track.duration}
-                            <button className="opacity-0 group-hover:opacity-100 text-zinc-400 hover:text-white">
+                        <div className="w-16 text-right text-sm font-mono flex items-center justify-end gap-4" style={{ color: '#71717a' }}>
+                            {track.active ? <span style={{ color: '#ffffff' }}>2:41</span> : track.duration}
+                            <button className="opacity-0 group-hover:opacity-100" style={{ color: '#a1a1aa' }}>
                                 <MoreHorizontal className="h-4 w-4" />
                             </button>
                         </div>

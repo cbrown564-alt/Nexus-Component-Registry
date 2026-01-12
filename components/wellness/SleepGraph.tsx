@@ -10,10 +10,11 @@ const SleepGraph = () => {
 
   return (
     <WellnessCard
-      className="!text-stone-200"
+      className="" // Removed !text-stone-200
       style={{
-        backgroundColor: theme.colors.card, // Was hardcoded !bg-stone-900, assuming card is dark enough for this component or we respect theme
-        borderColor: theme.colors.border
+        backgroundColor: theme.colors.card,
+        borderColor: theme.colors.border,
+        color: '#e7e5e4' // text-stone-200 equivalent
       }}
     >
       <div className="mb-6 flex items-center justify-between">

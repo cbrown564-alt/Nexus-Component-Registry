@@ -11,22 +11,27 @@ const StarProgress = () => {
   };
 
   return (
-    <div 
-        className="flex items-center gap-2 bg-white p-3 rounded-full border-4 border-yellow-400 shadow-[0_4px_0_rgba(250,204,21,1)] cursor-pointer select-none" 
-        onClick={addStar}
+    <div
+      className="flex items-center gap-2 p-3 rounded-full border-4 cursor-pointer select-none"
+      style={{ backgroundColor: '#ffffff', borderColor: '#facc15', boxShadow: '0 4px 0 rgba(250,204,21,1)' }}
+      onClick={addStar}
     >
       {[...Array(5)].map((_, i) => (
         <motion.div
           key={i}
           initial={false}
-          animate={{ 
+          animate={{
             scale: i < stars ? [1, 1.3, 1] : 1,
             rotate: i < stars ? [0, 15, -15, 0] : 0
           }}
           transition={{ duration: 0.4 }}
         >
-          <Star 
-            className={`h-8 w-8 md:h-10 md:w-10 ${i < stars ? 'fill-yellow-400 text-orange-500' : 'fill-stone-100 text-stone-200'}`} 
+          <Star
+            className={`h-8 w-8 md:h-10 md:w-10`}
+            style={{
+              fill: i < stars ? '#facc15' : '#f5f5f4',
+              color: i < stars ? '#f97316' : '#e7e5e4'
+            }}
             strokeWidth={3}
           />
         </motion.div>

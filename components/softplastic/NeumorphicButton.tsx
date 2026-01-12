@@ -38,14 +38,17 @@ const NeumorphicButton: React.FC<NeumorphicButtonProps> = ({
       <div className={`flex flex-col items-center gap-2 ${variant === 'pill' ? 'flex-row px-6 py-3' : 'p-4'}`}>
         {Icon && (
           <Icon
-            className={`transition-colors duration-300 ${active ? 'text-blue-500 fill-blue-500/10' : 'text-slate-400 group-hover:text-slate-500'
-              }`}
+            className="transition-colors duration-300"
+            style={{ color: active ? '#3b82f6' : '#94a3b8', fill: active ? 'rgba(59,130,246,0.1)' : undefined }}
             size={24}
             strokeWidth={2.5}
           />
         )}
         {label && (
-          <span className={`font-sans text-sm font-bold tracking-wide transition-colors ${active ? 'text-slate-700' : 'text-slate-400'}`}>
+          <span
+            className="font-sans text-sm font-bold tracking-wide transition-colors"
+            style={{ color: active ? '#334155' : '#94a3b8' }}
+          >
             {label}
           </span>
         )}

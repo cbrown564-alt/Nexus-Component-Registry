@@ -28,10 +28,16 @@ const SolarpunkButton: React.FC<SolarpunkButtonProps> = ({
         lg: 'px-10 py-4 text-sm rounded-3xl',
     };
 
-    const variantStyles = {
-        primary: 'bg-gradient-to-r from-emerald-500 to-teal-500 text-white shadow-lg shadow-emerald-500/20 hover:shadow-emerald-500/40 hover:shadow-xl',
-        secondary: 'bg-white/60 backdrop-blur-sm text-emerald-700 border-2 border-emerald-200 hover:bg-emerald-50 hover:border-emerald-400 shadow-sm',
-        ghost: 'bg-transparent text-emerald-600 hover:text-emerald-800 hover:bg-emerald-100/50',
+    const variantBaseStyles = {
+        primary: 'shadow-lg hover:shadow-xl',
+        secondary: 'backdrop-blur-sm border-2 shadow-sm',
+        ghost: 'bg-transparent',
+    };
+
+    const variantInlineStyles: Record<string, React.CSSProperties> = {
+        primary: { background: 'linear-gradient(to right, #10b981, #14b8a6)', color: '#ffffff', boxShadow: '0 10px 15px -3px rgba(16,185,129,0.2)' },
+        secondary: { backgroundColor: 'rgba(255,255,255,0.6)', color: '#047857', borderColor: '#a7f3d0' },
+        ghost: { color: '#059669' },
     };
 
     return (
@@ -39,7 +45,8 @@ const SolarpunkButton: React.FC<SolarpunkButtonProps> = ({
             whileHover={{ scale: disabled ? 1 : 1.02, y: disabled ? 0 : -2 }}
             whileTap={{ scale: disabled ? 1 : 0.98 }}
             transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-            className={`${baseStyles} ${sizeStyles[size]} ${variantStyles[variant]} ${className}`}
+            className={`${baseStyles} ${sizeStyles[size]} ${variantBaseStyles[variant]} ${className}`}
+            style={variantInlineStyles[variant]}
             disabled={disabled}
             onClick={onClick}
         >

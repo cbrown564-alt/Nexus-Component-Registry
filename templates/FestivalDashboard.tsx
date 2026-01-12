@@ -11,7 +11,7 @@ const FestivalDashboard = () => {
     const { currentPlaygroundTheme: theme, setScopedTheme } = useTheme();
 
     useEffect(() => {
-        setScopedTheme('experimental', 'festival');
+        setScopedTheme('glass', 'festival');
     }, []);
 
     const lineup = [

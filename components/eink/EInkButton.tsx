@@ -40,18 +40,25 @@ const EInkButton: React.FC<EInkButtonProps> = ({
         lg: 'px-8 py-3.5 text-sm',
     };
 
-    const variantStyles = {
-        primary: 'bg-black text-[#f4f4f3] border-2 border-black hover:bg-transparent hover:text-black',
-        ghost: 'bg-transparent text-black border-2 border-black hover:bg-black hover:text-[#f4f4f3]',
-        icon: 'bg-transparent text-black border-2 border-black p-3 hover:bg-black hover:text-[#f4f4f3]',
+    const variantBaseStyles = {
+        primary: 'border-2',
+        ghost: 'bg-transparent border-2',
+        icon: 'bg-transparent border-2 p-3',
     };
 
-    const disabledStyles = disabled ? 'border-dashed !border-stone-400 !text-stone-400 !bg-transparent' : '';
+    const variantInlineStyles: Record<string, React.CSSProperties> = {
+        primary: { backgroundColor: '#000000', color: '#f4f4f3', borderColor: '#000000' },
+        ghost: { backgroundColor: 'transparent', color: '#000000', borderColor: '#000000' },
+        icon: { backgroundColor: 'transparent', color: '#000000', borderColor: '#000000' },
+    };
+
+    const disabledStyles = disabled ? 'border-dashed' : '';
 
     return (
         <motion.button
             whileTap={{ scale: disabled ? 1 : 0.98 }}
-            className={`${baseStyles} ${sizeStyles[size]} ${variantStyles[variant]} ${disabledStyles} ${className}`}
+            className={`${baseStyles} ${sizeStyles[size]} ${variantBaseStyles[variant]} ${disabledStyles} ${className}`}
+            style={disabled ? { borderColor: '#a8a29e', color: '#a8a29e', backgroundColor: 'transparent' } : variantInlineStyles[variant]}
             disabled={disabled}
             onClick={handleClick}
         >
@@ -64,14 +71,16 @@ const EInkButton: React.FC<EInkButtonProps> = ({
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
                             transition={{ duration: 0.05 }}
-                            className="absolute inset-0 bg-black z-20"
+                            className="absolute inset-0 z-20"
+                            style={{ backgroundColor: '#000000' }}
                         />
                         <motion.div
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
                             transition={{ duration: 0.05, delay: 0.05 }}
-                            className="absolute inset-0 bg-white z-20"
+                            className="absolute inset-0 z-20"
+                            style={{ backgroundColor: '#ffffff' }}
                         />
                     </>
                 )}

@@ -15,32 +15,33 @@ const StoryRail = () => {
   return (
     <div className="flex gap-4 overflow-x-auto pb-4 pt-2 scrollbar-hide">
       {stories.map((story, i) => (
-        <motion.div 
-            key={i}
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: i * 0.05 }}
-            className="flex flex-col items-center gap-2 cursor-pointer group"
+        <motion.div
+          key={i}
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: i * 0.05 }}
+          className="flex flex-col items-center gap-2 cursor-pointer group"
         >
-            <div className={`relative p-[3px] rounded-full ${
-                story.isUser 
-                ? 'border-none' 
-                : story.seen 
-                    ? 'bg-zinc-700' 
-                    : 'bg-gradient-to-tr from-sky-500 to-indigo-500'
-            }`}>
-                <div className="relative h-16 w-16 overflow-hidden rounded-full border-2 border-zinc-950">
-                    <img src={story.img} alt={story.name} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110" />
-                    {story.isUser && (
-                        <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
-                             <Plus className="h-6 w-6 text-white" />
-                        </div>
-                    )}
+          <div className={`relative p-[3px] rounded-full ${story.isUser
+              ? 'border-none'
+              : story.seen
+                ? ''
+                : 'bg-gradient-to-tr from-sky-500 to-indigo-500'
+            }`}
+            style={!story.isUser && story.seen ? { backgroundColor: '#3f3f46' } : undefined}
+          >
+            <div className="relative h-16 w-16 overflow-hidden rounded-full border-2" style={{ borderColor: '#09090b' }}>
+              <img src={story.img} alt={story.name} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110" />
+              {story.isUser && (
+                <div className="absolute inset-0 flex items-center justify-center" style={{ backgroundColor: 'rgba(0,0,0,0.4)' }}>
+                  <Plus className="h-6 w-6" style={{ color: '#ffffff' }} />
                 </div>
+              )}
             </div>
-            <span className="text-xs font-medium text-zinc-400 group-hover:text-zinc-200 transition-colors">
-                {story.name}
-            </span>
+          </div>
+          <span className="text-xs font-medium transition-colors" style={{ color: '#a1a1aa' }}>
+            {story.name}
+          </span>
         </motion.div>
       ))}
     </div>

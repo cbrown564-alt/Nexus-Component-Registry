@@ -10,11 +10,11 @@ interface SpeechBubbleProps {
 }
 
 const colorStyles = {
-  white: 'bg-white border-gray-200',
-  blue: 'bg-sky-100 border-sky-200',
-  pink: 'bg-pink-100 border-pink-200',
-  yellow: 'bg-yellow-100 border-yellow-200',
-  green: 'bg-emerald-100 border-emerald-200',
+  white: { bg: '#ffffff', border: '#e5e7eb' },
+  blue: { bg: '#e0f2fe', border: '#bae6fd' },
+  pink: { bg: '#fce7f3', border: '#fbcfe8' },
+  yellow: { bg: '#fef9c3', border: '#fef08a' },
+  green: { bg: '#d1fae5', border: '#a7f3d0' },
 };
 
 const SpeechBubble: React.FC<SpeechBubbleProps> = ({
@@ -47,9 +47,10 @@ const SpeechBubble: React.FC<SpeechBubbleProps> = ({
         initial={animated ? { scale: 0, opacity: 0 } : false}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ type: 'spring', stiffness: 300, damping: 20, delay: character ? 0.1 : 0 }}
-        className={`relative rounded-2xl border-2 ${colorStyles[color]} px-5 py-4 shadow-md max-w-xs`}
+        className={`relative rounded-2xl border-2 px-5 py-4 shadow-md max-w-xs`}
+        style={{ backgroundColor: colorStyles[color].bg, borderColor: colorStyles[color].border }}
       >
-        <div className="text-sm font-medium text-gray-700 leading-relaxed">{children}</div>
+        <div className="text-sm font-medium leading-relaxed" style={{ color: '#374151' }}>{children}</div>
 
         {/* Tail */}
         <div
@@ -57,17 +58,16 @@ const SpeechBubble: React.FC<SpeechBubbleProps> = ({
           style={{
             borderLeft: '8px solid transparent',
             borderRight: '8px solid transparent',
-            borderTop: `12px solid ${
-              color === 'white'
+            borderTop: `12px solid ${color === 'white'
                 ? '#fff'
                 : color === 'blue'
-                ? '#e0f2fe'
-                : color === 'pink'
-                ? '#fce7f3'
-                : color === 'yellow'
-                ? '#fef9c3'
-                : '#d1fae5'
-            }`,
+                  ? '#e0f2fe'
+                  : color === 'pink'
+                    ? '#fce7f3'
+                    : color === 'yellow'
+                      ? '#fef9c3'
+                      : '#d1fae5'
+              }`,
           }}
         />
         {/* Tail border */}
@@ -76,17 +76,16 @@ const SpeechBubble: React.FC<SpeechBubbleProps> = ({
           style={{
             borderLeft: '10px solid transparent',
             borderRight: '10px solid transparent',
-            borderTop: `14px solid ${
-              color === 'white'
+            borderTop: `14px solid ${color === 'white'
                 ? '#e5e7eb'
                 : color === 'blue'
-                ? '#bae6fd'
-                : color === 'pink'
-                ? '#fbcfe8'
-                : color === 'yellow'
-                ? '#fef08a'
-                : '#a7f3d0'
-            }`,
+                  ? '#bae6fd'
+                  : color === 'pink'
+                    ? '#fbcfe8'
+                    : color === 'yellow'
+                      ? '#fef08a'
+                      : '#a7f3d0'
+              }`,
             marginBottom: '-2px',
           }}
         />

@@ -12,7 +12,7 @@ const KitchenDashboard = () => {
     const { currentPlaygroundTheme: theme, setScopedTheme } = useTheme();
 
     React.useEffect(() => {
-        setScopedTheme('consumer', 'kitchen');
+        setScopedTheme('organic', 'kitchen');
     }, []);
 
     return (

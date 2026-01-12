@@ -1,26 +1,29 @@
 import { useMemo } from 'react'
 import { Search } from 'lucide-react'
-import { legacyThemes as themes } from '@/lib/registry'
+import { legacyThemes as themes, visualLanguages, getTemplatesByLanguage } from '@/lib/registry'
 import HeroTemplate from '@/components/ui/HeroTemplate'
 import TemplateSwimlane from '@/components/ui/TemplateSwimlane'
 
 export default function TemplatesPage() {
 
-    // Categorize themes for swimlanes
-    const { featured, trending, professional, consumer, scifi, retro, experimental } = useMemo(() => {
+    // Get featured theme and organize by visual language
+    const { featured, trending, languageGroups } = useMemo(() => {
         // Pick a specific featured theme - 'scifi' as requested
         const featured = themes.find(t => t.id === 'scifi') || themes[0]
 
         // Mock trending logic (just first 10 for now)
         const trending = themes.slice(0, 10)
 
-        const professional = themes.filter(t => t.collection === 'professional')
-        const consumer = themes.filter(t => t.collection === 'consumer')
-        const scifi = themes.filter(t => t.collection === 'scifi')
-        const retro = themes.filter(t => t.collection === 'retro')
-        const experimental = themes.filter(t => t.collection === 'experimental')
+        // Group templates by visual language
+        const languageGroups = visualLanguages.map(lang => ({
+            ...lang,
+            templates: getTemplatesByLanguage(lang.id).map(t => ({
+                ...t,
+                collection: t.visualLanguageId
+            }))
+        })).filter(group => group.templates.length > 0)
 
-        return { featured, trending, professional, consumer, scifi, retro, experimental }
+        return { featured, trending, languageGroups }
     }, [])
 
     return (
@@ -36,30 +39,13 @@ export default function TemplatesPage() {
                     themes={trending}
                 />
 
-                <TemplateSwimlane
-                    title="Professional & SaaS"
-                    themes={professional}
-                />
-
-                <TemplateSwimlane
-                    title="Consumer & Lifestyle"
-                    themes={consumer}
-                />
-
-                <TemplateSwimlane
-                    title="High-Concept & Sci-Fi"
-                    themes={scifi}
-                />
-
-                <TemplateSwimlane
-                    title="Retro & Nostalgia"
-                    themes={retro}
-                />
-
-                <TemplateSwimlane
-                    title="Experimental & Specialized"
-                    themes={experimental}
-                />
+                {languageGroups.map((group) => (
+                    <TemplateSwimlane
+                        key={group.id}
+                        title={group.name}
+                        themes={group.templates}
+                    />
+                ))}
 
                 <div className="px-8 mt-12 pb-20 border-t border-zinc-900 pt-16 flex flex-col items-center justify-center text-center">
                     <h2 className="text-2xl font-bold text-white mb-4">Looking for something specific?</h2>

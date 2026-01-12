@@ -28,7 +28,7 @@ const FoodDashboard = () => {
     const { currentPlaygroundTheme: theme, setScopedTheme } = useTheme();
 
     React.useEffect(() => {
-        setScopedTheme('consumer', 'food');
+        setScopedTheme('organic', 'food');
     }, []);
 
     const [activeCategory, setActiveCategory] = useState('All');
