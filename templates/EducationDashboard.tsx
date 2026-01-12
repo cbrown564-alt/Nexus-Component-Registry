@@ -9,10 +9,10 @@ import EducationButton from '../components/education/EducationButton';
 import { useTheme } from '@/context/ThemeContext';
 
 const EducationDashboard = () => {
-    const { currentPlaygroundTheme: theme, setScopedTheme } = useTheme();
+    const { currentPlaygroundTheme: theme, setPlaygroundTheme } = useTheme();
 
     React.useEffect(() => {
-        setScopedTheme('consumer', 'education');
+        setPlaygroundTheme('education');
     }, []);
 
     return (

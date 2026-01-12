@@ -9,10 +9,10 @@ import KitchenButton from '../components/kitchen/KitchenButton';
 import { useTheme } from '@/context/ThemeContext';
 
 const KitchenDashboard = () => {
-    const { currentPlaygroundTheme: theme, setScopedTheme } = useTheme();
+    const { currentPlaygroundTheme: theme, setPlaygroundTheme } = useTheme();
 
     React.useEffect(() => {
-        setScopedTheme('organic', 'kitchen');
+        setPlaygroundTheme('kitchen');
     }, []);
 
     return (

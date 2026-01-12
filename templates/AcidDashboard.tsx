@@ -8,10 +8,10 @@ import AcidButton from '../components/acid/AcidButton';
 import { useTheme } from '@/context/ThemeContext';
 
 const AcidDashboard = () => {
-    const { currentPlaygroundTheme: theme, setScopedTheme } = useTheme();
+    const { currentPlaygroundTheme: theme, setPlaygroundTheme } = useTheme();
 
     useEffect(() => {
-        setScopedTheme('brutalist', 'acid');
+        setPlaygroundTheme('acid');
     }, []);
 
     return (

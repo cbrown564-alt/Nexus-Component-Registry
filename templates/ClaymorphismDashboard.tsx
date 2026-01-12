@@ -6,10 +6,10 @@ import ClayToggle from '../components/clay/ClayToggle';
 import { useTheme } from '@/context/ThemeContext';
 
 const ClaymorphismDashboard = () => {
-    const { currentPlaygroundTheme: theme, setScopedTheme } = useTheme();
+    const { currentPlaygroundTheme: theme, setPlaygroundTheme } = useTheme();
 
     useEffect(() => {
-        setScopedTheme('skeuomorphic', 'clay');
+        setPlaygroundTheme('clay');
     }, []);
 
     const [tasks, setTasks] = useState([

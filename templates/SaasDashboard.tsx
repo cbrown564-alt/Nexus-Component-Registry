@@ -18,10 +18,10 @@ import SaasButton from '../components/saas/SaasButton';
 import { useTheme } from '@/context/ThemeContext';
 
 const SaasDashboard = () => {
-    const { currentPlaygroundTheme: theme, setScopedTheme } = useTheme();
+    const { currentPlaygroundTheme: theme, setPlaygroundTheme } = useTheme();
 
     React.useEffect(() => {
-        setScopedTheme('glass', 'saas');
+        setPlaygroundTheme('saas');
     }, []);
 
     return (

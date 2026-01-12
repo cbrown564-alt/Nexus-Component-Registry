@@ -10,10 +10,10 @@ import WellnessButton from '../components/wellness/WellnessButton';
 import { useTheme } from '@/context/ThemeContext';
 
 const WellnessDashboard = () => {
-   const { currentPlaygroundTheme: theme, setScopedTheme } = useTheme();
+   const { currentPlaygroundTheme: theme, setPlaygroundTheme } = useTheme();
 
    React.useEffect(() => {
-      setScopedTheme('organic', 'wellness');
+      setPlaygroundTheme('wellness');
    }, []);
 
    return (

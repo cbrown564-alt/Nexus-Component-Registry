@@ -25,10 +25,10 @@ import FoodButton from '../components/food/FoodButton';
 import { useTheme } from '@/context/ThemeContext';
 
 const FoodDashboard = () => {
-    const { currentPlaygroundTheme: theme, setScopedTheme } = useTheme();
+    const { currentPlaygroundTheme: theme, setPlaygroundTheme } = useTheme();
 
     React.useEffect(() => {
-        setScopedTheme('organic', 'food');
+        setPlaygroundTheme('food');
     }, []);
 
     const [activeCategory, setActiveCategory] = useState('All');

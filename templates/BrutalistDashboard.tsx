@@ -7,10 +7,10 @@ import Manifesto from '../components/brutalist/Manifesto';
 import { useTheme } from '@/context/ThemeContext';
 
 const BrutalistDashboard = () => {
-    const { currentPlaygroundTheme: theme, setScopedTheme } = useTheme();
+    const { currentPlaygroundTheme: theme, setPlaygroundTheme } = useTheme();
 
     useEffect(() => {
-        setScopedTheme('brutalist', 'brutalist');
+        setPlaygroundTheme('brutalist');
     }, []);
 
     return (

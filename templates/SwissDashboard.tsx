@@ -8,10 +8,10 @@ import SwissDivider from '../components/swiss/SwissDivider';
 import { useTheme } from '@/context/ThemeContext';
 
 const SwissDashboard = () => {
-   const { currentPlaygroundTheme: theme, setScopedTheme } = useTheme();
+   const { currentPlaygroundTheme: theme, setPlaygroundTheme } = useTheme();
 
    useEffect(() => {
-      setScopedTheme('constructivist', 'swiss');
+      setPlaygroundTheme('swiss');
    }, []);
 
    return (

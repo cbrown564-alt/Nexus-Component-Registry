@@ -42,10 +42,10 @@ const BlueprintDashboard = () => {
     const [activeTool, setActiveTool] = useState('select');
     const [zoom, setZoom] = useState(100);
     const [gridVisible, setGridVisible] = useState(true);
-    const { currentPlaygroundTheme: theme, setScopedTheme } = useTheme();
+    const { currentPlaygroundTheme: theme, setPlaygroundTheme } = useTheme();
 
     useEffect(() => {
-        setScopedTheme('cyberpunk', 'blueprint');
+        setPlaygroundTheme('blueprint');
     }, []);
 
     const toggleLayer = (layer: string) => {

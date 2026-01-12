@@ -28,11 +28,11 @@ const CockpitDashboard = () => {
     const [driveMode, setDriveMode] = useState('comfort');
     const [temperature, setTemperature] = useState(72);
     const [showDriveModes, setShowDriveModes] = useState(false);
-    const { currentPlaygroundTheme: theme, setScopedTheme } = useTheme();
+    const { currentPlaygroundTheme: theme, setPlaygroundTheme } = useTheme();
 
     // Force the cockpit theme when this dashboard is mounted
     useEffect(() => {
-        setScopedTheme('glass', 'cockpit');
+        setPlaygroundTheme('cockpit');
     }, []);
 
     const driveModes = [

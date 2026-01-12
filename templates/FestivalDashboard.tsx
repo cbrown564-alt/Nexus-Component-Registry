@@ -8,10 +8,10 @@ import FestivalButton from '../components/festival/FestivalButton';
 import { useTheme } from '@/context/ThemeContext';
 
 const FestivalDashboard = () => {
-    const { currentPlaygroundTheme: theme, setScopedTheme } = useTheme();
+    const { currentPlaygroundTheme: theme, setPlaygroundTheme } = useTheme();
 
     useEffect(() => {
-        setScopedTheme('glass', 'festival');
+        setPlaygroundTheme('festival');
     }, []);
 
     const lineup = [

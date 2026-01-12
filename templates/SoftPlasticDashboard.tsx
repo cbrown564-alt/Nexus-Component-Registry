@@ -24,10 +24,10 @@ import DeviceToggle from '../components/softplastic/DeviceToggle';
 import { useTheme } from '@/context/ThemeContext';
 
 const SoftPlasticDashboard = () => {
-    const { currentPlaygroundTheme: theme, setScopedTheme } = useTheme();
+    const { currentPlaygroundTheme: theme, setPlaygroundTheme } = useTheme();
 
     useEffect(() => {
-        setScopedTheme('skeuomorphic', 'soft-plastic');
+        setPlaygroundTheme('soft-plastic');
     }, []);
 
     const [activeRoom, setActiveRoom] = useState('Living Room');

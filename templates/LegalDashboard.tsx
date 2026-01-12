@@ -19,10 +19,10 @@ import LegalButton from '../components/legal/LegalButton';
 import { useTheme } from '@/context/ThemeContext';
 
 const LegalDashboard = () => {
-  const { currentPlaygroundTheme: theme, setScopedTheme } = useTheme();
+  const { currentPlaygroundTheme: theme, setPlaygroundTheme } = useTheme();
 
   React.useEffect(() => {
-    setScopedTheme('gilded', 'legal');
+    setPlaygroundTheme('legal');
   }, []);
 
   const [activeClause, setActiveClause] = useState<string | null>('1.2');

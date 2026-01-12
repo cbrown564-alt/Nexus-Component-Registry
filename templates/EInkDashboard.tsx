@@ -11,10 +11,10 @@ import { useTheme } from '@/context/ThemeContext';
 const EInkDashboard = () => {
     const [activeTab, setActiveTab] = useState('reading');
     const [refreshing, setRefreshing] = useState(false);
-    const { currentPlaygroundTheme: theme, setScopedTheme } = useTheme();
+    const { currentPlaygroundTheme: theme, setPlaygroundTheme } = useTheme();
 
     useEffect(() => {
-        setScopedTheme('skeuomorphic', 'eink'); // Lock to eink theme
+        setPlaygroundTheme('eink');
     }, []);
 
     // Simulate E-Ink refresh flash on tab change

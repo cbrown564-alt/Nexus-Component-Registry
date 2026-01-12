@@ -8,10 +8,10 @@ import ShopButton from '../components/ecommerce/ShopButton';
 import { useTheme } from '@/context/ThemeContext';
 
 const EcommerceDashboard = () => {
-    const { currentPlaygroundTheme: theme, setScopedTheme } = useTheme();
+    const { currentPlaygroundTheme: theme, setPlaygroundTheme } = useTheme();
 
     React.useEffect(() => {
-        setScopedTheme('consumer', 'ecommerce');
+        setPlaygroundTheme('ecommerce');
     }, []);
 
     return (

@@ -10,10 +10,10 @@ import GameButton from '../components/game/GameButton';
 import { useTheme } from '@/context/ThemeContext';
 
 const GameDashboard = () => {
-    const { currentPlaygroundTheme: theme, setScopedTheme } = useTheme();
+    const { currentPlaygroundTheme: theme, setPlaygroundTheme } = useTheme();
 
     useEffect(() => {
-        setScopedTheme('cyberpunk', 'arcade'); // Using 'retro' scope as per category
+        setPlaygroundTheme('arcade');
     }, []);
 
     return (

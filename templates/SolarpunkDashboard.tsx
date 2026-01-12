@@ -7,10 +7,10 @@ import SolarpunkButton from '../components/solarpunk/SolarpunkButton';
 import { useTheme } from '@/context/ThemeContext';
 
 const SolarpunkDashboard = () => {
-    const { currentPlaygroundTheme: theme, setScopedTheme } = useTheme();
+    const { currentPlaygroundTheme: theme, setPlaygroundTheme } = useTheme();
 
     useEffect(() => {
-        setScopedTheme('organic', 'solarpunk');
+        setPlaygroundTheme('solarpunk');
     }, []);
 
     return (

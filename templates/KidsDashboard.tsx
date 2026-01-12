@@ -10,10 +10,10 @@ import { Settings, Users } from 'lucide-react';
 import { useTheme } from '@/context/ThemeContext';
 
 const KidsDashboard = () => {
-    const { currentPlaygroundTheme: theme, setScopedTheme } = useTheme();
+    const { currentPlaygroundTheme: theme, setPlaygroundTheme } = useTheme();
 
     React.useEffect(() => {
-        setScopedTheme('consumer', 'kids');
+        setPlaygroundTheme('kids');
     }, []);
 
     const activities = [

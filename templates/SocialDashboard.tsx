@@ -9,10 +9,10 @@ import SocialButton from '../components/social/SocialButton';
 import { useTheme } from '@/context/ThemeContext';
 
 const SocialDashboard = () => {
-    const { currentPlaygroundTheme: theme, setScopedTheme } = useTheme();
+    const { currentPlaygroundTheme: theme, setPlaygroundTheme } = useTheme();
 
     React.useEffect(() => {
-        setScopedTheme('consumer', 'social');
+        setPlaygroundTheme('social');
     }, []);
 
     return (

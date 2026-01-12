@@ -11,10 +11,10 @@ import FintechButton from '../components/fintech/FintechButton';
 import { useTheme } from '@/context/ThemeContext';
 
 const FintechDashboard = () => {
-    const { currentPlaygroundTheme: theme, setScopedTheme } = useTheme();
+    const { currentPlaygroundTheme: theme, setPlaygroundTheme } = useTheme();
 
     React.useEffect(() => {
-        setScopedTheme('glass', 'fintech');
+        setPlaygroundTheme('fintech');
     }, []);
 
     return (

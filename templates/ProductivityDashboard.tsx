@@ -16,10 +16,10 @@ import ProductivityCard from '../components/productivity/ProductivityCard';
 import { useTheme } from '@/context/ThemeContext';
 
 const ProductivityDashboard = () => {
-    const { currentPlaygroundTheme: theme, setScopedTheme } = useTheme();
+    const { currentPlaygroundTheme: theme, setPlaygroundTheme } = useTheme();
 
     React.useEffect(() => {
-        setScopedTheme('professional', 'productivity');
+        setPlaygroundTheme('productivity');
     }, []);
 
     return (

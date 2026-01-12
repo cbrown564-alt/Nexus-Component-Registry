@@ -19,10 +19,10 @@ import MusicButton from '../components/music/MusicButton';
 import { useTheme } from '@/context/ThemeContext';
 
 const MusicDashboard = () => {
-    const { currentPlaygroundTheme: theme, setScopedTheme } = useTheme();
+    const { currentPlaygroundTheme: theme, setPlaygroundTheme } = useTheme();
 
     React.useEffect(() => {
-        setScopedTheme('consumer', 'music');
+        setPlaygroundTheme('music');
     }, []);
 
     return (
