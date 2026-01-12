@@ -31,14 +31,15 @@ const RecipeProgress: React.FC<RecipeProgressProps> = ({
   return (
     <KitchenCard className={`p-6 ${className}`}>
       <div className="flex items-center justify-between mb-4">
-        <h3 className="font-serif text-xl font-semibold text-stone-800">{recipeName}</h3>
-        <span className="text-sm text-stone-500">{completedCount}/{steps.length} steps</span>
+        <h3 className="font-serif text-xl font-semibold" style={{ color: '#292524' }}>{recipeName}</h3>
+        <span className="text-sm" style={{ color: '#78716c' }}>{completedCount}/{steps.length} steps</span>
       </div>
 
       {/* Progress bar */}
-      <div className="h-2 bg-stone-200 rounded-full mb-6 overflow-hidden">
+      <div className="h-2 rounded-full mb-6 overflow-hidden" style={{ backgroundColor: '#e7e5e4' }}>
         <motion.div
-          className="h-full bg-orange-400 rounded-full"
+          className="h-full rounded-full"
+          style={{ backgroundColor: '#fb923c' }}
           initial={{ width: 0 }}
           animate={{ width: `${progress}%` }}
           transition={{ duration: 0.5 }}
@@ -50,18 +51,20 @@ const RecipeProgress: React.FC<RecipeProgressProps> = ({
         {steps.map((step, i) => (
           <div
             key={i}
-            className={`flex items-center gap-3 p-3 rounded-xl transition-colors ${
-              step.current ? 'bg-orange-50 border border-orange-200' : ''
-            }`}
+            className="flex items-center gap-3 p-3 rounded-xl transition-colors"
+            style={step.current ? { backgroundColor: '#fff7ed', border: '1px solid #fed7aa' } : {}}
           >
             {step.completed ? (
-              <CheckCircle2 className="h-5 w-5 text-green-500 flex-shrink-0" />
+              <CheckCircle2 className="h-5 w-5 flex-shrink-0" style={{ color: '#22c55e' }} />
             ) : step.current ? (
-              <Timer className="h-5 w-5 text-orange-500 flex-shrink-0 animate-pulse" />
+              <Timer className="h-5 w-5 flex-shrink-0 animate-pulse" style={{ color: '#f97316' }} />
             ) : (
-              <Circle className="h-5 w-5 text-stone-300 flex-shrink-0" />
+              <Circle className="h-5 w-5 flex-shrink-0" style={{ color: '#d6d3d1' }} />
             )}
-            <span className={`text-sm ${step.completed ? 'text-stone-400 line-through' : 'text-stone-700'}`}>
+            <span
+              className={`text-sm ${step.completed ? 'line-through' : ''}`}
+              style={{ color: step.completed ? '#a8a29e' : '#44403c' }}
+            >
               {step.title}
             </span>
           </div>
