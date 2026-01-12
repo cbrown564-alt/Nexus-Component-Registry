@@ -3,11 +3,12 @@ import { Power, Activity, Lock, RefreshCw } from 'lucide-react';
 import GridCard from './GridCard';
 
 const Toggle = ({ label, active, onClick }: { label: string; active: boolean; onClick: () => void }) => (
-    <div className="flex items-center justify-between p-3 bg-slate-900/50 border border-blue-900/30 rounded gap-3">
-        <span className="text-xs font-mono text-blue-200 whitespace-nowrap">{label}</span>
+    <div className="flex items-center justify-between p-3 rounded gap-3" style={{ backgroundColor: 'rgba(15, 23, 42, 0.5)', borderColor: 'rgba(30, 58, 138, 0.3)', borderWidth: '1px' }}>
+        <span className="text-xs font-mono whitespace-nowrap" style={{ color: '#bfdbfe' }}>{label}</span>
         <button
             onClick={onClick}
-            className={`w-12 h-6 rounded-full relative transition-colors duration-300 shrink-0 ${active ? 'bg-blue-600' : 'bg-slate-700'}`}
+            className="w-12 h-6 rounded-full relative transition-colors duration-300 shrink-0"
+            style={{ backgroundColor: active ? '#2563eb' : '#334155' }}
         >
             <div className={`absolute top-1 w-4 h-4 rounded-full bg-white transition-all duration-300 shadow-sm ${active ? 'left-7' : 'left-1'}`} />
         </button>
@@ -36,20 +37,23 @@ const SystemControls = () => {
                     <Toggle label="Load Balance" active={controls.loadBalancing} onClick={() => toggle('loadBalancing')} />
                 </div>
 
-                <div className="mt-4 border-t border-blue-900/50 pt-4 space-y-2">
-                    <div className="flex items-center justify-between text-xs text-slate-400">
+                <div className="mt-4 border-t pt-4 space-y-2" style={{ borderColor: 'rgba(30, 58, 138, 0.5)' }}>
+                    <div className="flex items-center justify-between text-xs" style={{ color: '#94a3b8' }}>
                         <span className="flex items-center gap-2">
                             <Activity className="h-3 w-3" /> Uptime
                         </span>
-                        <span className="font-mono text-emerald-400">99.998%</span>
+                        <span className="font-mono" style={{ color: '#34d399' }}>99.998%</span>
                     </div>
-                    <div className="flex items-center justify-between text-xs text-slate-400">
+                    <div className="flex items-center justify-between text-xs" style={{ color: '#94a3b8' }}>
                         <span className="flex items-center gap-2">
                             <Lock className="h-3 w-3" /> Security
                         </span>
-                        <span className="font-mono text-emerald-400">Encrypted (AES-256)</span>
+                        <span className="font-mono" style={{ color: '#34d399' }}>Encrypted (AES-256)</span>
                     </div>
-                    <button className="w-full mt-2 flex items-center justify-center gap-2 bg-blue-900/20 hover:bg-blue-900/40 text-blue-400 border border-blue-900 py-2 rounded text-xs font-bold uppercase tracking-wider transition-colors">
+                    <button
+                        className="w-full mt-2 flex items-center justify-center gap-2 border py-2 rounded text-xs font-bold uppercase tracking-wider transition-colors"
+                        style={{ backgroundColor: 'rgba(30, 58, 138, 0.2)', borderColor: '#1e3a8a', color: '#60a5fa' }}
+                    >
                         <RefreshCw className="h-3 w-3" /> System Diagnostics
                     </button>
                 </div>
