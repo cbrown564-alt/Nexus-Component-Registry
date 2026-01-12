@@ -10,6 +10,7 @@ interface GameButtonProps {
     className?: string;
     disabled?: boolean;
     onClick?: () => void;
+    style?: React.CSSProperties;
 }
 
 const GameButton: React.FC<GameButtonProps> = ({
@@ -20,6 +21,7 @@ const GameButton: React.FC<GameButtonProps> = ({
     className = '',
     disabled = false,
     onClick,
+    style,
 }) => {
     const { theme } = useTheme();
 
@@ -84,6 +86,7 @@ const GameButton: React.FC<GameButtonProps> = ({
                 ...variantStyles[variant],
                 backgroundSize: variant === 'primary' ? '200% 200%' : undefined,
                 color: getTextColor() || (variantStyles[variant] as any).color,
+                ...style,
             }}
             disabled={disabled}
             onClick={onClick}

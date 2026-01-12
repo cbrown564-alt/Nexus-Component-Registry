@@ -128,7 +128,7 @@ const LegalDashboard = () => {
 
             <LegalPaper title="Master Services Agreement">
 
-              <div className="mb-8 text-sm text-stone-600 text-center font-serif italic">
+              <div className="mb-8 text-sm text-center font-serif italic" style={{ color: '#57534e' }}>
                 Effective Date: October 24, 2024
               </div>
 
@@ -158,13 +158,13 @@ const LegalDashboard = () => {
                 <span className="bg-yellow-100 px-1">Customer owns all right, title, and interest in and to the Deliverables.</span> Provider retains all ownership rights in its pre-existing materials and generic tools used to create the Deliverables.
               </Clause>
 
-              <div className="mt-12 pt-12 border-t-2 border-stone-900 flex justify-between gap-12">
+              <div className="mt-12 pt-12 flex justify-between gap-12" style={{ borderTopWidth: '2px', borderTopColor: '#1c1917' }}>
                 <div className="flex-1">
-                  <div className="h-16 border-b border-stone-400 mb-2"></div>
+                  <div className="h-16 mb-2" style={{ borderBottomWidth: '1px', borderBottomColor: '#a8a29e' }}></div>
                   <div className="text-xs font-bold uppercase tracking-wider">Signed by Customer</div>
                 </div>
                 <div className="flex-1">
-                  <div className="h-16 border-b border-stone-400 mb-2"></div>
+                  <div className="h-16 mb-2" style={{ borderBottomWidth: '1px', borderBottomColor: '#a8a29e' }}></div>
                   <div className="text-xs font-bold uppercase tracking-wider">Signed by Provider</div>
                 </div>
               </div>
@@ -175,7 +175,7 @@ const LegalDashboard = () => {
           </div>
 
           {/* Right Sidebar (Comments) */}
-          <div className="w-80 flex-shrink-0 border-l border-stone-300 bg-white hidden xl:block shadow-xl z-20">
+          <div className="w-80 flex-shrink-0 hidden xl:block shadow-xl z-20" style={{ borderLeftWidth: '1px', borderLeftColor: '#d6d3d1', backgroundColor: '#ffffff' }}>
             <RedlineSidebar />
           </div>
 

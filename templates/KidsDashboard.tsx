@@ -38,9 +38,9 @@ const KidsDashboard = () => {
 
             {/* Clouds Background Pattern */}
             <div className="absolute inset-0 pointer-events-none overflow-hidden">
-                <div className="absolute top-10 left-10 w-32 h-16 bg-white/30 rounded-full blur-xl animate-pulse" />
-                <div className="absolute top-40 right-20 w-48 h-24 bg-white/40 rounded-full blur-2xl" />
-                <div className="absolute bottom-32 left-1/3 w-64 h-32 bg-white/30 rounded-full blur-2xl" />
+                <div className="absolute top-10 left-10 w-32 h-16 rounded-full blur-xl animate-pulse" style={{ backgroundColor: 'rgba(255, 255, 255, 0.3)' }} />
+                <div className="absolute top-40 right-20 w-48 h-24 rounded-full blur-2xl" style={{ backgroundColor: 'rgba(255, 255, 255, 0.4)' }} />
+                <div className="absolute bottom-32 left-1/3 w-64 h-32 rounded-full blur-2xl" style={{ backgroundColor: 'rgba(255, 255, 255, 0.3)' }} />
             </div>
 
             {/* Header */}
@@ -72,10 +72,10 @@ const KidsDashboard = () => {
                         borderColor={item.border}
                         className="flex flex-col items-center justify-center aspect-square cursor-pointer group"
                     >
-                        <div className="bg-white/30 p-4 md:p-6 rounded-full mb-2 md:mb-4 backdrop-blur-sm group-hover:scale-110 transition-transform duration-300">
+                        <div className="p-4 md:p-6 rounded-full mb-2 md:mb-4 backdrop-blur-sm group-hover:scale-110 transition-transform duration-300" style={{ backgroundColor: 'rgba(255, 255, 255, 0.3)' }}>
                             <item.icon className={`w-10 h-10 md:w-16 md:h-16 ${item.text}`} strokeWidth={3} />
                         </div>
-                        <span className={`text-xl md:text-3xl font-black uppercase tracking-wider text-white drop-shadow-md`}>
+                        <span className={`text-xl md:text-3xl font-black uppercase tracking-wider drop-shadow-md`} style={{ color: '#ffffff' }}>
                             {item.title}
                         </span>
                     </KidsCard>

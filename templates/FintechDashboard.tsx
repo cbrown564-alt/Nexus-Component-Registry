@@ -19,7 +19,7 @@ const FintechDashboard = () => {
 
     return (
         <div
-            className="container mx-auto max-w-[1600px] min-h-screen p-6 lg:p-10 font-sans text-zinc-200"
+            className="container mx-auto max-w-[1600px] min-h-screen p-6 lg:p-10 font-sans"
             style={{
                 backgroundColor: theme.colors.background,
                 color: theme.colors.foreground

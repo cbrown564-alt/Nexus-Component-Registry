@@ -77,7 +77,7 @@ const MagazineDashboard = () => {
                             <span className="font-serif italic text-lg" style={{ color: theme.colors.mutedForeground }}>Vol. 24</span>
                         </div>
                         <div className="absolute top-1/2 left-0 -translate-y-1/2 hidden lg:flex items-center gap-2">
-                            <button className="p-2 rounded-full transition-colors hover:bg-black/5" style={{ color: theme.colors.foreground }}>
+                            <button className="p-2 rounded-full transition-colors hover:bg-[#00000010]" style={{ color: theme.colors.foreground }}>
                                 <Search className="h-5 w-5" />
                             </button>
                         </div>
@@ -221,7 +221,7 @@ const MagazineDashboard = () => {
                     className="mt-20 pt-12 border-t-2 border-black"
                 >
                     <div className="flex items-center gap-4 mb-8">
-                        <span className="px-3 py-1 bg-black text-white text-[10px] font-bold uppercase tracking-widest">Long Read</span>
+                        <span className="px-3 py-1 text-[10px] font-bold uppercase tracking-widest" style={{ backgroundColor: '#000000', color: '#ffffff' }}>Long Read</span>
                         <div className="flex-1 h-px bg-neutral-200" />
                     </div>
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -267,10 +267,10 @@ const MagazineDashboard = () => {
                             </p>
                         </div>
                         <div className="flex gap-8 text-xs font-bold uppercase tracking-widest text-neutral-500">
-                            <a href="#" className="hover:text-black transition-colors">About</a>
-                            <a href="#" className="hover:text-black transition-colors">Contact</a>
-                            <a href="#" className="hover:text-black transition-colors">Instagram</a>
-                            <a href="#" className="hover:text-black transition-colors">Twitter</a>
+                            <a href="#" className="hover:text-[#000000] transition-colors">About</a>
+                            <a href="#" className="hover:text-[#000000] transition-colors">Contact</a>
+                            <a href="#" className="hover:text-[#000000] transition-colors">Instagram</a>
+                            <a href="#" className="hover:text-[#000000] transition-colors">Twitter</a>
                         </div>
                     </div>
                 </div>

@@ -22,7 +22,7 @@ const FestivalDashboard = () => {
 
     return (
         <div
-            className="min-h-screen font-sans overflow-hidden relative selection:text-white"
+            className="min-h-screen font-sans overflow-hidden relative selection:text-[#ffffff]"
             style={{
                 backgroundColor: theme.colors.background,
                 color: theme.colors.foreground,
@@ -121,7 +121,7 @@ const FestivalDashboard = () => {
                             <Music className="w-6 h-6" />
                             <span className="text-[10px] font-bold uppercase">Lineup</span>
                         </button>
-                        <button className="flex flex-col items-center gap-1 transition-colors hover:text-white" style={{ color: theme.colors.mutedForeground }}>
+                        <button className="flex flex-col items-center gap-1 transition-colors hover:text-[#ffffff]" style={{ color: theme.colors.mutedForeground }}>
                             <Map className="w-6 h-6" />
                             <span className="text-[10px] font-bold uppercase">Map</span>
                         </button>
@@ -137,11 +137,11 @@ const FestivalDashboard = () => {
                                 <Ticket className="w-8 h-8" style={{ color: theme.colors.foreground }} />
                             </button>
                         </div>
-                        <button className="flex flex-col items-center gap-1 transition-colors hover:text-white" style={{ color: theme.colors.mutedForeground }}>
+                        <button className="flex flex-col items-center gap-1 transition-colors hover:text-[#ffffff]" style={{ color: theme.colors.mutedForeground }}>
                             <Heart className="w-6 h-6" />
                             <span className="text-[10px] font-bold uppercase">Saved</span>
                         </button>
-                        <button className="flex flex-col items-center gap-1 transition-colors hover:text-white" style={{ color: theme.colors.mutedForeground }}>
+                        <button className="flex flex-col items-center gap-1 transition-colors hover:text-[#ffffff]" style={{ color: theme.colors.mutedForeground }}>
                             <User className="w-6 h-6" />
                             <span className="text-[10px] font-bold uppercase">Me</span>
                         </button>

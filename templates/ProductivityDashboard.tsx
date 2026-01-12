@@ -60,18 +60,18 @@ const ProductivityDashboard = () => {
                                 <span>{item.label}</span>
                             </div>
                             {item.count && (
-                                <span className="text-xs text-zinc-500">{item.count}</span>
+                                <span className="text-xs" style={{ color: '#71717a' }}>{item.count}</span>
                             )}
                         </button>
                     ))}
                 </div>
 
                 <div className="mt-8">
-                    <div className="px-2 text-xs font-semibold uppercase tracking-wider text-zinc-500 mb-2">Projects</div>
+                    <div className="px-2 text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: '#71717a' }}>Projects</div>
                     <div className="space-y-1">
                         {['Marketing Q4', 'Mobile App', 'Website Redesign'].map((p) => (
-                            <button key={p} className="flex w-full items-center gap-2 rounded-md px-2 py-1.5 text-sm text-zinc-400 hover:bg-zinc-800/50 hover:text-zinc-200">
-                                <span className="h-1.5 w-1.5 rounded-full bg-zinc-700" />
+                            <button key={p} className="flex w-full items-center gap-2 rounded-md px-2 py-1.5 text-sm hover:bg-[#27272a80] hover:text-[#e4e4e7]" style={{ color: '#a1a1aa' }}>
+                                <span className="h-1.5 w-1.5 rounded-full" style={{ backgroundColor: '#3f3f46' }} />
                                 {p}
                             </button>
                         ))}
@@ -95,7 +95,7 @@ const ProductivityDashboard = () => {
                             ))}
                         </div>
                         <div className="h-4 w-px" style={{ backgroundColor: theme.colors.border }} />
-                        <button className="text-zinc-500 hover:text-zinc-300">
+                        <button className="hover:text-[#d4d4d8]" style={{ color: '#71717a' }}>
                             <Settings2 className="h-4 w-4" />
                         </button>
                     </div>

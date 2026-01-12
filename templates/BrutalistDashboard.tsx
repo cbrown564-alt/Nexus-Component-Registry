@@ -43,7 +43,7 @@ const BrutalistDashboard = () => {
                 </h1>
 
                 <div className="flex gap-4 mb-12">
-                    <BrutalistButton variant="neo" color="text-white hover:bg-opacity-80 transition-colors" style={{ backgroundColor: theme.colors.secondary } as any}>
+                    <BrutalistButton variant="neo" color="hover:bg-opacity-80 transition-colors" style={{ backgroundColor: theme.colors.secondary, color: '#ffffff' } as any}>
                         Explore Works
                     </BrutalistButton>
                     <BrutalistButton variant="neo">

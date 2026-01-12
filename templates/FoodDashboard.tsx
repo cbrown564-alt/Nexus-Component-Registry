@@ -63,15 +63,15 @@ const FoodDashboard = () => {
                             animate={{ opacity: 1, x: 0 }}
                             className="flex items-center gap-3"
                         >
-                            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-orange-500 to-orange-600 text-white shadow-lg shadow-orange-500/20">
+                            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-orange-500 to-orange-600 shadow-lg shadow-orange-500/20" style={{ color: '#ffffff' }}>
                                 <ChefHat className="h-5 w-5" />
                             </div>
                             <div className="hidden sm:block">
-                                <div className="flex items-center gap-1 text-xs text-stone-400">
+                                <div className="flex items-center gap-1 text-xs" style={{ color: '#a8a29e' }}>
                                     <MapPin className="h-3 w-3" />
                                     Delivering to
                                 </div>
-                                <div className="font-semibold text-white">123 Main Street</div>
+                                <div className="font-semibold" style={{ color: '#ffffff' }}>123 Main Street</div>
                             </div>
                         </motion.div>
 
@@ -103,10 +103,10 @@ const FoodDashboard = () => {
                             animate={{ opacity: 1, x: 0 }}
                             className="flex items-center gap-2"
                         >
-                            <FoodButton variant="ghost" size="sm" className="hover:text-white" style={{ color: theme.colors.mutedForeground }}>
+                            <FoodButton variant="ghost" size="sm" className="hover:text-[#ffffff]" style={{ color: theme.colors.mutedForeground }}>
                                 <Heart className="h-5 w-5" />
                             </FoodButton>
-                            <FoodButton variant="ghost" size="sm" className="hover:text-white relative" style={{ color: theme.colors.mutedForeground }}>
+                            <FoodButton variant="ghost" size="sm" className="hover:text-[#ffffff] relative" style={{ color: theme.colors.mutedForeground }}>
                                 <Bell className="h-5 w-5" />
                                 <span className="absolute top-1 right-1 h-2 w-2 rounded-full ring-2" style={{ backgroundColor: theme.colors.primary }} />
                             </FoodButton>
@@ -184,18 +184,18 @@ const FoodDashboard = () => {
                             transition={{ delay: 0.25 }}
                         >
                             <div className="relative overflow-hidden rounded-2xl p-6" style={{ background: `linear-gradient(to right, ${theme.colors.primary}, ${theme.colors.accent})` }}>
-                                <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2" />
-                                <div className="absolute bottom-0 left-0 w-32 h-32 bg-black/10 rounded-full translate-y-1/2 -translate-x-1/2" />
+                                <div className="absolute top-0 right-0 w-64 h-64 rounded-full -translate-y-1/2 translate-x-1/2" style={{ backgroundColor: 'rgba(255, 255, 255, 0.1)' }} />
+                                <div className="absolute bottom-0 left-0 w-32 h-32 rounded-full translate-y-1/2 -translate-x-1/2" style={{ backgroundColor: 'rgba(0, 0, 0, 0.1)' }} />
                                 <div className="relative z-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                                     <div>
                                         <div className="flex items-center gap-2 mb-2">
                                             <Sparkles className="h-5 w-5 text-yellow-300" />
                                             <span className="text-xs font-bold uppercase tracking-wider text-orange-200">Limited Time</span>
                                         </div>
-                                        <h3 className="text-2xl font-bold text-white mb-1">Get 25% off your first order!</h3>
+                                        <h3 className="text-2xl font-bold mb-1" style={{ color: '#ffffff' }}>Get 25% off your first order!</h3>
                                         <p className="text-orange-100 text-sm">Use code WELCOME25 at checkout</p>
                                     </div>
-                                    <FoodButton variant="secondary" className="bg-white hover:bg-orange-50 shadow-lg font-bold" style={{ color: theme.colors.primary }}>
+                                    <FoodButton variant="secondary" className="hover:bg-orange-50 shadow-lg font-bold" style={{ backgroundColor: '#ffffff', color: theme.colors.primary }}>
                                         Order Now
                                     </FoodButton>
                                 </div>

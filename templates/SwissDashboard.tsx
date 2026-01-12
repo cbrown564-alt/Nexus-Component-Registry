@@ -16,7 +16,7 @@ const SwissDashboard = () => {
 
    return (
       <div
-         className="min-h-screen font-sans p-4 md:p-12 overflow-hidden selection:text-white"
+         className="min-h-screen font-sans p-4 md:p-12 overflow-hidden selection:text-[#ffffff]"
          style={{
             backgroundColor: theme.colors.background,
             color: theme.colors.foreground,
@@ -76,7 +76,7 @@ const SwissDashboard = () => {
                      value="4.2"
                      size="large"
                   />
-                  <div className="mt-8 pt-8 border-t border-white/30 flex justify-between items-center">
+                  <div className="mt-8 pt-8 flex justify-between items-center" style={{ borderTopWidth: '1px', borderTopColor: 'rgba(255, 255, 255, 0.3)' }}>
                      <span className="text-sm font-bold uppercase tracking-widest">Growth Rate</span>
                      <ArrowUpRight className="h-8 w-8" />
                   </div>
@@ -95,10 +95,10 @@ const SwissDashboard = () => {
                <SwissCard black className="flex-1">
                   <div className="flex items-center justify-between">
                      <div>
-                        <h3 className="text-white font-bold text-lg">Server Load</h3>
-                        <p className="text-gray-400 text-xs uppercase tracking-widest mt-1">Cluster A-12</p>
+                        <h3 className="font-bold text-lg" style={{ color: '#ffffff' }}>Server Load</h3>
+                        <p className="text-xs uppercase tracking-widest mt-1" style={{ color: '#9ca3af' }}>Cluster A-12</p>
                      </div>
-                     <div className="text-5xl font-black text-white">24%</div>
+                     <div className="text-5xl font-black" style={{ color: '#ffffff' }}>24%</div>
                   </div>
                </SwissCard>
             </div>
@@ -108,7 +108,7 @@ const SwissDashboard = () => {
                {/* Hover Effect Background */}
                <div className="absolute inset-0 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-in-out z-0" style={{ backgroundColor: theme.colors.primary }} />
 
-               <div className="relative z-10 group-hover:text-white transition-colors duration-300">
+               <div className="relative z-10 group-hover:text-[#ffffff] transition-colors duration-300">
                   <h3 className="text-xs font-bold uppercase tracking-[0.3em] mb-12 border-b-2 group-hover:border-white pb-4 inline-block" style={{ borderColor: theme.colors.border }}>Recent Activity</h3>
 
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

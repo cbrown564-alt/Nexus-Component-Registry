@@ -53,7 +53,7 @@ const WellnessDashboard = () => {
                </p>
             </motion.div>
 
-            <WellnessButton variant="ghost" icon={<ArrowRight className="h-4 w-4" />} className="text-stone-900 border-b border-stone-900 rounded-none pb-1 hover:bg-transparent hover:text-stone-600">
+            <WellnessButton variant="ghost" icon={<ArrowRight className="h-4 w-4" />} className="rounded-none pb-1 hover:bg-transparent hover:text-[#57534e]" style={{ color: '#1c1917', borderBottom: '1px solid #1c1917' }}>
                Explore Methodology
             </WellnessButton>
          </section>
@@ -74,7 +74,7 @@ const WellnessDashboard = () => {
                         "To live a creative life, we must lose our fear of being wrong."
                      </p>
                      <div className="mt-6 flex items-center gap-3">
-                        <div className="h-px w-12 bg-white/20" />
+                        <div className="h-px w-12" style={{ backgroundColor: 'rgba(255, 255, 255, 0.2)' }} />
                         <span className="font-serif italic text-opacity-80" style={{ color: theme.colors.primaryForeground }}>Joseph Chilton Pearce</span>
                      </div>
                   </div>

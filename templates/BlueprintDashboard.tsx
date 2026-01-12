@@ -64,7 +64,7 @@ const BlueprintDashboard = () => {
 
     return (
         <div
-            className="h-screen font-sans overflow-hidden flex flex-col selection:bg-cyan-500 selection:text-black"
+            className="h-screen font-sans overflow-hidden flex flex-col selection:bg-cyan-500 selection:text-[#000000]"
             style={{
                 backgroundColor: theme.colors.background,
                 color: theme.colors.foreground
@@ -131,7 +131,7 @@ const BlueprintDashboard = () => {
                         <span>Y: 882.12</span>
                         <span>Z: 0.00</span>
                     </div>
-                    <div className="flex items-center gap-1 bg-black/30 px-2 py-1 rounded text-xs">
+                    <div className="flex items-center gap-1 px-2 py-1 rounded text-xs" style={{ backgroundColor: 'rgba(0, 0, 0, 0.3)' }}>
                         <span className="font-bold" style={{ color: theme.colors.accent }}>{zoom}%</span>
                     </div>
                 </div>
@@ -181,12 +181,12 @@ const BlueprintDashboard = () => {
                                         whileTap={{ scale: 0.95 }}
                                         onClick={() => setActiveTool(tool.id)}
                                         className={`p-2 rounded flex items-center justify-center transition-all ${activeTool === tool.id
-                                            ? 'text-black'
-                                            : 'bg-white/5 hover:bg-white/10'
+                                            ? ''
+                                            : 'hover:bg-[#ffffff1a]'
                                             }`}
                                         style={{
-                                            backgroundColor: activeTool === tool.id ? theme.colors.accent : undefined,
-                                            color: activeTool === tool.id ? undefined : theme.colors.mutedForeground
+                                            backgroundColor: activeTool === tool.id ? theme.colors.accent : 'rgba(255, 255, 255, 0.05)',
+                                            color: activeTool === tool.id ? '#000000' : theme.colors.mutedForeground
                                         }}
                                         title={tool.label}
                                     >
@@ -304,20 +304,20 @@ const BlueprintDashboard = () => {
                                 <div>
                                     <span className="block mb-1 uppercase tracking-wider" style={{ color: theme.colors.accent }}>Position</span>
                                     <div className="grid grid-cols-2 gap-2">
-                                        <div className="bg-black/30 px-2 py-1 rounded">X: 0</div>
-                                        <div className="bg-black/30 px-2 py-1 rounded">Y: 0</div>
+                                        <div className="px-2 py-1 rounded" style={{ backgroundColor: 'rgba(0, 0, 0, 0.3)' }}>X: 0</div>
+                                        <div className="px-2 py-1 rounded" style={{ backgroundColor: 'rgba(0, 0, 0, 0.3)' }}>Y: 0</div>
                                     </div>
                                 </div>
                                 <div>
                                     <span className="block mb-1 uppercase tracking-wider" style={{ color: theme.colors.accent }}>Size</span>
                                     <div className="grid grid-cols-2 gap-2">
-                                        <div className="bg-black/30 px-2 py-1 rounded">W: —</div>
-                                        <div className="bg-black/30 px-2 py-1 rounded">H: —</div>
+                                        <div className="px-2 py-1 rounded" style={{ backgroundColor: 'rgba(0, 0, 0, 0.3)' }}>W: —</div>
+                                        <div className="px-2 py-1 rounded" style={{ backgroundColor: 'rgba(0, 0, 0, 0.3)' }}>H: —</div>
                                     </div>
                                 </div>
                                 <div>
                                     <span className="block mb-1 uppercase tracking-wider" style={{ color: theme.colors.accent }}>Rotation</span>
-                                    <div className="bg-black/30 px-2 py-1 rounded">0°</div>
+                                    <div className="px-2 py-1 rounded" style={{ backgroundColor: 'rgba(0, 0, 0, 0.3)' }}>0°</div>
                                 </div>
                             </div>
                         </BlueprintCard>
@@ -327,8 +327,8 @@ const BlueprintDashboard = () => {
                                 <motion.button
                                     whileHover={{ scale: 1.1 }}
                                     whileTap={{ scale: 0.95 }}
-                                    className="p-2 bg-white/5 rounded hover:bg-white/10 transition-all"
-                                    style={{ color: theme.colors.mutedForeground }}
+                                    className="p-2 rounded hover:bg-[#ffffff1a] transition-all"
+                                    style={{ color: theme.colors.mutedForeground, backgroundColor: 'rgba(255, 255, 255, 0.05)' }}
                                     title="Duplicate"
                                 >
                                     <Copy size={14} />
@@ -336,8 +336,8 @@ const BlueprintDashboard = () => {
                                 <motion.button
                                     whileHover={{ scale: 1.1 }}
                                     whileTap={{ scale: 0.95 }}
-                                    className="p-2 bg-white/5 rounded hover:bg-white/10 transition-all"
-                                    style={{ color: theme.colors.mutedForeground }}
+                                    className="p-2 rounded hover:bg-[#ffffff1a] transition-all"
+                                    style={{ color: theme.colors.mutedForeground, backgroundColor: 'rgba(255, 255, 255, 0.05)' }}
                                     title="Rotate"
                                 >
                                     <RotateCcw size={14} />
@@ -345,8 +345,8 @@ const BlueprintDashboard = () => {
                                 <motion.button
                                     whileHover={{ scale: 1.1 }}
                                     whileTap={{ scale: 0.95 }}
-                                    className="p-2 bg-white/5 rounded hover:text-red-400 hover:bg-red-500/10 transition-all"
-                                    style={{ color: theme.colors.mutedForeground }}
+                                    className="p-2 rounded hover:text-red-400 hover:bg-red-500/10 transition-all"
+                                    style={{ color: theme.colors.mutedForeground, backgroundColor: 'rgba(255, 255, 255, 0.05)' }}
                                     title="Delete"
                                 >
                                     <Trash2 size={14} />

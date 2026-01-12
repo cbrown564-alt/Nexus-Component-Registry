@@ -15,7 +15,7 @@ const SolarpunkDashboard = () => {
 
     return (
         <div
-            className="min-h-screen font-sans relative overflow-hidden selection:text-emerald-900"
+            className="min-h-screen font-sans relative overflow-hidden selection:text-[#064e3b]"
             style={{
                 backgroundColor: theme.colors.background,
                 color: theme.colors.foreground,
@@ -53,13 +53,13 @@ const SolarpunkDashboard = () => {
                     </div>
 
                     {/* Weather/Status Pill */}
-                    <div className="flex items-center bg-white/40 backdrop-blur-md rounded-full p-2 pr-6 border border-white/60 shadow-sm gap-6">
+                    <div className="flex items-center backdrop-blur-md rounded-full p-2 pr-6 border shadow-sm gap-6" style={{ backgroundColor: 'rgba(255, 255, 255, 0.4)', borderColor: 'rgba(255, 255, 255, 0.6)' }}>
                         <div className="flex items-center gap-2 px-3 py-1.5 rounded-full" style={{ backgroundColor: `${theme.colors.secondary}80`, color: theme.colors.secondaryForeground }}>
                             <Sun className="w-4 h-4" />
                             <span className="font-sans font-bold text-sm">24°C</span>
                         </div>
                         <div className="flex items-center gap-2" style={{ color: theme.colors.foreground }}>
-                            <Droplets className="w-4 h-4 text-blue-400" />
+                            <Droplets className="w-4 h-4" style={{ color: '#60a5fa' }} />
                             <span className="font-sans font-bold text-sm">62%</span>
                         </div>
                         <div className="flex items-center gap-2" style={{ color: theme.colors.foreground }}>
@@ -79,7 +79,7 @@ const SolarpunkDashboard = () => {
                         </div>
 
                         {/* Community Stats */}
-                        <SolarCard className="p-8 bg-white/60 backdrop-blur-sm" style={{ backgroundColor: `${theme.colors.card}99`, color: theme.colors.cardForeground }}>
+                        <SolarCard className="p-8" style={{ backgroundColor: `${theme.colors.card}99`, color: theme.colors.cardForeground, backdropFilter: 'blur(8px)' }}>
                             <h3 className="text-lg font-bold mb-6 flex items-center gap-2">
                                 <Users className="w-5 h-5" style={{ color: theme.colors.primary }} />
                                 Active Gardeners
@@ -90,7 +90,7 @@ const SolarpunkDashboard = () => {
                                         <img src={`https://api.dicebear.com/7.x/notionists/svg?seed=${i}`} alt="user" className="w-full h-full" />
                                     </div>
                                 ))}
-                                <div className="w-10 h-10 rounded-full border-2 border-white text-white flex items-center justify-center font-sans font-bold text-xs" style={{ backgroundColor: theme.colors.primary }}>
+                                <div className="w-10 h-10 rounded-full border-2 border-white flex items-center justify-center font-sans font-bold text-xs" style={{ backgroundColor: theme.colors.primary, color: '#ffffff' }}>
                                     +12
                                 </div>
                             </div>

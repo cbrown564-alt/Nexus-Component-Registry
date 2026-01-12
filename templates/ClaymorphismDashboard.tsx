@@ -39,7 +39,7 @@ const ClaymorphismDashboard = () => {
                 {/* Header */}
                 <header className="flex justify-between items-center mb-10">
                     <div className="flex items-center gap-4">
-                        <div className="h-14 w-14 rounded-[1.5rem] bg-white flex items-center justify-center shadow-[8px_8px_16px_#d1d9e6,-8px_-8px_16px_#ffffff]" style={{ backgroundColor: theme.colors.card }}>
+                        <div className="h-14 w-14 rounded-[1.5rem] flex items-center justify-center shadow-[8px_8px_16px_#d1d9e6,-8px_-8px_16px_#ffffff]" style={{ backgroundColor: theme.colors.card }}>
                             <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Clay" alt="Avatar" className="h-10 w-10" />
                         </div>
                         <div>
@@ -72,7 +72,7 @@ const ClaymorphismDashboard = () => {
                         >
                             <span className="text-xs font-bold uppercase tracking-wider mb-1">{day}</span>
                             <span className="text-2xl font-black">{22 + i}</span>
-                            {i === 2 && <div className="mt-1 w-1.5 h-1.5 bg-white rounded-full" />}
+                            {i === 2 && <div className="mt-1 w-1.5 h-1.5 rounded-full" style={{ backgroundColor: '#ffffff' }} />}
                         </div>
                     ))}
                 </div>
@@ -90,7 +90,7 @@ const ClaymorphismDashboard = () => {
                         {tasks.map((task) => (
                             <ClayCard
                                 key={task.id}
-                                color={task.checked ? 'bg-slate-100' : 'bg-white'}
+                                color={task.checked ? '#f1f5f9' : '#ffffff'}
                                 shadowColor={task.checked ? '#e2e8f0' : '#d1d9e6'}
                                 className={`flex items-center justify-between transition-all ${task.checked ? 'opacity-60' : ''}`}
                             >
@@ -98,10 +98,10 @@ const ClaymorphismDashboard = () => {
                                     <div className={`h-12 w-12 rounded-2xl flex items-center justify-center ${task.color}`} style={{
                                         boxShadow: `inset 2px 2px 4px rgba(255,255,255,0.6), inset -2px -2px 4px rgba(0,0,0,0.05)`
                                     }}>
-                                        <span className="text-slate-700 font-bold text-lg">{task.title.charAt(0)}</span>
+                                        <span className="font-bold text-lg" style={{ color: '#334155' }}>{task.title.charAt(0)}</span>
                                     </div>
                                     <div>
-                                        <h3 className={`font-bold text-lg ${task.checked ? 'line-through text-slate-400' : ''}`} style={{ color: task.checked ? theme.colors.mutedForeground : theme.colors.foreground }}>
+                                        <h3 className={`font-bold text-lg ${task.checked ? 'line-through' : ''}`} style={{ color: task.checked ? '#94a3b8' : theme.colors.foreground }}>
                                             {task.title}
                                         </h3>
                                         <div className="flex items-center gap-2 text-sm font-medium" style={{ color: theme.colors.mutedForeground }}>
@@ -146,13 +146,13 @@ const ClaymorphismDashboard = () => {
                         {/* Categories */}
                         <div className="grid grid-cols-2 gap-4">
                             <ClayCard color="bg-violet-100" shadowColor="#ede9fe" className="p-4 flex flex-col items-center justify-center gap-2 aspect-square cursor-pointer hover:scale-105 transition-transform">
-                                <div className="h-10 w-10 bg-white rounded-full flex items-center justify-center text-violet-500 shadow-sm">
+                                <div className="h-10 w-10 rounded-full flex items-center justify-center shadow-sm" style={{ backgroundColor: '#ffffff', color: '#8b5cf6' }}>
                                     <span className="font-black text-lg">W</span>
                                 </div>
                                 <span className="font-bold text-violet-800">Work</span>
                             </ClayCard>
                             <ClayCard color="bg-rose-100" shadowColor="#ffe4e6" className="p-4 flex flex-col items-center justify-center gap-2 aspect-square cursor-pointer hover:scale-105 transition-transform">
-                                <div className="h-10 w-10 bg-white rounded-full flex items-center justify-center text-rose-500 shadow-sm">
+                                <div className="h-10 w-10 rounded-full flex items-center justify-center shadow-sm" style={{ backgroundColor: '#ffffff', color: '#f43f5e' }}>
                                     <span className="font-black text-lg">P</span>
                                 </div>
                                 <span className="font-bold text-rose-800">Personal</span>

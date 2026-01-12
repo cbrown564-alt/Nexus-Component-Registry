@@ -31,7 +31,7 @@ const SocialDashboard = () => {
                 <div className="hidden lg:block lg:col-span-1 space-y-6 sticky top-24 h-fit">
                     <ProfileSummary />
 
-                    <div className="flex flex-wrap gap-2 text-xs text-zinc-500 px-2">
+                    <div className="flex flex-wrap gap-2 text-xs px-2" style={{ color: '#71717a' }}>
                         <a href="#" className="hover:underline">Terms</a>
                         <a href="#" className="hover:underline">Privacy Policy</a>
                         <a href="#" className="hover:underline">Cookies</a>
@@ -164,13 +164,13 @@ const SocialDashboard = () => {
                                 { topic: 'Business · Trending', title: 'AI Startups', posts: '54K posts' },
                                 { topic: 'News · Trending', title: 'SpaceX', posts: '89K posts' },
                             ].map((trend, i) => (
-                                <div key={i} className="flex justify-between items-start cursor-pointer -mx-2 p-2 rounded-lg transition-colors hover:bg-zinc-800/50">
+                                <div key={i} className="flex justify-between items-start cursor-pointer -mx-2 p-2 rounded-lg transition-colors hover:bg-[#27272a80]">
                                     <div>
                                         <div className="text-xs" style={{ color: theme.colors.mutedForeground }}>{trend.topic}</div>
                                         <div className="font-bold mt-0.5" style={{ color: theme.colors.foreground }}>{trend.title}</div>
                                         <div className="text-xs mt-0.5" style={{ color: theme.colors.mutedForeground }}>{trend.posts}</div>
                                     </div>
-                                    <button className="hover:text-zinc-300" style={{ color: theme.colors.mutedForeground }}>···</button>
+                                    <button className="hover:text-[#d4d4d8]" style={{ color: theme.colors.mutedForeground }}>···</button>
                                 </div>
                             ))}
                         </div>

@@ -43,7 +43,7 @@ const SoftPlasticDashboard = () => {
 
     return (
         <div
-            className="min-h-screen font-sans p-6 md:p-10 overflow-x-hidden selection:bg-slate-300 selection:text-slate-800"
+            className="min-h-screen font-sans p-6 md:p-10 overflow-x-hidden selection:bg-[#cbd5e1] selection:text-[#1e293b]"
             style={{ backgroundColor: theme.colors.background, color: theme.colors.foreground }}
         >
 
@@ -62,7 +62,7 @@ const SoftPlasticDashboard = () => {
                         <span className="font-bold" style={{ color: theme.colors.foreground }}>72°F</span>
                     </div>
                     <div className="h-14 w-14 rounded-full overflow-hidden border-4 shadow-[6px_6px_12px_#D1D9E6,-6px_-6px_12px_#FFFFFF]" style={{ borderColor: theme.colors.background }}>
-                        <img src="https://api.dicebear.com/7.x/notionists/svg?seed=Alex" alt="Profile" className="h-full w-full bg-slate-200" />
+                        <img src="https://api.dicebear.com/7.x/notionists/svg?seed=Alex" alt="Profile" className="h-full w-full" style={{ backgroundColor: '#e2e8f0' }} />
                     </div>
                 </div>
             </header>
@@ -172,7 +172,7 @@ const SoftPlasticDashboard = () => {
                                 className="absolute top-1/2 -translate-y-1/2 h-8 w-8 rounded-full shadow-[4px_4px_8px_#D1D9E6,-4px_-4px_8px_#FFFFFF] cursor-pointer"
                                 style={{ left: '60%', backgroundColor: theme.colors.background }}
                             >
-                                <div className="absolute inset-2 rounded-full bg-slate-300/50" />
+                                <div className="absolute inset-2 rounded-full" style={{ backgroundColor: 'rgba(203, 213, 225, 0.5)' }} />
                             </div>
                             <div className="absolute -top-6 left-0 right-0 flex justify-between text-xs font-bold" style={{ color: theme.colors.mutedForeground }}>
                                 <span className="opacity-50">Dim</span>

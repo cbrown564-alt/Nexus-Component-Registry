@@ -39,7 +39,7 @@ const MusicDashboard = () => {
             <div className="hidden w-64 flex-col border-r p-6 lg:flex" style={{ backgroundColor: `${theme.colors.card}90`, borderColor: theme.colors.border }}>
                 <div className="flex items-center gap-2 mb-10 px-2">
                     <div className="h-8 w-8 rounded-full flex items-center justify-center" style={{ background: `linear-gradient(to top right, ${theme.colors.primary}, ${theme.colors.accent})` }}>
-                        <Radio className="h-4 w-4 text-white" />
+                        <Radio className="h-4 w-4" style={{ color: '#ffffff' }} />
                     </div>
                     <span className="font-bold text-xl tracking-tight" style={{ color: theme.colors.foreground }}>Sonic</span>
                 </div>
@@ -50,11 +50,11 @@ const MusicDashboard = () => {
                             <Home className="h-5 w-5" />
                             Home
                         </button>
-                        <button className="flex w-full items-center gap-3 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-white/5" style={{ color: theme.colors.mutedForeground }}>
+                        <button className="flex w-full items-center gap-3 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-[#ffffff0d]" style={{ color: theme.colors.mutedForeground }}>
                             <Search className="h-5 w-5" />
                             Search
                         </button>
-                        <button className="flex w-full items-center gap-3 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-white/5" style={{ color: theme.colors.mutedForeground }}>
+                        <button className="flex w-full items-center gap-3 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-[#ffffff0d]" style={{ color: theme.colors.mutedForeground }}>
                             <Library className="h-5 w-5" />
                             Your Library
                         </button>
@@ -62,19 +62,19 @@ const MusicDashboard = () => {
 
                     <div className="pt-6 border-t" style={{ borderColor: theme.colors.border }}>
                         <div className="px-3 mb-2 text-xs font-bold uppercase tracking-wider" style={{ color: theme.colors.mutedForeground }}>Playlists</div>
-                        <button className="flex w-full items-center gap-3 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-white/5" style={{ color: theme.colors.mutedForeground }}>
+                        <button className="flex w-full items-center gap-3 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-[#ffffff0d]" style={{ color: theme.colors.mutedForeground }}>
                             <PlusSquare className="h-5 w-5" />
                             Create Playlist
                         </button>
-                        <button className="flex w-full items-center gap-3 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-white/5" style={{ color: theme.colors.mutedForeground }}>
-                            <Heart className="h-5 w-5 p-1 rounded-sm text-white box-content" style={{ background: `linear-gradient(to bottom right, ${theme.colors.accent}, ${theme.colors.primary})` }} />
+                        <button className="flex w-full items-center gap-3 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-[#ffffff0d]" style={{ color: theme.colors.mutedForeground }}>
+                            <Heart className="h-5 w-5 p-1 rounded-sm box-content" style={{ background: `linear-gradient(to bottom right, ${theme.colors.accent}, ${theme.colors.primary})`, color: '#ffffff' }} />
                             Liked Songs
                         </button>
                     </div>
 
                     <div className="space-y-1 overflow-y-auto max-h-64 pt-2">
                         {['Chill Vibes', 'Gym Motivation', 'Coding Focus', 'Indie Mix 2024', 'Late Night Drive', 'Synthwave'].map((playlist) => (
-                            <button key={playlist} className="flex w-full items-center gap-3 rounded-md px-3 py-1.5 text-sm transition-colors hover:text-white" style={{ color: theme.colors.mutedForeground }}>
+                            <button key={playlist} className="flex w-full items-center gap-3 rounded-md px-3 py-1.5 text-sm transition-colors hover:text-[#ffffff]" style={{ color: theme.colors.mutedForeground }}>
                                 {playlist}
                             </button>
                         ))}
@@ -115,7 +115,7 @@ const MusicDashboard = () => {
                             <span className="text-xs font-bold uppercase tracking-widest" style={{ color: theme.colors.foreground }}>Album</span>
                             <h1 className="text-6xl font-black mt-2 mb-4 tracking-tighter" style={{ color: theme.colors.foreground }}>Midnight City</h1>
                             <div className="flex items-center gap-2 text-sm font-medium" style={{ color: theme.colors.foreground }}>
-                                <div className="h-6 w-6 rounded-full bg-zinc-700"></div>
+                                <div className="h-6 w-6 rounded-full" style={{ backgroundColor: '#3f3f46' }}></div>
                                 <span className="hover:underline cursor-pointer">M83</span>
                                 <span style={{ color: theme.colors.mutedForeground }}>• 2011 • 22 songs, 1 hr 14 min</span>
                             </div>

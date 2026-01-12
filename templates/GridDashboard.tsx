@@ -75,7 +75,7 @@ const GridDashboard = () => {
                                     { time: '10:35:00', type: 'ERR', msg: 'Connection timeout node #892', color: 'text-red-500' },
                                     { time: '10:32:45', type: 'INFO', msg: 'Morning load balancing active', color: 'text-blue-400' },
                                 ].map((log, i) => (
-                                    <div key={i} className="flex gap-4 py-1.5 border-b last:border-0 hover:bg-black/5 cursor-pointer" style={{ borderColor: theme.colors.border }}>
+                                    <div key={i} className="flex gap-4 py-1.5 border-b last:border-0 cursor-pointer" style={{ borderColor: theme.colors.border }}>
                                         <span style={{ color: theme.colors.mutedForeground }}>{log.time}</span>
                                         <span className={`w-10 font-bold`} style={{ color: theme.colors.foreground }}>{log.type}</span>
                                         <span style={{ color: theme.colors.secondaryForeground }}>{log.msg}</span>

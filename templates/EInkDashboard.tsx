@@ -113,7 +113,7 @@ const EInkDashboard = () => {
                             <div className="h-full flex items-center justify-center">
                                 <EInkCard className="p-12 text-center border-dashed border-2 shadow-none bg-transparent" style={{ borderColor: theme.colors.mutedForeground }}>
                                     <h3 className="font-serif text-2xl font-bold mb-2">Module Offline</h3>
-                                    <p className="font-sans text-sm uppercase tracking-widest text-stone-500" style={{ color: theme.colors.mutedForeground }}>Please connect to WiFi to access {activeTab}</p>
+                                    <p className="font-sans text-sm uppercase tracking-widest" style={{ color: theme.colors.mutedForeground }}>Please connect to WiFi to access {activeTab}</p>
                                 </EInkCard>
                             </div>
                         )}

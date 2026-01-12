@@ -40,7 +40,7 @@ const LegacyOSDashboard = () => {
 
     return (
         <div
-            className="h-screen w-full font-mono overflow-hidden relative selection:bg-[#000080] selection:text-white"
+            className="h-screen w-full font-mono overflow-hidden relative selection:bg-[#000080] selection:text-[#ffffff]"
             style={{
                 backgroundColor: theme.colors.background,
                 color: theme.colors.foreground
@@ -62,8 +62,8 @@ const LegacyOSDashboard = () => {
                 <div className="pointer-events-auto transform hover:z-10 hover:scale-[1.01] transition-transform">
                     <LegacyWindow title="C:\WINDOWS\SYSTEM32" isActive={activeWindow === 'explorer'}>
                         <div
-                            className="bg-white border-[2px] border-inset h-64 p-2 overflow-y-auto"
-                            style={{ borderColor: theme.colors.muted }}
+                            className="border-[2px] border-inset h-64 p-2 overflow-y-auto"
+                            style={{ borderColor: theme.colors.muted, backgroundColor: '#ffffff' }}
                         >
                             <div className="grid grid-cols-4 gap-2 text-center">
                                 {[
@@ -76,8 +76,8 @@ const LegacyOSDashboard = () => {
                                     { icon: FileText, name: "BOOT.LOG" },
                                     { icon: Settings, name: "WIN.INI" },
                                 ].map((file, i) => (
-                                    <div key={i} className="flex flex-col items-center hover:bg-[#000080] hover:text-white p-1 cursor-pointer group">
-                                        <file.icon className="h-6 w-6 mb-1 text-black group-hover:text-white" />
+                                    <div key={i} className="flex flex-col items-center hover:bg-[#000080] hover:text-[#ffffff] p-1 cursor-pointer group">
+                                        <file.icon className="h-6 w-6 mb-1 group-hover:text-[#ffffff]" style={{ color: '#000000' }} />
                                         <span className="text-xs">{file.name}</span>
                                     </div>
                                 ))}
@@ -106,8 +106,8 @@ const LegacyOSDashboard = () => {
                             <span><span className="underline decoration-1 underline-offset-2">H</span>elp</span>
                         </div>
                         <div
-                            className="bg-white h-48 w-full p-2 text-sm outline-none resize-none border-[2px] border-inset overflow-y-auto"
-                            style={{ borderColor: theme.colors.muted }}
+                            className="h-48 w-full p-2 text-sm outline-none resize-none border-[2px] border-inset overflow-y-auto"
+                            style={{ borderColor: theme.colors.muted, backgroundColor: '#ffffff' }}
                         >
                             <p>TODO LIST:</p>
                             <p>- Buy floppy disks</p>
@@ -122,7 +122,7 @@ const LegacyOSDashboard = () => {
                 {/* Control Panel */}
                 <div className="pointer-events-auto absolute bottom-32 right-12 w-64 hidden md:block">
                     <LegacyWindow title="Control Panel">
-                        <div className="bg-white p-2 h-40 grid grid-cols-3 gap-2">
+                        <div className="p-2 h-40 grid grid-cols-3 gap-2" style={{ backgroundColor: '#ffffff' }}>
                             <div className="flex flex-col items-center text-center">
                                 <Settings className="h-6 w-6" />
                                 <span className="text-[10px]">Display</span>
@@ -169,20 +169,20 @@ const LegacyOSDashboard = () => {
                             className="absolute bottom-10 left-1 w-48 border-2 border-white border-r-black border-b-black shadow-xl p-1 flex flex-col gap-1"
                             style={{ backgroundColor: theme.colors.card }}
                         >
-                            <div className="bg-[#000080] text-white p-1 mb-1 font-bold text-lg vertical-text flex items-end">
+                            <div className="bg-[#000080] p-1 mb-1 font-bold text-lg vertical-text flex items-end" style={{ color: '#ffffff' }}>
                                 <span className="-rotate-90 origin-bottom-left translate-x-6">LegacyOS</span>
                             </div>
-                            <div className="hover:bg-[#000080] hover:text-white px-2 py-1 flex items-center gap-2 cursor-pointer">
+                            <div className="hover:bg-[#000080] hover:text-[#ffffff] px-2 py-1 flex items-center gap-2 cursor-pointer">
                                 <Folder className="h-4 w-4" /> Programs
                             </div>
-                            <div className="hover:bg-[#000080] hover:text-white px-2 py-1 flex items-center gap-2 cursor-pointer">
+                            <div className="hover:bg-[#000080] hover:text-[#ffffff] px-2 py-1 flex items-center gap-2 cursor-pointer">
                                 <FileText className="h-4 w-4" /> Documents
                             </div>
-                            <div className="hover:bg-[#000080] hover:text-white px-2 py-1 flex items-center gap-2 cursor-pointer">
+                            <div className="hover:bg-[#000080] hover:text-[#ffffff] px-2 py-1 flex items-center gap-2 cursor-pointer">
                                 <Settings className="h-4 w-4" /> Settings
                             </div>
                             <div className="border-t border-b border-white my-1" style={{ borderColor: theme.colors.muted }} />
-                            <div className="hover:bg-[#000080] hover:text-white px-2 py-1 flex items-center gap-2 cursor-pointer">
+                            <div className="hover:bg-[#000080] hover:text-[#ffffff] px-2 py-1 flex items-center gap-2 cursor-pointer">
                                 <Menu className="h-4 w-4" /> Shut Down...
                             </div>
                         </div>

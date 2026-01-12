@@ -131,13 +131,13 @@ const SciFiDashboard = () => {
                                 className="absolute left-0 right-0 h-px z-20"
                                 style={{ backgroundColor: theme.colors.accent, boxShadow: `0 0 10px ${theme.colors.accent}` }}
                             >
-                                <div className="absolute top-0 right-0 text-[10px] bg-black/50 px-1 -mt-4" style={{ color: theme.colors.accent }}>SCANNING_LAYERS</div>
+                                <div className="absolute top-0 right-0 text-[10px] px-1 -mt-4" style={{ color: theme.colors.accent, backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>SCANNING_LAYERS</div>
                             </motion.div>
                         </div>
                     </div>
 
                     {/* Bottom Vitals Strip */}
-                    <div className="h-32 mt-4 bg-black/40 border-t p-2" style={{ borderColor: `${theme.colors.border}50` }}>
+                    <div className="h-32 mt-4 border-t p-2" style={{ borderColor: `${theme.colors.border}50`, backgroundColor: 'rgba(0, 0, 0, 0.4)' }}>
                         <VitalsMonitor />
                     </div>
                 </div>
@@ -175,7 +175,7 @@ const SciFiDashboard = () => {
 
                     <div className="flex-1 overflow-hidden flex flex-col">
                         <h3 className="text-xs mb-2 font-bold px-1" style={{ color: theme.colors.primary }}>GENETIC_MARKERS</h3>
-                        <div className="flex-1 border bg-black/20 overflow-auto" style={{ borderColor: `${theme.colors.border}50` }}>
+                        <div className="flex-1 border overflow-auto" style={{ borderColor: `${theme.colors.border}50`, backgroundColor: 'rgba(0, 0, 0, 0.2)' }}>
                             <DNAList />
                         </div>
                     </div>

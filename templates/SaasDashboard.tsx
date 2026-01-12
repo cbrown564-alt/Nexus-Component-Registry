@@ -48,13 +48,13 @@ const SaasDashboard = () => {
                     animate={{ opacity: 1, x: 0 }}
                     className="flex items-center gap-3"
                 >
-                    <div className="flex items-center rounded-md border border-slate-800 bg-slate-900 p-1">
+                    <div className="flex items-center rounded-md p-1" style={{ borderWidth: '1px', borderColor: '#1e293b', backgroundColor: '#0f172a' }}>
                         <SaasButton variant="control" size="sm" className="rounded">Overview</SaasButton>
                         <SaasButton variant="control" size="sm" active className="rounded">Analytics</SaasButton>
                         <SaasButton variant="control" size="sm" className="rounded">Reports</SaasButton>
                     </div>
 
-                    <div className="h-8 w-px bg-slate-800 mx-1" />
+                    <div className="h-8 w-px mx-1" style={{ backgroundColor: '#1e293b' }} />
 
                     <SaasButton variant="primary" size="md" icon={<Plus className="h-4 w-4" />}>
                         New Campaign

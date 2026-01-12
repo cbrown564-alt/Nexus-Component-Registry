@@ -43,7 +43,7 @@ const GameDashboard = () => {
                             '--tw-shadow-color': theme.colors.primary
                         } as React.CSSProperties}
                     >
-                        <Gamepad2 className="h-6 w-6 text-white" />
+                        <Gamepad2 className="h-6 w-6" style={{ color: '#ffffff' }} />
                     </div>
                     <h1 className="text-xl font-bold tracking-wider">ARCADE<span style={{ color: theme.colors.primary }}>OS</span></h1>
                 </motion.div>
@@ -77,8 +77,8 @@ const GameDashboard = () => {
                         </button>
                     </div>
 
-                    <GameButton variant="icon" size="icon" icon={<Bell className="h-5 w-5" />} className="bg-black/40" />
-                    <GameButton variant="icon" size="icon" icon={<Settings className="h-5 w-5" />} className="bg-black/40" />
+                    <GameButton variant="icon" size="icon" icon={<Bell className="h-5 w-5" />} style={{ backgroundColor: 'rgba(0, 0, 0, 0.4)' }} />
+                    <GameButton variant="icon" size="icon" icon={<Settings className="h-5 w-5" />} style={{ backgroundColor: 'rgba(0, 0, 0, 0.4)' }} />
                 </motion.div>
             </header>
 

@@ -64,11 +64,11 @@ const EducationDashboard = () => {
 
                     {/* Featured Course (Large) */}
                     <EducationCard featured className="p-8 relative overflow-hidden">
-                        <div className="absolute top-0 right-0 -mt-16 -mr-16 h-64 w-64 rounded-full bg-white/10 blur-3xl" />
+                        <div className="absolute top-0 right-0 -mt-16 -mr-16 h-64 w-64 rounded-full blur-3xl" style={{ backgroundColor: 'rgba(255, 255, 255, 0.1)' }} />
                         <div className="absolute bottom-0 left-0 -mb-16 -ml-16 h-48 w-48 rounded-full blur-2xl" style={{ backgroundColor: `${theme.colors.accent}40` }} />
 
                         <div className="relative z-10">
-                            <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-xs font-semibold backdrop-blur-md border border-white/20">
+                            <div className="mb-4 inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-semibold backdrop-blur-md border" style={{ backgroundColor: 'rgba(255, 255, 255, 0.1)', borderColor: 'rgba(255, 255, 255, 0.2)' }}>
                                 <Sparkles className="h-3 w-3 text-amber-300" />
                                 <span>Recommended for you</span>
                             </div>
@@ -78,10 +78,10 @@ const EducationDashboard = () => {
                                 New modules on Graph Theory just added.
                             </p>
                             <div className="flex flex-wrap gap-4">
-                                <EducationButton variant="secondary" size="lg" icon={<Play className="h-4 w-4" />} className="bg-white hover:bg-white/90" style={{ color: theme.colors.primary }}>
+                                <EducationButton variant="secondary" size="lg" icon={<Play className="h-4 w-4" />} className="hover:bg-opacity-90" style={{ color: theme.colors.primary, backgroundColor: '#ffffff' }}>
                                     Start Learning
                                 </EducationButton>
-                                <EducationButton variant="outline" size="lg" icon={<BookOpen className="h-4 w-4" />} className="border-white/30 text-white hover:bg-white/10" style={{ borderColor: 'rgba(255,255,255,0.3)' }}>
+                                <EducationButton variant="outline" size="lg" icon={<BookOpen className="h-4 w-4" />} className="hover:bg-[#ffffff1a]" style={{ borderColor: 'rgba(255,255,255,0.3)', color: '#ffffff' }}>
                                     View Syllabus
                                 </EducationButton>
                             </div>
@@ -138,8 +138,8 @@ const EducationDashboard = () => {
                                 ].map((event, i) => (
                                     <div key={i} className="relative flex gap-4">
                                         <div
-                                            className={`relative z-10 h-4 w-4 rounded-full border-2 bg-white`}
-                                            style={{ borderColor: event.status === 'live' ? '#ef4444' : theme.colors.muted }} // Red for live is semantic
+                                            className={`relative z-10 h-4 w-4 rounded-full border-2`}
+                                            style={{ borderColor: event.status === 'live' ? '#ef4444' : theme.colors.muted, backgroundColor: '#ffffff' }}
                                         >
                                             {event.status === 'live' && <div className="absolute inset-0 animate-ping rounded-full bg-red-500 opacity-75" />}
                                         </div>
@@ -169,7 +169,7 @@ const EducationDashboard = () => {
                                     { title: 'React Quiz', due: 'Fri, 12 Oct', tag: 'Graded', color: 'text-blue-600 bg-blue-50 border-blue-200' },
                                     { title: 'Wireframe Prototype', due: 'Mon, 15 Oct', tag: 'Group', color: 'text-emerald-600 bg-emerald-50 border-emerald-200' },
                                 ].map((task, i) => (
-                                    <div key={i} className="flex items-start gap-3 rounded-xl border p-3 transition-colors hover:bg-white" style={{ borderColor: theme.colors.border, backgroundColor: `${theme.colors.secondary}50` }}>
+                                    <div key={i} className="flex items-start gap-3 rounded-xl border p-3 transition-colors hover:bg-[#ffffff]" style={{ borderColor: theme.colors.border, backgroundColor: `${theme.colors.secondary}50` }}>
                                         <div className="mt-1 h-2 w-2 rounded-full" style={{ backgroundColor: theme.colors.mutedForeground }} />
                                         <div className="flex-1">
                                             <h4 className="text-sm font-bold" style={{ color: theme.colors.foreground }}>{task.title}</h4>
