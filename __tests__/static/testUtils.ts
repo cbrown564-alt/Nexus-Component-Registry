@@ -35,7 +35,25 @@ export const HARDCODED_COLOR_PATTERNS: RegExp[] = [
     /\btext-stone-\d{2,3}\b/g,
     /\bbg-stone-\d{2,3}\b/g,
     /\bborder-stone-\d{2,3}\b/g,
+
+    // Neutral palette (often missed - common in editorial/magazine themes)
+    /\btext-neutral-\d{2,3}\b/g,
+    /\bbg-neutral-\d{2,3}\b/g,
+    /\bborder-neutral-\d{2,3}\b/g,
 ];
+
+// Additional patterns for inline style hardcoded colors
+// These are separated for workflow flexibility - can be enabled/disabled independently
+export const INLINE_STYLE_COLOR_PATTERNS: RegExp[] = [
+    // Hardcoded hex colors in style props (catches color, backgroundColor, borderColor)
+    // Pattern: style={{ color: '#ffffff' }} or style={{ backgroundColor: "#123456" }}
+    /style=\{\{[^}]*(?:color|backgroundColor|borderColor):\s*['"]#[0-9a-fA-F]{3,8}['"]/g,
+
+    // Hardcoded rgba() in style props (potential dark-only or light-only hardcoding)
+    // Note: This will have false positives for intentional overlays/shadows
+    /style=\{\{[^}]*rgba\(\s*\d+\s*,\s*\d+\s*,\s*\d+\s*,\s*[\d.]+\s*\)/g,
+];
+
 
 // Patterns that are intentionally allowed (semantic colors, not neutral grays)
 export const ALLOWED_PATTERNS: RegExp[] = [
@@ -95,6 +113,47 @@ export function scanFileForHardcodedColors(filePath: string): ScanResult {
         clean: violations.length === 0,
     };
 }
+
+/**
+ * Scan a single file for hardcoded inline style colors
+ * This catches hex/rgba values in style={{ }} props that were 
+ * introduced during the Tailwind class -> inline style refactoring
+ */
+export function scanFileForInlineStyleColors(filePath: string): ScanResult {
+    const content = fs.readFileSync(filePath, 'utf-8');
+    const lines = content.split('\n');
+    const violations: ColorViolation[] = [];
+
+    lines.forEach((lineContent, lineIndex) => {
+        // Skip comments
+        if (lineContent.trim().startsWith('//') || lineContent.trim().startsWith('*')) {
+            return;
+        }
+
+        for (const pattern of INLINE_STYLE_COLOR_PATTERNS) {
+            // Reset regex lastIndex for global patterns
+            pattern.lastIndex = 0;
+            let match;
+
+            while ((match = pattern.exec(lineContent)) !== null) {
+                violations.push({
+                    file: filePath,
+                    line: lineIndex + 1,
+                    column: match.index + 1,
+                    match: match[0],
+                    lineContent: lineContent.trim(),
+                });
+            }
+        }
+    });
+
+    return {
+        file: filePath,
+        violations,
+        clean: violations.length === 0,
+    };
+}
+
 
 /**
  * Get all .tsx files from a directory recursively

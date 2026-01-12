@@ -10,7 +10,7 @@ import EditorialButton from '../components/magazine/EditorialButton';
 import { useTheme } from '@/context/ThemeContext';
 
 const MagazineDashboard = () => {
-    const { currentPlaygroundTheme: theme, setScopedTheme } = useTheme();
+    const { currentPlaygroundTheme: theme, setPlaygroundTheme } = useTheme();
     const [activeSection, setActiveSection] = useState('All');
     const [savedArticle, setSavedArticle] = useState<number | null>(null);
 
@@ -38,7 +38,7 @@ const MagazineDashboard = () => {
     ];
 
     React.useEffect(() => {
-        setScopedTheme('gilded', 'magazine');
+        setPlaygroundTheme('magazine');
     }, []);
 
     return (
@@ -175,7 +175,7 @@ const MagazineDashboard = () => {
                     </div>
 
                     {/* Right Column: Sidebar */}
-                    <div className="lg:col-span-4 space-y-10">
+                    <div className="lg:col-span-4 space-y-10" style={{ backgroundColor: theme.colors.background }}>
                         <TrendingList />
 
                         <Newsletter />
@@ -194,7 +194,7 @@ const MagazineDashboard = () => {
 
                         {/* Related Topics */}
                         <div>
-                            <h3 className="text-xs font-bold uppercase tracking-widest text-neutral-400 mb-4">Explore Topics</h3>
+                            <h3 className="text-xs font-bold uppercase tracking-widest mb-4" style={{ color: theme.colors.mutedForeground }}>Explore Topics</h3>
                             <div className="flex flex-wrap gap-2">
                                 {['Minimalism', 'Sustainability', 'Typography', 'Urban Planning', 'Craftsmanship', 'Innovation'].map((topic) => (
                                     <motion.button
@@ -222,7 +222,7 @@ const MagazineDashboard = () => {
                 >
                     <div className="flex items-center gap-4 mb-8">
                         <span className="px-3 py-1 text-[10px] font-bold uppercase tracking-widest" style={{ backgroundColor: '#000000', color: '#ffffff' }}>Long Read</span>
-                        <div className="flex-1 h-px bg-neutral-200" />
+                        <div className="flex-1 h-px" style={{ backgroundColor: theme.colors.muted }} />
                     </div>
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                         <div className="aspect-[4/3] overflow-hidden">
@@ -233,11 +233,11 @@ const MagazineDashboard = () => {
                             />
                         </div>
                         <div className="lg:pr-12">
-                            <span className="text-[10px] font-bold uppercase tracking-widest text-neutral-400">Architecture</span>
+                            <span className="text-[10px] font-bold uppercase tracking-widest" style={{ color: theme.colors.mutedForeground }}>Architecture</span>
                             <h2 className="mt-3 font-serif text-4xl leading-tight">
                                 The Quiet Revolution: How Biophilic Design is Reshaping Our Cities
                             </h2>
-                            <p className="mt-6 text-lg text-neutral-600 leading-relaxed font-serif">
+                            <p className="mt-6 text-lg leading-relaxed font-serif" style={{ color: theme.colors.mutedForeground }}>
                                 From Singapore's supertrees to Milan's vertical forests, architects are weaving
                                 nature back into the urban fabric. We explore the movement that's redefining
                                 what it means to live in harmony with our environment.
@@ -246,7 +246,7 @@ const MagazineDashboard = () => {
                                 <EditorialButton variant="primary">
                                     Read the Full Story
                                 </EditorialButton>
-                                <span className="text-sm text-neutral-400 flex items-center gap-1.5">
+                                <span className="text-sm flex items-center gap-1.5" style={{ color: theme.colors.mutedForeground }}>
                                     <Clock className="h-4 w-4" />
                                     18 min read
                                 </span>
@@ -262,11 +262,11 @@ const MagazineDashboard = () => {
                     <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
                         <div>
                             <span className="font-serif text-3xl">THE EDIT</span>
-                            <p className="mt-2 text-sm text-neutral-500 max-w-xs">
+                            <p className="mt-2 text-sm max-w-xs" style={{ color: theme.colors.mutedForeground }}>
                                 Curating the intersection of design, culture, and ideas since 2020.
                             </p>
                         </div>
-                        <div className="flex gap-8 text-xs font-bold uppercase tracking-widest text-neutral-500">
+                        <div className="flex gap-8 text-xs font-bold uppercase tracking-widest" style={{ color: theme.colors.mutedForeground }}>
                             <a href="#" className="hover:text-[#000000] transition-colors">About</a>
                             <a href="#" className="hover:text-[#000000] transition-colors">Contact</a>
                             <a href="#" className="hover:text-[#000000] transition-colors">Instagram</a>

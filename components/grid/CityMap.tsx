@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { MapPin, Wifi, AlertTriangle, Zap, Droplets } from 'lucide-react';
 import GridCard from './GridCard';
+import { useTheme } from '@/context/ThemeContext';
 
 const CityMap = () => {
+    const { currentPlaygroundTheme: theme } = useTheme();
     const [activeZone, setActiveZone] = useState<number | null>(null);
 
     const zones = [
@@ -14,18 +16,21 @@ const CityMap = () => {
 
     return (
         <GridCard className="h-full min-h-[500px]" title="Geospatial Overview" noPadding={true}>
-            <div className="relative h-full w-full bg-[#0b1121] overflow-hidden">
+            <div
+                className="relative h-full w-full overflow-hidden"
+                style={{ backgroundColor: theme.colors.background }}
+            >
 
                 {/* Map Background (Abstract SVG) */}
                 <svg className="absolute inset-0 h-full w-full opacity-20" viewBox="0 0 100 100" preserveAspectRatio="none">
-                    <path d="M0 40 L30 40 L40 20 L70 20 L80 0" stroke="#3b82f6" strokeWidth="0.5" fill="none" />
-                    <path d="M20 100 L20 70 L50 60 L60 80 L100 80" stroke="#3b82f6" strokeWidth="0.5" fill="none" />
-                    <path d="M0 60 L100 60" stroke="#1e40af" strokeWidth="0.2" strokeDasharray="2 2" fill="none" />
-                    <path d="M40 0 L40 100" stroke="#1e40af" strokeWidth="0.2" strokeDasharray="2 2" fill="none" />
+                    <path d="M0 40 L30 40 L40 20 L70 20 L80 0" stroke={theme.colors.primary} strokeWidth="0.5" fill="none" />
+                    <path d="M20 100 L20 70 L50 60 L60 80 L100 80" stroke={theme.colors.primary} strokeWidth="0.5" fill="none" />
+                    <path d="M0 60 L100 60" stroke={theme.colors.border} strokeWidth="0.2" strokeDasharray="2 2" fill="none" />
+                    <path d="M40 0 L40 100" stroke={theme.colors.border} strokeWidth="0.2" strokeDasharray="2 2" fill="none" />
                     {/* City Blocks */}
-                    <rect x="10" y="10" width="15" height="20" stroke="#3b82f6" strokeWidth="0.5" fill="none" />
-                    <rect x="55" y="35" width="20" height="15" stroke="#3b82f6" strokeWidth="0.5" fill="none" />
-                    <rect x="35" y="60" width="25" height="25" stroke="#3b82f6" strokeWidth="0.5" fill="none" />
+                    <rect x="10" y="10" width="15" height="20" stroke={theme.colors.primary} strokeWidth="0.5" fill="none" />
+                    <rect x="55" y="35" width="20" height="15" stroke={theme.colors.primary} strokeWidth="0.5" fill="none" />
+                    <rect x="35" y="60" width="25" height="25" stroke={theme.colors.primary} strokeWidth="0.5" fill="none" />
                 </svg>
 
                 {/* Interactive Zones */}
@@ -40,16 +45,16 @@ const CityMap = () => {
                         {/* Ping Animation */}
                         <div
                             className="absolute inset-0 animate-ping rounded-full h-4 w-4 opacity-75"
-                            style={{ backgroundColor: zone.status === 'critical' ? '#ef4444' : zone.status === 'warning' ? '#f59e0b' : '#10b981' }}
+                            style={{ backgroundColor: zone.status === 'critical' ? '#ef4444' : zone.status === 'warning' ? '#f59e0b' : theme.colors.ring }}
                         />
 
                         {/* Node Icon */}
                         <div
                             className="relative flex h-4 w-4 items-center justify-center rounded-full border shadow-lg"
                             style={{
-                                backgroundColor: zone.status === 'critical' ? '#ef4444' : zone.status === 'warning' ? '#f59e0b' : '#10b981',
-                                color: zone.status === 'warning' ? '#000000' : zone.status === 'critical' ? '#ffffff' : '#000000',
-                                borderColor: '#000000'
+                                backgroundColor: zone.status === 'critical' ? '#ef4444' : zone.status === 'warning' ? '#f59e0b' : theme.colors.ring,
+                                color: zone.status === 'warning' ? '#000000' : theme.colors.primaryForeground,
+                                borderColor: theme.colors.foreground
                             }}
                         >
                             <div className="h-1.5 w-1.5 rounded-full bg-current" />
@@ -57,23 +62,26 @@ const CityMap = () => {
 
                         {/* Tooltip */}
                         {activeZone === zone.id && (
-                            <div className="absolute left-6 top-0 z-50 w-48 -translate-y-1/4 rounded p-3 text-xs border backdrop-blur-md" style={{ backgroundColor: 'rgba(15,23,42,0.9)', borderColor: 'rgba(59,130,246,0.3)' }}>
-                                <div className="mb-1 font-bold" style={{ color: '#dbeafe' }}>{zone.name}</div>
+                            <div
+                                className="absolute left-6 top-0 z-50 w-48 -translate-y-1/4 rounded p-3 text-xs border backdrop-blur-md"
+                                style={{ backgroundColor: theme.colors.card, borderColor: theme.colors.border }}
+                            >
+                                <div className="mb-1 font-bold" style={{ color: theme.colors.foreground }}>{zone.name}</div>
                                 <div className="flex items-center justify-between mb-1">
-                                    <span style={{ color: '#94a3b8' }}>Status</span>
+                                    <span style={{ color: theme.colors.mutedForeground }}>Status</span>
                                     <span
                                         className="font-mono font-bold uppercase"
-                                        style={{ color: zone.status === 'critical' ? '#f87171' : zone.status === 'warning' ? '#fbbf24' : '#34d399' }}
+                                        style={{ color: zone.status === 'critical' ? '#f87171' : zone.status === 'warning' ? '#fbbf24' : theme.colors.ring }}
                                     >{zone.status}</span>
                                 </div>
                                 <div className="flex items-center justify-between">
-                                    <span style={{ color: '#94a3b8' }}>Grid Load</span>
-                                    <span className="font-mono" style={{ color: '#bfdbfe' }}>{zone.load}</span>
+                                    <span style={{ color: theme.colors.mutedForeground }}>Grid Load</span>
+                                    <span className="font-mono" style={{ color: theme.colors.secondaryForeground }}>{zone.load}</span>
                                 </div>
                                 {/* Mini Chart */}
                                 <div className="mt-2 flex gap-0.5 h-4 items-end">
                                     {[40, 60, 30, 80, 50, 90, 70].map((h, i) => (
-                                        <div key={i} className="w-full" style={{ height: `${h}%`, backgroundColor: 'rgba(59,130,246,0.3)' }} />
+                                        <div key={i} className="w-full" style={{ height: `${h}%`, backgroundColor: theme.colors.primary }} />
                                     ))}
                                 </div>
                             </div>
@@ -83,18 +91,18 @@ const CityMap = () => {
 
                 {/* Map Controls */}
                 <div className="absolute bottom-4 right-4 flex flex-col gap-2">
-                    <button className="h-8 w-8 flex items-center justify-center border rounded transition-colors" style={{ backgroundColor: '#1e293b', borderColor: '#1e3a8a', color: '#60a5fa' }}>
+                    <button className="h-8 w-8 flex items-center justify-center border rounded transition-colors" style={{ backgroundColor: theme.colors.secondary, borderColor: theme.colors.border, color: theme.colors.accent }}>
                         <span className="text-lg font-bold">+</span>
                     </button>
-                    <button className="h-8 w-8 flex items-center justify-center border rounded transition-colors" style={{ backgroundColor: '#1e293b', borderColor: '#1e3a8a', color: '#60a5fa' }}>
+                    <button className="h-8 w-8 flex items-center justify-center border rounded transition-colors" style={{ backgroundColor: theme.colors.secondary, borderColor: theme.colors.border, color: theme.colors.accent }}>
                         <span className="text-lg font-bold">−</span>
                     </button>
                 </div>
 
                 {/* Legend */}
-                <div className="absolute bottom-4 left-4 border px-3 py-2 rounded backdrop-blur-sm" style={{ backgroundColor: 'rgba(15,23,42,0.9)', borderColor: 'rgba(30,58,138,0.5)' }}>
-                    <div className="flex items-center gap-4 text-[10px]" style={{ color: '#cbd5e1' }}>
-                        <span className="flex items-center gap-1.5"><span className="h-2 w-2 rounded-full" style={{ backgroundColor: '#10b981' }} /> Normal</span>
+                <div className="absolute bottom-4 left-4 border px-3 py-2 rounded backdrop-blur-sm" style={{ backgroundColor: theme.colors.card, borderColor: theme.colors.border }}>
+                    <div className="flex items-center gap-4 text-[10px]" style={{ color: theme.colors.mutedForeground }}>
+                        <span className="flex items-center gap-1.5"><span className="h-2 w-2 rounded-full" style={{ backgroundColor: theme.colors.ring }} /> Normal</span>
                         <span className="flex items-center gap-1.5"><span className="h-2 w-2 rounded-full" style={{ backgroundColor: '#f59e0b' }} /> Warning</span>
                         <span className="flex items-center gap-1.5"><span className="h-2 w-2 rounded-full" style={{ backgroundColor: '#ef4444' }} /> Critical</span>
                     </div>

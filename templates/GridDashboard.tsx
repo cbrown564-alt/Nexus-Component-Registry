@@ -10,10 +10,10 @@ import GridButton from '../components/grid/GridButton';
 import { useTheme } from '@/context/ThemeContext';
 
 const GridDashboard = () => {
-    const { currentPlaygroundTheme: theme, setScopedTheme } = useTheme();
+    const { currentPlaygroundTheme: theme, setPlaygroundTheme } = useTheme();
 
     React.useEffect(() => {
-        setScopedTheme('cyberpunk', 'grid');
+        setPlaygroundTheme('grid');
     }, []);
 
     return (

@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useTheme } from '@/context/ThemeContext';
 
 interface GridButtonProps {
     children: React.ReactNode;
@@ -22,6 +23,8 @@ const GridButton: React.FC<GridButtonProps> = ({
     disabled = false,
     onClick,
 }) => {
+    const { currentPlaygroundTheme: theme } = useTheme();
+
     const baseStyles = 'relative inline-flex items-center justify-center gap-2 font-mono text-xs uppercase tracking-wider font-bold transition-all duration-150 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed overflow-hidden';
 
     // Size styles are just padding
@@ -38,32 +41,32 @@ const GridButton: React.FC<GridButtonProps> = ({
 
         switch (variant) {
             case 'primary':
-                base.backgroundColor = 'rgba(30, 58, 138, 0.4)'; // blue-900/40
-                base.color = '#dbeafe'; // blue-100
-                base.borderColor = 'rgba(59, 130, 246, 0.6)'; // blue-500/60
-                base.boxShadow = 'inset 0 1px 0 0 rgba(59,130,246,0.3), inset 0 -1px 0 0 rgba(0,0,0,0.3)';
-                hover.backgroundColor = 'rgba(30, 78, 162, 0.5)'; // blue-800/50 approx
-                hover.borderColor = 'rgba(96, 165, 250, 0.7)'; // blue-400/70
-                hover.boxShadow = 'inset 0 1px 0 0 rgba(96,165,250,0.4), 0 0 20px rgba(59,130,246,0.15)';
+                base.backgroundColor = theme.colors.primary;
+                base.color = theme.colors.primaryForeground;
+                base.borderColor = theme.colors.primary;
+                base.boxShadow = `inset 0 1px 0 0 ${theme.colors.primary}, inset 0 -1px 0 0 rgba(0,0,0,0.3)`;
+                // For hover we can just rely on opacity or css filters, but let's try to match the "glow" effect
+                hover.opacity = 0.9;
+                hover.boxShadow = `0 0 15px ${theme.colors.primary}`; // Glow effect
                 break;
             case 'secondary':
-                base.backgroundColor = 'rgba(15, 23, 42, 0.6)'; // slate-900/60
-                base.color = '#cbd5e1'; // slate-300
-                base.borderColor = 'rgba(30, 58, 138, 0.5)'; // blue-900/50
-                base.boxShadow = 'inset 0 1px 0 0 rgba(148,163,184,0.1), inset 0 -1px 0 0 rgba(0,0,0,0.2)';
-                hover.backgroundColor = 'rgba(30, 41, 59, 0.5)'; // slate-800/50
-                hover.borderColor = 'rgba(30, 64, 175, 0.6)'; // blue-800/60
-                hover.color = '#e2e8f0'; // slate-200
+                base.backgroundColor = theme.colors.secondary;
+                base.color = theme.colors.secondaryForeground;
+                base.borderColor = theme.colors.border;
+                base.boxShadow = 'inset 0 1px 0 0 rgba(255,255,255,0.05), inset 0 -1px 0 0 rgba(0,0,0,0.2)';
+                hover.backgroundColor = theme.colors.muted;
+                hover.borderColor = theme.colors.accent; // Highlight border on hover
+                hover.color = theme.colors.foreground;
                 break;
             case 'danger':
+                // Semantic danger colors
                 base.backgroundColor = 'rgba(69, 10, 10, 0.5)'; // red-950/50
                 base.color = '#fca5a5'; // red-300
                 base.borderColor = 'rgba(153, 27, 27, 0.6)'; // red-800/60
                 base.boxShadow = 'inset 0 1px 0 0 rgba(248,113,113,0.2), inset 0 -1px 0 0 rgba(0,0,0,0.3)';
-                hover.backgroundColor = 'rgba(127, 29, 29, 0.5)'; // red-900/50
-                hover.borderColor = 'rgba(220, 38, 38, 0.7)'; // red-600/70
-                hover.color = '#fecaca'; // red-200
-                hover.boxShadow = '0 0 20px rgba(239,68,68,0.15)';
+                hover.backgroundColor = 'rgba(127, 29, 29, 0.5)';
+                hover.borderColor = '#ef4444';
+                hover.boxShadow = '0 0 15px rgba(239, 68, 68, 0.4)';
                 break;
         }
         return { base, hover };
@@ -73,10 +76,10 @@ const GridButton: React.FC<GridButtonProps> = ({
 
     const getStatusStyle = (s: string) => {
         switch (s) {
-            case 'online': return { backgroundColor: '#34d399', boxShadow: '0 0 8px rgba(52,211,153,0.6)' };
+            case 'online': return { backgroundColor: theme.colors.ring, boxShadow: `0 0 8px ${theme.colors.ring}` };
             case 'warning': return { backgroundColor: '#fbbf24', boxShadow: '0 0 8px rgba(251,191,36,0.6)' };
             case 'offline': return { backgroundColor: '#ef4444', boxShadow: '0 0 8px rgba(239,68,68,0.6)' };
-            case 'idle': return { backgroundColor: '#64748b' };
+            case 'idle': return { backgroundColor: theme.colors.mutedForeground };
             default: return {};
         }
     };
@@ -91,11 +94,11 @@ const GridButton: React.FC<GridButtonProps> = ({
             disabled={disabled}
             onClick={onClick}
         >
-            {/* Corner markers like GridCard */}
-            <span className="absolute top-0 left-0 h-1.5 w-1.5 border-t border-l" style={{ borderColor: 'rgba(59, 130, 246, 0.5)' }} />
-            <span className="absolute top-0 right-0 h-1.5 w-1.5 border-t border-r" style={{ borderColor: 'rgba(59, 130, 246, 0.5)' }} />
-            <span className="absolute bottom-0 left-0 h-1.5 w-1.5 border-b border-l" style={{ borderColor: 'rgba(59, 130, 246, 0.5)' }} />
-            <span className="absolute bottom-0 right-0 h-1.5 w-1.5 border-b border-r" style={{ borderColor: 'rgba(59, 130, 246, 0.5)' }} />
+            {/* Corner markers like GridCard - using theme border color */}
+            <span className="absolute top-0 left-0 h-1.5 w-1.5 border-t border-l" style={{ borderColor: theme.colors.accent }} />
+            <span className="absolute top-0 right-0 h-1.5 w-1.5 border-t border-r" style={{ borderColor: theme.colors.accent }} />
+            <span className="absolute bottom-0 left-0 h-1.5 w-1.5 border-b border-l" style={{ borderColor: theme.colors.accent }} />
+            <span className="absolute bottom-0 right-0 h-1.5 w-1.5 border-b border-r" style={{ borderColor: theme.colors.accent }} />
 
             {/* Status LED indicator */}
             {status && (

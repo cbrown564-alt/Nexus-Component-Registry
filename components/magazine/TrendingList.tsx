@@ -1,7 +1,10 @@
 import React from 'react';
 import MagazineCard from './MagazineCard';
+import { useTheme } from '@/context/ThemeContext';
 
 const TrendingList = () => {
+  const { currentPlaygroundTheme: theme } = useTheme();
+
   const stories = [
     { title: "Why Typography Matters More Than Ever", category: "Design" },
     { title: "The Hidden Economics of SaaS Pricing", category: "Business" },
@@ -10,25 +13,37 @@ const TrendingList = () => {
   ];
 
   return (
-    <MagazineCard className="border-neutral-200">
-      <h3 className="mb-8 font-serif text-2xl italic text-neutral-900 border-b border-neutral-200 pb-4">
+    <MagazineCard>
+      <h3
+        className="mb-8 font-serif text-2xl italic border-b pb-4"
+        style={{ color: theme.colors.foreground, borderColor: theme.colors.border }}
+      >
         Trending Now
       </h3>
       <div className="space-y-8">
         {stories.map((story, i) => (
-            <div key={i} className="group flex items-start gap-4 cursor-pointer">
-                <span className="font-serif text-4xl text-neutral-200 transition-colors group-hover:text-neutral-400">
-                    0{i + 1}
-                </span>
-                <div>
-                    <span className="text-[10px] font-bold uppercase tracking-widest text-neutral-400">
-                        {story.category}
-                    </span>
-                    <h4 className="mt-1 font-serif text-lg leading-snug text-neutral-900 group-hover:underline decoration-neutral-300 underline-offset-4 transition-all">
-                        {story.title}
-                    </h4>
-                </div>
+          <div key={i} className="group flex items-start gap-4 cursor-pointer">
+            <span
+              className="font-serif text-4xl transition-colors group-hover:opacity-70"
+              style={{ color: theme.colors.muted }}
+            >
+              0{i + 1}
+            </span>
+            <div>
+              <span
+                className="text-[10px] font-bold uppercase tracking-widest"
+                style={{ color: theme.colors.mutedForeground }}
+              >
+                {story.category}
+              </span>
+              <h4
+                className="mt-1 font-serif text-lg leading-snug group-hover:underline underline-offset-4 transition-all"
+                style={{ color: theme.colors.foreground, textDecorationColor: theme.colors.muted }}
+              >
+                {story.title}
+              </h4>
             </div>
+          </div>
         ))}
       </div>
     </MagazineCard>

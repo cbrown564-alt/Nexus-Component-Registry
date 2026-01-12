@@ -1,6 +1,7 @@
 import React from 'react';
 import { AlertTriangle, Info, CheckCircle, XCircle } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { useTheme } from '@/context/ThemeContext';
 
 interface AlertBannerProps {
   type?: 'info' | 'warning' | 'success' | 'error';
@@ -17,13 +18,15 @@ const AlertBanner: React.FC<AlertBannerProps> = ({
   onDismiss,
   className = "",
 }) => {
+  const { currentPlaygroundTheme: theme } = useTheme();
+
   const typeConfig = {
     info: {
       icon: Info,
-      bg: 'rgba(59, 130, 246, 0.1)',
-      border: 'rgba(59, 130, 246, 0.3)',
-      iconColor: '#60a5fa',
-      titleColor: '#93c5fd',
+      bg: theme.colors.muted, // Fallback, implies lighter/dimmer
+      border: theme.colors.border,
+      iconColor: theme.colors.primary,
+      titleColor: theme.colors.foreground,
     },
     warning: {
       icon: AlertTriangle,
@@ -36,7 +39,7 @@ const AlertBanner: React.FC<AlertBannerProps> = ({
       icon: CheckCircle,
       bg: 'rgba(16, 185, 129, 0.1)',
       border: 'rgba(16, 185, 129, 0.3)',
-      iconColor: '#34d399',
+      iconColor: theme.colors.ring,
       titleColor: '#6ee7b7',
     },
     error: {
@@ -56,19 +59,19 @@ const AlertBanner: React.FC<AlertBannerProps> = ({
       initial={{ opacity: 0, y: -10 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -10 }}
-      className="flex items-start gap-3 p-4 rounded-lg border"
+      className={`flex items-start gap-3 p-4 rounded-lg border ${className}`}
       style={{ backgroundColor: config.bg, borderColor: config.border }}
     >
       <Icon className="h-5 w-5 flex-shrink-0 mt-0.5" style={{ color: config.iconColor }} />
       <div className="flex-1 min-w-0">
         <h4 className="font-semibold" style={{ color: config.titleColor }}>{title}</h4>
-        <p className="text-sm mt-0.5" style={{ color: '#a1a1aa' }}>{message}</p>
+        <p className="text-sm mt-0.5" style={{ color: theme.colors.mutedForeground }}>{message}</p>
       </div>
       {onDismiss && (
         <button
           onClick={onDismiss}
           className="transition-opacity hover:opacity-80"
-          style={{ color: '#71717a' }}
+          style={{ color: theme.colors.mutedForeground }}
         >
           <XCircle className="h-4 w-4" />
         </button>
@@ -78,3 +81,4 @@ const AlertBanner: React.FC<AlertBannerProps> = ({
 };
 
 export default AlertBanner;
+

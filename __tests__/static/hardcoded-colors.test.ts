@@ -11,6 +11,7 @@ import * as path from 'path';
 import { fileURLToPath } from 'url';
 import {
     scanFileForHardcodedColors,
+    scanFileForInlineStyleColors,
     getTemplateFiles,
     getComponentFiles,
     getAllComponentFiles,
@@ -109,6 +110,46 @@ describe('Hardcoded Color Detection', () => {
                 console.log(`   ✅ All clean!`);
             }
 
+            expect(true).toBe(true);
+        });
+    });
+});
+
+describe('Inline Style Color Detection', () => {
+    describe('Components with potential hardcoded inline styles', () => {
+        let inlineStyleResults: ScanResult[];
+
+        beforeAll(() => {
+            const componentFiles = getAllComponentFiles(ROOT_DIR);
+            inlineStyleResults = componentFiles.map(scanFileForInlineStyleColors);
+        });
+
+        it('should scan all component files for inline style colors', () => {
+            expect(inlineStyleResults.length).toBeGreaterThan(0);
+        });
+
+        it('should report inline style color violations (informational)', () => {
+            const summary = getSummary(inlineStyleResults);
+            console.log('\n📊 Inline Style Color Scan Summary:');
+            console.log(`   Total files: ${summary.totalFiles}`);
+            console.log(`   Clean files: ${summary.cleanFiles}`);
+            console.log(`   Files with potential issues: ${summary.violatingFiles}`);
+            console.log(`   Total potential issues: ${summary.totalViolations}`);
+            console.log('   (Note: Some hex/rgba values may be intentional, e.g., overlays)');
+
+            if (summary.violatingFiles > 0) {
+                // Show top 10 files with most violations
+                const violating = inlineStyleResults.filter(r => !r.clean)
+                    .sort((a, b) => b.violations.length - a.violations.length)
+                    .slice(0, 10);
+                console.log('\n   Top files with inline style colors:');
+                for (const r of violating) {
+                    const basename = path.basename(r.file);
+                    console.log(`   ⚠️  ${basename}: ${r.violations.length} occurrences`);
+                }
+            }
+
+            // Informational only - doesn't fail
             expect(true).toBe(true);
         });
     });
