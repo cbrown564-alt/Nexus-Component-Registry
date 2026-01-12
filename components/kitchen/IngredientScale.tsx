@@ -24,23 +24,25 @@ const IngredientScale = () => {
 
     return (
         <KitchenCard className="p-6 h-full flex flex-col bg-[#FFFBF7]">
-            <div className="flex items-center justify-between mb-6 pb-6 border-b border-stone-200 border-dashed">
-                <div className="flex items-center gap-2 text-stone-800">
+            <div className="flex items-center justify-between mb-6 pb-6 border-b border-dashed" style={{ borderColor: '#e7e5e4' }}>
+                <div className="flex items-center gap-2" style={{ color: '#292524' }}>
                     <Users className="h-5 w-5" />
                     <span className="font-serif text-xl font-bold">Servings</span>
                 </div>
 
-                <div className="flex items-center gap-4 bg-white rounded-full p-1 border border-stone-200 shadow-sm">
+                <div className="flex items-center gap-4 rounded-full p-1 border shadow-sm" style={{ backgroundColor: '#ffffff', borderColor: '#e7e5e4' }}>
                     <button
                         onClick={() => setServings(Math.max(1, servings - 1))}
-                        className="h-10 w-10 flex items-center justify-center rounded-full bg-stone-100 hover:bg-stone-200 text-stone-600 transition-colors"
+                        className="h-10 w-10 flex items-center justify-center rounded-full transition-colors"
+                        style={{ backgroundColor: '#f5f5f4', color: '#57534e' }}
                     >
                         <Minus className="h-4 w-4" />
                     </button>
-                    <span className="text-xl font-bold text-stone-800 w-6 text-center">{servings}</span>
+                    <span className="text-xl font-bold w-6 text-center" style={{ color: '#292524' }}>{servings}</span>
                     <button
                         onClick={() => setServings(servings + 1)}
-                        className="h-10 w-10 flex items-center justify-center rounded-full bg-orange-100 hover:bg-orange-200 text-orange-700 transition-colors"
+                        className="h-10 w-10 flex items-center justify-center rounded-full transition-colors"
+                        style={{ backgroundColor: '#ffedd5', color: '#c2410c' }}
                     >
                         <Plus className="h-4 w-4" />
                     </button>
@@ -56,25 +58,29 @@ const IngredientScale = () => {
                         <div
                             key={i}
                             onClick={() => toggleCheck(i)}
-                            className={`flex items-center justify-between p-4 rounded-xl cursor-pointer transition-all ${isChecked
-                                ? 'bg-stone-100 opacity-50'
-                                : 'bg-white hover:bg-white/80 shadow-sm'
-                                }`}
+                            className="flex items-center justify-between p-4 rounded-xl cursor-pointer transition-all shadow-sm"
+                            style={isChecked
+                                ? { backgroundColor: '#f5f5f4', opacity: 0.5 }
+                                : { backgroundColor: '#ffffff' }
+                            }
                         >
                             <div className="flex items-center gap-4">
                                 {isChecked
-                                    ? <CheckCircle2 className="h-6 w-6 text-green-700 shrink-0" />
-                                    : <Circle className="h-6 w-6 text-stone-300 shrink-0" />
+                                    ? <CheckCircle2 className="h-6 w-6 shrink-0" style={{ color: '#15803d' }} />
+                                    : <Circle className="h-6 w-6 shrink-0" style={{ color: '#d6d3d1' }} />
                                 }
-                                <span className={`text-lg font-medium ${isChecked ? 'line-through text-stone-500' : 'text-stone-800'}`}>
+                                <span
+                                    className={`text-lg font-medium ${isChecked ? 'line-through' : ''}`}
+                                    style={{ color: isChecked ? '#78716c' : '#292524' }}
+                                >
                                     {ing.name}
                                 </span>
                             </div>
                             <div className="text-right">
-                                <span className="block font-bold text-lg text-orange-700">
+                                <span className="block font-bold text-lg" style={{ color: '#c2410c' }}>
                                     {amount}
                                 </span>
-                                <span className="text-xs font-bold uppercase text-stone-400">
+                                <span className="text-xs font-bold uppercase" style={{ color: '#a8a29e' }}>
                                     {ing.unit}
                                 </span>
                             </div>

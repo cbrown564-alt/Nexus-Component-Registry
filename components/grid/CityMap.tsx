@@ -38,35 +38,42 @@ const CityMap = () => {
                         onMouseLeave={() => setActiveZone(null)}
                     >
                         {/* Ping Animation */}
-                        <div className={`absolute inset-0 animate-ping rounded-full h-4 w-4 opacity-75 ${zone.status === 'critical' ? 'bg-red-500' :
-                            zone.status === 'warning' ? 'bg-amber-500' : 'bg-emerald-500'
-                            }`} />
+                        <div
+                            className="absolute inset-0 animate-ping rounded-full h-4 w-4 opacity-75"
+                            style={{ backgroundColor: zone.status === 'critical' ? '#ef4444' : zone.status === 'warning' ? '#f59e0b' : '#10b981' }}
+                        />
 
                         {/* Node Icon */}
-                        <div className={`relative flex h-4 w-4 items-center justify-center rounded-full border border-black shadow-lg ${zone.status === 'critical' ? 'bg-red-500 text-white' :
-                            zone.status === 'warning' ? 'bg-amber-500 text-black' : 'bg-emerald-500 text-black'
-                            }`}>
+                        <div
+                            className="relative flex h-4 w-4 items-center justify-center rounded-full border shadow-lg"
+                            style={{
+                                backgroundColor: zone.status === 'critical' ? '#ef4444' : zone.status === 'warning' ? '#f59e0b' : '#10b981',
+                                color: zone.status === 'warning' ? '#000000' : zone.status === 'critical' ? '#ffffff' : '#000000',
+                                borderColor: '#000000'
+                            }}
+                        >
                             <div className="h-1.5 w-1.5 rounded-full bg-current" />
                         </div>
 
                         {/* Tooltip */}
                         {activeZone === zone.id && (
-                            <div className="absolute left-6 top-0 z-50 w-48 -translate-y-1/4 rounded bg-slate-900/90 p-3 text-xs border border-blue-500/30 backdrop-blur-md">
-                                <div className="mb-1 font-bold text-blue-100">{zone.name}</div>
+                            <div className="absolute left-6 top-0 z-50 w-48 -translate-y-1/4 rounded p-3 text-xs border backdrop-blur-md" style={{ backgroundColor: 'rgba(15,23,42,0.9)', borderColor: 'rgba(59,130,246,0.3)' }}>
+                                <div className="mb-1 font-bold" style={{ color: '#dbeafe' }}>{zone.name}</div>
                                 <div className="flex items-center justify-between mb-1">
-                                    <span className="text-slate-400">Status</span>
-                                    <span className={`font-mono font-bold uppercase ${zone.status === 'critical' ? 'text-red-400' :
-                                        zone.status === 'warning' ? 'text-amber-400' : 'text-emerald-400'
-                                        }`}>{zone.status}</span>
+                                    <span style={{ color: '#94a3b8' }}>Status</span>
+                                    <span
+                                        className="font-mono font-bold uppercase"
+                                        style={{ color: zone.status === 'critical' ? '#f87171' : zone.status === 'warning' ? '#fbbf24' : '#34d399' }}
+                                    >{zone.status}</span>
                                 </div>
                                 <div className="flex items-center justify-between">
-                                    <span className="text-slate-400">Grid Load</span>
-                                    <span className="font-mono text-blue-200">{zone.load}</span>
+                                    <span style={{ color: '#94a3b8' }}>Grid Load</span>
+                                    <span className="font-mono" style={{ color: '#bfdbfe' }}>{zone.load}</span>
                                 </div>
                                 {/* Mini Chart */}
                                 <div className="mt-2 flex gap-0.5 h-4 items-end">
                                     {[40, 60, 30, 80, 50, 90, 70].map((h, i) => (
-                                        <div key={i} className="w-full bg-blue-500/30" style={{ height: `${h}%` }} />
+                                        <div key={i} className="w-full" style={{ height: `${h}%`, backgroundColor: 'rgba(59,130,246,0.3)' }} />
                                     ))}
                                 </div>
                             </div>
@@ -76,20 +83,20 @@ const CityMap = () => {
 
                 {/* Map Controls */}
                 <div className="absolute bottom-4 right-4 flex flex-col gap-2">
-                    <button className="h-8 w-8 flex items-center justify-center bg-slate-800 border border-blue-900 text-blue-400 hover:bg-slate-700 hover:text-white rounded transition-colors">
+                    <button className="h-8 w-8 flex items-center justify-center border rounded transition-colors" style={{ backgroundColor: '#1e293b', borderColor: '#1e3a8a', color: '#60a5fa' }}>
                         <span className="text-lg font-bold">+</span>
                     </button>
-                    <button className="h-8 w-8 flex items-center justify-center bg-slate-800 border border-blue-900 text-blue-400 hover:bg-slate-700 hover:text-white rounded transition-colors">
+                    <button className="h-8 w-8 flex items-center justify-center border rounded transition-colors" style={{ backgroundColor: '#1e293b', borderColor: '#1e3a8a', color: '#60a5fa' }}>
                         <span className="text-lg font-bold">−</span>
                     </button>
                 </div>
 
                 {/* Legend */}
-                <div className="absolute bottom-4 left-4 bg-slate-900/90 border border-blue-900/50 px-3 py-2 rounded backdrop-blur-sm">
-                    <div className="flex items-center gap-4 text-[10px] text-slate-300">
-                        <span className="flex items-center gap-1.5"><span className="h-2 w-2 rounded-full bg-emerald-500" /> Normal</span>
-                        <span className="flex items-center gap-1.5"><span className="h-2 w-2 rounded-full bg-amber-500" /> Warning</span>
-                        <span className="flex items-center gap-1.5"><span className="h-2 w-2 rounded-full bg-red-500" /> Critical</span>
+                <div className="absolute bottom-4 left-4 border px-3 py-2 rounded backdrop-blur-sm" style={{ backgroundColor: 'rgba(15,23,42,0.9)', borderColor: 'rgba(30,58,138,0.5)' }}>
+                    <div className="flex items-center gap-4 text-[10px]" style={{ color: '#cbd5e1' }}>
+                        <span className="flex items-center gap-1.5"><span className="h-2 w-2 rounded-full" style={{ backgroundColor: '#10b981' }} /> Normal</span>
+                        <span className="flex items-center gap-1.5"><span className="h-2 w-2 rounded-full" style={{ backgroundColor: '#f59e0b' }} /> Warning</span>
+                        <span className="flex items-center gap-1.5"><span className="h-2 w-2 rounded-full" style={{ backgroundColor: '#ef4444' }} /> Critical</span>
                     </div>
                 </div>
 
