@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Copy, Check } from 'lucide-react';
+import { useTheme } from '@/context/ThemeContext';
 
 interface CodeBlockProps {
     code: string;
@@ -19,6 +20,7 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
     wrapperClassName = "",
     showLineNumbers = false
 }) => {
+    const { theme } = useTheme();
     const [copied, setCopied] = useState(false);
 
     const handleCopy = async () => {
@@ -30,10 +32,24 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
     const lines = code.split('\n');
 
     return (
-        <div className={`relative rounded-xl overflow-hidden bg-zinc-950 border border-zinc-800 flex flex-col ${wrapperClassName || className}`}>
+        <div
+            className={`relative rounded-xl overflow-hidden flex flex-col ${wrapperClassName || className}`}
+            style={{
+                backgroundColor: theme.colors.background,
+                borderColor: theme.colors.border,
+                borderWidth: '1px',
+                borderStyle: 'solid'
+            }}
+        >
             {/* Header - Only show if filename provided or NOT showing line numbers (simple view) */}
             {(filename || !showLineNumbers) && (
-                <div className="flex items-center justify-between px-4 py-2 bg-zinc-900/50 border-b border-zinc-800 shrink-0">
+                <div
+                    className="flex items-center justify-between px-4 py-2 border-b shrink-0"
+                    style={{
+                        backgroundColor: theme.colors.muted,
+                        borderColor: theme.colors.border
+                    }}
+                >
                     <div className="flex items-center gap-2">
                         {/* Traffic lights */}
                         <div className="flex gap-1.5">
@@ -43,7 +59,12 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
                         </div>
 
                         {filename && (
-                            <span className="ml-3 text-xs font-mono text-zinc-500">{filename}</span>
+                            <span
+                                className="ml-3 text-xs font-mono"
+                                style={{ color: theme.colors.mutedForeground }}
+                            >
+                                {filename}
+                            </span>
                         )}
                     </div>
 
@@ -51,7 +72,10 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                         onClick={handleCopy}
-                        className="flex items-center gap-1.5 px-2 py-1 rounded text-xs text-zinc-400 hover:text-zinc-200 hover:bg-zinc-800 transition-colors"
+                        className="flex items-center gap-1.5 px-2 py-1 rounded text-xs transition-colors"
+                        style={{
+                            color: theme.colors.mutedForeground,
+                        }}
                     >
                         {copied ? (
                             <>
@@ -69,11 +93,17 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
             )}
 
             {/* Code content */}
-            <div className="flex-1 overflow-auto bg-[#09090b] p-4 font-mono text-sm leading-6">
+            <div
+                className="flex-1 overflow-auto p-4 font-mono text-sm leading-6"
+                style={{ backgroundColor: theme.colors.background }} // Ensure deep dark background
+            >
                 <div className="flex gap-4 min-w-max">
                     {/* Line Numbers */}
                     {showLineNumbers && (
-                        <div className="flex flex-col text-right select-none text-zinc-700 w-8 shrink-0">
+                        <div
+                            className="flex flex-col text-right select-none w-8 shrink-0"
+                            style={{ color: theme.colors.mutedForeground }}
+                        >
                             {lines.map((_, i) => (
                                 <span key={i} className="leading-6">{i + 1}</span>
                             ))}
@@ -81,7 +111,10 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
                     )}
 
                     {/* Code Lines */}
-                    <div className="flex flex-col text-zinc-300">
+                    <div
+                        className="flex flex-col"
+                        style={{ color: theme.colors.foreground }}
+                    >
                         {lines.map((line, i) => (
                             <div key={i} className="leading-6 whitespace-pre">{line || ' '}</div>
                         ))}
@@ -91,7 +124,13 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
 
             {/* Language badge */}
             <div className="absolute bottom-3 right-3">
-                <span className="px-2 py-0.5 text-[10px] font-mono uppercase tracking-wider text-zinc-500 bg-zinc-800 rounded">
+                <span
+                    className="px-2 py-0.5 text-[10px] font-mono uppercase tracking-wider rounded"
+                    style={{
+                        backgroundColor: theme.colors.muted,
+                        color: theme.colors.mutedForeground
+                    }}
+                >
                     {language}
                 </span>
             </div>

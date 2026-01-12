@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { GitBranch, Plus, Minus, FileCode2 } from 'lucide-react';
+import { useTheme } from '@/context/ThemeContext';
 
 export interface DiffLine {
     type: 'added' | 'removed' | 'context' | 'header';
@@ -46,6 +47,8 @@ const GitDiffView: React.FC<GitDiffViewProps> = ({
     compact = false,
     className = ''
 }) => {
+    const { theme } = useTheme();
+
     const getLineStyles = (type: DiffLine['type']) => {
         switch (type) {
             case 'added':
@@ -55,7 +58,7 @@ const GitDiffView: React.FC<GitDiffViewProps> = ({
             case 'header':
                 return 'bg-blue-500/10 text-blue-400 border-l-2 border-blue-500 italic';
             default:
-                return 'text-zinc-400 border-l-2 border-transparent';
+                return 'border-l-2 border-transparent';
         }
     };
 
@@ -69,12 +72,29 @@ const GitDiffView: React.FC<GitDiffViewProps> = ({
     };
 
     return (
-        <div className={`rounded-xl overflow-hidden bg-zinc-950 border border-zinc-800 ${className}`}>
+        <div
+            className={`rounded-xl overflow-hidden border ${className}`}
+            style={{
+                backgroundColor: theme.colors.background,
+                borderColor: theme.colors.border
+            }}
+        >
             {/* Header */}
-            <div className="flex items-center justify-between px-4 py-2.5 bg-zinc-900/70 border-b border-zinc-800">
+            <div
+                className="flex items-center justify-between px-4 py-2.5 border-b"
+                style={{
+                    backgroundColor: theme.colors.muted,
+                    borderColor: theme.colors.border
+                }}
+            >
                 <div className="flex items-center gap-2">
                     <GitBranch className="w-4 h-4 text-orange-500" />
-                    <span className="text-sm font-medium text-zinc-300">Changes</span>
+                    <span
+                        className="text-sm font-medium"
+                        style={{ color: theme.colors.foreground }}
+                    >
+                        Changes
+                    </span>
                 </div>
                 <div className="flex items-center gap-3 text-xs">
                     <span className="flex items-center gap-1 text-emerald-400">
@@ -89,7 +109,7 @@ const GitDiffView: React.FC<GitDiffViewProps> = ({
             </div>
 
             {/* File Diffs */}
-            <div className="divide-y divide-zinc-800">
+            <div className="divide-y" style={{ borderColor: theme.colors.border }}>
                 {files.map((file, fileIndex) => (
                     <motion.div
                         key={file.filename}
@@ -98,9 +118,20 @@ const GitDiffView: React.FC<GitDiffViewProps> = ({
                         transition={{ delay: fileIndex * 0.1 }}
                     >
                         {/* File Header */}
-                        <div className="flex items-center gap-3 px-4 py-2 bg-zinc-900/40">
-                            <FileCode2 className="w-4 h-4 text-zinc-500" />
-                            <span className="font-mono text-xs text-zinc-300">{file.filename}</span>
+                        <div
+                            className="flex items-center gap-3 px-4 py-2"
+                            style={{ backgroundColor: theme.colors.background }}
+                        >
+                            <FileCode2
+                                className="w-4 h-4"
+                                style={{ color: theme.colors.mutedForeground }}
+                            />
+                            <span
+                                className="font-mono text-xs"
+                                style={{ color: theme.colors.foreground }}
+                            >
+                                {file.filename}
+                            </span>
                             <div className="flex items-center gap-2 ml-auto text-[10px]">
                                 <span className="text-emerald-400">+{file.additions}</span>
                                 <span className="text-red-400">-{file.deletions}</span>
@@ -114,13 +145,26 @@ const GitDiffView: React.FC<GitDiffViewProps> = ({
                                     <div
                                         key={lineIndex}
                                         className={`flex ${getLineStyles(line.type)}`}
+                                        style={{ color: line.type === 'context' ? theme.colors.mutedForeground : undefined }}
                                     >
                                         {/* Line Numbers */}
-                                        <div className="flex shrink-0 select-none text-zinc-600 bg-zinc-900/50">
-                                            <span className="w-10 px-2 text-right border-r border-zinc-800">
+                                        <div
+                                            className="flex shrink-0 select-none"
+                                            style={{
+                                                backgroundColor: theme.colors.muted,
+                                                color: theme.colors.mutedForeground
+                                            }}
+                                        >
+                                            <span
+                                                className="w-10 px-2 text-right border-r"
+                                                style={{ borderColor: theme.colors.border }}
+                                            >
                                                 {line.lineNumber?.old || ''}
                                             </span>
-                                            <span className="w-10 px-2 text-right border-r border-zinc-800">
+                                            <span
+                                                className="w-10 px-2 text-right border-r"
+                                                style={{ borderColor: theme.colors.border }}
+                                            >
                                                 {line.lineNumber?.new || ''}
                                             </span>
                                         </div>
@@ -143,7 +187,14 @@ const GitDiffView: React.FC<GitDiffViewProps> = ({
             </div>
 
             {/* Stats Footer */}
-            <div className="flex items-center justify-between px-4 py-1.5 bg-zinc-900/50 border-t border-zinc-800 text-[10px] text-zinc-600">
+            <div
+                className="flex items-center justify-between px-4 py-1.5 border-t text-[10px]"
+                style={{
+                    backgroundColor: theme.colors.muted,
+                    borderColor: theme.colors.border,
+                    color: theme.colors.mutedForeground
+                }}
+            >
                 <span>{files.length} file{files.length !== 1 ? 's' : ''} changed</span>
                 <span className="font-mono">unified diff</span>
             </div>

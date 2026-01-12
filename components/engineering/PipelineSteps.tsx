@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Circle, CheckCircle2, Clock, XCircle } from 'lucide-react';
+import { useTheme } from '@/context/ThemeContext';
 
 interface Step {
     name: string;
@@ -23,6 +24,8 @@ const PipelineSteps: React.FC<PipelineStepsProps> = ({
     steps = defaultSteps,
     className = ""
 }) => {
+    const { theme } = useTheme();
+
     const getStatusIcon = (status: Step['status']) => {
         switch (status) {
             case 'success':
@@ -39,7 +42,12 @@ const PipelineSteps: React.FC<PipelineStepsProps> = ({
             case 'failed':
                 return <XCircle className="w-5 h-5 text-red-500" />;
             default:
-                return <Circle className="w-5 h-5 text-zinc-600" />;
+                return (
+                    <Circle
+                        className="w-5 h-5"
+                        style={{ color: theme.colors.mutedForeground }}
+                    />
+                );
         }
     };
 
@@ -52,7 +60,7 @@ const PipelineSteps: React.FC<PipelineStepsProps> = ({
             case 'failed':
                 return 'border-red-500/50 bg-red-500/10';
             default:
-                return 'border-zinc-700 bg-zinc-800/50';
+                return ''; // handled by style
         }
     };
 
@@ -65,14 +73,25 @@ const PipelineSteps: React.FC<PipelineStepsProps> = ({
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ delay: index * 0.1 }}
                         className={`flex items-center gap-2 px-4 py-2 rounded-lg border ${getStatusColor(step.status)}`}
+                        style={step.status === 'pending' ? {
+                            borderColor: theme.colors.border,
+                            backgroundColor: theme.colors.muted
+                        } : undefined}
                     >
                         {getStatusIcon(step.status)}
-                        <span className="text-sm font-medium text-zinc-200">{step.name}</span>
+                        <span
+                            className="text-sm font-medium"
+                            style={{ color: theme.colors.foreground }}
+                        >
+                            {step.name}
+                        </span>
                     </motion.div>
 
                     {index < steps.length - 1 && (
-                        <div className={`w-8 h-0.5 ${step.status === 'success' ? 'bg-emerald-500/50' : 'bg-zinc-700'
-                            }`} />
+                        <div
+                            className={`w-8 h-0.5 ${step.status === 'success' ? 'bg-emerald-500/50' : ''}`}
+                            style={step.status !== 'success' ? { backgroundColor: theme.colors.border } : undefined}
+                        />
                     )}
                 </React.Fragment>
             ))}

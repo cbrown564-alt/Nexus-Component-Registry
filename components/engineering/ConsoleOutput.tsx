@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Terminal, ChevronDown, Trash2 } from 'lucide-react';
+import { useTheme } from '@/context/ThemeContext';
 
 export interface LogEntry {
     id: string;
@@ -36,6 +37,7 @@ const ConsoleOutput: React.FC<ConsoleOutputProps> = ({
     className = '',
     autoScroll = true
 }) => {
+    const { theme } = useTheme();
     const scrollRef = useRef<HTMLDivElement>(null);
     const [isAtBottom, setIsAtBottom] = useState(true);
 
@@ -48,10 +50,15 @@ const ConsoleOutput: React.FC<ConsoleOutputProps> = ({
             case 'success':
                 return 'text-emerald-400 before:content-["✓"] before:mr-2';
             case 'debug':
-                return 'text-zinc-500 before:content-["●"] before:mr-2';
+                return 'before:content-["●"] before:mr-2'; // color handled inline now
             default:
                 return 'text-blue-400 before:content-["›"] before:mr-2';
         }
+    };
+
+    const getTypeColor = (type: LogEntry['type']) => {
+        if (type === 'debug') return theme.colors.mutedForeground;
+        return undefined; // Handled by class
     };
 
     useEffect(() => {
@@ -72,18 +79,44 @@ const ConsoleOutput: React.FC<ConsoleOutputProps> = ({
     };
 
     return (
-        <div className={`rounded-xl overflow-hidden bg-zinc-950 border border-zinc-800 ${className}`}>
+        <div
+            className={`rounded-xl overflow-hidden border ${className}`}
+            style={{
+                backgroundColor: theme.colors.background,
+                borderColor: theme.colors.border
+            }}
+        >
             {/* Header */}
-            <div className="flex items-center justify-between px-4 py-2.5 bg-zinc-900/70 border-b border-zinc-800">
+            <div
+                className="flex items-center justify-between px-4 py-2.5 border-b"
+                style={{
+                    backgroundColor: theme.colors.muted,
+                    borderColor: theme.colors.border
+                }}
+            >
                 <div className="flex items-center gap-2">
                     <Terminal className="w-4 h-4 text-emerald-500" />
-                    <span className="text-sm font-medium text-zinc-300">{title}</span>
-                    <span className="px-1.5 py-0.5 text-[10px] font-mono bg-zinc-800 text-zinc-500 rounded">
+                    <span
+                        className="text-sm font-medium"
+                        style={{ color: theme.colors.foreground }}
+                    >
+                        {title}
+                    </span>
+                    <span
+                        className="px-1.5 py-0.5 text-[10px] font-mono rounded"
+                        style={{
+                            backgroundColor: theme.colors.secondary,
+                            color: theme.colors.mutedForeground
+                        }}
+                    >
                         {logs.length} lines
                     </span>
                 </div>
                 <div className="flex items-center gap-1">
-                    <button className="p-1.5 text-zinc-500 hover:text-zinc-300 hover:bg-zinc-800 rounded transition-colors">
+                    <button
+                        className="p-1.5 rounded transition-colors"
+                        style={{ color: theme.colors.mutedForeground }}
+                    >
                         <Trash2 className="w-3.5 h-3.5" />
                     </button>
                 </div>
@@ -106,9 +139,13 @@ const ConsoleOutput: React.FC<ConsoleOutputProps> = ({
                                 exit={{ opacity: 0, height: 0 }}
                                 transition={{ duration: 0.15, delay: index * 0.02 }}
                                 className={`flex items-start gap-3 py-1 ${getTypeStyles(log.type)}`}
+                                style={{ color: getTypeColor(log.type) }}
                             >
                                 {showTimestamps && log.timestamp && (
-                                    <span className="text-zinc-600 shrink-0 tabular-nums">
+                                    <span
+                                        className="shrink-0 tabular-nums"
+                                        style={{ color: theme.colors.mutedForeground }}
+                                    >
                                         {log.timestamp}
                                     </span>
                                 )}
@@ -126,7 +163,11 @@ const ConsoleOutput: React.FC<ConsoleOutputProps> = ({
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: 10 }}
                     onClick={scrollToBottom}
-                    className="absolute bottom-14 right-4 flex items-center gap-1 px-2 py-1 text-xs bg-zinc-800 text-zinc-400 rounded-full hover:bg-zinc-700 transition-colors"
+                    className="absolute bottom-14 right-4 flex items-center gap-1 px-2 py-1 text-xs rounded-full transition-colors"
+                    style={{
+                        backgroundColor: theme.colors.secondary,
+                        color: theme.colors.mutedForeground
+                    }}
                 >
                     <ChevronDown className="w-3 h-3" />
                     New logs
@@ -134,7 +175,14 @@ const ConsoleOutput: React.FC<ConsoleOutputProps> = ({
             )}
 
             {/* Status bar */}
-            <div className="flex items-center justify-between px-4 py-1.5 bg-zinc-900/50 border-t border-zinc-800 text-[10px] text-zinc-600">
+            <div
+                className="flex items-center justify-between px-4 py-1.5 border-t text-[10px]"
+                style={{
+                    backgroundColor: theme.colors.muted,
+                    borderColor: theme.colors.border,
+                    color: theme.colors.mutedForeground
+                }}
+            >
                 <span>stdout</span>
                 <span className="flex items-center gap-1.5">
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />

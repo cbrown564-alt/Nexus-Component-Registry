@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Server, Activity, HardDrive, Cpu, MemoryStick, Wifi, WifiOff, AlertCircle } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
+import { useTheme } from '@/context/ThemeContext';
 
 export type ServerStatus = 'healthy' | 'warning' | 'critical' | 'offline';
 export type MetricType = 'cpu' | 'memory' | 'disk' | 'network' | 'custom';
@@ -31,12 +32,14 @@ const ServerStatBadge: React.FC<ServerStatBadgeProps> = ({
     size = 'md',
     className = ''
 }) => {
+    const { theme } = useTheme();
+
     const getStatusColor = (s: ServerStatus) => {
         switch (s) {
             case 'healthy': return 'bg-emerald-500';
             case 'warning': return 'bg-amber-500';
             case 'critical': return 'bg-red-500';
-            case 'offline': return 'bg-zinc-600';
+            case 'offline': return ''; // handled in style
         }
     };
 
@@ -45,7 +48,7 @@ const ServerStatBadge: React.FC<ServerStatBadgeProps> = ({
             case 'healthy': return 'border-emerald-500/30';
             case 'warning': return 'border-amber-500/30';
             case 'critical': return 'border-red-500/30';
-            case 'offline': return 'border-zinc-700';
+            case 'offline': return ''; // handled in style
         }
     };
 
@@ -91,7 +94,7 @@ const ServerStatBadge: React.FC<ServerStatBadgeProps> = ({
         switch (t) {
             case 'up': return status === 'healthy' ? 'text-emerald-400' : 'text-red-400';
             case 'down': return status === 'healthy' ? 'text-emerald-400' : 'text-amber-400';
-            default: return 'text-zinc-500';
+            default: return ''; // handled with theme
         }
     };
 
@@ -110,15 +113,24 @@ const ServerStatBadge: React.FC<ServerStatBadgeProps> = ({
             animate={{ opacity: 1, scale: 1 }}
             whileHover={{ scale: 1.02 }}
             className={`
-                inline-flex items-center rounded-lg bg-zinc-900/80 border 
+                inline-flex items-center rounded-lg border 
                 ${getStatusBorder(status)} ${getSizeClasses(size)}
                 shadow-lg ${getStatusGlow(status)}
                 ${className}
             `}
+            style={status === 'offline' ? {
+                backgroundColor: theme.colors.muted,
+                borderColor: theme.colors.border
+            } : {
+                backgroundColor: theme.colors.card
+            }}
         >
             {/* Status Indicator */}
             <div className="relative flex items-center justify-center">
-                <span className={`w-2 h-2 rounded-full ${getStatusColor(status)}`} />
+                <span
+                    className={`w-2 h-2 rounded-full ${getStatusColor(status)}`}
+                    style={status === 'offline' ? { backgroundColor: theme.colors.mutedForeground } : undefined}
+                />
                 {showPulse && status !== 'offline' && (
                     <motion.span
                         className={`absolute w-2 h-2 rounded-full ${getStatusColor(status)}`}
@@ -129,15 +141,31 @@ const ServerStatBadge: React.FC<ServerStatBadgeProps> = ({
             </div>
 
             {/* Icon */}
-            <Icon className={`${getIconSize(size)} text-zinc-400`} />
+            <Icon
+                className={getIconSize(size)}
+                style={{ color: theme.colors.mutedForeground }}
+            />
 
             {/* Label & Value */}
             <div className="flex flex-col leading-tight">
-                <span className="text-zinc-500 text-[10px] uppercase tracking-wider">{label}</span>
+                <span
+                    className="text-[10px] uppercase tracking-wider"
+                    style={{ color: theme.colors.mutedForeground }}
+                >
+                    {label}
+                </span>
                 <div className="flex items-center gap-1.5">
-                    <span className="font-mono font-semibold text-zinc-100">{value}</span>
+                    <span
+                        className="font-mono font-semibold"
+                        style={{ color: theme.colors.foreground }}
+                    >
+                        {value}
+                    </span>
                     {trend && trendValue && (
-                        <span className={`text-[10px] ${getTrendColor(trend)}`}>
+                        <span
+                            className={`text-[10px] ${getTrendColor(trend)}`}
+                            style={getTrendColor(trend) === '' ? { color: theme.colors.mutedForeground } : undefined}
+                        >
                             {getTrendArrow(trend)} {trendValue}
                         </span>
                     )}

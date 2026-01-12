@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTheme } from '@/context/ThemeContext';
 
 interface EngineeringCardProps {
     children: React.ReactNode;
@@ -11,20 +12,47 @@ const EngineeringCard: React.FC<EngineeringCardProps> = ({
     className = "",
     variant = 'default'
 }) => {
+    const { theme } = useTheme();
+
     const getVariantStyles = () => {
+        // We handle base structure in className, colors in style
+        return '';
+    };
+
+    const getStyle = () => {
+        const baseStyle = {
+            borderColor: theme.colors.border,
+            backgroundColor: theme.colors.card,
+        };
+
         switch (variant) {
             case 'highlight':
-                return 'bg-gradient-to-br from-zinc-900 via-zinc-900 to-zinc-800 border-zinc-700';
+                return {
+                    ...baseStyle,
+                    backgroundImage: `linear-gradient(to bottom right, ${theme.colors.card}, ${theme.colors.secondary})`,
+                    borderColor: theme.colors.primary // highlight border
+                };
             case 'dark':
-                return 'bg-zinc-950 border-zinc-800';
+                return {
+                    ...baseStyle,
+                    backgroundColor: theme.colors.background, // darker than card
+                    borderColor: theme.colors.border
+                };
             default:
-                return 'bg-zinc-900/50 border-zinc-800';
+                return {
+                    ...baseStyle,
+                    // default card style
+                };
         }
     };
 
     return (
         <div
-            className={`relative overflow-hidden rounded-xl border p-6 transition-all duration-200 hover:border-zinc-700 ${getVariantStyles()} ${className}`}
+            className={`relative overflow-hidden rounded-xl border p-6 transition-all duration-200 hover:border-opacity-100 ${className}`}
+            style={{
+                ...getStyle(),
+                // Use CSS variable for hover if possible, or just rely on simple border hover
+            }}
         >
             {/* Subtle gradient overlay */}
             <div className="absolute inset-0 bg-gradient-to-b from-white/[0.02] to-transparent pointer-events-none" />
