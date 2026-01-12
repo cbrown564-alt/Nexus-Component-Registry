@@ -9,10 +9,10 @@ const FocusTimer = () => {
     return (
         <ProductivityCard className="p-5">
             <div className="flex items-center justify-between mb-4">
-                <h3 className="text-sm font-medium text-zinc-200">Focus Session</h3>
+                <h3 className="text-sm font-medium" style={{ color: '#e4e4e7' }}>Focus Session</h3>
                 <div className="flex items-center gap-1.5">
-                    <span className="h-1.5 w-1.5 rounded-full bg-amber-500 animate-pulse" />
-                    <span className="text-[10px] font-medium text-amber-500 uppercase tracking-wider">Deep Work</span>
+                    <span className="h-1.5 w-1.5 rounded-full animate-pulse" style={{ backgroundColor: '#f59e0b' }} />
+                    <span className="text-[10px] font-medium uppercase tracking-wider" style={{ color: '#f59e0b' }}>Deep Work</span>
                 </div>
             </div>
 
@@ -23,7 +23,7 @@ const FocusTimer = () => {
                     <circle
                         cx="80" cy="80" r="77"
                         fill="none"
-                        className="stroke-zinc-800"
+                        style={{ stroke: '#27272a' }}
                         strokeWidth="6"
                     />
                     {/* Progress Ring */}
@@ -35,13 +35,14 @@ const FocusTimer = () => {
                         strokeDasharray="484"
                         strokeDashoffset="83"
                         strokeLinecap="round"
-                        className="text-amber-500 transition-all duration-1000"
+                        className="transition-all duration-1000"
+                        style={{ color: '#f59e0b' }}
                     />
                 </svg>
 
                 <div className="text-center z-10 h-40 w-40 flex flex-col items-center justify-center">
-                    <div className="font-mono text-4xl font-bold tracking-tight text-white mb-1">24:12</div>
-                    <div className="text-[10px] text-zinc-500 uppercase tracking-widest">Remaining</div>
+                    <div className="font-mono text-4xl font-bold tracking-tight mb-1" style={{ color: '#ffffff' }}>24:12</div>
+                    <div className="text-[10px] uppercase tracking-widest" style={{ color: '#71717a' }}>Remaining</div>
                 </div>
             </div>
 

@@ -20,31 +20,31 @@ const AlertBanner: React.FC<AlertBannerProps> = ({
   const typeConfig = {
     info: {
       icon: Info,
-      bg: 'bg-blue-500/10',
-      border: 'border-blue-500/30',
-      iconColor: 'text-blue-400',
-      titleColor: 'text-blue-300',
+      bg: 'rgba(59, 130, 246, 0.1)',
+      border: 'rgba(59, 130, 246, 0.3)',
+      iconColor: '#60a5fa',
+      titleColor: '#93c5fd',
     },
     warning: {
       icon: AlertTriangle,
-      bg: 'bg-amber-500/10',
-      border: 'border-amber-500/30',
-      iconColor: 'text-amber-400',
-      titleColor: 'text-amber-300',
+      bg: 'rgba(245, 158, 11, 0.1)',
+      border: 'rgba(245, 158, 11, 0.3)',
+      iconColor: '#fbbf24',
+      titleColor: '#fcd34d',
     },
     success: {
       icon: CheckCircle,
-      bg: 'bg-emerald-500/10',
-      border: 'border-emerald-500/30',
-      iconColor: 'text-emerald-400',
-      titleColor: 'text-emerald-300',
+      bg: 'rgba(16, 185, 129, 0.1)',
+      border: 'rgba(16, 185, 129, 0.3)',
+      iconColor: '#34d399',
+      titleColor: '#6ee7b7',
     },
     error: {
       icon: XCircle,
-      bg: 'bg-red-500/10',
-      border: 'border-red-500/30',
-      iconColor: 'text-red-400',
-      titleColor: 'text-red-300',
+      bg: 'rgba(239, 68, 68, 0.1)',
+      border: 'rgba(239, 68, 68, 0.3)',
+      iconColor: '#f87171',
+      titleColor: '#fca5a5',
     },
   };
 
@@ -56,17 +56,19 @@ const AlertBanner: React.FC<AlertBannerProps> = ({
       initial={{ opacity: 0, y: -10 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -10 }}
-      className={`flex items-start gap-3 p-4 rounded-lg border ${config.bg} ${config.border} ${className}`}
+      className="flex items-start gap-3 p-4 rounded-lg border"
+      style={{ backgroundColor: config.bg, borderColor: config.border }}
     >
-      <Icon className={`h-5 w-5 ${config.iconColor} flex-shrink-0 mt-0.5`} />
+      <Icon className="h-5 w-5 flex-shrink-0 mt-0.5" style={{ color: config.iconColor }} />
       <div className="flex-1 min-w-0">
-        <h4 className={`font-semibold ${config.titleColor}`}>{title}</h4>
-        <p className="text-sm text-zinc-400 mt-0.5">{message}</p>
+        <h4 className="font-semibold" style={{ color: config.titleColor }}>{title}</h4>
+        <p className="text-sm mt-0.5" style={{ color: '#a1a1aa' }}>{message}</p>
       </div>
       {onDismiss && (
         <button
           onClick={onDismiss}
-          className="text-zinc-500 hover:text-zinc-300 transition-colors"
+          className="transition-colors hover:text-zinc-300"
+          style={{ color: '#71717a' }}
         >
           <XCircle className="h-4 w-4" />
         </button>

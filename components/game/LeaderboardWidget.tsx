@@ -17,7 +17,7 @@ const LeaderboardWidget = () => {
         <GameCard className="p-5 h-full" variant="primary">
             <div className="flex items-center justify-between mb-6">
                 <div className="flex items-center gap-2">
-                    <Trophy className="h-5 w-5 text-yellow-400" />
+                    <Trophy className="h-5 w-5" style={{ color: '#facc15' }} />
                     <h3
                         className="font-display font-bold"
                         style={{ color: theme.colors.foreground }}
@@ -25,21 +25,23 @@ const LeaderboardWidget = () => {
                         Top Players
                     </h3>
                 </div>
-                <span className="text-xs text-fuchsia-300">Global Region</span>
+                <span className="text-xs" style={{ color: '#f0abfc' }}>Global Region</span>
             </div>
 
             <div className="space-y-2">
                 {players.map((p, i) => (
                     <div
                         key={i}
-                        className={`flex items-center gap-3 p-2 rounded-lg border ${p.name === 'CyberNinja'
-                                ? 'bg-fuchsia-500/20 border-fuchsia-500/50'
-                                : 'bg-black/20 border-transparent hover:bg-black/40'
-                            }`}
+                        className={`flex items-center gap-3 p-2 rounded-lg border`}
+                        style={{
+                            backgroundColor: p.name === 'CyberNinja' ? 'rgba(217, 70, 239, 0.2)' : 'rgba(0, 0, 0, 0.2)',
+                            borderColor: p.name === 'CyberNinja' ? 'rgba(217, 70, 239, 0.5)' : 'transparent',
+                        }}
                     >
-                        <div className={`flex h-6 w-6 items-center justify-center rounded text-xs font-bold ${p.rank === 1 ? 'text-yellow-400' : p.rank === 2 ? 'text-zinc-300' : p.rank === 3 ? 'text-orange-400' : ''
-                            }`}
-                            style={{ color: p.rank >= 4 ? theme.colors.mutedForeground : undefined }}
+                        <div className={`flex h-6 w-6 items-center justify-center rounded text-xs font-bold`}
+                            style={{
+                                color: p.rank === 1 ? '#facc15' : p.rank === 2 ? '#d4d4d8' : p.rank === 3 ? '#fb923c' : theme.colors.mutedForeground
+                            }}
                         >
                             #{p.rank}
                         </div>
@@ -51,8 +53,8 @@ const LeaderboardWidget = () => {
 
                         <div className="flex-1">
                             <div
-                                className={`text-sm font-bold ${p.name === 'CyberNinja' ? 'text-fuchsia-200' : ''}`}
-                                style={{ color: p.name !== 'CyberNinja' ? theme.colors.foreground : undefined }}
+                                className={`text-sm font-bold`}
+                                style={{ color: p.name === 'CyberNinja' ? '#f5d0fe' : theme.colors.foreground }}
                             >
                                 {p.name}
                             </div>
@@ -65,8 +67,8 @@ const LeaderboardWidget = () => {
                         </div>
 
                         <div style={{ color: theme.colors.mutedForeground }}>
-                            {p.change === 'up' && <ChevronUp className="h-3 w-3 text-emerald-500" />}
-                            {p.change === 'down' && <ChevronDown className="h-3 w-3 text-rose-500" />}
+                            {p.change === 'up' && <ChevronUp className="h-3 w-3" style={{ color: '#10b981' }} />}
+                            {p.change === 'down' && <ChevronDown className="h-3 w-3" style={{ color: '#f43f5e' }} />}
                             {p.change === 'same' && <Minus className="h-3 w-3" />}
                         </div>
                     </div>

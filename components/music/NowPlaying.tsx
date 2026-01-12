@@ -7,7 +7,7 @@ const NowPlaying = () => {
     const [liked, setLiked] = useState(true);
 
     return (
-        <MusicCard className="h-full flex flex-col p-6 !bg-black/20 !border-0 !border-l !border-white/5 !rounded-none">
+        <MusicCard className="h-full flex flex-col p-6 !border-0 !border-l !rounded-none" style={{ backgroundColor: 'rgba(0, 0, 0, 0.2)', borderColor: 'rgba(255, 255, 255, 0.05)' }}>
             <div className="flex items-center justify-between mb-8">
                 <h3 className="text-sm font-bold uppercase tracking-widest" style={{ color: '#a1a1aa' }}>Now Playing</h3>
                 <button style={{ color: '#71717a' }}>
@@ -45,7 +45,7 @@ const NowPlaying = () => {
             {/* Progress */}
             <div className="mb-8 group">
                 <div className="h-1 w-full rounded-full mb-2 cursor-pointer relative overflow-hidden" style={{ backgroundColor: '#27272a' }}>
-                    <div className="absolute inset-y-0 left-0 w-1/3 rounded-full group-hover:bg-rose-500 transition-colors" style={{ backgroundColor: '#ffffff' }} />
+                    <div className="absolute inset-y-0 left-0 w-1/3 rounded-full transition-colors" style={{ backgroundColor: '#ffffff' }} />
                 </div>
                 <div className="flex justify-between text-xs font-medium font-mono" style={{ color: '#71717a' }}>
                     <span>1:24</span>
@@ -81,8 +81,9 @@ const NowPlaying = () => {
                 {[...Array(20)].map((_, i) => (
                     <div
                         key={i}
-                        className="w-1 bg-rose-500 rounded-t-full animate-[music-bar_1s_ease-in-out_infinite]"
+                        className="w-1 rounded-t-full animate-[music-bar_1s_ease-in-out_infinite]"
                         style={{
+                            backgroundColor: '#f43f5e',
                             height: `${Math.random() * 100}%`,
                             animationDelay: `${i * 0.05}s`
                         }}
