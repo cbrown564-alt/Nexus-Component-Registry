@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useTheme } from '@/context/ThemeContext';
 
 interface ClayProgressProps {
   value?: number;
@@ -16,6 +17,7 @@ const ClayProgress: React.FC<ClayProgressProps> = ({
   color = 'blue',
   className = "",
 }) => {
+  const { theme } = useTheme();
   const percentage = Math.min((value / max) * 100, 100);
 
   const colorClasses = {
@@ -26,14 +28,33 @@ const ClayProgress: React.FC<ClayProgressProps> = ({
   };
 
   return (
-    <div className={`p-5 rounded-3xl bg-gradient-to-br from-slate-100 to-slate-200 shadow-[8px_8px_16px_rgba(0,0,0,0.1),-4px_-4px_12px_rgba(255,255,255,0.9)] ${className}`}>
+    <div
+      className={`p-5 rounded-3xl ${className}`}
+      style={{
+        background: `linear-gradient(to bottom right, ${theme.colors.muted || '#f1f5f9'}, ${theme.colors.card || '#f8fafc'})`,
+        boxShadow: `8px 8px 16px ${theme.colors.border ? theme.colors.border + '1A' : 'rgba(0,0,0,0.1)'}, -4px -4px 12px ${theme.colors.background === '#000000' ? '#333333' : 'rgba(255,255,255,0.9)'}`
+      }}
+    >
       <div className="flex items-center justify-between mb-3">
-        <span className="text-sm font-semibold text-slate-600">{label}</span>
-        <span className="text-sm font-bold text-slate-700">{Math.round(percentage)}%</span>
+        <span
+          className="text-sm font-semibold"
+          style={{ color: theme.colors.mutedForeground }}
+        >
+          {label}
+        </span>
+        <span
+          className="text-sm font-bold"
+          style={{ color: theme.colors.foreground }}
+        >
+          {Math.round(percentage)}%
+        </span>
       </div>
-      
+
       {/* Track */}
-      <div className="h-4 rounded-full bg-white/50 shadow-inner overflow-hidden">
+      <div
+        className="h-4 rounded-full shadow-inner overflow-hidden"
+        style={{ backgroundColor: theme.colors.background ? `${theme.colors.background}80` : 'rgba(255,255,255,0.5)' }}
+      >
         <motion.div
           className={`h-full rounded-full bg-gradient-to-r ${colorClasses[color]} shadow-lg`}
           initial={{ width: 0 }}
@@ -41,8 +62,11 @@ const ClayProgress: React.FC<ClayProgressProps> = ({
           transition={{ duration: 0.8, ease: 'easeOut' }}
         />
       </div>
-      
-      <div className="mt-2 text-xs text-slate-500 text-right">
+
+      <div
+        className="mt-2 text-xs text-right"
+        style={{ color: theme.colors.mutedForeground }}
+      >
         {value} / {max}
       </div>
     </div>
