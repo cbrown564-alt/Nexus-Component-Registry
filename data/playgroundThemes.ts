@@ -56,6 +56,9 @@ import {
     arena,
 } from './themes'
 import { evergreen } from './themes/evergreen';
+import { concierge } from './themes/concierge';
+import { paradox } from './themes/paradox';
+import { terminal } from './themes/terminal';
 
 // Re-export type for compatibility
 export type { PlaygroundTheme } from './themes'
@@ -114,6 +117,10 @@ export const playgroundThemes: PlaygroundTheme[] = [
     nomad,
     vault,
     arena,
+    evergreen, // Added manually in previous step but missing here? checking file content, evergreen was not in the array list in the view_file output.
+    concierge,
+    paradox,
+    terminal,
     // Variants
     legalModern,
     scifiOrange,

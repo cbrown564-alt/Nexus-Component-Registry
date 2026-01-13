@@ -42,6 +42,9 @@ import NomadDashboard from '@/templates/NomadDashboard'
 import VaultDashboard from '@/templates/VaultDashboard'
 import ArenaDashboard from '@/templates/ArenaDashboard'
 import EvergreenDashboard from '@/templates/EvergreenDashboard'
+import ConciergeDashboard from '@/templates/ConciergeDashboard'
+import ParadoxDashboard from '@/templates/ParadoxDashboard'
+import TerminalDashboard from '@/templates/TerminalDashboard'
 
 const dashboardComponents: Record<string, ComponentType> = {
     engineering: EngineeringDashboard,
@@ -80,6 +83,9 @@ const dashboardComponents: Record<string, ComponentType> = {
     vault: VaultDashboard,
     arena: ArenaDashboard,
     evergreen: EvergreenDashboard,
+    concierge: ConciergeDashboard,
+    paradox: ParadoxDashboard,
+    terminal: TerminalDashboard,
 }
 
 export default function TemplatePage() {
