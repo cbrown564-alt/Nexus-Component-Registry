@@ -1,9 +1,83 @@
 import React from 'react';
-import { Folder, FileCode, FileJson, ChevronRight, ChevronDown } from 'lucide-react';
+import { Folder, FileCode, FileJson, ChevronRight, ChevronDown, LucideIcon } from 'lucide-react';
 import SpotlightCard from './SpotlightCard';
 import { useTheme } from '@/context/ThemeContext';
 
-const FileTree = () => {
+export interface FileTreeItem {
+  name: string;
+  type: 'file' | 'folder';
+  icon?: LucideIcon;
+  iconColor?: string;
+  expanded?: boolean;
+  children?: FileTreeItem[];
+}
+
+export interface FileTreeProps {
+  /** Title for the file tree */
+  title?: string;
+  /** Array of file/folder items */
+  items?: FileTreeItem[];
+}
+
+const defaultItems: FileTreeItem[] = [
+  {
+    name: 'nexus-core',
+    type: 'folder',
+    iconColor: 'text-blue-400',
+    expanded: true,
+    children: [
+      { name: '.github', type: 'folder', expanded: false },
+      {
+        name: 'src',
+        type: 'folder',
+        iconColor: 'text-amber-400',
+        expanded: true,
+        children: [
+          { name: 'client.ts', type: 'file', iconColor: 'text-blue-400' },
+          { name: 'server.ts', type: 'file', iconColor: 'text-blue-400' },
+          { name: 'types.d.ts', type: 'file', iconColor: 'text-pink-400' },
+        ]
+      },
+      { name: 'package.json', type: 'file', icon: FileJson, iconColor: 'text-yellow-400' },
+    ]
+  }
+];
+
+const FileTreeNode: React.FC<{ item: FileTreeItem; depth: number; theme: any }> = ({ item, depth, theme }) => {
+  const isExpanded = item.expanded ?? false;
+  const Icon = item.icon || (item.type === 'folder' ? Folder : FileCode);
+  const iconColor = item.iconColor || (item.type === 'folder' ? 'text-blue-400' : 'text-blue-400');
+
+  return (
+    <div className={depth > 0 ? 'pl-4' : ''}>
+      <div
+        className="flex items-center gap-1.5 rounded px-1 py-0.5 cursor-pointer transition-colors hover:opacity-80"
+        style={{ color: theme.colors.foreground }}
+      >
+        {item.type === 'folder' && (
+          isExpanded ? <ChevronDown className="h-3 w-3" /> : <ChevronRight className="h-3 w-3" />
+        )}
+        <Icon className={`h-3.5 w-3.5 ${iconColor}`} />
+        <span>{item.name}</span>
+      </div>
+      {item.type === 'folder' && isExpanded && item.children && (
+        <div
+          className={depth > 0 ? 'ml-2.5 pl-2' : 'pl-4'}
+          style={depth > 0 ? { borderLeft: `1px solid ${theme.colors.border}` } : undefined}
+        >
+          {item.children.map((child, i) => (
+            <FileTreeNode key={i} item={child} depth={depth + 1} theme={theme} />
+          ))}
+        </div>
+      )}
+    </div>
+  );
+};
+
+const FileTree: React.FC<FileTreeProps> = ({
+  title = "Project Structure",
+  items = defaultItems,
+}) => {
   const { theme } = useTheme();
 
   return (
@@ -12,77 +86,18 @@ const FileTree = () => {
         className="mb-4 text-sm font-medium"
         style={{ color: theme.colors.foreground }}
       >
-        Project Structure
+        {title}
       </h3>
       <div
         className="space-y-1 font-mono text-xs"
         style={{ color: theme.colors.mutedForeground }}
       >
-        <div
-          className="flex items-center gap-1.5"
-          style={{ color: theme.colors.foreground }}
-        >
-          <ChevronDown className="h-3 w-3" />
-          <Folder className="h-3.5 w-3.5 text-blue-400" />
-          <span>nexus-core</span>
-        </div>
-
-        <div className="pl-4 space-y-1">
-          <div
-            className="flex items-center gap-1.5 rounded px-1 py-0.5 cursor-pointer transition-colors group hover:opacity-80"
-            style={{
-              // Using style for hover is tricky without CSS-in-JS or class injection.
-              // But we can rely on opacity hover effect, or use a persistent hover class if we had one.
-              // Original used: hover:bg-zinc-900/50 hover:text-zinc-200
-              // We can map these to theme, but hover logic in inline styles is not possible.
-              // However, we can use standard tailwind hover:bg-[...] if we use CSS variables or a utility that maps theme.
-              // For now, I'll attach a className that likely exists or just accept that hover might not be perfectly themed without a wrapper.
-              // ACTUALLY, I can use `hover:bg-secondary` if I knew the class.
-              // But I'm supposed to use token values.
-              // I will use a simple approach: assume `hover:bg-zinc-900/50` was for dark mode item highlight.
-              // I'll keep the structure but set default text colors via style.
-            }}
-          // I'll add a hover class that uses opacity or standard highlight.
-          // Ideally I'd use `hover:bg-accent hover:text-accent-foreground` if Tailwind config supports it.
-          // Assuming Tailwind config maps `bg-accent` to `theme.colors.accent`.
-          // If not, I'll stick to a safe semantic hover or inline it if I can (I can't inline hover).
-          >
-            <ChevronRight className="h-3 w-3 group-hover:text-current transition-colors" style={{ color: theme.colors.mutedForeground }} />
-            <Folder className="h-3.5 w-3.5 group-hover:text-current transition-colors" style={{ color: theme.colors.mutedForeground }} />
-            <span style={{ color: theme.colors.mutedForeground }}>.github</span>
-          </div>
-
-          <div className="flex items-center gap-1.5 rounded px-1 py-0.5 cursor-pointer transition-colors hover:opacity-80">
-            <ChevronDown className="h-3 w-3" style={{ color: theme.colors.foreground }} />
-            <Folder className="h-3.5 w-3.5 text-amber-400" />
-            <span style={{ color: theme.colors.foreground }}>src</span>
-          </div>
-
-          <div
-            className="pl-4 space-y-1 ml-2.5 pl-2"
-            style={{ borderLeft: `1px solid ${theme.colors.border}` }}
-          >
-            <div className="flex items-center gap-1.5 rounded px-1 py-0.5 cursor-pointer transition-colors hover:opacity-80">
-              <FileCode className="h-3.5 w-3.5 text-blue-400" />
-              <span style={{ color: theme.colors.foreground }}>client.ts</span>
-            </div>
-            <div className="flex items-center gap-1.5 rounded px-1 py-0.5 cursor-pointer transition-colors hover:opacity-80">
-              <FileCode className="h-3.5 w-3.5 text-blue-400" />
-              <span style={{ color: theme.colors.foreground }}>server.ts</span>
-            </div>
-            <div className="flex items-center gap-1.5 rounded px-1 py-0.5 cursor-pointer transition-colors hover:opacity-80">
-              <FileCode className="h-3.5 w-3.5 text-pink-400" />
-              <span style={{ color: theme.colors.foreground }}>types.d.ts</span>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-1.5 rounded px-1 py-0.5 cursor-pointer transition-colors hover:opacity-80">
-            <FileJson className="h-3.5 w-3.5 text-yellow-400" />
-            <span style={{ color: theme.colors.foreground }}>package.json</span>
-          </div>
-        </div>
+        {items.map((item, i) => (
+          <FileTreeNode key={i} item={item} depth={0} theme={theme} />
+        ))}
       </div>
     </SpotlightCard>
   );
 };
+
 export default FileTree;
