@@ -4,7 +4,17 @@ import FintechCard from './FintechCard';
 import { motion } from 'framer-motion';
 import { useTheme } from '@/context/ThemeContext';
 
-const DigitalCard = () => {
+interface DigitalCardProps {
+    cardNumber?: string;
+    holderName?: string;
+    expiry?: string;
+}
+
+const DigitalCard: React.FC<DigitalCardProps> = ({
+    cardNumber = "**** **** **** 8821",
+    holderName = "ALEXANDER MORGAN",
+    expiry = "12/28"
+}) => {
     const { currentPlaygroundTheme } = useTheme();
 
     return (
@@ -38,17 +48,17 @@ const DigitalCard = () => {
 
                 <div className="space-y-6">
                     <div className="font-mono text-xl tracking-[0.2em] text-shadow-sm">
-                        4923  ••••  ••••  8821
+                        {cardNumber}
                     </div>
 
                     <div className="flex justify-between items-end">
                         <div>
                             <div className="text-[10px] uppercase tracking-widest mb-1" style={{ opacity: 0.6 }}>Cardholder</div>
-                            <div className="font-medium tracking-wide text-sm">ALEXANDER MORGAN</div>
+                            <div className="font-medium tracking-wide text-sm">{holderName}</div>
                         </div>
                         <div className="text-right">
                             <div className="text-[10px] uppercase tracking-widest mb-1" style={{ opacity: 0.6 }}>Expires</div>
-                            <div className="font-mono text-sm">12/28</div>
+                            <div className="font-mono text-sm">{expiry}</div>
                         </div>
                     </div>
                 </div>
