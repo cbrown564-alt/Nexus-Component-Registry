@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useMemo } from 'react'
-import { Check, Copy, RefreshCw, Sun, Moon } from 'lucide-react'
+import { Check, Copy, RefreshCw, Sun, Moon, Palette } from 'lucide-react'
 import { ComponentDoc } from '@/data/componentDocs'
 import { ComponentMeta } from '@/data/components'
 import { getThemeById } from '@/lib/registry'
+import { playgroundThemes } from '@/data/playgroundThemes'
+import { ScopedThemeProvider } from '@/components/ScopedThemeProvider'
 
 interface LivePlaygroundProps {
     component: ComponentMeta
@@ -33,6 +35,7 @@ export default function LivePlayground({ component, doc }: LivePlaygroundProps) 
     const [props, setProps] = useState<Record<string, any>>({})
     const [copied, setCopied] = useState(false)
     const [key, setKey] = useState(0) // Force re-render on reset
+    const [selectedThemeId, setSelectedThemeId] = useState<string>(component.theme)
 
     // Get the theme for this component to determine appropriate preview background
     const componentTheme = useMemo(() => getThemeById(component.theme), [component.theme])
@@ -134,6 +137,22 @@ export default function LivePlayground({ component, doc }: LivePlaygroundProps) 
                     Interactive Playground
                 </h2>
                 <div className="flex items-center gap-2">
+                    {/* Theme Selector */}
+                    <div className="flex items-center gap-1.5 px-2 py-1 rounded-lg" style={{ backgroundColor: '#18181b' }}>
+                        <Palette className="h-3.5 w-3.5" style={{ color: '#a1a1aa' }} />
+                        <select
+                            value={selectedThemeId}
+                            onChange={(e) => setSelectedThemeId(e.target.value)}
+                            className="text-xs font-medium bg-transparent border-none focus:outline-none cursor-pointer"
+                            style={{ color: '#a1a1aa' }}
+                        >
+                            {playgroundThemes.map(t => (
+                                <option key={t.id} value={t.id} style={{ backgroundColor: '#18181b', color: '#d4d4d8' }}>
+                                    {t.name}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
                     <button
                         onClick={() => setDarkPreview(!darkPreview)}
                         className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg transition-colors"
@@ -179,8 +198,10 @@ export default function LivePlayground({ component, doc }: LivePlaygroundProps) 
                     >
                         <div className={`absolute inset-0 bg-[linear-gradient(rgba(${darkPreview ? '255,255,255' : '0,0,0'},0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(${darkPreview ? '255,255,255' : '0,0,0'},0.03)_1px,transparent_1px)] bg-[size:20px_20px] [mask-image:radial-gradient(ellipse_at_center,black,transparent)] pointer-events-none`} />
                         <div className="w-full max-w-md relative z-10" key={key + JSON.stringify(props)}>
-                            {/* @ts-ignore - Dynamic component props */}
-                            <Component {...props} />
+                            <ScopedThemeProvider theme={selectedThemeId}>
+                                {/* @ts-ignore - Dynamic component props */}
+                                <Component {...props} />
+                            </ScopedThemeProvider>
                         </div>
                     </div>
 

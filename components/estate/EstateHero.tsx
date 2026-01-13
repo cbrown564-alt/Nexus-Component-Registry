@@ -3,7 +3,47 @@ import { motion } from 'framer-motion';
 import { useTheme } from '@/context/ThemeContext';
 import { BedDouble, Bath, Square, MapPin, ArrowRight } from 'lucide-react';
 
-const EstateHero = () => {
+export interface PropertySpecs {
+    bedrooms: number;
+    bathrooms: string;
+    sqft: number;
+}
+
+export interface EstateHeroProps {
+    /** Property title */
+    title?: string;
+    /** Property address */
+    address?: string;
+    /** Property price (formatted) */
+    price?: string;
+    /** Property listing status badge */
+    status?: string;
+    /** Video source URL */
+    videoSrc?: string;
+    /** Fallback poster image */
+    posterImage?: string;
+    /** Property specifications */
+    specs?: PropertySpecs;
+    /** Brand name for navigation */
+    brandName?: string;
+    /** CTA button text */
+    ctaText?: string;
+    /** Callback when CTA is clicked */
+    onCtaClick?: () => void;
+}
+
+const EstateHero: React.FC<EstateHeroProps> = ({
+    title = "The Highland Loft",
+    address = "1428 Highland Ave, Los Angeles",
+    price = "$2,450,000",
+    status = "Just Listed",
+    videoSrc = "https://videos.pexels.com/video-files/7578552/7578552-uhd_3840_2160_30fps.mp4",
+    posterImage = "https://images.unsplash.com/photo-1600596542815-e32c2159f828?auto=format&fit=crop&q=80&w=2000",
+    specs = { bedrooms: 3, bathrooms: "3.5", sqft: 2800 },
+    brandName = "LUXE",
+    ctaText = "Schedule Viewing",
+    onCtaClick,
+}) => {
     const { currentPlaygroundTheme: theme } = useTheme();
 
     return (
@@ -15,10 +55,9 @@ const EstateHero = () => {
                 muted
                 playsInline
                 className="absolute inset-0 w-full h-full object-cover"
-                poster="https://images.unsplash.com/photo-1600596542815-e32c2159f828?auto=format&fit=crop&q=80&w=2000"
+                poster={posterImage}
             >
-                <source src="https://videos.pexels.com/video-files/7578552/7578552-uhd_3840_2160_30fps.mp4" type="video/mp4" />
-                {/* Fallback to image if video fails or on low-power mode */}
+                <source src={videoSrc} type="video/mp4" />
             </video>
 
             {/* Cinematic Gradient Overlay */}
@@ -26,7 +65,7 @@ const EstateHero = () => {
 
             {/* Navigation Overlay (Minimal) */}
             <nav className="absolute top-0 left-0 w-full p-8 md:p-12 flex justify-between items-center z-20 text-white">
-                <h1 className="text-2xl font-serif font-bold tracking-tight">LUXE<span className="text-stone-300">ESTATE</span></h1>
+                <h1 className="text-2xl font-serif font-bold tracking-tight">{brandName}<span className="text-stone-300">ESTATE</span></h1>
                 <div className="hidden md:flex items-center gap-8 text-sm font-medium tracking-wide">
                     <a href="#" className="opacity-80 hover:opacity-100 transition-opacity">Buying</a>
                     <a href="#" className="opacity-80 hover:opacity-100 transition-opacity">Selling</a>
@@ -43,19 +82,19 @@ const EstateHero = () => {
                     className="max-w-4xl text-white"
                 >
                     <div className="flex items-center gap-2 mb-4 opacity-0 animate-fade-in" style={{ animationDelay: '1s', animationFillMode: 'forwards' }}>
-                        <span className="px-3 py-1 bg-white/20 backdrop-blur-md text-xs font-serif uppercase tracking-widest border border-white/30">Just Listed</span>
+                        <span className="px-3 py-1 bg-white/20 backdrop-blur-md text-xs font-serif uppercase tracking-widest border border-white/30">{status}</span>
                         <div className="flex items-center gap-1 text-sm font-sans tracking-wide opacity-80">
                             <MapPin size={14} />
-                            <span>1428 Highland Ave, Los Angeles</span>
+                            <span>{address}</span>
                         </div>
                     </div>
 
                     <h2 className="text-6xl md:text-8xl font-serif leading-[0.9] mb-6">
-                        The Highland Loft
+                        {title}
                     </h2>
 
                     <div className="text-3xl md:text-4xl font-light font-serif tracking-wide opacity-90">
-                        $2,450,000
+                        {price}
                     </div>
                 </motion.div>
             </div>
@@ -72,27 +111,30 @@ const EstateHero = () => {
                         <span className="text-xs uppercase tracking-widest opacity-60">Bedrooms</span>
                         <div className="flex items-baseline gap-2">
                             <BedDouble size={20} className="opacity-80" />
-                            <span className="text-2xl font-serif">3</span>
+                            <span className="text-2xl font-serif">{specs.bedrooms}</span>
                         </div>
                     </div>
                     <div className="flex flex-col gap-1">
                         <span className="text-xs uppercase tracking-widest opacity-60">Bathrooms</span>
                         <div className="flex items-baseline gap-2">
                             <Bath size={20} className="opacity-80" />
-                            <span className="text-2xl font-serif">3.5</span>
+                            <span className="text-2xl font-serif">{specs.bathrooms}</span>
                         </div>
                     </div>
                     <div className="flex flex-col gap-1">
                         <span className="text-xs uppercase tracking-widest opacity-60">Living Area</span>
                         <div className="flex items-baseline gap-2">
                             <Square size={20} className="opacity-80" />
-                            <span className="text-2xl font-serif">2,800</span>
+                            <span className="text-2xl font-serif">{specs.sqft.toLocaleString()}</span>
                         </div>
                     </div>
                 </div>
 
-                <button className="w-full py-4 bg-white text-black font-sans font-medium tracking-widest uppercase hover:bg-stone-200 transition-colors flex items-center justify-center gap-2 group">
-                    Schedule Viewing
+                <button
+                    onClick={onCtaClick}
+                    className="w-full py-4 bg-white text-black font-sans font-medium tracking-widest uppercase hover:bg-stone-200 transition-colors flex items-center justify-center gap-2 group"
+                >
+                    {ctaText}
                     <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
                 </button>
             </motion.div>

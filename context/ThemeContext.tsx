@@ -81,7 +81,8 @@ interface ThemeContextType {
     setPlaygroundTheme: (id: string) => void
 }
 
-const ThemeContext = createContext<ThemeContextType | undefined>(undefined)
+// Exported for ScopedThemeProvider to override context in isolated subtrees
+export const ThemeContext = createContext<ThemeContextType | undefined>(undefined)
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
     // Template theme - only set when viewing a specific template
@@ -89,15 +90,11 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
 
     // Scoped themes state - maps each Visual Language to its active "Mood" (PlaygroundTheme ID)
     const [scopedThemes, setScopedThemes] = useState<Record<VisualLanguageId, string>>({
-        gilded: 'legal',
-        constructivist: 'swiss',
-        brutalist: 'brutalist',
-        glass: 'cockpit',
+        professional: 'fintech',
+        consumer: 'social',
         cyberpunk: 'scifi',
         organic: 'wellness',
-        consumer: 'social',
-        professional: 'fintech',
-        skeuomorphic: 'soft-plastic'
+        brutalist: 'brutalist',
     })
 
     // Current active tokens (PlaygroundTheme)

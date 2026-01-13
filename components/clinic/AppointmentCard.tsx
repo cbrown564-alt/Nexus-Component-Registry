@@ -3,41 +3,69 @@ import { motion } from 'framer-motion';
 import { useTheme } from '@/context/ThemeContext';
 import { MapPin, ChevronRight } from 'lucide-react';
 
-const AppointmentCard = () => {
-    const { currentPlaygroundTheme: theme } = useTheme();
+export interface Appointment {
+    time: string;
+    doctor: string;
+    specialty: string;
+    location: string;
+    type: string;
+    image: string;
+}
 
-    const appointments = [
-        {
-            time: '09:00 AM',
-            doctor: 'Dr. Sarah Chen',
-            specialty: 'Cardiology',
-            location: 'Suite 405',
-            type: 'Follow-up',
-            image: 'https://images.unsplash.com/photo-1594824476967-48c8b964273f?auto=format&fit=crop&q=80&w=200'
-        },
-        {
-            time: '02:30 PM',
-            doctor: 'Dr. Michael Ross',
-            specialty: 'Dermatology',
-            location: 'Suite 210',
-            type: 'Annual Screening',
-            image: 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&q=80&w=200'
-        },
-        {
-            time: 'Tomorrow',
-            doctor: 'Dr. Emily Wei',
-            specialty: 'Nutrition',
-            location: 'Virtual',
-            type: 'Consultation',
-            image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=200'
-        }
-    ];
+export interface AppointmentCardProps {
+    /** Title displayed at the top */
+    title?: string;
+    /** Subtitle describing the time range */
+    subtitle?: string;
+    /** Array of appointments */
+    appointments?: Appointment[];
+    /** Label for the view all button */
+    viewAllLabel?: string;
+    /** Callback when view all is clicked */
+    onViewAll?: () => void;
+}
+
+const defaultAppointments: Appointment[] = [
+    {
+        time: '09:00 AM',
+        doctor: 'Dr. Sarah Chen',
+        specialty: 'Cardiology',
+        location: 'Suite 405',
+        type: 'Follow-up',
+        image: 'https://images.unsplash.com/photo-1594824476967-48c8b964273f?auto=format&fit=crop&q=80&w=200'
+    },
+    {
+        time: '02:30 PM',
+        doctor: 'Dr. Michael Ross',
+        specialty: 'Dermatology',
+        location: 'Suite 210',
+        type: 'Annual Screening',
+        image: 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&q=80&w=200'
+    },
+    {
+        time: 'Tomorrow',
+        doctor: 'Dr. Emily Wei',
+        specialty: 'Nutrition',
+        location: 'Virtual',
+        type: 'Consultation',
+        image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=200'
+    }
+];
+
+const AppointmentCard: React.FC<AppointmentCardProps> = ({
+    title = "Itinerary",
+    subtitle = "Today & Upcoming",
+    appointments = defaultAppointments,
+    viewAllLabel = "Full Narrative",
+    onViewAll,
+}) => {
+    const { currentPlaygroundTheme: theme } = useTheme();
 
     return (
         <div className="h-full flex flex-col font-serif">
             <div className="flex justify-between items-baseline mb-8">
-                <h3 className="text-3xl font-serif italic" style={{ color: theme.colors.foreground }}>Itinerary</h3>
-                <span className="text-xs uppercase tracking-[0.2em] opacity-40">Today & Upcoming</span>
+                <h3 className="text-3xl font-serif italic" style={{ color: theme.colors.foreground }}>{title}</h3>
+                <span className="text-xs uppercase tracking-[0.2em] opacity-40">{subtitle}</span>
             </div>
 
             <div className="relative flex-1 pl-4">
@@ -75,8 +103,8 @@ const AppointmentCard = () => {
                     ))}
                 </div>
 
-                <button className="mt-12 text-xs uppercase tracking-[0.2em] flex items-center gap-2 opacity-40 hover:opacity-100 transition-opacity duration-500">
-                    Full Narrative <ChevronRight size={12} />
+                <button onClick={onViewAll} className="mt-12 text-xs uppercase tracking-[0.2em] flex items-center gap-2 opacity-40 hover:opacity-100 transition-opacity duration-500">
+                    {viewAllLabel} <ChevronRight size={12} />
                 </button>
             </div>
         </div>

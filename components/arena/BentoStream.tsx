@@ -3,7 +3,59 @@ import { motion } from 'framer-motion';
 import { Users, MessageSquare } from 'lucide-react';
 import CyberContainer from './CyberContainer';
 
-const BentoStream: React.FC = () => {
+export interface ChatMessage {
+    user: string;
+    msg: string;
+    color: string;
+}
+
+export interface StreamStat {
+    label: string;
+    value: string;
+    variant: 'primary' | 'secondary' | 'danger';
+    labelColor: string;
+}
+
+export interface BentoStreamProps {
+    /** Status message when stream is loading/offline */
+    statusMessage?: string;
+    /** Whether the stream is live */
+    isLive?: boolean;
+    /** Current viewer count */
+    viewerCount?: number;
+    /** Chat messages to display */
+    chatMessages?: ChatMessage[];
+    /** Stats to display in the grid */
+    stats?: StreamStat[];
+    /** Placeholder for chat input */
+    chatPlaceholder?: string;
+}
+
+const defaultChatMessages: ChatMessage[] = [
+    { user: "xSlayer", msg: "TL winning this for sure", color: "text-blue-400" },
+    { user: "NoobMaster", msg: "KEKW", color: "text-purple-400" },
+    { user: "ArenaBot", msg: "Welcome to the stream!", color: "text-green-400" },
+    { user: "JinxMain", msg: "What was that play??", color: "text-pink-400" },
+    { user: "ProGamer", msg: "GG", color: "text-yellow-400" },
+    { user: "xSlayer", msg: "Incredible mechanics", color: "text-blue-400" },
+    { user: "NoobMaster", msg: "PogChamp", color: "text-purple-400" },
+    { user: "ArenaBot", msg: "Don't forget to follow!", color: "text-green-400" },
+];
+
+const defaultStats: StreamStat[] = [
+    { label: "KDA Ratio", value: "4.2", variant: "secondary", labelColor: "text-purple-400" },
+    { label: "Gold Diff", value: "+2.1k", variant: "primary", labelColor: "text-yellow-500" },
+    { label: "Dragons", value: "3 / 4", variant: "danger", labelColor: "text-red-500" },
+];
+
+const BentoStream: React.FC<BentoStreamProps> = ({
+    statusMessage = "Signal Lost... Reconnecting",
+    isLive = true,
+    viewerCount = 142031,
+    chatMessages = defaultChatMessages,
+    stats = defaultStats,
+    chatPlaceholder = "Send a message...",
+}) => {
     return (
         <div className="grid grid-cols-1 md:grid-cols-4 grid-rows-4 gap-4 h-[600px]">
             {/* Main Stream (Video Placeholder) */}
@@ -15,12 +67,14 @@ const BentoStream: React.FC = () => {
                 <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-red-500 z-10" />
 
                 <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="text-slate-700 font-bold uppercase tracking-widest animate-pulse text-2xl font-mono">Signal Lost... Reconnecting</div>
+                    <div className="text-slate-700 font-bold uppercase tracking-widest animate-pulse text-2xl font-mono">{statusMessage}</div>
                 </div>
                 <div className="absolute top-4 left-4 flex gap-2 z-20">
-                    <span className="bg-red-600 text-white text-xs font-black px-3 py-1 uppercase animate-pulse shadow-lg shadow-red-600/50">Live</span>
+                    {isLive && (
+                        <span className="bg-red-600 text-white text-xs font-black px-3 py-1 uppercase animate-pulse shadow-lg shadow-red-600/50">Live</span>
+                    )}
                     <span className="bg-black/80 backdrop-blur text-white text-xs font-bold px-3 py-1 flex items-center gap-2 border border-slate-700">
-                        <Users size={12} className="text-red-500" /> 142,031
+                        <Users size={12} className="text-red-500" /> {viewerCount.toLocaleString()}
                     </span>
                 </div>
             </div>
@@ -32,16 +86,7 @@ const BentoStream: React.FC = () => {
                     <MessageSquare size={14} className="text-blue-500" />
                 </div>
                 <div className="flex-1 p-3 space-y-3 overflow-hidden mask-image-b">
-                    {[
-                        { user: "xSlayer", msg: "TL winning this for sure", color: "text-blue-400" },
-                        { user: "NoobMaster", msg: "KEKW", color: "text-purple-400" },
-                        { user: "ArenaBot", msg: "Welcome to the stream!", color: "text-green-400" },
-                        { user: "JinxMain", msg: "What was that play??", color: "text-pink-400" },
-                        { user: "ProGamer", msg: "GG", color: "text-yellow-400" },
-                        { user: "xSlayer", msg: "Incredible mechanics", color: "text-blue-400" },
-                        { user: "NoobMaster", msg: "PogChamp", color: "text-purple-400" },
-                        { user: "ArenaBot", msg: "Don't forget to follow!", color: "text-green-400" },
-                    ].map((chat, i) => (
+                    {chatMessages.map((chat, i) => (
                         <div key={i} className="text-xs font-mono">
                             <span className={`font-bold ${chat.color} mr-2`}>{chat.user}:</span>
                             <span className="text-slate-300">{chat.msg}</span>
@@ -49,23 +94,17 @@ const BentoStream: React.FC = () => {
                     ))}
                 </div>
                 <div className="p-2 border-t border-slate-800">
-                    <input type="text" placeholder="Send a message..." className="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 px-3 py-2 text-xs focus:outline-none text-white placeholder:text-slate-600 font-mono" />
+                    <input type="text" placeholder={chatPlaceholder} className="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 px-3 py-2 text-xs focus:outline-none text-white placeholder:text-slate-600 font-mono" />
                 </div>
             </CyberContainer>
 
             {/* Stats / Extras */}
-            <CyberContainer className="col-span-1 md:col-span-1 row-span-1 p-4 flex flex-col justify-between" variant="secondary">
-                <span className="text-xs text-purple-400 uppercase font-black tracking-widest">KDA Ratio</span>
-                <span className="text-3xl font-mono text-white font-black drop-shadow-lg">4.2</span>
-            </CyberContainer>
-            <CyberContainer className="col-span-1 md:col-span-1 row-span-1 p-4 flex flex-col justify-between" variant="primary">
-                <span className="text-xs text-yellow-500 uppercase font-black tracking-widest">Gold Diff</span>
-                <span className="text-3xl font-mono text-white font-black">+2.1k</span>
-            </CyberContainer>
-            <CyberContainer className="col-span-1 md:col-span-1 row-span-1 p-4 flex flex-col justify-between" variant="danger">
-                <span className="text-xs text-red-500 uppercase font-black tracking-widest">Dragons</span>
-                <span className="text-3xl font-mono text-white font-black">3 / 4</span>
-            </CyberContainer>
+            {stats.map((stat, i) => (
+                <CyberContainer key={i} className="col-span-1 md:col-span-1 row-span-1 p-4 flex flex-col justify-between" variant={stat.variant}>
+                    <span className={`text-xs ${stat.labelColor} uppercase font-black tracking-widest`}>{stat.label}</span>
+                    <span className="text-3xl font-mono text-white font-black drop-shadow-lg">{stat.value}</span>
+                </CyberContainer>
+            ))}
         </div>
     );
 };
