@@ -469,7 +469,7 @@ export const componentDocs: Record<string, ComponentDoc> = {
             { name: 'children', type: 'ReactNode', required: true, description: 'Card content' },
             { name: 'className', type: 'string', required: false, description: 'Additional CSS classes' },
             { name: 'label', type: 'string', required: false, description: 'Header label text' },
-            { name: 'alert', type: 'boolean', required: false, defaultValue: 'false', description: 'Alert state with red border' },
+            { name: 'alert', type: 'boolean', required: false, default: 'false', description: 'Alert state with red border' },
         ],
         notes: ['Dark automotive aesthetic with matte texture', 'Optional alert state for warnings'],
     },
@@ -719,13 +719,13 @@ export const componentDocs: Record<string, ComponentDoc> = {
         id: 'education-button',
         props: [
             { name: 'children', type: 'ReactNode', required: true, description: 'Button content' },
-            { name: 'variant', type: "'primary' | 'secondary' | 'ghost' | 'outline'", required: false, defaultValue: "'primary'", description: 'Visual style variant' },
-            { name: 'size', type: "'sm' | 'md' | 'lg'", required: false, defaultValue: "'md'", description: 'Button size' },
+            { name: 'variant', type: "'primary' | 'secondary' | 'ghost' | 'outline'", required: false, default: "'primary'", description: 'Visual style variant' },
+            { name: 'size', type: "'sm' | 'md' | 'lg'", required: false, default: "'md'", description: 'Button size' },
             { name: 'icon', type: 'ReactNode', required: false, description: 'Optional leading icon' },
-            { name: 'disabled', type: 'boolean', required: false, defaultValue: 'false', description: 'Disabled state' },
+            { name: 'disabled', type: 'boolean', required: false, default: 'false', description: 'Disabled state' },
             { name: 'onClick', type: '() => void', required: false, description: 'Click handler' },
         ],
-        examples: [{ name: 'Primary', code: '<EducationButton>Start Learning</EducationButton>' }],
+        examples: [{ title: 'Primary', code: '<EducationButton>Start Learning</EducationButton>' }],
         notes: ['Gradient shine effect on primary variant', 'Includes pulsing progress dot'],
     },
     'education-card': {
@@ -733,10 +733,10 @@ export const componentDocs: Record<string, ComponentDoc> = {
         props: [
             { name: 'children', type: 'ReactNode', required: true, description: 'Card content' },
             { name: 'className', type: 'string', required: false, description: 'Additional CSS classes' },
-            { name: 'delay', type: 'number', required: false, defaultValue: '0', description: 'Animation delay in seconds' },
-            { name: 'featured', type: 'boolean', required: false, defaultValue: 'false', description: 'Featured purple variant' },
+            { name: 'delay', type: 'number', required: false, default: '0', description: 'Animation delay in seconds' },
+            { name: 'featured', type: 'boolean', required: false, default: 'false', description: 'Featured purple variant' },
         ],
-        examples: [{ name: 'Featured Card', code: '<EducationCard featured>Special Offer</EducationCard>' }],
+        examples: [{ title: 'Featured Card', code: '<EducationCard featured>Special Offer</EducationCard>' }],
         notes: ['Animated entry with fade and slide', 'Featured variant has purple gradient background'],
     },
     'study-stats': {
@@ -940,10 +940,10 @@ export const componentDocs: Record<string, ComponentDoc> = {
     'clay-progress': {
         id: 'clay-progress',
         props: [
-            { name: 'value', type: 'number', required: false, defaultValue: '65', description: 'Current progress value' },
-            { name: 'max', type: 'number', required: false, defaultValue: '100', description: 'Maximum value' },
-            { name: 'label', type: 'string', required: false, defaultValue: "'Progress'", description: 'Progress label' },
-            { name: 'color', type: "'blue' | 'green' | 'purple' | 'orange'", required: false, defaultValue: "'blue'", description: 'Color theme' },
+            { name: 'value', type: 'number', required: false, default: '65', description: 'Current progress value' },
+            { name: 'max', type: 'number', required: false, default: '100', description: 'Maximum value' },
+            { name: 'label', type: 'string', required: false, default: "'Progress'", description: 'Progress label' },
+            { name: 'color', type: "'blue' | 'green' | 'purple' | 'orange'", required: false, default: "'blue'", description: 'Color theme' },
         ],
         notes: ['Soft 3D inset track', 'Animated fill on mount', 'Color gradient variants'],
     },
@@ -960,11 +960,11 @@ export const componentDocs: Record<string, ComponentDoc> = {
     'neumorphic-slider': {
         id: 'neumorphic-slider',
         props: [
-            { name: 'min', type: 'number', required: false, defaultValue: '0', description: 'Minimum value' },
-            { name: 'max', type: 'number', required: false, defaultValue: '100', description: 'Maximum value' },
-            { name: 'initialValue', type: 'number', required: false, defaultValue: '50', description: 'Starting value' },
-            { name: 'label', type: 'string', required: false, defaultValue: "'Brightness'", description: 'Slider label' },
-            { name: 'unit', type: 'string', required: false, defaultValue: "'%'", description: 'Value unit suffix' },
+            { name: 'min', type: 'number', required: false, default: '0', description: 'Minimum value' },
+            { name: 'max', type: 'number', required: false, default: '100', description: 'Maximum value' },
+            { name: 'initialValue', type: 'number', required: false, default: '50', description: 'Starting value' },
+            { name: 'label', type: 'string', required: false, default: "'Brightness'", description: 'Slider label' },
+            { name: 'unit', type: 'string', required: false, default: "'%'", description: 'Value unit suffix' },
             { name: 'onChange', type: '(value: number) => void', required: false, description: 'Value change callback' },
         ],
         notes: ['Inset track with neumorphic shadows', 'Raised thumb with soft shadows', 'Gradient fill'],
@@ -1242,7 +1242,7 @@ export const componentDocs: Record<string, ComponentDoc> = {
     'volume-slider': {
         id: 'volume-slider',
         props: [
-            { name: 'initialVolume', type: 'number', required: false, defaultValue: '70', description: 'Starting volume 0-100' },
+            { name: 'initialVolume', type: 'number', required: false, default: '70', description: 'Starting volume 0-100' },
             { name: 'onVolumeChange', type: '(volume: number) => void', required: false, description: 'Volume change callback' },
             { name: 'className', type: 'string', required: false, description: 'Additional CSS classes' },
         ],
@@ -1251,8 +1251,8 @@ export const componentDocs: Record<string, ComponentDoc> = {
     'equalizer-bars': {
         id: 'equalizer-bars',
         props: [
-            { name: 'isPlaying', type: 'boolean', required: false, defaultValue: 'true', description: 'Animate when playing' },
-            { name: 'barCount', type: 'number', required: false, defaultValue: '5', description: 'Number of bars' },
+            { name: 'isPlaying', type: 'boolean', required: false, default: 'true', description: 'Animate when playing' },
+            { name: 'barCount', type: 'number', required: false, default: '5', description: 'Number of bars' },
             { name: 'className', type: 'string', required: false, description: 'Additional CSS classes' },
         ],
         notes: ['Animated bars sync with audio feel', 'Purple gradient coloring'],
@@ -1308,7 +1308,7 @@ export const componentDocs: Record<string, ComponentDoc> = {
     'alert-banner': {
         id: 'alert-banner',
         props: [
-            { name: 'type', type: "'info' | 'warning' | 'success' | 'error'", required: false, defaultValue: "'warning'", description: 'Alert type and color' },
+            { name: 'type', type: "'info' | 'warning' | 'success' | 'error'", required: false, default: "'warning'", description: 'Alert type and color' },
             { name: 'title', type: 'string', required: false, description: 'Alert title' },
             { name: 'message', type: 'string', required: false, description: 'Alert description' },
             { name: 'onDismiss', type: '() => void', required: false, description: 'Dismiss callback' },
@@ -1364,9 +1364,9 @@ export const componentDocs: Record<string, ComponentDoc> = {
     'stamp-badge': {
         id: 'stamp-badge',
         props: [
-            { name: 'text', type: 'string', required: false, defaultValue: "'APPROVED'", description: 'Stamp text' },
-            { name: 'variant', type: "'approved' | 'rejected' | 'pending' | 'custom'", required: false, defaultValue: "'approved'", description: 'Color variant' },
-            { name: 'rotation', type: 'number', required: false, defaultValue: '-12', description: 'Rotation angle in degrees' },
+            { name: 'text', type: 'string', required: false, default: "'APPROVED'", description: 'Stamp text' },
+            { name: 'variant', type: "'approved' | 'rejected' | 'pending' | 'custom'", required: false, default: "'approved'", description: 'Color variant' },
+            { name: 'rotation', type: 'number', required: false, default: '-12', description: 'Rotation angle in degrees' },
         ],
         notes: ['Spring animation on mount', 'Double border retro stamp look', 'Monospace typography'],
     },
@@ -1422,7 +1422,7 @@ export const componentDocs: Record<string, ComponentDoc> = {
     'recipe-progress': {
         id: 'recipe-progress',
         props: [
-            { name: 'recipeName', type: 'string', required: false, defaultValue: "'Pasta Carbonara'", description: 'Recipe title' },
+            { name: 'recipeName', type: 'string', required: false, default: "'Pasta Carbonara'", description: 'Recipe title' },
             { name: 'steps', type: 'Step[]', required: false, description: 'Array of step objects with title, completed, current' },
         ],
         notes: ['Animated progress bar', 'Step completion checkmarks', 'Current step highlight'],
@@ -1525,9 +1525,9 @@ export const componentDocs: Record<string, ComponentDoc> = {
     'reading-progress': {
         id: 'reading-progress',
         props: [
-            { name: 'bookTitle', type: 'string', required: false, defaultValue: "'The Great Gatsby'", description: 'Book title' },
-            { name: 'currentPage', type: 'number', required: false, defaultValue: '127', description: 'Current page number' },
-            { name: 'totalPages', type: 'number', required: false, defaultValue: '218', description: 'Total page count' },
+            { name: 'bookTitle', type: 'string', required: false, default: "'The Great Gatsby'", description: 'Book title' },
+            { name: 'currentPage', type: 'number', required: false, default: '127', description: 'Current page number' },
+            { name: 'totalPages', type: 'number', required: false, default: '218', description: 'Total page count' },
         ],
         notes: ['Percentage progress bar', 'Estimated reading time', 'E-ink grayscale styling'],
     },
@@ -1635,9 +1635,9 @@ export const componentDocs: Record<string, ComponentDoc> = {
     'document-status': {
         id: 'document-status',
         props: [
-            { name: 'status', type: "'draft' | 'pending' | 'approved' | 'rejected'", required: false, defaultValue: "'pending'", description: 'Document status' },
+            { name: 'status', type: "'draft' | 'pending' | 'approved' | 'rejected'", required: false, default: "'pending'", description: 'Document status' },
             { name: 'documentName', type: 'string', required: false, description: 'Document title' },
-            { name: 'lastUpdated', type: 'string', required: false, defaultValue: "'2 hours ago'", description: 'Last update time' },
+            { name: 'lastUpdated', type: 'string', required: false, default: "'2 hours ago'", description: 'Last update time' },
         ],
         notes: ['Status-based icon and color theming', 'Animated entrance'],
     },
@@ -1719,12 +1719,12 @@ export const componentDocs: Record<string, ComponentDoc> = {
     'artist-card': {
         id: 'artist-card',
         props: [
-            { name: 'name', type: 'string', required: false, defaultValue: "'Aurora Nights'", description: 'Artist name' },
+            { name: 'name', type: 'string', required: false, default: "'Aurora Nights'", description: 'Artist name' },
             { name: 'genre', type: 'string', required: false, description: 'Music genre' },
             { name: 'imageUrl', type: 'string', required: false, description: 'Artist image URL' },
-            { name: 'setTime', type: 'string', required: false, defaultValue: "'9:30 PM'", description: 'Set time' },
-            { name: 'stage', type: 'string', required: false, defaultValue: "'Main Stage'", description: 'Stage name' },
-            { name: 'isFavorite', type: 'boolean', required: false, defaultValue: 'false', description: 'Favorite state' },
+            { name: 'setTime', type: 'string', required: false, default: "'9:30 PM'", description: 'Set time' },
+            { name: 'stage', type: 'string', required: false, default: "'Main Stage'", description: 'Stage name' },
+            { name: 'isFavorite', type: 'boolean', required: false, default: 'false', description: 'Favorite state' },
             { name: 'onFavoriteToggle', type: '() => void', required: false, description: 'Favorite toggle callback' },
         ],
         notes: ['Image zoom on hover', 'Stage badge', 'Star favorite button'],
@@ -1776,7 +1776,7 @@ export const componentDocs: Record<string, ComponentDoc> = {
     'chroma-shift': {
         id: 'chroma-shift',
         props: [
-            { name: 'text', type: 'string', required: false, defaultValue: "'CHROMATIC'", description: 'Text to display' },
+            { name: 'text', type: 'string', required: false, default: "'CHROMATIC'", description: 'Text to display' },
             { name: 'className', type: 'string', required: false, description: 'Additional CSS classes' },
         ],
         notes: ['RGB color separation effect', 'Animated channel movement', 'Mix-blend-multiply for overlap'],
@@ -1925,10 +1925,10 @@ export const componentDocs: Record<string, ComponentDoc> = {
         props: [
             { name: 'children', type: 'ReactNode', required: true, description: 'Card content' },
             { name: 'className', type: 'string', required: false, description: 'Additional CSS classes' },
-            { name: 'bordered', type: 'boolean', required: false, defaultValue: 'false', description: 'Add black border' },
-            { name: 'inverted', type: 'boolean', required: false, defaultValue: 'false', description: 'International red background' },
-            { name: 'black', type: 'boolean', required: false, defaultValue: 'false', description: 'Black background variant' },
-            { name: 'delay', type: 'number', required: false, defaultValue: '0', description: 'Animation delay' },
+            { name: 'bordered', type: 'boolean', required: false, default: 'false', description: 'Add black border' },
+            { name: 'inverted', type: 'boolean', required: false, default: 'false', description: 'International red background' },
+            { name: 'black', type: 'boolean', required: false, default: 'false', description: 'Black background variant' },
+            { name: 'delay', type: 'number', required: false, default: '0', description: 'Animation delay' },
         ],
         notes: ['Sharp rectangular corners for Swiss aesthetic', 'Three variants: white, red (inverted), black'],
     },
@@ -1938,7 +1938,7 @@ export const componentDocs: Record<string, ComponentDoc> = {
             { name: 'label', type: 'string', required: true, description: 'Metric label text' },
             { name: 'value', type: 'string', required: true, description: 'Large display value' },
             { name: 'description', type: 'string', required: false, description: 'Optional description text' },
-            { name: 'size', type: '"large" | "medium" | "small"', required: false, defaultValue: '"medium"', description: 'Typography size' },
+            { name: 'size', type: '"large" | "medium" | "small"', required: false, default: '"medium"', description: 'Typography size' },
         ],
         notes: ['Animated border expansion on hover', 'Massive typography for data visualization'],
     },
@@ -1972,9 +1972,9 @@ export const componentDocs: Record<string, ComponentDoc> = {
         props: [
             { name: 'children', type: 'ReactNode', required: true, description: 'Card content' },
             { name: 'className', type: 'string', required: false, description: 'Additional CSS classes' },
-            { name: 'delay', type: 'number', required: false, defaultValue: '0', description: 'Animation delay' },
-            { name: 'hoverEffect', type: 'boolean', required: false, defaultValue: 'true', description: 'Enable hover lift effect' },
-            { name: 'noPadding', type: 'boolean', required: false, defaultValue: 'false', description: 'Remove default padding' },
+            { name: 'delay', type: 'number', required: false, default: '0', description: 'Animation delay' },
+            { name: 'hoverEffect', type: 'boolean', required: false, default: 'true', description: 'Enable hover lift effect' },
+            { name: 'noPadding', type: 'boolean', required: false, default: 'false', description: 'Remove default padding' },
         ],
         notes: ['Elegant editorial feel with custom bezier animation', 'Shadow lift on hover'],
     },
@@ -2009,7 +2009,7 @@ export const componentDocs: Record<string, ComponentDoc> = {
         props: [
             { name: 'children', type: 'ReactNode', required: true, description: 'Card content' },
             { name: 'className', type: 'string', required: false, description: 'Additional CSS classes' },
-            { name: 'delay', type: 'number', required: false, defaultValue: '0', description: 'Animation delay' },
+            { name: 'delay', type: 'number', required: false, default: '0', description: 'Animation delay' },
         ],
         notes: ['Clean minimal white card', 'Fade-up animation on mount'],
     },
@@ -2664,16 +2664,6 @@ export const componentDocs: Record<string, ComponentDoc> = {
             { name: 'className', type: 'string', required: false, description: 'Additional CSS classes' },
         ],
         notes: ['Retro Windows 95 draggable window', 'Working minimize/close buttons', 'Framer Motion drag'],
-    },
-    'glitch-text': {
-        id: 'glitch-text',
-        props: [
-            { name: 'text', type: 'string', required: true, description: 'Text to display' },
-            { name: 'as', type: '"h1" | "h2" | "h3" | "p" | "span"', required: false, default: '"span"', description: 'HTML element' },
-            { name: 'className', type: 'string', required: false, description: 'Additional CSS classes' },
-            { name: 'intensity', type: '"low" | "high"', required: false, default: '"low"', description: 'Glitch intensity' },
-        ],
-        notes: ['Chromatic aberration text effect', 'RGB split shadow animation'],
     },
     'raw-input': {
         id: 'raw-input',

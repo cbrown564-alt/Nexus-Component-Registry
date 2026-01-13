@@ -48,12 +48,21 @@ const PlanPicker: React.FC<PlanPickerProps> = ({
             >
                 Subscription Plan
             </h3>
-            <div className="space-y-3">
+            <div className="space-y-3" role="radiogroup" aria-label="Subscription plans">
                 {plans.map((plan) => (
                     <div
                         key={plan.id}
                         onClick={() => handleSelect(plan.id)}
-                        className="relative flex cursor-pointer items-center justify-between rounded-lg border px-4 py-3 transition-all duration-200"
+                        onKeyDown={(e) => {
+                            if (e.key === 'Enter' || e.key === ' ') {
+                                e.preventDefault();
+                                handleSelect(plan.id);
+                            }
+                        }}
+                        role="radio"
+                        aria-checked={selected === plan.id}
+                        tabIndex={0}
+                        className="relative flex cursor-pointer items-center justify-between rounded-lg border px-4 py-3 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
                         style={{
                             borderColor: selected === plan.id ? '#3b82f6' : theme.colors.border,
                             backgroundColor: selected === plan.id ? 'rgba(59,130,246,0.1)' : `${theme.colors.muted}33`,
