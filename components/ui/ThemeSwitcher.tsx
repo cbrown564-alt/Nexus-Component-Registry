@@ -12,7 +12,7 @@ export default function ThemeSwitcher({ template }: ThemeSwitcherProps) {
     const [isOpen, setIsOpen] = useState(false)
     const [selectedVariant, setSelectedVariant] = useState<string | null>(null)
     const dropdownRef = useRef<HTMLDivElement>(null)
-    const { setScopedTheme } = useTheme()
+    const { setTheme } = useTheme()
 
     const variants = template.themeVariants
 
@@ -29,7 +29,7 @@ export default function ThemeSwitcher({ template }: ThemeSwitcherProps) {
 
     const handleVariantSelect = (variant: ThemeVariant) => {
         setSelectedVariant(variant.id)
-        setScopedTheme(template.visualLanguageId, variant.playgroundThemeId)
+        setTheme(variant.playgroundThemeId)
         setIsOpen(false)
     }
 

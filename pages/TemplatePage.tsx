@@ -35,6 +35,13 @@ import CockpitDashboard from '@/templates/CockpitDashboard'
 import ClaymorphismDashboard from '@/templates/ClaymorphismDashboard'
 import BlueprintDashboard from '@/templates/BlueprintDashboard'
 import SwissDashboard from '@/templates/SwissDashboard'
+import ClinicDashboard from '@/templates/ClinicDashboard'
+import DepartureDashboard from '@/templates/DepartureDashboard'
+import EstateDashboard from '@/templates/EstateDashboard'
+import NomadDashboard from '@/templates/NomadDashboard'
+import VaultDashboard from '@/templates/VaultDashboard'
+import ArenaDashboard from '@/templates/ArenaDashboard'
+import EvergreenDashboard from '@/templates/EvergreenDashboard'
 
 const dashboardComponents: Record<string, ComponentType> = {
     engineering: EngineeringDashboard,
@@ -65,6 +72,14 @@ const dashboardComponents: Record<string, ComponentType> = {
     clay: ClaymorphismDashboard,
     blueprint: BlueprintDashboard,
     swiss: SwissDashboard,
+    // Phase 4: New templates
+    clinic: ClinicDashboard,
+    departure: DepartureDashboard,
+    estate: EstateDashboard,
+    nomad: NomadDashboard,
+    vault: VaultDashboard,
+    arena: ArenaDashboard,
+    evergreen: EvergreenDashboard,
 }
 
 export default function TemplatePage() {

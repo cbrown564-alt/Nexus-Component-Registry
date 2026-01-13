@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion, HTMLMotionProps } from 'framer-motion';
+import { useTheme } from '@/context/ThemeContext';
 
 interface GameCardProps extends HTMLMotionProps<"div"> {
   children: React.ReactNode;
@@ -15,20 +16,37 @@ const GameCard: React.FC<GameCardProps> = ({
   variant = 'primary',
   ...props
 }) => {
+  const { theme } = useTheme();
+
   const getBorderColor = () => {
     switch (variant) {
-      case 'secondary': return 'border-cyan-500/30 bg-cyan-950/30';
-      case 'accent': return 'border-amber-500/30 bg-amber-950/30';
-      default: return 'border-fuchsia-500/30 bg-fuchsia-950/30';
+      case 'secondary':
+        return {
+          borderColor: `${theme.colors.secondary}4d`,
+          backgroundColor: `${theme.colors.secondary}1a`,
+        };
+      case 'accent':
+        return {
+          borderColor: `${theme.colors.accent}4d`,
+          backgroundColor: `${theme.colors.accent}1a`,
+        };
+      default:
+        return {
+          borderColor: `${theme.colors.primary}4d`,
+          backgroundColor: `${theme.colors.primary}1a`,
+        };
     }
-  }
+  };
+
+  const styles = getBorderColor();
 
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.9, y: 10 }}
       animate={{ opacity: 1, scale: 1, y: 0 }}
       transition={{ type: "spring", bounce: 0.4, duration: 0.6, delay }}
-      className={`relative overflow-hidden rounded-2xl border backdrop-blur-md shadow-lg ${getBorderColor()} ${className}`}
+      className={`relative overflow-hidden rounded-2xl border backdrop-blur-md shadow-lg ${className}`}
+      style={styles}
       {...props}
     >
       {/* Glossy sheen */}

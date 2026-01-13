@@ -40,7 +40,7 @@ const LegalDashboard = () => {
       {/* Left Navigation (Sidebar) */}
       <aside className="w-16 md:w-64 flex-shrink-0 flex flex-col border-r" style={{ backgroundColor: theme.colors.primary, color: theme.colors.mutedForeground, borderColor: theme.colors.border }}>
         <div className="h-16 flex items-center justify-center md:justify-start md:px-6 border-b" style={{ borderColor: theme.colors.border }}>
-          <div className="h-8 w-8 rounded-sm flex items-center justify-center font-serif font-bold text-lg" style={{ backgroundColor: '#b91c1c', color: '#ffffff' }}>
+          <div className="h-8 w-8 rounded-sm flex items-center justify-center font-serif font-bold text-lg" style={{ backgroundColor: theme.colors.accent, color: theme.colors.card }}>
             §
           </div>
           <span className="ml-3 font-serif font-bold hidden md:block" style={{ color: theme.colors.primaryForeground }}>LegalEagle</span>
@@ -128,7 +128,7 @@ const LegalDashboard = () => {
 
             <LegalPaper title="Master Services Agreement">
 
-              <div className="mb-8 text-sm text-center font-serif italic" style={{ color: '#57534e' }}>
+              <div className="mb-8 text-sm text-center font-serif italic" style={{ color: theme.colors.mutedForeground }}>
                 Effective Date: October 24, 2024
               </div>
 
@@ -158,13 +158,13 @@ const LegalDashboard = () => {
                 <span className="bg-yellow-100 px-1">Customer owns all right, title, and interest in and to the Deliverables.</span> Provider retains all ownership rights in its pre-existing materials and generic tools used to create the Deliverables.
               </Clause>
 
-              <div className="mt-12 pt-12 flex justify-between gap-12" style={{ borderTopWidth: '2px', borderTopColor: '#1c1917' }}>
+              <div className="mt-12 pt-12 flex justify-between gap-12" style={{ borderTopWidth: '2px', borderTopColor: theme.colors.foreground }}>
                 <div className="flex-1">
-                  <div className="h-16 mb-2" style={{ borderBottomWidth: '1px', borderBottomColor: '#a8a29e' }}></div>
+                  <div className="h-16 mb-2" style={{ borderBottomWidth: '1px', borderBottomColor: theme.colors.mutedForeground }}></div>
                   <div className="text-xs font-bold uppercase tracking-wider">Signed by Customer</div>
                 </div>
                 <div className="flex-1">
-                  <div className="h-16 mb-2" style={{ borderBottomWidth: '1px', borderBottomColor: '#a8a29e' }}></div>
+                  <div className="h-16 mb-2" style={{ borderBottomWidth: '1px', borderBottomColor: theme.colors.mutedForeground }}></div>
                   <div className="text-xs font-bold uppercase tracking-wider">Signed by Provider</div>
                 </div>
               </div>
@@ -175,7 +175,7 @@ const LegalDashboard = () => {
           </div>
 
           {/* Right Sidebar (Comments) */}
-          <div className="w-80 flex-shrink-0 hidden xl:block shadow-xl z-20" style={{ borderLeftWidth: '1px', borderLeftColor: '#d6d3d1', backgroundColor: '#ffffff' }}>
+          <div className="w-80 flex-shrink-0 hidden xl:block shadow-xl z-20" style={{ borderLeftWidth: '1px', borderLeftColor: theme.colors.border, backgroundColor: theme.colors.card }}>
             <RedlineSidebar />
           </div>
 

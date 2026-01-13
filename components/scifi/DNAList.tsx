@@ -16,7 +16,7 @@ const DNAList = () => {
   return (
     <SciFiCard title="Genomic Sequence" className="h-full">
       <div className="flex flex-col gap-2 font-mono text-xs">
-        <div className="flex justify-between text-cyan-600 mb-2 px-2">
+        <div className="flex justify-between mb-2 px-2" style={{ color: theme.colors.muted }}>
           <span>ID</span>
           <span>BASE</span>
           <span>INTEGRITY</span>
@@ -25,22 +25,33 @@ const DNAList = () => {
         {sequence.map((item, i) => (
           <div
             key={i}
-            className={`group flex items-center justify-between p-2 border border-dashed border-cyan-900/30 hover:bg-cyan-900/20 transition-colors cursor-pointer ${item.status === 'MUTATION' ? 'border-red-900/50 bg-red-950/10' : ''}`}
+            className="group flex items-center justify-between p-2 border border-dashed transition-colors cursor-pointer"
+            style={{
+              borderColor: item.status === 'MUTATION' ? '#7f1d1d80' : `${theme.colors.border}4d`,
+              backgroundColor: item.status === 'MUTATION' ? '#450a0a1a' : 'transparent',
+            }}
           >
             <div className="flex items-center gap-3">
-              <span className="text-cyan-500 opacity-60">{item.id}</span>
+              <span style={{ color: `${theme.colors.primary}99` }}>{item.id}</span>
               <div className="flex gap-0.5">
                 {[...Array(4)].map((_, j) => (
-                  <div key={j} className={`w-1 h-3 ${item.status === 'MUTATION' ? 'bg-red-500' : 'bg-cyan-400'}`} style={{ opacity: 0.2 + (j * 0.2) }} />
+                  <div
+                    key={j}
+                    className="w-1 h-3"
+                    style={{
+                      backgroundColor: item.status === 'MUTATION' ? '#ef4444' : theme.colors.accent,
+                      opacity: 0.2 + (j * 0.2),
+                    }}
+                  />
                 ))}
               </div>
             </div>
 
-            <span className={item.status === 'MUTATION' ? 'text-red-400 font-bold' : 'text-cyan-200'}>
+            <span style={{ color: item.status === 'MUTATION' ? '#f87171' : theme.colors.foreground, fontWeight: item.status === 'MUTATION' ? 'bold' : 'normal' }}>
               {item.type}
             </span>
 
-            <span className={item.match === 'ERROR' ? 'text-red-500 blinking' : 'text-teal-400'}>
+            <span style={{ color: item.match === 'ERROR' ? '#ef4444' : theme.colors.accent }}>
               [{item.match}]
             </span>
           </div>
@@ -48,8 +59,12 @@ const DNAList = () => {
       </div>
 
       <div
-        className="mt-4 p-2 border border-cyan-900/50 text-[10px] font-mono text-cyan-600"
-        style={{ backgroundColor: 'rgba(0,0,0,0.4)' }}
+        className="mt-4 p-2 border text-[10px] font-mono"
+        style={{
+          borderColor: `${theme.colors.border}80`,
+          backgroundColor: 'rgba(0,0,0,0.4)',
+          color: theme.colors.muted,
+        }}
       >
         {'>'} ANALYZING NEXT STRAND...<br />
         {'>'} ESTIMATED TIME: 00:04:22

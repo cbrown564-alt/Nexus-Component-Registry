@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { MessageSquarePlus } from 'lucide-react';
+import { useTheme } from '@/context/ThemeContext';
 
 interface ClauseProps {
   number: string;
@@ -19,6 +20,7 @@ const Clause: React.FC<ClauseProps> = ({
   onClick
 }) => {
   const [isHovered, setIsHovered] = useState(false);
+  const { theme } = useTheme();
 
   return (
     <div
@@ -27,13 +29,13 @@ const Clause: React.FC<ClauseProps> = ({
       onMouseLeave={() => setIsHovered(false)}
       className="group relative mb-6 transition-colors duration-200 rounded-md p-2 -ml-2 cursor-text"
       style={{
-        backgroundColor: isActive ? 'rgba(239, 246, 255, 0.5)' : isHovered ? '#fafaf9' : 'transparent'
+        backgroundColor: isActive ? `${theme.colors.primary}0d` : isHovered ? theme.colors.muted : 'transparent'
       }}
     >
       {/* Paragraph Number */}
       <div
         className="absolute -left-12 top-2.5 font-mono text-xs w-8 text-right transition-colors"
-        style={{ color: isHovered ? '#57534e' : '#a8a29e' }}
+        style={{ color: isHovered ? theme.colors.secondaryForeground : theme.colors.mutedForeground }}
       >
         {number}
       </div>
@@ -41,23 +43,23 @@ const Clause: React.FC<ClauseProps> = ({
       {/* Hover Action */}
       <button
         className="absolute -right-8 top-2 opacity-0 group-hover:opacity-100 transition-all"
-        style={{ color: isHovered ? '#2563eb' : '#a8a29e' }}
+        style={{ color: isHovered ? theme.colors.primary : theme.colors.mutedForeground }}
       >
         <MessageSquarePlus className="h-4 w-4" />
       </button>
 
       {/* Comment Indicator */}
       {hasComment && (
-        <div className="absolute -right-3 top-3 h-2 w-2 rounded-full ring-2 ring-white" style={{ backgroundColor: '#3b82f6' }} />
+        <div className="absolute -right-3 top-3 h-2 w-2 rounded-full" style={{ backgroundColor: theme.colors.primary, boxShadow: `0 0 0 2px ${theme.colors.card}` }} />
       )}
 
       {title && (
-        <h3 className="mb-2 font-bold text-sm uppercase tracking-wide" style={{ color: '#1c1917' }}>
+        <h3 className="mb-2 font-bold text-sm uppercase tracking-wide" style={{ color: theme.colors.foreground }}>
           {title}
         </h3>
       )}
 
-      <div className="text-sm leading-relaxed font-serif text-justify" style={{ color: '#292524' }}>
+      <div className="text-sm leading-relaxed font-serif text-justify" style={{ color: theme.colors.cardForeground }}>
         {children}
       </div>
     </div>

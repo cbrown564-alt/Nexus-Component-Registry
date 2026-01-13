@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, ReactNode, useMemo } from 'react'
+import { createContext, useContext, useState, ReactNode, useMemo, useCallback, useEffect } from 'react'
 import { legacyThemes as themes, LegacyTheme as Theme, getThemeById, VisualLanguageId } from '@/lib/registry'
 import { playgroundThemes, PlaygroundTheme, getPlaygroundThemeById, defaultPlaygroundTheme } from '@/data/playgroundThemes'
 import { helix } from '@/data/themes/scifi'
@@ -47,7 +47,9 @@ const REGISTRY_THEME: Theme = {
 
 interface ThemeContextType {
     // Template themes (for full-page templates)
+    /** The currently active template (if any) */
     currentTheme: Theme
+    /** Set the active template, which drives the overall visual scope */
     setTemplateTheme: (id: string) => void
     clearTemplateTheme: () => void
     themes: Theme[]
@@ -60,10 +62,15 @@ interface ThemeContextType {
 
     // Playground themes (for theme playground) - PRIMARY API
     currentPlaygroundTheme: PlaygroundTheme
-    setTheme: (id: string) => void  // Primary API for setting themes
+    /** 
+     * Primary API for setting the visual theme. 
+     * This updates the active theme for the current visual scope.
+     */
+    setTheme: (id: string) => void
     playgroundThemes: PlaygroundTheme[]
 
     // Convenience alias for components
+    /** Current active playground theme properties */
     theme: PlaygroundTheme
 
     // Scoped Theming (DEPRECATED)
@@ -102,7 +109,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     const [currentPlaygroundTheme, setCurrentPlaygroundTheme] = useState<PlaygroundTheme>(defaultPlaygroundTheme)
 
     // Sync playground theme when scope or scoped-selection changes
-    useMemo(() => {
+    useEffect(() => {
         // Special lookup for extracted themes until everything is unified
         let theme: PlaygroundTheme | undefined
 
@@ -152,18 +159,26 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     const currentTheme = activeTheme
 
     // Internal function to set template theme by ID
-    const setTemplateThemeById = (id: string) => {
+    // Internal function to set template theme by ID
+    const setTemplateThemeById = useCallback((id: string) => {
         const theme = getThemeById(id)
         if (theme) {
             setTemplateTheme(theme)
+
+            // Critical fix: Also set the active playground theme for this scope
+            // This ensures we do not fall back to the scope's default theme (which might be dark)
+            setScopedThemes(prev => ({
+                ...prev,
+                [theme.visualLanguageId]: theme.id
+            }))
         }
-    }
+    }, [])
 
-    const clearTemplateTheme = () => {
+    const clearTemplateTheme = useCallback(() => {
         setTemplateTheme(null)
-    }
+    }, [])
 
-    const setPlaygroundTheme = (id: string) => {
+    const setPlaygroundTheme = useCallback((id: string) => {
         // Directly look up and set the theme
         let theme: PlaygroundTheme | undefined
 
@@ -202,19 +217,20 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
         }
 
         // Also update the scoped themes for backwards compatibility
+        // This is now safe because setPlaygroundTheme is memoized
         setScopedThemes(prev => ({
             ...prev,
             [currentScope]: id
         }))
-    }
+    }, [currentScope])
 
-    const setScopedTheme = (language: VisualLanguageId, themeId: string) => {
+    const setScopedTheme = useCallback((language: VisualLanguageId, themeId: string) => {
         console.warn('setScopedTheme is deprecated. Use setTheme() instead.')
         setScopedThemes(prev => ({
             ...prev,
             [language]: themeId
         }))
-    }
+    }, [])
 
     // setTheme is now the primary API - alias for setPlaygroundTheme
     const setTheme = setPlaygroundTheme

@@ -1131,6 +1131,154 @@ function AcidWireframe({ theme }: WireframeProps) {
     )
 }
 
+// Clinic / Healthcare wireframe - patient portal
+function ClinicWireframe({ theme }: WireframeProps) {
+    return (
+        <div className="absolute inset-0 p-2 flex gap-2">
+            {/* Left: Appointment card */}
+            <div className="flex-1 flex flex-col gap-1.5">
+                {/* Header stats */}
+                <div className="flex gap-1">
+                    {[...Array(3)].map((_, i) => (
+                        <div
+                            key={i}
+                            className="flex-1 rounded-lg p-1 border"
+                            style={{ backgroundColor: '#ffffff', borderColor: '#e2e8f0' }}
+                        >
+                            <div className="w-3 h-3 rounded-full mb-0.5" style={{ backgroundColor: i === 0 ? 'rgba(13,148,136,0.2)' : '#f1f5f9' }} />
+                            <div className="h-1 w-2/3 rounded" style={{ backgroundColor: '#e2e8f0' }} />
+                        </div>
+                    ))}
+                </div>
+                {/* Appointment */}
+                <div
+                    className="flex-1 rounded-lg border p-1.5"
+                    style={{ backgroundColor: '#ffffff', borderColor: '#e2e8f0' }}
+                >
+                    <div className="flex items-center gap-1 mb-1.5">
+                        <div className="w-5 h-5 rounded-full" style={{ backgroundColor: 'rgba(13,148,136,0.2)' }} />
+                        <div className="flex-1">
+                            <div className="h-1.5 w-3/4 rounded mb-0.5" style={{ backgroundColor: '#0f172a' }} />
+                            <div className="h-1 w-1/2 rounded" style={{ backgroundColor: '#94a3b8' }} />
+                        </div>
+                        <div className="h-3 w-8 rounded-full" style={{ backgroundColor: '#d1fae5', color: '#065f46' }}>
+                            <div className="text-[4px] text-center leading-[12px]">✓</div>
+                        </div>
+                    </div>
+                    <div className="flex gap-2 mt-1">
+                        <div className="h-4 flex-1 rounded" style={{ backgroundColor: '#0d9488' }} />
+                        <div className="h-4 w-8 rounded" style={{ backgroundColor: '#e2e8f0' }} />
+                    </div>
+                </div>
+            </div>
+            {/* Right: Medications */}
+            <div className="w-2/5 flex flex-col gap-1.5">
+                <div
+                    className="flex-1 rounded-lg border p-1.5"
+                    style={{ backgroundColor: '#ffffff', borderColor: '#e2e8f0' }}
+                >
+                    <div className="flex items-center gap-1 mb-1">
+                        <div className="w-3 h-3 rounded-full" style={{ backgroundColor: 'rgba(13,148,136,0.2)' }} />
+                        <div className="h-1.5 w-2/3 rounded" style={{ backgroundColor: '#0f172a' }} />
+                    </div>
+                    {[...Array(2)].map((_, i) => (
+                        <div key={i} className="flex items-center gap-1 p-1 rounded mb-0.5" style={{ backgroundColor: i === 0 ? '#d1fae5' : '#f1f5f9' }}>
+                            <div className="h-1 flex-1 rounded" style={{ backgroundColor: '#64748b' }} />
+                            <div className="w-2 h-2 rounded-full" style={{ backgroundColor: i === 0 ? '#059669' : '#e2e8f0' }}>
+                                {i === 0 && <div className="text-[4px] text-center text-white leading-[8px]">✓</div>}
+                            </div>
+                        </div>
+                    ))}
+                </div>
+                {/* Insurance card mini */}
+                <div
+                    className="h-10 rounded-lg p-1.5"
+                    style={{ background: 'linear-gradient(135deg, #0d9488 0%, #0f766e 100%)' }}
+                >
+                    <div className="h-1 w-3/4 rounded mb-0.5" style={{ backgroundColor: 'rgba(255,255,255,0.3)' }} />
+                    <div className="h-2 w-full rounded font-mono" style={{ backgroundColor: 'rgba(255,255,255,0.2)' }} />
+                </div>
+            </div>
+        </div>
+    )
+}
+
+// Departure / Aviation wireframe
+function DepartureWireframe({ theme }: WireframeProps) {
+    return (
+        <div className="absolute inset-0 p-2 flex gap-2 bg-zinc-950">
+            {/* Left: Flight Board */}
+            <div className="flex-1 flex flex-col gap-1">
+                {/* Header */}
+                <div className="h-4 border border-zinc-700 rounded-sm mb-1 flex items-center px-1">
+                    <div className="w-2 h-2 rounded-full bg-amber-500/50" />
+                </div>
+                {/* Rows */}
+                {[...Array(6)].map((_, i) => (
+                    <div key={i} className="h-3 w-full border-b border-zinc-800 flex items-center gap-1">
+                        <div className="w-1/4 h-1 bg-zinc-800 rounded-sm" />
+                        <div className="w-1/4 h-1 bg-zinc-800 rounded-sm" />
+                        <div className="w-1/4 h-1 bg-zinc-800 rounded-sm ml-auto" />
+                    </div>
+                ))}
+            </div>
+            {/* Right: Gate Info */}
+            <div className="w-1/3 flex flex-col gap-2">
+                <div className="flex-1 border border-zinc-700 rounded-sm p-1 flex flex-col justify-between">
+                    <div className="w-4 h-4 rounded-sm bg-amber-500/20" />
+                    <div className="h-6 w-full bg-amber-500 rounded-sm" />
+                </div>
+                <div className="h-10 border border-zinc-700 rounded-sm" />
+            </div>
+        </div>
+    )
+}
+
+// Estate / Real Estate Wireframe
+function EstateWireframe({ theme }: WireframeProps) {
+    return (
+        <div className="absolute inset-0 p-2 flex flex-col gap-2 bg-stone-50">
+            {/* Hero Image */}
+            <div className="h-1/3 w-full bg-stone-200 rounded-sm relative overflow-hidden">
+                <div className="absolute bottom-2 left-2 w-1/2 h-3 bg-white/50 backdrop-blur-sm rounded-sm" />
+            </div>
+            {/* Grid of Listings */}
+            <div className="grid grid-cols-2 gap-2 flex-1">
+                {[...Array(4)].map((_, i) => (
+                    <div key={i} className="bg-white p-1 rounded-sm border border-stone-200 flex flex-col gap-1">
+                        <div className="flex-1 bg-stone-100 rounded-sm" />
+                        <div className="h-2 w-3/4 bg-stone-200 rounded-sm" />
+                        <div className="h-1.5 w-1/2 bg-stone-200 rounded-sm" />
+                    </div>
+                ))}
+            </div>
+        </div>
+    )
+}
+
+// Nomad / Travel Wireframe
+function NomadWireframe({ theme }: WireframeProps) {
+    return (
+        <div className="absolute inset-0 p-2 flex flex-col items-center bg-stone-100">
+            {/* Hero Blob */}
+            <div className="w-2/3 h-1/2 bg-stone-200 mb-2" style={{ borderRadius: '2rem 2rem 1rem 1rem' }} />
+            {/* Text Lines */}
+            <div className="w-1/2 h-2 bg-stone-300 rounded-full mb-4" />
+
+            {/* Feed */}
+            <div className="w-full flex-1 flex flex-col gap-2">
+                <div className="flex gap-2 items-center">
+                    <div className="w-1/3 h-10 bg-stone-200 rounded-lg" style={{ borderRadius: '1rem 0.5rem 1rem 1rem' }} />
+                    <div className="flex-1 space-y-1">
+                        <div className="h-1.5 w-full bg-stone-200 rounded-full" />
+                        <div className="h-1.5 w-2/3 bg-stone-200 rounded-full" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
+}
+
 // Map template IDs to their wireframe components
 function getTemplateWireframe(templateId: string): React.FC<WireframeProps> {
     const wireframes: Record<string, React.FC<WireframeProps>> = {
@@ -1169,6 +1317,12 @@ function getTemplateWireframe(templateId: string): React.FC<WireframeProps> {
         acid: AcidWireframe,
         blueprint: BlueprintWireframe,
         clay: ClayWireframe,
+
+        // Phase 4: New templates
+        clinic: ClinicWireframe,
+        departure: DepartureWireframe,
+        estate: EstateWireframe,
+        nomad: NomadWireframe,
     }
 
     return wireframes[templateId] || DashboardWireframe

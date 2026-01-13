@@ -4,22 +4,22 @@ export const saas: PlaygroundTheme = {
     id: 'saas',
     name: 'B2B SaaS',
     description: 'Clean, trustworthy enterprise software interface',
-    mode: 'light',
+    mode: 'dark',
     colors: {
-        background: '#f8fafc', // Slate-50
-        foreground: '#0f172a', // Slate-900
-        card: '#ffffff',
-        cardForeground: '#0f172a',
+        background: '#020617', // Slate-950
+        foreground: '#e2e8f0', // Slate-200
+        card: '#0f172a', // Slate-900
+        cardForeground: '#e2e8f0', // Slate-200
         primary: '#6366f1', // Indigo-500
         primaryForeground: '#ffffff',
-        secondary: '#f1f5f9', // Slate-100
-        secondaryForeground: '#475569', // Slate-600
-        muted: '#f1f5f9',
-        mutedForeground: '#64748b', // Slate-500
-        accent: '#818cf8', // Indigo-400
-        accentForeground: '#ffffff',
-        border: '#e2e8f0', // Slate-200
-        ring: '#6366f1',
+        secondary: '#1e293b', // Slate-800
+        secondaryForeground: '#f8fafc', // Slate-50
+        muted: '#1e293b', // Slate-800
+        mutedForeground: '#94a3b8', // Slate-400
+        accent: '#1e293b', // Slate-800
+        accentForeground: '#f8fafc', // Slate-50
+        border: 'rgba(30, 41, 59, 0.2)', // Slate-800 with 20% opacity
+        ring: '#6366f1', // Indigo-500
     },
     radius: 'sm',
     shadow: 'sm',

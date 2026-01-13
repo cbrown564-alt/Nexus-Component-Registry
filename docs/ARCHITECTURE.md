@@ -37,6 +37,11 @@ nexus-component-registry/
 
 Nexus uses a hybrid token system to allow radical visual changes without changing component markup.
 
+**Core API**:
+*   `setTheme(id)`: Primary API to switch the active visual theme (Playground Theme).
+*   `setTemplateTheme(id)`: Used by the router to set the template context and verify scope.
+
+**Architecture**:
 *   **Primitive Tokens**: Defined in `data/tokens.json` (e.g., `colors.blue.500`).
 *   **Semantic Aliasing**: `tokenUtils.ts` resolves references at runtime (e.g., `primary` -> `blue.500`).
 *   **Context Injection**: `ThemeContext` wraps the application (or specific sections) to inject CSS variables matching the active theme.

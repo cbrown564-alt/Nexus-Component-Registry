@@ -43,7 +43,19 @@ import {
     food,
     kitchen,
     kids,
+    // Variants
+    legalModern,
+    scifiOrange,
+    wellnessEnergy,
+    gameMinimal,
+    clinic,
+    departure,
+    estate,
+    nomad,
+    vault,
+    arena,
 } from './themes'
+import { evergreen } from './themes/evergreen';
 
 // Re-export type for compatibility
 export type { PlaygroundTheme } from './themes'
@@ -95,6 +107,18 @@ export const playgroundThemes: PlaygroundTheme[] = [
     // Experimental
     swiss,
     festival,
+    // New Phase 4 templates
+    clinic,
+    departure,
+    estate,
+    nomad,
+    vault,
+    arena,
+    // Variants
+    legalModern,
+    scifiOrange,
+    wellnessEnergy,
+    gameMinimal,
 ]
 
 export const getPlaygroundThemeById = (id: string): PlaygroundTheme | undefined => {

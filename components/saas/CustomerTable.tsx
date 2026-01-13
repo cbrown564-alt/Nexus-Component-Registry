@@ -13,7 +13,7 @@ const CustomerTable = () => {
 
   return (
     <SaasCard noPadding className="flex flex-col">
-      <div className="flex items-center justify-between border-b p-4" style={{ borderColor: '#1e293b' }}>
+      <div className="flex items-center justify-between border-b p-4" style={{ borderColor: 'rgba(30, 41, 59, 0.2)' }}>
         <div className="flex items-center gap-2">
           <h3 className="text-sm font-medium" style={{ color: '#f1f5f9' }}>Recent Transactions</h3>
           <span className="rounded-full px-2 py-0.5 text-[10px] font-medium" style={{ backgroundColor: '#1e293b', color: '#94a3b8' }}>24</span>
@@ -25,14 +25,14 @@ const CustomerTable = () => {
               type="text"
               placeholder="Search..."
               className="h-8 w-40 rounded-md border pl-8 pr-3 text-xs focus:outline-none"
-              style={{ borderColor: '#1e293b', backgroundColor: '#0f172a', color: '#cbd5e1' }}
+              style={{ borderColor: 'rgba(30, 41, 59, 0.2)', backgroundColor: '#0f172a', color: '#cbd5e1' }}
             />
           </div>
-          <button className="flex h-8 items-center gap-1.5 rounded-md border px-3 text-xs font-medium" style={{ borderColor: '#1e293b', backgroundColor: '#0f172a', color: '#94a3b8' }}>
+          <button className="flex h-8 items-center gap-1.5 rounded-md border px-3 text-xs font-medium" style={{ borderColor: 'rgba(30, 41, 59, 0.2)', backgroundColor: '#0f172a', color: '#94a3b8' }}>
             <Filter className="h-3.5 w-3.5" />
             Filter
           </button>
-          <button className="flex h-8 items-center gap-1.5 rounded-md border px-3 text-xs font-medium" style={{ borderColor: '#1e293b', backgroundColor: '#0f172a', color: '#94a3b8' }}>
+          <button className="flex h-8 items-center gap-1.5 rounded-md border px-3 text-xs font-medium" style={{ borderColor: 'rgba(30, 41, 59, 0.2)', backgroundColor: '#0f172a', color: '#94a3b8' }}>
             <Download className="h-3.5 w-3.5" />
             Export
           </button>
@@ -50,9 +50,9 @@ const CustomerTable = () => {
               <th className="px-6 py-3 font-medium text-right">Action</th>
             </tr>
           </thead>
-          <tbody className="divide-y" style={{ '--tw-divide-color': 'rgba(30,41,59,0.5)' } as React.CSSProperties}>
+          <tbody className="">
             {users.map((user, i) => (
-              <tr key={i} className="group transition-colors">
+              <tr key={i} className="group transition-colors border-b last:border-0" style={{ borderColor: 'rgba(30, 41, 59, 0.2)' }}>
                 <td className="px-6 py-4">
                   <div>
                     <div className="font-medium" style={{ color: '#e2e8f0' }}>{user.name}</div>

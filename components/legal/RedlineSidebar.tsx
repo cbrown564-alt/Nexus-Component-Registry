@@ -1,5 +1,6 @@
 import React from 'react';
 import { User, X, Check, Reply } from 'lucide-react';
+import { useTheme } from '@/context/ThemeContext';
 
 interface Comment {
   id: number;
@@ -14,6 +15,8 @@ interface Comment {
 }
 
 const RedlineSidebar = () => {
+  const { theme } = useTheme();
+
   const comments: Comment[] = [
     {
       id: 1,
@@ -45,22 +48,22 @@ const RedlineSidebar = () => {
   ];
 
   return (
-    <div className="h-full border-l p-4 overflow-y-auto" style={{ borderColor: '#e7e5e4', backgroundColor: '#fafaf9' }}>
+    <div className="h-full border-l p-4 overflow-y-auto" style={{ borderColor: theme.colors.border, backgroundColor: theme.colors.muted }}>
       <div className="mb-6 flex items-center justify-between">
-        <h3 className="text-xs font-bold uppercase tracking-widest" style={{ color: '#78716c' }}>Redlines & Comments</h3>
-        <span className="text-[10px] font-bold px-2 py-0.5 rounded-full" style={{ backgroundColor: '#dbeafe', color: '#1d4ed8' }}>3 Open</span>
+        <h3 className="text-xs font-bold uppercase tracking-widest" style={{ color: theme.colors.mutedForeground }}>Redlines & Comments</h3>
+        <span className="text-[10px] font-bold px-2 py-0.5 rounded-full" style={{ backgroundColor: `${theme.colors.primary}1a`, color: theme.colors.primary }}>3 Open</span>
       </div>
 
       <div className="space-y-4">
         {comments.map((comment) => (
-          <CommentItem key={comment.id} comment={comment} />
+          <CommentItem key={comment.id} comment={comment} theme={theme} />
         ))}
       </div>
     </div>
   );
 };
 
-const CommentItem = ({ comment }: { comment: Comment }) => {
+const CommentItem = ({ comment, theme }: { comment: Comment; theme: any }) => {
   const [isHovered, setIsHovered] = React.useState(false);
   const [hoveredButton, setHoveredButton] = React.useState<string | null>(null);
 
@@ -73,9 +76,9 @@ const CommentItem = ({ comment }: { comment: Comment }) => {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       style={{
-        backgroundColor: '#ffffff',
-        borderColor: comment.active ? '#3b82f6' : isHovered ? '#d6d3d1' : '#e7e5e4',
-        '--tw-ring-color': comment.active ? 'rgba(59, 130, 246, 0.2)' : 'transparent',
+        backgroundColor: theme.colors.card,
+        borderColor: comment.active ? theme.colors.primary : isHovered ? theme.colors.border : theme.colors.border,
+        '--tw-ring-color': comment.active ? `${theme.colors.primary}33` : 'transparent',
         '--tw-ring-opacity': 1,
       } as React.CSSProperties}
     >
@@ -84,20 +87,20 @@ const CommentItem = ({ comment }: { comment: Comment }) => {
           className={`h-6 w-6 rounded-full flex items-center justify-center text-[10px] font-bold`}
           style={{
             color: '#ffffff',
-            backgroundColor: comment.type === 'change' ? '#ef4444' : '#2563eb'
+            backgroundColor: comment.type === 'change' ? '#ef4444' : theme.colors.primary
           }}
         >
           {comment.initials}
         </div>
         <div className="flex-1">
           <div className="flex justify-between items-center">
-            <span className="text-xs font-bold" style={{ color: '#1c1917' }}>{comment.user}</span>
-            <span className="text-[10px]" style={{ color: '#a8a29e' }}>{comment.timestamp}</span>
+            <span className="text-xs font-bold" style={{ color: theme.colors.foreground }}>{comment.user}</span>
+            <span className="text-[10px]" style={{ color: theme.colors.mutedForeground }}>{comment.timestamp}</span>
           </div>
           {comment.type === 'change' && (
             <span
               className="text-[10px] font-mono uppercase"
-              style={{ color: comment.changeType === 'addition' ? '#2563eb' : '#dc2626' }}
+              style={{ color: comment.changeType === 'addition' ? theme.colors.primary : '#dc2626' }}
             >
               {comment.changeType}
             </span>
@@ -109,8 +112,8 @@ const CommentItem = ({ comment }: { comment: Comment }) => {
         <div
           className="mb-2 rounded p-1.5 text-xs line-through decoration-2"
           style={{
-            backgroundColor: '#f5f5f4',
-            color: '#44403c',
+            backgroundColor: theme.colors.muted,
+            color: theme.colors.secondaryForeground,
             textDecorationColor: '#f87171'
           }}
         >
@@ -118,16 +121,16 @@ const CommentItem = ({ comment }: { comment: Comment }) => {
         </div>
       )}
 
-      <p className="text-sm mb-3 leading-relaxed" style={{ color: '#44403c' }}>
+      <p className="text-sm mb-3 leading-relaxed" style={{ color: theme.colors.secondaryForeground }}>
         {comment.text}
       </p>
 
-      <div className="flex items-center gap-2 border-t pt-2" style={{ borderColor: '#f5f5f4' }}>
+      <div className="flex items-center gap-2 border-t pt-2" style={{ borderColor: theme.colors.muted }}>
         <button
           className="flex-1 flex items-center justify-center gap-1 py-1 text-[10px] font-bold rounded"
           onMouseEnter={() => setHoveredButton('reply')}
           onMouseLeave={() => setHoveredButton(null)}
-          style={{ color: '#78716c', backgroundColor: hoveredButton === 'reply' ? '#fafaf9' : 'transparent' }}
+          style={{ color: theme.colors.mutedForeground, backgroundColor: hoveredButton === 'reply' ? theme.colors.muted : 'transparent' }}
         >
           <Reply className="h-3 w-3" /> Reply
         </button>

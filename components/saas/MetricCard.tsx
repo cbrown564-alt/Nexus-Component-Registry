@@ -27,7 +27,7 @@ const MetricCard: React.FC<MetricCardProps> = ({
       className="transition-colors"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      style={{ borderColor: isHovered ? '#334155' : undefined }}
+      style={isHovered ? { borderColor: '#334155' } : undefined}
     >
       <div className="flex items-start justify-between mb-4">
         <div
