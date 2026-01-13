@@ -236,9 +236,14 @@ export default function LivePlayground({ component, doc }: LivePlaygroundProps) 
                                 if (prop.type.includes('[]') || prop.type.includes('ReactNode')) return null
 
                                 const isBoolean = prop.type === 'boolean'
-                                const isNumber = prop.type === 'number'
+                                const isNumber = prop.type === 'number' || prop.type === 'string | number' || prop.type === 'number | string'
                                 const isString = prop.type === 'string'
-                                const isEnum = prop.type.includes('|') || prop.type.includes('"')
+
+                                // True enum: only if contains quoted string literals like "primary" | "secondary"
+                                // NOT for type unions like string | number
+                                const hasQuotedLiterals = prop.type.includes('"') || prop.type.includes("'")
+                                const isPrimitiveUnion = /^(string|number|boolean)(\s*\|\s*(string|number|boolean))*$/.test(prop.type.trim())
+                                const isEnum = hasQuotedLiterals && !isPrimitiveUnion
 
                                 return (
                                     <div key={prop.name} className="space-y-1.5">
