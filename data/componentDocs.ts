@@ -869,7 +869,8 @@ export const componentDocs: Record<string, ComponentDoc> = {
             { name: 'className', type: 'string', required: false, description: 'Additional CSS classes' },
         ],
         examples: [
-            { title: 'System Data Table', code: `<HolographicTable 
+            {
+                title: 'System Data Table', code: `<HolographicTable 
   columns={[{ key: 'id', header: 'ID' }, { key: 'status', header: 'Status' }]}
   data={[{ id: '01', status: 'Online' }]}
 />` },
@@ -904,7 +905,8 @@ export const componentDocs: Record<string, ComponentDoc> = {
             { name: 'className', type: 'string', required: false, description: 'Additional CSS classes' },
         ],
         examples: [
-            { title: 'CI/CD Pipeline', code: `<PipelineSteps steps={[
+            {
+                title: 'CI/CD Pipeline', code: `<PipelineSteps steps={[
   { name: 'Build', status: 'success' },
   { name: 'Deploy', status: 'running' }
 ]} />` },
@@ -2278,6 +2280,405 @@ export const componentDocs: Record<string, ComponentDoc> = {
             { name: 'orientation', type: '"horizontal" | "vertical"', required: false, default: '"horizontal"', description: 'Label orientation' },
         ],
         notes: ['Technical dimension label', 'End caps with border lines', 'Value centered on line', 'Blueprint blue background'],
+    },
+
+    // ============================================
+    // PHASE 4 COMPONENTS
+    // ============================================
+
+    // Terminal Components
+    'ascii-chart': {
+        id: 'ascii-chart',
+        props: [
+            { name: 'data', type: 'number[]', required: true, description: 'Array of numeric values to chart' },
+            { name: 'height', type: 'number', required: false, default: '10', description: 'Chart height in rows' },
+            { name: 'color', type: 'string', required: false, default: '"#98c379"', description: 'Bar color' },
+            { name: 'label', type: 'string', required: false, description: 'Optional chart label' },
+        ],
+        notes: ['Renders ASCII bar chart using block characters', 'Includes Y-axis scale and X-axis labels'],
+    },
+    'log-stream': {
+        id: 'log-stream',
+        props: [
+            { name: 'initialLogs', type: 'LogEntry[]', required: false, description: 'Initial log entries to display' },
+            { name: 'refreshInterval', type: 'number', required: false, default: '1500', description: 'Interval in ms between new entries (0 to disable)' },
+            { name: 'maxLogs', type: 'number', required: false, default: '50', description: 'Maximum logs to keep in view' },
+            { name: 'title', type: 'string', required: false, default: '"/var/log/syslog"', description: 'Header title' },
+            { name: 'startPaused', type: 'boolean', required: false, default: 'false', description: 'Whether to start paused' },
+        ],
+        notes: ['Auto-scrolling log display', 'Color-coded by log level (INFO, WARN, DEBUG, ERROR)', 'Pause/Live toggle'],
+    },
+    'process-table': {
+        id: 'process-table',
+        props: [
+            { name: 'processes', type: 'Process[]', required: false, description: 'Array of process data' },
+            { name: 'selectedIndex', type: 'number', required: false, default: '0', description: 'Initially selected row' },
+            { name: 'onSelect', type: '(process: Process, index: number) => void', required: false, description: 'Row selection callback' },
+            { name: 'autoAnimate', type: 'boolean', required: false, default: 'true', description: 'Auto-move selection randomly' },
+        ],
+        notes: ['TUI-style process list', 'Columns: PID, USER, CPU%, MEM%, COMMAND'],
+    },
+    'status-line': {
+        id: 'status-line',
+        props: [
+            { name: 'mode', type: 'string', required: false, default: '"NORMAL"', description: 'Current mode indicator' },
+            { name: 'branch', type: 'string', required: false, default: '"main"', description: 'Git branch name' },
+            { name: 'branchDirty', type: 'boolean', required: false, default: 'true', description: 'Has uncommitted changes' },
+            { name: 'statusText', type: 'string', required: false, description: 'Center status text' },
+            { name: 'uptime', type: 'string', required: false, default: '"4h 20m"', description: 'Uptime display' },
+            { name: 'load', type: 'number', required: false, default: '1.24', description: 'System load value' },
+        ],
+        notes: ['Vim/Powerline style status bar', 'Arrow separators between segments'],
+    },
+
+    // Vault Components
+    'glitch-button': {
+        id: 'glitch-button',
+        props: [
+            { name: 'children', type: 'React.ReactNode', required: true, description: 'Button content' },
+            { name: 'variant', type: '"primary" | "secondary" | "danger"', required: false, default: '"primary"', description: 'Color variant' },
+            { name: 'className', type: 'string', required: false, description: 'Additional CSS classes' },
+        ],
+        notes: ['Glitch/offset shadow effect on hover', 'Cyberpunk aesthetic'],
+    },
+    'mondrian-table': {
+        id: 'mondrian-table',
+        props: [
+            { name: 'protocols', type: 'Protocol[]', required: false, description: 'Array of protocol data' },
+            { name: 'buttonLabel', type: 'string', required: false, default: '"View All Assets"', description: 'CTA button text' },
+            { name: 'onViewAll', type: '() => void', required: false, description: 'Button click callback' },
+            { name: 'highlightValue', type: 'string', required: false, default: '"+74%"', description: 'Corner highlight value' },
+        ],
+        notes: ['Mondrian-inspired grid layout', 'DeFi protocol display', 'Risk level indicators'],
+    },
+    'neon-card': {
+        id: 'neon-card',
+        props: [
+            { name: 'children', type: 'React.ReactNode', required: true, description: 'Card content' },
+            { name: 'variant', type: '"stable" | "critical" | "warning"', required: false, default: '"stable"', description: 'Border color variant' },
+            { name: 'className', type: 'string', required: false, description: 'Additional CSS classes' },
+        ],
+        notes: ['Neon glow border effect', 'Corner accent brackets', 'Scanline overlay'],
+    },
+    'system-modal': {
+        id: 'system-modal',
+        props: [
+            { name: 'isOpen', type: 'boolean', required: true, description: 'Modal visibility' },
+            { name: 'onClose', type: '() => void', required: true, description: 'Close callback' },
+            { name: 'title', type: 'string', required: true, description: 'Modal title' },
+            { name: 'message', type: 'string', required: true, description: 'Modal message' },
+            { name: 'type', type: '"downtime" | "gas" | "security"', required: false, default: '"security"', description: 'Alert type' },
+        ],
+        notes: ['Brutalist modal design', 'Color-coded by type', 'Click backdrop to dismiss'],
+    },
+
+    // Evergreen Components
+    'dna-spiral': {
+        id: 'dna-spiral',
+        props: [
+            { name: 'title', type: 'string', required: false, default: '"Genetic Diversity"', description: 'Title text' },
+            { name: 'subtitle', type: 'string', required: false, default: '"Sequencing Active"', description: 'Subtitle text' },
+            { name: 'pairCount', type: 'number', required: false, default: '12', description: 'Number of DNA pairs' },
+            { name: 'viability', type: 'string', required: false, default: '"98.4%"', description: 'Viability percentage' },
+            { name: 'basePair', type: 'string', required: false, default: '"A-T"', description: 'Base pair label' },
+        ],
+        notes: ['Animated 3D rotating DNA helix', 'Uses Framer Motion transforms'],
+    },
+    'growth-chart': {
+        id: 'growth-chart',
+        props: [
+            { name: 'title', type: 'string', required: false, default: '"Carbon Sequestration"', description: 'Chart title' },
+            { name: 'subtitle', type: 'string', required: false, default: '"Yearly Impact (Tons)"', description: 'Chart subtitle' },
+            { name: 'dataPoints', type: 'ChartDataPoint[]', required: false, description: 'Data points for chart nodes' },
+            { name: 'customPath', type: 'string', required: false, description: 'Custom SVG path for growth curve' },
+        ],
+        notes: ['Animated SVG line chart', 'Leaf node markers', 'Gradient fill under curve'],
+    },
+    'species-list': {
+        id: 'species-list',
+        props: [
+            { name: 'title', type: 'string', required: false, default: '"Biodiversity Index"', description: 'List title' },
+            { name: 'species', type: 'Species[]', required: false, description: 'Species data array' },
+            { name: 'totalCount', type: 'number', required: false, default: '42', description: 'Total species count' },
+            { name: 'onViewAll', type: '() => void', required: false, description: 'View all callback' },
+        ],
+        notes: ['Species list with icons', 'Status indicators', 'Population counts'],
+    },
+    'impact-metric': {
+        id: 'impact-metric',
+        props: [
+            { name: 'label', type: 'string', required: true, description: 'Metric label' },
+            { name: 'value', type: 'string | number', required: true, description: 'Metric value' },
+            { name: 'unit', type: 'string', required: false, description: 'Value unit suffix' },
+            { name: 'icon', type: '"leaf" | "recycle" | "tree" | "air"', required: true, description: 'Icon type' },
+            { name: 'trend', type: 'string', required: false, description: 'Trend indicator (e.g. "+12%")' },
+            { name: 'delay', type: 'number', required: false, description: 'Animation delay' },
+        ],
+        notes: ['Environmental metric card', 'Organic container with morph animation'],
+    },
+    'leaf-card': {
+        id: 'leaf-card',
+        props: [
+            { name: 'scientificName', type: 'string', required: true, description: 'Scientific species name' },
+            { name: 'commonName', type: 'string', required: true, description: 'Common species name' },
+            { name: 'image', type: 'string', required: true, description: 'Specimen image URL' },
+            { name: 'stats', type: '{ label: string; value: string }[]', required: true, description: 'Stats grid data' },
+            { name: 'index', type: 'number', required: false, default: '0', description: 'Card index for stagger animation' },
+        ],
+        notes: ['Asymmetric leaf-shaped border radius', 'Image grayscale on hover'],
+    },
+    'organic-button': {
+        id: 'organic-button',
+        props: [
+            { name: 'children', type: 'React.ReactNode', required: true, description: 'Button content' },
+            { name: 'variant', type: '"primary" | "secondary" | "outline"', required: false, default: '"primary"', description: 'Visual variant' },
+            { name: 'icon', type: 'React.ReactNode', required: false, description: 'Leading icon' },
+        ],
+        notes: ['Organic blob-like border radius', 'Scale animation on hover'],
+    },
+    'organic-container': {
+        id: 'organic-container',
+        props: [
+            { name: 'children', type: 'React.ReactNode', required: true, description: 'Container content' },
+            { name: 'variant', type: '"primary" | "secondary" | "accent" | "glass"', required: false, default: '"glass"', description: 'Color variant' },
+            { name: 'delay', type: 'number', required: false, default: '0', description: 'Entry animation delay' },
+            { name: 'className', type: 'string', required: false, description: 'Additional CSS classes' },
+        ],
+        notes: ['Animated morphing border radius', 'Glassmorphism effect'],
+    },
+
+    // Concierge Components
+    'marquee-nav': {
+        id: 'marquee-nav',
+        props: [
+            { name: 'items', type: 'string[]', required: false, description: 'Message items to scroll' },
+            { name: 'separator', type: 'string', required: false, default: '"•"', description: 'Separator between items' },
+            { name: 'scrollDuration', type: 'number', required: false, default: '20', description: 'Scroll cycle duration in seconds' },
+            { name: 'bgColor', type: 'string', required: false, default: '"#cda45e"', description: 'Background color' },
+            { name: 'textColor', type: 'string', required: false, default: '"#09090b"', description: 'Text color' },
+        ],
+        notes: ['Infinite horizontal scroll marquee', 'Luxury hotel service ticker'],
+    },
+    'sunburst-loader': {
+        id: 'sunburst-loader',
+        props: [
+            { name: 'rayCount', type: 'number', required: false, default: '12', description: 'Number of rays' },
+            { name: 'color', type: 'string', required: false, default: '"#cda45e"', description: 'Primary color' },
+            { name: 'size', type: 'number', required: false, default: '160', description: 'Size in pixels' },
+            { name: 'animationDuration', type: 'number', required: false, default: '3', description: 'Ray animation duration' },
+        ],
+        notes: ['Art deco sunburst loading animation', 'Pulsing rays and expanding ring'],
+    },
+    'ziggurat-card': {
+        id: 'ziggurat-card',
+        props: [
+            { name: 'title', type: 'string', required: true, description: 'Card title' },
+            { name: 'description', type: 'string', required: true, description: 'Card description' },
+            { name: 'image', type: 'string', required: true, description: 'Image URL' },
+            { name: 'price', type: 'string', required: false, description: 'Optional price display' },
+            { name: 'action', type: 'string', required: false, default: '"Reserve"', description: 'CTA button text' },
+            { name: 'delay', type: 'number', required: false, default: '0', description: 'Entry animation delay' },
+        ],
+        notes: ['Stepped corner clip-path', 'Luxury concierge service card'],
+    },
+
+    // Arena Components
+    'bento-stream': {
+        id: 'bento-stream',
+        props: [
+            { name: 'statusMessage', type: 'string', required: false, default: '"Signal Lost... Reconnecting"', description: 'Stream status message' },
+            { name: 'isLive', type: 'boolean', required: false, default: 'true', description: 'Live indicator visibility' },
+            { name: 'viewerCount', type: 'number', required: false, default: '142031', description: 'Current viewer count' },
+            { name: 'chatMessages', type: 'ChatMessage[]', required: false, description: 'Chat messages array' },
+            { name: 'stats', type: 'StreamStat[]', required: false, description: 'Stats grid data' },
+            { name: 'chatPlaceholder', type: 'string', required: false, default: '"Send a message..."', description: 'Chat input placeholder' },
+        ],
+        notes: ['Esports stream layout', 'Bento grid with chat, stats, and video placeholder'],
+    },
+    'bracket-connector': {
+        id: 'bracket-connector',
+        props: [
+            { name: 'height', type: 'number', required: true, description: 'Vertical distance between matches' },
+            { name: 'width', type: 'number', required: false, default: '40', description: 'Connector width' },
+            { name: 'color', type: 'string', required: false, default: '"#3b82f6"', description: 'Line color' },
+            { name: 'glow', type: 'boolean', required: false, default: 'true', description: 'Enable glow effect' },
+        ],
+        notes: ['SVG connector for tournament brackets', 'Animated connection dots'],
+    },
+    'cyber-container': {
+        id: 'cyber-container',
+        props: [
+            { name: 'children', type: 'React.ReactNode', required: true, description: 'Container content' },
+            { name: 'variant', type: '"primary" | "secondary" | "danger"', required: false, default: '"primary"', description: 'Color variant' },
+            { name: 'className', type: 'string', required: false, description: 'Additional CSS classes' },
+        ],
+        notes: ['Clipped corner container', 'Neon border glow', 'Esports aesthetic'],
+    },
+    'hype-metric': {
+        id: 'hype-metric',
+        props: [
+            { name: 'label', type: 'string', required: true, description: 'Metric label' },
+            { name: 'value', type: 'number', required: true, description: 'Value 0-100' },
+            { name: 'className', type: 'string', required: false, description: 'Additional CSS classes' },
+        ],
+        notes: ['Animated hype meter', 'Fire particles above 80%', 'Skewed progress bar'],
+    },
+    'tournament-bracket': {
+        id: 'tournament-bracket',
+        props: [],
+        notes: ['Full tournament bracket visualization', 'Expandable fullscreen modal', 'Pan/zoom controls', 'Uses BracketConnector internally'],
+    },
+
+    // Clinic Components
+    'appointment-card': {
+        id: 'appointment-card',
+        props: [
+            { name: 'title', type: 'string', required: false, default: '"Itinerary"', description: 'Card title' },
+            { name: 'subtitle', type: 'string', required: false, default: '"Today & Upcoming"', description: 'Subtitle' },
+            { name: 'appointments', type: 'Appointment[]', required: false, description: 'Appointments array' },
+            { name: 'viewAllLabel', type: 'string', required: false, default: '"Full Narrative"', description: 'View all button text' },
+            { name: 'onViewAll', type: '() => void', required: false, description: 'View all callback' },
+        ],
+        notes: ['Timeline-style appointment list', 'Luxury medical aesthetic'],
+    },
+    'bio-viz': {
+        id: 'bio-viz',
+        props: [
+            { name: 'title', type: 'string', required: false, default: '"Cellular"', description: 'Title text' },
+            { name: 'subtitle', type: 'string', required: false, default: '"Resonance"', description: 'Subtitle text' },
+            { name: 'metricLabel', type: 'string', required: false, default: '"Live Metric"', description: 'Indicator label' },
+            { name: 'versionInfo', type: 'string', required: false, description: 'Version display text' },
+            { name: 'showLiveIndicator', type: 'boolean', required: false, default: 'true', description: 'Show pulsing indicator' },
+        ],
+        notes: ['Biometric visualization', 'Animated liquid gradient blobs', 'Scanline overlay'],
+    },
+    'clinic-card': {
+        id: 'clinic-card',
+        props: [
+            { name: 'children', type: 'React.ReactNode', required: true, description: 'Card content' },
+            { name: 'className', type: 'string', required: false, description: 'Additional CSS classes' },
+            { name: 'delay', type: 'number', required: false, default: '0', description: 'Animation delay' },
+            { name: 'style', type: 'React.CSSProperties', required: false, description: 'Inline styles' },
+            { name: 'hover', type: 'boolean', required: false, default: 'false', description: 'Enable hover effect' },
+        ],
+        notes: ['Base card container for clinic template', 'Luxury slow animation easing'],
+    },
+
+    // Departure Components
+    'flight-board': {
+        id: 'flight-board',
+        props: [
+            { name: 'flights', type: 'Flight[]', required: false, description: 'Array of flight data' },
+            { name: 'title', type: 'string', required: false, default: '"DEPARTURES"', description: 'Board title' },
+        ],
+        notes: ['Airport departure board', 'Split-flap display animation', 'Status color coding'],
+    },
+    'gate-info': {
+        id: 'gate-info',
+        props: [
+            { name: 'gate', type: 'string', required: true, description: 'Gate number' },
+            { name: 'status', type: '"boarding" | "delayed" | "final" | "closed"', required: false, default: '"boarding"', description: 'Gate status' },
+            { name: 'time', type: 'string', required: false, description: 'Boarding time' },
+        ],
+        notes: ['Gate information display', 'Status-based color theming'],
+    },
+    'split-flap': {
+        id: 'split-flap',
+        props: [
+            { name: 'text', type: 'string', required: true, description: 'Text to display' },
+            { name: 'length', type: 'number', required: false, description: 'Number of characters' },
+            { name: 'delay', type: 'number', required: false, default: '0', description: 'Animation delay per char' },
+        ],
+        notes: ['Mechanical split-flap display', 'Character-by-character animation'],
+    },
+    'weather-radar': {
+        id: 'weather-radar',
+        props: [
+            { name: 'data', type: 'WeatherData', required: true, description: 'Weather data object' },
+            { name: 'delay', type: 'number', required: false, default: '0', description: 'Entry animation delay' },
+        ],
+        notes: ['METAR-style weather display', 'Animated radar sweep', 'Wind, humidity, visibility stats'],
+    },
+
+    // Estate Components
+    'estate-hero': {
+        id: 'estate-hero',
+        props: [
+            { name: 'title', type: 'string', required: false, default: '"The Highland Loft"', description: 'Property title' },
+            { name: 'address', type: 'string', required: false, description: 'Property address' },
+            { name: 'price', type: 'string', required: false, default: '"$2,450,000"', description: 'Property price' },
+            { name: 'status', type: 'string', required: false, default: '"Just Listed"', description: 'Listing status badge' },
+            { name: 'videoSrc', type: 'string', required: false, description: 'Background video URL' },
+            { name: 'posterImage', type: 'string', required: false, description: 'Video fallback image' },
+            { name: 'specs', type: 'PropertySpecs', required: false, description: 'Beds, baths, sqft object' },
+            { name: 'ctaText', type: 'string', required: false, default: '"Schedule Viewing"', description: 'CTA button text' },
+            { name: 'onCtaClick', type: '() => void', required: false, description: 'CTA click callback' },
+        ],
+        notes: ['Cinematic fullscreen hero', 'Video background', 'Glassmorphic spec panel'],
+    },
+    'filter-bar': {
+        id: 'filter-bar',
+        props: [
+            { name: 'tabs', type: 'string[]', required: false, default: '["Buy", "Rent", "Sell"]', description: 'Tab options' },
+            { name: 'defaultTab', type: 'string', required: false, default: '"buy"', description: 'Default active tab' },
+            { name: 'searchPlaceholder', type: 'string', required: false, description: 'Search input placeholder' },
+            { name: 'filters', type: 'string[]', required: false, description: 'Quick filter labels' },
+            { name: 'onTabChange', type: '(tab: string) => void', required: false, description: 'Tab change callback' },
+            { name: 'onSearchChange', type: '(query: string) => void', required: false, description: 'Search change callback' },
+        ],
+        notes: ['Real estate filter bar', 'Pill toggle tabs', 'Minimal search input'],
+    },
+    'property-card': {
+        id: 'property-card',
+        props: [
+            { name: 'title', type: 'string', required: true, description: 'Property title' },
+            { name: 'price', type: 'string', required: true, description: 'Property price' },
+            { name: 'image', type: 'string', required: true, description: 'Property image URL' },
+            { name: 'beds', type: 'number', required: true, description: 'Number of bedrooms' },
+            { name: 'baths', type: 'number', required: true, description: 'Number of bathrooms' },
+            { name: 'sqft', type: 'number', required: true, description: 'Square footage' },
+            { name: 'location', type: 'string', required: true, description: 'Property location' },
+        ],
+        notes: ['Luxury property listing card', 'Image hover zoom', 'Specs grid'],
+    },
+
+    // Nomad Components
+    'journal-card': {
+        id: 'journal-card',
+        props: [
+            { name: 'entry', type: 'JournalEntry', required: true, description: 'Journal entry data object' },
+            { name: 'index', type: 'number', required: true, description: 'Card index for animation stagger' },
+        ],
+        notes: ['Travel journal entry card', 'Organic morphing image blob', 'Paper texture overlay'],
+    },
+
+    // Paradox Components
+    'draggable-window': {
+        id: 'draggable-window',
+        props: [
+            { name: 'title', type: 'string', required: true, description: 'Window title' },
+            { name: 'children', type: 'React.ReactNode', required: true, description: 'Window content' },
+            { name: 'initialX', type: 'number', required: false, default: '0', description: 'Initial X position' },
+            { name: 'initialY', type: 'number', required: false, default: '0', description: 'Initial Y position' },
+            { name: 'width', type: 'string', required: false, default: '"400px"', description: 'Window width' },
+            { name: 'className', type: 'string', required: false, description: 'Additional CSS classes' },
+        ],
+        notes: ['Retro Windows 95 draggable window', 'Working minimize/close buttons', 'Framer Motion drag'],
+    },
+    'glitch-text': {
+        id: 'glitch-text',
+        props: [
+            { name: 'text', type: 'string', required: true, description: 'Text to display' },
+            { name: 'as', type: '"h1" | "h2" | "h3" | "p" | "span"', required: false, default: '"span"', description: 'HTML element' },
+            { name: 'className', type: 'string', required: false, description: 'Additional CSS classes' },
+            { name: 'intensity', type: '"low" | "high"', required: false, default: '"low"', description: 'Glitch intensity' },
+        ],
+        notes: ['Chromatic aberration text effect', 'RGB split shadow animation'],
+    },
+    'raw-input': {
+        id: 'raw-input',
+        props: [],
+        notes: ['Retro Windows 95 input field', 'Extends HTMLMotionProps<"input">', 'Jitter animation on focus'],
     },
 }
 
