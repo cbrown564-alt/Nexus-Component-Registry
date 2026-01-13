@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef } from 'react';
 const LogStream: React.FC = () => {
     const [logs, setLogs] = useState<string[]>([]);
     const [isPaused, setIsPaused] = useState(false);
-    const endRef = useRef<HTMLDivElement>(null);
+    const containerRef = useRef<HTMLDivElement>(null);
 
     const generateLog = () => {
         const types = ['INFO', 'WARN', 'DEBUG', 'ERROR'];
@@ -41,8 +41,11 @@ const LogStream: React.FC = () => {
     }, [isPaused]);
 
     useEffect(() => {
-        if (!isPaused) {
-            endRef.current?.scrollIntoView({ behavior: 'smooth' });
+        if (!isPaused && containerRef.current) {
+            containerRef.current.scrollTo({
+                top: containerRef.current.scrollHeight,
+                behavior: 'smooth'
+            });
         }
     }, [logs, isPaused]);
 
@@ -67,13 +70,12 @@ const LogStream: React.FC = () => {
             </div>
 
             {/* Scrollable Area */}
-            <div className="flex-1 overflow-y-auto p-2 font-mono scrollbar-hide">
+            <div ref={containerRef} className="flex-1 overflow-y-auto p-2 font-mono scrollbar-hide">
                 {logs.map((log, i) => (
                     <div key={i} className={`whitespace-pre-wrap ${getColor(log)}`}>
                         {log}
                     </div>
                 ))}
-                <div ref={endRef} />
             </div>
         </div>
     );

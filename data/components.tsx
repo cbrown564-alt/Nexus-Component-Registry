@@ -414,6 +414,108 @@ import LayerControlSource from '@/components/blueprint/LayerControl?raw'
 import MeasurementLabel from '@/components/blueprint/MeasurementLabel'
 import MeasurementLabelSource from '@/components/blueprint/MeasurementLabel?raw'
 
+// Clinic Components
+import AppointmentCard from '@/components/clinic/AppointmentCard'
+import AppointmentCardSource from '@/components/clinic/AppointmentCard?raw'
+import BioViz from '@/components/clinic/BioViz'
+import BioVizSource from '@/components/clinic/BioViz?raw'
+import ClinicCard from '@/components/clinic/ClinicCard'
+import ClinicCardSource from '@/components/clinic/ClinicCard?raw'
+import InsuranceCard from '@/components/clinic/InsuranceCard'
+import InsuranceCardSource from '@/components/clinic/InsuranceCard?raw'
+import LabResultsChart from '@/components/clinic/LabResultsChart'
+import LabResultsChartSource from '@/components/clinic/LabResultsChart?raw'
+import MedicationSchedule from '@/components/clinic/MedicationSchedule'
+import MedicationScheduleSource from '@/components/clinic/MedicationSchedule?raw'
+import ProviderDirectory from '@/components/clinic/ProviderDirectory'
+import ProviderDirectorySource from '@/components/clinic/ProviderDirectory?raw'
+
+// Departure Components
+import FlightBoard from '@/components/departure/FlightBoard'
+import FlightBoardSource from '@/components/departure/FlightBoard?raw'
+import GateInfo from '@/components/departure/GateInfo'
+import GateInfoSource from '@/components/departure/GateInfo?raw'
+import { SplitFlapString as SplitFlap } from '@/components/departure/SplitFlap'
+import SplitFlapSource from '@/components/departure/SplitFlap?raw'
+import WeatherWidget from '@/components/departure/WeatherWidget'
+import WeatherWidgetSource from '@/components/departure/WeatherWidget?raw'
+
+// Estate Components
+import EstateHero from '@/components/estate/EstateHero'
+import EstateHeroSource from '@/components/estate/EstateHero?raw'
+import FilterBar from '@/components/estate/FilterBar'
+import FilterBarSource from '@/components/estate/FilterBar?raw'
+import PropertyCard from '@/components/estate/PropertyCard'
+import PropertyCardSource from '@/components/estate/PropertyCard?raw'
+
+// Nomad Components
+import JournalCard from '@/components/nomad/JournalCard'
+import JournalCardSource from '@/components/nomad/JournalCard?raw'
+
+// Vault Components
+import GlitchButton from '@/components/vault/GlitchButton'
+import GlitchButtonSource from '@/components/vault/GlitchButton?raw'
+import MondrianTable from '@/components/vault/MondrianTable'
+import MondrianTableSource from '@/components/vault/MondrianTable?raw'
+import NeonCard from '@/components/vault/NeonCard'
+import NeonCardSource from '@/components/vault/NeonCard?raw'
+import SystemModal from '@/components/vault/SystemModal'
+import SystemModalSource from '@/components/vault/SystemModal?raw'
+
+// Arena Components
+import BentoStream from '@/components/arena/BentoStream'
+import BentoStreamSource from '@/components/arena/BentoStream?raw'
+import BracketConnector from '@/components/arena/BracketConnector'
+import BracketConnectorSource from '@/components/arena/BracketConnector?raw'
+import CyberContainer from '@/components/arena/CyberContainer'
+import CyberContainerSource from '@/components/arena/CyberContainer?raw'
+import HypeMetric from '@/components/arena/HypeMetric'
+import HypeMetricSource from '@/components/arena/HypeMetric?raw'
+import TournamentBracket from '@/components/arena/TournamentBracket'
+import TournamentBracketSource from '@/components/arena/TournamentBracket?raw'
+
+// Evergreen Components
+import DNASpiral from '@/components/evergreen/DNASpiral'
+import DNASpiralSource from '@/components/evergreen/DNASpiral?raw'
+import GrowthChart from '@/components/evergreen/GrowthChart'
+import GrowthChartSource from '@/components/evergreen/GrowthChart?raw'
+import ImpactMetric from '@/components/evergreen/ImpactMetric'
+import ImpactMetricSource from '@/components/evergreen/ImpactMetric?raw'
+import LeafCard from '@/components/evergreen/LeafCard'
+import LeafCardSource from '@/components/evergreen/LeafCard?raw'
+import OrganicButton from '@/components/evergreen/OrganicButton'
+import OrganicButtonSource from '@/components/evergreen/OrganicButton?raw'
+import OrganicContainer from '@/components/evergreen/OrganicContainer'
+import OrganicContainerSource from '@/components/evergreen/OrganicContainer?raw'
+import SpeciesList from '@/components/evergreen/SpeciesList'
+import SpeciesListSource from '@/components/evergreen/SpeciesList?raw'
+
+// Concierge Components
+import MarqueeNav from '@/components/concierge/MarqueeNav'
+import MarqueeNavSource from '@/components/concierge/MarqueeNav?raw'
+import SunburstLoader from '@/components/concierge/SunburstLoader'
+import SunburstLoaderSource from '@/components/concierge/SunburstLoader?raw'
+import ZigguratCard from '@/components/concierge/ZigguratCard'
+import ZigguratCardSource from '@/components/concierge/ZigguratCard?raw'
+
+// Paradox Components
+import DraggableWindow from '@/components/paradox/DraggableWindow'
+import DraggableWindowSource from '@/components/paradox/DraggableWindow?raw'
+import ParadoxGlitchText from '@/components/paradox/GlitchText'
+import ParadoxGlitchTextSource from '@/components/paradox/GlitchText?raw'
+import RawInput from '@/components/paradox/RawInput'
+import RawInputSource from '@/components/paradox/RawInput?raw'
+
+// Terminal Components
+import ASCIIChart from '@/components/terminal/ASCIIChart'
+import ASCIIChartSource from '@/components/terminal/ASCIIChart?raw'
+import LogStream from '@/components/terminal/LogStream'
+import LogStreamSource from '@/components/terminal/LogStream?raw'
+import ProcessTable from '@/components/terminal/ProcessTable'
+import ProcessTableSource from '@/components/terminal/ProcessTable?raw'
+import StatusLine from '@/components/terminal/StatusLine'
+import StatusLineSource from '@/components/terminal/StatusLine?raw'
+
 export type ComponentCategory =
     | 'layout'
     | 'data-display'
@@ -2610,6 +2712,552 @@ export const components: ComponentMeta[] = [
             orientation: 'horizontal'
         }
     },
+    // Clinic Components
+    {
+        id: 'appointment-card',
+        name: 'AppointmentCard',
+        description: 'Timeline-based patient appointment card',
+        theme: 'clinic',
+        category: 'data-display',
+        component: AppointmentCard,
+        source: AppointmentCardSource,
+        tags: ['medical', 'timeline', 'appointment', 'patient', 'schedule'],
+    },
+    {
+        id: 'bio-viz',
+        name: 'BioViz',
+        description: 'Abstract biological data visualization',
+        theme: 'clinic',
+        category: 'visualization',
+        component: BioViz,
+        source: BioVizSource,
+        tags: ['medical', 'viz', 'biological', 'health', 'data'],
+    },
+    {
+        id: 'clinic-card',
+        name: 'ClinicCard',
+        description: 'Clean medical card with serif typography',
+        theme: 'clinic',
+        category: 'layout',
+        component: ClinicCard,
+        source: ClinicCardSource,
+        tags: ['medical', 'card', 'layout', 'clean', 'serif'],
+    },
+    {
+        id: 'insurance-card',
+        name: 'InsuranceCard',
+        description: 'Digital health insurance member card',
+        theme: 'clinic',
+        category: 'data-display',
+        component: InsuranceCard,
+        source: InsuranceCardSource,
+        tags: ['medical', 'insurance', 'card', 'health', 'finance'],
+        previewProps: {
+            insurance: {
+                provider: 'BlueCross',
+                planName: 'Gold Premier PPO',
+                memberId: 'XCY-992-883-001',
+                groupNumber: 'GRP-7729',
+                copay: { primary: 25, specialist: 50, emergency: 150 },
+                deductible: { used: 1250, total: 3000 },
+                customerService: '800-555-0123'
+            }
+        },
+    },
+    {
+        id: 'lab-results-chart',
+        name: 'LabResultsChart',
+        description: 'Medical lab result trends visualization',
+        theme: 'clinic',
+        category: 'visualization',
+        component: LabResultsChart,
+        source: LabResultsChartSource,
+        tags: ['medical', 'chart', 'lab', 'health', 'visualization'],
+        previewProps: {
+            results: [
+                { name: 'Glucose', value: 95, unit: 'mg/dL', normalRange: { min: 70, max: 99 }, date: 'Oct 24', previousValue: 92 },
+                { name: 'Cholesterol', value: 180, unit: 'mg/dL', normalRange: { min: 125, max: 200 }, date: 'Oct 24', previousValue: 185 },
+                { name: 'Vitamin D', value: 45, unit: 'ng/mL', normalRange: { min: 30, max: 100 }, date: 'Oct 24', previousValue: 32 },
+            ]
+        },
+    },
+    {
+        id: 'medication-schedule',
+        name: 'MedicationSchedule',
+        description: 'Daily medication tracker and timeline',
+        theme: 'clinic',
+        category: 'data-display',
+        component: MedicationSchedule,
+        source: MedicationScheduleSource,
+        tags: ['medical', 'medication', 'schedule', 'health', 'timeline'],
+        previewProps: {
+            medications: [
+                { id: '1', name: 'Lisinopril', dosage: '10mg', frequency: 'Daily', times: ['08:00 AM'], takenToday: ['08:00 AM'] },
+                { id: '2', name: 'Atorvastatin', dosage: '20mg', frequency: 'Daily', times: ['08:00 PM'], takenToday: [] }
+            ]
+        },
+    },
+    {
+        id: 'provider-directory',
+        name: 'ProviderDirectory',
+        description: 'List of healthcare providers',
+        theme: 'clinic',
+        category: 'data-display',
+        component: ProviderDirectory,
+        source: ProviderDirectorySource,
+        tags: ['medical', 'provider', 'directory', 'doctor', 'search'],
+        previewProps: {
+            providers: [
+                { id: '1', name: 'Sarah Chen', specialty: 'Cardiology', rating: 4.9, reviewCount: 124, location: 'Main Campus', nextAvailable: 'Tomorrow', acceptingNew: true },
+                { id: '2', name: 'Michael Ross', specialty: 'Dermatology', rating: 4.8, reviewCount: 89, location: 'West Wing', nextAvailable: 'In 3 days', acceptingNew: false },
+            ]
+        },
+    },
+
+    // Departure Components
+    {
+        id: 'flight-board',
+        name: 'FlightBoard',
+        description: 'Airport departure board with split-flap effect',
+        theme: 'departure',
+        category: 'data-display',
+        component: FlightBoard,
+        source: FlightBoardSource,
+        tags: ['travel', 'airport', 'flight', 'board', 'schedule', 'split-flap'],
+        previewProps: {
+            type: 'DEPARTURES',
+            flights: [
+                { no: 'NX-204', destination: 'TOKYO-NRT', airline: 'NEXUS AIR', gate: 'A4', time: '14:30', status: 'ON TIME' },
+                { no: 'UA-882', destination: 'LONDON-LHR', airline: 'UNITED', gate: 'B2', time: '14:45', status: 'BOARDING' },
+                { no: 'DL-442', destination: 'NEW YORK', airline: 'DELTA', gate: 'C1', time: '15:10', status: 'DELAYED' },
+            ]
+        },
+    },
+    {
+        id: 'gate-info',
+        name: 'GateInfo',
+        description: 'Airport gate status display',
+        theme: 'departure',
+        category: 'data-display',
+        component: GateInfo,
+        source: GateInfoSource,
+        tags: ['travel', 'airport', 'gate', 'status', 'info'],
+    },
+    {
+        id: 'split-flap',
+        name: 'SplitFlap',
+        description: 'Mechanical split-flap text animation',
+        theme: 'departure',
+        category: 'visualization',
+        component: SplitFlap,
+        source: SplitFlapSource,
+        tags: ['travel', 'animation', 'text', 'split-flap', 'mechanical', 'retro'],
+        previewProps: {
+            text: 'DEPARTURE'
+        }
+    },
+    {
+        id: 'weather-widget',
+        name: 'WeatherWidget',
+        description: 'Aviation-style weather radar and conditions',
+        theme: 'departure',
+        category: 'visualization',
+        component: WeatherWidget,
+        source: WeatherWidgetSource,
+        tags: ['travel', 'weather', 'radar', 'aviation', 'conditions'],
+    },
+
+    // Estate Components
+    {
+        id: 'estate-hero',
+        name: 'EstateHero',
+        description: 'Cinematic full-screen property showcase',
+        theme: 'estate',
+        category: 'marketing',
+        component: EstateHero,
+        source: EstateHeroSource,
+        tags: ['real-estate', 'hero', 'video', 'showcase', 'luxury'],
+    },
+    {
+        id: 'filter-bar',
+        name: 'FilterBar',
+        description: 'Property search filter bar',
+        theme: 'estate',
+        category: 'navigation',
+        component: FilterBar,
+        source: FilterBarSource,
+        tags: ['real-estate', 'filter', 'search', 'bar', 'navigation'],
+    },
+    {
+        id: 'property-card',
+        name: 'PropertyCard',
+        description: 'Luxury real estate listing card',
+        theme: 'estate',
+        category: 'data-display',
+        component: PropertyCard,
+        source: PropertyCardSource,
+        tags: ['real-estate', 'property', 'card', 'listing', 'luxury'],
+        previewProps: {
+            property: {
+                id: '1',
+                title: 'The Glass Horizon',
+                price: '$12,500,000',
+                address: '10880 Malibu Rd, Malibu, CA',
+                beds: 5,
+                baths: 6.5,
+                sqft: 6200,
+                image: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&q=80&w=800',
+                isNew: true
+            }
+        },
+    },
+
+    // Nomad Components
+    {
+        id: 'journal-card',
+        name: 'JournalCard',
+        description: 'Travel journal entry with rich media',
+        theme: 'nomad',
+        category: 'data-display',
+        component: JournalCard,
+        source: JournalCardSource,
+        tags: ['travel', 'journal', 'card', 'blog', 'entry'],
+        previewProps: {
+            entry: {
+                title: 'The Lost City',
+                location: 'Petra, Jordan',
+                date: 'OCT 12',
+                excerpt: 'Walking through the Siq, the rose-red walls towering above us...',
+                image: 'https://images.unsplash.com/photo-1579606038848-0c6bc7d28e75?auto=format&fit=crop&q=80&w=800',
+                tags: ['Exploration', 'History']
+            }
+        },
+    },
+
+    // Vault Components
+    {
+        id: 'glitch-button',
+        name: 'GlitchButton',
+        description: 'Button with chromatic aberration glitch effect',
+        theme: 'vault',
+        category: 'interactive',
+        component: GlitchButton,
+        source: GlitchButtonSource,
+        tags: ['crypto', 'glitch', 'button', 'effect', 'cyberpunk'],
+        previewProps: {
+            children: 'EXECUTE'
+        }
+    },
+    {
+        id: 'mondrian-table',
+        name: 'MondrianTable',
+        description: 'Grid-based data table with neon borders',
+        theme: 'vault',
+        category: 'data-display',
+        component: MondrianTable,
+        source: MondrianTableSource,
+        tags: ['crypto', 'table', 'grid', 'mondrian', 'data'],
+    },
+    {
+        id: 'neon-card',
+        name: 'NeonCard',
+        description: 'Card with glowing neon border effects',
+        theme: 'vault',
+        category: 'layout',
+        component: NeonCard,
+        source: NeonCardSource,
+        tags: ['crypto', 'card', 'neon', 'glow', 'border'],
+        previewProps: {
+            children: <div className="text-green-500 font-mono text-sm">SECURE VAULT ACCESS // GRANTED</div>,
+            variant: 'stable'
+        },
+    },
+    {
+        id: 'system-modal',
+        name: 'SystemModal',
+        description: 'System error/alert modal in brutalist style',
+        theme: 'vault',
+        category: 'feedback',
+        component: SystemModal,
+        source: SystemModalSource,
+        tags: ['crypto', 'modal', 'alert', 'system', 'brutalist'],
+        previewProps: {
+            isOpen: true,
+            title: 'BREACH DETECTED',
+            message: 'UNAUTHORIZED ACCESS ATTEMPT FROM IP 192.168.X.X',
+            type: 'security'
+        },
+    },
+
+    // Arena Components
+    {
+        id: 'bento-stream',
+        name: 'BentoStream',
+        description: 'Bento-style live stream grid',
+        theme: 'arena',
+        category: 'layout',
+        component: BentoStream,
+        source: BentoStreamSource,
+        tags: ['esports', 'bento', 'stream', 'grid', 'live'],
+    },
+    {
+        id: 'bracket-connector',
+        name: 'BracketConnector',
+        description: 'Connecting lines for tournament brackets',
+        theme: 'arena',
+        category: 'visualization',
+        component: BracketConnector,
+        source: BracketConnectorSource,
+        tags: ['esports', 'connector', 'lines', 'bracket', 'svg'],
+    },
+    {
+        id: 'cyber-container',
+        name: 'CyberContainer',
+        description: 'Container with cyber/holographic styling',
+        theme: 'arena',
+        category: 'layout',
+        component: CyberContainer,
+        source: CyberContainerSource,
+        tags: ['esports', 'cyber', 'container', 'holo', 'layout'],
+    },
+    {
+        id: 'hype-metric',
+        name: 'HypeMetric',
+        description: 'Large statistic with "hype" visual effects',
+        theme: 'arena',
+        category: 'data-display',
+        component: HypeMetric,
+        source: HypeMetricSource,
+        tags: ['esports', 'metric', 'hype', 'stat', 'effect'],
+    },
+    {
+        id: 'tournament-bracket',
+        name: 'TournamentBracket',
+        description: 'Interactive tournament bracket tree',
+        theme: 'arena',
+        category: 'visualization',
+        component: TournamentBracket,
+        source: TournamentBracketSource,
+        tags: ['esports', 'brother', 'tree', 'tournament', 'competition'],
+    },
+
+    // Evergreen Components
+    {
+        id: 'dna-spiral',
+        name: 'DNASpiral',
+        description: 'Animated DNA spiral visualization',
+        theme: 'evergreen',
+        category: 'visualization',
+        component: DNASpiral,
+        source: DNASpiralSource,
+        tags: ['nature', 'dna', 'spiral', 'animation', 'biology'],
+    },
+    {
+        id: 'growth-chart',
+        name: 'GrowthChart',
+        description: 'Organic growth chart looking like plants',
+        theme: 'evergreen',
+        category: 'visualization',
+        component: GrowthChart,
+        source: GrowthChartSource,
+        tags: ['nature', 'chart', 'growth', 'organic', 'plant'],
+    },
+    {
+        id: 'impact-metric',
+        name: 'ImpactMetric',
+        description: 'Environmental impact stats display',
+        theme: 'evergreen',
+        category: 'data-display',
+        component: ImpactMetric,
+        source: ImpactMetricSource,
+        tags: ['nature', 'metric', 'impact', 'environment', 'stats'],
+        previewProps: {
+            label: 'Carbon Offset',
+            value: '4,250',
+            unit: 'kg',
+            icon: 'tree',
+            trend: '+12%'
+        },
+    },
+    {
+        id: 'leaf-card',
+        name: 'LeafCard',
+        description: 'Card with organic leaf-like shape',
+        theme: 'evergreen',
+        category: 'layout',
+        component: LeafCard,
+        source: LeafCardSource,
+        tags: ['nature', 'card', 'organic', 'leaf', 'shape'],
+        previewProps: {
+            scientificName: 'Monstera deliciosa',
+            commonName: 'Swiss Cheese Plant',
+            image: 'https://images.unsplash.com/photo-1614594975525-e45190c55d0b?auto=format&fit=crop&q=80&w=800',
+            stats: [
+                { label: 'WATER', value: 'Weekly' },
+                { label: 'LIGHT', value: 'Bright' }
+            ]
+        },
+    },
+    {
+        id: 'organic-button',
+        name: 'OrganicButton',
+        description: 'Button with fluid, organic hover states',
+        theme: 'evergreen',
+        category: 'interactive',
+        component: OrganicButton,
+        source: OrganicButtonSource,
+        tags: ['nature', 'button', 'organic', 'fluid', 'hover'],
+        previewProps: {
+            children: 'Join Movement',
+            variant: 'primary'
+        },
+    },
+    {
+        id: 'organic-container',
+        name: 'OrganicContainer',
+        description: 'Layout container with soft, organic borders',
+        theme: 'evergreen',
+        category: 'layout',
+        component: OrganicContainer,
+        source: OrganicContainerSource,
+        tags: ['nature', 'container', 'organic', 'layout', 'soft'],
+    },
+    {
+        id: 'species-list',
+        name: 'SpeciesList',
+        description: 'List of species with biological details',
+        theme: 'evergreen',
+        category: 'data-display',
+        component: SpeciesList,
+        source: SpeciesListSource,
+        tags: ['nature', 'list', 'species', 'biology', 'details'],
+    },
+
+    // Concierge Components
+    {
+        id: 'marquee-nav',
+        name: 'MarqueeNav',
+        description: 'Elegant scrolling navigation marquee',
+        theme: 'concierge',
+        category: 'navigation',
+        component: MarqueeNav,
+        source: MarqueeNavSource,
+        tags: ['luxury', 'nav', 'marquee', 'scroll', 'elegant'],
+    },
+    {
+        id: 'sunburst-loader',
+        name: 'SunburstLoader',
+        description: 'Art Deco sunburst loading animation',
+        theme: 'concierge',
+        category: 'feedback',
+        component: SunburstLoader,
+        source: SunburstLoaderSource,
+        tags: ['luxury', 'loader', 'sunburst', 'art-deco', 'animation'],
+    },
+    {
+        id: 'ziggurat-card',
+        name: 'ZigguratCard',
+        description: 'Art Deco card with geometric clip-path',
+        theme: 'concierge',
+        category: 'layout',
+        component: ZigguratCard,
+        source: ZigguratCardSource,
+        tags: ['luxury', 'card', 'ziggurat', 'art-deco', 'geometric'],
+        previewProps: {
+            title: 'The GrandPenthouse',
+            description: 'Experience the pinnacle of art deco luxury with panoramic city views.',
+            image: 'https://images.unsplash.com/photo-1590381105924-c72589b9ef3f?auto=format&fit=crop&q=80&w=800',
+            price: '$5,000 / Night'
+        },
+    },
+
+    // Paradox Components
+    {
+        id: 'draggable-window',
+        name: 'DraggableWindow',
+        description: 'Retro OS draggable window container',
+        theme: 'paradox',
+        category: 'layout',
+        component: DraggableWindow,
+        source: DraggableWindowSource,
+        tags: ['glitch', 'window', 'draggable', 'os', 'retro'],
+        previewProps: {
+            title: 'TERMINAL_01',
+            children: 'CONNECTION ESTABLISHED... DATA UPLINK ACTIVE.',
+            initialX: 20,
+            initialY: 40
+        },
+    },
+    {
+        id: 'paradox-glitch-text',
+        name: 'GlitchText',
+        description: 'Text with CSS chromatic aberration',
+        theme: 'paradox',
+        category: 'data-display',
+        component: ParadoxGlitchText,
+        source: ParadoxGlitchTextSource,
+        tags: ['glitch', 'text', 'chromatic', 'effect', 'typography'],
+        previewProps: {
+            text: 'S Y S T E M   F A I L U R E',
+            intensity: 'high'
+        },
+    },
+    {
+        id: 'raw-input',
+        name: 'RawInput',
+        description: 'Unstyled, brutalist input field',
+        theme: 'paradox',
+        category: 'forms',
+        component: RawInput,
+        source: RawInputSource,
+        tags: ['glitch', 'input', 'raw', 'brutalist', 'form'],
+    },
+
+    // Terminal Components
+    {
+        id: 'ascii-chart',
+        name: 'ASCIIChart',
+        description: 'Chart rendered with ASCII characters',
+        theme: 'terminal',
+        category: 'visualization',
+        component: ASCIIChart,
+        source: ASCIIChartSource,
+        tags: ['terminal', 'chart', 'ascii', 'text', 'data'],
+        previewProps: {
+            data: [5, 12, 8, 15, 6, 20, 14, 10, 8, 12, 18],
+            label: 'CPU_HIST'
+        },
+    },
+    {
+        id: 'log-stream',
+        name: 'LogStream',
+        description: 'Scrolling server log viewer',
+        theme: 'terminal',
+        category: 'data-display',
+        component: LogStream,
+        source: LogStreamSource,
+        tags: ['terminal', 'log', 'stream', 'console', 'viewer'],
+    },
+    {
+        id: 'process-table',
+        name: 'ProcessTable',
+        description: 'TUI-style process management table',
+        theme: 'terminal',
+        category: 'data-display',
+        component: ProcessTable,
+        source: ProcessTableSource,
+        tags: ['terminal', 'table', 'process', 'tui', 'data'],
+    },
+    {
+        id: 'status-line',
+        name: 'StatusLine',
+        description: 'Vim-style status footer line',
+        theme: 'terminal',
+        category: 'feedback',
+        component: StatusLine,
+        source: StatusLineSource,
+        tags: ['terminal', 'status', 'bar', 'footer', 'vim'],
+    },
 ]
 
 export const getComponentById = (id: string): ComponentMeta | undefined => {
@@ -2624,7 +3272,7 @@ export const getComponentsByCategory = (category: ComponentCategory): ComponentM
     return components.filter((c) => c.category === category)
 }
 
-export const allThemes = ['shared', 'fintech', 'cockpit', 'game', 'legacy', 'scifi', 'education', 'social', 'ecommerce', 'engineering', 'food', 'magazine', 'productivity', 'swiss'] as const
+export const allThemes = ['shared', 'fintech', 'cockpit', 'game', 'legacy', 'scifi', 'education', 'social', 'ecommerce', 'engineering', 'food', 'magazine', 'productivity', 'swiss', 'clinic', 'departure', 'estate', 'nomad', 'vault', 'arena', 'evergreen', 'concierge', 'paradox', 'terminal'] as const
 export const allCategories: ComponentCategory[] = [
     'layout',
     'data-display',

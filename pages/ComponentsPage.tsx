@@ -1,7 +1,49 @@
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { useState, useMemo } from 'react'
-import { Search, SlidersHorizontal, ArrowUpDown } from 'lucide-react'
+import {
+    Search,
+    SlidersHorizontal,
+    ArrowUpDown,
+    TerminalSquare,
+    Building2,
+    LineChart,
+    CheckCircle2,
+    PenTool,
+    Scale,
+    Stethoscope,
+    Plane,
+    Bell,
+    Terminal,
+    Heart,
+    GraduationCap,
+    Newspaper,
+    ShoppingBag,
+    MessageCircle,
+    Music,
+    Smile,
+    Home,
+    Utensils,
+    ChefHat,
+    BookOpen,
+    Sun,
+    Box,
+    Circle,
+    Map,
+    Sprout,
+    Gamepad,
+    Grid,
+    Cpu,
+    Gauge,
+    Speaker,
+    Trophy,
+    Square,
+    Zap,
+    Save,
+    LayoutGrid,
+    Lock,
+    AlertTriangle
+} from 'lucide-react'
 import LiveComponentCard from '@/components/ui/LiveComponentCard'
 import {
     components,
@@ -45,15 +87,64 @@ export default function ComponentsPage() {
         })
     }, [visualLanguageFilter, themeFilter, categoryFilter, searchQuery])
 
-    const getThemeColor = (theme: string) => {
-        const colors: Record<string, string> = {
-            shared: 'bg-zinc-600',
-            fintech: 'bg-emerald-500',
-            cockpit: 'bg-blue-600',
-            game: 'bg-fuchsia-500',
-            legacy: 'bg-teal-600',
+    const getThemeColor = (themeId: string) => {
+        const template = getTemplateById(themeId)
+        // Extract just the color class part if needed, assuming valid Tailwind classes
+        // Fallback to grey if not found
+        return template?.colorClass || 'bg-zinc-600'
+    }
+
+    const getThemeIcon = (themeId: string) => {
+        const icons: Record<string, typeof TerminalSquare> = {
+            // Professional
+            engineering: TerminalSquare,
+            saas: Building2,
+            fintech: LineChart,
+            productivity: CheckCircle2,
+            blueprint: PenTool,
+            legal: Scale,
+            clinic: Stethoscope,
+            departure: Plane,
+            concierge: Bell,
+            terminal: Terminal,
+
+            // Consumer
+            wellness: Heart,
+            education: GraduationCap,
+            magazine: Newspaper,
+            ecommerce: ShoppingBag,
+            social: MessageCircle,
+            music: Music,
+            kids: Smile,
+            estate: Home,
+
+            // Organic
+            food: Utensils,
+            kitchen: ChefHat,
+            eink: BookOpen,
+            solarpunk: Sun,
+            softplastic: Box,
+            clay: Circle,
+            nomad: Map,
+            evergreen: Sprout,
+
+            // Cyberpunk
+            game: Gamepad,
+            grid: Grid,
+            scifi: Cpu,
+            cockpit: Gauge,
+            festival: Speaker,
+            arena: Trophy,
+
+            // Brutalist
+            brutalist: Square,
+            acid: Zap,
+            legacy: Save,
+            swiss: LayoutGrid,
+            vault: Lock, // Or LockKeyhole
+            paradox: AlertTriangle,
         }
-        return colors[theme] || 'bg-zinc-600'
+        return icons[themeId] || Circle
     }
 
     return (
@@ -75,69 +166,100 @@ export default function ComponentsPage() {
                         </div>
                     </div>
 
-                    {/* Visual Languages */}
+                    {/* Browse by Style (Visual Language -> Themes) */}
                     <div>
-                        <h3 className="text-sm font-semibold text-zinc-400 mb-3 uppercase tracking-wider">Visual Language</h3>
-                        <div className="space-y-1">
+                        <h3 className="text-sm font-semibold text-zinc-400 mb-3 uppercase tracking-wider">Browse by Style</h3>
+                        <div className="space-y-4">
                             <button
-                                onClick={() => setVisualLanguageFilter('all')}
+                                onClick={() => {
+                                    setVisualLanguageFilter('all')
+                                    setThemeFilter('all')
+                                }}
                                 className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-colors flex items-center justify-between group ${visualLanguageFilter === 'all'
                                     ? 'bg-white text-zinc-950 font-medium'
                                     : 'text-zinc-400 hover:bg-zinc-900 hover:text-white'
                                     }`}
                             >
-                                <span>All Languages</span>
+                                <span>All Styles</span>
                             </button>
-                            {visualLanguages.map((lang) => (
-                                <button
-                                    key={lang.id}
-                                    onClick={() => setVisualLanguageFilter(lang.id)}
-                                    className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-colors flex items-center justify-between group ${visualLanguageFilter === lang.id
-                                        ? 'bg-zinc-800 text-white font-medium shadow-sm border border-zinc-700'
-                                        : 'text-zinc-400 hover:bg-zinc-900 hover:text-white'
-                                        }`}
-                                >
-                                    <span>{lang.name}</span>
-                                </button>
-                            ))}
-                        </div>
-                    </div>
 
-                    {/* Themes */}
-                    <div>
-                        <h3 className="text-sm font-semibold text-zinc-400 mb-3 uppercase tracking-wider">Themes</h3>
-                        <div className="space-y-1">
-                            <button
-                                onClick={() => setThemeFilter('all')}
-                                className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-colors flex items-center justify-between group ${themeFilter === 'all'
-                                    ? 'bg-white text-zinc-950 font-medium'
-                                    : 'text-zinc-400 hover:bg-zinc-900 hover:text-white'
-                                    }`}
-                            >
-                                <span>All Themes</span>
-                                <span className={`text-xs ${themeFilter === 'all' ? 'text-zinc-500' : 'text-zinc-600 group-hover:text-zinc-500'}`}>
-                                    {components.length}
-                                </span>
-                            </button>
-                            {allThemes.map((theme) => {
-                                const count = components.filter((c) => c.theme === theme).length
+                            {visualLanguages.map((lang) => {
+                                const isLangActive = visualLanguageFilter === lang.id
+                                const langTemplates = components.reduce((acc, comp) => {
+                                    const t = getTemplateById(comp.theme)
+                                    if (t && t.visualLanguageId === lang.id && !acc.includes(t.id)) {
+                                        acc.push(t.id)
+                                    }
+                                    return acc
+                                }, [] as string[])
+
+                                // Only show languages that have components
+                                if (langTemplates.length === 0) return null
+
                                 return (
-                                    <button
-                                        key={theme}
-                                        onClick={() => setThemeFilter(theme)}
-                                        className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-colors flex items-center justify-between group ${themeFilter === theme
-                                            ? 'bg-zinc-800 text-white font-medium shadow-sm border border-zinc-700'
-                                            : 'text-zinc-400 hover:bg-zinc-900 hover:text-white'
-                                            }`}
-                                    >
-                                        <div className="flex items-center gap-2">
-                                            <div className={`w-2 h-2 rounded-full ${getThemeColor(theme)}`} />
-                                            <span className="capitalize">{theme}</span>
-                                        </div>
-                                        <span className={`text-xs ${themeFilter === theme ? 'text-zinc-400' : 'text-zinc-600 group-hover:text-zinc-500'}`}>
-                                            {count}
-                                        </span>
-                                    </button>
+                                    <div key={lang.id} className="space-y-1">
+                                        <button
+                                            onClick={() => {
+                                                setVisualLanguageFilter(lang.id)
+                                                setThemeFilter('all')
+                                            }}
+                                            className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-colors flex items-center justify-between group ${isLangActive
+                                                ? 'bg-zinc-800 text-white font-medium shadow-sm border border-zinc-700'
+                                                : 'text-zinc-400 hover:bg-zinc-900 hover:text-white'
+                                                }`}
+                                        >
+                                            <span>{lang.name}</span>
+                                            {isLangActive && <span className="text-xs text-zinc-500">Active</span>}
+                                        </button>
+
+                                        {/* Nested Themes */}
+                                        {isLangActive && (
+                                            <div className="pl-4 space-y-1 border-l border-zinc-800 ml-3">
+                                                <button
+                                                    onClick={(e) => {
+                                                        e.stopPropagation()
+                                                        setVisualLanguageFilter(lang.id)
+                                                        setThemeFilter('all')
+                                                    }}
+                                                    className={`w-full text-left px-3 py-1.5 rounded-md text-xs transition-colors flex items-center justify-between group ${themeFilter === 'all'
+                                                        ? 'text-white font-medium bg-zinc-800/50'
+                                                        : 'text-zinc-500 hover:text-zinc-300'
+                                                        }`}
+                                                >
+                                                    <span>All {lang.name.split(' ')[0]}</span>
+                                                </button>
+                                                {langTemplates.map((themeId) => {
+                                                    const template = getTemplateById(themeId)
+                                                    if (!template) return null
+                                                    const count = components.filter((c) => c.theme === themeId).length
+                                                    const isThemeActive = themeFilter === themeId
+
+                                                    const Icon = getThemeIcon(themeId)
+
+                                                    return (
+                                                        <button
+                                                            key={themeId}
+                                                            onClick={(e) => {
+                                                                e.stopPropagation()
+                                                                setThemeFilter(themeId as ThemeFilter)
+                                                            }}
+                                                            className={`w-full text-left px-3 py-1.5 rounded-md text-xs transition-colors flex items-center justify-between group ${isThemeActive
+                                                                ? 'text-white font-medium bg-zinc-800/50'
+                                                                : 'text-zinc-500 hover:text-zinc-300'
+                                                                }`}
+                                                        >
+                                                            <div className="flex items-center gap-2">
+                                                                <div className={`w-1.5 h-1.5 rounded-full ${getThemeColor(themeId)}`} />
+                                                                <Icon className="w-3.5 h-3.5 opacity-70" />
+                                                                <span>{template.name}</span>
+                                                            </div>
+                                                            <span className="text-zinc-600">{count}</span>
+                                                        </button>
+                                                    )
+                                                })}
+                                            </div>
+                                        )}
+                                    </div>
                                 )
                             })}
                         </div>

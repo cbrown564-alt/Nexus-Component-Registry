@@ -283,6 +283,96 @@ export const templateComponentMap: TemplateComponentMapping[] = [
         extendedComponentIds: ['swiss-card', 'swiss-metric'],
         sharedComponentIds: ['stats-card'],
     },
+
+    // Clinic - Medical Luxury
+    {
+        id: 'clinic',
+        name: 'Clinic',
+        usedComponentIds: ['appointment-card', 'bio-viz', 'clinic-card', 'insurance-card'],
+        extendedComponentIds: ['lab-results-chart', 'medication-schedule', 'provider-directory'],
+        sharedComponentIds: SHARED_SETS.light,
+    },
+
+    // Departure - Aviation
+    {
+        id: 'departure',
+        name: 'Departure',
+        usedComponentIds: ['flight-board', 'gate-info', 'split-flap', 'weather-widget'],
+        extendedComponentIds: [],
+        sharedComponentIds: SHARED_SETS.dark,
+    },
+
+    // Estate - Luxury Real Estate
+    {
+        id: 'estate',
+        name: 'Estate',
+        usedComponentIds: ['estate-hero', 'filter-bar', 'property-card'],
+        extendedComponentIds: [],
+        sharedComponentIds: SHARED_SETS.creative,
+    },
+
+    // Nomad - Travel
+    {
+        id: 'nomad',
+        name: 'Nomad',
+        usedComponentIds: ['journal-card'],
+        extendedComponentIds: [],
+        sharedComponentIds: SHARED_SETS.minimal,
+    },
+
+    // Vault - DeFi
+    {
+        id: 'vault',
+        name: 'Vault',
+        usedComponentIds: ['glitch-button', 'mondrian-table', 'neon-card'],
+        extendedComponentIds: ['system-modal'],
+        sharedComponentIds: ['spotlight-card', 'stats-card'],
+    },
+
+    // Arena - Esports
+    {
+        id: 'arena',
+        name: 'Arena',
+        usedComponentIds: ['bento-stream', 'bracket-connector', 'cyber-container', 'hype-metric', 'tournament-bracket'],
+        extendedComponentIds: [],
+        sharedComponentIds: SHARED_SETS.dark,
+    },
+
+    // Evergreen - Environmental
+    {
+        id: 'evergreen',
+        name: 'Evergreen',
+        usedComponentIds: ['dna-spiral', 'growth-chart', 'impact-metric', 'leaf-card'],
+        extendedComponentIds: ['organic-button', 'organic-container', 'species-list'],
+        sharedComponentIds: SHARED_SETS.minimal,
+    },
+
+    // Concierge - Hospitality
+    {
+        id: 'concierge',
+        name: 'Concierge',
+        usedComponentIds: ['marquee-nav', 'sunburst-loader', 'ziggurat-card'],
+        extendedComponentIds: [],
+        sharedComponentIds: ['spotlight-card'],
+    },
+
+    // Paradox - Glitch Art
+    {
+        id: 'paradox',
+        name: 'Paradox',
+        usedComponentIds: ['draggable-window', 'paradox-glitch-text', 'raw-input'],
+        extendedComponentIds: [],
+        sharedComponentIds: ['spotlight-card'],
+    },
+
+    // Terminal - Dev Tools
+    {
+        id: 'terminal',
+        name: 'Terminal',
+        usedComponentIds: ['ascii-chart', 'log-stream', 'process-table', 'status-line'],
+        extendedComponentIds: [],
+        sharedComponentIds: ['stats-card'],
+    },
 ]
 
 /**
