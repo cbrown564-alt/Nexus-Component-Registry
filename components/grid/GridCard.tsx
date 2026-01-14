@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { motion as tokens } from '@/data/motion';
 import { useTheme } from '@/context/ThemeContext';
 
 interface GridCardProps {
@@ -28,14 +29,14 @@ const GridCard: React.FC<GridCardProps> = ({
     <motion.div
       initial={{ opacity: 0, scale: 0.98 }}
       animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.4, delay, ease: "easeOut" }}
+      transition={{ ...tokens.transition.card, delay }}
       className={`relative overflow-hidden backdrop-blur-sm flex flex-col ${className}`}
       style={{
-        backgroundColor: theme.colors.card, // Fallback if needed, usually transparent-ish
-        borderColor: theme.colors.border,
+        backgroundColor: 'var(--card)', // Fallback if needed, usually transparent-ish
+        borderColor: 'var(--border)',
         borderWidth: '1px',
         borderStyle: 'solid',
-        borderRadius: theme.radius === 'none' ? '0' : '0.25rem',
+        borderRadius: 'var(--radius)',
         ...style
       }}
     >

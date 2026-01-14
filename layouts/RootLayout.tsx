@@ -19,6 +19,7 @@ import { ThemeProvider, useTheme } from '@/context/ThemeContext'
 import CommandPalette from '@/components/ui/CommandPalette'
 import SkipLink from '@/components/a11y/SkipLink'
 import { Search } from 'lucide-react'
+import GlobalStyles from '@/components/ui/GlobalStyles'
 
 /**
  * Hook to reset theme to registry default when navigating away from template pages.
@@ -257,6 +258,7 @@ function LayoutContent() {
         <div className={`flex min-h-screen w-full font-sans transition-colors duration-500 ${textColorClass}`}>
             <SkipLink />
             <Background />
+            <GlobalStyles />
 
             {/* Mobile menu button */}
             <button

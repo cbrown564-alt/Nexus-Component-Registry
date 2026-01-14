@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion, HTMLMotionProps } from 'framer-motion';
+import { motion as tokens } from '@/data/motion';
 import { useTheme } from '@/context/ThemeContext';
 
 interface SaasCardProps extends HTMLMotionProps<'div'> {
@@ -25,20 +26,16 @@ const SaasCard: React.FC<SaasCardProps> = ({
     <motion.div
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.4, delay, ease: "easeOut" }}
+      transition={{ ...tokens.transition.card, delay }}
       className={`relative overflow-hidden shadow-sm backdrop-blur-sm ${noPadding ? '' : 'p-5'
         } ${className}`}
       style={{
-        backgroundColor: theme.colors.card,
-        borderColor: theme.colors.border,
-        color: theme.colors.cardForeground,
+        backgroundColor: 'var(--card)',
+        borderColor: 'var(--border)',
+        color: 'var(--card-foreground)',
         borderWidth: '1px',
         borderStyle: 'solid',
-        borderRadius: theme.radius === 'none' ? '0' :
-          theme.radius === 'sm' ? '0.125rem' :
-            theme.radius === 'md' ? '0.375rem' :
-              theme.radius === 'lg' ? '0.5rem' :
-                theme.radius === 'xl' ? '0.75rem' : '1rem',
+        borderRadius: 'var(--radius)',
         ...style
       }}
       {...props}

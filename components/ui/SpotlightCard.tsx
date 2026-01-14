@@ -43,9 +43,10 @@ const SpotlightCard: React.FC<SpotlightCardProps> = ({
       onMouseMove={handleMouseMove}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className={`relative h-full w-full overflow-hidden rounded-xl border shadow-sm transition-all duration-200 ${className}`}
+      className={`relative h-full w-full overflow-hidden border shadow-sm transition-all duration-200 ${className}`}
       style={{
-        borderColor: theme.colors.border,
+        borderRadius: 'var(--radius)',
+        borderColor: 'var(--border)',
         backgroundColor: `${theme.colors.card}80` || 'rgba(24, 24, 27, 0.5)', // card/50 fallback
         ...style // Merge passed style
       }}
