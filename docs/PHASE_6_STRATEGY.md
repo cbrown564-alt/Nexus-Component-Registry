@@ -41,15 +41,17 @@ We will treat **Motion** as a first-class citizen, equal to Color and Typography
 
 ## 3. Implementation Roadmap
 
-### Milestone 6.1: The Workbench (Hooks)
-*   [ ] Create `HookPreview` component framework.
-*   [ ] Implement interactive demos for existing 11 hooks.
-*   [ ] Add 3 new "Motion Hooks" (`useSpring`, `useScroll`, `useEnter`).
+### Milestone 6.1: The Workbench (Hooks) ✅ COMPLETE
+*   [x] Create `HookPreview` component framework.
+*   [x] Create `HookKnobs` for parameter adjustments.
+*   [x] Implement interactive demos for 8 hooks (useClickOutside, useDebounce, useFocusTrap, useHover, useInView, useLocalStorage, useMediaQuery, useSpotlight).
+*   [x] Refactor `HooksPage.tsx` with tabbed Live Demo/API Reference interface.
+*   [ ] Add 3 new "Motion Hooks" (`useSpring`, `useScroll`, `useEnter`) — moved to Milestone 6.3.
 
-### Milestone 6.2: The Studio (Themes)
-*   [ ] Refactor `ThemesPage.tsx` to use a local "Draft Theme" state separate from the global context.
-*   [ ] Build `TokenControls` sidebar (Color pickers, sliders for radius/spacing).
-*   [ ] Implement "Export Config" functionality.
+### Milestone 6.2: The Studio (Themes) ✅ COMPLETE
+*   [x] Refactor `ThemesPage.tsx` to use a local "Draft Theme" state separate from the global context.
+*   [x] Build `TokenControls` sidebar (Color pickers, sliders for radius/spacing).
+*   [x] Implement "Export Config" functionality.
 
 ### Milestone 6.3: Motion & Polish
 *   [ ] Define `motion.ts` token file.

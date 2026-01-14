@@ -8,6 +8,7 @@ export interface PlaygroundCardProps {
     size?: CardSize
     theme: PlaygroundTheme
     children?: React.ReactNode
+    style?: React.CSSProperties
 }
 
 export function PlaygroundCard({
@@ -16,6 +17,7 @@ export function PlaygroundCard({
     size = 'default',
     theme,
     children,
+    style: customStyle,
 }: PlaygroundCardProps) {
     const sizeStyle = sizeStyles.card[size]
 
@@ -27,6 +29,7 @@ export function PlaygroundCard({
         boxShadow: getShadow(theme.shadow, theme),
         padding: sizeStyle.padding,
         fontFamily: theme.typography.fontFamily,
+        ...customStyle,
     }
 
     return (

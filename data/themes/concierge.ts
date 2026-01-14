@@ -1,32 +1,32 @@
-import { ThemeDefinition } from './index';
+import type { PlaygroundTheme } from '../playgroundThemes'
 
-export const concierge: ThemeDefinition = {
+export const concierge: PlaygroundTheme = {
     id: 'concierge',
     name: 'Concierge',
+    description: 'Luxury hospitality and high-end service portal',
+    mode: 'dark',
     colors: {
         background: '#09090b', // Void Black
         foreground: '#f4f4f5', // Zinc 100
+        card: '#18181b',       // Zinc 900
+        cardForeground: '#f4f4f5',
         primary: '#cda45e',    // Gold Leaf
-        secondary: '#18181b',  // Zinc 900 (Panel BG)
+        primaryForeground: '#09090b',
+        secondary: '#27272a',  // Zinc 800
+        secondaryForeground: '#f4f4f5',
+        muted: '#27272a',
+        mutedForeground: '#a1a1aa', // Zinc 400
         accent: '#f3e5b5',     // Champagne
-        border: '#cda45e',     // Gold
-        muted: '#52525b',      // Zinc 600
+        accentForeground: '#09090b',
+        border: '#3f3f46',     // Zinc 700 (subtle, not gold)
+        ring: '#cda45e',
     },
+    radius: 'none', // Geometric / Sharp
+    shadow: 'lg',
     typography: {
         fontFamily: '"DM Sans", sans-serif',
-        headingFont: '"Playfair Display", serif',
-        scale: {
-            h1: '4.5rem',
-            h2: '3rem',
-            h3: '2rem',
-            body: '1rem',
-            small: '0.875rem',
-        },
+        headingWeight: 500,
+        bodyWeight: 400,
+        letterSpacing: '0.02em',
     },
-    borderRadius: '0px', // Geometric / Sharp
-    shadows: {
-        sm: '0 2px 4px rgba(0,0,0,0.5)',
-        md: '0 4px 6px rgba(0,0,0,0.5)',
-        lg: '0 10px 15px rgba(0,0,0,0.5)',
-    },
-};
+}

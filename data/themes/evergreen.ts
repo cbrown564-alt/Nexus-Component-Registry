@@ -1,32 +1,32 @@
-import { ThemeDefinition } from './index';
+import type { PlaygroundTheme } from '../playgroundThemes'
 
-export const evergreen: ThemeDefinition = {
+export const evergreen: PlaygroundTheme = {
     id: 'evergreen',
     name: 'Evergreen',
+    description: 'Deep Ecology impact tracker and sustainability dashboard',
+    mode: 'light',
     colors: {
         background: '#fdfcf8', // Limestone / Rich Cream
         foreground: '#1a2e1a', // Very Dark Green (almost black)
+        card: '#ffffff',
+        cardForeground: '#1a2e1a',
         primary: '#064e3b',    // Deep Emerald / Forest
+        primaryForeground: '#ffffff',
         secondary: '#dfae7e',  // Warm Soil / Sandstone
+        secondaryForeground: '#1a2e1a',
+        muted: '#e8e4d9',
+        mutedForeground: '#8f9e8a', // Muted Moss
         accent: '#fbbf24',     // Golden Hour / Amber
+        accentForeground: '#1a2e1a',
         border: '#c3bca8',     // Stone
-        muted: '#8f9e8a',      // Muted Moss
+        ring: '#064e3b',
     },
+    radius: 'xl', // Large organic radius
+    shadow: 'md',
     typography: {
         fontFamily: '"Nunito", "Inter", sans-serif',
-        headingFont: '"Domine", serif',
-        scale: {
-            h1: '4rem',
-            h2: '3rem',
-            h3: '2rem',
-            body: '1rem',
-            small: '0.875rem',
-        },
+        headingWeight: 700,
+        bodyWeight: 400,
+        letterSpacing: '0',
     },
-    borderRadius: '1.5rem', // Large organic radius
-    shadows: {
-        sm: '0 4px 6px -1px rgba(6, 78, 59, 0.1), 0 2px 4px -1px rgba(6, 78, 59, 0.06)',
-        md: '0 10px 15px -3px rgba(6, 78, 59, 0.1), 0 4px 6px -2px rgba(6, 78, 59, 0.05)',
-        lg: '0 20px 25px -5px rgba(6, 78, 59, 0.1), 0 10px 10px -5px rgba(6, 78, 59, 0.04)',
-    },
-};
+}

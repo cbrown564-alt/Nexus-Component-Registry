@@ -1,32 +1,32 @@
-import { ThemeDefinition } from './index';
+import type { PlaygroundTheme } from '../playgroundThemes'
 
-export const terminal: ThemeDefinition = {
+export const terminal: PlaygroundTheme = {
     id: 'terminal',
-    name: 'Console', // Naming it Console to allow 'Terminal' (Fintech) to coexist without UI ambiguity
+    name: 'Console',
+    description: 'Modern developer environment with TUI aesthetics',
+    mode: 'dark',
     colors: {
         background: '#0c0c0c', // Deep Void
         foreground: '#abb2bf', // Syntax FG
+        card: '#1e2127',
+        cardForeground: '#abb2bf',
         primary: '#61afef',    // Syntax Blue
+        primaryForeground: '#000000',
         secondary: '#282c34',  // Gutter Grey
+        secondaryForeground: '#abb2bf',
+        muted: '#3e4451',
+        mutedForeground: '#5c6370', // Comment Grey
         accent: '#98c379',     // String Green
+        accentForeground: '#000000',
         border: '#3e4451',     // Split Border
-        muted: '#5c6370',      // Comment Grey
+        ring: '#61afef',
     },
+    radius: 'none',
+    shadow: 'md',
     typography: {
         fontFamily: '"Fira Code", "JetBrains Mono", monospace',
-        headingFont: '"Fira Code", "JetBrains Mono", monospace',
-        scale: {
-            h1: '2rem',
-            h2: '1.5rem',
-            h3: '1.25rem',
-            body: '0.875rem',
-            small: '0.75rem',
-        },
+        headingWeight: 600,
+        bodyWeight: 400,
+        letterSpacing: '0',
     },
-    borderRadius: '0px',
-    shadows: {
-        sm: 'none',
-        md: '0 4px 12px rgba(0,0,0,0.5)',
-        lg: '0 10px 25px rgba(0,0,0,0.5)',
-    },
-};
+}

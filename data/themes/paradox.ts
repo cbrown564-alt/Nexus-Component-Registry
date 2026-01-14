@@ -1,32 +1,33 @@
-import { ThemeDefinition } from './index';
+import type { PlaygroundTheme } from '../playgroundThemes'
 
-export const paradox: ThemeDefinition = {
+export const paradox: PlaygroundTheme = {
     id: 'paradox',
     name: 'Paradox',
+    description: 'System failure and glitch art aesthetic',
+    mode: 'light',
     colors: {
         background: '#e5e5e5', // Static Grey / Windows 95
         foreground: '#000000', // Black
+        card: '#ffffff',
+        cardForeground: '#000000',
         primary: '#ff0000',    // Error Red
+        primaryForeground: '#ffffff',
         secondary: '#0000ff',  // BSOD Blue
-        accent: '#00ff00',     // Terminal Green
-        border: '#000000',     // Brutalist Black
+        secondaryForeground: '#ffffff',
         muted: '#a3a3a3',      // Grey
+        mutedForeground: '#525252',
+        accent: '#00ff00',     // Terminal Green
+        accentForeground: '#000000',
+        border: '#000000',     // Brutalist Black
+        ring: '#ff0000',
     },
+    radius: 'none', // Strict geometric
+    shadow: 'none',
     typography: {
         fontFamily: '"Courier New", Courier, monospace',
-        headingFont: '"Rubik Glitch", "Courier New", monospace', // Ideally we'd load a glitch font, but fallback to Courier
-        scale: {
-            h1: '4rem',
-            h2: '2.5rem',
-            h3: '1.5rem',
-            body: '1rem',
-            small: '0.875rem',
-        },
+        headingWeight: 900,
+        bodyWeight: 500,
+        letterSpacing: '0',
     },
-    borderRadius: '0px', // Strict geometric
-    shadows: {
-        sm: '2px 2px 0px #000000',
-        md: '4px 4px 0px #000000',
-        lg: '8px 8px 0px #000000',
-    },
-};
+}
+
