@@ -11,11 +11,13 @@ interface HeroTemplateProps {
 
 export default function HeroTemplate({ theme: templateTheme }: HeroTemplateProps) {
     const { theme } = useTheme()
+    // Use a fixed dark background for the hero section to ensure pure black aesthetic
+    const heroBackground = '#000000'
 
     return (
         <div
             className="relative h-[70vh] w-full overflow-hidden mb-8 group"
-            style={{ backgroundColor: theme.colors.background }}
+            style={{ backgroundColor: heroBackground }}
         >
             {/* Background Image (blurred/dimmed) */}
             <div className="absolute inset-0 top-20">
@@ -24,17 +26,17 @@ export default function HeroTemplate({ theme: templateTheme }: HeroTemplateProps
                     className="w-full h-full origin-top object-cover opacity-80 scale-105 group-hover:scale-100 transition-transform duration-[20s] ease-linear"
                 />
             </div>
-            {/* Vignette Gradients - Using theme background to fade out */}
+            {/* Vignette Gradients - Using fixed dark background to fade out */}
             <div
                 className="absolute inset-0 pointer-events-none"
                 style={{
-                    background: `linear-gradient(to top, ${theme.colors.background} 0%, ${theme.colors.background}40 60%, transparent 100%)`
+                    background: `linear-gradient(to top, ${heroBackground} 0%, ${heroBackground}40 60%, transparent 100%)`
                 }}
             />
             <div
                 className="absolute inset-0 pointer-events-none"
                 style={{
-                    background: `linear-gradient(to right, ${theme.colors.background}E6 0%, transparent 100%)`
+                    background: `linear-gradient(to right, ${heroBackground}E6 0%, transparent 100%)`
                 }}
             />
 

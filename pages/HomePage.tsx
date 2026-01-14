@@ -1,13 +1,13 @@
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { Box, Palette, Github, CheckCircle2, ArrowRight } from 'lucide-react'
-import { featuredThemes, getThemeById } from '@/lib/registry'
+import { featuredThemes, getThemeById, templates } from '@/lib/registry'
 import { components } from '@/data/components'
 import TemplatePreview from '@/components/ui/TemplatePreview'
 import LiveComponentCard from '@/components/ui/LiveComponentCard'
 
 const stats = [
-    { label: 'Templates', value: '28' },
+    { label: 'Templates', value: templates.length.toString() },
     { label: 'Components', value: '120+' },
     { label: 'Hooks', value: '8' },
 ]
@@ -15,7 +15,7 @@ const stats = [
 const features = [
     {
         icon: Palette,
-        title: '28 Templates',
+        title: `${templates.length} Templates`,
         description: 'From brutalist to futuristic, find the perfect aesthetic for your project.',
     },
     {
@@ -56,7 +56,7 @@ export default function HomePage() {
                 </div>
 
                 <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6 bg-gradient-to-b from-white to-zinc-400 bg-clip-text text-transparent">
-                    28 Templates.
+                    {templates.length} Templates.
                     <br />
                     One Registry.
                 </h1>
@@ -69,7 +69,7 @@ export default function HomePage() {
                 </div>
 
                 <p className="text-xl text-zinc-400 max-w-2xl mx-auto mb-10">
-                    Explore a curated collection of React components across 28 unique templates.
+                    Explore a curated collection of React components across {templates.length} unique templates.
                     Find inspiration, copy code, ship faster.
                 </p>
 
@@ -100,7 +100,7 @@ export default function HomePage() {
                 <div className="flex items-center justify-between mb-8">
                     <h2 className="text-2xl font-bold text-white">Featured Templates</h2>
                     <Link to="/templates" className="text-sm text-zinc-400 hover:text-white transition-colors flex items-center gap-1">
-                        View all 28 templates <ArrowRight className="h-4 w-4" />
+                        View all {templates.length} templates <ArrowRight className="h-4 w-4" />
                     </Link>
                 </div>
 
