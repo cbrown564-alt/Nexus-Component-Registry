@@ -1,6 +1,8 @@
 import { createBrowserRouter } from 'react-router-dom'
 import RootLayout from '@/layouts/RootLayout'
 import HomePage from '@/pages/HomePage'
+import StoriesPage from '@/pages/StoriesPage'
+import StoryDetailPage from '@/pages/StoryDetailPage'
 import ThemesPage from '@/pages/ThemesPage'
 import TemplatesPage from '@/pages/TemplatesPage'
 import TemplatePage from '@/pages/TemplatePage'
@@ -17,6 +19,8 @@ export const router = createBrowserRouter([
         children: [
             { index: true, element: <HomePage /> },
             { path: 'themes', element: <ThemesPage /> },
+            { path: 'stories', element: <StoriesPage /> },
+            { path: 'stories/:storyId', element: <StoryDetailPage /> },
             { path: 'templates', element: <TemplatesPage /> },
             { path: 'templates/:id', element: <TemplatePage /> },
             { path: 'templates/:id/components', element: <TemplateComponentsPage /> },

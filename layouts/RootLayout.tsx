@@ -12,6 +12,7 @@ import {
     Menu,
     X,
     Palette,
+    BookOpen,
     Coins,
 } from 'lucide-react'
 import { ThemeProvider, useTheme } from '@/context/ThemeContext'
@@ -120,6 +121,7 @@ function Sidebar() {
         { to: '/themes', icon: Palette, label: 'Themes' },
         { to: '/templates', icon: LayoutTemplate, label: 'Templates' },
         { to: '/components', icon: Box, label: 'Components' },
+        { to: '/stories', icon: BookOpen, label: 'Stories' },
         { to: '/hooks', icon: Zap, label: 'Hooks' },
         { to: '/tokens', icon: Coins, label: 'Tokens' },
         // { to: '/settings', icon: Settings, label: 'Settings' },
@@ -281,7 +283,7 @@ function LayoutContent() {
 
             <main
                 id="main-content"
-                className="relative flex flex-1 flex-col pl-0 lg:pl-16 transition-[padding] duration-300 overflow-x-hidden"
+                className="relative flex flex-1 flex-col pl-0 lg:pl-16 transition-[padding] duration-300"
             >
                 <Header />
                 <CommandPalette />
