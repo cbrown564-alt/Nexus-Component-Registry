@@ -1,34 +1,8 @@
 import { createContext, useContext, useState, ReactNode, useMemo, useCallback, useEffect } from 'react'
 import { legacyThemes as themes, LegacyTheme as Theme, getThemeById, VisualLanguageId } from '@/lib/registry'
 import { playgroundThemes, PlaygroundTheme, getPlaygroundThemeById, defaultPlaygroundTheme } from '@/data/playgroundThemes'
-import { helix } from '@/data/themes/scifi'
-import { legacy } from '@/data/themes/retro'
-import { cockpit } from '@/data/themes/cockpit'
-import { blueprint } from '@/data/themes/blueprint'
-import { arcade } from '@/data/themes/arcade'
-import { eink } from '@/data/themes/eink'
-import { swiss } from '@/data/themes/swiss'
-import { brutalist } from '@/data/themes/brutalist'
-import { acid } from '@/data/themes/acid'
-import { solarpunk } from '@/data/themes/solarpunk'
-import { festival } from '@/data/themes/festival'
-import { clay } from '@/data/themes/clay'
-import { softPlastic } from '@/data/themes/soft-plastic'
-import { fintech } from '@/data/themes/fintech'
-import { saas } from '@/data/themes/saas'
-import { productivity } from '@/data/themes/productivity'
-import { grid } from '@/data/themes/grid'
-import { legal } from '@/data/themes/legal'
-import { wellness } from '@/data/themes/wellness'
-import { education } from '@/data/themes/education'
-import { magazine } from '@/data/themes/magazine'
-import { ecommerce } from '@/data/themes/ecommerce'
-import { social } from '@/data/themes/social'
-import { music } from '@/data/themes/music'
-import { food } from '@/data/themes/food'
-import { kitchen } from '@/data/themes/kitchen'
-import { kids } from '@/data/themes/kids'
-import { engineering } from '@/data/themes/engineering'
+import { getTheme } from '@/lib/themeRegistry'
+
 
 // The default registry theme - dark, neutral, always consistent
 const REGISTRY_THEME: Theme = {
@@ -107,38 +81,8 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
 
     // Sync playground theme when scope or scoped-selection changes
     useEffect(() => {
-        // Special lookup for extracted themes until everything is unified
-        let theme: PlaygroundTheme | undefined
-
-        if (activeLikeThemeId === 'scifi') theme = helix
-        else if (activeLikeThemeId === 'legacy') theme = legacy
-        else if (activeLikeThemeId === 'cockpit') theme = cockpit
-        else if (activeLikeThemeId === 'blueprint') theme = blueprint
-        else if (activeLikeThemeId === 'arcade') theme = arcade
-        else if (activeLikeThemeId === 'eink') theme = eink
-        else if (activeLikeThemeId === 'swiss') theme = swiss
-        else if (activeLikeThemeId === 'brutalist') theme = brutalist
-        else if (activeLikeThemeId === 'acid') theme = acid
-        else if (activeLikeThemeId === 'solarpunk') theme = solarpunk
-        else if (activeLikeThemeId === 'festival') theme = festival
-        else if (activeLikeThemeId === 'clay') theme = clay
-        else if (activeLikeThemeId === 'soft-plastic') theme = softPlastic
-        else if (activeLikeThemeId === 'fintech') theme = fintech
-        else if (activeLikeThemeId === 'saas') theme = saas
-        else if (activeLikeThemeId === 'productivity') theme = productivity
-        else if (activeLikeThemeId === 'grid') theme = grid
-        else if (activeLikeThemeId === 'legal') theme = legal
-        else if (activeLikeThemeId === 'wellness') theme = wellness
-        else if (activeLikeThemeId === 'education') theme = education
-        else if (activeLikeThemeId === 'magazine') theme = magazine
-        else if (activeLikeThemeId === 'ecommerce') theme = ecommerce
-        else if (activeLikeThemeId === 'social') theme = social
-        else if (activeLikeThemeId === 'music') theme = music
-        else if (activeLikeThemeId === 'food') theme = food
-        else if (activeLikeThemeId === 'kitchen') theme = kitchen
-        else if (activeLikeThemeId === 'kids') theme = kids
-        else if (activeLikeThemeId === 'engineering') theme = engineering
-        else theme = getPlaygroundThemeById(activeLikeThemeId)
+        // Dynamic lookup from registry - no more if-else chains!
+        const theme = getTheme(activeLikeThemeId) ?? getPlaygroundThemeById(activeLikeThemeId)
 
         if (theme) {
             setCurrentPlaygroundTheme(theme)
@@ -176,38 +120,8 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     }, [])
 
     const setPlaygroundTheme = useCallback((id: string) => {
-        // Directly look up and set the theme
-        let theme: PlaygroundTheme | undefined
-
-        if (id === 'scifi') theme = helix
-        else if (id === 'legacy') theme = legacy
-        else if (id === 'cockpit') theme = cockpit
-        else if (id === 'blueprint') theme = blueprint
-        else if (id === 'arcade') theme = arcade
-        else if (id === 'eink') theme = eink
-        else if (id === 'swiss') theme = swiss
-        else if (id === 'brutalist') theme = brutalist
-        else if (id === 'acid') theme = acid
-        else if (id === 'solarpunk') theme = solarpunk
-        else if (id === 'festival') theme = festival
-        else if (id === 'clay') theme = clay
-        else if (id === 'soft-plastic') theme = softPlastic
-        else if (id === 'fintech') theme = fintech
-        else if (id === 'saas') theme = saas
-        else if (id === 'productivity') theme = productivity
-        else if (id === 'grid') theme = grid
-        else if (id === 'legal') theme = legal
-        else if (id === 'wellness') theme = wellness
-        else if (id === 'education') theme = education
-        else if (id === 'magazine') theme = magazine
-        else if (id === 'ecommerce') theme = ecommerce
-        else if (id === 'social') theme = social
-        else if (id === 'music') theme = music
-        else if (id === 'food') theme = food
-        else if (id === 'kitchen') theme = kitchen
-        else if (id === 'kids') theme = kids
-        else if (id === 'engineering') theme = engineering
-        else theme = getPlaygroundThemeById(id)
+        // Dynamic lookup from registry - no more if-else chains!
+        const theme = getTheme(id) ?? getPlaygroundThemeById(id)
 
         if (theme) {
             setCurrentPlaygroundTheme(theme)
