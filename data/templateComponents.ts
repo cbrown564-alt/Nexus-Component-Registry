@@ -373,6 +373,15 @@ export const templateComponentMap: TemplateComponentMapping[] = [
         extendedComponentIds: [],
         sharedComponentIds: ['stats-card'],
     },
+
+    // Flux - Social Feed (Mobile First)
+    {
+        id: 'flux',
+        name: 'Flux',
+        usedComponentIds: [], // Custom implementation
+        extendedComponentIds: [],
+        sharedComponentIds: ['activity-feed', 'stats-card'],
+    },
 ]
 
 /**

@@ -45,6 +45,7 @@ import EvergreenDashboard from '@/templates/EvergreenDashboard'
 import ConciergeDashboard from '@/templates/ConciergeDashboard'
 import ParadoxDashboard from '@/templates/ParadoxDashboard'
 import TerminalDashboard from '@/templates/TerminalDashboard'
+import FluxTemplate from '@/components/templates/mobile/flux/FluxTemplate'
 
 const dashboardComponents: Record<string, ComponentType> = {
     engineering: EngineeringDashboard,
@@ -86,6 +87,7 @@ const dashboardComponents: Record<string, ComponentType> = {
     concierge: ConciergeDashboard,
     paradox: ParadoxDashboard,
     terminal: TerminalDashboard,
+    flux: FluxTemplate,
 }
 
 export default function TemplatePage() {

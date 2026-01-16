@@ -2,9 +2,14 @@ import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { BookOpen, ArrowRight } from 'lucide-react'
 import { stories } from '@/data/stories'
+import useMediaQuery from '@/hooks/useMediaQuery'
+import MobileLayout from '@/layouts/MobileLayout'
 
 export default function StoriesPage() {
-    return (
+    const isMobile = useMediaQuery('(max-width: 768px)')
+
+    // Wrapper component to handle layout conditionally
+    const Content = () => (
         <div className="relative z-10 mx-auto max-w-7xl px-8 py-12">
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -54,4 +59,14 @@ export default function StoriesPage() {
             </div>
         </div>
     )
+
+    if (isMobile) {
+        return (
+            <MobileLayout>
+                <Content />
+            </MobileLayout>
+        )
+    }
+
+    return <Content />
 }
