@@ -1587,8 +1587,8 @@
     },
     {
       "name": "DeploymentPipeline",
-      "type": "registry:ui",
-      "path": "components/ui/DeploymentPipeline.tsx",
+      "type": "components:ui",
+      "path": "components/engineering/DeploymentPipeline.tsx",
       "dependencies": [
         "lucide-react"
       ],
@@ -1719,8 +1719,8 @@
     },
     {
       "name": "Terminal",
-      "type": "registry:ui",
-      "path": "components/ui/Terminal.tsx",
+      "type": "components:ui",
+      "path": "components/engineering/TerminalSnippet.tsx",
       "dependencies": [],
       "registryDependencies": []
     },

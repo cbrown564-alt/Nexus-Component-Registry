@@ -1279,6 +1279,158 @@ function NomadWireframe({ theme }: WireframeProps) {
     )
 }
 
+// Flux / Social Feed Wireframe
+function FluxWireframe({ theme }: WireframeProps) {
+    return (
+        <div className="absolute inset-0 bg-black flex flex-col p-1 gap-1">
+            {/* Edge-to-edge media cards */}
+            <div className="flex-1 rounded-lg bg-zinc-900 overflow-hidden relative border border-zinc-800">
+                <div className="absolute inset-0 bg-gradient-to-br from-indigo-900/40 to-purple-900/40" />
+                <div className="absolute bottom-2 left-2 right-2 flex justify-between items-end">
+                    <div className="space-y-1">
+                        <div className="w-6 h-6 rounded-full bg-indigo-500 border-2 border-black" />
+                        <div className="h-1.5 w-20 bg-white/90 rounded-full" />
+                        <div className="h-1 w-32 bg-white/50 rounded-full" />
+                    </div>
+                    {/* Action column */}
+                    <div className="flex flex-col gap-1 items-center">
+                        <div className="w-3 h-3 rounded-full bg-white/20" />
+                        <div className="w-3 h-3 rounded-full bg-white/20" />
+                        <div className="w-3 h-3 rounded-full bg-white/20" />
+                    </div>
+                </div>
+            </div>
+            {/* Peek of next card */}
+            <div className="h-4 rounded-t-lg bg-zinc-800 mx-2 opacity-50" />
+        </div>
+    )
+}
+
+// Neo / Wallet Wireframe
+function NeoWireframe({ theme }: WireframeProps) {
+    return (
+        <div className="absolute inset-0 bg-black p-2 flex flex-col items-center justify-center overflow-hidden">
+            {/* Stacked Cards with Parallax Hint */}
+            <div className="relative w-3/4 h-3/4">
+                {/* Back card */}
+                <div
+                    className="absolute top-0 right-0 w-full h-full rounded-xl border border-white/10 bg-zinc-900 transform rotate-6 scale-95 origin-bottom-right"
+                    style={{ boxShadow: '0 0 20px rgba(16, 185, 129, 0.1)' }}
+                />
+                {/* Middle card */}
+                <div
+                    className="absolute top-2 right-2 w-full h-full rounded-xl border border-white/10 bg-zinc-800 transform rotate-3 scale-95 origin-bottom-right"
+                />
+                {/* Front card - Premium */}
+                <div className="absolute inset-0 rounded-xl border border-emerald-500/30 bg-gradient-to-br from-emerald-900/50 to-black backdrop-blur-md flex flex-col p-2 justify-between">
+                    <div className="flex justify-between items-start">
+                        <div className="w-4 h-4 rounded-full border border-emerald-500/50" />
+                        <div className="text-[6px] text-emerald-500 font-mono tracking-widest">NEO</div>
+                    </div>
+                    <div className="space-y-1">
+                        <div className="text-[5px] text-emerald-500/50 font-mono">BALANCE</div>
+                        <div className="text-[10px] text-white font-bold tracking-tighter">$24,932.00</div>
+                    </div>
+                </div>
+                {/* Glint effect */}
+                <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-transparent skew-x-12 opacity-50" />
+            </div>
+        </div>
+    )
+}
+
+// Zen / Reader Wireframe
+function ZenWireframe({ theme }: WireframeProps) {
+    return (
+        <div className="absolute inset-0 bg-stone-100 p-3 flex flex-col">
+            {/* Minimal Typography Layout */}
+            <div className="flex-1 px-1">
+                <div className="w-8 h-8 rounded-full bg-stone-200 mb-4" />
+                <div className="h-3 w-full bg-stone-800 mb-2" /> {/* Title */}
+                <div className="h-3 w-2/3 bg-stone-800 mb-6" />
+
+                <div className="space-y-1.5 opacity-60">
+                    <div className="h-1 w-full bg-stone-600 rounded-sm" />
+                    <div className="h-1 w-full bg-stone-600 rounded-sm" />
+                    <div className="h-1 w-full bg-stone-600 rounded-sm" />
+                    <div className="h-1 w-4/5 bg-stone-600 rounded-sm" />
+                </div>
+            </div>
+
+            {/* Thumb Zone Controls */}
+            <div className="h-12 border-t border-stone-200 mt-auto flex items-center justify-around px-4">
+                <div className="w-8 h-1 rounded-full bg-stone-300" />
+            </div>
+        </div>
+    )
+}
+
+// Touch / Remote Wireframe
+function TouchWireframe({ theme }: WireframeProps) {
+    return (
+        <div className="absolute inset-0 bg-slate-200 flex flex-col items-center justify-center p-3 gap-3">
+            {/* Neumorphic Dial */}
+            <div
+                className="w-16 h-16 rounded-full flex items-center justify-center relative"
+                style={{
+                    background: 'linear-gradient(145deg, #ffffff, #e2e8f0)',
+                    boxShadow: '5px 5px 10px #cbd5e1, -5px -5px 10px #ffffff'
+                }}
+            >
+                <div className="w-12 h-12 rounded-full border-4 border-slate-100" />
+                <div className="absolute top-2 w-1 h-2 bg-sky-500 rounded-full" />
+            </div>
+
+            {/* Tactile Buttons */}
+            <div className="flex gap-3">
+                <div
+                    className="w-8 h-8 rounded-lg"
+                    style={{
+                        background: 'linear-gradient(145deg, #ffffff, #e2e8f0)',
+                        boxShadow: '3px 3px 6px #cbd5e1, -3px -3px 6px #ffffff'
+                    }}
+                />
+                <div
+                    className="w-8 h-8 rounded-lg border border-sky-200"
+                    style={{
+                        background: '#e0f2fe',
+                        boxShadow: 'inset 2px 2px 4px #bae6fd, inset -2px -2px 4px #ffffff'
+                    }}
+                />
+            </div>
+        </div>
+    )
+}
+
+// Signal / Chat Wireframe
+function SignalWireframe({ theme }: WireframeProps) {
+    return (
+        <div className="absolute inset-0 bg-[#fff0f5] flex flex-col p-2">
+            {/* Dynamic Bubbles */}
+            <div className="flex-1 flex flex-col justify-end gap-2 pb-2">
+                {/* Incoming */}
+                <div className="self-start max-w-[80%] p-1.5 rounded-2xl rounded-bl-sm bg-white shadow-sm border border-pink-100">
+                    <div className="h-1 w-16 bg-pink-200/50 rounded-full mb-1" />
+                    <div className="h-1 w-12 bg-pink-200/50 rounded-full" />
+                </div>
+
+                {/* Outgoing */}
+                <div className="self-end max-w-[80%] p-1.5 rounded-2xl rounded-br-sm bg-pink-500 shadow-md text-white">
+                    <div className="h-1 w-20 bg-white/40 rounded-full mb-1" />
+                    <div className="h-1 w-10 bg-white/40 rounded-full" />
+                </div>
+
+                {/* Breathing Typing Indicator */}
+                <div className="self-start p-1.5 rounded-full bg-white shadow-sm border border-pink-100 flex gap-0.5">
+                    <div className="w-1 h-1 rounded-full bg-pink-400 animate-bounce" />
+                    <div className="w-1 h-1 rounded-full bg-pink-400 animate-bounce delay-75" />
+                    <div className="w-1 h-1 rounded-full bg-pink-400 animate-bounce delay-150" />
+                </div>
+            </div>
+        </div>
+    )
+}
+
 // Map template IDs to their wireframe components
 function getTemplateWireframe(templateId: string): React.FC<WireframeProps> {
     const wireframes: Record<string, React.FC<WireframeProps>> = {
@@ -1323,6 +1475,21 @@ function getTemplateWireframe(templateId: string): React.FC<WireframeProps> {
         departure: DepartureWireframe,
         estate: EstateWireframe,
         nomad: NomadWireframe,
+
+        // Mobile First
+        flux: FluxWireframe,
+        neo: NeoWireframe,
+        zen: ZenWireframe,
+        touch: TouchWireframe,
+        signal: SignalWireframe,
+
+        // Missing wireframes mapped to closest match
+        vault: FintechWireframe,
+        arena: ArcadeWireframe,
+        evergreen: SolarpunkWireframe,
+        concierge: ClinicWireframe,
+        paradox: AcidWireframe,
+        terminal: EngineeringWireframe,
     }
 
     return wireframes[templateId] || DashboardWireframe

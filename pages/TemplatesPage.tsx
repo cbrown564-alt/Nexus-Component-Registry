@@ -3,10 +3,13 @@ import { Search } from 'lucide-react'
 import { legacyThemes as themes, visualLanguages, getTemplatesByLanguage } from '@/lib/registry'
 import HeroTemplate from '@/components/ui/HeroTemplate'
 import TemplateSwimlane from '@/components/ui/TemplateSwimlane'
+import useMediaQuery from '@/hooks/useMediaQuery'
+import MobileTemplatesPage from '@/pages/mobile/MobileTemplatesPage'
 
+// Get featured theme and organize by visual language
 export default function TemplatesPage() {
+    const isMobile = useMediaQuery('(max-width: 768px)')
 
-    // Get featured theme and organize by visual language
     const { featured, trending, languageGroups } = useMemo(() => {
         // Pick a specific featured theme - 'scifi' as requested
         const featured = themes.find(t => t.id === 'scifi') || themes[0]
@@ -25,6 +28,10 @@ export default function TemplatesPage() {
 
         return { featured, trending, languageGroups }
     }, [])
+
+    if (isMobile) {
+        return <MobileTemplatesPage />
+    }
 
     return (
         <div className="relative z-10 min-h-screen bg-zinc-950 pb-20 w-full overflow-x-hidden">

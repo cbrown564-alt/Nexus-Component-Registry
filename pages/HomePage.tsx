@@ -5,6 +5,8 @@ import { featuredThemes, getThemeById, templates } from '@/lib/registry'
 import { components } from '@/data/components'
 import TemplatePreview from '@/components/ui/TemplatePreview'
 import LiveComponentCard from '@/components/ui/LiveComponentCard'
+import useMediaQuery from '@/hooks/useMediaQuery'
+import MobileHomePage from '@/pages/mobile/MobileHomePage'
 
 const stats = [
     { label: 'Templates', value: templates.length.toString() },
@@ -36,6 +38,12 @@ const features = [
 ]
 
 export default function HomePage() {
+    const isMobile = useMediaQuery('(max-width: 768px)')
+
+    if (isMobile) {
+        return <MobileHomePage />
+    }
+
     return (
         <div className="relative z-10 mx-auto max-w-7xl px-8 py-16">
             {/* Hero Section */}

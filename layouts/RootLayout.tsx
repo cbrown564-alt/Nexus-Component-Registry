@@ -236,7 +236,6 @@ function Header() {
 function LayoutContent() {
     const { currentTheme, isTemplateMode } = useTheme()
     const location = useLocation()
-    const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
     // Reset to registry theme when navigating away from template pages
     useTemplateModeReset()
@@ -260,26 +259,8 @@ function LayoutContent() {
             <Background />
             <GlobalStyles />
 
-            {/* Mobile menu button */}
-            <button
-                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="lg:hidden fixed top-4 left-4 z-[60] p-2 bg-zinc-900 border border-zinc-800 rounded-lg text-zinc-400 hover:text-white hover:border-zinc-700 transition-colors"
-                aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
-                aria-expanded={mobileMenuOpen}
-            >
-                {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-            </button>
-
-            {/* Mobile backdrop */}
-            {mobileMenuOpen && (
-                <div
-                    className="lg:hidden fixed inset-0 z-40 bg-black/60"
-                    onClick={() => setMobileMenuOpen(false)}
-                />
-            )}
-
-            {/* Sidebar - hidden on mobile unless open */}
-            <div className={`lg:block ${mobileMenuOpen ? 'block' : 'hidden'}`}>
+            {/* Sidebar - hidden on mobile, visible on desktop */}
+            <div className="hidden lg:block">
                 <Sidebar />
             </div>
 
