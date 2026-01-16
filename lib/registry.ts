@@ -626,6 +626,19 @@ export const templates: Template[] = [
         category: 'colorful',
         tags: ['chat', 'messaging', 'mobile-first', 'organic'],
     },
+    {
+        id: 'rave',
+        name: 'Rave',
+        description: 'High-energy event finder with neo-brutalist aesthetics.',
+        visualLanguageId: 'brutalist',
+        colorClass: 'bg-[#ccff00]',
+        backgroundColor: 'bg-black',
+        textColorClass: 'text-[#ccff00]',
+        sidebarStyles: 'border-white bg-black',
+        mobileTier: 'first',
+        category: 'dark',
+        tags: ['events', 'neo-brutalist', 'mobile-first', 'high-energy'],
+    },
 ]
 
 // --- Layer 3: Themes (The "Mood") ---

@@ -50,6 +50,7 @@ import NeoTemplate from '@/components/templates/mobile/neo/NeoTemplate'
 import ZenTemplate from '@/components/templates/mobile/zen/ZenTemplate'
 import TouchTemplate from '@/components/templates/mobile/touch/TouchTemplate'
 import SignalTemplate from '@/components/templates/mobile/signal/SignalTemplate'
+import RaveTemplate from '@/components/templates/mobile/rave/RaveTemplate'
 
 const dashboardComponents: Record<string, ComponentType> = {
     engineering: EngineeringDashboard,
@@ -96,6 +97,7 @@ const dashboardComponents: Record<string, ComponentType> = {
     zen: ZenTemplate,
     touch: TouchTemplate,
     signal: SignalTemplate,
+    rave: RaveTemplate,
 }
 
 export default function TemplatePage() {

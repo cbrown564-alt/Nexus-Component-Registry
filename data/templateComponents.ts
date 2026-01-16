@@ -417,6 +417,15 @@ export const templateComponentMap: TemplateComponentMapping[] = [
         extendedComponentIds: [],
         sharedComponentIds: [],
     },
+
+    // Rave - Event Finder (Mobile First)
+    {
+        id: 'rave',
+        name: 'Rave',
+        usedComponentIds: [],
+        extendedComponentIds: [],
+        sharedComponentIds: [],
+    },
 ]
 
 /**

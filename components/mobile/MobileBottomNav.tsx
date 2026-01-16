@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import { Home, Layout, BookOpen } from 'lucide-react';
+import { Home, BookOpen } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useTheme } from '@/context/ThemeContext';
 
@@ -9,20 +9,21 @@ export default function MobileBottomNav() {
 
     const tabs = [
         { path: '/', icon: Home, label: 'Home' },
-        { path: '/templates', icon: Layout, label: 'Templates' },
         { path: '/stories', icon: BookOpen, label: 'Stories' },
     ];
 
     return (
         <div
-            className="fixed bottom-0 left-0 right-0 z-50 px-6 pb-6 pt-2 backdrop-blur-xl border-t"
+            className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 px-2 py-2 backdrop-blur-2xl border rounded-full shadow-2xl"
             style={{
-                backgroundColor: `${theme.colors.background}cc`,
+                backgroundColor: `${theme.colors.background}dd`, // Slightly more opacity
                 borderColor: `${theme.colors.border}`,
-                boxShadow: '0 -4px 20px rgba(0,0,0,0.2)'
+                boxShadow: '0 8px 32px rgba(0,0,0,0.3)', // Deeper shadow
+                width: 'auto',
+                minWidth: '200px'
             }}
         >
-            <div className="flex items-center justify-around">
+            <div className="flex items-center justify-around gap-1">
                 {tabs.map((tab) => {
                     const isActive = tab.path === '/'
                         ? location.pathname === '/'
@@ -32,32 +33,36 @@ export default function MobileBottomNav() {
                         <Link
                             key={tab.path}
                             to={tab.path}
-                            className="relative flex flex-col items-center gap-1 min-w-[64px]"
+                            className="relative flex items-center justify-center h-12 w-20 rounded-full transition-all duration-300"
                         >
                             {isActive && (
                                 <motion.div
                                     layoutId="mobileEnv-pill"
-                                    className="absolute -top-2 inset-x-2 bottom-0 rounded-xl -z-10"
-                                    style={{ backgroundColor: `${theme.colors.primary}1a` }}
-                                    transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                                    className="absolute inset-0 rounded-full -z-10"
+                                    style={{ backgroundColor: `${theme.colors.foreground}` }}
+                                    transition={{ type: "spring", bounce: 0.15, duration: 0.5 }}
                                 />
                             )}
 
-                            <tab.icon
-                                className={`h-6 w-6 transition-colors duration-200 ${isActive ? 'translate-y-0.5' : ''}`}
-                                style={{
-                                    color: isActive ? theme.colors.primary : theme.colors.mutedForeground,
-                                }}
-                                strokeWidth={isActive ? 2.5 : 2}
-                            />
-                            <span
-                                className={`text-[10px] font-medium transition-colors duration-200`}
-                                style={{
-                                    color: isActive ? theme.colors.foreground : theme.colors.mutedForeground
-                                }}
-                            >
-                                {tab.label}
-                            </span>
+                            <div className="flex flex-col items-center gap-0.5">
+                                <tab.icon
+                                    className={`h-5 w-5 transition-colors duration-200`}
+                                    style={{
+                                        color: isActive ? theme.colors.background : theme.colors.mutedForeground,
+                                    }}
+                                    strokeWidth={isActive ? 2.5 : 2}
+                                />
+                                {isActive && (
+                                    <motion.span
+                                        initial={{ opacity: 0, scale: 0.8 }}
+                                        animate={{ opacity: 1, scale: 1 }}
+                                        className="text-[9px] font-bold"
+                                        style={{ color: theme.colors.background }}
+                                    >
+                                        {tab.label}
+                                    </motion.span>
+                                )}
+                            </div>
                         </Link>
                     )
                 })}

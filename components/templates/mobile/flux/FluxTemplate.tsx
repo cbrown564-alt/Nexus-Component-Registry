@@ -13,7 +13,7 @@ export default function FluxTemplate() {
             {/* Top Bar - Semi-transparent glass */}
             <div className="absolute top-0 left-0 right-0 h-16 px-4 z-50 flex items-center justify-between bg-gradient-to-b from-black/80 to-transparent pointer-events-none">
                 <div className="pointer-events-auto flex items-center gap-4">
-                    <Link to="/mobile/templates" className="p-2 -ml-2 rounded-full hover:bg-white/10 text-white transition-colors">
+                    <Link to="/" className="p-2 -ml-2 rounded-full hover:bg-white/10 text-white transition-colors">
                         <Home className="w-6 h-6" />
                     </Link>
                     <button

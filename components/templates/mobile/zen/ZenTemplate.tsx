@@ -64,7 +64,7 @@ function LibraryView({ onSelect }: { onSelect: (id: string) => void }) {
             className="h-full flex flex-col pt-12 relative z-10"
         >
             <div className="px-6 flex items-center justify-between mb-2">
-                <Link to="/mobile/templates" className="p-2 -ml-2 rounded-full hover:bg-black/5 transition-colors">
+                <Link to="/" className="p-2 -ml-2 rounded-full hover:bg-black/5 transition-colors">
                     <ArrowLeft className="w-6 h-6 opacity-60" />
                 </Link>
                 <span className="text-[10px] font-sans font-bold tracking-[0.2em] uppercase opacity-40">My Collection</span>

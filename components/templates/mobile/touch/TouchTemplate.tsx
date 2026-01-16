@@ -19,7 +19,7 @@ export default function TouchTemplate() {
 
             {/* Header / Status LCD */}
             <div className="relative z-10 pt-12 pb-6 px-8 flex justify-between items-end">
-                <Link to="/mobile/templates">
+                <Link to="/">
                     <NeumorphicButton size={12} icon={ArrowLeft} />
                 </Link>
                 <div className="flex flex-col items-center">

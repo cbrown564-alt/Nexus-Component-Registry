@@ -1279,32 +1279,6 @@ function NomadWireframe({ theme }: WireframeProps) {
     )
 }
 
-// Flux / Social Feed Wireframe
-function FluxWireframe({ theme }: WireframeProps) {
-    return (
-        <div className="absolute inset-0 bg-black flex flex-col p-1 gap-1">
-            {/* Edge-to-edge media cards */}
-            <div className="flex-1 rounded-lg bg-zinc-900 overflow-hidden relative border border-zinc-800">
-                <div className="absolute inset-0 bg-gradient-to-br from-indigo-900/40 to-purple-900/40" />
-                <div className="absolute bottom-2 left-2 right-2 flex justify-between items-end">
-                    <div className="space-y-1">
-                        <div className="w-6 h-6 rounded-full bg-indigo-500 border-2 border-black" />
-                        <div className="h-1.5 w-20 bg-white/90 rounded-full" />
-                        <div className="h-1 w-32 bg-white/50 rounded-full" />
-                    </div>
-                    {/* Action column */}
-                    <div className="flex flex-col gap-1 items-center">
-                        <div className="w-3 h-3 rounded-full bg-white/20" />
-                        <div className="w-3 h-3 rounded-full bg-white/20" />
-                        <div className="w-3 h-3 rounded-full bg-white/20" />
-                    </div>
-                </div>
-            </div>
-            {/* Peek of next card */}
-            <div className="h-4 rounded-t-lg bg-zinc-800 mx-2 opacity-50" />
-        </div>
-    )
-}
 
 // Neo / Wallet Wireframe
 function NeoWireframe({ theme }: WireframeProps) {
@@ -1405,26 +1379,161 @@ function TouchWireframe({ theme }: WireframeProps) {
 // Signal / Chat Wireframe
 function SignalWireframe({ theme }: WireframeProps) {
     return (
-        <div className="absolute inset-0 bg-[#fff0f5] flex flex-col p-2">
-            {/* Dynamic Bubbles */}
-            <div className="flex-1 flex flex-col justify-end gap-2 pb-2">
-                {/* Incoming */}
-                <div className="self-start max-w-[80%] p-1.5 rounded-2xl rounded-bl-sm bg-white shadow-sm border border-pink-100">
-                    <div className="h-1 w-16 bg-pink-200/50 rounded-full mb-1" />
-                    <div className="h-1 w-12 bg-pink-200/50 rounded-full" />
+        <div className="absolute inset-0 bg-slate-50 overflow-hidden font-sans select-none">
+            {/* Ambient Background - Static approximations of the animated orbs */}
+            <div className="absolute -top-[20%] -left-[20%] w-[80%] h-[80%] bg-purple-300 rounded-full blur-[40px] opacity-60" />
+            <div className="absolute top-[10%] -right-[10%] w-[70%] h-[70%] bg-pink-400 rounded-full blur-[40px] opacity-50" />
+            <div className="absolute -bottom-[10%] left-[20%] w-[90%] h-[90%] bg-rose-300 rounded-full blur-[50px] opacity-40" />
+
+            {/* Content Container */}
+            <div className="absolute inset-0 flex flex-col z-10">
+                {/* Header */}
+                <div className="h-10 border-b border-pink-100/50 bg-white/40 backdrop-blur-sm flex items-center px-3 gap-2">
+                    <div className="w-6 h-6 rounded-full bg-gradient-to-tr from-pink-400 to-rose-400 p-[1.5px]">
+                        <div className="w-full h-full rounded-full bg-white" />
+                    </div>
+                    <div className="flex flex-col gap-0.5">
+                        <div className="h-1.5 w-12 bg-gray-800/10 rounded-full" />
+                        <div className="h-1 w-8 bg-pink-500/20 rounded-full" />
+                    </div>
                 </div>
 
-                {/* Outgoing */}
-                <div className="self-end max-w-[80%] p-1.5 rounded-2xl rounded-br-sm bg-pink-500 shadow-md text-white">
-                    <div className="h-1 w-20 bg-white/40 rounded-full mb-1" />
-                    <div className="h-1 w-10 bg-white/40 rounded-full" />
+                {/* Messages - FROM TOP as requested */}
+                <div className="flex-1 p-3 flex flex-col gap-3">
+                    {/* Received */}
+                    <div className="self-start max-w-[85%]">
+                        <div className="p-2 rounded-2xl rounded-bl-sm bg-white/80 shadow-sm border border-pink-100/50 backdrop-blur-sm">
+                            <div className="h-1.5 w-24 bg-gray-400/20 rounded-full mb-1.5" />
+                            <div className="h-1.5 w-16 bg-gray-400/20 rounded-full" />
+                        </div>
+                        <div className="text-[6px] text-gray-400 mt-1 ml-1">10:23 AM</div>
+                    </div>
+
+                    {/* Sent */}
+                    <div className="self-end max-w-[85%] flex flex-col items-end">
+                        <div className="p-2 rounded-2xl rounded-br-sm bg-gradient-to-tr from-pink-500 to-rose-500 shadow-md text-white">
+                            <div className="h-1.5 w-20 bg-white/40 rounded-full mb-1.5" />
+                            <div className="h-1.5 w-28 bg-white/40 rounded-full" />
+                        </div>
+                        <div className="text-[6px] text-gray-400 mt-1 mr-1">10:24 AM</div>
+                    </div>
+
+                    {/* Received w/ Image */}
+                    <div className="self-start max-w-[85%]">
+                        <div className="p-1 rounded-2xl rounded-bl-sm bg-white/80 shadow-sm border border-pink-100/50 backdrop-blur-sm">
+                            <div className="w-full aspect-video bg-pink-100 rounded-xl mb-1 relative overflow-hidden">
+                                <div className="absolute inset-0 opacity-20 bg-gradient-to-br from-purple-400 to-pink-600" />
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                {/* Breathing Typing Indicator */}
-                <div className="self-start p-1.5 rounded-full bg-white shadow-sm border border-pink-100 flex gap-0.5">
-                    <div className="w-1 h-1 rounded-full bg-pink-400 animate-bounce" />
-                    <div className="w-1 h-1 rounded-full bg-pink-400 animate-bounce delay-75" />
-                    <div className="w-1 h-1 rounded-full bg-pink-400 animate-bounce delay-150" />
+                {/* Input Area */}
+                <div className="p-2 pb-3">
+                    <div className="h-8 bg-white/60 backdrop-blur-md border border-white/40 rounded-full shadow-sm flex items-center px-1 gap-1">
+                        <div className="w-6 h-6 rounded-full bg-gray-100/50 flex items-center justify-center">
+                            <div className="w-3 h-3 rounded-sm border-2 border-gray-300" />
+                        </div>
+                        <div className="flex-1 h-2 bg-gray-400/10 rounded-full mx-1" />
+                        <div className="w-6 h-6 rounded-full bg-pink-500/10 flex items-center justify-center">
+                            <div className="w-3 h-3 rounded-full bg-pink-500/20" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
+}
+
+// Flux / Social Feed Wireframe
+function FluxWireframe({ theme }: WireframeProps) {
+    return (
+        <div className="absolute inset-0 bg-zinc-950 flex flex-col overflow-hidden font-sans select-none">
+            {/* Background Gradient/Image Placeholder */}
+            {/* Simulating a video feed content */}
+            <div className="absolute inset-0 bg-gradient-to-b from-indigo-900/20 to-zinc-950/90 z-0" />
+            <div className="absolute inset-0 opacity-20 z-0">
+                <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-blue-500 rounded-full blur-[60px]" />
+                <div className="absolute bottom-1/3 right-1/4 w-40 h-40 bg-purple-500 rounded-full blur-[60px]" />
+            </div>
+
+            {/* Top Bar - For You / Following */}
+            <div className="relative z-10 pt-3 flex justify-center gap-4 text-[8px] font-bold tracking-wide">
+                <div className="text-white/40">Following</div>
+                <div className="text-white border-b border-white pb-0.5">For You</div>
+            </div>
+
+            {/* Right Action Sidebar */}
+            <div className="absolute right-2 bottom-12 z-20 flex flex-col items-center gap-3">
+                {/* Profile */}
+                <div className="w-6 h-6 rounded-full border border-white p-0.5 mb-1">
+                    <div className="w-full h-full rounded-full bg-zinc-700" />
+                    <div className="absolute -bottom-0.5 left-1.5 w-3 h-3 bg-pink-500 rounded-full flex items-center justify-center border border-black">
+                        <div className="text-white text-[6px]">+</div>
+                    </div>
+                </div>
+
+                {/* Like */}
+                <div className="flex flex-col items-center gap-0.5">
+                    <div className="w-6 h-6 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center">
+                        <div className="w-3 h-3 bg-white rounded-full heart-shape" /> {/* Simple circle proxy for heart */}
+                    </div>
+                    <div className="text-[6px] text-white">8.2k</div>
+                </div>
+
+                {/* Comment */}
+                <div className="flex flex-col items-center gap-0.5">
+                    <div className="w-6 h-6 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center">
+                        <div className="w-3 h-3 bg-white/80 rounded-sm" />
+                    </div>
+                    <div className="text-[6px] text-white">402</div>
+                </div>
+
+                {/* Share */}
+                <div className="flex flex-col items-center gap-0.5">
+                    <div className="w-6 h-6 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center">
+                        <div className="w-3 h-3 bg-white/80 rounded-full" />
+                    </div>
+                    <div className="text-[6px] text-white">Share</div>
+                </div>
+            </div>
+
+
+
+            {/* Tab Bar Shim */}
+            <div className="absolute bottom-0 inset-x-0 h-[1px] bg-white/10 z-20" />
+        </div>
+    )
+}
+
+// Rave / Neo-Brutalist Wireframe
+function RaveWireframe({ theme }: WireframeProps) {
+    return (
+        <div className="absolute inset-0 bg-black p-2 flex flex-col font-mono select-none border-2 border-white">
+            {/* Header */}
+            <div className="flex justify-between items-center mb-2 border-b-2 border-white pb-1">
+                <div className="text-[10px] font-black italic text-[#ccff00]">RAVE</div>
+                <div className="w-4 h-4 border border-white bg-white/10" />
+            </div>
+
+            {/* Marquee shim */}
+            <div className="w-full h-2 bg-[#ccff00] mb-2 flex items-center overflow-hidden border border-black">
+                <div className="text-[4px] font-bold text-black whitespace-nowrap">NON-STOP // RHYTHM // NO SLEEP</div>
+            </div>
+
+            {/* Cards */}
+            <div className="flex-1 flex flex-col gap-2">
+                <div className="flex-1 border-2 border-white bg-zinc-900 shadow-[2px_2px_0px_0px_rgba(204,255,0,1)] relative overflow-hidden">
+                    <div className="absolute top-0 right-0 bg-[#ff00cc] text-white text-[4px] font-bold px-1 border-l border-b border-white">HOT</div>
+                    <div className="h-full w-full opacity-50 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-zinc-800 to-black" />
+                </div>
+                <div className="h-1/3 border-2 border-white bg-zinc-900 shadow-[2px_2px_0px_0px_rgba(255,0,204,1)]" />
+            </div>
+
+            {/* Bottom Button */}
+            <div className="absolute bottom-2 right-2">
+                <div className="w-8 h-8 border-2 border-white bg-[#ff00cc] shadow-[2px_2px_0px_0px_rgba(255,255,255,1)] flex items-center justify-center">
+                    <div className="text-white text-[10px]">⚡</div>
                 </div>
             </div>
         </div>
@@ -1482,6 +1591,7 @@ function getTemplateWireframe(templateId: string): React.FC<WireframeProps> {
         zen: ZenWireframe,
         touch: TouchWireframe,
         signal: SignalWireframe,
+        rave: RaveWireframe,
 
         // Missing wireframes mapped to closest match
         vault: FintechWireframe,

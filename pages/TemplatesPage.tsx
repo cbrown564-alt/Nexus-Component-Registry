@@ -4,11 +4,15 @@ import { legacyThemes as themes, visualLanguages, getTemplatesByLanguage } from 
 import HeroTemplate from '@/components/ui/HeroTemplate'
 import TemplateSwimlane from '@/components/ui/TemplateSwimlane'
 import useMediaQuery from '@/hooks/useMediaQuery'
-import MobileTemplatesPage from '@/pages/mobile/MobileTemplatesPage'
+import MobileHomePage from '@/pages/mobile/MobileHomePage'
 
 // Get featured theme and organize by visual language
 export default function TemplatesPage() {
     const isMobile = useMediaQuery('(max-width: 768px)')
+
+    if (isMobile) {
+        return <MobileHomePage />
+    }
 
     const { featured, trending, languageGroups } = useMemo(() => {
         // Pick a specific featured theme - 'scifi' as requested
@@ -28,10 +32,6 @@ export default function TemplatesPage() {
 
         return { featured, trending, languageGroups }
     }, [])
-
-    if (isMobile) {
-        return <MobileTemplatesPage />
-    }
 
     return (
         <div className="relative z-10 min-h-screen bg-zinc-950 pb-20 w-full overflow-x-hidden">

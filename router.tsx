@@ -12,7 +12,7 @@ import TemplateComponentsPage from '@/pages/TemplateComponentsPage'
 import HooksPage from '@/pages/HooksPage'
 import TokensPage from '@/pages/TokensPage'
 import MobileHomePage from '@/pages/mobile/MobileHomePage'
-import MobileTemplatesPage from '@/pages/mobile/MobileTemplatesPage'
+
 
 export const router = createBrowserRouter([
     {
@@ -31,7 +31,7 @@ export const router = createBrowserRouter([
             { path: 'hooks', element: <HooksPage /> },
             { path: 'tokens', element: <TokensPage /> },
             { path: 'mobile', element: <MobileHomePage /> },
-            { path: 'mobile/templates', element: <MobileTemplatesPage /> },
+
         ],
     },
 ])

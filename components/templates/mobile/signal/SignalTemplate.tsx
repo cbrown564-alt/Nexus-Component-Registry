@@ -141,7 +141,7 @@ export default function SignalTemplate() {
             {/* Header */}
             <div className="relative px-4 py-3 flex items-center justify-between bg-white/60 backdrop-blur-xl border-b border-pink-100 z-50">
                 <div className="flex items-center gap-3">
-                    <Link to="/mobile/templates" className="text-pink-900/70 hover:text-pink-900 transition-colors">
+                    <Link to="/" className="text-pink-900/70 hover:text-pink-900 transition-colors">
                         <ArrowLeft size={24} />
                     </Link>
                     <div className="flex items-center gap-3">
