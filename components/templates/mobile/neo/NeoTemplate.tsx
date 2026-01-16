@@ -66,7 +66,10 @@ export default function NeoTemplate() {
                     {neoTransactions.map(tx => (
                         <div key={tx.id} className="flex items-center gap-4">
                             <div className="w-12 h-12 rounded-2xl bg-zinc-800 flex items-center justify-center text-zinc-400">
-                                {icons[tx.icon] && <icons.icon className="w-5 h-5" />}
+                                {(() => {
+                                    const Icon = icons[tx.icon]
+                                    return Icon ? <Icon className="w-5 h-5" /> : null
+                                })()}
                             </div>
                             <div className="flex-1">
                                 <h4 className="font-medium text-zinc-200">{tx.merchant}</h4>
