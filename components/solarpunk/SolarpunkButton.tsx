@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { motion as motionTokens } from '@/data/motion';
 
 interface SolarpunkButtonProps {
     children?: React.ReactNode;
@@ -44,7 +45,7 @@ const SolarpunkButton: React.FC<SolarpunkButtonProps> = ({
         <motion.button
             whileHover={{ scale: disabled ? 1 : 1.02, y: disabled ? 0 : -2 }}
             whileTap={{ scale: disabled ? 1 : 0.98 }}
-            transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+            transition={{ ...motionTokens.transition.spring }}
             className={`${baseStyles} ${sizeStyles[size]} ${variantBaseStyles[variant]} ${className}`}
             style={variantInlineStyles[variant]}
             disabled={disabled}

@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { motion as motionTokens } from '@/data/motion'
 import { getPlaygroundThemeById, defaultPlaygroundTheme } from '@/data/playgroundThemes'
 import { Eye, Code } from 'lucide-react'
 
@@ -149,7 +150,7 @@ export default function StoryStage({ componentName, props, themeId, highlight }:
                                     backgroundColor: ['#ef4444', 'rgba(39, 39, 42, 0)'], // Red to Transparent
                                 } : {}}
                                 // Stagger the flash slightly for a "waterfall" lag effect if we wanted, but synchronous flash is more accurate to how React commits.
-                                transition={{ duration: 0.5, repeat: Infinity, repeatDelay: 1 }}
+                                transition={{ duration: motionTokens.duration.normal, repeat: Infinity, repeatDelay: 1 }}
                                 className="px-3 py-2 rounded text-sm text-zinc-300 flex items-center justify-between hover:bg-zinc-800/50"
                             >
                                 <span>{item.label}</span>

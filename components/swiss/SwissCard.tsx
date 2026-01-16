@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion, HTMLMotionProps } from 'framer-motion';
+import { motion as motionTokens } from '@/data/motion';
 
 interface SwissCardProps extends HTMLMotionProps<"div"> {
   children: React.ReactNode;
@@ -34,7 +35,11 @@ const SwissCard: React.FC<SwissCardProps> = ({
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay, ease: [0.16, 1, 0.3, 1] }}
+      transition={{
+        duration: motionTokens.duration.slow,
+        delay,
+        ease: motionTokens.ease.default
+      }}
       className={`relative p-6 md:p-8 ${bordered ? 'border-2' : ''} border-solid rounded-none ${className}`}
       style={getStyles()}
       {...props}

@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { motion as motionTokens } from '@/data/motion';
 import { useTheme } from '@/context/ThemeContext';
 
 interface StampBadgeProps {
@@ -28,7 +29,7 @@ const StampBadge: React.FC<StampBadgeProps> = ({
     <motion.div
       initial={{ scale: 0, rotate: rotation - 30 }}
       animate={{ scale: 1, rotate: rotation }}
-      transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+      transition={{ ...motionTokens.transition.spring }}
       className={`inline-block px-6 py-2 border-4 ${className}`}
       style={{
         borderStyle: 'double',

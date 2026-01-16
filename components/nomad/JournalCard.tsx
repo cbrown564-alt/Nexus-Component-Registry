@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { motion as motionTokens } from '@/data/motion';
 import { useTheme } from '@/context/ThemeContext';
 import { MapPin, Calendar, ArrowUpRight } from 'lucide-react';
 import PaperTexture from '../ui/PaperTexture';
@@ -35,7 +36,11 @@ const JournalCard: React.FC<{ entry: JournalEntry; index: number }> = ({ entry, 
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }} // Custom easing for "Velvet" feel
+            transition={{
+                duration: motionTokens.duration.glacial,
+                delay: index * 0.1,
+                ease: motionTokens.ease.velvet
+            }} // Custom easing for "Velvet" feel
             className="group relative flex flex-col md:flex-row gap-8 items-center"
         >
             {/* Image Blob */}
@@ -46,7 +51,7 @@ const JournalCard: React.FC<{ entry: JournalEntry; index: number }> = ({ entry, 
                     whileHover={{
                         borderRadius: randomRadiusHover,
                         scale: 1.02,
-                        transition: { duration: 0.8, ease: "easeInOut" }
+                        transition: { duration: motionTokens.duration.glacial, ease: "easeInOut" }
                     }}
                     style={{
                         // Fallback for SRR or no-js

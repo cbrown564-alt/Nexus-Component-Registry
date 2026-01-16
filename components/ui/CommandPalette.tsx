@@ -137,28 +137,20 @@ export default function CommandPalette() {
             />
 
             <div
-                className="relative w-full max-w-5xl rounded-xl shadow-2xl overflow-hidden flex h-[600px] pointer-events-auto ring-1"
-                style={{
-                    backgroundColor: theme.colors.popover,
-                    borderColor: theme.colors.border
-                }}
+                className="relative w-full max-w-5xl rounded-xl shadow-2xl overflow-hidden flex h-[600px] pointer-events-auto ring-1 bg-popover border-border ring-border"
             >
                 <div
-                    className="w-1/2 flex flex-col border-r"
-                    style={{ borderColor: theme.colors.border }}
+                    className="w-1/2 flex flex-col border-r border-border"
                 >
                     <div
-                        className="flex items-center border-b px-4"
-                        style={{ borderColor: theme.colors.border }}
+                        className="flex items-center border-b px-4 border-border"
                     >
                         <SearchIcon
-                            className="w-5 h-5 mr-3"
-                            style={{ color: theme.colors.mutedForeground }}
+                            className="w-5 h-5 mr-3 text-muted-foreground"
                         />
                         <Command.Input
                             placeholder="Type to find components or templates..."
-                            className="flex-1 h-14 bg-transparent outline-none text-sm placeholder:text-muted-foreground"
-                            style={{ color: theme.colors.foreground }}
+                            className="flex-1 h-14 bg-transparent outline-none text-sm placeholder:text-muted-foreground text-foreground"
                             value={search}
                             onValueChange={setSearch}
                         />
@@ -167,8 +159,7 @@ export default function CommandPalette() {
                     <Command.List className="flex-1 overflow-y-auto p-2 scroll-py-2">
                         {filteredItems.themes.length === 0 && filteredItems.components.length === 0 && (
                             <Command.Empty
-                                className="py-6 text-center text-sm"
-                                style={{ color: theme.colors.mutedForeground }}
+                                className="py-6 text-center text-sm text-muted-foreground"
                             >
                                 No results found.
                             </Command.Empty>
@@ -182,19 +173,16 @@ export default function CommandPalette() {
                                         value={`theme-${themeItem.id}`}
                                         onSelect={handleSelect}
                                         onMouseEnter={() => setSelectedId(`theme-${themeItem.id}`)}
-                                        className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm cursor-pointer transition-colors aria-selected:bg-accent aria-selected:text-accent-foreground"
-                                        style={{ color: theme.colors.foreground }}
+                                        className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm cursor-pointer transition-colors aria-selected:bg-accent aria-selected:text-accent-foreground text-foreground"
                                     >
                                         <div
-                                            className="w-4 h-4 flex items-center justify-center"
-                                            style={{ color: theme.colors.mutedForeground }}
+                                            className="w-4 h-4 flex items-center justify-center text-muted-foreground"
                                         >
                                             <Layout className="w-4 h-4" />
                                         </div>
                                         <span>{themeItem.name}</span>
                                         <span
-                                            className="ml-auto text-xs capitalize"
-                                            style={{ color: theme.colors.mutedForeground }}
+                                            className="ml-auto text-xs capitalize text-muted-foreground"
                                         >
                                             {themeItem.category}
                                         </span>
@@ -216,8 +204,7 @@ export default function CommandPalette() {
                                             value={`component-${comp.id}`}
                                             onSelect={handleSelect}
                                             onMouseEnter={() => setSelectedId(`component-${comp.id}`)}
-                                            className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm cursor-pointer transition-colors aria-selected:bg-accent aria-selected:text-accent-foreground"
-                                            style={{ color: theme.colors.foreground }}
+                                            className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm cursor-pointer transition-colors aria-selected:bg-accent aria-selected:text-accent-foreground text-foreground"
                                         >
                                             <div
                                                 className="w-2 h-2 rounded-full"
@@ -228,18 +215,13 @@ export default function CommandPalette() {
                                             <div className="ml-auto flex items-center gap-2">
                                                 {reason && (
                                                     <span
-                                                        className="text-[10px] italic mr-2 hidden sm:inline"
-                                                        style={{ color: theme.colors.mutedForeground }}
+                                                        className="text-[10px] italic mr-2 hidden sm:inline text-muted-foreground"
                                                     >
                                                         {reason}
                                                     </span>
                                                 )}
                                                 <span
-                                                    className="text-[10px] px-1.5 py-0.5 rounded"
-                                                    style={{
-                                                        backgroundColor: theme.colors.secondary,
-                                                        color: theme.colors.mutedForeground
-                                                    }}
+                                                    className="text-[10px] px-1.5 py-0.5 rounded bg-secondary text-muted-foreground"
                                                 >
                                                     {comp.category}
                                                 </span>
@@ -253,12 +235,7 @@ export default function CommandPalette() {
                     </Command.List>
 
                     <div
-                        className="p-3 border-t flex items-center justify-between text-xs"
-                        style={{
-                            borderColor: theme.colors.border,
-                            backgroundColor: theme.colors.muted,
-                            color: theme.colors.mutedForeground
-                        }}
+                        className="p-3 border-t flex items-center justify-between text-xs border-border bg-muted text-muted-foreground"
                     >
                         <div className="flex gap-2">
                             {/* Key hints */}
@@ -268,8 +245,7 @@ export default function CommandPalette() {
                 </div>
 
                 <div
-                    className="w-1/2 flex flex-col relative overflow-hidden"
-                    style={{ backgroundColor: theme.colors.background }}
+                    className="w-1/2 flex flex-col relative overflow-hidden bg-background"
                 >
                     {/* Preview Panel details */}
                     {selectedItem ? (
@@ -277,7 +253,7 @@ export default function CommandPalette() {
                             <div className="absolute inset-0 flex items-center justify-center p-8">
                                 {selectedItem.type === 'theme' && selectedItem.data && (
                                     // @ts-ignore
-                                    <TemplatePreview theme={selectedItem.data} className="w-full h-full object-contain shadow-2xl rounded-lg border" style={{ borderColor: theme.colors.border }} />
+                                    <TemplatePreview theme={selectedItem.data} className="w-full h-full object-contain shadow-2xl rounded-lg border border-border" />
                                 )}
                                 {selectedItem.type === 'component' && selectedItem.data && (
                                     <div className="relative w-full h-full flex items-center justify-center">
@@ -295,20 +271,15 @@ export default function CommandPalette() {
                                 )}
                             </div>
                             <div
-                                className="mt-auto p-6 relative z-10"
-                                style={{
-                                    background: `linear-gradient(to top, ${theme.colors.background} 0%, ${theme.colors.background}90 80%, transparent 100%)`
-                                }}
+                                className="mt-auto p-6 relative z-10 bg-gradient-to-t from-background from-80% to-transparent"
                             >
                                 <h2
-                                    className="text-2xl font-bold mb-2"
-                                    style={{ color: theme.colors.foreground }}
+                                    className="text-2xl font-bold mb-2 text-foreground"
                                 >
                                     {selectedItem.data?.name}
                                 </h2>
                                 <p
-                                    className="text-sm leading-relaxed mb-4"
-                                    style={{ color: theme.colors.mutedForeground }}
+                                    className="text-sm leading-relaxed mb-4 text-muted-foreground"
                                 >
                                     {selectedItem.data?.description}
                                 </p>
@@ -316,8 +287,7 @@ export default function CommandPalette() {
                         </>
                     ) : (
                         <div
-                            className="flex flex-col items-center justify-center h-full"
-                            style={{ color: theme.colors.mutedForeground }}
+                            className="flex flex-col items-center justify-center h-full text-muted-foreground"
                         >
                             <Box className="w-12 h-12 mb-4 opacity-20" />
                             <p>Select an item to preview</p>

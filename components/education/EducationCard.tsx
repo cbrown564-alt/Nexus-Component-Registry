@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useTheme } from '@/context/ThemeContext';
+import { motion as motionTokens } from '@/data/motion';
 
 interface EducationCardProps {
   children: React.ReactNode;
@@ -24,7 +25,7 @@ const EducationCard: React.FC<EducationCardProps> = ({
     <motion.div
       initial={{ opacity: 0, y: 15 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay, ease: "easeOut" }}
+      transition={{ ...motionTokens.transition.card, delay }}
       className={`relative overflow-hidden transition-all duration-300 ${className}`}
       style={{
         backgroundColor: featured ? theme.colors.primary : theme.colors.card, // Primary for featured

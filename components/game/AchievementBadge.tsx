@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { motion as motionTokens } from '@/data/motion';
 import { Trophy, Star, Target, Zap, Crown, Medal, Award, Gem } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import { useTheme } from '@/context/ThemeContext';
@@ -187,7 +188,7 @@ const AchievementBadge: React.FC<AchievementBadgeProps> = ({
               <motion.div
                 initial={{ width: 0 }}
                 animate={{ width: `${progress}%` }}
-                transition={{ duration: 0.5, ease: 'easeOut' }}
+                transition={{ duration: motionTokens.duration.normal, ease: 'easeOut' }}
                 className={`h-full rounded-full`}
                 style={{ background: styles.gradient }}
               />

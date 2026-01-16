@@ -14,7 +14,6 @@ import {
     Stethoscope,
     Plane,
     Bell,
-    Terminal,
     Heart,
     GraduationCap,
     Newspaper,
@@ -42,7 +41,9 @@ import {
     Save,
     LayoutGrid,
     Lock,
-    AlertTriangle
+    AlertTriangle,
+    Sparkles,
+    Terminal
 } from 'lucide-react'
 import LiveComponentCard from '@/components/ui/LiveComponentCard'
 import {

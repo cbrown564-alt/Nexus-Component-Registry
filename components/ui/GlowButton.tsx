@@ -13,23 +13,19 @@ const GlowButton: React.FC<GlowButtonProps> = ({ children, className = "", ...pr
     <button
       className={`group relative inline-flex items-center justify-center overflow-hidden rounded-lg p-[1px] focus:outline-none focus:ring-2 focus:ring-offset-2 ${className}`}
       style={{
-        boxShadow: `0 0 0 2px ${theme.colors.ring || theme.colors.border}`,
+        boxShadow: `0 0 0 2px var(--ring)`,
       }}
       {...props}
     >
       <span
         className="absolute inset-[-1000%] animate-[spin_3s_linear_infinite]"
         style={{
-          background: `conic-gradient(from 90deg at 50% 50%, ${theme.colors.border || '#E2E8F0'} 0%, ${theme.colors.foreground || '#09090b'} 50%, ${theme.colors.border || '#E2E8F0'} 100%)`
+          background: `conic-gradient(from 90deg at 50% 50%, var(--border) 0%, var(--foreground) 50%, var(--border) 100%)`
         }}
       />
 
       <span
-        className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-lg px-6 py-2 text-sm font-medium backdrop-blur-3xl transition-all duration-200"
-        style={{
-          backgroundColor: theme.colors.background || '#09090b',
-          color: theme.colors.foreground || '#ffffff'
-        }}
+        className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-lg px-6 py-2 text-sm font-medium backdrop-blur-3xl transition-all duration-200 bg-background text-foreground"
       >
         {children}
       </span>

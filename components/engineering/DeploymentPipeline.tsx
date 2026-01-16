@@ -1,6 +1,6 @@
 import React from 'react';
 import { GitBranch, Box, CheckCircle2, Globe, LucideIcon } from 'lucide-react';
-import SpotlightCard from './SpotlightCard';
+import SpotlightCard from '../ui/SpotlightCard';
 import { useTheme } from '@/context/ThemeContext';
 
 export interface PipelineStage {

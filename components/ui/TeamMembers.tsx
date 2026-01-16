@@ -45,14 +45,12 @@ const TeamMembers: React.FC<TeamMembersProps> = ({
         <SpotlightCard className="p-6">
             <div className="flex items-center justify-between mb-6">
                 <h3
-                    className="text-sm font-medium"
-                    style={{ color: theme.colors.foreground }}
+                    className="text-sm font-medium text-foreground"
                 >
                     {title}
                 </h3>
                 <button
-                    className="hover:opacity-70 transition-opacity"
-                    style={{ color: theme.colors.mutedForeground }}
+                    className="hover:opacity-70 transition-opacity text-muted-foreground"
                 >
                     <MoreHorizontal className="h-4 w-4" />
                 </button>
@@ -65,21 +63,18 @@ const TeamMembers: React.FC<TeamMembersProps> = ({
                     >
                         <div className="flex items-center gap-3">
                             <div
-                                className={`flex h-8 w-8 items-center justify-center rounded-full ${member.color} text-[10px] font-bold shadow-lg`}
-                                style={{ color: '#ffffff' }}
+                                className={`flex h-8 w-8 items-center justify-center rounded-full ${member.color} text-[10px] font-bold shadow-lg text-white`}
                             >
                                 {member.initials}
                             </div>
                             <div>
                                 <div
-                                    className="text-sm font-medium transition-colors"
-                                    style={{ color: theme.colors.foreground }}
+                                    className="text-sm font-medium transition-colors text-foreground"
                                 >
                                     {member.name}
                                 </div>
                                 <div
-                                    className="text-xs"
-                                    style={{ color: theme.colors.mutedForeground }}
+                                    className="text-xs text-muted-foreground"
                                 >
                                     {member.role}
                                 </div>
@@ -93,19 +88,14 @@ const TeamMembers: React.FC<TeamMembersProps> = ({
                     </div>
                 ))}
                 {overflowCount > 0 && (
-                    <div className="text-xs text-center" style={{ color: theme.colors.mutedForeground }}>
+                    <div className="text-xs text-center text-muted-foreground">
                         +{overflowCount} more members
                     </div>
                 )}
             </div>
             <button
                 onClick={onManage}
-                className="mt-4 w-full rounded-md border py-2 text-xs font-medium transition-all hover:opacity-80"
-                style={{
-                    borderColor: theme.colors.border,
-                    color: theme.colors.mutedForeground,
-                    backgroundColor: 'transparent'
-                }}
+                className="mt-4 w-full rounded-md border py-2 text-xs font-medium transition-all hover:opacity-80 border-border text-muted-foreground bg-transparent"
             >
                 {manageLabel}
             </button>

@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
+import { motion as motionTokens } from '@/data/motion'
 import type { LegacyTheme as Theme } from '@/lib/registry'
 
 interface ThemeCardProps {
@@ -45,7 +46,7 @@ export default function ThemeCard({ theme, index = 0, size = 'md' }: ThemeCardPr
         <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: index * 0.03 }}
+            transition={{ duration: motionTokens.duration.normal, delay: index * 0.03 }}
         >
             <Link
                 to={`/templates/${theme.id}`}

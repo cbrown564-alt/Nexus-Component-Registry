@@ -17,6 +17,9 @@ const EInkCard: React.FC<EInkCardProps> = ({
 }) => {
   return (
     <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.7, ease: "linear" }}
       onClick={onClick}
       className={`relative overflow-hidden ${noBorder ? '' : 'border-2 border-black'} ${className}`}
       style={{ backgroundColor: '#ffffff' }}

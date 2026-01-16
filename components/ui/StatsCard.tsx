@@ -29,21 +29,19 @@ const StatsCard: React.FC<StatsCardProps> = ({
       <div className="flex items-start justify-between">
         <div>
           <div
-            className="text-sm font-medium"
-            style={{ color: theme.colors.mutedForeground }}
+            className="text-sm font-medium text-muted-foreground"
           >
             {title}
           </div>
           <div
-            className="mt-2 text-3xl font-bold tracking-tight"
-            style={{ color: theme.colors.foreground }}
+            className="mt-2 text-3xl font-bold tracking-tight text-foreground"
           >
             {value}
           </div>
         </div>
         <div className={`flex items-center gap-1 rounded-full px-2 py-1 text-xs font-medium border ${isPositive
-            ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20'
-            : 'bg-red-500/10 text-red-400 border-red-500/20'
+          ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20'
+          : 'bg-red-500/10 text-red-400 border-red-500/20'
           }`}>
           <TrendIcon className="h-3 w-3" />
           {isPositive ? '+' : ''}{change}%
@@ -53,9 +51,9 @@ const StatsCard: React.FC<StatsCardProps> = ({
       <div className="mt-8 h-16 w-full relative">
         {/* Grid Lines */}
         <div className="absolute inset-0 flex flex-col justify-between opacity-10">
-          <div className="h-px w-full" style={{ backgroundColor: theme.colors.border || '#71717a' }} />
-          <div className="h-px w-full" style={{ backgroundColor: theme.colors.border || '#71717a' }} />
-          <div className="h-px w-full" style={{ backgroundColor: theme.colors.border || '#71717a' }} />
+          <div className="h-px w-full bg-border" />
+          <div className="h-px w-full bg-border" />
+          <div className="h-px w-full bg-border" />
         </div>
 
         {/* SVG Sparkline */}

@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { motion as motionTokens } from '@/data/motion';
 import { useTheme } from '@/context/ThemeContext';
 
 interface ClinicCardProps {
@@ -23,7 +24,11 @@ const ClinicCard: React.FC<ClinicCardProps> = ({
         <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay, ease: [0.16, 1, 0.3, 1] }} // Slow, luxurious ease
+            transition={{
+                duration: motionTokens.duration.glacial,
+                delay,
+                ease: motionTokens.ease.snappy
+            }} // Slow, luxurious ease
             className={`p-0 ${className}`} // Removed padding for full bleed options
             style={{
                 backgroundColor: 'transparent',

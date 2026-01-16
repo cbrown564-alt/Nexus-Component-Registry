@@ -52,18 +52,17 @@ export default function HeroTemplate({ theme: templateTheme }: HeroTemplateProps
                         <span
                             className="px-2 py-1 backdrop-blur-sm border rounded text-[10px] font-bold uppercase tracking-wider"
                             style={{
-                                backgroundColor: `${theme.colors.background}1A`, // 10% opacity
-                                borderColor: `${theme.colors.foreground}33`,
-                                color: theme.colors.foreground
+                                backgroundColor: 'var(--background)',
+                                opacity: 0.8,
+                                borderColor: 'var(--border)',
+                                color: 'var(--foreground)'
                             }}
                         >
                             Featured Template
                         </span>
                         <span
                             className={`px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wider bg-opacity-80`}
-                            // Keeping the templateTheme specific color/category style, but ensuring text is readable
-                            // The original had `text-white`. We might want to keep it white if the badge color is dark.
-                            // Assuming templateTheme.colorClass provides a background color.
+                            // Keeping the templateTheme specific color/category style
                             style={{ color: '#ffffff' }}
                         >
                             {/* We append the colorClass from the template which sets background */}
@@ -73,14 +72,14 @@ export default function HeroTemplate({ theme: templateTheme }: HeroTemplateProps
 
                     <h1
                         className="text-5xl md:text-7xl font-bold mb-4 tracking-tight"
-                        style={{ color: theme.colors.foreground }}
+                        style={{ color: 'var(--foreground)' }}
                     >
                         {templateTheme.name}
                     </h1>
 
                     <p
                         className="text-lg md:text-xl mb-8 leading-relaxed max-w-xl line-clamp-3"
-                        style={{ color: theme.colors.mutedForeground }}
+                        style={{ color: 'var(--muted-foreground)' }}
                     >
                         {templateTheme.description}
                     </p>
@@ -90,8 +89,8 @@ export default function HeroTemplate({ theme: templateTheme }: HeroTemplateProps
                             to={`/templates/${templateTheme.id}`}
                             className="px-8 py-3 font-bold rounded-lg transition-colors flex items-center gap-2"
                             style={{
-                                backgroundColor: theme.colors.foreground,
-                                color: theme.colors.background
+                                backgroundColor: 'var(--foreground)',
+                                color: 'var(--background)'
                             }}
                         >
                             <Play className="w-5 h-5 fill-current" />
@@ -100,8 +99,9 @@ export default function HeroTemplate({ theme: templateTheme }: HeroTemplateProps
                         <button
                             className="px-8 py-3 font-bold rounded-lg transition-colors backdrop-blur-sm flex items-center gap-2"
                             style={{
-                                backgroundColor: `${theme.colors.foreground}1A`, // 10%
-                                color: theme.colors.foreground,
+                                backgroundColor: 'rgba(255,255,255,0.1)', // generic white alpha for hero overlay usually better than var(--foreground) alpha without rgb vars
+                                color: 'var(--foreground)',
+                                border: '1px solid var(--border)'
                             }}
                         >
                             <Info className="w-5 h-5" />

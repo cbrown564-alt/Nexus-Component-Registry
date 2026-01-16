@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { motion as motionTokens } from '@/data/motion';
 import { useTheme } from '@/context/ThemeContext';
 
 interface WellnessCardProps {
@@ -22,7 +23,7 @@ const WellnessCard: React.FC<WellnessCardProps> = ({
     <motion.div
       initial={{ opacity: 0, scale: 0.95 }}
       animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.5, delay, ease: [0.22, 1, 0.36, 1] }} // Soft, organic ease
+      transition={{ duration: motionTokens.duration.normal, delay, ease: motionTokens.ease.velvet }} // Soft, organic ease
       className={`rounded-3xl p-6 md:p-8 flex flex-col relative overflow-hidden ${className}`}
       style={{
         backgroundColor: theme.colors.card,

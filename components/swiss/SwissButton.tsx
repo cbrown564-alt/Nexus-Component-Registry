@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion, HTMLMotionProps } from 'framer-motion';
+import { motion as motionTokens } from '@/data/motion';
 
 interface SwissButtonProps extends Omit<HTMLMotionProps<'button'>, 'children'> {
     children: React.ReactNode;
@@ -51,7 +52,7 @@ const SwissButton: React.FC<SwissButtonProps> = ({
                 className="absolute inset-0 bg-[repeating-linear-gradient(45deg,transparent,transparent_10px,rgba(255,255,255,0.1)_10px,rgba(255,255,255,0.1)_20px)]"
                 initial={{ opacity: 0 }}
                 whileHover={{ opacity: 1 }}
-                transition={{ duration: 0.3 }}
+                transition={{ duration: motionTokens.duration.fast }}
             />
 
             <span className="relative z-10">{children}</span>

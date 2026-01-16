@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { motion as motionTokens } from '@/data/motion';
 import { useTheme } from '@/context/ThemeContext';
 
 interface NeonToggleProps {
@@ -65,7 +66,7 @@ const NeonToggle: React.FC<NeonToggleProps> = ({
                         }`}
                     style={{ backgroundColor: !isOn ? theme.colors.muted : undefined }}
                     animate={{ x: isOn ? 32 : 0 }}
-                    transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                    transition={{ ...motionTokens.transition.spring }}
                 >
                     {/* Shine effect on the knob */}
                     <div className="absolute top-1 right-1 w-1.5 h-1.5 rounded-full opacity-40" style={{ backgroundColor: '#ffffff' }} />

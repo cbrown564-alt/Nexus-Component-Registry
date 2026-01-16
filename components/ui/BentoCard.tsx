@@ -39,16 +39,10 @@ const BentoCard: React.FC<BentoCardProps> = ({
         style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.5'/%3E%3C/svg%3E")` }}>
       </div>
 
-      {/* Copy Button */}
       {code && (
         <button
           onClick={handleCopy}
-          className="absolute right-4 top-4 z-20 flex h-8 w-8 items-center justify-center rounded-md border opacity-0 backdrop-blur-md transition-all group-hover:opacity-100 focus:opacity-100 focus:outline-none focus:ring-2"
-          style={{
-            borderColor: theme.colors.border,
-            backgroundColor: theme.colors.secondary, // Replaced zinc-950/50
-            color: theme.colors.mutedForeground,
-          }}
+          className="absolute right-4 top-4 z-20 flex h-8 w-8 items-center justify-center rounded-md border border-border bg-secondary text-muted-foreground opacity-0 backdrop-blur-md transition-all group-hover:opacity-100 focus:opacity-100 focus:outline-none focus:ring-2"
           title="Copy Code"
         >
           {copied ? (
@@ -61,58 +55,45 @@ const BentoCard: React.FC<BentoCardProps> = ({
 
       <div className="relative z-10">
         <div
-          className="group/icon relative mb-4 inline-flex items-center justify-center rounded-lg border p-3 shadow-inner transition-all duration-300 group-hover:scale-110"
+          className="group/icon relative mb-4 inline-flex items-center justify-center rounded-lg border border-border bg-secondary p-3 shadow-inner transition-all duration-300 group-hover:scale-110"
           style={{
-            borderColor: theme.colors.border,
-            backgroundColor: theme.colors.secondary,
             boxShadow: `0 0 20px ${glowColor}`
           }}
         >
           <Icon
-            className="h-6 w-6"
+            className="h-6 w-6 text-foreground"
             strokeWidth={1.5}
-            style={{ color: theme.colors.foreground }}
           />
 
           <div
-            className="pointer-events-none absolute left-full top-1/2 z-50 ml-3 -translate-y-1/2 -translate-x-2 whitespace-nowrap rounded-md border px-2 py-1 text-xs font-medium opacity-0 shadow-xl backdrop-blur-sm transition-all duration-200 group-hover/icon:translate-x-0 group-hover/icon:opacity-100"
-            style={{
-              backgroundColor: theme.colors.card,
-              borderColor: theme.colors.border,
-              color: theme.colors.cardForeground
-            }}
+            className="pointer-events-none absolute left-full top-1/2 z-50 ml-3 -translate-y-1/2 -translate-x-2 whitespace-nowrap rounded-md border border-border bg-card px-2 py-1 text-xs font-medium text-card-foreground opacity-0 shadow-xl backdrop-blur-sm transition-all duration-200 group-hover/icon:translate-x-0 group-hover/icon:opacity-100"
           >
             {title}
           </div>
         </div>
 
         <h3
-          className="mb-2 text-lg font-semibold tracking-tight"
-          style={{ color: theme.colors.foreground }}
+          className="mb-2 text-lg font-semibold tracking-tight text-foreground"
         >
           {title}
         </h3>
         <p
-          className="text-sm leading-relaxed transition-colors"
-          style={{ color: theme.colors.mutedForeground }}
+          className="text-sm leading-relaxed transition-colors text-muted-foreground"
         >
           {description}
         </p>
       </div>
 
       <div
-        className="relative z-10 mt-6 flex items-center gap-2 text-xs font-medium"
-        style={{ color: theme.colors.mutedForeground }}
+        className="relative z-10 mt-6 flex items-center gap-2 text-xs font-medium text-muted-foreground"
       >
         <span
-          className="rounded-full px-2 py-1"
-          style={{ backgroundColor: theme.colors.secondary, color: theme.colors.secondaryForeground }}
+          className="rounded-full px-2 py-1 bg-secondary text-secondary-foreground"
         >
           TSX
         </span>
         <span
-          className="rounded-full px-2 py-1"
-          style={{ backgroundColor: theme.colors.secondary, color: theme.colors.secondaryForeground }}
+          className="rounded-full px-2 py-1 bg-secondary text-secondary-foreground"
         >
           Tailwind
         </span>

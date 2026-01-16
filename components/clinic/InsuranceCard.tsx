@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { motion as motionTokens } from '@/data/motion';
 import { Shield, CreditCard, Phone, FileText } from 'lucide-react';
 import { useTheme } from '@/context/ThemeContext';
 import ClinicCard from './ClinicCard';
@@ -99,7 +100,10 @@ const InsuranceCard: React.FC<InsuranceCardProps> = ({ insurance, delay = 0 }) =
                     <motion.div
                         initial={{ width: 0 }}
                         animate={{ width: `${deductiblePercent}%` }}
-                        transition={{ duration: 0.8, delay: delay + 0.3 }}
+                        transition={{
+                            duration: motionTokens.duration.glacial,
+                            delay: delay + 0.3
+                        }}
                         className="h-full rounded-full"
                         style={{ backgroundColor: theme.colors.primary }}
                     />

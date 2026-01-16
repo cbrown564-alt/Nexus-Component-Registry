@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { motion as motionTokens } from '@/data/motion';
 import { useTheme } from '@/context/ThemeContext';
 import { MapPin, ChevronRight } from 'lucide-react';
 
@@ -78,7 +79,11 @@ const AppointmentCard: React.FC<AppointmentCardProps> = ({
                             key={i}
                             initial={{ opacity: 0, x: -20 }}
                             animate={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 0.8, delay: i * 0.2, ease: [0.22, 1, 0.36, 1] }}
+                            transition={{
+                                duration: motionTokens.duration.glacial,
+                                delay: i * motionTokens.transition.staggerDelay,
+                                ease: motionTokens.ease.velvet
+                            }}
                             className="relative pl-8 group cursor-pointer"
                         >
                             {/* Chapter Marker */}

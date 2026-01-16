@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { motion as motionTokens } from '@/data/motion';
 import { Flame } from 'lucide-react';
 import CyberContainer from './CyberContainer';
 
@@ -27,7 +28,7 @@ const HypeMetric: React.FC<HypeMetricProps> = ({ label, value, className = '' })
                 {isHighHype && (
                     <motion.div
                         animate={{ scale: [1, 1.2, 1], opacity: [0.8, 1, 0.8] }}
-                        transition={{ repeat: Infinity, duration: 0.5 }}
+                        transition={{ repeat: Infinity, duration: motionTokens.duration.normal }}
                         className="text-orange-500"
                     >
                         <Flame size={20} fill="currentColor" />

@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { motion as motionTokens } from '@/data/motion';
 import { useTheme } from '@/context/ThemeContext';
 
 interface GameButtonProps {
@@ -80,7 +81,7 @@ const GameButton: React.FC<GameButtonProps> = ({
             whileTap={{ scale: disabled ? 1 : 0.95 }}
             initial={variant === 'primary' ? { backgroundPosition: '0% 50%' } : {}}
             animate={variant === 'primary' ? { backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'] } : {}}
-            transition={variant === 'primary' ? { duration: 3, repeat: Infinity, ease: 'linear' } : { type: 'spring', stiffness: 400, damping: 17 }}
+            transition={variant === 'primary' ? { duration: 3, repeat: Infinity, ease: 'linear' } : { type: 'spring', ...motionTokens.transition.spring }}
             className={`${baseStyles} ${sizeStyles[size]} ${className}`}
             style={{
                 ...variantStyles[variant],

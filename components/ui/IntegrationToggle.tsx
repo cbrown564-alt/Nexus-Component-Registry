@@ -54,13 +54,13 @@ const IntegrationToggle: React.FC<IntegrationToggleProps> = ({
           <div>
             <h3
               className="text-sm font-medium"
-              style={{ color: theme.colors.foreground }}
+              style={{ color: 'var(--foreground)' }}
             >
               {name}
             </h3>
             <p
               className="text-xs"
-              style={{ color: theme.colors.mutedForeground }}
+              style={{ color: 'var(--muted-foreground)' }}
             >
               {description}
             </p>
@@ -75,35 +75,35 @@ const IntegrationToggle: React.FC<IntegrationToggleProps> = ({
           aria-label={`Toggle ${name}`}
           className="relative h-6 w-11 rounded-full transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2"
           style={{
-            backgroundColor: enabled ? '#10b981' : (theme.colors.muted || '#3f3f46'),
-            boxShadow: `0 0 0 2px ${theme.colors.background}`,
-            outlineColor: theme.colors.ring
+            backgroundColor: enabled ? '#10b981' : 'var(--muted)',
+            boxShadow: `0 0 0 2px var(--background)`,
+            outlineColor: 'var(--ring)'
           }}
         >
           <span
             className={`pointer-events-none inline-block h-5 w-5 transform rounded-full shadow ring-0 transition duration-200 ease-in-out ${enabled ? 'translate-x-5' : 'translate-x-0.5'} mt-0.5`}
-            style={{ backgroundColor: theme.colors.background || '#ffffff' }}
+            style={{ backgroundColor: 'var(--background)' }}
           />
         </button>
       </div>
 
       <div
         className="mt-4 flex items-center justify-between border-t pt-4"
-        style={{ borderColor: theme.colors.border }}
+        style={{ borderColor: 'var(--border)' }}
       >
         <div
           className="flex items-center gap-2 text-[10px]"
-          style={{ color: theme.colors.mutedForeground }}
+          style={{ color: 'var(--muted-foreground)' }}
         >
           <div
             className="h-1.5 w-1.5 rounded-full"
-            style={{ backgroundColor: enabled ? '#10b981' : (theme.colors.mutedForeground || '#52525b') }}
+            style={{ backgroundColor: enabled ? '#10b981' : 'var(--muted-foreground)' }}
           />
           {enabled ? 'Connected' : 'Disconnected'}
         </div>
         <button
           className="flex items-center gap-1 text-[10px] transition-colors hover:opacity-80"
-          style={{ color: theme.colors.mutedForeground }}
+          style={{ color: 'var(--muted-foreground)' }}
         >
           Configure <ExternalLink className="h-3 w-3" />
         </button>

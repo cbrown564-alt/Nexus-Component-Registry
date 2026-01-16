@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { motion as motionTokens } from '@/data/motion';
 import { useTheme } from '@/context/ThemeContext';
 
 interface SciFiButtonProps {
@@ -75,7 +76,7 @@ const SciFiButton: React.FC<SciFiButtonProps> = ({
         <motion.button
             whileHover={{ scale: disabled ? 1 : 1.02 }}
             whileTap={{ scale: disabled ? 1 : 0.98 }}
-            transition={{ type: 'spring', stiffness: 400, damping: 20 }}
+            transition={{ ...motionTokens.transition.spring }}
             className={`${baseStyles} ${sizeStyles[size]} ${className}`}
             style={dynamicStyles}
             disabled={disabled}

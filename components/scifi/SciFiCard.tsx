@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { motion as motionTokens } from '@/data/motion';
 import { useTheme } from '@/context/ThemeContext';
 
 interface SciFiCardProps {
@@ -21,7 +22,7 @@ const SciFiCard: React.FC<SciFiCardProps> = ({
     <motion.div
       initial={{ opacity: 0, scale: 0.95 }}
       animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.5, delay }}
+      transition={{ duration: motionTokens.duration.normal, delay }}
       className={`relative backdrop-blur-md border ${className}`}
       style={{
         backgroundColor: `${theme.colors.card}cc`,

@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { motion as motionTokens } from '@/data/motion';
 import { useTheme } from '@/context/ThemeContext';
 
 interface EducationButtonProps {
@@ -66,7 +67,7 @@ const EducationButton: React.FC<EducationButtonProps> = ({
         <motion.button
             whileHover={{ scale: disabled ? 1 : 1.03, y: disabled ? 0 : -2 }}
             whileTap={{ scale: disabled ? 1 : 0.97 }}
-            transition={{ type: 'spring', stiffness: 400, damping: 17 }}
+            transition={{ ...motionTokens.transition.spring }}
             className={`${baseStyles} ${sizeStyles[size]} ${className}`}
             disabled={disabled}
             onClick={onClick}

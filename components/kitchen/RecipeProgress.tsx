@@ -2,6 +2,7 @@ import React from 'react';
 import { CheckCircle2, Circle, Timer } from 'lucide-react';
 import KitchenCard from './KitchenCard';
 import { motion } from 'framer-motion';
+import { motion as motionTokens } from '@/data/motion';
 
 interface Step {
   title: string;

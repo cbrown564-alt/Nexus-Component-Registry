@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { motion as motionTokens } from '@/data/motion';
 import { useTheme } from '@/context/ThemeContext';
 
 interface ClayCardProps {
@@ -30,9 +31,7 @@ const ClayCard: React.FC<ClayCardProps> = ({
       initial={{ opacity: 0, scale: 0.9, y: 20 }}
       animate={{ opacity: 1, scale: 1, y: 0 }}
       transition={{
-        type: "spring",
-        stiffness: 300,
-        damping: 20,
+        ...motionTokens.transition.spring,
         delay
       }}
       className={`relative rounded-[2rem] p-6 ${isColorClass ? appliedColor : ''} ${className}`}

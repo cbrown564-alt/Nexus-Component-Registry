@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { motion as motionTokens } from '@/data/motion';
 
 interface OrganicContainerProps {
     children: React.ReactNode;
@@ -47,7 +48,7 @@ const OrganicContainer: React.FC<OrganicContainerProps> = ({ children, className
                 ]
             }}
             transition={{
-                duration: 0.8,
+                duration: motionTokens.duration.glacial,
                 delay,
                 borderRadius: {
                     duration: 5,

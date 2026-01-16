@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { motion as motionTokens } from '@/data/motion';
 import { useTheme } from '@/context/ThemeContext';
 
 interface FoodCardProps {
@@ -21,7 +22,11 @@ const FoodCard: React.FC<FoodCardProps> = ({
     <motion.div
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.4, delay, ease: "easeOut" }}
+      transition={{
+        duration: motionTokens.duration.normal,
+        delay,
+        ease: motionTokens.ease.out
+      }}
       className={`border shadow-sm ${className}`}
       style={{
         backgroundColor: theme.colors.card,

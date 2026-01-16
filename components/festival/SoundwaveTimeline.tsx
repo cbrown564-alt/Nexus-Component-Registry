@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { motion as motionTokens } from '@/data/motion';
 import { useTheme } from '@/context/ThemeContext';
 
 const SoundwaveTimeline = () => {
@@ -41,7 +42,12 @@ const SoundwaveTimeline = () => {
               height: bar.active ? [bar.height, bar.height * 0.8, bar.height] : bar.height,
               backgroundColor: bar.active ? '#f0abfc' : theme.colors.muted // was #3f3f46 (zinc-700)
             }}
-            transition={{ duration: 0.5, repeat: Infinity, repeatType: "reverse", delay: i * 0.02 }}
+            transition={{
+              duration: motionTokens.duration.normal,
+              repeat: Infinity,
+              repeatType: "reverse",
+              delay: i * 0.02
+            }}
             className={`w-1.5 rounded-full flex-shrink-0 transition-colors duration-300 ${bar.active ? 'bg-fuchsia-400 shadow-[0_0_10px_#e879f9]' : ''
               }`}
             style={{

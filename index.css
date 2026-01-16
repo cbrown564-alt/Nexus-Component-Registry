@@ -11,6 +11,7 @@
   --font-code: 'Space Mono', monospace;
 
   /* Custom colors */
+  /* Custom colors */
   --color-zinc-850: #1f1f22;
   --color-zinc-950: #09090b;
 
@@ -19,6 +20,36 @@
   --color-sage-300: #bbf7d0;
   --color-sage-500: #22c55e;
   --color-sage-900: #14532d;
+
+  /* Theme Dynamic Colors */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--card);
+  --color-popover-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: #ef4444;
+  --color-destructive-foreground: #ffffff;
+  --color-border: var(--border);
+  --color-input: var(--border);
+  --color-ring: var(--ring);
+
+  /* Radius Mappings */
+  --radius-sm: calc(var(--radius) - 2px);
+  --radius-md: var(--radius);
+  --radius-lg: calc(var(--radius) + 2px);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  /* Shadows */
+  --shadow-theme: var(--shadow-theme);
 
   /* Animations */
   --animate-spin-slow: spin 4s linear infinite;
@@ -92,8 +123,13 @@ body {
 
 /* Brutalist marquee animation */
 @keyframes marquee {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
 /* Accessibility: Reduced motion preference */

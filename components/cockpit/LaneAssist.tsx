@@ -4,6 +4,7 @@ import CockpitCard from './CockpitCard';
 import { useTheme } from '@/context/ThemeContext';
 
 import { motion, AnimatePresence } from 'framer-motion';
+import { motion as motionTokens } from '@/data/motion';
 
 interface LaneAssistProps {
     children?: React.ReactNode;
@@ -46,7 +47,7 @@ const LaneAssist = ({ children, activeMode = 'comfort', onModeChange, className 
                                 <motion.div
                                     layoutId="activeMode"
                                     className={`absolute inset-0 bg-${mode.color}-500/10 border border-${mode.color}-500/50 rounded-full`}
-                                    transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                                    transition={{ ...motionTokens.transition.spring }}
                                 />
                             )}
                             <span className="text-base relative z-10">{mode.icon}</span>

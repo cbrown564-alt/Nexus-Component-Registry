@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion, HTMLMotionProps } from 'framer-motion';
+import { motion as motionTokens } from '@/data/motion';
 
 interface FlowButtonProps extends Omit<HTMLMotionProps<'button'>, 'children'> {
     children: React.ReactNode;
@@ -85,9 +86,9 @@ const FlowButton: React.FC<FlowButtonProps> = ({
                         scale: [1, 1.1, 1.2],
                     }}
                     transition={{
-                        duration: 0.6,
+                        duration: motionTokens.duration.slow,
                         repeat: Infinity,
-                        ease: "easeOut"
+                        ease: motionTokens.ease.out
                     }}
                 />
             )}

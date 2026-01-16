@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { motion as motionTokens } from '@/data/motion';
 import { Heart, Shield, Zap, Flame, Droplets } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import { useTheme } from '@/context/ThemeContext';
@@ -84,7 +85,7 @@ const HealthBar: React.FC<HealthBarProps> = ({
             <motion.div
               initial={animated ? { width: 0 } : false}
               animate={{ width: `${percentage}%` }}
-              transition={{ duration: 0.5, ease: 'easeOut' }}
+              transition={{ duration: motionTokens.duration.normal, ease: 'easeOut' }}
               className={`h-full rounded-full bg-gradient-to-r ${config.gradient} ${isCritical && animated ? 'animate-pulse' : ''
                 }`}
             />

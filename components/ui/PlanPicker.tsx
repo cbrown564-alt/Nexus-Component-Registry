@@ -44,7 +44,7 @@ const PlanPicker: React.FC<PlanPickerProps> = ({
         <SpotlightCard className="p-6">
             <h3
                 className="mb-4 text-sm font-medium"
-                style={{ color: theme.colors.foreground }}
+                style={{ color: 'var(--foreground)' }}
             >
                 Subscription Plan
             </h3>
@@ -64,8 +64,8 @@ const PlanPicker: React.FC<PlanPickerProps> = ({
                         tabIndex={0}
                         className="relative flex cursor-pointer items-center justify-between rounded-lg border px-4 py-3 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
                         style={{
-                            borderColor: selected === plan.id ? '#3b82f6' : theme.colors.border,
-                            backgroundColor: selected === plan.id ? 'rgba(59,130,246,0.1)' : `${theme.colors.muted}33`,
+                            borderColor: selected === plan.id ? '#3b82f6' : 'var(--border)',
+                            backgroundColor: selected === plan.id ? 'rgba(59,130,246,0.1)' : 'var(--muted)',
                             boxShadow: selected === plan.id ? '0 0 20px rgba(59,130,246,0.1)' : 'none'
                         }}
                     >
@@ -73,7 +73,7 @@ const PlanPicker: React.FC<PlanPickerProps> = ({
                             <div
                                 className="flex h-4 w-4 items-center justify-center rounded-full border"
                                 style={{
-                                    borderColor: selected === plan.id ? '#3b82f6' : theme.colors.mutedForeground,
+                                    borderColor: selected === plan.id ? '#3b82f6' : 'var(--muted-foreground)',
                                     backgroundColor: selected === plan.id ? '#3b82f6' : 'transparent'
                                 }}
                             >
@@ -83,14 +83,14 @@ const PlanPicker: React.FC<PlanPickerProps> = ({
                                 <div
                                     className="text-sm font-medium"
                                     style={{
-                                        color: selected === plan.id ? '#dbeafe' : theme.colors.mutedForeground
+                                        color: selected === plan.id ? '#dbeafe' : 'var(--muted-foreground)'
                                     }}
                                 >
                                     {plan.name}
                                 </div>
                                 <div
                                     className="text-xs"
-                                    style={{ color: theme.colors.mutedForeground }}
+                                    style={{ color: 'var(--muted-foreground)' }}
                                 >
                                     {plan.price}
                                 </div>
@@ -106,7 +106,7 @@ const PlanPicker: React.FC<PlanPickerProps> = ({
             </div>
             <div
                 className="mt-4 flex items-center gap-2 text-[10px]"
-                style={{ color: theme.colors.mutedForeground }}
+                style={{ color: 'var(--muted-foreground)' }}
             >
                 <Check className="h-3 w-3 text-emerald-500" />
                 <span>Next billing date: {billingDate}</span>

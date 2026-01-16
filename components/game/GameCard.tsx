@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion, HTMLMotionProps } from 'framer-motion';
+import { motion as motionTokens } from '@/data/motion';
 import { useTheme } from '@/context/ThemeContext';
 
 interface GameCardProps extends HTMLMotionProps<"div"> {
@@ -44,7 +45,7 @@ const GameCard: React.FC<GameCardProps> = ({
     <motion.div
       initial={{ opacity: 0, scale: 0.9, y: 10 }}
       animate={{ opacity: 1, scale: 1, y: 0 }}
-      transition={{ type: "spring", bounce: 0.4, duration: 0.6, delay }}
+      transition={{ ...motionTokens.transition.spring, delay }}
       className={`relative overflow-hidden rounded-2xl border backdrop-blur-md shadow-lg ${className}`}
       style={styles}
       {...props}

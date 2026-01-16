@@ -70,11 +70,11 @@ export default function LiveComponentCard({ component, priority = false }: LiveC
     const GenericPreview = () => (
         <div
             className="h-full w-full flex items-center justify-center"
-            style={{ backgroundColor: theme.colors.background }}
+            style={{ backgroundColor: 'var(--background)' }}
         >
             <div
                 className="text-4xl font-bold transition-colors"
-                style={{ color: theme.colors.mutedForeground }}
+                style={{ color: 'var(--muted-foreground)' }}
             >
                 {'</>'}
             </div>
@@ -91,8 +91,8 @@ export default function LiveComponentCard({ component, priority = false }: LiveC
             to={`/components/${component.theme}/${component.id}`}
             className="group block rounded-xl border overflow-hidden hover:shadow-2xl transition-all relative"
             style={{
-                borderColor: theme.colors.border,
-                backgroundColor: theme.colors.secondary
+                borderColor: 'var(--border)',
+                backgroundColor: 'var(--secondary)'
             }}
             onMouseEnter={() => {
                 // Optional: Trigger any hover states in the preview if possible
@@ -103,8 +103,8 @@ export default function LiveComponentCard({ component, priority = false }: LiveC
                 ref={cardRef}
                 className="h-48 border-b relative overflow-hidden flex items-center justify-center"
                 style={{
-                    backgroundColor: theme.colors.background,
-                    borderColor: theme.colors.border
+                    backgroundColor: 'var(--background)',
+                    borderColor: 'var(--border)'
                 }}
             >
                 {isVisible ? (
@@ -135,9 +135,9 @@ export default function LiveComponentCard({ component, priority = false }: LiveC
                     <span
                         className="px-2 py-1 text-[10px] uppercase font-bold tracking-wider rounded border"
                         style={{
-                            color: theme.colors.mutedForeground,
-                            backgroundColor: theme.colors.secondary,
-                            borderColor: theme.colors.border
+                            color: 'var(--muted-foreground)',
+                            backgroundColor: 'var(--secondary)',
+                            borderColor: 'var(--border)'
                         }}
                     >
                         {component.category}
@@ -148,19 +148,19 @@ export default function LiveComponentCard({ component, priority = false }: LiveC
             {/* Info */}
             <div
                 className="p-4"
-                style={{ backgroundColor: `${theme.colors.secondary}4D` }} // 30% roughly
+                style={{ backgroundColor: 'var(--secondary)', opacity: 0.8 }}
             >
                 <div className="flex items-center justify-between gap-2 mb-1">
                     <h3
                         className="font-semibold transition-colors truncate"
-                        style={{ color: theme.colors.foreground }}
+                        style={{ color: 'var(--foreground)' }}
                     >
                         {component.name}
                     </h3>
                 </div>
                 <p
                     className="text-xs line-clamp-2 h-8 leading-relaxed"
-                    style={{ color: theme.colors.mutedForeground }}
+                    style={{ color: 'var(--muted-foreground)' }}
                 >
                     {component.description}
                 </p>
@@ -170,8 +170,8 @@ export default function LiveComponentCard({ component, priority = false }: LiveC
                             key={tag}
                             className="px-1.5 py-0.5 text-[10px] rounded"
                             style={{
-                                color: theme.colors.mutedForeground,
-                                backgroundColor: `${theme.colors.muted}80`
+                                color: 'var(--muted-foreground)',
+                                backgroundColor: 'var(--muted)'
                             }}
                         >
                             #{tag}
@@ -180,7 +180,7 @@ export default function LiveComponentCard({ component, priority = false }: LiveC
                     {component.tags.length > 2 && (
                         <span
                             className="px-1.5 py-0.5 text-[10px]"
-                            style={{ color: theme.colors.mutedForeground }}
+                            style={{ color: 'var(--muted-foreground)' }}
                         >
                             + {component.tags.length - 2}
                         </span>

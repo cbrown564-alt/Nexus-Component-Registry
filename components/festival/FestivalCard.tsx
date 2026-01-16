@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { motion as motionTokens } from '@/data/motion';
 import { useTheme } from '@/context/ThemeContext';
 
 interface FestivalCardProps {
@@ -21,7 +22,7 @@ const FestivalCard: React.FC<FestivalCardProps> = ({
     <motion.div
       initial={{ opacity: 0, scale: 0.95 }}
       animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.4, delay }}
+      transition={{ duration: motionTokens.duration.normal, delay }}
       className={`relative rounded-3xl backdrop-blur-xl border overflow-hidden ${className}`}
       style={{
         backgroundColor: theme.colors.card ? `${theme.colors.card}66` : 'rgba(0,0,0,0.4)', // card/40

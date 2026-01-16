@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { motion as motionTokens } from '@/data/motion';
 import { TrendingUp, TrendingDown, Minus } from 'lucide-react';
 import { useTheme } from '@/context/ThemeContext';
 import ClinicCard from './ClinicCard';
@@ -101,7 +102,10 @@ const LabResultsChart: React.FC<LabResultsChartProps> = ({ results, delay = 0 })
                                 <motion.div
                                     initial={{ width: 0 }}
                                     animate={{ width: `${Math.max(5, Math.min(95, percentage))}%` }}
-                                    transition={{ duration: 0.8, delay: delay + index * 0.1 }}
+                                    transition={{
+                                        duration: motionTokens.duration.glacial,
+                                        delay: delay + index * 0.1
+                                    }}
                                     className="absolute h-full rounded-full"
                                     style={{ backgroundColor: colors.bar }}
                                 />

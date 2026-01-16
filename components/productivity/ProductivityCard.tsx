@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useTheme } from '@/context/ThemeContext';
+import { motion as motionTokens } from '@/data/motion';
 
 interface ProductivityCardProps {
   children: React.ReactNode;
