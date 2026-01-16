@@ -374,13 +374,39 @@ export const templateComponentMap: TemplateComponentMapping[] = [
         sharedComponentIds: ['stats-card'],
     },
 
-    // Flux - Social Feed (Mobile First)
     {
         id: 'flux',
         name: 'Flux',
         usedComponentIds: [], // Custom implementation
         extendedComponentIds: [],
         sharedComponentIds: ['activity-feed', 'stats-card'],
+    },
+
+    // Neo - Finance (Mobile First)
+    {
+        id: 'neo',
+        name: 'Neo',
+        usedComponentIds: [],
+        extendedComponentIds: [],
+        sharedComponentIds: ['stats-card'],
+    },
+
+    // Zen - Reader (Mobile First)
+    {
+        id: 'zen',
+        name: 'Zen',
+        usedComponentIds: [],
+        extendedComponentIds: [],
+        sharedComponentIds: [],
+    },
+
+    // Touch - IoT (Mobile First)
+    {
+        id: 'touch',
+        name: 'Touch',
+        usedComponentIds: [],
+        extendedComponentIds: [],
+        sharedComponentIds: ['integration-toggle'],
     },
 ]
 

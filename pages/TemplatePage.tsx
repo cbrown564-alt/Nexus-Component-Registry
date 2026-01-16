@@ -46,6 +46,9 @@ import ConciergeDashboard from '@/templates/ConciergeDashboard'
 import ParadoxDashboard from '@/templates/ParadoxDashboard'
 import TerminalDashboard from '@/templates/TerminalDashboard'
 import FluxTemplate from '@/components/templates/mobile/flux/FluxTemplate'
+import NeoTemplate from '@/components/templates/mobile/neo/NeoTemplate'
+import ZenTemplate from '@/components/templates/mobile/zen/ZenTemplate'
+import TouchTemplate from '@/components/templates/mobile/touch/TouchTemplate'
 
 const dashboardComponents: Record<string, ComponentType> = {
     engineering: EngineeringDashboard,
@@ -88,6 +91,9 @@ const dashboardComponents: Record<string, ComponentType> = {
     paradox: ParadoxDashboard,
     terminal: TerminalDashboard,
     flux: FluxTemplate,
+    neo: NeoTemplate,
+    zen: ZenTemplate,
+    touch: TouchTemplate,
 }
 
 export default function TemplatePage() {
