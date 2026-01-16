@@ -77,15 +77,33 @@ function ThermostatDial() {
         let angle = Math.atan2(deltaY, deltaX) * (180 / Math.PI);
         if (angle < 0) angle += 360;
 
-        // Map angle to temp (60-90 range)
-        // 0 degrees = 90 (bottom/max-ish), 180 = 60 (top/min-ish) - let's adjust mapping
-        // Let's use 90deg (bottom) as the "break" point
-        // Map 120deg (bottom left) -> 60deg (bottom right) clockwise
-        // Clamping logic:
-        // If angle is between 90 and 120, ignore (dead zone)
+        // Constraint logic: Gap at bottom (90deg).
+        // Dead zone: 60deg to 120deg (60 degrees wide at bottom)
+        // Valid Range: 120deg -> 360deg -> 60deg (Clockwise)
 
-        // Simplified full circle mapping for smoothness:
-        const newTemp = Math.round(60 + (angle / 360) * 30);
+        let progress = 0;
+        const maxProgress = 300; // 360 - 60 gap
+
+        if (angle > 60 && angle < 120) {
+            // In dead zone - clamp to nearest
+            // If < 90 (closer to 60), it's MAX
+            // If >= 90 (closer to 120), it's MIN
+            progress = angle < 90 ? maxProgress : 0;
+        } else {
+            // Valid range
+            // If we are 120..360: subtract 120
+            // If we are 0..60: add (360-120) = 240
+            if (angle >= 120) {
+                progress = angle - 120;
+            } else {
+                progress = angle + 240;
+            }
+        }
+
+        // Map progress (0-300) to temp (60-90)
+        // 30 degrees range for temp * 10 for precision? No, standard range.
+        const tempRange = 30; // 60 to 90
+        const newTemp = Math.round(60 + (progress / maxProgress) * tempRange);
 
         if (newTemp !== temp) {
             setTemp(newTemp);
@@ -93,7 +111,12 @@ function ThermostatDial() {
         }
     };
 
-    const rotation = ((temp - 60) / 30) * 360;
+    // Calculate rotation: Map temp (60-90) back to angle (120 -> 60 passing through top)
+    // 0 progress -> 120 deg
+    // 300 progress -> 60 deg (actually 420)
+    // equation: 120 + (fraction * 300)
+    const fraction = (temp - 60) / 30;
+    const rotation = 120 + (fraction * 300);
 
     return (
         <div className="relative w-80 h-80 flex items-center justify-center">

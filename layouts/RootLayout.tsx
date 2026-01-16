@@ -192,7 +192,10 @@ function Header() {
         : true
 
     // Hide header on immersive template themes (only when actually on a template page)
-    const hideHeader = isTemplatePage && isTemplateMode && ['brutalist', 'kitchen', 'kids', 'scifi', 'eink', 'solarpunk', 'legal', 'softplastic', 'festival', 'acid', 'legacy', 'cockpit', 'clay', 'blueprint', 'swiss'].includes(currentTheme.id)
+    const hideHeader = isTemplatePage && isTemplateMode && (
+        ['brutalist', 'kitchen', 'kids', 'scifi', 'eink', 'solarpunk', 'legal', 'softplastic', 'festival', 'acid', 'legacy', 'cockpit', 'clay', 'blueprint', 'swiss'].includes(currentTheme.id) ||
+        currentTheme.mobileTier === 'first'
+    )
 
     if (hideHeader) return null
 

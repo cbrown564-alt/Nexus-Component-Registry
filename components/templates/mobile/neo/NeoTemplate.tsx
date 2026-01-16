@@ -40,7 +40,7 @@ export default function NeoTemplate() {
             </div>
 
             {/* Header */}
-            <header className="px-6 py-6 flex items-center justify-between z-20 relative">
+            <header className="absolute top-0 left-0 right-0 px-6 py-6 flex items-center justify-between z-50">
                 <Link to="/mobile/templates" className="p-3 -ml-2 rounded-full hover:bg-white/5 transition-colors group">
                     <ArrowLeft className="w-6 h-6 text-neutral-400 group-hover:text-white transition-colors" />
                 </Link>
@@ -55,10 +55,10 @@ export default function NeoTemplate() {
             </header>
 
             {/* Main Content Area */}
-            <div className="flex-1 relative z-10 flex flex-col">
+            <div className="flex-1 relative z-10 flex flex-col pt-20"> {/* Added pt-20 to clear header */}
 
                 {/* Balance Hero */}
-                <div className="px-8 pb-8 pt-4">
+                <div className="px-8 pb-12"> {/* Increased bottom padding */}
                     <span className="text-neutral-500 text-sm font-medium tracking-wider uppercase mb-1 block">Total Balance</span>
                     <div className="flex items-start gap-1">
                         <span className="text-2xl text-neutral-400 font-light mt-1">$</span>
@@ -69,7 +69,7 @@ export default function NeoTemplate() {
                 </div>
 
                 {/* Cards Stack */}
-                <div className="relative h-[320px] w-full perspective-1000 flex justify-center items-start">
+                <div className="relative h-[340px] w-full perspective-1000 flex justify-center items-start"> {/* Increased height */}
                     {neoWallets.map((wallet, index) => (
                         <NeoCard
                             key={wallet.id}

@@ -49,6 +49,7 @@ import FluxTemplate from '@/components/templates/mobile/flux/FluxTemplate'
 import NeoTemplate from '@/components/templates/mobile/neo/NeoTemplate'
 import ZenTemplate from '@/components/templates/mobile/zen/ZenTemplate'
 import TouchTemplate from '@/components/templates/mobile/touch/TouchTemplate'
+import SignalTemplate from '@/components/templates/mobile/signal/SignalTemplate'
 
 const dashboardComponents: Record<string, ComponentType> = {
     engineering: EngineeringDashboard,
@@ -94,6 +95,7 @@ const dashboardComponents: Record<string, ComponentType> = {
     neo: NeoTemplate,
     zen: ZenTemplate,
     touch: TouchTemplate,
+    signal: SignalTemplate,
 }
 
 export default function TemplatePage() {
@@ -117,37 +119,39 @@ export default function TemplatePage() {
     return (
         <div className="relative z-10">
             {/* Floating Navigation Bar */}
-            <div className="sticky top-0 z-50 flex items-center justify-between px-6 py-3 bg-zinc-950/80 backdrop-blur-md border-b border-zinc-800">
-                <div className="flex items-center gap-4">
-                    <Link
-                        to="/templates"
-                        className="flex items-center gap-2 text-sm text-zinc-400 hover:text-white transition-colors"
-                    >
-                        <ArrowLeft className="h-4 w-4" />
-                        Back to Templates
-                    </Link>
-                    <div className="h-4 w-px bg-zinc-800" />
-                    <div className="flex items-center gap-2">
-                        <div className={`h-3 w-3 rounded-full ${theme.colorClass}`} />
-                        <span className="font-medium text-white">{theme.name}</span>
+            {theme.mobileTier !== 'first' && (
+                <div className="sticky top-0 z-50 flex items-center justify-between px-6 py-3 bg-zinc-950/80 backdrop-blur-md border-b border-zinc-800">
+                    <div className="flex items-center gap-4">
+                        <Link
+                            to="/templates"
+                            className="flex items-center gap-2 text-sm text-zinc-400 hover:text-white transition-colors"
+                        >
+                            <ArrowLeft className="h-4 w-4" />
+                            Back to Templates
+                        </Link>
+                        <div className="h-4 w-px bg-zinc-800" />
+                        <div className="flex items-center gap-2">
+                            <div className={`h-3 w-3 rounded-full ${theme.colorClass}`} />
+                            <span className="font-medium text-white">{theme.name}</span>
+                        </div>
+                    </div>
+
+                    <div className="flex items-center gap-3">
+                        <ThemeSwitcher template={theme} />
+                        <Link
+                            to={`/templates/${theme.id}/components`}
+                            className="flex items-center gap-2 text-sm text-zinc-400 hover:text-white transition-colors"
+                        >
+                            <Box className="h-4 w-4" />
+                            Components
+                        </Link>
+                        <button className="flex items-center gap-2 px-3 py-1.5 text-sm bg-white text-zinc-950 rounded-lg font-medium hover:bg-zinc-200 transition-colors">
+                            <ExternalLink className="h-4 w-4" />
+                            Open Fullscreen
+                        </button>
                     </div>
                 </div>
-
-                <div className="flex items-center gap-3">
-                    <ThemeSwitcher template={theme} />
-                    <Link
-                        to={`/templates/${theme.id}/components`}
-                        className="flex items-center gap-2 text-sm text-zinc-400 hover:text-white transition-colors"
-                    >
-                        <Box className="h-4 w-4" />
-                        Components
-                    </Link>
-                    <button className="flex items-center gap-2 px-3 py-1.5 text-sm bg-white text-zinc-950 rounded-lg font-medium hover:bg-zinc-200 transition-colors">
-                        <ExternalLink className="h-4 w-4" />
-                        Open Fullscreen
-                    </button>
-                </div>
-            </div>
+            )}
 
             {/* Dashboard Content */}
             <DashboardComponent />

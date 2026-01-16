@@ -408,6 +408,15 @@ export const templateComponentMap: TemplateComponentMapping[] = [
         extendedComponentIds: [],
         sharedComponentIds: ['integration-toggle'],
     },
+
+    // Signal - Chat (Mobile First)
+    {
+        id: 'signal',
+        name: 'Signal',
+        usedComponentIds: [],
+        extendedComponentIds: [],
+        sharedComponentIds: [],
+    },
 ]
 
 /**
